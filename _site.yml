@@ -5,6 +5,16 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+    - text: "Reach me"
+      menu:
+        - icon: fa-linkedin
+          href: www.linkedin.com/in/kjmagnan1s
+        - icon: fa-github
+          href: https://github.com/kjmagnan1s
+        - icon: fa-facebook
+          href: https://www.facebook.com/kevin.jerome.stlmo
+        - icon: fa-envelope
+          href: mailto:kjmagnan1s@gmail.com
     - text: "Projects"    ### new
       href: projects.html  #### the stuff
     - text: "About Me"
