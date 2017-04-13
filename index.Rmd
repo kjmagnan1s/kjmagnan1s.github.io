@@ -2,4 +2,10 @@
 title: "Kevin's Website"
 ---
 
-I want that schezuan sauce
+- __Name:__ Kevin Magnan
+- __Ocupation:__ "Graduate Student"
+- __Hobbies:__ Learning software development instead of studying for exams. 
+
+My girlfriend Christina and I in Isla Mujeres, Cancun MX
+
+![](cover_pic.jpg)

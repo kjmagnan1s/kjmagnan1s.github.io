@@ -8,17 +8,21 @@ navbar:
     - text: "Reach me"
       menu:
         - icon: fa-linkedin
-          href: www.linkedin.com/in/kjmagnan1s
+          text: _Linkedin
+          href: https://linkedin.com/in/kjmagnan1s
         - icon: fa-github
+          text: _github
           href: https://github.com/kjmagnan1s
         - icon: fa-facebook
+          text: _Facebook
           href: https://www.facebook.com/kevin.jerome.stlmo
         - icon: fa-envelope
+          text: _Email
           href: mailto:kjmagnan1s@gmail.com
-    - text: "Projects"    ### new
-      href: projects.html  #### the stuff
-    - text: "About Me"
-      href: about.html
+    - text: "Projects"
+      href: projects.html
+    - text: "Resume"
+      href: https://kjmagnan1s.github.io/resume.pdf
 output:
   html_document:
     theme: flatly
