@@ -1,5 +1,11 @@
-
 ---
 title: "About Me"
 ---
-WUBALUBADUBDUB
+
+- __Name:__ Kevin Magnan
+- __Ocupation:__ "Graduate Student"
+- __Hobbies:__ Learning software development instead of studying for exams. 
+
+My girlfriend Christina and I in Isla Mujeres, Cancun MX
+
+![](cover_pic.jpg)
