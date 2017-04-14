@@ -97,6 +97,9 @@ detach(subset_by_cities)
 
 ```
 
+<br>
+
+##Thesis data
 ```{r eval=FALSE}
 library(plyr)
 library(dplyr)

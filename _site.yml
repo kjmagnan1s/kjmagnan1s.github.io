@@ -20,6 +20,7 @@ navbar:
           text:   Email
           href: mailto:kjmagnan1s@gmail.com
     - text: "Projects"
+      href: projects.html
       menu: 
         - text: "R Analysis"
           href: ranalysis.html
@@ -28,7 +29,7 @@ navbar:
     - text: "About Me"
       href: about.html
     - text: "Resume"
-      href: https://kmagnan.github.io/resume.pdf
+      href: https://kjmagnan1s.github.io/resume.pdf
 output:
   html_document:
     theme: flatly

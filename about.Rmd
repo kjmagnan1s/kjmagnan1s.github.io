@@ -11,4 +11,4 @@ of public safety.
 
 Please use the *Reach Me* links above to contact me via social media outlets.  
 You can also see my code and projects I've worked on in school, on my thesis, 
-and for fun in the *Projects* section.
+and for fun in the [*Projects*](projects.html) section.
