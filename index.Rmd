@@ -24,9 +24,9 @@ What I Am Most Passionate About:
 * Crime and Law Enforcement in the US
 * Statistical Analysis using R
 * Spatial Analysis using ArcGIS and GeoDa
-* [Jasper](jasper.jpg) and [Leona](leona.jpg)
+* [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
 * My recent IPA and culinary adventures
-* [Kayaking](kayak.jpg)
+* [Kayaking](images\kayak.jpg)
 * Traveling
 
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="480" height="360"></iframe>
