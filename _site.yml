@@ -29,7 +29,7 @@ navbar:
     - text: "About Me"
       href: about.html
     - text: "Resume"
-      href: https://kjmagnan1s.github.io/resume.pdf
+      href: resume.pdf
 output:
   html_document:
     theme: flatly
