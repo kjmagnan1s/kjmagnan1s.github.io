@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>R Analysis</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="ranalysis.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Kevin J. Magnan</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Reach me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://linkedin.com/in/kjmagnan1s">
+        <span class="fa fa-linkedin"></span>
+         
+        Linkedin
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/kjmagnan1s">
+        <span class="fa fa-github"></span>
+         
+        github
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/kevin.jerome.stlmo">
+        <span class="fa fa-facebook"></span>
+         
+        Facebook
+      </a>
+    </li>
+    <li>
+      <a href="mailto:kjmagnan1s@gmail.com">
+        <span class="fa fa-envelope"></span>
+         
+        Email
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="ranalysis.html">R Analysis</a>
+    </li>
+    <li>
+      <a href="gis.html">GIS</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">About Me</a>
+</li>
+<li>
+  <a href="https://kjmagnan1s.github.io/resume.pdf">Resume</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">R Analysis</h1>
+
+</div>
+
+
+<p><br></p>
+<div id="us-police-officers-per-murders" class="section level2">
+<h2>US Police Officers per Murders</h2>
+<div class="figure">
+<img src="images/bar_plot.jpeg" />
+
+</div>
+<pre class="r"><code>library(ggplot2)
+library(readxl)
+library(dplyr)
+library(reshape2)
+
+sworn_officers &lt;- read_excel(&quot;Full_time_leo_by_state_by_city.xls&quot;)
+
+# rename columns
+names(sworn_officers)[c(1:6)] &lt;- c(&#39;state&#39;, &#39;city&#39;, &#39;population&#39;, &#39;total_employees&#39;, &#39;officers&#39;, &#39;civilians&#39;)
+
+# change columns to numeric to remove decimal places
+sworn_officers$population &lt;- as.numeric(as.character(sworn_officers$population))
+sworn_officers$total_employees &lt;- as.numeric(as.character(sworn_officers$total_employees))
+sworn_officers$officers &lt;- as.numeric(as.character(sworn_officers$officers))
+sworn_officers$civilians &lt;- as.numeric(as.character(sworn_officers$civilians))
+
+# subset data for cities with pop &gt; 500,000
+sworn_officers_city &lt;- subset(sworn_officers, 
+                              population &gt; 500000)
+
+# Delete Portland because they have no fucking data
+sworn_officers_city &lt;- sworn_officers_city[-c(22),]
+# Delete State row, unnecessary and not complete
+sworn_officers_city &lt;- sworn_officers_city[, -c(1)]
+
+# create new row for chicago # UPDATE LATER
+sworn_officers_city &lt;- rbind(sworn_officers_city, 
+      &quot;33&quot; = c(&quot;Chicago&quot;, 2720546, 0, 12100, 0))
+# add row for STL
+sworn_officers_city &lt;- rbind(sworn_officers_city, 
+                             &quot;34&quot; = c(&quot;St. Louis&quot;, 317095, 0, 1230, 0))
+
+# change columns to numeric to remove decimal places
+sworn_officers_city$population &lt;- as.numeric(as.character(sworn_officers_city$population))
+sworn_officers_city$total_employees &lt;- as.numeric(as.character(sworn_officers_city$total_employees))
+sworn_officers_city$officers &lt;- as.numeric(as.character(sworn_officers_city$officers))
+sworn_officers_city$civilians &lt;- as.numeric(as.character(sworn_officers_city$civilians))
+
+# calculate officer / population rate, PER 100,000 people
+# x officers per 100,000 people
+sworn_officers_city$officers_per_hthousand &lt;- ((sworn_officers_city$officers / sworn_officers_city$population) * 100000)
+
+# create column with city murder rates
+sworn_officers_city$murders &lt;- c(112, 31, 39, 282, 37, 53, 30, 53, 162,
+                                     97, 15, 148, 81, 344, 38, 295, 127, 352,
+                                     61, 77, 73, 280, 135, 72, 23, 136, 17, 
+                                     56, 303, 94, 23, 145, 478, 188)
+
+# create officer / murder rate
+# x officers per murder
+sworn_officers_city$officer_to_murder_rate &lt;- (sworn_officers_city$officers / sworn_officers_city$murders)
+# in 2014 chicago had 12,902 officers, FOIA&#39;d 2015
+
+#create murder per population per 100,000 rate
+sworn_officers_city$murder_per_hthousand &lt;- sworn_officers_city$murders / sworn_officers_city$population * 100000
+#create subset of DF for target cities
+subset_by_cities &lt;- subset(sworn_officers_city, city %in% c(&quot;Chicago&quot;, 
+      &quot;New York&quot;, &quot;Los Angeles&quot;, &quot;Baltimore&quot;, &quot;Detroit&quot;, &quot;Boston&quot;, &quot;St. Louis&quot;))
+
+subset_by_cities$murders_2016 &lt;- c(293, 323, 45, 316, 336, 732, 188)
+subset_by_cities$murder_per_hthousand_2016 &lt;- subset_by_cities$murders_2016 / subset_by_cities$population * 100000
+subset_by_cities_long &lt;- melt(subset_by_cities, id = c(&quot;city&quot; ,&quot;population&quot;,
+      &quot;total_employees&quot;, &quot;officers&quot;, &quot;civilians&quot;, &quot;murders&quot;, &quot;officer_to_murder_rate&quot;, 
+      &quot;murder_per_hthousand&quot;, &quot;murders_2016&quot;))
+
+# plot for visualization and moving forward
+
+graph &lt;- ggplot(data = subset_by_cities, aes(officer_per_hthousand, murder_per_hthousand), label = city)
+graph + geom_point() + geom_text(aes(label = city), hjust = .5, vjust = 0)
+
+graph_bar &lt;- ggplot(data = subset_by_cities_long, aes(x = reorder(city, -value), y = value),label = Frequency())
+graph_bar + geom_bar(aes(fill = factor(variable)), stat = &quot;identity&quot;, position = &quot;dodge&quot;) + 
+  scale_fill_manual(values=c(&quot;blue&quot;, &quot;red&quot;), name = &quot; &quot;,
+                      breaks = c(&quot;officers_per_hthousand&quot;, &quot;murder_per_hthousand_2016&quot;),
+                      labels = c(&quot;Officers per 100,000&quot;, &quot;Murders per 100,000&quot;)) +
+  xlab(&quot;&quot;)+ylab(&quot;&quot;) + 
+  geom_text(aes(fill = variable, label = sprintf(&quot;%0.0f&quot;, round(value, digits = 2))), vjust = -.5, position = position_dodge(0.9))
+
+reg &lt;- lm(murder_per_hthousand_2016 ~ officers_per_hthousand, 
+          data = subset_by_cities)
+summary(reg)
+
+attach(subset_by_cities)
+cor.test(murder_per_hthousand_2016, officers_per_hthousand)
+detach(subset_by_cities)</code></pre>
+<pre class="r"><code>library(plyr)
+library(dplyr)
+library(readr)
+library(tidyverse)
+library(reshape)
+library(ggplot2)
+library(car)
+library(gvlma) # gvlma test
+library(lmtest) # lm test
+library(data.table) #fread function to import/read only certain columns from csv
+library(psych) # for describe function
+library(pastecs) #for descriptive statistics table
+library(scales)
+
+##################################################### 911 ##################################################################################
+# read complete 911 below
+
+# reads all csvs in your wd and merges them into one dataframe
+# merged911 &lt;- list.files(pattern = &quot;*.csv&quot;) %&gt;%
+#  map_df(~read.csv(.))
+
+# create a dataframe removing rows which dont have complete data
+merged911new &lt;- merged911[complete.cases(merged911), ]
+
+# remove ward 0 rows from dataframe CALL OEMC AND FIGURE OUT WHERE WARD 0 BELONGS
+merged911new &lt;- merged911new[!(merged911new$Ward == &#39;0&#39;), ]
+sort(unique(merged911new$Ward)) #yields 50 wards but theres a 0
+
+# rename all columns
+names(merged911new)[c(1:8)] &lt;- c(&#39;id&#39;, &#39;entry_date&#39;, &#39;closed_date&#39;, &#39;type&#39;, &#39;disposition&#39;, &#39;police_district&#39;, &#39;ward&#39;, &#39;zip&#39;)
+
+#### for analysis, sample the dataframe so its easier to run initial analysis ####
+subset.merged911 &lt;- merged911new[sample(nrow(merged911new), 0.001*nrow(merged911new)), ]
+
+# viewing zip codes, police districts, and wards in order ... Which one to use?
+sort(unique(subset.merged911$ward)) #yields 50 wards but theres a 0
+sort(unique(subset.merged911$zip)) #yields 60 zip codes but theres a 0
+sort(unique(subset.merged911$police_district)) #yeilds 31 police districts no 0
+
+# make dataframe counting calls per ward
+subset_ward_count &lt;- data.frame(table(subset.merged911$ward))
+names(subset_ward_count) &lt;- c(&quot;ward_num&quot;, &quot;ward_count&quot;) # re-name columns
+
+# create a data frame matrix with a column for each event type by ward
+subset_ward_event_count &lt;- as.data.frame.matrix(table(subset.merged911$ward, subset.merged911$type))
+
+# CBIND ward count and ward event count data frames for analysis
+# Use Merge to merge 311, 911, and crime rate data frames to respective wards, merge by ward number
+subset_complete_test_data &lt;- cbind(subset_ward_count, subset_ward_event_count)
+
+# summing the dataframe row 2, column 3 and after to confirm data merged correctly
+sum(subset_complete_test_data[2,3:ncol(subset_complete_test_data)])
+
+# just printing all entries to the merged 911 subset for ward 1
+subset.merged911[subset.merged911$ward == 1,]
+
+# 208 unique event types in 911 data
+subset.merged911unique &lt;- length(unique(subset.merged911$Event.Type))
+print(subset.merged911unique)
+
+
+# write file made from above
+write.csv(merged911new, )
+merged911 &lt;- read.csv(&quot;merged911.csv&quot;)
+
+# create the full data frame for 2016 911 calls
+ward_911_count &lt;- data.frame(table(merged911$ward))
+names(ward_911_count) &lt;- c(&quot;&quot;, &quot;ward_911call_count&quot;)
+
+# create a data frame matrix with a column for each event type by ward
+ward_event &lt;- as.data.frame.matrix(table(merged911$ward, merged911$type))
+
+# create complete 911 by ward dataframe
+complete_911_ward &lt;- cbind(ward_911_count[2], ward_event)
+write.csv(complete_911_ward, )
+complete911 &lt;- read.csv(&quot;complete_911_ward.csv&quot;)
+
+############################################################ 2016 crimes ################################################################
+
+crimes &lt;- read.csv(&quot;2016_Crimes.csv&quot;)
+crime_codes &lt;- read.csv(&quot;ucr_crime_codes.csv&quot;)
+
+# factor ucr codes to their respective categores:
+# Violent: &#39;HOMICIDE&#39;, &#39;CRIMINAL SEXUAL ASSAULT&#39;, &#39;ROBBERY&#39;, &#39;AGGRAVATED_ASSAULT&#39;, &#39;AGGRAVATED_BATTERY&#39;
+# Property: &#39;BURGLARY&#39;, &#39;LARCENY&#39;, &#39;MOTOR_VEHICLE_THEFT&#39;, &#39;ARSON&#39;
+crimes$FBI.Code &lt;- factor(crimes$FBI.Code, 
+                          levels = c(&#39;01A&#39;, &#39;02&#39;, &#39;03&#39;, &#39;04A&#39;, &#39;04B&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;09&#39;, &#39;01B&#39;, &#39;08A&#39;, &#39;08B&#39;, &#39;10&#39;, &#39;11&#39;, &#39;12&#39;, &#39;13&#39;, &#39;14&#39;, &#39;15&#39;, &#39;16&#39;, &#39;17&#39;, &#39;18&#39;, &#39;19&#39;, &#39;20&#39;, &#39;22&#39;, &#39;24&#39;, &#39;26&#39;), 
+                          labels = c(&#39;HOMICIDE&#39;, &#39;CRIMINAL SEXUAL ASSAULT&#39;, &#39;ROBBERY&#39;, &#39;AGGRAVATED_ASSAULT&#39;, &#39;AGGRAVATED_BATTERY&#39;, &#39;BURGLARY&#39;, &#39;LARCENY&#39;, &#39;MOTOR_VEHICLE_THEFT&#39;,
+                                     &#39;ARSON&#39;, &#39;MANSLAUGHTER&#39;, &#39;SIMPLE_ASSAULT&#39;, &#39;SIMPLE_BATTERY&#39;, &#39;FORGERY_COUNTERFEITING&#39;, &#39;FRAUD&#39;, &#39;EMBEZZLEMENT&#39;,
+                                     &#39;STOLEN_PROPERTY&#39;, &#39;VANDALISM&#39;, &#39;WEAPONS_VIOLATION&#39;, &#39;PROSTITUTION&#39;, &#39;CRIMINAL_SEXUAL_ABUSE&#39;, &#39;DRUG_ABUSE&#39;, &#39;GAMBLING&#39;,
+                                     &#39;OFFENSES_AGAISNT_FAMILY&#39;, &#39;LIQUOR_LICENSE&#39;, &#39;DISORDERLY_CONDUCT&#39;, &#39;MISC&#39;))
+
+# make dataframe counting calls per ward
+crime_ward_count &lt;- data.frame(table(crimes$Ward))
+names(crime_ward_count) &lt;- c(&quot;&quot;, &quot;ward_crime_count&quot;) # re-name column)
+
+# create a data frame matrix with a column for each event type by ward
+crime_event &lt;- as.data.frame.matrix(table(crimes$Ward, crimes$FBI.Code))
+
+# make df of all crime by ward
+complete_crime_ward &lt;- cbind(crime_ward_count[2], crime_event)
+write.csv(complete_crime_ward, )
+complete_crime_ward &lt;- read.csv(&quot;complete_crime_ward.csv&quot;)
+
+# make a dataframe of all 911 calls and all total crimes and all event types for each
+# total_crime_911_calls &lt;- cbind(complete911, complete_crime_ward)
+
+# make df of just totals of crimes and calls by ward
+# sum_crime_sum_911calls &lt;- cbind(complete911_ward[1:2], complete_crime[2])
+
+############################################################### 311 ########################################################################
+
+# read all csv files in 311 folder
+path &lt;- 
+files &lt;- list.files(path=path, pattern=&quot;*.csv&quot;)
+for(file in files)
+{ perpos &lt;- which(strsplit(file, &quot;&quot;)[[1]]==&quot;.&quot;)
+  assign(
+    gsub(&quot; &quot;,&quot;&quot;,substr(file, 1, perpos-1)), 
+    read.csv(paste(path,file,sep=&quot;&quot;)))
+}
+
+# select the columns used for analysis
+abandon_veh &lt;- subset(abandon_veh, select = c(1, 2, 3, 4, 5, 16, 17)) 
+all_streetlights &lt;- subset(all_streetlights, select = c(1, 2, 3, 4, 5, 10, 11)) 
+alley_lights &lt;- subset(alley_lights, select = c(1, 2, 3, 4, 5, 10, 11)) 
+garbage_carts &lt;- subset(garbage_carts, select = c(1, 2, 3, 4, 5, 13, 14)) 
+graffiti &lt;- subset(graffiti, select = c(1, 2, 3, 4, 5, 12, 13)) 
+potholes &lt;- subset(potholes, select = c(1, 2, 3, 4, 5,13, 14)) 
+rodent_bait &lt;- subset(rodent_bait, select = c(1, 2, 3, 4, 5, 15, 16)) 
+sanitation &lt;- subset(sanitation, select = c(1, 2, 3, 4, 5, 11, 12)) 
+single_streetlight &lt;- subset(single_streetlight, select = c(1, 2, 3, 4, 5, 10, 11)) 
+tree_debris &lt;- subset(tree_debris, select = c(1, 2, 3, 4, 5, 13, 14)) 
+tree_trims &lt;- subset(tree_trims, select = c(1, 2, 3, 4, 5, 11, 12)) 
+vacant_bldg &lt;- subset(vacant_bldg, select = c(1, 2, 3, 18, 19)) 
+
+# create two columns so vacant_bldg is identical to other 311 data frames
+vacant_bldg$status &lt;- NA
+vacant_bldg$closed_date &lt;- NA
+
+# Rename selected columns for each dataframe to for merging
+names(abandon_veh) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;, &quot;ward&quot;, &quot;police_district&quot;)
+names(all_streetlights) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;, &quot;ward&quot;, &quot;police_district&quot;)
+names(alley_lights) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(garbage_carts) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(graffiti) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(potholes) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(rodent_bait) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(sanitation) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(single_streetlight) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(tree_debris) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(tree_trims) &lt;- c(&quot;entry_date&quot;, &quot;status&quot;, &quot;closed_date&quot;, &quot;id&quot;, &quot;type_service&quot;,&quot;ward&quot;, &quot;police_district&quot;)
+names(vacant_bldg) &lt;- c(&quot;type_service&quot;,&quot;id&quot;, &quot;entry_date&quot;, &quot;ward&quot;, &quot;police_district&quot;, &quot;status&quot;, &quot;closed_date&quot;)
+
+# re-order vacant_building columns by their position indexes to match other dataframes
+vacant_bldg &lt;- vacant_bldg[c(3, 6, 7, 2, 1, 4, 5)]
+
+# join 311 dataframes, using a full type join matching all rows
+# added up all 311 values and it equals merge311 value
+merged311 &lt;- join_all(list(abandon_veh, all_streetlights, alley_lights, garbage_carts, graffiti, potholes, rodent_bait, sanitation,
+                          single_streetlight, tree_debris, tree_trims, vacant_bldg), by = NULL, type = &quot;full&quot;, match = &quot;all&quot;)
+
+# remove ward 0 rows from dataframe CALL OEMC AND FIGURE OUT WHERE WARD 0 BELONGS
+merged311 &lt;- merged311[!(merged311$ward == &#39;0&#39;), ]
+
+# make dataframe counting calls per ward
+ward_count_311 &lt;- data.frame(table(merged311$ward))
+
+names(ward_count_311) &lt;- c(&quot;ward&quot;, &quot;ward_311call_count&quot;) # re-name columns)
+
+non_emerg_event &lt;- as.data.frame.matrix(table(merged311$ward, merged311$type_service))
+# df of total 311 calls by ward and by event type
+complete_311_ward &lt;- cbind(ward_count_311, non_emerg_event)
+write.csv(complete_311_ward, )
+complete311 &lt;- read.csv(&quot;complete_311_ward.csv&quot;)
+
+############################################# Create Master Doc  #############################################################################
+
+# import ward population dataset and select on population row
+ward_population &lt;- fread(&quot;ward_pop.csv&quot;, select = c(2))
+# remove total city population row 51
+ward_population &lt;- ward_population[!(ward_population$pop10 == &#39;2,695,598&#39;),]
+# transform pop10 column to numeric
+ward_population &lt;- transform(ward_population, pop10 = as.numeric(pop10))
+write.csv(ward_population, )
+ward_population &lt;- read.csv(&quot;ward_population.csv&quot;)
+
+# create master DF with ward population, 911 and 311 calls by ward and crimes by ward and all events
+master &lt;- cbind(ward_population, complete311, complete911, complete_crime_ward)
+write.csv(master,)
+
+########################################### Edit Master Doc #################################################################################
+master &lt;- read.csv(&quot;master.csv&quot;)
+
+# remove 311 and 911 call event types from master
+master_subset_crimes &lt;- subset(master[, c(1, 2, 3, 16, 333:359)])
+
+# sum 311 and 911 calls to make a total call column for DV
+master_subset_crimes$total_311_911_call_count &lt;- (master_subset_crimes$ward_311call_count + master_subset_crimes$ward_911call_count)
+
+# transform call varaibles and crime rates to comparable rates per 100,000
+master_subset_crimes$ward_311_call_rate &lt;- (master_subset_crimes$ward_311call_count / master_subset_crimes$pop10) * 100000
+master_subset_crimes$ward_911_call_rate &lt;- (master_subset_crimes$ward_911call_count / master_subset_crimes$pop10) * 100000
+master_subset_crimes$ward_total_call_rate &lt;- (master_subset_crimes$total_311_911_call_count / master_subset_crimes$pop10) * 100000
+master_subset_crimes$ward_crime_rate &lt;- (master_subset_crimes$ward_crime_count / master_subset_crimes$pop10) * 100000
+
+# transform crime event type variables UCR defined as Violent and property crimes
+master_subset_crimes$HOMICIDE &lt;- (master_subset_crimes$HOMICIDE / master_subset_crimes$pop10) * 100000
+master_subset_crimes$CRIMINAL.SEXUAL.ASSAULT &lt;- (master_subset_crimes$CRIMINAL.SEXUAL.ASSAULT / master_subset_crimes$pop10) * 100000
+master_subset_crimes$ROBBERY &lt;- (master_subset_crimes$ROBBERY / master_subset_crimes$pop10) * 100000
+master_subset_crimes$AGGRAVATED_ASSAULT &lt;- (master_subset_crimes$AGGRAVATED_ASSAULT / master_subset_crimes$pop10) * 100000
+master_subset_crimes$AGGRAVATED_BATTERY &lt;- (master_subset_crimes$AGGRAVATED_BATTERY / master_subset_crimes$pop10) * 100000
+master_subset_crimes$BURGLARY &lt;- (master_subset_crimes$BURGLARY / master_subset_crimes$pop10) * 100000
+master_subset_crimes$LARCENY &lt;- (master_subset_crimes$LARCENY / master_subset_crimes$pop10) * 100000
+master_subset_crimes$MOTOR_VEHICLE_THEFT &lt;- (master_subset_crimes$MOTOR_VEHICLE_THEFT / master_subset_crimes$pop10) * 100000
+master_subset_crimes$ARSON &lt;- (master_subset_crimes$ARSON / master_subset_crimes$pop10) * 100000
+
+write.csv(master_subset_crimes, )
+master_subset_crimes &lt;-  read.csv(&quot;master_subset_crimes.csv&quot;)
+
+# attach master to the search list for stat.desc so I don&#39;t have to type master$ for each column... then detach it
+attach(master_subset_crimes)
+variables &lt;- cbind(ward_311_count, ward_911call_count, total_ward_calls, ward_311_pop, ward_911_pop, ward_total_pop,
+                   ward_calls_per_crime, ward_crime_rate, total_ward_calls_rate)
+options(scipen  = 100)
+options(digits = 2)
+stat.desc(variables, basic = F)
+detach(master_subset_crimes)
+
+# create master df of JUST total calls by ward for 911 and 311, total crimes by ward, and total population by ward
+ward_calls_pop &lt;- master[, c(1, 2, 3, 17, 335)]
+write.csv(ward_calls_pop, )
+ward_calls_pop &lt;- read.csv(&quot;ward_calls_pop.csv&quot;)
+
+# create 2 df with wards whose crime rates and total call rates are 1 standard deviation away from mean to encompass high and low wards
+sd1_crimerate &lt;- subset(master_subset_crimes, ward_crime_rate &gt;= 15678.35 | ward_crime_rate &lt;= 4469.33)
+sd1_callrate &lt;- subset(master_subset_crimes, ward_total_call_rate &gt;= 301909.1 | ward_total_call_rate &lt;= 89099.24)
+  
+################################################################## Visualization ############################################################
+hist_total_calls &lt;- ggplot(data = master_subset_crimes, aes(x = ward_total_call_rate))
+hist_total_calls + geom_histogram(breaks = c(50000, 150000, 250000, 350000, 450000), col = &quot;blue&quot;, fill = &quot;gray&quot;) + 
+  labs(title = &quot;Chicago Total Ward Call Rate&quot;) + labs(x = &quot;Total Call Rate&quot;) + scale_x_continuous(labels = comma)
+
+hist_311_calls &lt;- ggplot(data = master_subset_crimes, aes(x = ward_311_call_rate))
+hist_311_calls + geom_histogram(breaks = c(), col = &quot;blue&quot;, fill = &quot;gray&quot;) + labs(title = &quot;Chicago 311 Ward Call Rate&quot;) + 
+  labs(x = &quot;311 Call Rate&quot;) + scale_x_continuous(labels = comma)
+
+hist_911_calls &lt;- ggplot(data = master_subset_crimes, aes(x = ward_911_call_rate))
+hist_911_calls + geom_histogram(breaks = c(), col = &quot;blue&quot;, fill = &quot;gray&quot;) + labs(title = &quot;Chicago 911 Ward Call Rate&quot;) + labs(x = &quot;911 Call Rate&quot;) +
+  scale_x_continuous(labels = comma)
+
+hist_crime &lt;- ggplot(data = master_subset_crimes, aes(x = ward_crime_rate))
+hist_crime + geom_histogram(col = &quot;blue&quot;, fill = &quot;gray&quot;) + 
+        labs(title = &quot;Chicago Total Ward Crime Rate&quot;) + labs(x = &quot;Total Crime Rate&quot;) + scale_x_continuous(labels = comma)
+                     
+################################################################## Analysis #################################################################
+describe(master_subset_crimes[c(32:36)])
+
+# hypothesis 1: relationship between chicago total calls and crime rate
+hyp1 &lt;- lm(ward_total_call_rate ~ ward_crime_rate, data = master_subset_crimes)
+summary(hyp1)
+
+viz &lt;- ggplot(data = master_subset_crimes, aes(x = ward_crime_rate, y = ward_total_call_rate)) + geom_point(shape = 1) +
+  geom_smooth(method = lm) + geom_text(aes(label = ward), hjust = 0, vjust = 0)
+viz
+
+# hypothesis 2: relationship between 311 calls and crime rate
+hyp2 &lt;- lm(ward_311_call_rate ~ ward_crime_rate, data = master_subset_crimes)
+summary(hyp2)
+
+#hypothesis 3: relationship between 911 calls and crime rate
+hyp3 &lt;- lm(ward_911_call_rate ~ ward_crime_rate, data = master_subset_crimes)
+summary(hyp3)
+
+#hypothesis 4, 5, 6: total, 311 and 911 calls by violent and property crime
+# Violent: &#39;HOMICIDE&#39;, &#39;CRIMINAL SEXUAL ASSAULT&#39;, &#39;ROBBERY&#39;, &#39;AGGRAVATED_ASSAULT&#39;, &#39;AGGRAVATED_BATTERY&#39;
+# Property: &#39;BURGLARY&#39;, &#39;LARCENY&#39;, &#39;MOTOR_VEHICLE_THEFT&#39;, &#39;ARSON&#39;
+hyp4 &lt;- lm(ward_total_call_rate ~ HOMICIDE + CRIMINAL.SEXUAL.ASSAULT + AGGRAVATED_BATTERY + AGGRAVATED_ASSAULT,
+                             data = master_subset_crimes)
+summary(hyp4)
+
+hyp4_1 &lt;- lm(ward_911_call_rate ~ HOMICIDE + CRIMINAL.SEXUAL.ASSAULT + AGGRAVATED_BATTERY + AGGRAVATED_ASSAULT, data = master_subset_crimes)
+summary(hyp4_1)
+
+hyp4_2 &lt;- lm(ward_311_call_rate ~ HOMICIDE + CRIMINAL.SEXUAL.ASSAULT + AGGRAVATED_BATTERY + AGGRAVATED_ASSAULT, data = master_subset_crimes)
+summary(hyp4_2)
+
+hyp5 &lt;- lm(ward_total_call_rate ~ BURGLARY + LARCENY + MOTOR_VEHICLE_THEFT + ARSON,
+                              data = master_subset_crimes)
+summary(hyp5)
+
+hyp5_1 &lt;- lm(ward_911_call_rate ~ BURGLARY + LARCENY + MOTOR_VEHICLE_THEFT + ARSON, data = master_subset_crimes)
+summary(hyp5_1)
+
+hyp5_2 &lt;- lm(ward_311_call_rate ~ BURGLARY + LARCENY + MOTOR_VEHICLE_THEFT + ARSON, data = master_subset_crimes)
+summary(hyp5_2)
+
+hyp6 &lt;- lm(ward_total_call_rate ~ HOMICIDE + CRIMINAL.SEXUAL.ASSAULT + AGGRAVATED_BATTERY + AGGRAVATED_ASSAULT + 
+             BURGLARY + LARCENY + MOTOR_VEHICLE_THEFT + ARSON, data = master_subset_crimes)
+summary(hyp6)
+
+hyp6_1 &lt;- lm(ward_911_call_rate ~ HOMICIDE + CRIMINAL.SEXUAL.ASSAULT + AGGRAVATED_BATTERY + AGGRAVATED_ASSAULT + 
+               BURGLARY + LARCENY + MOTOR_VEHICLE_THEFT + ARSON, data = master_subset_crimes)
+summary(hyp6_1)
+
+hyp6_2 &lt;- lm(ward_311_call_rate ~ HOMICIDE + CRIMINAL.SEXUAL.ASSAULT + AGGRAVATED_BATTERY + AGGRAVATED_ASSAULT + 
+               BURGLARY + LARCENY + MOTOR_VEHICLE_THEFT + ARSON, data = master_subset_crimes)
+summary(hyp6_2)
+
+#hypothesis 7 and 8: total calls and crime rates which are 1 sd from mean
+hyp7 &lt;- lm(ward_total_call_rate ~ ward_crime_rate, data = sd1_crimerate)
+summary(hyp7)
+
+hyp8 &lt;- lm(ward_total_call_rate ~ ward_crime_rate, data = sd1_callrate)
+summary(hyp8)
+
+# code used for linear regression assumptions
+# par(mfrow = c(2, 2)) # changes plotting to produce 2 by 2 graphs for residuals
+# plot() # plot lm test
+# gvlma() 
+# bptest()
+# mean(reg1$residuals) # check the mean of residuals for closeness to 0</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

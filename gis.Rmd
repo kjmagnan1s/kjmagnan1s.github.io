@@ -1,0 +1,10 @@
+---
+title: "GIS Analysis"
+---
+<br>
+
+![](images\Initial_4_map.jpg)
+![](images\violent_property_crime.jpg)
+![](images\violent_property_crime_attribute_selection.jpg)
+![](images\violent_property_mean_elipse.jpg)
+![](images\assignment 12.jpg)

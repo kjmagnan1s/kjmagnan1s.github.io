@@ -17,11 +17,19 @@ title: ''
 <center>**Former Police Officer Turned Urban Crime Data/GIS Analyst**</center>
 
 ***
-![](cover_pic.jpg)
+![](images\cover_pic.jpg)
 
-Current Interests
+What I Am Most Passionate About:
 
-* 
+* Crime and Law Enforcement in the US
+* Statistical Analysis using R
+* Spatial Analysis using ArcGIS and GeoDa
+* [Jasper](jasper.jpg) and [Leona](leona.jpg)
+* My recent IPA and culinary adventures
+* [Kayaking](kayak.jpg)
+* Traveling
+
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="480" height="360"></iframe>
 
 
 
