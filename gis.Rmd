@@ -1,10 +1,33 @@
 ---
 title: "GIS Analysis"
+css: gis.css
 ---
 <br>
 
-![](images\Initial_4_map.jpg)
-![](images\violent_property_crime.jpg)
-![](images\violent_property_crime_attribute_selection.jpg)
-![](images\violent_property_mean_elipse.jpg)
-![](images\assignment 12.jpg)
+##ArcGIS Model Builder
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/model_img.jpg" alt="" />
+
+***
+
+##Network Analysis
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/Lab1_KM.jpg" alt="" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/Old_method_map.jpg" alt="" />
+
+***
+
+##Chicago Crimes and Service Calls
+<center>
+<div class="scroll>
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/Initial_4_map.jpg" alt="" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/violent_property_crime.jpg" />
+
+###Highest and lowest ward rates selected by attribute
+
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/violent_property_crime_attribute_selection.jpg" alt="" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/violent_property_mean_elipse.jpg" alt="" />
+</center>
+
+***
+
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/assignment 12.jpg" alt="" /></div>
+

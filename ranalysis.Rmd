@@ -7,8 +7,17 @@ css: ranalysis.css
 ## US Police Officers per Murders
 
 ![](images\bar_plot.jpeg)
+```{css}
+pre {
+  white-space: pre !important;
+  overflow-y: scroll !important;
+  height: 50vh !important 
+} 
+```
+
 
 ```{r eval=FALSE}
+
 library(ggplot2)
 library(readxl)
 library(dplyr)
@@ -96,7 +105,7 @@ cor.test(murder_per_hthousand_2016, officers_per_hthousand)
 detach(subset_by_cities)
 
 ```
-
+***
 <br>
 
 ##Thesis data

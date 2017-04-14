@@ -4,6 +4,8 @@ title: ''
 
 <br>
 
-##[R Analysis](ranalysis.html)
+#[R Analysis](ranalysis.html)
 
-##[GIS](gis.html)
+<br>
+
+#[GIS](gis.html)
