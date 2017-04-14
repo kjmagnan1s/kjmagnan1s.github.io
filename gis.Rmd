@@ -5,7 +5,7 @@ css: gis.css
 <br>
 
 ##ArcGIS Model Builder
-<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/model_img.jpg" alt="" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/Model_img.jpg" alt="" />
 
 ***
 
