@@ -1,2 +1,2 @@
-# kjmagnan1s.github.io
+# kmagnan.github.io
 Personal/professional website
