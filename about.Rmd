@@ -1,6 +1,11 @@
 ---
 title: "About Me"
+css: about.css
 ---
+
+![](images\headshot.jpg)
+
+<br>
 
 I am a University of Chicago Graduate Student studying social science living and 
 studying in the Chicago, IL area.  Previous to the University of Chicago,I studied 
