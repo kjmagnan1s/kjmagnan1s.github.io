@@ -7,13 +7,12 @@ css: about.css
 
 <br>
 
-I am a University of Chicago Graduate Student studying social science living and 
-studying in the Chicago, IL area.  Previous to the University of Chicago,I studied 
-criminal justice and was a police officer.  My passions and drivers have gravitated 
+I am a University of Chicago Graduate Student studying social science and living in the Chicago, IL area.  
+Previous to the University of Chicago, I earned Bachelors and Masters degrees in 
+criminal justice and served as a police officer in Missouri.  My passions and drivers have gravitated 
 me towards blending my experiences in the criminal justice system and my education 
 as a social scientist to apply data driven, evidence based methodology to the field 
 of public safety.  
 
-Please use the *Reach Me* links above to contact me via social media outlets.  
-You can also see my code and projects I've worked on in school, on my thesis, 
-and for fun in the [*Projects*](projects.html) section.
+Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects 
+I've worked on in school, on my thesis, and for fun in the [*Projects*](projects.html) section.
