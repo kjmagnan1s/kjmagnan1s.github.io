@@ -26,6 +26,8 @@ navbar:
           href: ranalysis.html
         - text: "GIS"
           href: gis.html
+        - text: "Thesis"
+          href: thesis.html
     - text: "About Me"
       href: about.html
     - text: "Resume"
