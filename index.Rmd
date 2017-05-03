@@ -1,6 +1,8 @@
 ---
 title: ''
+css: index.css
 ---
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -17,19 +19,18 @@ title: ''
 <center>**Former Police Officer Turned Urban Crime Data/GIS Analyst**</center>
 
 ***
-![](images\NY.jpg)
+![](images\headshot.jpg) ![](images\cop.jpg)
 
-What I Am Most Passionate About:
+I am a University of Chicago graduate student studying social science and living in the Chicago, IL area.  
+Previous to the University of Chicago, I earned my bachelor and master degrees in 
+criminal justice and served as a police officer in Missouri.  My career interests have gravitated 
+me towards blending my experiences in the criminal justice system and my education 
+as a social scientist to apply data driven, evidence based methodology to the field 
+of public safety.  
 
-* Crime and Law Enforcement in the US
-* Statistical Analysis using R
-* Spatial Analysis using ArcGIS and GeoDa
-* [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
-* My recent IPA and culinary adventures
-* [Kayaking](images\kayak.jpg)
-* Traveling
+Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects 
+I've worked on in school, on my thesis, and for fun in the [*Projects*](projects.html) section.
 
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="480" height="360"></iframe>
-
+***
 
 

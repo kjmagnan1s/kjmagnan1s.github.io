@@ -26,13 +26,17 @@ navbar:
           href: ranalysis.html
         - text: "GIS"
           href: gis.html
-        - text: "Thesis"
-          href: thesis.html
+        - text: "MA Thesis"
+          href: mathesis.html
+        - text: "MS Thesis"
+          href: graduate_thesis_semo.pdf
     - text: "About Me"
       href: about.html
     - text: "Resume"
       href: resume.pdf
+    - text: "Transcripts"
+      href: transcript.pdf
 output:
   html_document:
     theme: yeti
-    css:
+    css: 

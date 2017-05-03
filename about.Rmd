@@ -1,18 +1,22 @@
 ---
-title: "About Me"
+title: ''
 css: about.css
 ---
 
-![](images\headshot.jpg)
+<br>
+
+![](images\couple.jpg)
 
 <br>
 
-I am a University of Chicago graduate student studying social science and living in the Chicago, IL area.  
-Previous to the University of Chicago, I earned my bachelor's and master's degrees in 
-criminal justice and served as a police officer in Missouri.  My carrer interests have gravitated 
-me towards blending my experiences in the criminal justice system and my education 
-as a social scientist to apply data driven, evidence based methodology to the field 
-of public safety.  
+What I Am Most Passionate About:
 
-Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects 
-I've worked on in school, on my thesis, and for fun in the [*Projects*](projects.html) section.
+* Crime and Law Enforcement in the US
+* Statistical Analysis using R
+* Spatial Analysis using ArcGIS and GeoDa
+* [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
+* My recent IPA and culinary adventures
+* [Kayaking](images\kayak.jpg)
+* Traveling
+
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="480" height="360"></iframe>
