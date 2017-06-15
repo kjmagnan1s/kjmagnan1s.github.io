@@ -16,7 +16,7 @@ css: index.css
 
 <br>
 
-<center>**Former Police Officer Turned Urban Crime Data/GIS Analyst**</center>
+<center> **Former Police Officer Turned Urban Crime Data and Spatial Analyst**</center>
 
 ***
 ![](images\headshot.jpg) ![](images\cop.jpg)
@@ -33,4 +33,10 @@ I've worked on in school, on my thesis, and for fun in the [*Projects*](projects
 
 ***
 
+
+<center>**Current Projects**</center> 
+
+## [*Graphing with R*](SSL.html)
+<br>
+![](images\Comm_area_SSL.jpeg)
 

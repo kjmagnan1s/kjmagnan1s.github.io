@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Kevin J. Magnan</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Reach me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://linkedin.com/in/kjmagnan1s">
+        <span class="fa fa-linkedin"></span>
+         
+        Linkedin
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/kjmagnan1s">
+        <span class="fa fa-github"></span>
+         
+        github
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/kevin.jerome.stlmo">
+        <span class="fa fa-facebook"></span>
+         
+        Facebook
+      </a>
+    </li>
+    <li>
+      <a href="mailto:kjmagnan1s@gmail.com">
+        <span class="fa fa-envelope"></span>
+         
+        Email
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="ranalysis.html">R Analysis</a>
+    </li>
+    <li>
+      <a href="gis.html">GIS</a>
+    </li>
+    <li>
+      <a href="mathesis.html">MA Thesis</a>
+    </li>
+    <li>
+      <a href="graduate_thesis_semo.pdf">MS Thesis</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">About Me</a>
+</li>
+<li>
+  <a href="resume.pdf">Resume</a>
+</li>
+<li>
+  <a href="transcript.pdf">Transcripts</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p><br></p>
+<div id="graphing-with-r" class="section level1">
+<h1><strong>Graphing with R</strong></h1>
+<p>June 14th, 2017</p>
+<p>Today I’m going to investigate some new data I found on the Chicago Data Portal. The Strategic Subjects List created and maintained by the Chicago Police Department is a list generated by an algorithm created by the Illinois Institute of Technology. The SSL List scores individuals on their probability of being involved in a shooting, either as the victim or offender, so the list is difficult to understand in its entirety because it groups victims and criminals together.</p>
+<p>To start, let’s set our directory and load the .csv file, then load the libraries we will be using, in this instance it will be ggplot2 and tidyverse, both very powerful R libraries. Finally, let’s get a preliminary look at the data.</p>
+<pre class="r"><code>setwd(&quot;enter the path of your data here&quot;)
+
+# Load SSL list data
+ssl &lt;- read.csv(&quot;ssl.csv&quot;)
+
+# Load Libraries
+library(ggplot2)
+library(tidyverse)
+
+# Lets look at the data.frame
+head(ssl)
+names(ssl)
+summary(ssl)</code></pre>
+<p>What you should see in your console is a lot of informative information on the dataset we’re working with. For example, there are 48 columns, or variables, to work with as well as a variety of data types from strings to integers to binary data.</p>
+<p>Let’s jump right into the interesting part of this dataset, the SSL scores and graph the distribution of scores. It should be noted that this dataset, straight from the Chicago data portal, is a complete de-sensitized dataset of the SSL scores from its inception in August of 2012 to 2016.</p>
+<pre class="r"><code># Plot SSL Scores for Chicago
+plot1 &lt;- ggplot(data = ssl, aes(x = SSL.SCORE)) + geom_histogram(binwidth = 5)
+plot1 + xlab(&quot;SSL Score 2012-2016&quot;) + ylab(&quot;Count&quot;) + labs(title = &quot;SSL Histogram 2012 to 2016&quot;) + theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p>We should see a relatively evenly distributed histogram of SSL scores for 2012 to 2016. It looks like most of the SSL scores are between 200 and 400 with a peak at approximately 325.</p>
+<div class="figure">
+<img src="images/SSL12-16.jpeg" />
+
+</div>
+<p>Chicago’s homicide rates and violent crime rates for 2016 were especially salient in the media and within the city. Let’s look specifically at the 2016 SSL data. Fortunately, in the SSL dataframe is a column called “LATEST.DATE” which indicates the latest date in year of police contact. Let’s specifically subset the data for 2016 and see if it differs from the overall data. First, we need to subset the data for 2016 specifically, then we need to re-plot the 2016 data.</p>
+<pre class="r"><code># subset just 2016
+SSL16 &lt;- subset(ssl, LATEST.DATE == 2016)
+
+# plot SSL scores for 2016
+plot16 &lt;- ggplot(data = SSL16, aes(x = SSL.SCORE)) + geom_histogram(binwidth = 5)
+plot16 + xlab(&quot;SSL Score 2016&quot;) + ylab(&quot;Count&quot;) + labs(title = &quot;SSL Histogram for 2016&quot;) + theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<p>This time, we get a new graph that is specific to the latest date of police contact for year 2016. We definitely see some small changes in the histogram but the overall structure of the distribution is the same. I found it interesting that SSL scores equal to 500 saw a significantly large increase to the previous plot.</p>
+<div class="figure">
+<img src="images/SSL16.jpeg" />
+
+</div>
+<p>But that’s never the whole story and I love looking at data in a spatial context. Therefore, let’s look at total SSL scores by community area to see if these scores are distributed within the communities we associate with high gang activity, homicides, and violence. Refer back to the column names in the data. We specifically had a variable called “COMMUNITY.AREA” so we’ll use that for this plot</p>
+<pre class="r"><code># plot 2016 SSL scores for Chicago by Community Area
+c_area &lt;- ggplot(data = SSL16, aes(x = COMMUNITY.AREA, y = SSL.SCORE)) + geom_col()
+c_area + theme(plot.title = element_text(hjust = 0.5)) + xlab(&quot;Community Area&quot;) + ylab(&quot;SSL Score&quot;) + labs(title = &quot;Community Area SSL scores&quot;)</code></pre>
+<div class="figure">
+<img src="images/SSL_hist_1.jpeg" />
+
+</div>
+<p>Well this gives an ugly representation of the data for multiple reasons. First, the communities areas are smushed together vertically along the x-axis making them indistinguishable Also, it looks like we have an issue with the data, one area appears to constitute a huge majority of SSL scores. Let’s tackle this problem one step at a time. First, let’s adjust the graph to see community areas better by tilting the community area identifier.</p>
+<pre class="r"><code># plot 2016 SSL scores for Chicago by Community Area
+c_area_clean &lt;- ggplot(data = SSL16_clean, aes(x = COMMUNITY.AREA, y = SSL.SCORE)) + geom_col()
+c_area_clean + theme(axis.text.x = element_text(angle = 90)) + theme(plot.title = element_text(hjust = 0.5)) + xlab(&quot;Community Area&quot;) + ylab(&quot;SSL Score&quot;) + labs(title = &quot;Community Area SSL scores&quot;)</code></pre>
+<div class="figure">
+<img src="images/SSL_hist_2.jpeg" />
+
+</div>
+<p>Much better, we can see all the community areas and their respective SSL scores. However, we still have this large column with no community area attached to it. Time to go back to the data.</p>
+<pre class="r"><code>summary(SSL16$COMMUNITY.AREA)</code></pre>
+<p>A summary of community area provides us with a breakdown of the counts for each community area. Right away, we see a blank column in R &quot; &quot; that has over 32,000 SSL scores attached to it. That cannot be right, somewhere along the line CPD wasn’t able to attach a community area to these individuals. With any spatial reference, we need to remove them from the analysis. (If you look at the data, there are also some NA’s in the Community Area column so we’ll remove the empty values and NA values)</p>
+<pre class="r"><code># remove data with blank community area
+SSL16clean2 &lt;- SSL16[!(is.na(SSL16$COMMUNITY.AREA) | SSL16$COMMUNITY.AREA == &quot; &quot;), ]</code></pre>
+<p>Unfortunately, cleaning the data like this really limits our analysis. The total amount of observations for 2016 is reduced from 78,586 to 46,405 after removing SSL values without a spatial reference. However, that shouldn’t discourage us from continuing.</p>
+<p>Let’s finish by plotting the newly cleaned SSL scores by community area.</p>
+<pre class="r"><code># plot cleaned total 2016 scores for Chicago by Community Area
+c_area_clean2 &lt;- ggplot(data = SSL16clean2, aes(x = COMMUNITY.AREA, y = SSL.SCORE)) + geom_col()
+c_area_clean2 + theme(axis.text.x = element_text(angle = 90)) + xlab(&quot;Community Area&quot;) + ylab(&quot;SSL Score&quot;) + labs(title = &quot;Community Area SSL scores&quot;)</code></pre>
+<div class="figure">
+<img src="images/Comm_area_SSL.jpeg" />
+
+</div>
+<p>What we end up with is a cleaned dataset of SSL scores, totaled, for each Chicago community area. From the graph, we can see that one community area in particular, Austin, is responsible for a large majority of SSL scores compared to all other community areas. The next closest community area appears to be West Garfield Park. If we go back to our summary of community areas, this makes sense because Austin holds the largest count of SSL subjects at 4122 and West Garfield Park has the second highest count of subjects at 2295.</p>
+<p>This was a very basic exploratory analysis of some very important data to Chicago’s safety. Hopefully, this post shed some light on how powerful and quick plotting and graphing in R is, but more importantly that further analysis into CPD’s SSL scores is critical to understanding how to best utilize them.</p>
+<p>Until next time,</p>
+<p>Kevin</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
