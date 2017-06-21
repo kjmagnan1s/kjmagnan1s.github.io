@@ -40,5 +40,6 @@ navbar:
       href: transcript.pdf
 output:
   html_document:
+    fig_caption: yes
     theme: yeti
     css: 
