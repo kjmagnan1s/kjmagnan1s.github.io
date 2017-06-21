@@ -39,4 +39,8 @@ I've worked on in school, on my thesis, and for fun in the [*Projects*](projects
 ## [*Graphing with R*](SSL.html)
 <br>
 ![](images\Comm_area_SSL.jpeg)
+<br>
 
+##[*GeoDa GIS Analysis*](geoda.html)
+<br>
+![](images\hom_r.png)

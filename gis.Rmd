@@ -9,6 +9,9 @@ css: gis.css
 
 ***
 
+[GeoDa Analysis](geoda.html)
+
+***
 ##Network Analysis
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/Lab1_KM.jpg" alt="" />
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/Old_method_map.jpg" alt="" />

@@ -26,6 +26,8 @@ navbar:
           href: ranalysis.html
         - text: "GIS"
           href: gis.html
+        - text: "GeoDa"
+          href: geoda.html
         - text: "MA Thesis"
           href: mathesis.html
         - text: "MS Thesis"
