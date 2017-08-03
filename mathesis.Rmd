@@ -4,4 +4,8 @@ title: ''
 
 <br>
 
-#University of Chicago MA Thesis to come soon
+#[University of Chicago MA Thesis](graduate_thesis_uchicago.pdf)
+
+<br>
+
+#[ArcGIS Python Script](python.html)

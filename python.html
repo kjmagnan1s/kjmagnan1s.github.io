@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Kevin J. Magnan</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Reach me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://linkedin.com/in/kjmagnan1s">
+        <span class="fa fa-linkedin"></span>
+         
+        Linkedin
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/kjmagnan1s">
+        <span class="fa fa-github"></span>
+         
+        github
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/kevin.jerome.stlmo">
+        <span class="fa fa-facebook"></span>
+         
+        Facebook
+      </a>
+    </li>
+    <li>
+      <a href="mailto:kjmagnan1s@gmail.com">
+        <span class="fa fa-envelope"></span>
+         
+        Email
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="ranalysis.html">R Analysis</a>
+    </li>
+    <li>
+      <a href="gis.html">GIS</a>
+    </li>
+    <li>
+      <a href="geoda.html">GeoDa</a>
+    </li>
+    <li>
+      <a href="mathesis.html">MA Thesis</a>
+    </li>
+    <li>
+      <a href="graduate_thesis_semo.pdf">MS Thesis</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">About Me</a>
+</li>
+<li>
+  <a href="resume.pdf">Resume</a>
+</li>
+<li>
+  <a href="transcript.pdf">Transcripts</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p><br></p>
+<pre class="python"><code># -*- coding: utf-8 -*-
+# ---------------------------------------------------------------------------
+# thesis.py
+# Created on: 2017-05-15 21:40:55.00000
+#   (generated by Kevin Magnan)
+# Description: 
+# ---------------------------------------------------------------------------
+
+# Set the necessary product code
+# import arcinfo
+
+
+# Import arcpy module
+import arcpy
+from arcpy import env
+env.workspace = &quot;C:/Users/kjmag/Google Drive/Documents/UCHICAGO/MA Thesis/Data/master/thesis.gdb/layers&quot;
+
+print &quot;environment set successfully&quot;
+
+# Process: Add Field
+arcpy.AddField_management(&quot;census_tracts_join&quot;, &quot;orig_area&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+print &quot;done1&quot;
+
+# Process: Calculate Field
+arcpy.CalculateField_management(&quot;census_tracts_join&quot;, &quot;orig_area&quot;, &#39;!Shape_Area!&#39;, &quot;PYTHON&quot;)
+
+print &quot;done2&quot;
+
+# Process: Identity
+arcpy.Identity_analysis(&quot;wards&quot;, &quot;census_tracts_join&quot;, &quot;identity&quot;, &quot;ALL&quot;, &quot;&quot;, &quot;NO_RELATIONSHIPS&quot;)
+
+print &quot;done3&quot;
+
+# Process: Add Field (2)
+arcpy.AddField_management(&quot;identity&quot;, &quot;pct_orig&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+print &quot;done4&quot;
+
+# Process: Calculate Field (2)
+arcpy.CalculateField_management(&quot;identity&quot;, &quot;pct_orig&quot;, &quot;!Shape_area! / !orig_area!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+print &quot;done5&quot;
+
+# Process: Add new proportion fields
+newfields = [&quot;new_pop&quot;, &quot;new_male&quot;, &quot;new_female&quot;, &quot;new_under18&quot;, &quot;new_18t34&quot;, &quot;new_35t64&quot;, &quot;new_over65&quot;, &quot;new_white&quot;, &quot;new_black&quot;, &quot;new_nothisp&quot;, &quot;new_hisp&quot;, &quot;new_pop25&quot;,
+             &quot;new_lesshs&quot;, &quot;new_hs&quot;, &quot;new_bach&quot;, &quot;new_schoolpop&quot;, &quot;new_dropout&quot;, &quot;new_enroll&quot;, &quot;new_workpop&quot;, &quot;new_employ&quot;, &quot;new_unemploy&quot;, &quot;new_ag_income_hh&quot;,
+             &quot;new_numhh&quot;, &quot;new_own&quot;, &quot;new_rent&quot;, &quot;new_povpop&quot;, &quot;new_pov&quot;, &quot;new_notpov&quot;]
+
+print &quot;newfields variable set&quot;
+
+for x in newfields:
+        arcpy.AddField_management(&quot;identity_cleaned&quot;, x, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+print &quot;Add done&quot;
+
+# Process: Calculate new field values
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_pop&quot;, &quot;!po! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_male&quot;, &quot;!male! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_female&quot;, &quot;!female! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_under18&quot;, &quot;!under18! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_18t34&quot;, &quot;!age18t34! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_35t64&quot;, &quot;!age35t64! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_over65&quot;, &quot;!over64! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_white&quot;, &quot;!white! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_black&quot;, &quot;!black! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_nothisp&quot;, &quot;!not_hisp! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_hisp&quot;, &quot;!hisp! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_pop25&quot;, &quot;!pop25! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_lesshs&quot;, &quot;!less_hs! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_hs&quot;, &quot;!hs! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_bach&quot;, &quot;!bach! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_schoolpop&quot;, &quot;!schoolpop! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_dropout&quot;, &quot;!dropout! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_enroll&quot;, &quot;!enroll! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_workpop&quot;, &quot;!workpop! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_employ&quot;, &quot;!employ! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_unemploy&quot;, &quot;!unemploy! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_ag_income_hh&quot;, &quot;!ag_income_hh! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_numhh&quot;, &quot;!houses! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_own&quot;, &quot;!own! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_rent&quot;, &quot;!rent! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_povpop&quot;, &quot;!pov_pop! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_pov&quot;, &quot;!pov! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;identity_cleaned&quot;, &quot;new_notpov&quot;, &quot;!not_pov! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+print &quot;Done Calc&quot;
+
+#Process: Dissolve census_tracts into wards
+arcpy.Dissolve_management(&quot;identity_cleaned&quot;, &quot;dissolve&quot;, [&quot;ward&quot;], [[&quot;new_pop&quot;, &quot;SUM&quot;], [&quot;new_male&quot;, &quot;SUM&quot;], [&quot;new_female&quot;, &quot;SUM&quot;], [&quot;new_under18&quot;, &quot;SUM&quot;], [&quot;new_18t34&quot;, &quot;SUM&quot;],
+                                [&quot;new_35t64&quot;, &quot;SUM&quot;], [&quot;new_over65&quot;, &quot;SUM&quot;], [&quot;new_white&quot;, &quot;SUM&quot;], [&quot;new_black&quot;, &quot;SUM&quot;], [&quot;new_nothisp&quot;, &quot;SUM&quot;], [&quot;new_hisp&quot;, &quot;SUM&quot;],
+                                [&quot;new_pop25&quot;, &quot;SUM&quot;], [&quot;new_lesshs&quot;, &quot;SUM&quot;], [&quot;new_hs&quot;, &quot;SUM&quot;], [&quot;new_bach&quot;, &quot;SUM&quot;], [&quot;new_schoolpop&quot;, &quot;SUM&quot;], [&quot;new_dropout&quot;, &quot;SUM&quot;],
+                                [&quot;new_enroll&quot;, &quot;SUM&quot;], [&quot;new_workpop&quot;, &quot;SUM&quot;], [&quot;new_employ&quot;, &quot;SUM&quot;], [&quot;new_unemploy&quot;, &quot;SUM&quot;], [&quot;new_ag_income_hh&quot;, &quot;SUM&quot;], [&quot;new_numhh&quot;, &quot;SUM&quot;],
+                                [&quot;new_own&quot;, &quot;SUM&quot;], [&quot;new_rent&quot;, &quot;SUM&quot;], [&quot;new_povpop&quot;, &quot;SUM&quot;], [&quot;new_pov&quot;, &quot;SUM&quot;], [&quot;new_notpov&quot;, &quot;SUM&quot;]],
+                                &quot;&quot;, &quot;&quot;)
+    
+
+print &quot;Done Dissolve&quot;
+
+# Process: Add ward_num field
+arcpy.AddField_management(&quot;dissolve&quot;, &quot;ward_num&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+# Process: Calculate ward_num field
+arcpy.CalculateField_management(&quot;dissolve&quot;, &quot;ward_num&quot;, &quot;!ward!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+ Process: Add new proportion fields
+pctfields = [&quot;pct_male&quot;, &quot;pct_female&quot;, &quot;pct_under18&quot;, &quot;pct_18t34&quot;, &quot;pct_35t64&quot;, &quot;pct_over65&quot;, &quot;pct_white&quot;, &quot;pct_black&quot;, &quot;pct_nothisp&quot;, &quot;pct_hisp&quot;, &quot;pct_lesshs&quot;, &quot;pct_hs&quot;,
+              &quot;pct_bach&quot;, &quot;pct_dropout&quot;, &quot;pct_enroll&quot;, &quot;pct_employ&quot;, &quot;pct_unemploy&quot;, &quot;pct_hhincome&quot;, &quot;pct_own&quot;, &quot;pct_rent&quot;, &quot;pct_pov&quot;, &quot;pct_notpov&quot;]
+
+print &quot;pctfields variable set&quot;
+
+for x in pctfields:
+        arcpy.AddField_management(&quot;dissolve_w_calls_crime&quot;, x, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+print &quot;Add done&quot;
+
+### Process: Calculate new field values
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_male&quot;, &quot;!SUM_new_male! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_female&quot;, &quot;!SUM_new_female! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_under18&quot;, &quot;!SUM_new_under18! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_18t34&quot;, &quot;!SUM_new_18t34! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_35t64&quot;, &quot;!SUM_new_35t64! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_over65&quot;, &quot;!SUM_new_over65! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_white&quot;, &quot;!SUM_new_white! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_black&quot;, &quot;!SUM_new_black! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_nothisp&quot;, &quot;!SUM_new_nothisp! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_hisp&quot;, &quot;!SUM_new_hisp! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_lesshs&quot;, &quot;!SUM_new_lesshs! / !SUM_new_pop25! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_hs&quot;, &quot;!SUM_new_hs! / !SUM_new_pop25! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_bach&quot;, &quot;!SUM_new_bach! / !SUM_new_pop25! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_dropout&quot;, &quot;!SUM_new_dropout! / !SUM_new_schoolpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_enroll&quot;, &quot;!SUM_new_enroll! / !SUM_new_schoolpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_employ&quot;, &quot;!SUM_new_employ! / !SUM_new_workpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_unemploy&quot;, &quot;!SUM_new_unemploy! / !SUM_new_workpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_hhincome&quot;, &quot;!SUM_new_ag_income_hh! / !SUM_new_numhh!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_own&quot;, &quot;!SUM_new_own! / !SUM_new_numhh! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_rent&quot;, &quot;!SUM_new_rent! / !SUM_new_numhh! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_pov&quot;, &quot;!SUM_new_pov! / !SUM_new_povpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_notpov&quot;, &quot;!SUM_new_notpov! / !SUM_new_povpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+ print &quot;done&quot;
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_male&quot;, &quot;!pct_male! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_female&quot;, &quot;!pct_female! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_under18&quot;, &quot;!pct_under18! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_18t34&quot;, &quot;!pct_18t34! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_35t64&quot;, &quot;!pct_35t64! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_over65&quot;, &quot;!pct_over65! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_white&quot;, &quot;!pct_white! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_black&quot;, &quot;!pct_black! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_nothisp&quot;, &quot;!pct_nothisp! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_hisp&quot;, &quot;!pct_hisp! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_lesshs&quot;, &quot;!pct_lesshs! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_hs&quot;, &quot;!pct_hs! * 100&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_bach&quot;, &quot;!pct_bach! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_dropout&quot;, &quot;!pct_dropout! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_enroll&quot;, &quot;!pct_enroll! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_employ&quot;, &quot;!pct_employ! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_unemploy&quot;, &quot;!pct_unemploy! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_own&quot;, &quot;!pct_own! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_rent&quot;, &quot;!pct_rent! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_pov&quot;, &quot;!pct_pov! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;pct_notpov&quot;, &quot;!pct_notpov! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+# Add/Calculate Field
+arcpy.AddField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call911_vcrime&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.AddField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call911_pcrime&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.AddField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call311_vcrime&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.AddField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call311_pcrime&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call911_vcrime&quot;, &quot;!ward_911_call_rate! / !violent_crime_rate!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call911_pcrime&quot;, &quot;!ward_911_call_rate! / !property_crime_rate!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call311_vcrime&quot;, &quot;!ward_311_call_rate! / !violent_crime_rate!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;call311_pcrime&quot;, &quot;!ward_311_call_rate! / !property_crime_rate!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+
+print &quot;Calculate done&quot;
+
+# set path for OLS outputs
+olsmap = &quot;C:/Users/kjmag/Google Drive/Documents/UCHICAGO/MA Thesis/Data/master/thesis.gdb/olsmap&quot;
+olsCoef = &quot;C:/Users/kjmag/Google Drive/Documents/UCHICAGO/MA Thesis/Data/master/thesis.gdb/olsCoef&quot;
+olsDiag = &quot;C:/Users/kjmag/Google Drive/Documents/UCHICAGO/MA Thesis/Data/master/thesis.gdb/olsDiag&quot;
+olsreport = &quot;C:/Users/kjmag/Google Drive/Documents/UCHICAGO/MA Thesis/Data/master/olsreport.pdf&quot;
+
+# Initial OLS
+arcpy.OrdinaryLeastSquares_stats(&quot;dissolve_w_calls_crime.shp&quot;, &quot;ward&quot;, &quot;olsmap&quot;, 
+                                 &quot;ward_total_call_rate&quot;,
+                                 &quot;ward_crime_rate; pct_black; pct_lesshs; pct_dropout; pct_unemploy; pct_hhincome&quot;,
+                                 &quot;olsCoefTab.dbf&quot;, &quot;olsDiagTab.dbf&quot;, &quot;olsreport&quot;)
+
+### Process: Add Field
+arcpy.AddField_management(&quot;dissolve_w_calls_crime&quot;, &quot;orig_area&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+print &quot;done&quot;
+
+### Process: Calculate Field
+arcpy.CalculateField_management(&quot;dissolve_w_calls_crime&quot;, &quot;orig_area&quot;, &#39;!Shape_Area!&#39;, &quot;PYTHON&quot;)
+
+print &quot;done&quot;
+                                    
+# Process: Identity
+arcpy.Identity_analysis(&quot;raster&quot;, &quot;dissolve_w_calls_crime&quot;, &quot;raster_identity&quot;, &quot;ALL&quot;, &quot;&quot;, &quot;NO_RELATIONSHIPS&quot;)
+
+print &quot;done&quot;
+
+
+# Process: Spatial Join
+arcpy.SpatialJoin_analysis(&quot;dissolve_w_calls_crime&quot;, &quot;raster&quot;, &quot;raster_spatialjoin&quot;)
+
+# Process: Add Field
+arcpy.AddField_management(&quot;raster_sjoin_clip&quot;, &quot;pct_orig_area&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+print &quot;done&quot;
+
+# Process: Calculate Field
+arcpy.CalculateField_management(&quot;raster_sjoin_clip&quot;, &quot;pct_orig_area&quot;, &quot;!Shape_area! / !orig_area!&quot;, &quot;PYTHON&quot;)
+
+print &quot;done&quot;
+
+# Process: Calculate new field values
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_pop&quot;, &quot;!SUM_new_pop! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_male&quot;, &quot;!SUM_new_male! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_female&quot;, &quot;!SUM_new_female! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_under18&quot;, &quot;!SUM_new_under18! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_18t34&quot;, &quot;!SUM_new_18t34! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_35t64&quot;, &quot;!SUM_new_35t64! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_over65&quot;, &quot;!SUM_new_over65! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_white&quot;, &quot;!SUM_new_white! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_black&quot;, &quot;!SUM_new_black! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_nothisp&quot;, &quot;!SUM_new_nothisp! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_hisp&quot;, &quot;!SUM_new_hisp! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_pop25&quot;, &quot;!SUM_new_pop25! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_lesshs&quot;, &quot;!SUM_new_lesshs! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_hs&quot;, &quot;!SUM_new_hs! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_bach&quot;, &quot;!SUM_new_bach! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_schoolpop&quot;, &quot;!SUM_new_schoolpop! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_dropout&quot;, &quot;!SUM_new_dropout! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_enroll&quot;, &quot;!SUM_new_enroll! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_workpop&quot;, &quot;!SUM_new_workpop! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_employ&quot;, &quot;!SUM_new_employ! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_unemploy&quot;, &quot;!SUM_new_unemploy! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_ag_income_hh&quot;, &quot;!SUM_new_ag_income_hh! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_numhh&quot;, &quot;!SUM_new_numhh! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_own&quot;, &quot;!SUM_new_own! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_rent&quot;, &quot;!SUM_new_rent! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_povpop&quot;, &quot;!SUM_new_povpop! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_pov&quot;, &quot;!SUM_new_pov! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;SUM_new_notpov&quot;, &quot;!SUM_new_notpov! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+
+ print &quot;done&quot;
+
+ Process: Calculate new field values
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_male&quot;, &quot;!SUM_new_male! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_female&quot;, &quot;!SUM_new_female! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_under18&quot;, &quot;!SUM_new_under18! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_18t34&quot;, &quot;!SUM_new_18t34! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_35t64&quot;, &quot;!SUM_new_35t64! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_over65&quot;, &quot;!SUM_new_over65! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_white&quot;, &quot;!SUM_new_white! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_black&quot;, &quot;!SUM_new_black! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_nothisp&quot;, &quot;!SUM_new_nothisp! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_hisp&quot;, &quot;!SUM_new_hisp! / !SUM_new_pop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_lesshs&quot;, &quot;!SUM_new_lesshs! / !SUM_new_pop25! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_hs&quot;, &quot;!SUM_new_hs! / !SUM_new_pop25! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_bach&quot;, &quot;!SUM_new_bach! / !SUM_new_pop25! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_dropout&quot;, &quot;!SUM_new_dropout! / !SUM_new_schoolpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_enroll&quot;, &quot;!SUM_new_enroll! / !SUM_new_schoolpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_employ&quot;, &quot;!SUM_new_employ! / !SUM_new_workpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_unemploy&quot;, &quot;!SUM_new_unemploy! / !SUM_new_workpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_hhincome&quot;, &quot;!SUM_new_ag_income_hh! / !SUM_new_numhh!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_own&quot;, &quot;!SUM_new_own! / !SUM_new_numhh! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_rent&quot;, &quot;!SUM_new_rent! / !SUM_new_numhh! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_pov&quot;, &quot;!SUM_new_pov! / !SUM_new_povpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;pct_notpov&quot;, &quot;!SUM_new_notpov! / !SUM_new_povpop! * 100&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+
+ print &quot;done&quot;
+
+
+
+# Process: Calculate fields
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;HOMICIDE&quot;, &quot;!HOMICIDE! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;CRIMINAL_SEXUAL_ASSAULT&quot;, &quot;!CRIMINAL_SEXUAL_ASSAULT! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;ROBBERY&quot;, &quot;!ROBBERY! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;AGGRAVATED_ASSAULT&quot;, &quot;!AGGRAVATED_ASSAULT! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;AGGRAVATED_BATTERY&quot;, &quot;!AGGRAVATED_BATTERY! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;BURGLARY&quot;, &quot;!BURGLARY! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;MOTOR_VEHICLE_THEFT&quot;, &quot;!MOTOR_VEHICLE_THEFT! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;LARCENY&quot;, &quot;!LARCENY! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;ward_311call_count&quot;, &quot;!ward_311call_count! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;ward_911call_count&quot;, &quot;!ward_911call_count! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;total_311_911_call_count&quot;, &quot;!total_311_911_call_count! * !pct_orig!&quot;, &quot;PYTHON&quot;, &quot;&quot;) 
+
+
+# Process: Calculate new field values
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;violent_crime_rate&quot;, &quot;(!HOMICIDE! + !CRIMINAL_SEXUAL_ASSAULT! + !ROBBERY! + !AGGRAVATED_ASSAULT! + !AGGRAVATED_BATTERY!) / !SUM_new_pop!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;property_crime_rate&quot;, &quot;(!BURGLARY! + !MOTOR_VEHICLE_THEFT! + !LARCENY!) / !SUM_new_pop!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;ward_311_call_rate&quot;, &quot;!ward_311call_count! / !SUM_new_pop!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;ward_911_call_rate&quot;, &quot;!ward_911call_count! / !SUM_new_pop!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_intersect&quot;, &quot;ward_total_call_rate&quot;, &quot;!total_311_911_call_count! / !SUM_new_pop!&quot;, &quot;PYTHON&quot;, &quot;&quot;)
+
+print &quot;done&quot;
+
+# Process: Add new field values
+arcpy.AddField_management(&quot;raster_sjoin_clip&quot;, &quot;violent_rate_10k&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.AddField_management(&quot;raster_sjoin_clip&quot;, &quot;property_rate_10k&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.AddField_management(&quot;raster_sjoin_clip&quot;, &quot;callrate_311_10k&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.AddField_management(&quot;raster_sjoin_clip&quot;, &quot;callrate_911_10k&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+arcpy.AddField_management(&quot;raster_sjoin_clip&quot;, &quot;callrate_total_10k&quot;, &quot;DOUBLE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;NULLABLE&quot;, &quot;NON_REQUIRED&quot;)
+
+print &quot;done&quot;
+
+# Process: Calculate new field values
+arcpy.CalculateField_management(&quot;raster_sjoin_clip&quot;, &quot;violent_rate_10k&quot;, &quot;(!HOMICIDE! + !CRIMINAL_SEXUAL_ASSAULT! + !ROBBERY! + !AGGRAVATED_ASSAULT! + !AGGRAVATED_BATTERY!) / !SUM_new_pop! * 10000&quot;, &quot;PYTHON_9.3&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_sjoin_clip&quot;, &quot;property_rate_10k&quot;, &quot;(!BURGLARY! + !MOTOR_VEHICLE_THEFT! + !LARCENY!) / !SUM_new_pop! * 10000&quot;, &quot;PYTHON_9.3&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_sjoin_clip&quot;, &quot;callrate_311_10k&quot;, &quot;!ward_311call_count! / !SUM_new_pop! * 10000&quot;, &quot;PYTHON_9.3&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_sjoin_clip&quot;, &quot;callrate_911_10k&quot;, &quot;!ward_911call_count! / !SUM_new_pop! * 10000&quot;, &quot;PYTHON_9.3&quot;, &quot;&quot;)
+arcpy.CalculateField_management(&quot;raster_sjoin_clip&quot;, &quot;callrate_total_10k&quot;, &quot;!total_311_911_call_count! / !SUM_new_pop! * 10000&quot;, &quot;PYTHON_9.3&quot;, &quot;&quot;)
+
+print &quot;done&quot;
+
+arcpy.HotSpots_stats(&quot;dissolve_join&quot;, &quot;HOMICIDE&quot;, &quot;homicide_hotspot&quot;, &quot;CONTIGUITY_EDGES_CORNERS&quot;, &quot;&quot;, &quot;NONE&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;) </code></pre>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

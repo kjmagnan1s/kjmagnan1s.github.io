@@ -36,6 +36,8 @@ I've worked on in school, on my thesis, and for fun in the [*Projects*](projects
 
 <center>**Current Projects**</center> 
 
+## [*University of Chicago MA Thesis (and python code)*](mathesis.html)
+
 ## [*Graphing with R*](SSL.html)
 <br>
 ![](images\Comm_area_SSL.jpeg)
