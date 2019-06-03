@@ -16,20 +16,30 @@ css: index.css
 
 <br>
 
-<center> **Former Police Officer Turned Urban Crime Data and Spatial Analyst**</center>
+<center> **I'm Kevin Magnan, a crime researcher and analyst living in Chicago, currently working as a Research Manager for the Univeristy of Chicago Urban Labs Crime Lab**</center>
 
-***
-![](images\headshot.jpg) ![](images\cop.jpg)
+<br/>
 
-I am a University of Chicago graduate student studying social science and living in the Chicago, IL area.  
-Previous to the University of Chicago, I earned my bachelor and master degrees in 
-criminal justice and served as a police officer in Missouri.  My career interests have gravitated 
-me towards blending my experiences in the criminal justice system and my education 
-as a social scientist to apply data driven, evidence based methodology to the field 
-of public safety.  
+<div class="row">
+<div class="col-xs-12 col-sm-5 text-center">
+<br/>
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/headshot.jpg" style="width:400px;"
+</div>
+<div class="col-xs-12 col-sm-5 text-center">
+
+<br/><br/><br/>
+
+A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.
+
+When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [*The 606*](https://www.the606.org/visit/maps/map/), or at a local brewery!
 
 Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects 
-I've worked on in school, on my thesis, and for fun in the [*Projects*](projects.html) section.
+I've worked on in the [*Projects*](projects.html) section.
+
+</div>
+</div>
+
+<br/><br/><br/>
 
 ***
 
