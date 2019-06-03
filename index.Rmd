@@ -23,7 +23,7 @@ css: index.css
 <div class="row">
 <div class="col-xs-12 col-sm-5 text-center">
 <br/>
-<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/headshot.jpg" style="width:400px;"
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/headshot.jpg" style="width:400px;" />
 </div>
 <div class="col-xs-12 col-sm-5 text-center">
 
