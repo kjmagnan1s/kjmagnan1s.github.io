@@ -1,6 +1,5 @@
 ---
 title: ''
-css: index.css
 ---
 
 <script>
@@ -16,7 +15,9 @@ css: index.css
 
 <br>
 
-<center> **I'm Kevin Magnan, a crime researcher and analyst living in Chicago, currently working as a Research Manager for the Univeristy of Chicago Urban Labs Crime Lab**</center>
+<center>
+## I'm Kevin Magnan, a crime researcher & analyst living in Chicago, currently working as a Research Manager for the Univeristy of Chicago Urban Labs Crime Lab
+<center/>
 
 <br/>
 
@@ -29,12 +30,11 @@ css: index.css
 
 <br/><br/><br/>
 
-A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.
+**A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.**
 
-When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [*The 606*](https://www.the606.org/visit/maps/map/), or at a local brewery!
+**When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [The 606](https://www.the606.org/visit/maps/map/), or at a local brewery!**
 
-Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects 
-I've worked on in the [*Projects*](projects.html) section.
+**Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects I've worked on in the [*Projects*](projects.html) section.**
 
 </div>
 </div>
@@ -44,15 +44,8 @@ I've worked on in the [*Projects*](projects.html) section.
 ***
 
 
-<center>**Current Projects**</center> 
+<center>
+# Current Projects
+</center> 
 
-## [*University of Chicago MA Thesis (and python code)*](mathesis.html)
-
-## [*Graphing with R*](SSL.html)
-<br>
-![](images\Comm_area_SSL.jpeg)
-<br>
-
-##[*GeoDa GIS Analysis*](geoda.html)
-<br>
-![](images\hom_r.png)
+<br/>
