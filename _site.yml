@@ -3,43 +3,59 @@ output_dir: "."
 navbar:
   title: "Kevin J. Magnan"
   left:
-    - text: "Home"
+    - icon: fa-home
+      text: "Home"
       href: index.html
-    - text: "Reach me"
-      menu:
-        - icon: fa-linkedin
-          text:   Linkedin
-          href: https://linkedin.com/in/kjmagnan1s
-        - icon: fa-github
-          text:   github
-          href: https://github.com/kjmagnan1s
-        - icon: fa-facebook
-          text:   Facebook
-          href: https://www.facebook.com/kevin.jerome.stlmo
-        - icon: fa-envelope
-          text:   Email
-          href: mailto:kjmagnan1s@gmail.com
-    - text: "Projects"
+    - icon: fa-user-astronaut
+      text: "About Me"
+      href: about.html
+    - icon: fa-project-diagram
+      text: "Projects"
       href: projects.html
       menu: 
-        - text: "R Analysis"
+        - icon: fa-code
+          text: "R Analysis"
           href: ranalysis.html
-        - text: "GIS"
+        - icon: fa-map-marked-alt
+          text: "GIS"
           href: gis.html
-        - text: "GeoDa"
-          href: geoda.html
-        - text: "MA Thesis"
+        - icon: fa-file
+          text: "MA Thesis"
           href: mathesis.html
-        - text: "MS Thesis"
+        - icon: fa-file-alt
+          text: "MS Thesis"
           href: graduate_thesis_semo.pdf
-    - text: "About Me"
-      href: about.html
-    - text: "Resume"
-      href: resume.pdf
-    - text: "Transcripts"
-      href: transcript.pdf
+    - icon: fa-file-alt
+      text: "Resume"
+      menu:
+        - icon: fa-chart-line
+          text: Interactive
+          href: https://public.tableau.com/views/KevinMagnanInteractiveResume/Dashboard1?:embed=y&:display_count=yes&:origin=viz_share_link
+        - icon: fa-file-pdf
+          text: PDF
+          href: resume.pdf
+        - icon: fa-graduation-cap
+          text: "Transcripts"
+          href: transcript.pdf
+    - icon: fa-paper-plane
+      text: "Reach me"
+      menu:
+        - icon: fa fa-globe
+          text: Tableau
+          href: https://public.tableau.com/profile/kevin.magnan#!/
+        - icon: fa-linkedin
+          text: Linkedin
+          href: https://linkedin.com/in/kjmagnan1s
+        - icon: fa-github
+          text: github
+          href: https://github.com/kjmagnan1s
+        - icon: fa-facebook
+          text: Facebook
+          href: https://www.facebook.com/kevin.jerome.stlmo
+        - icon: fa-envelope
+          text: Email
+          href: mailto:kjmagnan1s@gmail.com
+    
 output:
   html_document:
-    fig_caption: yes
-    theme: yeti
-    css: 
+    theme: lumen

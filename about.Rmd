@@ -1,5 +1,5 @@
 ---
-title: ''
+pagetitle: 'About Me'
 css: about.css
 ---
 

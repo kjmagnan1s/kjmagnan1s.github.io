@@ -1,5 +1,5 @@
 ---
-title: ''
+pagetitle: 'MA Thesis'
 ---
 
 <br>

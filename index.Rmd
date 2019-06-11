@@ -1,5 +1,5 @@
 ---
-title: ''
+pagetitle: 'Home'
 ---
 
 <script>
@@ -16,19 +16,21 @@ title: ''
 <br>
 
 <center>
-## I'm Kevin Magnan, a crime researcher & analyst living in Chicago, currently working as a Research Manager for the Univeristy of Chicago Urban Labs Crime Lab
+<h2> I'm Kevin Magnan, a crime researcher & data analyst living in Chicago, 
+currently working as a Research Manager for the Univeristy of Chicago Urban Labs Crime Lab </h2>
 <center/>
 
 <br/>
 
 <div class="row">
-<div class="col-xs-12 col-sm-5 text-center">
+<div class="col-xs-12 col-sm-5 text-left">
 <br/>
-<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/headshot.jpg" style="width:400px;" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/headshot.jpg" 
+  width="300px" height="300px" />
 </div>
-<div class="col-xs-12 col-sm-5 text-center">
+<div class="col-xs-12 col-sm-5 text-left">
 
-<br/><br/><br/>
+<br/><br/>
 
 **A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.**
 
@@ -44,8 +46,19 @@ title: ''
 ***
 
 
-<center>
-# Current Projects
-</center> 
+<left>
+<h1> **Current Projects:** </h1>
+</left> 
+
+<h2> Interactive Tableau Resume </h2>
+<<br>
+<div class='tableauPlaceholder' id='viz1560221265980' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='KevinMagnanInteractiveResume&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /></object></div>
+<script type='text/javascript'>
+var divElement = document.getElementById('viz1560221265980');
+var vizElement = divElement.getElementsByTagName('object')[0];                    
+if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1200px';vizElement.style.height='529px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1200px';vizElement.style.height='529px';} else { vizElement.style.width='100%';vizElement.style.height='1033px';}                     
+var scriptElement = document.createElement('script');                    
+scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
 
 <br/>
