@@ -16,24 +16,33 @@ output:
 
 <div class = "col-md-6">
 
+<br><br>
 
 <h2> What I Am Most Passionate About: </h2>
 
-<h3>
+<h3><br>
 
 [Culinary adventures](images\cooking.jpg) ([Instagram](https://www.instagram.com/kevin_cooks_chitown/)) and whatever IPA I last drank ([Untappd](https://untappd.com/user/magnumstg16))
 
+
 My two cats [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
+
 
 [Kayaking](images\kayak.jpg) and [Snowboarding](images\snowboard.jpg)
 
+
 [DotA 2](images\dota.jpg)
 
-Crime and Law Enforcement in the US
 
-Statistical Analysis using R
+Podcasts
 
-Spatial Analysis
+
+Data Viz, Mapping, and Spatial Analysis
+
+
+Evidence Based and Data Driven Policing Strategies
+
+
 
 </h2>
 
@@ -42,7 +51,7 @@ Spatial Analysis
 
 <br><br><br>
 
-<center><h2>Traveling</h2>
+<center><h2>... and Last But Not Least Traveling</h2>
 
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="800" height="800" style="border:none;"></iframe>
 
