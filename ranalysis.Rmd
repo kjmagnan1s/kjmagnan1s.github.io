@@ -1,5 +1,7 @@
 ---
 pagetitle: "R Analysis"
+author: 'Kevin Magnan'
+date: '06-11-2019'
 ---
 <br>
 

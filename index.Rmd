@@ -1,5 +1,7 @@
 ---
 pagetitle: 'Home'
+author: 'Kevin Magnan'
+date: '06-11-2019'
 output:
   html_document:
     css: _style.css
@@ -37,13 +39,14 @@ currently working as a Research Manager for the Univeristy of Chicago Urban Labs
 
 <br>
 
+<font size='+1'>
+A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.
 
-<h4> 
-A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.**
 
-When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [The 606](https://www.the606.org/visit/maps/map/), or at a local brewery!**
+When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [The 606](https://www.the606.org/visit/maps/map/), or at a local brewery!
 
-Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects I've worked on in the [*Projects*](projects.html) section.**
+Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects I've worked on in the [*Projects*](projects.html) section.
+</font>
 
 <h4/>
 
