@@ -31,7 +31,7 @@ currently working as a Research Manager for the Univeristy of Chicago Urban Labs
 <div class="col-xs-12 col-sm-5 text-left">
 <br/>
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/curacao.jpg" 
-  width="300px" height="300px"/><figcaption>Test</figcaption>
+  width="300px" height="300px"/><figcaption>Koraal Rooftop Terrace, Curacao</figcaption>
 </div>
 <div class="col-xs-12 col-sm-5 text-left">
 
