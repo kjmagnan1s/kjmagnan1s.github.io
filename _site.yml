@@ -60,3 +60,5 @@ navbar:
 output:
   html_document:
     theme: lumen
+    includes:
+      after_body: _footer.html

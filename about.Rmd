@@ -4,26 +4,41 @@ pagetitle: 'About Me'
 
 <br/>
 
-<div class="row">
-<div class="col-xs-12 col-sm-5 text-center">
+<div class = "col-md-4">
+
 <br/>
-<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/couple.jpg" style="width:400px;" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/couple.jpg" width= "400px" height="400px" />
 </div>
-<div class="col-xs-12 col-sm-5 text-center">
 
-<br/><br/>
+<div class = "col-md-4">
 
-### What I Am Most Passionate About:
+<br/>
 
-  * Crime and Law Enforcement in the US
-  * Statistical Analysis using R
-  * Spatial Analysis
-  * [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
-  * My recent IPA and culinary adventures
-  * [Kayaking](images\kayak.jpg)
-  * Traveling
+<h2> What I Am Most Passionate About: </h2>
+
+<h3>
+Crime and Law Enforcement in the US
+
+Statistical Analysis using R
+
+Spatial Analysis
+
+[Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
+
+My recent IPA and culinary adventures
+
+[Kayaking](images\kayak.jpg)
+
+
+</h2>
+
+<div/>
+
+
+<div class = "col-md-4">
+
+Traveling
 
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="480" height="360"></iframe>
 
-<div/>
-<div/>
+</div>

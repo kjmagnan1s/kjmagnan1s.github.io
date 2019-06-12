@@ -2,12 +2,15 @@
 pagetitle: 'MA Thesis'
 author: 'Kevin Magnan'
 date: '06-11-2019'
+output:
+  html_document:
+    theme: lumen
 ---
 
 <br>
 
-#[University of Chicago MA Thesis](graduate_thesis_uchicago.pdf)
+<h1>[University of Chicago MA Thesis](graduate_thesis_uchicago.pdf)</h1>
 
 <br>
 
-#[ArcGIS Python Script](python.html)
+<h1>[ArcGIS Python Script](python.html)</h1>

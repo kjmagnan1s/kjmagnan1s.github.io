@@ -109,7 +109,7 @@ cor.test(murder_per_hthousand_2016, officers_per_hthousand)
 detach(subset_by_cities)
 
 ```
-***
+
 <br><hr>
 
 ## Thesis data
