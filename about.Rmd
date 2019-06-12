@@ -1,44 +1,49 @@
 ---
 pagetitle: 'About Me'
+output:
+  html_document:
+    exclude: _footer.html
 ---
+
 
 <br/>
 
-<div class = "col-md-4">
+<div class = "col-md-6">
 
 <br/>
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/couple.jpg" width= "400px" height="400px" />
 </div>
 
-<div class = "col-md-4">
+<div class = "col-md-6">
 
-<br/>
 
 <h2> What I Am Most Passionate About: </h2>
 
 <h3>
+
+[Culinary adventures](images\cooking.jpg) ([Instagram](https://www.instagram.com/kevin_cooks_chitown/)) and whatever IPA I last drank ([Untappd](https://untappd.com/user/magnumstg16))
+
+My two cats [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
+
+[Kayaking](images\kayak.jpg) and [Snowboarding](images\snowboard.jpg)
+
+[DotA 2](images\dota.jpg)
+
 Crime and Law Enforcement in the US
 
 Statistical Analysis using R
 
 Spatial Analysis
 
-[Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
-
-My recent IPA and culinary adventures
-
-[Kayaking](images\kayak.jpg)
-
-
 </h2>
 
-<div/>
-
-
-<div class = "col-md-4">
-
-Traveling
-
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="480" height="360"></iframe>
-
 </div>
+</div>
+
+<br><br><br>
+
+<center><h2>Traveling</h2>
+
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="800" height="800" style="border:none;"></iframe>
+
+</center>
