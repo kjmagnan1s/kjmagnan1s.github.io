@@ -1,5 +1,8 @@
 ---
-Title: Graphing Chicago SSL Scores
+Title: 'Graphing Chicago SSL Scores'
+output:
+  html_document:
+    theme: lumen
 ---
 <br>
 

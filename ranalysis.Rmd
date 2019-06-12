@@ -2,19 +2,22 @@
 pagetitle: "R Analysis"
 author: 'Kevin Magnan'
 date: '06-11-2019'
+output:
+  html_document:
+    theme: lumen
 ---
 <br>
+
+
+<h2>[Chicago SSL Dashboard Open Data Analysis](ssl.html)</h2>
+
+<br><hr>
 
 ## US Police Officers per Murders
 
 ![](images\bar_plot.jpeg)
-```{css}
-pre {
-  white-space: pre !important;
-  overflow-y: scroll !important;
-  height: 50vh !important 
-} 
-```
+
+
 
 
 ```{r eval=FALSE}
@@ -107,9 +110,9 @@ detach(subset_by_cities)
 
 ```
 ***
-<br>
+<br><hr>
 
-##Thesis data
+## Thesis data
 ```{r eval=FALSE}
 library(plyr)
 library(dplyr)

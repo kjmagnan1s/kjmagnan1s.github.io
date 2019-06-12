@@ -1,5 +1,8 @@
 ---
 title: "GIS Analysis"
+output:
+  html_document:
+    theme: lumen
 ---
 <br>
 
