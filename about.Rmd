@@ -33,6 +33,7 @@ My two cats [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
 
 [DotA 2](images\dota.jpg)
 
+[//]: # (Complete with Home PC Pic and PCPartsPicker link)
 
 Podcasts
 
