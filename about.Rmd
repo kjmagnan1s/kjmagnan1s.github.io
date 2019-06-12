@@ -1,6 +1,5 @@
 ---
 pagetitle: 'About Me'
-css: about.css
 ---
 
 <br/>

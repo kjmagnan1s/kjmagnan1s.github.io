@@ -1,6 +1,5 @@
 ---
 pagetitle: "R Analysis"
-css: ranalysis.css
 ---
 <br>
 
