@@ -1,5 +1,8 @@
 ---
 pagetitle: 'Home'
+output:
+  html_document:
+    css: _style.css
 ---
 
 <script>
@@ -20,23 +23,28 @@ pagetitle: 'Home'
 currently working as a Research Manager for the Univeristy of Chicago Urban Labs Crime Lab </h2>
 <center/>
 
+<hr>
+
 <br/>
 
 <div class="row">
 <div class="col-xs-12 col-sm-5 text-left">
 <br/>
-<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/headshot.jpg" 
-  width="300px" height="300px" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/curacao.jpg" 
+  width="300px" height="300px"/><figcaption>Test</figcaption>
 </div>
 <div class="col-xs-12 col-sm-5 text-left">
 
-<br/><br/>
+<br>
 
-**A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.**
+<h4> 
+A former police officer and University of Chicago Graduate Student, I combine my 2 years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.**
 
-**When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [The 606](https://www.the606.org/visit/maps/map/), or at a local brewery!**
+When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [The 606](https://www.the606.org/visit/maps/map/), or at a local brewery!**
 
-**Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects I've worked on in the [*Projects*](projects.html) section.**
+Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects I've worked on in the [*Projects*](projects.html) section.**
+
+<h4/>
 
 </div>
 </div>

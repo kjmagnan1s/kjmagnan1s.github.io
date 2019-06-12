@@ -2,6 +2,7 @@ name: "kevins-website"
 output_dir: "."
 navbar:
   title: "Kevin J. Magnan"
+  icon: fa-home
   left:
     - icon: fa-home
       text: "Home"
