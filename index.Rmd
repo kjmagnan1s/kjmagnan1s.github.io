@@ -30,20 +30,20 @@ currently working as a Research Manager for the Univeristy of Chicago Urban Labs
 <br/>
 
 <div class="row">
-<div class="col-xs-12 col-sm-5 text-left">
-<br/>
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/curacao.jpg" 
   width="300px" height="300px"/><figcaption>Koraal Rooftop Terrace, Curacao</figcaption>
 </div>
 <div class="col-xs-12 col-sm-5 text-left">
 
 <br>
+<div class="col-xs-12 col-sm-5 text-left">
+<br/>
 
 <font size='+1'>
 A former police officer and University of Chicago Graduate Student, I combine my years of law enforcement experience with my education in social science to apply data driven, evidence based methodology to US public safety.
 
 
-When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [The 606](https://www.the606.org/visit/maps/map/), or at a local brewery!
+When I'm not coding or creating visualizations, you'll find me in my kitchen cooking anything I can get my hands on, biking [The 606](https://www.the606.org/visit/maps/map/), gaming, or at a local brewery!
 
 Please use the *Reach Me* links above to contact me via social media outlets. You can also see my code and projects I've worked on in the [*Projects*](projects.html) section.
 </font>

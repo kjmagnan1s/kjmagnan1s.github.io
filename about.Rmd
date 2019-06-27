@@ -18,7 +18,7 @@ output:
 
 <br><br>
 
-<h2> What I Am Most Passionate About: </h2>
+<h2> A few of my passions: </h2>
 
 <h3><br>
 
@@ -37,11 +37,13 @@ My two cats [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
 
 Podcasts
 
+Coffee - I switch moods between French Press and a good drip
+
 
 Data Viz, Mapping, and Spatial Analysis
 
 
-Evidence Based and Data Driven Policing Strategies
+[//]: # (Evidence Based and Data Driven Policing Strategies)
 
 
 
@@ -52,7 +54,7 @@ Evidence Based and Data Driven Policing Strategies
 
 <br><br><br>
 
-<center><h2>... and Last But Not Least Traveling</h2>
+<center><h2>... and Last But Not Least Traveling</h2><br>
 
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="800" height="800" style="border:none;"></iframe>
 

@@ -35,9 +35,6 @@ navbar:
         - icon: fa-file-pdf
           text: PDF
           href: resume.pdf
-        - icon: fa-graduation-cap
-          text: "Transcripts"
-          href: transcript.pdf
     - icon: fa-paper-plane
       text: "Reach me"
       menu:
@@ -50,9 +47,6 @@ navbar:
         - icon: fa-github
           text: github
           href: https://github.com/kjmagnan1s
-        - icon: fa-facebook
-          text: Facebook
-          href: https://www.facebook.com/kevin.jerome.stlmo
         - icon: fa-envelope
           text: Email
           href: mailto:kjmagnan1s@gmail.com
