@@ -8,8 +8,6 @@ output:
 
 <br>
 
-## Chicago Public Schools and Crime Rates
-
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/CPS_Schools_Crime.jpg" alt="" />
 
 <br>
