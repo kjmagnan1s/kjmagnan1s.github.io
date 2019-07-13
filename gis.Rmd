@@ -6,6 +6,14 @@ output:
 ---
 <br>
 
+<br>
+
+## Chicago Public Schools and Crime Rates
+
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/CPS Schools Crime.jpg" alt="" />
+
+<br>
+
 ## ArcGIS Model Builder
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/Model_img.jpg" alt="" />
 
