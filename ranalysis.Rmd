@@ -9,7 +9,7 @@ output:
 <br>
 
 
-<h2>[Chicago SSL Dashboard Open Data Analysis](ssl.html)</h2>
+<h2>[Chicago SSL Dashboard Open Data Analysis](SSL.html)</h2>
 
 <br><hr>
 
