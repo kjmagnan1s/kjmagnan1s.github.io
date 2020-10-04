@@ -10,22 +10,12 @@ navbar:
     - icon: fa-user-astronaut
       text: "About Me"
       href: about.html
+    - icon: fa-blog
+      text: "Blog"
+      href: blog.html
     - icon: fa-project-diagram
-      text: "Projects"
-      href: projects.html
-      menu: 
-        - icon: fa-code
-          text: "R Analysis"
-          href: ranalysis.html
-        - icon: fa-map-marked-alt
-          text: "GIS"
-          href: gis.html
-        - icon: fa-file
-          text: "MA Thesis"
-          href: mathesis.html
-        - icon: fa-file-alt
-          text: "MS Thesis"
-          href: graduate_thesis_semo.pdf
+      text: "Past Work"
+      href: past_work.html
     - icon: fa-file-alt
       text: "Resume"
       menu:

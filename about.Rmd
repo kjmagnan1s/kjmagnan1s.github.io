@@ -1,5 +1,7 @@
 ---
 pagetitle: 'About Me'
+author: 'Kevin Magnan'
+date: '10.04.2020'
 output:
   html_document:
     exclude: _footer.html

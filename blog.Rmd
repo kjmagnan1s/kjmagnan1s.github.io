@@ -1,0 +1,27 @@
+---
+pagetitle: "R Analysis"
+author: 'Kevin Magnan'
+date: '10.04.2020'
+output:
+  html_document:
+    theme: lumen
+---
+<style>
+body {
+  position: absolute;
+  left: 300px;}
+</style>
+
+<br>
+
+
+</br>
+
+<p class="small">
+<font size='+1'>[Chicago SSL Dashboard Open Data Analysis](SSL.html)</font>\
+<font size='-2'>June 14, 2017</font>
+</p>
+
+
+An exploratory analysis of newly public CPD SSL data found [here](https://data.cityofchicago.org/Public-Safety/Strategic-Subject-List-Historical/4aki-r3np)
+

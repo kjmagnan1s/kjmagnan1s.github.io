@@ -1,0 +1,30 @@
+---
+pagetitle: 'Past Work'
+author: 'Kevin Magnan'
+date: '10.04.2020'
+---
+
+<style>
+body {
+  position: absolute;
+  left: 150px;}
+</style>
+
+<br>
+<br>
+<br>
+<h3>
+[R](ranalysis.html)
+
+<br>
+
+[GIS](gis.html)
+
+<br>
+
+[MA Thesis](thesis.html)
+
+<br>
+
+[MS Thesis](graduate_thesis_semo.pdf)
+</h3>

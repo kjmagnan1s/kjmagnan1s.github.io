@@ -1,19 +1,14 @@
 ---
 pagetitle: "R Analysis"
 author: 'Kevin Magnan'
-date: '06-11-2019'
+date: '06-1110.04.2020'
 output:
   html_document:
     theme: lumen
 ---
-<br>
+<br><br><hr>
 
-
-<h2>[Chicago SSL Dashboard Open Data Analysis](SSL.html)</h2>
-
-<br><hr>
-
-## US Police Officers per Murders
+## Ratio of US Police Officers to murders
 
 ![](images\bar_plot.jpeg)
 
