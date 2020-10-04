@@ -1,5 +1,5 @@
 ---
-title: "GIS Analysis"
+pagetitle: "GIS Analysis"
 author: 'Kevin Magnan'
 date: '10.04.2020'
 output:

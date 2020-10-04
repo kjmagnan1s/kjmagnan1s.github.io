@@ -22,7 +22,7 @@ body {
 
 <br>
 
-[MA Thesis](thesis.html)
+[MA Thesis](mathesis.html)
 
 <br>
 
