@@ -1,0 +1,42 @@
+---
+title: "Your Mom's House analysis"
+author: "Kevin Magnan"
+date: "10.04.2020"
+output: html_document
+---
+
+Inspired by a fellow YMH podcast (warning NSFW) fan/mommy [Eric](https://eric-ekholm.netlify.app/), I am trying my hand at analyzing YMH podcast transcripts. I plan on following along with Eric's work flow below and diverting once I find an opportunity to personalize the analysis - aka keep it high and tight.
+
+Eric's blog post analysis involved pulling transcripts from YMH YouTube videos. I don't have any experience in pulling transcripts from youtube nor any serious text analysis so I'm excited to try this out and learn from a Eric. Thanks for not being stingy, Mark.... I mean Eric!
+
+# Libraries
+
+```{r global-options, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(youtubecaption)
+library(janitor)
+library(lubridate)
+```
+
+Aside from {tidyverse} and {lubridate}, Eric uses {youtubecaption} for calling YouTube's API to get the caption transcripts and {janitor} for some of the text analysis, namely the clean_names() function. These two packages are brand new to me so I'm excited to work with them.
+
+Note: I learned further into this analysis that {youtubecaption} relies on Anaconda, a comprehensive Python environment, to pull from YouTube's API. The author of youtubecaption states the reason for this due to the difficulty of calling YouTube's API for the captain data in a user friendly format. Thus, this library acts as a handy and clean way of accessing YouTube's API in Python (Anaconda) without needing to write a custom API call in another language. I didn't have Anaconda on this machine so it was not able to run and I had to take a break from the analysis to install Anaconda. Save yourself some time and [download it](https://www.anaconda.com/download/) before getting started!
+
+# Single YouTube API call, episode 571
+
+```{r}
+ymh_e571 <- get_caption("https://www.youtube.com/watch?v=dY818rfsJkk")
+```
+
+And there we go, really straight forward way to download a transcript of a YouTube video. Let's take a look at what we are working with:
+
+```{r}
+head(ymh_e571)
+```
+
+Upon inspection, the YouTube API call gives us 5 columns and just over 4500 rows or data. 'Segment_id' would be our unique identifier for each segment, 'text' is obviously the speech-to-text captions we are after, 'start' appears to be the time stamp when the text is recorded, the value of 'duration' is a mystery at the moment but we'll look into that soon, and 'vid' is simply the YouTube html address to the video.
+
+
+
