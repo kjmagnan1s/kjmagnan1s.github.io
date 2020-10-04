@@ -15,14 +15,13 @@ output:
 
   ga('create', 'UA-97380674-1', 'auto');
   ga('send', 'pageview');
-
 </script>
 
 <br>
 
 <hr>
 
-<br/>
+<br>
 
 <center>
 <div class="row">

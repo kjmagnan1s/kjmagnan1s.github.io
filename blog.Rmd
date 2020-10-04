@@ -15,7 +15,7 @@ body {
 <br>
 
 
-</br>
+<br>
 
 <p class="small">
 <font size='+1'>[Chicago SSL Dashboard Open Data Analysis](SSL.html)</font>\
