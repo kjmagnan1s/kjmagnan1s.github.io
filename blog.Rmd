@@ -25,3 +25,14 @@ body {
 
 An exploratory analysis of newly public CPD SSL data found [here](https://data.cityofchicago.org/Public-Safety/Strategic-Subject-List-Historical/4aki-r3np)
 
+</br>
+
+<p class="small">
+<font size='+1'>[Chicago Census and Crime Spatial Analysis](SSL.html)</font>\
+<font size='-2'>June 5, 2017</font>
+</p>
+
+
+An exploratory spatial analysis of Chicago census demographcs and crime data utilizing [GeoDa](https://geodacenter.github.io/), a free and open spatial analysis GIS software developed by University of Chicago Professor Luc Anselin and his team.
+
+
