@@ -43,7 +43,6 @@ navbar:
         - icon: fa-twitter
           text: Twitter
           href: twitter_redirect.html
-    
 output:
   html_document:
     theme: lumen
