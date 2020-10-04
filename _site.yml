@@ -47,4 +47,5 @@ output:
   html_document:
     theme: lumen
     includes:
+      in_header: _header.html
       after_body: _footer.html

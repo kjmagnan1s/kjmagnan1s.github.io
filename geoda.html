@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Kevin Magnan" />
@@ -25,6 +25,16 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="images\favicon.ico"
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -72,9 +82,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -88,7 +96,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -193,8 +200,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -239,6 +244,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -251,20 +257,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -295,44 +298,19 @@ $(document).ready(function () {
     About Me
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="blog.html">
     <span class="fa fa-project-diagram"></span>
      
-    Projects
-     
-    <span class="caret"></span>
+    Blog
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="ranalysis.html">
-        <span class="fa fa-code"></span>
-         
-        R Analysis
-      </a>
-    </li>
-    <li>
-      <a href="gis.html">
-        <span class="fa fa-map-marked-alt"></span>
-         
-        GIS
-      </a>
-    </li>
-    <li>
-      <a href="mathesis.html">
-        <span class="fa fa-file"></span>
-         
-        MA Thesis
-      </a>
-    </li>
-    <li>
-      <a href="graduate_thesis_semo.pdf">
-        <span class="fa fa-file-alt"></span>
-         
-        MS Thesis
-      </a>
-    </li>
-  </ul>
+</li>
+<li>
+  <a href="past_work.html">
+    <span class="fa fa-archive"></span>
+     
+    Past Work
+  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -357,13 +335,6 @@ $(document).ready(function () {
         PDF
       </a>
     </li>
-    <li>
-      <a href="transcript.pdf">
-        <span class="fa fa-graduation-cap"></span>
-         
-        Transcripts
-      </a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -376,31 +347,24 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="https://public.tableau.com/profile/kevin.magnan#!/">
+      <a href="tableau_redirect.html">
         <span class="fa fa fa fa-globe"></span>
          
         Tableau
       </a>
     </li>
     <li>
-      <a href="https://linkedin.com/in/kjmagnan1s">
+      <a href="linkedin_redirect.html">
         <span class="fa fa-linkedin"></span>
          
         Linkedin
       </a>
     </li>
     <li>
-      <a href="https://github.com/kjmagnan1s">
+      <a href="github_redirect.html">
         <span class="fa fa-github"></span>
          
         github
-      </a>
-    </li>
-    <li>
-      <a href="https://www.facebook.com/kevin.jerome.stlmo">
-        <span class="fa fa-facebook"></span>
-         
-        Facebook
       </a>
     </li>
     <li>
@@ -408,6 +372,13 @@ $(document).ready(function () {
         <span class="fa fa-envelope"></span>
          
         Email
+      </a>
+    </li>
+    <li>
+      <a href="twitter_redirect.html">
+        <span class="fa fa-twitter"></span>
+         
+        Twitter
       </a>
     </li>
   </ul>
@@ -436,46 +407,46 @@ $(document).ready(function () {
 <h2><strong>Exploratory Analysis</strong></h2>
 <p>Chicago has historically been a segregated city and continues to be segregated in 2017. While the population of Chicago is roughly split into thirds for blacks, Hispanics, and whites, these populations, similar to crime rates, are not spatially distributed evenly within the city according to census data. These three populations display near perfect segregation, with black populations concentrated in the south and west communities, Hispanics concentrated in the northwest and southwest communities, and whites concentrated in the northern communities.</p>
 <div class="figure">
-<img src="images/pct_black.png" alt="Figure 1 Percent Black" />
+<img src="images/pct_black.png" alt="" />
 <p class="caption">Figure 1 Percent Black</p>
 </div>
 <div class="figure">
-<img src="images/pct_hisp.png" alt="Figure 2 Percent Hispanic" />
+<img src="images/pct_hisp.png" alt="" />
 <p class="caption">Figure 2 Percent Hispanic</p>
 </div>
 <div class="figure">
-<img src="images/pct_white.png" alt="Figure 3 Percent White" />
+<img src="images/pct_white.png" alt="" />
 <p class="caption">Figure 3 Percent White</p>
 </div>
 <p>Racial demographics are not the only characteristic that exhibits spatial variability; in light of racial segregation, educational attainment and average household income also fall in line with a socioeconomic segregation narrative. Figures 4, 5, and 6 visualize the extremes to which Chicago is segregated economically and with educational attainment. Specifically, higher household incomes are located in the same regions which are occupied by majority whites while lower household incomes are associated with black and Hispanic populations. These same economic disconnects are seen in age 25 and older population educational attainment.</p>
 <div class="figure">
-<img src="images/income.png" alt="Figure 4 Average Household Income" />
+<img src="images/income.png" alt="" />
 <p class="caption">Figure 4 Average Household Income</p>
 </div>
 <div class="figure">
-<img src="images/lesshs.png" alt="Figure 5 Percent of Population With Less Than High School Education" />
+<img src="images/lesshs.png" alt="" />
 <p class="caption">Figure 5 Percent of Population With Less Than High School Education</p>
 </div>
 <div class="figure">
-<img src="images/bach.png" alt="Figure 6 Percent of Population With High School Education" />
+<img src="images/bach.png" alt="" />
 <p class="caption">Figure 6 Percent of Population With High School Education</p>
 </div>
 <p>Finally, as was alluded to by the University of Chicago Crime Lab’s gun violence report as well as the Chicago Police Department and numerous Chicago media outlets, Chicago crime is disproportionately concentrated in these areas of high black and Hispanic populations with low educational attainment and low incomes. Violent crime rates in figure 7 and homicide rates in figure 9 bring further evidence to the claim that Chicago’s violent crimes and murders occur in primarily black and Hispanic neighborhoods with low income and education. Property crimes, in figure 8, tell a slightly different story since these crimes are more prolific in areas with more wealth and property value, like Chicago’s Loop area.</p>
 <div class="figure">
-<img src="images/vcrime_rate_map.png" alt="Figure 7 Violent Crime Rate per 100k" />
+<img src="images/vcrime_rate_map.png" alt="" />
 <p class="caption">Figure 7 Violent Crime Rate per 100k</p>
 </div>
 <div class="figure">
-<img src="images/pcrime_rate_map.png" alt="Figure 8 Property Crime Rate per 100k" />
+<img src="images/pcrime_rate_map.png" alt="" />
 <p class="caption">Figure 8 Property Crime Rate per 100k</p>
 </div>
 <div class="figure">
-<img src="images/hom_r.png" alt="Figure 9 Homicide Rate per 100k" />
+<img src="images/hom_r.png" alt="" />
 <p class="caption">Figure 9 Homicide Rate per 100k</p>
 </div>
 <p>311 call rates, represented in figure 10, present a different narrative than one would imagine in the context of Chicago’s crime rates and population demographics. As far as what can be taken at face value from these figures, there does not appear to be any patterns or clusters of 311 call rates in an area. If communities were to have high collective efficacy and be proactive in keeping their neighborhood in order, then we would expect the areas with either high violent and high property crimes or low violent and property crimes to be calling the city of Chicago at the highest rates. Instead, we see a dispersed rate of 311 calls incongruent to property crime locations and only partially reflective of violent crimes and homicides.</p>
 <div class="figure">
-<img src="images/call_rate_map.png" alt="Figure 10 311 Call Rate per 100k" />
+<img src="images/call_rate_map.png" alt="" />
 <p class="caption">Figure 10 311 Call Rate per 100k</p>
 </div>
 <p><br></p>
@@ -484,37 +455,37 @@ $(document).ready(function () {
 <h2><strong>Spatial Analysis</strong></h2>
 <p>In the exploratory analysis, I utilized quantile maps to visually investigate whether certain community area characteristics were clustering in specific areas of the city. To create a more scientific determination of clustering, I conducted global and local Moran I and Local Getis-Ord Gi* (G-i-star) analyses. As a precursor to these analyses, I experimented with three different spatial weight matrixes, queen contiguity, rook contiguity, and 5 nearest neighbors. Figures 11 and 11a show histograms of both the queen and rook contiguity weights (since nearest neighbor weights produced a flat graph it was not included); I determined that a rook spatial weight matrix was the best fit for the data since it most closely resembled a normal distribution and the connectivity map for the queen weights produced undesirable neighbors.</p>
 <div class="figure">
-<img src="images/qw.png" alt="Figure 11 Queen Contiguity Spatial Weight" />
+<img src="images/qw.png" alt="" />
 <p class="caption">Figure 11 Queen Contiguity Spatial Weight</p>
 </div>
 <div class="figure">
-<img src="images/rw.png" alt="Figure 11a Rook Contiguity Spatial Weight" />
+<img src="images/rw.png" alt="" />
 <p class="caption">Figure 11a Rook Contiguity Spatial Weight</p>
 </div>
 <p>To determine spatial autocorrelation, that is how grouped similar and dissimilar values are to one another, global Moran’s I tests were ran on the variables presented in the exploratory analysis with rook contiguity as the weights matrix. To no surprise, racial demographics produced highly positive values: black = 0.71, Hispanic = 0.61, and white = 0.69. Similarly, average household income, percent of population with less than a high school education, and percent of population with a bachelor’s degree had high positive Moran’s Index values at 0.59, 0.56, and 0.72 respectively. Finally, criminal activity exhibited spatial autocorrelation in its Moran’s I values; Violent crime produced a 0.52 index, property crime produced a 0.37 index and homicides produced a 0.47 index. 311 call rate spatial autocorrelation was less pronounced, with a Moran’s I value of 0.39. Overall, we see spatial autocorrelation high for racial demographics and bachelor’s degrees at around a 0.7 Moran’s I value while income and low education producing slightly lower values and crimes even more. However, violent crimes are systematically more spatially autocorrelated than property crimes and 311 call rates exhibit the lowest spatial autocorrelation of the variables.</p>
 <p>Global Moran’s I is limited, producing results which only determine if the entire spatial study area is autocorrelated; therefore, in order to determine which community areas have spatial autocorrelation and clustering, local Moran’s I and Gi star tests were ran. Beginning with 311 call rates, figure 12 and 12a displays the results of these tests. We can see that statistically significant (p &lt; 0.05) highly similar 311 call values and hot spots are largely present in the west community areas and 3 communities in the south. Meanwhile, dissimilar cold spots exist along the lake in communities like the Loop. For violent and property crimes, the local Moran’s I and Gi star tests show that the most northern communities represent dissimilar and cold locations in terms of crime rates. At the same time, violent and property crime hot spots and similar values are located in the areas we would expect, specifically the south and west for violent crimes (homicides matched these trends) and around the loop and some areas of the south for property crimes, see figures 13 and 14. It’s worth mentioning that average household income, less than high school education and bachelor’s degree local Moran I’s and Gi star’s similar/dissimilar and hot/cold spot values paralleled the findings from the exploratory analysis. In the interest of brevity, I decided not to include those maps.</p>
 <div class="figure">
-<img src="images/GI_call_r.png" alt="Figure 12 GI Star 311 Call Rate" />
+<img src="images/GI_call_r.png" alt="" />
 <p class="caption">Figure 12 GI Star 311 Call Rate</p>
 </div>
 <div class="figure">
-<img src="images/LMI_call_r.png" alt="Figure 12a Local Moran’s I 311 Call Rate" />
+<img src="images/LMI_call_r.png" alt="" />
 <p class="caption">Figure 12a Local Moran’s I 311 Call Rate</p>
 </div>
 <div class="figure">
-<img src="images/GI_vcrime.png" alt="Figure 13 GI Star Violent Crime Rate" />
+<img src="images/GI_vcrime.png" alt="" />
 <p class="caption">Figure 13 GI Star Violent Crime Rate</p>
 </div>
 <div class="figure">
-<img src="images/LMI_vcrime.png" alt="Figure 13a Local Moran’s I Violent Crime Rate" />
+<img src="images/LMI_vcrime.png" alt="" />
 <p class="caption">Figure 13a Local Moran’s I Violent Crime Rate</p>
 </div>
 <div class="figure">
-<img src="images/GI_pcrime.png" alt="Figure 14 GI Star Property Crime Rate" />
+<img src="images/GI_pcrime.png" alt="" />
 <p class="caption">Figure 14 GI Star Property Crime Rate</p>
 </div>
 <div class="figure">
-<img src="images/LMI_pcrime.png" alt="Figure 14a Local Moran’s I Property Crime Rate" />
+<img src="images/LMI_pcrime.png" alt="" />
 <p class="caption">Figure 14a Local Moran’s I Property Crime Rate</p>
 </div>
 <p>In the final section of this analysis, I assessed the spatial regression models used in this analysis. Model 1 was an OLS regression model with 311 call rates as the dependent variable and the independent variables as violent crime, property crime, white, black, Hispanic, average household income, less than high school education, and bachelor’s degree incorporating the rook contiguity spatial weights matrix .</p>
@@ -532,6 +503,19 @@ $(document).ready(function () {
 </div>
 </div>
 
+<style>
+div.white { background-color:#ffffff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "white">
+</div>
+
+&nbsp;
+<hr />
+
+<p style="text-align: center;"><span style="color: ##2c3e50;"><em>Website Coded in R by Kevin Magnan</em></span></p>
+
+
+&nbsp;
 
 
 
@@ -549,6 +533,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

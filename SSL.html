@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>SSL.utf8.md</title>
+<title>SSL.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,6 +24,16 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="images\favicon.ico"
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -71,9 +81,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -87,7 +95,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -192,8 +199,6 @@ $(document).ready(function () {
 });
 </script>
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
 
 <style type="text/css">
@@ -238,6 +243,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -250,20 +256,17 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -294,44 +297,19 @@ $(document).ready(function () {
     About Me
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="blog.html">
     <span class="fa fa-project-diagram"></span>
      
-    Projects
-     
-    <span class="caret"></span>
+    Blog
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="ranalysis.html">
-        <span class="fa fa-code"></span>
-         
-        R Analysis
-      </a>
-    </li>
-    <li>
-      <a href="gis.html">
-        <span class="fa fa-map-marked-alt"></span>
-         
-        GIS
-      </a>
-    </li>
-    <li>
-      <a href="mathesis.html">
-        <span class="fa fa-file"></span>
-         
-        MA Thesis
-      </a>
-    </li>
-    <li>
-      <a href="graduate_thesis_semo.pdf">
-        <span class="fa fa-file-alt"></span>
-         
-        MS Thesis
-      </a>
-    </li>
-  </ul>
+</li>
+<li>
+  <a href="past_work.html">
+    <span class="fa fa-archive"></span>
+     
+    Past Work
+  </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -356,13 +334,6 @@ $(document).ready(function () {
         PDF
       </a>
     </li>
-    <li>
-      <a href="transcript.pdf">
-        <span class="fa fa-graduation-cap"></span>
-         
-        Transcripts
-      </a>
-    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -375,31 +346,24 @@ $(document).ready(function () {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="https://public.tableau.com/profile/kevin.magnan#!/">
+      <a href="tableau_redirect.html">
         <span class="fa fa fa fa-globe"></span>
          
         Tableau
       </a>
     </li>
     <li>
-      <a href="https://linkedin.com/in/kjmagnan1s">
+      <a href="linkedin_redirect.html">
         <span class="fa fa-linkedin"></span>
          
         Linkedin
       </a>
     </li>
     <li>
-      <a href="https://github.com/kjmagnan1s">
+      <a href="github_redirect.html">
         <span class="fa fa-github"></span>
          
         github
-      </a>
-    </li>
-    <li>
-      <a href="https://www.facebook.com/kevin.jerome.stlmo">
-        <span class="fa fa-facebook"></span>
-         
-        Facebook
       </a>
     </li>
     <li>
@@ -407,6 +371,13 @@ $(document).ready(function () {
         <span class="fa fa-envelope"></span>
          
         Email
+      </a>
+    </li>
+    <li>
+      <a href="twitter_redirect.html">
+        <span class="fa fa-twitter"></span>
+         
+        Twitter
       </a>
     </li>
   </ul>
@@ -502,6 +473,19 @@ c_area_clean2 + theme(axis.text.x = element_text(angle = 90)) + xlab(&quot;Commu
 <p>Kevin</p>
 </div>
 
+<style>
+div.white { background-color:#ffffff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "white">
+</div>
+
+&nbsp;
+<hr />
+
+<p style="text-align: center;"><span style="color: ##2c3e50;"><em>Website Coded in R by Kevin Magnan</em></span></p>
+
+
+&nbsp;
 
 
 
@@ -519,6 +503,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
