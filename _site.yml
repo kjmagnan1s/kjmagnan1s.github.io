@@ -10,7 +10,7 @@ navbar:
     - icon: fa-user-astronaut
       text: "About Me"
       href: about.html
-    - icon: fa-project-diagram
+    - icon: fa-blogger
       text: "Blog"
       href: blog.html
     - icon: fa-archive
