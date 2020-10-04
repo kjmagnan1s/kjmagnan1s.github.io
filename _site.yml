@@ -50,6 +50,9 @@ navbar:
         - icon: fa-envelope
           text: Email
           href: mailto:kjmagnan1s@gmail.com
+        - icon: fa-twitter
+          text: Twitter
+          href: twitter_redirect.html
     
 output:
   html_document:
