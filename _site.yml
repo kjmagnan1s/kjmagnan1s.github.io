@@ -40,13 +40,13 @@ navbar:
       menu:
         - icon: fa fa-globe
           text: Tableau
-          href: https://public.tableau.com/profile/kevin.magnan#!/
+          href: tableau_redirect.html 
         - icon: fa-linkedin
           text: Linkedin
-          href: https://linkedin.com/in/kjmagnan1s
+          href: linkedin_redict.html 
         - icon: fa-github
           text: github
-          href: https://github.com/kjmagnan1s
+          href: github_redirect.html 
         - icon: fa-envelope
           text: Email
           href: mailto:kjmagnan1s@gmail.com
