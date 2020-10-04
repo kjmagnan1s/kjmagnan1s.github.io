@@ -53,10 +53,10 @@ Committed to achieving a data driven society
 
 
 <center>
-<h1> **Current Projects:** </h1>
+Current Projects:
 
 
-<h2> Interactive Tableau Resume </h2>
+Interactive Tableau Resume
 
 <br>
 
