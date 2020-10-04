@@ -33,13 +33,12 @@ output:
 <br/>
 
 <center>
-<font size='+1'>
-Researcher | Data Science | TEST
-</font>
+<h3>
+Researcher | Data Science | Project Management
+</h3>
 
-
+<h4>
 Committed to achieving a data-driven society
-
 <h4/>
 
 </div>
