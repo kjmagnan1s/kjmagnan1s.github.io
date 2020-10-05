@@ -18,14 +18,12 @@ body {
 
 # I am ...
 <br>
-a researcher, a data scientist, and a data visualizer. My current role as a Research Manager at the University of Chicago Crime Lab affords me the opportunity to work with exceptionally smart and talented people to improve socioeconomic and safety outcomes of city residents using data. I have a wonderful partner and when I am not home cooking for her and paying attention to our two cats, we are hopping on the next plane to 'somewhere'. I am a culinary curious home chef and love cooking new recipes or old favorites and posting them to my [Instagram @kevin_cooks_chitown](https://www.instagram.com/kevin_cooks_chitown/). Aside from cooking, I am a coffee enthusiast, an avid gamer, and sci-fi junkie.
+a researcher, a data scientist, and a data visualizer. My current role as a Research Manager at the University of Chicago Crime Lab affords me the opportunity to work with exceptionally smart and talented people to improve socioeconomic and safety outcomes of city residents using data. I have a wonderful partner and when I am not home cooking for her and paying attention to our two cats, we are boarding the next plane to 'somewhere'. I am a culinary curious home chef and love cooking new recipes or old favorites and posting them to my [Instagram](https://www.instagram.com/kevin_cooks_chitown/) @kevin_cooks_chitown. Aside from cooking, I am a coffee enthusiast, an avid gamer, and sci-fi junkie.
 
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/about_collage.png"
 width= "400px" height="400px"/>
 
-<br>
-
-It was during my criminal justice master's degree when I learned how informative and influencial research and data science could be in the world. After serving as a Police Officer for a few years, I returned to academia and earned a master's degree in social science from the University of Chicago where I began developing my skills as a researcher and a data scientist. During my UChicago education, I also prioritized learning practical skills including coding, data visualization, and GIS analysis. As a Research Manager at the Crime Lab, I have the awesome privilege and responsibility of managing a portfolio of projects with local, state, and federal government agencies and local non-profits to reduce violence in Chicago, improve the lives of its residents, and develop, test, evaluate, and scale up projects for other cities.
+It was during my criminal justice master's degree when I learned how informative and influential research and data science could be in the world. After serving as a Police Officer for a few years, I returned to academia and earned a master's degree in social science from the University of Chicago where I began developing my skills as a researcher and a data scientist. During my UChicago education, I also prioritized learning practical skills including coding, data visualization, and GIS analysis. As a Research Manager at the Crime Lab, I have the awesome privilege and responsibility of managing a portfolio of projects with local, state, and federal government agencies and non-profits to reduce violence in Chicago, improve the lives of its residents, especially those disproportionately affected by violence, and develop, test, evaluate, and scale-up projects for other cities.
 
 ## ... always thinking about my next destination<br>
 
