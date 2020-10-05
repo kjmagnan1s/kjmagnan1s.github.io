@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Kevin Magnan" />
+
+
+<title>Your Mom’s House analysis</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="images\favicon.ico">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Kevin J. Magnan</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-user-astronaut"></span>
+     
+    About Me
+  </a>
+</li>
+<li>
+  <a href="blog.html">
+    <span class="fa fa-project-diagram"></span>
+     
+    Blog
+  </a>
+</li>
+<li>
+  <a href="past_work.html">
+    <span class="fa fa-archive"></span>
+     
+    Past Work
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-alt"></span>
+     
+    Resume
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://public.tableau.com/views/KevinMagnanInteractiveResume/Dashboard1?:embed=y&amp;:display_count=yes&amp;:origin=viz_share_link">
+        <span class="fa fa-chart-line"></span>
+         
+        Interactive
+      </a>
+    </li>
+    <li>
+      <a href="resume.pdf">
+        <span class="fa fa-file-pdf"></span>
+         
+        PDF
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-paper-plane"></span>
+     
+    Reach me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tableau_redirect.html">
+        <span class="fa fa fa fa-globe"></span>
+         
+        Tableau
+      </a>
+    </li>
+    <li>
+      <a href="linkedin_redirect.html">
+        <span class="fa fa-linkedin"></span>
+         
+        Linkedin
+      </a>
+    </li>
+    <li>
+      <a href="github_redirect.html">
+        <span class="fa fa-github"></span>
+         
+        github
+      </a>
+    </li>
+    <li>
+      <a href="mailto:kjmagnan1s@gmail.com">
+        <span class="fa fa-envelope"></span>
+         
+        Email
+      </a>
+    </li>
+    <li>
+      <a href="twitter_redirect.html">
+        <span class="fa fa-twitter"></span>
+         
+        Twitter
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Your Mom’s House analysis</h1>
+<h4 class="author">Kevin Magnan</h4>
+<h4 class="date">10.04.2020</h4>
+
+</div>
+
+
+<p>Inspired by a fellow YMH podcast (warning NSFW) fan/mommy <a href="https://eric-ekholm.netlify.app/">Eric</a>, I am trying my hand at analyzing YMH podcast transcripts. I plan on following along with Eric’s work flow below and diverting once I find an opportunity to personalize the analysis - aka keep it high and tight.</p>
+<p>Eric’s blog post analysis involved pulling transcripts from YMH YouTube videos. I don’t have any experience in pulling transcripts from youtube nor any serious text analysis so I’m excited to try this out and learn from a Eric. Thanks for not being stingy, Mark…. I mean Eric!</p>
+<div id="libraries" class="section level1">
+<h1>Libraries</h1>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ------ tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0</code></pre>
+<pre><code>## -- Conflicts --------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(youtubecaption)
+library(janitor)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>library(lubridate)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<p>Aside from {tidyverse} and {lubridate}, Eric uses {youtubecaption} for calling YouTube’s API to get the caption transcripts and {janitor} for some of the text analysis, namely the clean_names() function. These two packages are brand new to me so I’m excited to work with them.</p>
+<p>Note: I learned further into this analysis that {youtubecaption} relies on Anaconda, a comprehensive Python environment, to pull from YouTube’s API. The author of youtubecaption states the reason for this due to the difficulty of calling YouTube’s API for the captain data in a user friendly format. Thus, this library acts as a handy and clean way of accessing YouTube’s API in Python (Anaconda) without needing to write a custom API call in another language. I didn’t have Anaconda on this machine so it was not able to run and I had to take a break from the analysis to install Anaconda. Save yourself some time and <a href="https://www.anaconda.com/download/">download it</a> before getting started!</p>
+</div>
+<div id="single-youtube-api-call-episode-571" class="section level1">
+<h1>Single YouTube API call, episode 571</h1>
+<pre class="r"><code>ymh_e571 &lt;- get_caption(&quot;https://www.youtube.com/watch?v=dY818rfsJkk&quot;)</code></pre>
+<p>And there we go, really straight forward way to download a transcript of a YouTube video. Let’s take a look at what we are working with:</p>
+<pre class="r"><code>head(ymh_e571)</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   segment_id text                                     start duration vid        
+##        &lt;int&gt; &lt;chr&gt;                                    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      
+## 1          1 oh snap there&#39;s hot gear                  0.64     5.12 dY818rfsJkk
+## 2          2 merch method dot com slash tom sagura     3.04     5.84 dY818rfsJkk
+## 3          3 check out all our new stuff               5.76     3.12 dY818rfsJkk
+## 4          4 these club owners will take advantage as  9.92     3.04 dY818rfsJkk
+## 5          5 you know                                 12.2      2.40 dY818rfsJkk
+## 6          6 if you don&#39;t stand your ground i don&#39;t   13.0      2.88 dY818rfsJkk</code></pre>
+<p>Upon inspection, the YouTube API call gives us 5 columns and just over 4500 rows or data. ‘Segment_id’ would be our unique identifier for each segment, ‘text’ is obviously the speech-to-text captions we are after, ‘start’ appears to be the time stamp when the text is recorded, the value of ‘duration’ is a mystery at the moment but we’ll look into that soon, and ‘vid’ is simply the YouTube html address to the video.</p>
+<p>The next step would be to download the transcripts for a number of episodes, but so far we’ve only made an API call to YouTube using the exact URL for a video. How are we going to call a list of videos or even all the videos outside of manually looking up all 571 YMH videos? Eric figured out a nice workaround on his blog and I’m going to use it here.</p>
+</div>
+<div id="list-api-call" class="section level1">
+<h1>List API Call</h1>
+<p>What we can do to script out a large API call is take a YMH YouTube playlist and export that to a text file. From there, we have a full list of YMH videos, their names, and, most importantly, the URLs. <del>There are plenty of web tools and extensions to export a YouTUbe data to a .csv and only require a quick Google search to find one. Eric used <a href="http://www.williamsportwebdeveloper.com/FavBackUp.aspx">this tool</a> which looks straight forward and conveinent. Once you have the list, we’ll need to clean and arrange the file to use when calling from the YouTube API.</del></p>
+<p>Houston, we have a problem: <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/web_yt_error.png"
+width= "400px" height="400px"/></p>
+<pre class="r"><code>episode_raw &lt;- read.csv(&quot;~/GitHub/kjmagnan1s.github.io/blog_data/YMH_playlist.csv&quot;)
+
+head(episode_raw)</code></pre>
+<pre><code>##                                                  episode
+## 1      Your Mom&#39;s House Podcast - Ep. 571 w/ Marcus King
+## 2         Your Mom&#39;s House Podcast - Ep. 570 w/ Ian Bagg
+## 3  Your Mom&#39;s House Podcast - Ep. 569 w/ Duncan Trussell
+## 4     Your Mom&#39;s House Podcast - Ep. 568 w/ Kevin Nealon
+## 5 Your Mom&#39;s House Podcast - Ep. 567 w/ Fortune Feimster
+## 6                     Your Mom&#39;s House Podcast - Ep. 566
+##                                            url
+## 1 https#\\www.youtube.com\\watch#v=dY818rfsJkk
+## 2 https#\\www.youtube.com\\watch#v=_VCG6PzLnRA
+## 3 https#\\www.youtube.com\\watch#v=J4hQnfu9nkY
+## 4 https#\\www.youtube.com\\watch#v=bGklkg3m-6U
+## 5 https#\\www.youtube.com\\watch#v=zSRBGlyisno
+## 6 https#\\www.youtube.com\\watch#v=p34d5z6k-0s</code></pre>
+</div>
+
+<style>
+div.white { background-color:#ffffff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "white">
+</div>
+
+&nbsp;
+<hr />
+
+<p style="text-align: center;"><span style="color: ##2c3e50;"><em>Website Coded in R by Kevin Magnan</em></span></p>
+
+
+&nbsp;
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
