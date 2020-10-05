@@ -28,9 +28,6 @@ It was during my criminal justice master's degree when I learned how informative
 ## ... always thinking about my next destination
 
 <br>
-
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="800" height="800" style="border:none;"></iframe>
-
-
-
+<center>
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="950" height="800" style="border:none;"></iframe>
 </center>
