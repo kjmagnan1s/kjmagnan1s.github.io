@@ -38,5 +38,15 @@ head(ymh_e571)
 
 Upon inspection, the YouTube API call gives us 5 columns and just over 4500 rows or data. 'Segment_id' would be our unique identifier for each segment, 'text' is obviously the speech-to-text captions we are after, 'start' appears to be the time stamp when the text is recorded, the value of 'duration' is a mystery at the moment but we'll look into that soon, and 'vid' is simply the YouTube html address to the video.
 
+The next step would be to download the transcripts for a number of episodes, but so far we've only made an API call to YouTube using the exact URL for a video. How are we going to call a list of videos or even all the videos outside of manually looking up all 571 YMH videos? Eric figured out a nice workaround on his blog and I'm going to use it here.
 
+# List API Call
+
+What we can do to script out a large API call is take a YMH YouTube playlist and export that to a .csv. From there, we have a full list of YMH videos, their names, and, most importantly, the URLs. There are plenty of web tools and extensions to export a playlist to a .csv and only require a quick google search to find one. Once you have the list, we'll need to clean and arrange the file to use when calling from the YouTube API.
+
+```{r}
+episode_raw <- read.csv("~/GitHub/kjmagnan1s.github.io/blog_data/YMH_playlist.csv")
+
+head(episode_raw)
+```
 
