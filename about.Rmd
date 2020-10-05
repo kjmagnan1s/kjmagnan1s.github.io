@@ -18,7 +18,7 @@ body {
 
 # I am ...
 <br>
-a researcher, a data scientist, a crime data enthusiast, culinary curious, coffee lover, and an avid gamer. I am currently a Research Manager at the University of Chicago Crime Lab, where I work with exceptionally smart and talented people to improve socioeconomic and safety outcomes of city residents with data. I have a wonderful partner and when I am not home cooking for her and paying attention to our two cats, we are trying to hop on a plane and explore. I am an enthusiastic home chef and love cooking new recipes or old favorites and posting them to my [Instagram @kevin_cooks_chitown](https://www.instagram.com/kevin_cooks_chitown/)
+a researcher, a data scientist, and a data visualizer. My current role as a Research Manager at the University of Chicago Crime Lab affords me the opportunity to work with exceptionally smart and talented people to improve socioeconomic and safety outcomes of city residents using data. I have a wonderful partner and when I am not home cooking for her and paying attention to our two cats, we are hopping on the next plane to 'somewhere'. I am a culinary curious home chef and love cooking new recipes or old favorites and posting them to my [Instagram @kevin_cooks_chitown](https://www.instagram.com/kevin_cooks_chitown/). Aside from cooking, I am a coffee enthusiast, an avid gamer, and sci-fi junkie.
 
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/about_collage.png"
 width= "400px" height="400px"/>

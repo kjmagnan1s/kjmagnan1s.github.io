@@ -33,7 +33,7 @@ output:
 
 <center>
 <h3>
-Researcher | Data Science | Project Management
+Researcher | Data Science | Data Visualizer
 </h3>
 
 <h4>
