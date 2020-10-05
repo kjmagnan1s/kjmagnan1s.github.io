@@ -13,7 +13,8 @@ output:
 <div class = "col-md-6">
 
 <br/>
-<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/couple.jpg" width= "400px" height="450" />
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/about_collage.jpg" />
+
 </div>
 
 <div class = "col-md-6">
