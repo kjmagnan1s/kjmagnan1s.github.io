@@ -6,59 +6,27 @@ output:
   html_document:
     exclude: _footer.html
 ---
-
+<style>
+body {
+  position: absolute;
+  left: 300px;}
+</style>
 
 <br>
 
-<div class = "col-md-6">
-
 <br/>
-<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/about_collage.jpg" />
 
-</div>
+# I am ...
 
-<div class = "col-md-6">
-
-<br><br>
-
-<h2> A few of my passions: </h2>
-
-<h3><br>
-
-[Culinary adventures](images\cooking.jpg) ([Instagram](https://www.instagram.com/kevin_cooks_chitown/)) and whatever IPA I last drank ([Untappd](https://untappd.com/user/magnumstg16))
+a researcher, a data scientist, a crime data enthusiast, culinary curious, coffee lover, and an avid gamer. I am currently a Research Manager at the University of Chicago Crime Lab, where I work with exceptionally smart and talented people to improve socioeconomic and safety outcomes of city residents with data. I have a wonderful partner and when I am not home cooking for her and paying attention to our two cats, we are trying to hop on a plane and explore. I am an enthusiastic home chef and love cooking new recipes or old favorites and posting them to my [Instagram @kevin_cooks_chitown](https://www.instagram.com/kevin_cooks_chitown/)
 
 
-My two cats [Jasper](images\jasper.jpg) and [Leona](images\leona.jpg)
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/about_collage.png"
+width= "400px" height="400px"/>
 
+<br>
 
-[Kayaking](images\kayak.jpg) and [Snowboarding](images\snowboard.jpg)
-
-
-[DotA 2](images\dota.jpg)
-
-[//]: # (Complete with Home PC Pic and PCPartsPicker link)
-
-Podcasts
-
-Coffee - I switch moods between French Press and a good drip
-
-
-Data Viz, Mapping, and Spatial Analysis
-
-
-[//]: # (Evidence Based and Data Driven Policing Strategies)
-
-
-
-</h2>
-
-</div>
-</div>
-
-<br><br><br>
-
-<center><h2>... and Last But Not Least Traveling</h2><br>
+## ... thinking about my next destination<br>
 
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Yyh_RF2S0bZWFoSZvDOySdbm1xE" width="800" height="800" style="border:none;"></iframe>
 
-</center>
