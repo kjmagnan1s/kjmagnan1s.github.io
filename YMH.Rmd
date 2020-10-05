@@ -42,11 +42,16 @@ The next step would be to download the transcripts for a number of episodes, but
 
 # List API Call
 
-What we can do to script out a large API call is take a YMH YouTube playlist and export that to a .csv. From there, we have a full list of YMH videos, their names, and, most importantly, the URLs. There are plenty of web tools and extensions to export a playlist to a .csv and only require a quick google search to find one. Once you have the list, we'll need to clean and arrange the file to use when calling from the YouTube API.
+What we can do to script out a large API call is take a YMH YouTube playlist and export that to a text file. From there, we have a full list of YMH videos, their names, and, most importantly, the URLs. ~~There are plenty of web tools and extensions to export a YouTUbe data to a .csv and only require a quick Google search to find one. Eric used [this tool](http://www.williamsportwebdeveloper.com/FavBackUp.aspx) which looks straight forward and conveinent. Once you have the list, we'll need to clean and arrange the file to use when calling from the YouTube API.~~
+
+Houston, we have a problem:
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/web_yt_error.png"
+width= "400px" height="400px"/>
 
 ```{r}
 episode_raw <- read.csv("~/GitHub/kjmagnan1s.github.io/blog_data/YMH_playlist.csv")
 
 head(episode_raw)
 ```
+
 
