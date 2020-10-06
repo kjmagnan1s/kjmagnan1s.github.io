@@ -103,3 +103,18 @@ playlist_call <- map(playlist_clean$url,
 head(playlist_call)
 ```
 
+
+```{r}
+playlist_data <- map(1:length(playlist_call),
+                     ~pluck(playlist_call, ., "result") %>%
+                       compact() %>%
+                       bind_rows() %>%
+                       inner_join(x = playlist_call,
+                                  y = .,
+                                  by = "vid"))
+
+head(playlist_data)
+```
+
+
+
