@@ -84,7 +84,7 @@ playlist_clean$url <- gsub("#v", "?v", playlist_clean$url)
 playlist_clean <- playlist_clean %>% 
   clean_names() %>%                                        # systematically cleans any text or symbols up 
   separate(title, c("title", "episode"), "-") %>%          # separate episode title by '-'
-  mutate(vid = str_replace_all(url, ".*=(.*)$", "\\1"))    # creates a vid column of just the youtube short link
+  mutate(vid = str_replace_all(url, ".*=(.*)$", "\\1"))    # creates a vid column of just the youtube short link, this column matches the "vid" output from get_caption() and will be used to join the two tables
 head(playlist_clean)
 ```
 
@@ -95,7 +95,7 @@ Success! We have 240 rows of observations of YMH episodes, #330 to #571, with ti
 The next steps is to use the get_caption() function again with the {youtubecaption} package.We need to loop the get_caption() function so we can pull all the captions from the list of urls but we also need to make sure the get_caption() function runs successfully through the loop and alerts us to any video it cannot successfull call. The way Eric did this was to wrap the get_caption() function inside the safely() function from {purrr}. 
 
 ```{r}
-?safely
+?safely                       
 safe_cap <- safely(get_caption)
 ```
 
