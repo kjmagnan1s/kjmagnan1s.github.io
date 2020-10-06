@@ -73,12 +73,18 @@ You didn't think it would be that easy, did you? Turns out the command-line expo
  We'll do some reshaping and data cleaning below. I'm not the best equipped to explain these data cleaning steps and I know there are probably simpler, faster, and more efficient ways of doing it. I'd suggest searching for some of the experts on {tidyverse} and {reshape2} to learn about it!
  
 ```{r}
+# filtering out the episode titles and episode urls into separate columns
 playlist_url <- playlist_raw %>% filter(grepl("https", V1)) %>% rename("url" = V1)
 playlist_title <- playlist_raw %>% filter(grepl("Your", V1)) %>% rename("title" = V1)
 playlist_clean <- cbind(playlist_title, playlist_url)
 head(playlist_clean)
+# replacing the strange '#' bugged output from youtube-dl
 playlist_clean$url <- gsub("s#", "s:", playlist_clean$url)
 playlist_clean$url <- gsub("#v", "?v", playlist_clean$url)
+playlist_clean <- playlist_clean %>% 
+  clean_names() %>%                                        # systematically cleans any text or symbols up 
+  separate(title, c("title", "episode"), "-") %>%          # separate episode title by '-'
+  mutate(vid = str_replace_all(url, ".*=(.*)$", "\\1"))    # creates a vid column of just the youtube short link
 head(playlist_clean)
 ```
 
