@@ -76,7 +76,30 @@ You didn't think it would be that easy, did you? Turns out the command-line expo
 playlist_url <- playlist_raw %>% filter(grepl("https", V1)) %>% rename("url" = V1)
 playlist_title <- playlist_raw %>% filter(grepl("Your", V1)) %>% rename("title" = V1)
 playlist_clean <- cbind(playlist_title, playlist_url)
+head(playlist_clean)
+playlist_clean$url <- gsub("s#", "s:", playlist_clean$url)
+playlist_clean$url <- gsub("#v", "?v", playlist_clean$url)
+head(playlist_clean)
 ```
 
+Success! We have 240 rows of observations of YMH episodes, #330 to #571, with titles and URLs. Now we can start working on pulling the transcripts for all 240 episodes.
 
+# List API Call
+
+The next steps is to use the get_caption() function again with the {youtubecaption} package.We need to loop the get_caption() function so we can pull all the captions from the list of urls but we also need to make sure the get_caption() function runs successfully through the loop and alerts us to any video it cannot successfull call. The way Eric did this was to wrap the get_caption() function inside the safely() function from {purrr}. 
+
+```{r}
+?safely
+safe_cap <- safely(get_caption)
+```
+
+Based on the help documents, safely() provides an enhanced output of errors, messages, and warnings outside of the base r reporting.  This function should help determine if our large API call has an errors while running.
+
+Within the same {purrr} library, the map() function applies a function to each element of a list. Therefore, in out case, map() will apply the get_caption() function to the URL list and wrapping safely() around get_caption() provided added outputs and errors.
+
+```{r}
+playlist_call <- map(playlist_clean$url,
+                     safe_cap)
+head(playlist_call)
+```
 
