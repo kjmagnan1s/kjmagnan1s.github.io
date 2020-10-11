@@ -12,7 +12,7 @@
 <meta name="author" content="Kevin Magnan" />
 
 
-<title>Your Mom’s House analysis</title>
+<title>Your Mom’s House analysis, part I</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -395,48 +395,33 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Your Mom’s House analysis</h1>
+<h1 class="title toc-ignore">Your Mom’s House analysis, part I</h1>
 <h4 class="author">Kevin Magnan</h4>
-<h4 class="date">10.04.2020</h4>
+<h4 class="date">10.11.2020</h4>
 
 </div>
 
 
-<p>Inspired by a fellow YMH podcast (warning NSFW) fan/mommy <a href="https://eric-ekholm.netlify.app/">Eric</a>, I am trying my hand at analyzing YMH podcast transcripts. I plan on following along with Eric’s work flow below and diverting once I find an opportunity to personalize the analysis - aka keep it high and tight.</p>
-<p>Eric’s blog post analysis involved pulling transcripts from YMH YouTube videos. I don’t have any experience in pulling transcripts from youtube nor any serious text analysis so I’m excited to try this out and learn from a Eric. Thanks for not being stingy, Mark…. I mean Eric!</p>
+<p>Inspired by a fellow YMH podcast (warning NSFW) fan/mommy, <a href="https://eric-ekholm.netlify.app/">Eric</a>, I am trying my hand at analyzing YMH podcast transcripts. I plan on following along with Eric’s work flow below and diverting once I find an opportunity to personalize the analysis - aka keeping it high and tight and following proto.</p>
+<p>Based on the structure of Eric’s blog post, this analysis will proceed as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Load R libraries</li>
+<li>Test API call</li>
+<li>Generate YMH URL list</li>
+<li>Data cleaning</li>
+<li>List API call</li>
+<li>Finalize API call output</li>
+</ol>
+<p>I don’t have any experience in pulling transcripts from YouTube or any serious text analysis so I’m excited to <em>try it out</em>. Thanks for not being stingy, Mark…. I mean Eric!</p>
 <div id="libraries" class="section level1">
-<h1>Libraries</h1>
-<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
-
-library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages ------ tidyverse 1.3.0 --</code></pre>
-<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.3     v dplyr   1.0.2
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.5.0</code></pre>
-<pre><code>## -- Conflicts --------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(youtubecaption)
-library(janitor)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
-<pre class="r"><code>library(lubridate)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     date, intersect, setdiff, union</code></pre>
-<p>Aside from {tidyverse} and {lubridate}, Eric uses {youtubecaption} for calling YouTube’s API to get the caption transcripts and {janitor} for some of the text analysis, namely the clean_names() function. These two packages are brand new to me so I’m excited to work with them.</p>
-<p>Note: I learned further into this analysis that {youtubecaption} relies on Anaconda, a comprehensive Python environment, to pull from YouTube’s API. The author of youtubecaption states the reason for this due to the difficulty of calling YouTube’s API for the captain data in a user friendly format. Thus, this library acts as a handy and clean way of accessing YouTube’s API in Python (Anaconda) without needing to write a custom API call in another language. I didn’t have Anaconda on this machine so it was not able to run and I had to take a break from the analysis to install Anaconda. Save yourself some time and <a href="https://www.anaconda.com/download/">download it</a> before getting started!</p>
+<h1>1. Libraries</h1>
+<p>Aside from {tidyverse}, {reshape2}, and {lubridate}, Eric uses {youtubecaption} for calling YouTube’s API to get the caption transcripts and {janitor} for some of the text analysis, namely the clean_names() function. These two packages are brand new to me so I’m excited to work with them.</p>
+<p>Note: I learned further into this analysis that {youtubecaption} relies on Anaconda, a comprehensive Python environment, to pull from YouTube’s API. The author of youtubecaption states the reason for this is due to the difficulty of calling YouTube’s API for the captain data in a user friendly format. Thus, this library acts as a handy and clean way of accessing YouTube’s API in Python (Anaconda) without needing to write a custom API call in another language. I didn’t have Anaconda on this machine so I had to take a break from the analysis to install Anaconda before running functions from that library. Save yourself some time and <a href="https://www.anaconda.com/download/">download it</a> before getting started!</p>
 </div>
-<div id="single-youtube-api-call-episode-571" class="section level1">
-<h1>Single YouTube API call, episode 571</h1>
+<div id="test-youtube-api-call-episode-571" class="section level1">
+<h1>2. Test YouTube API call, episode 571</h1>
 <pre class="r"><code>ymh_e571 &lt;- get_caption(&quot;https://www.youtube.com/watch?v=dY818rfsJkk&quot;)</code></pre>
-<p>And there we go, really straight forward way to download a transcript of a YouTube video. Let’s take a look at what we are working with:</p>
+<p>And there we go, a really straight forward way to download a transcript from a specific YouTube video. I can see why Eric used this package and that’s the easiest API call I’ve ever used. Let’s take a look at what we are working with:</p>
 <pre class="r"><code>head(ymh_e571)</code></pre>
 <pre><code>## # A tibble: 6 x 5
 ##   segment_id text                                     start duration vid        
@@ -447,33 +432,225 @@ library(janitor)</code></pre>
 ## 4          4 these club owners will take advantage as  9.92     3.04 dY818rfsJkk
 ## 5          5 you know                                 12.2      2.40 dY818rfsJkk
 ## 6          6 if you don&#39;t stand your ground i don&#39;t   13.0      2.88 dY818rfsJkk</code></pre>
-<p>Upon inspection, the YouTube API call gives us 5 columns and just over 4500 rows or data. ‘Segment_id’ would be our unique identifier for each segment, ‘text’ is obviously the speech-to-text captions we are after, ‘start’ appears to be the time stamp when the text is recorded, the value of ‘duration’ is a mystery at the moment but we’ll look into that soon, and ‘vid’ is simply the YouTube html address to the video.</p>
-<p>The next step would be to download the transcripts for a number of episodes, but so far we’ve only made an API call to YouTube using the exact URL for a video. How are we going to call a list of videos or even all the videos outside of manually looking up all 571 YMH videos? Eric figured out a nice workaround on his blog and I’m going to use it here.</p>
+<p>Upon inspection, the YouTube API call gives us 5 columns and just over 4500 rows or data. ‘Segment_id’ would be our unique identifier for each segment, ‘text’ is obviously the speech-to-text captions we are after, ‘start’ appears to be the time stamp when the text is recorded, the value of ‘duration’ is a mystery at the moment but we’ll look into that later, and ‘vid’ is simply the YouTube HTML video id (the characters after “watch?v=” in every YouTube video address).</p>
+<p>The next step would be to download the transcripts for a number of episodes, but so far we’ve only made an API call to YouTube using the exact URL for a specific video. How are we going to call a list of videos outside of manually looking up all 571 YMH videos one at a time? Eric figured out a nice solution on his blog and we’ll explore it next.</p>
 </div>
-<div id="create-ymh-url-list" class="section level1">
-<h1>Create YMH URL list</h1>
+<div id="generate-ymh-url-list" class="section level1">
+<h1>3. Generate YMH URL list</h1>
 <p>What we can do to script out a large API call is take a YMH YouTube playlist and export that to a text file. From there, we have a full list of YMH videos, their names, and, most importantly, the URLs. <del>There are plenty of web tools and extensions to export a YouTUbe data to a .csv and only require a quick Google search to find one. Eric used <a href="http://www.williamsportwebdeveloper.com/FavBackUp.aspx">this tool</a> which looks straight forward and conveinent. Once you have the list, we’ll need to clean and arrange the file to use when calling from the YouTube API.</del></p>
 <p>Houston, we have a problem:</p>
 <p><img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/web_yt_error.png"
 width= 100% height= 100%/></p>
-<p>Turns out the web app Eric used to gather the YouTube playlist and episode information is no longer working and we’ll have to find other means of generating this list to make the API call. After a painstaking Sunday searching for alternative web apps and testing them, I was not able to find anything that fit the needs for this project. That is until I stumbled upon (YouTube-dl)[<a href="https://github.com/ytdl-org/youtube-dl" class="uri">https://github.com/ytdl-org/youtube-dl</a>], a command-line program created to download YouTube videos and/or audio tracks from YouTube and a host of other sites. It took some time (and reddit/r/youtube-dl threads) to figure out how to use the tool to generate a list of playlist video titles and URLs, but I come to you with the knowledge! So lets do this, shall we?</p>
-<p>First thing you’ll want to do is download the youtube-dl .exe windows application from their site and place it into a folder. Open a cmd window and navigate to that folder directory. From here I’ve done all the hard work of figuring out the perfect syntax below:</p>
-<pre><code>youtube-dl --get-filename --get-title -i -o &quot;https://www.youtube.com/watch?v=%(id)s&quot; &quot;https://www.youtube.com/playlist?list=PL-i3EV1v5hLd9H1p2wT5ZD8alEY0EmxYD&quot; &gt; ymhplaylist.csv</code></pre>
-<p>What you should end up with is a csv of episode titles and their accompanying URL. Let’s take a look:</p>
-<pre class="r"><code>episode_raw &lt;- read.csv(&quot;~/GitHub/kjmagnan1s.github.io/blog_data/ymhplaylist.csv&quot;)
-
-head(episode_raw)</code></pre>
-<pre><code>##       Your.Mom.s.House.Podcast...Ep..571.w..Marcus.King
-## 1          https#\\www.youtube.com\\watch#v=dY818rfsJkk
-## 2        Your Mom&#39;s House Podcast - Ep. 570 w/ Ian Bagg
-## 3          https#\\www.youtube.com\\watch#v=_VCG6PzLnRA
-## 4 Your Mom&#39;s House Podcast - Ep. 569 w/ Duncan Trussell
-## 5          https#\\www.youtube.com\\watch#v=J4hQnfu9nkY
-## 6    Your Mom&#39;s House Podcast - Ep. 568 w/ Kevin Nealon</code></pre>
-<p>You didn’t think it would be that easy, did you? Turns out the command-line export creates a long data set and not a wide data set so we need to fix that. It also appears to be the case that youtube-dl’s URL output format injected some hashtags ‘#’ in place of the actual URL character so we’ll have to clean that as well.</p>
+<p>Turns out the web app Eric used to gather the YouTube playlist and episode information is no longer working. We will have to find other means of generating this list to make the API call. After a painstaking Sunday searching for alternative web apps and testing them, I was not able to find anything that fit the needs for this project. That is until I stumbled upon <a href="https://github.com/ytdl-org/youtube-dl">YouTube-dl</a>, a command-line program created to download YouTube videos and/or audio tracks from YouTube and a host of other sites. Turns out this program can also be used to scrape the YouTube metadata of videos. It took some time (and reddit/r/youtube-dl threads) to figure out how to use the tool to generate a list of video titles and URLs from a playlist, but I come to you with the knowledge! So lets do this, shall we?</p>
+<p>First thing you’ll want to do is download the youtube-dl .exe windows application from their site and place it into a folder. Open a cmd window and set that folder as your directory directory. Lucky for you, I’ve done all the troubleshooting and testing of this tool. These are the commands I decided to use, mainly due to my limited knowledge of the windows command line.</p>
+<p>This command will result in a long csv file, with the episode title and url id all in one column:</p>
+<pre><code>youtube-dl.exe --flat-playlist --get-title --ignore-config --get-id -o &quot;https://www.youtube.com/watch?v=%(id)s&quot; &quot;https://www.youtube.com/playlist?list=PL-i3EV1v5hLd9H1p2wT5ZD8alEY0EmxYD&quot;,&gt;ymh_playlist.csv</code></pre>
+<p>Instead of dealing with the above output, I decided to just export two files, one with the playlist video titles and another with the playlist video url id’s and simply join them in R:</p>
+<pre><code>youtube-dl.exe --flat-playlist --get-title --ignore-config -o &quot;https://www.youtube.com/watch?v=%(id)s&quot; &quot;https://www.youtube.com/playlist?list=PL-i3EV1v5hLd9H1p2wT5ZD8alEY0EmxYD&quot;,&gt;ymh_title.csv
+youtube-dl.exe --flat-playlist --get-id --ignore-config -o &quot;https://www.youtube.com/watch?v=%(id)s&quot; &quot;https://www.youtube.com/playlist?list=PL-i3EV1v5hLd9H1p2wT5ZD8alEY0EmxYD&quot;,&gt;ymh_id.csv</code></pre>
+<p>You should end up with either one or two .csv’s with a single column of data, depending on your preferred method. Let’s take a look at them:</p>
+<pre class="r"><code>playlist_title &lt;- read.csv(&quot;~/GitHub/kjmagnan1s.github.io/blog_data/ymh_title.csv&quot;, header=FALSE)
+playlist_url &lt;- read.csv(&quot;~/GitHub/kjmagnan1s.github.io/blog_data/ymh_id.csv&quot;, header=FALSE)
+head(playlist_title)</code></pre>
+<pre><code>##                                                       V1
+## 1  Your Mom&#39;s House Podcast - Ep. 572 w/ Chris Distefano
+## 2      Your Mom&#39;s House Podcast - Ep. 571 w/ Marcus King
+## 3         Your Mom&#39;s House Podcast - Ep. 570 w/ Ian Bagg
+## 4  Your Mom&#39;s House Podcast - Ep. 569 w/ Duncan Trussell
+## 5     Your Mom&#39;s House Podcast - Ep. 568 w/ Kevin Nealon
+## 6 Your Mom&#39;s House Podcast - Ep. 567 w/ Fortune Feimster</code></pre>
+<pre class="r"><code>head(playlist_url)</code></pre>
+<pre><code>##            V1
+## 1 wTvMDkAZZnM
+## 2 dY818rfsJkk
+## 3 _VCG6PzLnRA
+## 4 J4hQnfu9nkY
+## 5 bGklkg3m-6U
+## 6 zSRBGlyisno</code></pre>
 </div>
 <div id="data-cleaning" class="section level1">
-<h1>Data Cleaning</h1>
+<h1>4. Data Cleaning</h1>
+<p>We’ll do some reshaping and data cleaning next. Now I’m not the best person to explain data cleaning steps and I know there are probably simpler, faster, and more efficient ways of doing it but these worked for me. I’d suggest searching for some of the experts on {tidyverse} and {reshape2} to learn about it!</p>
+<pre class="r"><code>append_rows &lt;- which(!(grepl(&quot;Your&quot;, playlist_title$V1)))
+title_rows &lt;- c(20, 20, 86, 98, 250, 251)
+playlist_title[paste(title_rows, sep = &quot;,&quot;),] &lt;- paste(playlist_title[paste(title_rows, sep = &quot;,&quot;),], &quot;,&quot;,playlist_title[paste(append_rows, sep = &quot;,&quot;),])
+playlist_title &lt;- playlist_title %&gt;% filter((grepl(&quot;Your&quot;, V1))) %&gt;% rename(&quot;title&quot; = V1)
+playlist_url &lt;- playlist_url %&gt;% slice(1:245) %&gt;% transmute(url = paste(&quot;https://www.youtube.com/watch?v=&quot;, V1, sep = &quot;&quot;))
+playlist_clean &lt;- cbind(playlist_title, playlist_url)
+playlist_clean &lt;- playlist_clean %&gt;% 
+  clean_names() %&gt;%                                        # systematically cleans any text or symbols up 
+  separate(title, c(&quot;title&quot;, &quot;episode&quot;), &quot;-&quot;) %&gt;%          # separate episode title by &#39;-&#39;
+  mutate(vid = str_replace_all(url, &quot;.*=(.*)$&quot;, &quot;\\1&quot;))    # creates a vid column of just the youtube short link, this column matches the &quot;vid&quot; output from get_caption()                                                             # and will be used to join the two tables
+glimpse(playlist_clean)</code></pre>
+<pre><code>## Rows: 245
+## Columns: 4
+## $ title   &lt;chr&gt; &quot;Your Mom&#39;s House Podcast &quot;, &quot;Your Mom&#39;s House Podcast &quot;, &quot;...
+## $ episode &lt;chr&gt; &quot; Ep. 572 w/ Chris Distefano&quot;, &quot; Ep. 571 w/ Marcus King&quot;, &quot;...
+## $ url     &lt;chr&gt; &quot;https://www.youtube.com/watch?v=wTvMDkAZZnM&quot;, &quot;https://www...
+## $ vid     &lt;chr&gt; &quot;wTvMDkAZZnM&quot;, &quot;dY818rfsJkk&quot;, &quot;_VCG6PzLnRA&quot;, &quot;J4hQnfu9nkY&quot;,...</code></pre>
+<p>Success! We have 245 rows of observations of YMH episodes, #330 to #572, plus some extra/live episodes with titles and URLs. You’ll notice I tweaked some rows and cut off some rows in the cleaning steps. If you interrogate the data more, you’ll find that either the youtube-dl tool or the command line does not export data into a .csv. cleanly. I found some of the long YouTube titles ended up having part of the title placed on a second row. Also, the last 2 videos in the playlist are marked as deleted and/or private so I removed those as well.</p>
+<p>Now we can start working on pulling the transcripts for the 245 episodes we’ve generated.</p>
+</div>
+<div id="list-api-call" class="section level1">
+<h1>5. List API call</h1>
+<p>The next steps is to again use the get_caption() function again but this time we need the function to pull all the captions from the list of URLs. We also want to make sure the get_caption() function successfully runs through the list and alerts us to any video it cannot successfully call. The way Eric did this was to wrap the get_caption() function inside the safely() function from {purrr}.</p>
+<pre class="r"><code># ?safely to read up                       
+safe_cap &lt;- safely(get_caption)</code></pre>
+<p>Based on the help documents, safely() provides an enhanced output of errors, messages, and warnings outside of the base r reporting. This function should help determine if our large API call has an errors while running.</p>
+<p>Within the same {purrr} library, the map() function applies a function to each element of a list. Therefore, in out case, map() will apply the get_caption() function to each URL in the playlist and, by wrapping safely() around get_caption(), will provide enhanced outputs and errors.</p>
+<pre class="r"><code>playlist_call &lt;- map(playlist_clean$url,
+                     safe_cap)
+head(playlist_call)</code></pre>
+<pre><code>## [[1]]
+## [[1]]$result
+## # A tibble: 5,151 x 5
+##    segment_id text                                     start duration vid       
+##         &lt;int&gt; &lt;chr&gt;                                    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     
+##  1          1 i&#39;m not chrissy drip drop anymore you&#39;re  0.16     3.52 wTvMDkAZZ~
+##  2          2 chrissy five drinks in oh yeah [ __ ]     1.60     3.68 wTvMDkAZZ~
+##  3          3 tommy segways chrissy down the middle     3.68     2.48 wTvMDkAZZ~
+##  4          4 i&#39;m chrissy grayson                       5.28     2.80 wTvMDkAZZ~
+##  5          5 chrissy [ __ ] hips chrissy pilots i&#39;m    6.16     3.12 wTvMDkAZZ~
+##  6          6 old for nine                              8.08     3.60 wTvMDkAZZ~
+##  7          7 if i go over ten great dude on chrissy&#39;s  9.28     5.6  wTvMDkAZZ~
+##  8          8 strikeouts it doesn&#39;t matter             11.7      8.64 wTvMDkAZZ~
+##  9          9 well welcome welcome to your mom&#39;s house 14.9      5.44 wTvMDkAZZ~
+## 10         10 you know people say to me they say       24.2      3.04 wTvMDkAZZ~
+## # ... with 5,141 more rows
+## 
+## [[1]]$error
+## NULL
+## 
+## 
+## [[2]]
+## [[2]]$result
+## # A tibble: 4,654 x 5
+##    segment_id text                                     start duration vid       
+##         &lt;int&gt; &lt;chr&gt;                                    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     
+##  1          1 oh snap there&#39;s hot gear                  0.64     5.12 dY818rfsJ~
+##  2          2 merch method dot com slash tom sagura     3.04     5.84 dY818rfsJ~
+##  3          3 check out all our new stuff               5.76     3.12 dY818rfsJ~
+##  4          4 these club owners will take advantage as  9.92     3.04 dY818rfsJ~
+##  5          5 you know                                 12.2      2.40 dY818rfsJ~
+##  6          6 if you don&#39;t stand your ground i don&#39;t   13.0      2.88 dY818rfsJ~
+##  7          7 know what you&#39;re talking about i don&#39;t   14.6      1.76 dY818rfsJ~
+##  8          8 know                                     15.8      2.16 dY818rfsJ~
+##  9          9 show business is great music             16.3      3.28 dY818rfsJ~
+## 10         10 specifically always really in the        18        5.04 dY818rfsJ~
+## # ... with 4,644 more rows
+## 
+## [[2]]$error
+## NULL
+## 
+## 
+## [[3]]
+## [[3]]$result
+## # A tibble: 4,310 x 5
+##    segment_id text                                     start duration vid       
+##         &lt;int&gt; &lt;chr&gt;                                    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     
+##  1          1 you go there and they just feed you and   0.08     2.88 _VCG6PzLn~
+##  2          2 you&#39;re like what the hell you gain        1.44     3.04 _VCG6PzLn~
+##  3          3 weight in africa you&#39;re like all those    2.96     2.56 _VCG6PzLn~
+##  4          4 commercials are wrong                     4.48     2.88 _VCG6PzLn~
+##  5          5 yeah there&#39;s nobody who&#39;s darving here i  5.52     3.92 _VCG6PzLn~
+##  6          6 was uh opening by the second by the last  7.36     3.2  _VCG6PzLn~
+##  7          7 few shows with that i&#39;m like i&#39;m the      9.44     3.20 _VCG6PzLn~
+##  8          8 only guy that got fat in africa          10.6      4.16 _VCG6PzLn~
+##  9          9 and i bought the biggest pants in africa 12.6      3.68 _VCG6PzLn~
+## 10         10 i remember you bought pants              14.7      2.80 _VCG6PzLn~
+## # ... with 4,300 more rows
+## 
+## [[3]]$error
+## NULL
+## 
+## 
+## [[4]]
+## [[4]]$result
+## # A tibble: 6,471 x 5
+##    segment_id text                                    start duration vid        
+##         &lt;int&gt; &lt;chr&gt;                                   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      
+##  1          1 if you missed episode one of ymh live    0.24     4.08 J4hQnfu9nkY
+##  2          2 you can watch it                         3.28     3.76 J4hQnfu9nkY
+##  3          3 now they tried to fire us but we have    4.32     5.68 J4hQnfu9nkY
+##  4          4 the material so head to tomsegura.com    7.04     6.08 J4hQnfu9nkY
+##  5          5 rentals and check out the show that was 10        5.44 J4hQnfu9nkY
+##  6          6 too hot for the web this is what i like 13.1      3.04 J4hQnfu9nkY
+##  7          7 about this one                          15.4      3.44 J4hQnfu9nkY
+##  8          8 is that it&#39;s clearly like this is his   16.2      4.4  J4hQnfu9nkY
+##  9          9 art because he&#39;s calling it mark        18.9      4.72 J4hQnfu9nkY
+## 10         10 martin manure tank right like it&#39;s like 20.6      4.72 J4hQnfu9nkY
+## # ... with 6,461 more rows
+## 
+## [[4]]$error
+## NULL
+## 
+## 
+## [[5]]
+## [[5]]$result
+## # A tibble: 4,619 x 5
+##    segment_id text                                     start duration vid       
+##         &lt;int&gt; &lt;chr&gt;                                    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     
+##  1          1 don&#39;t break these okay                    0.16     2.96 bGklkg3m-~
+##  2          2 well yeah because you don&#39;t know          3.36     3.36 bGklkg3m-~
+##  3          3 anything about fashion those are 3 500    4.24     5.2  bGklkg3m-~
+##  4          4 are you serious they&#39;re crunchy oh my     6.72     3.6  bGklkg3m-~
+##  5          5 god                                       9.44     4.08 bGklkg3m-~
+##  6          6 you look so attached so                  10.3      6.72 bGklkg3m-~
+##  7          7 cool so fashion feels like ski goggles   13.5      9.04 bGklkg3m-~
+##  8          8 well welcome welcome to your mom&#39;s house 17.0      5.52 bGklkg3m-~
+##  9          9 [Music]                                  25.0      3.31 bGklkg3m-~
+## 10         10 this episode of your mom&#39;s house is      26.6      3.76 bGklkg3m-~
+## # ... with 4,609 more rows
+## 
+## [[5]]$error
+## NULL
+## 
+## 
+## [[6]]
+## [[6]]$result
+## # A tibble: 4,680 x 5
+##    segment_id text                                     start duration vid       
+##         &lt;int&gt; &lt;chr&gt;                                    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     
+##  1          1 what celebrity would you go out with      0.08     4.32 zSRBGlyis~
+##  2          2 gosh i&#39;m a celebrity honestly i&#39;ve never  2.48     4    zSRBGlyis~
+##  3          3 thought about men wise well we speak the  4.4      5.36 zSRBGlyis~
+##  4          4 same language talk about chicks           6.48     3.28 zSRBGlyis~
+##  5          5 well welcome welcome to your mom&#39;s house 10.6      7.36 zSRBGlyis~
+##  6          6 [Music]                                  18.4      4.68 zSRBGlyis~
+##  7          7 this episode is brought to you by saatva 20.2      4.88 zSRBGlyis~
+##  8          8 go to saatva.com                         23.1      6.4  zSRBGlyis~
+##  9          9 the [ __ ] to get 225 off the new solai~ 25.1      6.32 zSRBGlyis~
+## 10         10 mattress and sci-fi mattress company     29.5      3.92 zSRBGlyis~
+## # ... with 4,670 more rows
+## 
+## [[6]]$error
+## NULL</code></pre>
+</div>
+<div id="finalizing-the-api-call-output" class="section level1">
+<h1>6. Finalizing the API call output</h1>
+<p>With the list API call finished, the return of the map() function resulted in a vector of the 245 captions. But instead of a single output, we have a result output and an error output from the safely() function and we want to get the ‘result’ outputs from each vector. (By the way, feel free to check those safely() error messages before continuing to see if you need to traceback anything).</p>
+<p>To do this, we will again call the map() function as well as the pluck() function from {purrr} (you got to love these function names from a library called {purrr} :D). Pluck() essentially indexes a data structure and returns the desired object, in our case the resulting caption text from each URL.</p>
+<pre class="r"><code>playlist_data &lt;- map(1:length(playlist_call),
+                     ~pluck(playlist_call, ., &quot;result&quot;)) %&gt;%
+                       compact() %&gt;%
+                       bind_rows() %&gt;%
+                       inner_join(x = playlist_clean,
+                                  y = .,
+                                  by = &quot;vid&quot;)
+
+glimpse(playlist_data)</code></pre>
+<pre><code>## Rows: 527,189
+## Columns: 8
+## $ title      &lt;chr&gt; &quot;Your Mom&#39;s House Podcast &quot;, &quot;Your Mom&#39;s House Podcast &quot;...
+## $ episode    &lt;chr&gt; &quot; Ep. 572 w/ Chris Distefano&quot;, &quot; Ep. 572 w/ Chris Distef...
+## $ url        &lt;chr&gt; &quot;https://www.youtube.com/watch?v=wTvMDkAZZnM&quot;, &quot;https://...
+## $ vid        &lt;chr&gt; &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZn...
+## $ segment_id &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1...
+## $ text       &lt;chr&gt; &quot;i&#39;m not chrissy drip drop anymore you&#39;re&quot;, &quot;chrissy fiv...
+## $ start      &lt;dbl&gt; 0.160, 1.599, 3.679, 5.279, 6.160, 8.080, 9.280, 11.679,...
+## $ duration   &lt;dbl&gt; 3.519, 3.680, 2.481, 2.801, 3.120, 3.599, 5.600, 8.641, ...</code></pre>
+<p>Success! We’ve ended up with a table of 8 variables and over 500,000 segments of caption text. This is a good place to stop for now and we’ll pick back up on part 2 with the text analysis.</p>
+<p><em>Thanks again to Eric Ekholm, <a href="https://eric-ekholm.netlify.app/blog/youtube-transcripts/">blog post</a>, who laid the foundation for me to learn this youtube api call process!</em></p>
 </div>
 
 <style>
