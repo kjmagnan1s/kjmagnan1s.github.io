@@ -12,7 +12,7 @@ Eric's blog post analysis involved pulling transcripts from YMH YouTube videos. 
 # Libraries
 
 ```{r global-options, include=TRUE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 
 library(tidyverse)
 library(youtubecaption)
@@ -50,7 +50,7 @@ Houston, we have a problem:
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/web_yt_error.png"
 width= 100% height= 100%/>
 
-Turns out the web app Eric used to gather the YouTube playlist and episode information is no longer working and we'll have to find other means of generating this list to make the API call. After a painstaking Sunday searching for alternative web apps and testing them, I was not able to find anything that fit the needs for this project. That is until I stumbled upon (YouTube-dl)[https://github.com/ytdl-org/youtube-dl], a command-line program created to download YouTube videos and/or audio tracks from YouTube and a host of other sites. It took some time (and reddit/r/youtube-dl threads) to figure out how to use the tool to generate a list of playlist video titles and URLs, but I come to you with the knowledge! So lets do this, shall we?
+Turns out the web app Eric used to gather the YouTube playlist and episode information is no longer working.  We will have to find other means of generating this list to make the API call. After a painstaking Sunday searching for alternative web apps and testing them, I was not able to find anything that fit the needs for this project. That is until I stumbled upon [YouTube-dl](https://github.com/ytdl-org/youtube-dl), a command-line program created to download YouTube videos and/or audio tracks from YouTube and a host of other sites. It took some time (and reddit/r/youtube-dl threads) to figure out how to use the tool to generate a list of playlist video titles and URLs, but I come to you with the knowledge! So lets do this, shall we?
 
 First thing you'll want to do is download the youtube-dl .exe windows application from their site and place it into a folder. Open a cmd window and navigate to that folder directory. From here I've done all the hard work of figuring out the perfect syntax below:
 
