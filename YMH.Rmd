@@ -63,29 +63,26 @@ youtube-dl.exe --flat-playlist --get-title --ignore-config -o "https://www.youtu
 youtube-dl.exe --flat-playlist --get-id --ignore-config -o "https://www.youtube.com/watch?v=%(id)s" "https://www.youtube.com/playlist?list=PL-i3EV1v5hLd9H1p2wT5ZD8alEY0EmxYD",>ymh_id.csv
 ```
 
-You should end up with two .csv's with a single column of data. Let's take a look and quickly clean and cbind them:
+You should end up with two .csv's with a single column of data. Let's take a look:
 
 ```{r}
 playlist_title <- read.csv("~/GitHub/kjmagnan1s.github.io/blog_data/ymh_title.csv", header=FALSE)
 playlist_url <- read.csv("~/GitHub/kjmagnan1s.github.io/blog_data/ymh_id.csv", header=FALSE)
 head(playlist_title)
 head(playlist_url)
-
 ```
-
-You didn't think it would be that easy, did you? Turns out the command-line export creates a long data set and not a wide data set. Let's fix that before we continue and then do some additional cleaning.
 
 # Data Cleaning
 
 We'll do some reshaping and data cleaning below. I'm not the best equipped to explain these data cleaning steps and I know there are probably simpler, faster, and more efficient ways of doing it. I'd suggest searching for some of the experts on {tidyverse} and {reshape2} to learn about it!
  
 ```{r}
-# filtering out the episode titles and episode url id's into separate df's
-playlist_url <- playlist_raw %>% filter(!(grepl("Your", V1))) %>% rename("url" = V1) %>% filter(!(grepl(" ", url)))
-playlist_title <- playlist_raw %>% filter(grepl("Your", V1)) %>% rename("title" = V1)
-playlist_clean <- cbind(playlist_title, url = playlist_url$url[1:245])
-head(playlist_clean)
-## paste("https://www.youtube.com/watch?v=",url, sep = "")
+append_rows <- which(!(grepl("Your", playlist_title$V1)))
+title_rows <- c(20, 20, 86, 98, 250, 251)
+playlist_title[paste(title_rows, sep = ","),] <- paste(playlist_title[paste(title_rows, sep = ","),], ",",playlist_title[paste(append_rows, sep = ","),])
+playlist_title <- playlist_title %>% filter((grepl("Your", V1))) %>% rename("title" = V1)
+playlist_url <- playlist_url %>% slice(1:245) %>% transmute(url = paste("https://www.youtube.com/watch?v=", V1, sep = ""))
+playlist_clean <- cbind(playlist_title, playlist_url)
 playlist_clean <- playlist_clean %>% 
   clean_names() %>%                                        # systematically cleans any text or symbols up 
   separate(title, c("title", "episode"), "-") %>%          # separate episode title by '-'
@@ -93,14 +90,14 @@ playlist_clean <- playlist_clean %>%
 head(playlist_clean)
 ```
 
-Success! We have 245 rows of observations of YMH episodes, #330 to #572, with titles and URLs. Now we can start working on pulling the transcripts for all 240 episodes.
+Success! We have 245 rows of observations of YMH episodes, #330 to #572, plus some extra/live episodes with titles and URLs. Now we can start working on pulling the transcripts for all 240 episodes.
 
 # List API call
 
 The next steps is to use the get_caption() function again with the {youtubecaption} package.We need to loop the get_caption() function so we can pull all the captions from the list of urls but we also need to make sure the get_caption() function runs successfully through the loop and alerts us to any video it cannot successfully call. The way Eric did this was to wrap the get_caption() function inside the safely() function from {purrr}. 
 
 ```{r}
-?safely                       
+# ?safely to read up                       
 safe_cap <- safely(get_caption)
 ```
 
@@ -116,21 +113,23 @@ head(playlist_call)
 
 # Finalizing the API call data
 
-With the list API call finished, the return of the map() function resulted in a vector of the 240 captions. But instead of a single output, we have a result output and an error output from the safely() function and we want to get the 'result' outputs from each vector.
+With the list API call finished, the return of the map() function resulted in a vector of the 245 captions. But instead of a single output, we have a result output and an error output from the safely() function and we want to get the 'result' outputs from each vector.
 
 To do this, we will again call the map() function as well as the pluck() function from {purrr} (you got to love these function names from a library called {purrr} :D). Pluck() essentially indexes a data structure and returns the desired object, in our case the result caption text from each URL. 
 
 ```{r}
 playlist_data <- map(1:length(playlist_call),
-                     ~pluck(playlist_call, ., "result") %>%
+                     ~pluck(playlist_call, ., "result")) %>%
                        compact() %>%
                        bind_rows() %>%
-                       inner_join(x = playlist_call,
+                       inner_join(x = playlist_clean,
                                   y = .,
-                                  by = "vid"))
+                                  by = "vid")
 
 head(playlist_data)
 ```
 
+Success! We've ended up with a table of 8 variables and over 500,000 segments of caption text. This is a good place to stop for now and we'll pick back up on part 2 with the text analysis. 
 
+*Thanks again to Eric Ekholm, [blog post](https://eric-ekholm.netlify.app/blog/youtube-transcripts/), who laid the foundation for me to learn this youtube api call process!*
 
