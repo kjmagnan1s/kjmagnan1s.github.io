@@ -50,13 +50,15 @@ Committed to achieving a data-driven society
 ***
 
 <center>
-<h3>
+
 
 Current Projects:
 
-</h3>
+<h3> New blog post! </h3> <font size='+3'>[YMH Podcast transcript analysis, part I](YMH.html)</font>\
+<br>
 
-Interactive Tableau Resume
+
+<h3> Interactive Tableau Resume: </h3>
 
 
 <br>

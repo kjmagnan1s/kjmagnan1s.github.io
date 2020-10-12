@@ -20,7 +20,7 @@ body {
 <font size='+1'>[YMH Podcast transcript analysis](YMH.html)</font>\
 <font size='-2'>October 11, 2020</font>
 
-After a short break in blogging, I have returned and am diving into a linguistic analysis of my partner's favorite podcast, Your Mom's House (Not Safe for Work - you have been warned!) This project threw me for a loop with YouTube's API Call, new R libraries, and a command line headache!
+After a brief 3 year break in blogging, I have returned and am diving into a linguistic analysis of my partner's favorite podcast, Your Mom's House (Not Safe for Work - you have been warned!) This project threw me for a loop with YouTube's API Call, new R libraries, and a command line headache!
 
 </br>
 <font size='+1'>[Chicago SSL Dashboard Open Data Analysis](SSL.html)</font>\
