@@ -1,9 +1,10 @@
 ---
-title: "Your Mom's House analysis, part I"
-author: "Kevin Magnan"
-date: "10.11.2020"
+title: "Your Mom's House Analysis, Part I"
+#author: "Kevin Magnan"
+#date: "10.11.2020"
 output: html_document
 ---
+Published on October 11th, 2020
 
 Inspired by a fellow YMH podcast (warning NSFW) fan/mommy, [Eric](https://eric-ekholm.netlify.app/), I am trying my hand at analyzing YMH podcast transcripts. I plan on following along with Eric's work flow below and diverting once I find an opportunity to personalize the analysis - aka keeping it high and tight and following proto.
 
