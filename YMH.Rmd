@@ -20,7 +20,7 @@ I don't have any experience in pulling transcripts from YouTube or any serious t
 
 # 1. Libraries
 
-```{r echo=FALSE, message=FALSE}
+```{r message=FALSE}
 knitr::opts_chunk$set(warning=FALSE)
 
 library(tidyverse)

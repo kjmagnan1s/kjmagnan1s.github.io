@@ -415,6 +415,13 @@ $(document).ready(function () {
 <p>I don’t have any experience in pulling transcripts from YouTube or any serious text analysis so I’m excited to <em>try it out</em>. Thanks for not being stingy, Mark…. I mean Eric!</p>
 <div id="libraries" class="section level1">
 <h1>1. Libraries</h1>
+<pre class="r"><code>knitr::opts_chunk$set(warning=FALSE)
+
+library(tidyverse)
+library(youtubecaption)
+library(janitor)
+library(lubridate)
+library(reshape2)</code></pre>
 <p>Aside from {tidyverse}, {reshape2}, and {lubridate}, Eric uses {youtubecaption} for calling YouTube’s API to get the caption transcripts and {janitor} for some of the text analysis, namely the clean_names() function. These two packages are brand new to me so I’m excited to work with them.</p>
 <p>Note: I learned further into this analysis that {youtubecaption} relies on Anaconda, a comprehensive Python environment, to pull from YouTube’s API. The author of youtubecaption states the reason for this is due to the difficulty of calling YouTube’s API for the captain data in a user friendly format. Thus, this library acts as a handy and clean way of accessing YouTube’s API in Python (Anaconda) without needing to write a custom API call in another language. I didn’t have Anaconda on this machine so I had to take a break from the analysis to install Anaconda before running functions from that library. Save yourself some time and <a href="https://www.anaconda.com/download/">download it</a> before getting started!</p>
 </div>
