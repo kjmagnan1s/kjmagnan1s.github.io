@@ -146,8 +146,9 @@ glimpse(playlist_data)
 
 Success! We've ended up with a table of 8 variables and over 500,000 segments of caption text. This is a good place to stop for now and we'll pick back up on part 2 with the text analysis. 
 
-
-
+```{r, echo = FALSE, eval = FALSE, message = FALSE}
+write.csv(playlist_data, file = "ymh_data.csv")
+```
 
 *Thanks again to Eric Ekholm, [blog post](https://eric-ekholm.netlify.app/blog/youtube-transcripts/), who laid the foundation for me to learn this youtube api call process!*
 
