@@ -1,0 +1,74 @@
+---
+title: "Your Mom's House Analysis, Part II"
+#author: "Kevin Magnan"
+#date: "10/12/2020"
+output: html_document
+---
+Published on October 12th, 2020
+
+I'm back, Jeans! For those who missed [part I](https://www.kevinjmagnan.com/YMH.html) of this two part YMH analysis, I followed along with Eric Ekholm's blog post to pull YouTube speech-to-text captions for a playlist of YMH videos. If you missed the warning, this is NSFW content so tread lightly all you cool cats and kittens. 
+
+Now that we have the caption data, it's time to really dive into the text data and see what we can learn about Tom and Christine. Like last time, I am going to follow along with [Eric's second YMH blog post](https://eric-ekholm.netlify.app/blog/ymh-explore/) where he analyzed this data and find opportunities to learn from him as well as unpack the data in other ways.
+
+Before we get off on this analysis, there are a few important observations of the text data we should mention:
+* The episode transcripts are automatically created by Youtube’s speech-to-text model. It’s usually really good, but it does make some mistakes & obviously has trouble with proper nouns (e.g. TikTok).
+* The speakers of each phrase are not tagged or timestamped. That is, there are no indications whether it’s Tom, Christina, or someone else speaking any given line.
+* I’m only looking at the episodes available on Youtube, and the most recent episode I’m including is episode 572 with Chris Distefano, aka Chrissy Drip Drop, aka Chrissy one-and-done, aka Chrissy vodka soda.
+
+```{rr warning = FALSE, message = FALSE}
+library(tidyverse)
+library(lubridate)
+library(tidytext)
+library(tidylo)
+library(igraph)
+library(ggraph)
+library(vroom)
+
+theme_set(theme_classic())
+
+ymh <- vroom("~/blog_data/ymh_data.csv")
+
+## delete before posting ymh <- vroom("C:/Users/kEVIN/Documents/GitHub/kjmagnan1s.github.io/blog_data/ymh_data.csv")
+
+ymh_subset <- ymh %>% 
+  group_by(title, episode) %>%
+  summarise(text = str_c(text, collapse = " ") %>%
+              str_to_lower()) %>%
+  ungroup()
+```
+
+```{r}
+ep_length$episode <- replace(ep_length$episode, 122, "Ep. 520 Melissa Villasenor")
+```
+
+```{r warning = FALSE, message = FALSE}
+ep_length <- ymh %>%
+  group_by(episode) %>%
+  summarise(minutes = (max(start) + max(duration))/60) %>%
+  ungroup()
+
+ep_length %>%
+  ggplot(aes(x = episode, y = minutes)) +
+  geom_line(color = 'black')+
+  geom_point(color = 'steelblue') +
+  labs(
+    title = "YMH Episode Length",
+    x = "Episode Number",
+    y = "Length (mins)"
+  )
+```  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
