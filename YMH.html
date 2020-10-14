@@ -511,8 +511,8 @@ unique(playlist_clean$ep_no)</code></pre>
 ## [217] 355 354 353 352 351 350 349 348 347 346 345 344 343 342 341 340 339 338
 ## [235] 337 336 335 334 333 332 331 330</code></pre>
 <pre class="r"><code>## found a pesky NA, whats going on?
-## playlist_clean$episode</code></pre>
-<pre class="r"><code>playlist_clean[c(31,83,180,189),] # ahh, looks like Nadav fucked up an upload and didn&#39;t enter a &#39;-&#39; so I missed this with sep = &quot;-&quot; from the above separate()</code></pre>
+## playlist_clean$episode
+playlist_clean[c(31,83,180,189),] # ahh, looks like Nadav fucked up an upload and didn&#39;t enter a &#39;-&#39; so I missed this with sep = &quot;-&quot; from the above separate()</code></pre>
 <pre><code>##                                                                             title
 ## 31                                                     BONUS Coronavirus Episode 
 ## 83                                              Your Mom&#39;s House Podcast Ep. 491 
@@ -533,6 +533,7 @@ unique(playlist_clean$ep_no)</code></pre>
 playlist_clean$title &lt;- replace(playlist_clean$title, 82, &quot;Your Mom&#39;s House Podcast&quot;)
 playlist_clean$episode &lt;- replace(playlist_clean$episode, 82, &quot;Ep. 491 w/ Jeff Ross&quot;)
 playlist_clean$ep_no &lt;- replace(playlist_clean$ep_no, 82, &quot;491&quot;)
+playlist_clean &lt;- playlist_clean %&gt;% separate(title, c(&quot;title&quot;, &quot;guests&quot;), &quot;w/&quot;) %&gt;% separate(episode, c(&quot;episode&quot;, &quot;guests&quot;), &quot;w/&quot;)
 unique(playlist_clean$ep_no)</code></pre>
 <pre><code>##   [1] &quot;572&quot; &quot;571&quot; &quot;570&quot; &quot;569&quot; &quot;568&quot; &quot;567&quot; &quot;566&quot; &quot;565&quot; &quot;564&quot; &quot;563&quot; &quot;562&quot; &quot;561&quot;
 ##  [13] &quot;560&quot; &quot;559&quot; &quot;558&quot; &quot;557&quot; &quot;556&quot; &quot;555&quot; &quot;554&quot; &quot;553&quot; &quot;552&quot; &quot;551&quot; &quot;550&quot; &quot;549&quot;
@@ -555,8 +556,8 @@ unique(playlist_clean$ep_no)</code></pre>
 ## [217] &quot;355&quot; &quot;354&quot; &quot;353&quot; &quot;352&quot; &quot;351&quot; &quot;350&quot; &quot;349&quot; &quot;348&quot; &quot;347&quot; &quot;346&quot; &quot;345&quot; &quot;344&quot;
 ## [229] &quot;343&quot; &quot;342&quot; &quot;341&quot; &quot;340&quot; &quot;339&quot; &quot;338&quot; &quot;337&quot; &quot;336&quot; &quot;335&quot; &quot;334&quot; &quot;333&quot; &quot;332&quot;
 ## [241] &quot;331&quot; &quot;330&quot;</code></pre>
-<pre class="r"><code>## no more NA&#39;s!
-playlist_test &lt;- playlist_clean %&gt;% separate(title, c(&quot;title&quot;, &quot;guests&quot;), &quot;w/&quot;) %&gt;% separate(episode, c(&quot;episode&quot;, &quot;guests&quot;), &quot;w/&quot;)</code></pre>
+<pre class="r"><code>## no more NA&#39;s!</code></pre>
+
 <p>Success! We have 245 rows of observations of YMH episodes, #330 to #572, plus some extra/live episodes with titles and URLs. You’ll notice I tweaked some rows and cut off some rows in the cleaning steps. If you interrogate the data more, you’ll find that either the youtube-dl tool or the command line does not export data into a .csv. cleanly. I found some of the long YouTube titles ended up having part of the title placed on a second row. Also, the last 2 videos in the playlist are marked as deleted and/or private so I removed those as well.</p>
 <p>Now we can start working on pulling the transcripts for the 245 episodes we’ve generated.</p>
 </div>
@@ -708,11 +709,12 @@ head(playlist_call)</code></pre>
                                   by = &quot;vid&quot;)
 
 glimpse(playlist_data)</code></pre>
-<pre><code>## Rows: 527,189
-## Columns: 9
+<pre><code>## Rows: 522,267
+## Columns: 10
 ## $ title      &lt;chr&gt; &quot;Your Mom&#39;s House Podcast &quot;, &quot;Your Mom&#39;s House Podcast &quot;...
-## $ episode    &lt;chr&gt; &quot; Ep. 572 w/ Chris Distefano&quot;, &quot; Ep. 572 w/ Chris Distef...
 ## $ url        &lt;chr&gt; &quot;https://www.youtube.com/watch?v=wTvMDkAZZnM&quot;, &quot;https://...
+## $ episode    &lt;chr&gt; &quot; Ep. 572 &quot;, &quot; Ep. 572 &quot;, &quot; Ep. 572 &quot;, &quot; Ep. 572 &quot;, &quot; Ep...
+## $ guests     &lt;chr&gt; &quot; Chris Distefano&quot;, &quot; Chris Distefano&quot;, &quot; Chris Distefan...
 ## $ vid        &lt;chr&gt; &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZn...
 ## $ ep_no      &lt;chr&gt; &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, ...
 ## $ segment_id &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1...

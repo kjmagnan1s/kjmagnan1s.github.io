@@ -106,7 +106,7 @@ glimpse(playlist_clean)
 playlist_clean$ep_no <- as.numeric(str_extract(playlist_clean$episode, "\\-*\\d+\\.*\\d*"))
 unique(playlist_clean$ep_no)
 ## found a pesky NA, whats going on?
-playlist_clean$episode
+## playlist_clean$episode
 playlist_clean[c(31,83,180,189),] # ahh, looks like Nadav fucked up an upload and didn't enter a '-' so I missed this with sep = "-" from the above separate()
 playlist_clean <- playlist_clean[-c(31, 180, 189),] #remove 3 live episode versions, wont match up well with the rest of the playlist
 
@@ -114,9 +114,8 @@ playlist_clean$title <- replace(playlist_clean$title, 82, "Your Mom's House Podc
 playlist_clean$episode <- replace(playlist_clean$episode, 82, "Ep. 491 w/ Jeff Ross")
 playlist_clean$ep_no <- replace(playlist_clean$ep_no, 82, "491")
 unique(playlist_clean$ep_no)
+playlist_clean <- playlist_clean %>% separate(title, c("title", "guests"), "w/") %>% separate(episode, c("episode", "guests"), "w/")
 ## no more NA's!
-playlist_test <- playlist_clean %>% separate(title, c("title", "guests"), "w/") %>% separate(episode, c("episode", "guests"), "w/")
-
 ```
 
 Success! We have 245 rows of observations of YMH episodes, #330 to #572, plus some extra/live episodes with titles and URLs. You'll notice I tweaked some rows and cut off some rows in the cleaning steps. If you interrogate the data more, you'll find that either the youtube-dl tool or the command line does not export data into a .csv. cleanly. I found some of the long YouTube titles ended up having part of the title placed on a second row. Also, the last 2 videos in the playlist are marked as deleted and/or private so I removed those as well.  
