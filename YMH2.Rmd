@@ -15,7 +15,11 @@ Before we get off on this analysis, there are a few important observations of th
 * The speakers of each phrase are not tagged or timestamped. That is, there are no indications whether it’s Tom, Christina, or someone else speaking any given line.
 * I’m only looking at the episodes available on Youtube, and the most recent episode I’m including is episode 572 with Chris Distefano, aka Chrissy Drip Drop, aka Chrissy one-and-done, aka Chrissy vodka soda.
 
-```{rr warning = FALSE, message = FALSE}
+That's enough Cool Guy talk for one day, let's get started with some data cleaning and manipulation.
+
+# Setup and data work
+
+```{r warning = FALSE}
 library(tidyverse)
 library(lubridate)
 library(tidytext)
@@ -23,34 +27,31 @@ library(tidylo)
 library(igraph)
 library(ggraph)
 library(vroom)
-
-theme_set(theme_classic())
+library(readr)
 
 ymh <- vroom("~/blog_data/ymh_data.csv")
+## delete before posting 
+ymh <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/ymh_data.csv")
 
-## delete before posting ymh <- vroom("C:/Users/kEVIN/Documents/GitHub/kjmagnan1s.github.io/blog_data/ymh_data.csv")
-
-ymh_subset <- ymh %>% 
+ymh_single_row <- ymh %>% 
   group_by(title, episode) %>%
   summarise(text = str_c(text, collapse = " ") %>%
               str_to_lower()) %>%
   ungroup()
 ```
 
-```{r}
-ep_length$episode <- replace(ep_length$episode, 122, "Ep. 520 Melissa Villasenor")
-```
 
 ```{r warning = FALSE, message = FALSE}
 ep_length <- ymh %>%
-  group_by(episode) %>%
+  group_by(ep_no) %>%
   summarise(minutes = (max(start) + max(duration))/60) %>%
   ungroup()
 
 ep_length %>%
-  ggplot(aes(x = episode, y = minutes)) +
-  geom_line(color = 'black')+
-  geom_point(color = 'steelblue') +
+  ggplot(aes(x = ep_no, y = minutes)) +
+  geom_point(color = "red", group = 1) +
+  geom_line(color = "grey", group = 1) +
+  scale_x_discrete(labels = c("300", "350", "400", "450", "500", "550")) +
   labs(
     title = "YMH Episode Length",
     x = "Episode Number",

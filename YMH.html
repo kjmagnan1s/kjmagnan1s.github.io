@@ -9,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Kevin Magnan" />
 
 
 <title>Your Mom’s House Analysis, Part I</title>
@@ -395,12 +394,12 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Your Mom’s House analysis, part I</h1>
-<h5 class="date">October 11th, 2020</h5>
+<h1 class="title toc-ignore">Your Mom’s House Analysis, Part I</h1>
 
 </div>
 
 
+<p>Published on October 11th, 2020</p>
 <p>Inspired by a fellow YMH podcast (warning NSFW) fan/mommy, <a href="https://eric-ekholm.netlify.app/">Eric</a>, I am trying my hand at analyzing YMH podcast transcripts. I plan on following along with Eric’s work flow below and diverting once I find an opportunity to personalize the analysis - aka keeping it high and tight and following proto.</p>
 <p>Based on the structure of Eric’s blog post, this analysis will proceed as follows:</p>
 <ol style="list-style-type: decimal">
@@ -494,6 +493,70 @@ glimpse(playlist_clean)</code></pre>
 ## $ episode &lt;chr&gt; &quot; Ep. 572 w/ Chris Distefano&quot;, &quot; Ep. 571 w/ Marcus King&quot;, &quot;...
 ## $ url     &lt;chr&gt; &quot;https://www.youtube.com/watch?v=wTvMDkAZZnM&quot;, &quot;https://www...
 ## $ vid     &lt;chr&gt; &quot;wTvMDkAZZnM&quot;, &quot;dY818rfsJkk&quot;, &quot;_VCG6PzLnRA&quot;, &quot;J4hQnfu9nkY&quot;,...</code></pre>
+<pre class="r"><code>## copy episode number into its own column
+playlist_clean$ep_no &lt;- as.numeric(str_extract(playlist_clean$episode, &quot;\\-*\\d+\\.*\\d*&quot;))
+unique(playlist_clean$ep_no)</code></pre>
+<pre><code>##   [1] 572 571 570 569 568 567 566 565 564 563 562 561 560 559 558 557 556 555
+##  [19] 554 553 552 551 550 549 548 547 546 545 544 543  NA 542 541 540 539 538
+##  [37] 537 536 535 534 533 532 531 530 529 528 527 526 525 524 523 522 521 520
+##  [55] 519 518 517 516 515 514 513 512 511 510 509 508 507 506 505 504 503 502
+##  [73] 501 500 499 498 497 496 495 494 493 492 490 489 488 487 486 485 484 483
+##  [91] 482 481 480 479 478 477 476 475 474 473 472 471 470 469 468 467 466 465
+## [109] 464 463 462 461 460 459 458 457 456 455 454 453 452 451 450 449 448 447
+## [127] 445 446 444 443 442 441 440 439 438 437 436 435 434 433 432 431 430 429
+## [145] 428 427 426 424 423 422 421 420 419 418 417 416 415 414 413 412 411 410
+## [163] 409 408 407 406 405 404 403 402 401 400 399 398 397 396 395 394 393 392
+## [181] 391 390 389 388 387 386 385 384 383 382 381 380 379 378 377 376 375 374
+## [199] 373 372 371 370 369 368 367 366 365 364 363 362 361 360 359 358 357 356
+## [217] 355 354 353 352 351 350 349 348 347 346 345 344 343 342 341 340 339 338
+## [235] 337 336 335 334 333 332 331 330</code></pre>
+<pre class="r"><code>## found a pesky NA, whats going on?
+## playlist_clean$episode</code></pre>
+<pre class="r"><code>playlist_clean[c(31,83,180,189),] # ahh, looks like Nadav fucked up an upload and didn&#39;t enter a &#39;-&#39; so I missed this with sep = &quot;-&quot; from the above separate()</code></pre>
+<pre><code>##                                                                             title
+## 31                                                     BONUS Coronavirus Episode 
+## 83                                              Your Mom&#39;s House Podcast Ep. 491 
+## 180 Your Mom&#39;s House Podcast LIVE: Irvine Late Show w/ Yoshi Obayashi FIXED AUDIO
+## 189               Your Mom&#39;s House Podcast LIVE: Early Show Irvine Improv 2/12/17
+##                                                            episode
+## 31   Your Mom&#39;s House Podcast w/ Dr. Alexis Fawx &amp; Not Sam Tripoli
+## 83                                                    w/ Jeff Ross
+## 180                                                           &lt;NA&gt;
+## 189                                                           &lt;NA&gt;
+##                                             url         vid ep_no
+## 31  https://www.youtube.com/watch?v=9vdtq_JcSgU 9vdtq_JcSgU    NA
+## 83  https://www.youtube.com/watch?v=WlZbKVY3J3Q WlZbKVY3J3Q    NA
+## 180 https://www.youtube.com/watch?v=fSHaiSxANhE fSHaiSxANhE    NA
+## 189 https://www.youtube.com/watch?v=dXM-URzBcCc dXM-URzBcCc    NA</code></pre>
+<pre class="r"><code>playlist_clean &lt;- playlist_clean[-c(31, 180, 189),] #remove 3 live episode versions, wont match up well with the rest of the playlist
+
+playlist_clean$title &lt;- replace(playlist_clean$title, 82, &quot;Your Mom&#39;s House Podcast&quot;)
+playlist_clean$episode &lt;- replace(playlist_clean$episode, 82, &quot;Ep. 491 w/ Jeff Ross&quot;)
+playlist_clean$ep_no &lt;- replace(playlist_clean$ep_no, 82, &quot;491&quot;)
+unique(playlist_clean$ep_no)</code></pre>
+<pre><code>##   [1] &quot;572&quot; &quot;571&quot; &quot;570&quot; &quot;569&quot; &quot;568&quot; &quot;567&quot; &quot;566&quot; &quot;565&quot; &quot;564&quot; &quot;563&quot; &quot;562&quot; &quot;561&quot;
+##  [13] &quot;560&quot; &quot;559&quot; &quot;558&quot; &quot;557&quot; &quot;556&quot; &quot;555&quot; &quot;554&quot; &quot;553&quot; &quot;552&quot; &quot;551&quot; &quot;550&quot; &quot;549&quot;
+##  [25] &quot;548&quot; &quot;547&quot; &quot;546&quot; &quot;545&quot; &quot;544&quot; &quot;543&quot; &quot;542&quot; &quot;541&quot; &quot;540&quot; &quot;539&quot; &quot;538&quot; &quot;537&quot;
+##  [37] &quot;536&quot; &quot;535&quot; &quot;534&quot; &quot;533&quot; &quot;532&quot; &quot;531&quot; &quot;530&quot; &quot;529&quot; &quot;528&quot; &quot;527&quot; &quot;526&quot; &quot;525&quot;
+##  [49] &quot;524&quot; &quot;523&quot; &quot;522&quot; &quot;521&quot; &quot;520&quot; &quot;519&quot; &quot;518&quot; &quot;517&quot; &quot;516&quot; &quot;515&quot; &quot;514&quot; &quot;513&quot;
+##  [61] &quot;512&quot; &quot;511&quot; &quot;510&quot; &quot;509&quot; &quot;508&quot; &quot;507&quot; &quot;506&quot; &quot;505&quot; &quot;504&quot; &quot;503&quot; &quot;502&quot; &quot;501&quot;
+##  [73] &quot;500&quot; &quot;499&quot; &quot;498&quot; &quot;497&quot; &quot;496&quot; &quot;495&quot; &quot;494&quot; &quot;493&quot; &quot;492&quot; &quot;491&quot; &quot;490&quot; &quot;489&quot;
+##  [85] &quot;488&quot; &quot;487&quot; &quot;486&quot; &quot;485&quot; &quot;484&quot; &quot;483&quot; &quot;482&quot; &quot;481&quot; &quot;480&quot; &quot;479&quot; &quot;478&quot; &quot;477&quot;
+##  [97] &quot;476&quot; &quot;475&quot; &quot;474&quot; &quot;473&quot; &quot;472&quot; &quot;471&quot; &quot;470&quot; &quot;469&quot; &quot;468&quot; &quot;467&quot; &quot;466&quot; &quot;465&quot;
+## [109] &quot;464&quot; &quot;463&quot; &quot;462&quot; &quot;461&quot; &quot;460&quot; &quot;459&quot; &quot;458&quot; &quot;457&quot; &quot;456&quot; &quot;455&quot; &quot;454&quot; &quot;453&quot;
+## [121] &quot;452&quot; &quot;451&quot; &quot;450&quot; &quot;449&quot; &quot;448&quot; &quot;447&quot; &quot;445&quot; &quot;446&quot; &quot;444&quot; &quot;443&quot; &quot;442&quot; &quot;441&quot;
+## [133] &quot;440&quot; &quot;439&quot; &quot;438&quot; &quot;437&quot; &quot;436&quot; &quot;435&quot; &quot;434&quot; &quot;433&quot; &quot;432&quot; &quot;431&quot; &quot;430&quot; &quot;429&quot;
+## [145] &quot;428&quot; &quot;427&quot; &quot;426&quot; &quot;424&quot; &quot;423&quot; &quot;422&quot; &quot;421&quot; &quot;420&quot; &quot;419&quot; &quot;418&quot; &quot;417&quot; &quot;416&quot;
+## [157] &quot;415&quot; &quot;414&quot; &quot;413&quot; &quot;412&quot; &quot;411&quot; &quot;410&quot; &quot;409&quot; &quot;408&quot; &quot;407&quot; &quot;406&quot; &quot;405&quot; &quot;404&quot;
+## [169] &quot;403&quot; &quot;402&quot; &quot;401&quot; &quot;400&quot; &quot;399&quot; &quot;398&quot; &quot;397&quot; &quot;396&quot; &quot;395&quot; &quot;394&quot; &quot;393&quot; &quot;392&quot;
+## [181] &quot;391&quot; &quot;390&quot; &quot;389&quot; &quot;388&quot; &quot;387&quot; &quot;386&quot; &quot;385&quot; &quot;384&quot; &quot;383&quot; &quot;382&quot; &quot;381&quot; &quot;380&quot;
+## [193] &quot;379&quot; &quot;378&quot; &quot;377&quot; &quot;376&quot; &quot;375&quot; &quot;374&quot; &quot;373&quot; &quot;372&quot; &quot;371&quot; &quot;370&quot; &quot;369&quot; &quot;368&quot;
+## [205] &quot;367&quot; &quot;366&quot; &quot;365&quot; &quot;364&quot; &quot;363&quot; &quot;362&quot; &quot;361&quot; &quot;360&quot; &quot;359&quot; &quot;358&quot; &quot;357&quot; &quot;356&quot;
+## [217] &quot;355&quot; &quot;354&quot; &quot;353&quot; &quot;352&quot; &quot;351&quot; &quot;350&quot; &quot;349&quot; &quot;348&quot; &quot;347&quot; &quot;346&quot; &quot;345&quot; &quot;344&quot;
+## [229] &quot;343&quot; &quot;342&quot; &quot;341&quot; &quot;340&quot; &quot;339&quot; &quot;338&quot; &quot;337&quot; &quot;336&quot; &quot;335&quot; &quot;334&quot; &quot;333&quot; &quot;332&quot;
+## [241] &quot;331&quot; &quot;330&quot;</code></pre>
+<pre class="r"><code>## no more NA&#39;s!
+playlist_test &lt;- playlist_clean %&gt;% separate(title, c(&quot;title&quot;, &quot;guests&quot;), &quot;w/&quot;) %&gt;% separate(episode, c(&quot;episode&quot;, &quot;guests&quot;), &quot;w/&quot;)</code></pre>
 <p>Success! We have 245 rows of observations of YMH episodes, #330 to #572, plus some extra/live episodes with titles and URLs. You’ll notice I tweaked some rows and cut off some rows in the cleaning steps. If you interrogate the data more, you’ll find that either the youtube-dl tool or the command line does not export data into a .csv. cleanly. I found some of the long YouTube titles ended up having part of the title placed on a second row. Also, the last 2 videos in the playlist are marked as deleted and/or private so I removed those as well.</p>
 <p>Now we can start working on pulling the transcripts for the 245 episodes we’ve generated.</p>
 </div>
@@ -646,11 +709,12 @@ head(playlist_call)</code></pre>
 
 glimpse(playlist_data)</code></pre>
 <pre><code>## Rows: 527,189
-## Columns: 8
+## Columns: 9
 ## $ title      &lt;chr&gt; &quot;Your Mom&#39;s House Podcast &quot;, &quot;Your Mom&#39;s House Podcast &quot;...
 ## $ episode    &lt;chr&gt; &quot; Ep. 572 w/ Chris Distefano&quot;, &quot; Ep. 572 w/ Chris Distef...
 ## $ url        &lt;chr&gt; &quot;https://www.youtube.com/watch?v=wTvMDkAZZnM&quot;, &quot;https://...
 ## $ vid        &lt;chr&gt; &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZnM&quot;, &quot;wTvMDkAZZn...
+## $ ep_no      &lt;chr&gt; &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, &quot;572&quot;, ...
 ## $ segment_id &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1...
 ## $ text       &lt;chr&gt; &quot;i&#39;m not chrissy drip drop anymore you&#39;re&quot;, &quot;chrissy fiv...
 ## $ start      &lt;dbl&gt; 0.160, 1.599, 3.679, 5.279, 6.160, 8.080, 9.280, 11.679,...
