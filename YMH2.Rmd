@@ -15,7 +15,7 @@ Before we get off on this analysis, there are a few important observations of th
 * The speakers of each phrase are not tagged or timestamped. That is, there are no indications whether it’s Tom, Christina, or someone else speaking any given line.
 * I’m only looking at the episodes available on Youtube, and the most recent episode I’m including is episode 572 with Chris Distefano, aka Chrissy Drip Drop, aka Chrissy one-and-done, aka Chrissy vodka soda.
 
-That's enough Cool Guy talk for one day, let's get started with some data cleaning and manipulation.
+Alright now that we've feathered it, let's get started with some data cleaning and manipulation.
 
 # Setup and data work
 
@@ -28,13 +28,12 @@ library(igraph)
 library(ggraph)
 library(vroom)
 library(readr)
+library(reactable)
 
-##ymh <- vroom("~/blog_data/ymh_data.csv")
-## delete before posting 
 ymh <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/ymh_data.csv")
 
 ymh_single_row <- ymh %>% 
-  group_by(title, episode) %>%
+  group_by(title, ep_no) %>%
   summarise(text = str_c(text, collapse = " ") %>%
               str_to_lower()) %>%
   ungroup()
@@ -99,13 +98,71 @@ ep_length %>%
   
 It appears that episode length hit it's peak around episode 480, at which point they leveled off at ~150 minutes.
 
-How about the 
+Guests are a huge part of the show. Let's look into the *official* guests on the show. I say official because I am relying on the title to dictate who is a guest on the show. Regular characters like Tom's parents, Dr Drew, and Josh Potter won't show up in this figure.
+
+```{r}
+ymh %>%
+  distinct(ep_no, .keep_all = TRUE) %>%
+  mutate(guests = str_replace_all(guests, "\\&", ",")) %>%
+  separate_rows(guests, sep = ",") %>%
+  mutate(guests, str_trim(guests)) %>%
+  filter(!is.na(guests)) %>%
+  count(guests, name = "num_appearances", sort = TRUE) %>%
+  filter(num_appearances > 1) %>%
+  reactable()
+```
   
+Alright so not a big surprise to anyone that Tom's best friend, Bert Kreischer, was the top guest here. I'm glad to see Nikki Glaser as number 3 on the list, for one reason because she is the only repeat guest but also because she is savagely hilarious. Overall, YMH does not have a lot of repeat guests in the most recent ~200 shows (you'll notice I removed any guest who did not have more than 1 appearance to shorten the list).
+
+# Text Analysis
+
+Moving past some of the descriptive data, lets get into the text analysis portion of this project - the result of all that work in part I. I'll be taking a lot cues from Eric's blog post here since this will be my first time doing this in R.  
   
-  
+Just like in the limitations of guest count based on title, if you look at the YouTube text-to-speech data, it doesn't actually structure the data to show who is speaking. Regardless, there is a lot of rich text in here to dig through.
 
+The first step is to remove many of the common words in the English language like "the", "at", "I'm", etc.
 
+```{r}
+ymh_words <- ymh_single_row %>%
+  unnest_tokens(word, text) ## creates a token for each word in the single row text column we collapsed in the beginning of the post. 
 
+ymh_words <- ymh_words %>%
+  anti_join(stop_words) %>% ## anti_join = ! in that it returns the opposite of what we want. In this case, it returns all words that do not match with the stop_words function containing the entire lexicon of English common words like "the"
+  filter(!(word %in% c("yeah", "gonna", "uh", "hey", "cuz", "um", "lot"))) %>%## filtering out additional common YMH specific words
+  filter(!(is.na(word)))
+         
+ymh_words %>%
+  count(word) %>%
+  slice_max(order_by = n, n = 20) %>% ## select the top 20 rows and order them
+  ggplot(aes(x = n, y = fct_reorder(word, n))) +
+  geom_col(fill = "red") + 
+  labs(
+    title = "Most Used YMH Words",
+    y = NULL,
+    x = "Count"
+  )
+```
 
+You have got to be "__" kidding me. Turns out that somehow Eric was able to download the raw/uncensored YouTube captions back in May and I'm stuck here with this "__". When I noticed I wasn't finding any curse words, I went back and watched a few YMH clips and noticed that every time they cursed, the YouTube captions transcribed "__". And, as you can see from the chart, we've essentially aggregated all curse words into one huge cluster-"__". Let's see if we can still work around this.
 
+Aside from YouTube censoring some of our analysis, we have a few other notable mentions in the top 20 words used. "People" is clearing the most used word, but we also see "guy", "cool", "crazy", and "music". We'll cover some of the YMH phrases later but YMH does have some incredibly talented fans with their music submissions to close out the episode, Hendawg for example.
 
+Given that YouTube seems to have provided us with a curse word catch-all token, let's see if we can use this to our advantage. In Eric's blog post, he looked into number of "fuckings" per minute per episode. We can do the same thing here for "__".
+
+```{r}
+ymh_words %>%
+  filter(word == "__") %>%
+  count(ep_no, word) %>%
+  left_join(ep_length, by = "ep_no") %>%
+  mutate(cpm = n/minutes) %>%
+  ggplot(aes(x = ep_no, y = cpm)) +
+  geom_text(aes(size = cpm), label = "curses", show.legend = FALSE, color = "black") +
+  annotate("text", x = 505, y = 3, label = "find this ep", hjust = 0, size = 3.5) +
+  annotate("curve", x = 494, xend = 500, y = 3.2, yend = 3, curvature = .4) +
+  labs(
+    title = "__'s per minute per YMH episode",
+    x = "Episode number",
+    y = "__'s per minute"
+  )
+
+```
