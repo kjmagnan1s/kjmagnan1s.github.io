@@ -19,7 +19,7 @@ That's enough Cool Guy talk for one day, let's get started with some data cleani
 
 # Setup and data work
 
-```{r warning = FALSE}
+```{r warning = FALSE, message=FALSE}
 library(tidyverse)
 library(lubridate)
 library(tidytext)
@@ -29,7 +29,7 @@ library(ggraph)
 library(vroom)
 library(readr)
 
-ymh <- vroom("~/blog_data/ymh_data.csv")
+##ymh <- vroom("~/blog_data/ymh_data.csv")
 ## delete before posting 
 ymh <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/ymh_data.csv")
 
@@ -40,6 +40,9 @@ ymh_single_row <- ymh %>%
   ungroup()
 ```
 
+# Descriptives
+
+We have a total of 175 observations, or episodes, worth of data to investigate, ranging from episode 345 to 572. Let's take a look at some descriptives about YMH episodes.
 
 ```{r warning = FALSE, message = FALSE}
 ep_length <- ymh %>%
@@ -49,21 +52,54 @@ ep_length <- ymh %>%
 
 ep_length %>%
   ggplot(aes(x = ep_no, y = minutes)) +
-  geom_point(color = "red", group = 1) +
-  geom_line(color = "grey", group = 1) +
-  scale_x_discrete(labels = c("300", "350", "400", "450", "500", "550")) +
+  geom_point(color = "black") +
+  geom_line(color = "black") +
   labs(
     title = "YMH Episode Length",
     x = "Episode Number",
     y = "Length (mins)"
   )
+
+## looks like we have an outlive episode. checking on ep_ling$episodes, I found that there's a break between in subtitles generation between approx. episode 330 and 394. Let's go ahead and remove all episodes below 394 moving forward and try this again
+
+ymh <- ymh %>% filter(ep_no > 393)
+
+ep_length <- ymh %>%
+  group_by(ep_no) %>%
+  summarise(minutes = (max(start) + max(duration))/60) %>%
+  ungroup()
+
+ep_length %>%
+  ggplot(aes(x = ep_no, y = minutes)) +
+  geom_point(color = "black") +
+  geom_line(color = "black") +
+  labs(
+    title = "YMH Episode Length",
+    x = "Episode Number",
+    y = "Length (mins)"
+  )
+
+## much better
 ```  
   
+From the plot, it's clear that around episode 450 the length of episode began to increase to upwards of 250 minutes (4 hours!) before plateauing at around 150 minutes. It's interesting to see such wide variability in episode length, instead of stepped changes. There are a lot of lows and highs among episode lengths, symptomatic of a person on Meth as Dr Drew would point out. With this much variability, let's fit a smooth line to the plot.
+
+```{r}
+ep_length %>%
+  ggplot(aes(x = ep_no, y = minutes)) +
+  geom_point(color = "black") +
+  geom_line(color = "black") +
+  geom_smooth(color = "blue") +
+  labs(
+    title = "YMH Episode Length",
+    x = "Episode Number",
+    y = "Length (mins)"
+  ) 
+```
   
-  
-  
-  
-  
+It appears that episode length hit it's peak around episode 480, at which point they leveled off at ~150 minutes.
+
+How about the 
   
   
   
