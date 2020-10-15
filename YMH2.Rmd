@@ -60,7 +60,6 @@ ep_length %>%
   )
 
 ## looks like we have an outlive episode. checking on ep_ling$episodes, I found that there's a break between in subtitles generation between approx. episode 330 and 394. Let's go ahead and remove all episodes below 394 moving forward and try this again
-
 ymh <- ymh %>% filter(ep_no > 393)
 
 ep_length <- ymh %>%
@@ -124,6 +123,7 @@ The first step is to remove many of the common words in the English language lik
 
 ```{r}
 ymh_words <- ymh_single_row %>%
+  filter(ep_no > 393)%>%
   unnest_tokens(word, text) ## creates a token for each word in the single row text column we collapsed in the beginning of the post. 
 
 ymh_words <- ymh_words %>%
@@ -157,7 +157,7 @@ ymh_words %>%
   mutate(cpm = n/minutes) %>%
   ggplot(aes(x = ep_no, y = cpm)) +
   geom_text(aes(size = cpm), label = "curses", show.legend = FALSE, color = "black") +
-  annotate("text", x = 505, y = 3, label = "find this ep", hjust = 0, size = 3.5) +
+  annotate("text", x = 502, y = 3, label = "Ep. 494 w/ Joey 'Coco' Diaz", hjust = 0, size = 3.5) +
   annotate("curve", x = 494, xend = 500, y = 3.2, yend = 3, curvature = .4) +
   labs(
     title = "__'s per minute per YMH episode",
@@ -165,4 +165,48 @@ ymh_words %>%
     y = "__'s per minute"
   )
 
+ymh_words %>%
+    filter(word == "__") %>%
+    count(ep_no, word) %>%
+    left_join(ep_length, by = "ep_no") %>%
+    mutate(cpm = n/minutes) %>%
+    reactable()
 ```
+
+Woah so here's a shocker! Episode 494 with Joey Diaz blows away the other episodes! Episode 494 had nearly 3.5 curse words per minute, 50% more than the next closest episode (ep. 451 w/ Chris D'Elia) for a total of 460 curse words in just 2 hours. Funny enough, episode 516 with Donnell Rawlings and Grant Cardone had the last number of curses, just 26. 
+
+# Catch Phrase Traceback
+
+YMH is known for it's catch phrases. Whether it's "try it out", "feathering in", or "water champ", the true mommies know have a lot of inside jokes. Let's see if we can traceback to when these inside jokes first made appearances on the show. (Note: since we do not have a full collection of YMH episodes and the earlier episodes were audio only, we'll only be able to traceback more recent phrases. I doubt we'll be able to find the origin of Jeans or Mommies in here).
+
+```{r}
+ymh_words %>%
+  filter(word == "feathering") %>%
+  count(ep_no, word) %>% 
+  left_join(x = tibble(ep_no = unique(ep_length$ep_no), word = "feathering"),
+            y = ., by = c("ep_no", "word")) %>%
+  mutate(n = replace_na(n, 0)) %>%
+  ggplot(aes(x = ep_no, y = n)) + 
+  geom_line(color = "black", size = 1.25) +
+  labs(
+    title = "Fed Smoker (RIP) Feathering it, brotha!",
+    subtitle = "Counts of 'feathering' phrase",
+    x = "Episode Number",
+    y = "Count"
+    )
+
+ymh_words %>%
+  filter(word == "feathering") %>%
+  count(ep_no, word) %>% 
+  left_join(x = tibble(ep_no = unique(ep_length$ep_no), word = "feathering"),
+            y = ., by = c("ep_no", "word")) %>%
+  filter(!(is.na(n))) %>%
+  reactable()
+```
+
+#episode 529 feathering it
+
+
+
+
+
