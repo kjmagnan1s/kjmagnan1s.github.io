@@ -14,13 +14,17 @@ body {
 
 <br>
 
+<font size='+1'>[Your Mom's House Analysis, Part 2](YMH.html)</font>\
+<font size='-2'>October 16, 2020</font>
 
-<br>
+And we are back with Part II of the YMH analysis. In this post, we look under the hood at the YouTube text-to-speech data we pulled from the official YMH Podcast channel. This blog post is full of **NSFW** text trends, episode descriptive statistics, a wordcloud and much more! Try it out!
 
-<font size='+1'>[YMH Podcast transcript analysis](YMH.html)</font>\
+</br>
+
+<font size='+1'>[Your Mom's House Analysis, Part I](YMH.html)</font>\
 <font size='-2'>October 11, 2020</font>
 
-After a brief 3 year break in blogging, I have returned and am diving into a linguistic analysis of my partner's favorite podcast, Your Mom's House (Not Safe for Work - you have been warned!) This project threw me for a loop with YouTube's API Call, new R libraries, and a command line headache!
+After a brief 3 year break in blogging, I have returned and am diving into a linguistic analysis of my partner's favorite podcast, Your Mom's House (**Not Safe for Work** - you have been warned!) This project threw me for a loop with YouTube's API Call, new R libraries, and a command line headache!
 
 </br>
 <font size='+1'>[Chicago SSL Dashboard Open Data Analysis](SSL.html)</font>\
