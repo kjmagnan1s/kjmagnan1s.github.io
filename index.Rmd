@@ -52,11 +52,9 @@ Committed to achieving a data-driven society
 <center>
 
 
-Current Projects:
+<h2> Current Projects: </h2>
 
-<h3> New blog posts!</h3> 
-
-<font size='+2'>[Your Mom's House Analysis, Part II - Text Analysis](YMH2.html)
+<font size='+1'>[Your Mom's House Analysis, Part II - Text Analysis](YMH2.html)
 
 
 [Your Mom's House Analysis, Part I - Data Gathering](YMH.html)
