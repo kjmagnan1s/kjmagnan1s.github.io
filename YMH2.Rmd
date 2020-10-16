@@ -295,12 +295,11 @@ ggplotly(
   geom_line(color = "black") +
   facet_wrap(~phrases, scales = "free_y") +
   labs(
-    y = NULL,
-    x = NULL,
-    title = "Cool Phrases, Guy!",
-    subtitle = "Count of Key YMH Words & Phrases by Episode"
+    y = "",
+    x = "",
+    title = "Now There's a Cool Guy!",
     )
-  )
+)
 ```
 
 Lot's to unpack in here! First, I'll point out that the y-axis is different for each plot. Synchronizing across all the y-axes would make it so some phrase counts would disappear entirely. Some interesting things I pulled out of this grid: "Cool Guy" spiked in usage over the past 175 episode during episode 570 with Ian Bagg. I'm guessing Christine had a particularly long 'dark tock' session. We also see some of Tom's grammar in here, he consistently uses 'badly' throughout the playlist and particularly enjoyed using it word during episode 568. "Face fart", one of my favorite phrases, is really dying out, with only 2 utterances lately. None of these words/phrases really compare with the 'tick tock' trend coming from the Christine corner. The tocks hit their peak during episode 511 with Ryan Sickler and Steven Randolph and seem consistent usage since.

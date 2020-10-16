@@ -14,7 +14,7 @@ output:
 
 <br>
 
-<font size='+1'>[Your Mom's House Analysis, Part 2](YMH.html)</font>\
+<font size='+1'>[Your Mom's House Analysis, Part 2](YMH2.html)</font>\
 <font size='-2'>October 16, 2020</font>
 
 And we are back with Part II of the YMH analysis. In this post, we look under the hood at the YouTube text-to-speech data we pulled from the official YMH Podcast channel. This blog post is full of **NSFW** text trends, episode descriptive statistics, a wordcloud and much more! Try it out!
