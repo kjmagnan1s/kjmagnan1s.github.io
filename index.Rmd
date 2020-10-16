@@ -48,18 +48,18 @@ Committed to achieving a data-driven society
 <br/><br/><br/>
 
 ***
+
 <center>
 
 
 Current Projects:
 
-<h3> New blog posts! </h3> <font size='+3'>[Your Mom's House Analysis, Part II - Text Analysis](YMH2.html)
+<h3> New blog posts!</h3> 
 
-[Your Mom's House Analysis, Part I - Data Gathering](YMH.html)</font>\
-<br>
-
-
-<h3> [Interactive Tableau Resume](https://public.tableau.com/profile/kevin.magnan#!/vizhome/KevinMagnanInteractiveResume/Dashboard1) </h3>
+<font size='+2'>[Your Mom's House Analysis, Part II - Text Analysis](YMH2.html)
 
 
-<br>
+[Your Mom's House Analysis, Part I - Data Gathering](YMH.html)
+
+
+[Interactive Tableau Resume](https://public.tableau.com/profile/kevin.magnan#!/vizhome/KevinMagnanInteractiveResume/Dashboard1)</font size>
