@@ -297,7 +297,7 @@ ggplotly(
   labs(
     y = "",
     x = "",
-    title = "Now There's a Cool Guy!",
+    title = "Now There's a Cool Guy!"
     )
 )
 ```
