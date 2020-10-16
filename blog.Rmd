@@ -6,11 +6,11 @@ output:
   html_document:
     theme: lumen
 ---
-<style>
-body {
-  position: absolute;
-  left: 300px;}
-</style>
+<!-- <style> -->
+<!-- body { -->
+<!--   position: absolute; -->
+<!--   left: 300px;} -->
+<!-- </style> -->
 
 <br>
 
