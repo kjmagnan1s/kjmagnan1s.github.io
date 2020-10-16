@@ -20,15 +20,17 @@ Alright now that we've feathered it, let's get started with some data cleaning a
 # Setup and data work
 
 ```{r warning = FALSE, message=FALSE}
-library(tidyverse)
-library(lubridate)
-library(tidytext)
-library(tidylo)
-library(igraph)
-library(ggraph)
-library(vroom)
-library(readr)
-library(reactable)
+library(tidyverse) 
+library(lubridate) 
+library(tidytext) ## text mining
+library(tidylo) ## improved weights to lists, like top_n
+library(igraph) ## edge sequencing
+library(ggraph) ## ggplot2
+library(vroom) ## improved csv reading & in line piping
+library(reactable) ## interactive tables
+library(plotly) ## interactive plots
+library(wordcloud)
+library(tm) ## for text mining
 
 ymh <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/ymh_data.csv")
 
@@ -49,7 +51,7 @@ ep_length <- ymh %>%
   summarise(minutes = (max(start) + max(duration))/60) %>%
   ungroup()
 
-ep_length %>%
+ggplotly(ep_length %>%
   ggplot(aes(x = ep_no, y = minutes)) +
   geom_point(color = "black") +
   geom_line(color = "black") +
@@ -57,7 +59,8 @@ ep_length %>%
     title = "YMH Episode Length",
     x = "Episode Number",
     y = "Length (mins)"
-  )
+  ))
+
 
 ## looks like we have an outlive episode. checking on ep_ling$episodes, I found that there's a break between in subtitles generation between approx. episode 330 and 394. Let's go ahead and remove all episodes below 394 moving forward and try this again
 ymh <- ymh %>% filter(ep_no > 393)
@@ -67,7 +70,8 @@ ep_length <- ymh %>%
   summarise(minutes = (max(start) + max(duration))/60) %>%
   ungroup()
 
-ep_length %>%
+ggplotly(
+  ep_length %>%
   ggplot(aes(x = ep_no, y = minutes)) +
   geom_point(color = "black") +
   geom_line(color = "black") +
@@ -75,7 +79,7 @@ ep_length %>%
     title = "YMH Episode Length",
     x = "Episode Number",
     y = "Length (mins)"
-  )
+  ))
 
 ## much better
 ```  
@@ -83,7 +87,8 @@ ep_length %>%
 From the plot, it's clear that around episode 450 the length of episode began to increase to upwards of 250 minutes (4 hours!) before plateauing at around 150 minutes. It's interesting to see such wide variability in episode length, instead of stepped changes. There are a lot of lows and highs among episode lengths, symptomatic of a person on Meth as Dr Drew would point out. With this much variability, let's fit a smooth line to the plot.
 
 ```{r}
-ep_length %>%
+ggplotly(
+  ep_length %>%
   ggplot(aes(x = ep_no, y = minutes)) +
   geom_point(color = "black") +
   geom_line(color = "black") +
@@ -92,7 +97,7 @@ ep_length %>%
     title = "YMH Episode Length",
     x = "Episode Number",
     y = "Length (mins)"
-  ) 
+  ) )
 ```
   
 It appears that episode length hit it's peak around episode 480, at which point they leveled off at ~150 minutes.
@@ -131,7 +136,8 @@ ymh_words <- ymh_words %>%
   filter(!(word %in% c("yeah", "gonna", "uh", "hey", "cuz", "um", "lot"))) %>%## filtering out additional common YMH specific words
   filter(!(is.na(word)))
          
-ymh_words %>%
+ggplotly(
+  ymh_words %>%
   count(word) %>%
   slice_max(order_by = n, n = 20) %>% ## select the top 20 rows and order them
   ggplot(aes(x = n, y = fct_reorder(word, n))) +
@@ -140,8 +146,18 @@ ymh_words %>%
     title = "Most Used YMH Words",
     y = NULL,
     x = "Count"
-  )
-```
+  ))
+
+ymh_wc <- ymh_words %>%
+  count(word) %>% filter(!grepl("[[a-z]]+", word))
+
+ymh_wc$word <- removeNumbers(ymh_wc$word)
+  
+ymh_wc_p <- wordcloud(words = ymh_wc$word, freq = ymh_wc$n, min.freq = 1,
+            max.words = 300, random.order = FALSE,
+            colors = brewer.pal(8, "Set1"))
+  
+````
 
 You have got to be "__" kidding me. Turns out that somehow Eric was able to download the raw/uncensored YouTube captions back in May and I'm stuck here with this "__". When I noticed I wasn't finding any curse words, I went back and watched a few YMH clips and noticed that every time they cursed, the YouTube captions transcribed "__". And, as you can see from the chart, we've essentially aggregated all curse words into one huge cluster-"__". Let's see if we can still work around this.
 
@@ -150,27 +166,21 @@ Aside from YouTube censoring some of our analysis, we have a few other notable m
 Given that YouTube seems to have provided us with a curse word catch-all token, let's see if we can use this to our advantage. In Eric's blog post, he looked into number of "fuckings" per minute per episode. We can do the same thing here for "__".
 
 ```{r}
-ymh_words %>%
+ggplotly(
+  ymh_words %>%
   filter(word == "__") %>%
   count(ep_no, word) %>%
   left_join(ep_length, by = "ep_no") %>%
   mutate(cpm = n/minutes) %>%
   ggplot(aes(x = ep_no, y = cpm)) +
   geom_text(aes(size = cpm), label = "curses", show.legend = FALSE, color = "black") +
-  annotate("text", x = 502, y = 3, label = "Ep. 494 w/ Joey 'Coco' Diaz", hjust = 0, size = 3.5) +
+  annotate("text", x = 532, y = 3.39, label = "- Ep. 494 w/ Joey 'Coco' Diaz", hjust = 0, size = 3.5) +
   annotate("curve", x = 494, xend = 500, y = 3.2, yend = 3, curvature = .4) +
   labs(
     title = "__'s per minute per YMH episode",
     x = "Episode number",
     y = "__'s per minute"
-  )
-
-ymh_words %>%
-    filter(word == "__") %>%
-    count(ep_no, word) %>%
-    left_join(ep_length, by = "ep_no") %>%
-    mutate(cpm = n/minutes) %>%
-    reactable()
+  ))
 ```
 
 Woah so here's a shocker! Episode 494 with Joey Diaz blows away the other episodes! Episode 494 had nearly 3.5 curse words per minute, 50% more than the next closest episode (ep. 451 w/ Chris D'Elia) for a total of 460 curse words in just 2 hours. Funny enough, episode 516 with Donnell Rawlings and Grant Cardone had the last number of curses, just 26. 
@@ -180,31 +190,82 @@ Woah so here's a shocker! Episode 494 with Joey Diaz blows away the other episod
 YMH is known for it's catch phrases. Whether it's "try it out", "feathering in", or "water champ", the true mommies know have a lot of inside jokes. Let's see if we can traceback to when these inside jokes first made appearances on the show. (Note: since we do not have a full collection of YMH episodes and the earlier episodes were audio only, we'll only be able to traceback more recent phrases. I doubt we'll be able to find the origin of Jeans or Mommies in here).
 
 ```{r}
-ymh_words %>%
-  filter(word == "feathering") %>%
+ggplotly(
+  ymh_words %>%
+  filter(word == "julia") %>%
   count(ep_no, word) %>% 
-  left_join(x = tibble(ep_no = unique(ep_length$ep_no), word = "feathering"),
+  left_join(x = tibble(ep_no = unique(ep_length$ep_no), word = "julia"),
             y = ., by = c("ep_no", "word")) %>%
   mutate(n = replace_na(n, 0)) %>%
   ggplot(aes(x = ep_no, y = n)) + 
   geom_line(color = "black", size = 1.25) +
-  labs(
-    title = "Fed Smoker (RIP) Feathering it, brotha!",
-    subtitle = "Counts of 'feathering' phrase",
+    labs(
+    title = "Good Morning, Julia!",
+    subtitle = "Counts of the word Julia per episode",
     x = "Episode Number",
-    y = "Count"
-    )
-
-ymh_words %>%
-  filter(word == "feathering") %>%
-  count(ep_no, word) %>% 
-  left_join(x = tibble(ep_no = unique(ep_length$ep_no), word = "feathering"),
-            y = ., by = c("ep_no", "word")) %>%
-  filter(!(is.na(n))) %>%
-  reactable()
+    y = "Count")) %>%
+  layout(title = list(text = paste0("Good Morning, Julia!",
+                                    "<br>",
+                                    "<sup>",
+                                    "Counts of the word Julia per episode",
+                                    "</sup>")))
 ```
 
-#episode 529 feathering it
+The word Julia clearly saw a limited run on YMH. It peaked, dramatically, on episode 478 and was first mentioned on episode 432. Julia was last used during episode 556 so it hasn't seen any action, so to speak, for about 20 episodes. That spike in episode 478 is interesting, though! Checking Eric's blog post, it looks like that episode had Tom and Christina actually interview Julia. That makes a lot of sense in how the show runs, they probably locked down the interview a few episodes prior and hyped it up by playing the video a lot, which would explain the starting in episode 468. Afterwards, the word essentially lost all popularity in the show, aside from a few episodes are 478.
+
+Let's not stop here, there are a plenty of other words or phrases to try to traceback with this data. Eric, in his blog post, wrote a neat little function to extract a bunch of words/phrases and create a faceted graph. Let's try that out.
+
+```{r}
+i_phrase <- function(phrase) {
+  nwords <- str_count(phrase, " ") + 1
+  
+  token <- if (nwords == 1) {
+    "words"
+  } else {
+     "ngrams"
+  }
+  
+  tmp <- if (token == "ngrams") {
+    ymh_single_row %>%
+      unnest_tokens(output = words, input = text, token = token, n = nwords)
+  } else {
+    ymh_single_row %>%
+      unnest_tokens(output = words, input = text, token = token)
+  }
+  
+  tmp %>% 
+    filter(words == phrase)
+}
+
+phrases <- c("julia", "feathering it", "dark tock", "let me each you", "hitler", "ride or die", "sleep for three days", "you are retarded", "eighteen and over", "new relationship energy", "cool guy")
+
+ymh_phrase_list <- map(phrases, i_phrase)
+
+phrase_grid <- expand_grid(unique(ep_length$ep_no), phrases) %>%
+  rename(ep_no = 1)
+
+ymh_phrase_df <- ymh_phrase_list %>%
+  bind_rows() %>%
+  count(ep_no, words) %>%
+  left_join(x = phrase_grid, y = ., by = c("ep_no", "phrases" = "words")) %>%
+  mutate(n = replace_na(n, 0))
+
+ymh_phrase_df %>% 
+  mutate(phrases = str_to_title(phrases)) %>%
+  ggplot(aes(x = ep_no, y = n)) +
+  geom_line(color = "black") +
+  facet_wrap(~phrases, scales = "free_y") +
+  labs(
+    y = "Count",
+    x = "Episode Number",
+    title = "Cool Phrases",
+    subtitle = "Count of Key YMH Words & Phrases by Episode"
+    )
+
+
+```
+
+
 
 
 
