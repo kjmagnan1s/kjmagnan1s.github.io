@@ -57,7 +57,17 @@ Committed to achieving a data-driven society
 <font size='+1'>[Your Mom's House Analysis, Part II - Text Analysis](YMH2.html)
 
 
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/ymh_p2_img.png" 
+  width=10% height=10%/>
+
 [Your Mom's House Analysis, Part I - Data Gathering](YMH.html)
 
 
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/ymh_p1_img.png" 
+  width=10% height=10%/>
+
 [Interactive Tableau Resume](https://public.tableau.com/profile/kevin.magnan#!/vizhome/KevinMagnanInteractiveResume/Dashboard1)</font size>
+
+
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/tab_resume_img.png" 
+  width=10% height=10%/>
