@@ -25,14 +25,14 @@ Alright we've feathered it enough, let's get started with some data cleaning and
 ```{r warning = FALSE, message=FALSE}
 library(tidyverse) 
 library(lubridate) 
-library(tm) ## text mining
-library(tidytext) ## text mining
-library(tidylo) ## improved weights to lists, like top_n
-library(igraph) ## edge sequencing
-library(ggraph) ## ggplot2
-library(vroom) ## improved csv reading & in line piping
-library(reactable) ## interactive tables
-library(plotly) ## interactive plots!!
+library(tm)         ## text mining
+library(tidytext)   ## text mining
+library(tidylo)     ## improved weights to lists, like top_n
+library(igraph)     ## edge sequencing
+library(ggraph)     ## ggplot2
+library(vroom)      ## improved csv reading & in line piping
+library(reactable)  ## interactive tables
+library(plotly)     ## interactive plots!!
 library(wordcloud)
 
 
@@ -146,17 +146,22 @@ The first step is to remove many of the common words in the English language lik
 ```{r message=FALSE}
 ymh_words <- ymh_single_row %>%
   filter(ep_no > 393)%>%
-  unnest_tokens(word, text) ## creates a token for each word in the single row text column we collapsed in the beginning of the post. 
+  unnest_tokens(word, text) 
+## creates a token for each word in the single row text column we collapsed in the beginning of the post. 
 
 ymh_words <- ymh_words %>%
-  anti_join(stop_words) %>% ## anti_join = ! in that it returns the opposite of what we want. In this case, it returns all words that do not match with the stop_words function containing the entire lexicon of English common words like "the"
-  filter(!(word %in% c("yeah", "gonna", "uh", "hey", "cuz", "um", "lot"))) %>%## filtering out additional common YMH specific words
-  filter(!(is.na(word)))
+  anti_join(stop_words) %>% 
+  ## anti_join = ! in that it returns the opposite of what we want. In this case, it returns all
+  ## words that do not match with the stop_words function containing the entire lexicon of English
+  ## common words like "the"
+filter(!(word %in% c("yeah", "gonna", "uh", "hey", "cuz", "um", "lot"))) %>%
+  ## filtering out additional common YMH specific words
+filter(!(is.na(word)))
          
-ggplotly(
-  ymh_words %>%
-  count(word) %>%
-  slice_max(order_by = n, n = 20) %>% ## select the top 20 rows and order them
+ggplotly(                     
+  ymh_words %>%               
+  count(word) %>%             
+  slice_max(order_by = n, n = 20) %>%             ## select the top 20 rows and order them
   ggplot(aes(x = n, y = fct_reorder(word, n))) +
   geom_col(fill = "red") + 
   labs(
@@ -179,7 +184,8 @@ The bar chart was a little boring and is limited to the top 20 words. Let's look
 ymh_wc <- ymh_words %>%
   count(word) %>% filter(!grepl("[[a-z]]+", word))
 
-ymh_wc$word <- removePunctuation(ymh_wc$word) ## Our curse word symbole "__" won't look right in the wordcloud so I opted to remove it
+ymh_wc$word <- removePunctuation(ymh_wc$word) 
+## Our curse word symbol "__" won't look right in the wordcloud so I opted to remove it
   
 ymh_wc_p <- wordcloud(words = ymh_wc$word, freq = ymh_wc$n, min.freq = 1,
             max.words = 300, random.order = FALSE,
@@ -193,7 +199,9 @@ Even though we had to remove __ from the wordcloud (I could have replaced it wit
 Given that YouTube seems to have provided us with a curse word catch-all token, let's see if we can use this to our advantage. In Eric's blog post, he looked into number of "fuckings" per minute by episode. We can do the same thing here for __ .
 
 ```{r warning=FALSE}
-## quick note here: while writing this plot I kept getting "Error in annotate: unused arguments" because both the {tlm} and {ggplot2} packages have annotate functions. To resolve that, I simply force-called the ggplot2 function and it worked fine! 
+## quick note here: while writing this plot I kept getting "Error in annotate: unused arguments"
+## because both the {tlm} and {ggplot2} packages have annotate functions. To resolve that, I simply
+## force-called the ggplot2 function and it worked fine! 
 
 ggplotly(
   ymh_words %>%
@@ -249,7 +257,8 @@ We aren't stop here. There are a plenty of other words or phrases to try to trac
 
 ```{r warning=FALSE}
 ## create the function phrase
-## for vector "nwords", if the string count is 1 = word, else if it is not = 1 then = "nram" (essentially a sequence of words, later identified as a phrase)
+## for vector "nwords", if the string count is 1 = word, else if it is not = 1 then = "nram"
+## (essentially a sequence of words, later identified as a phrase)
 ## for "ngrams" split the ymh_single_row table into tokens, "n = nwords" for the phrases, else for the "words"
 ## subset data in tpm which does not equal phrase function (i.e. does not equal the 'phrases' 'vector)
 ## create the phrase_list using the map() function and the i_phrase function based on the phrases vector
