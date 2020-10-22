@@ -1,0 +1,108 @@
+---
+title: "WoW Buzz Analysis"
+#author: "Kevin Magnan"
+#date: "10/21/2020"
+output: html_document
+---
+Published on October 21th, 2020
+
+Having recently started blogging, I realized during my two part YMH blog post that writing and analysis become much easier when they are topics I enjoy (surprise, surprise). Even more, learning and refining my analytical skills is quite entertaining when it's topics I invest my time and energy. With that in mind, I thought what better data to work with next than World of Warcraft Classic.
+
+Now before the the nerd alarms start going off ...
+
+<img src="~/GitHub/kjmagnan1s.github.io/images/southpark_wow.jpg" width=30% height=30%/><img src="~/GitHub/kjmagnan1s.github.io/images/blizcon_nerd_wow_cosplay.jpg" width=27% height=27%/>
+
+... World of Warcraft Classic ('Classic WoW') is Blizzard Entertainment's recreation of the 2004 critically acclaimed and world's most popular MMORPG game, commonly referred to as World of Warcraft Vanilla. [ ^1^ ](https://en.wikipedia.org/wiki/World_of_Warcraft) Part of the allure and success of Classic WoW can be directly attributed to its emphasis of social gameplay. In order to complete end-game level content, players must assemble and coordinate massive 25 to 40 person groups through large dungeons or zones, called Raids, within the game, overcoming game mechanics, group role requirements/duties, and leadership challenges all with the reward of powerful end-game items, referred to as "loot". In order to be able to coordinate with 40 other people, in-game organizations, called Guilds, were created for players to socialize and more easily organize towards end-game objectives. 
+
+This is a game I spent much of my childhood playing and I have many, many fond memories of this game. As you can imagine, when Blizzard Entertainment announced Classic Wow, the nostalgic teenager in me could not resist. Even though a lot of things have changed since 2004, the need to find and join a good Classic WoW guild are as important as ever. What I found after joining my guild, Buzz, and running end-game content is that the playerbase of classic WoW is essentially the same as 2004, but 15 years older. Thus, most guilds are comprised of mid-career professionals with children, lifestyles, and far more life experiences who played WoW back in 2004.
+
+This post will explore these differences through data. This story begins a few months ago when our guild began running into some issues with guild management and loot distribution. See, loot in Classic WoW is extremely sought-after, so much so that there are countless stories of guilds completely disbanding over arguments about loot - a 'Google' search of "WoW loot drama" returns 1.9 million results. This led to guilds instituting loot rules or loot systems, such as DKP (Dragon Kill Points), Loot Council, or EPGP (Effort Points/Gear Points). Our guild, for example, decided early on in its formation that EPGP would be our method of loot distribution (I'll cover the elements of EPGP later in this post). When we began end-game content, we utilized a free-to-use EPGP Discord bot. But as of late, this bot has become unreliable and not easily customizable. It was at this point that one of our members skilled in C# coding decided to write a bot personalized to meet Buzz's needs. 
+
+Now that a few months have elapsed since we deployed our own custom bot, I decided this was a great time to utilize a completely tracked EPGP loot system using R and Tableau. My hope is that by keeping this updated, our guild will be able to spend some time learning about how useful this bot one of our members created but also learn a little more about our guild and our data.
+
+Before we proceed, there are probably a few key terms and gaming concepts I should mention:
+
++ Raid zones in Classic WoW allow for up to 25 players or up to 40 players, depending on the raid. Raids are the main source of EPGP and loot in Classic WoW
+
++ EPGP is an accounting and tracking system for loot distribution. Participation in raids and other shared guild objectives accrue Effort Points (EP). Acquiring loot or in-game items increases Gear Points (GP). The ratio of Effort Points to Gear Points determine members priority (PR) for loot. The highest players PR determines who receives the loot:
+
+<center>$PR = \frac{EP}{GP}$</center>
+<br>
+
++ The EPGP Bot tracks, among other things, players attendance to Raids, contributions to guild objectives, items awarded to players, and their EPGP history of accruing points. The Buzz bot functions by interacting with Discords REST API services and user input.
+
++ Effort Points, or EP, are pre-determined amounts for Raid participation. For guild objectives and items, average market in-game cost for these items is converted in EP.
+
++ Gear Points, or GP, are pre-determined amounts for every item in Classic WoW, primarily based on the items attributes. [ ^2^ ](http://www.epgpweb.com) The exact GP equation for Buzz relies on item value and an items slot value:
+
+<center>$$GP = IV^2 * 0.04 * SV$$</center>
+
+<center>$$
+IV = 
+\begin{cases}
+\frac{(I_lvl - 4)}{2}  if Q \leq 2
+\\
+\frac{I_lvl - 1.84}{1.6}  if Q \ = 3 
+\\
+\frac{I_lvl-1.3}{1.3}  if Q \geq 4
+\end{cases}$$
+</center>
+<br>
+
++ Our guild primarily raids on Sunday and Tuesday nights after the Classic WoW US servers reset and EP points are awarded for guild objective and item donations on Sundays. As a result, any temporal analysis would not produce particularly insightful findings.
+
++ The EPGP bot has gone through multiple iterations, with new changes and features added over time. This may result in slight inconsistencies across the data, though, the core elements of the bot have remained constant.
+
++ The EPGP bot has multiple data exporting capabilities. The goal of this blog post is to explore the EPGP data and learn some insights about Buzz.
+
+# Setup and data work
+
+There isn't much work to do here, the EPGP bot's data is fairly clean outside of a chunk of rows that do not have the correct date assigned to their entries. 
+
+```{r warning = FALSE, message=FALSE}
+library(tidyverse) 
+library(lubridate) 
+library(ggraph) ## ggplot2
+library(vroom) ## improved csv reading & in line piping
+library(reactable) ## interactive tables
+library(plotly) ## interactive plots!!
+
+
+## epgp <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_epgp_10.16.20.csv")
+## loot <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_loot_10.16.20.csv")
+t_actions <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_10.21.20.csv") %>% 
+  mutate(TransactionDate = as.Date(TransactionDateTime, format = '%m/%d/%Y')) %>% ## removing time stamps from date variable
+  mutate(TransactionDate = replace(TransactionDate, TransactionDate == "0001-01-01", "2020-08-01")) ## reassigned all incorrectly entered dates to August 1st, it was around this time when these records were assigned this date incorrectly and it was resolved.
+
+write.csv(t_actions, file = "~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_clean_10.21.20.csv")
+
+glimpse(t_actions)
+
+```
+
+# Descriptives
+
+```{r warning = FALSE, message=FALSE}
+t_actions %>% 
+  filter(TransactionType == "GpFromGear") %>%
+  group_by(CharacterName, Memo, TransactionDate) %>%
+  summarise(Value) %>%
+  filter(Value > 15) %>%                              ## avoids any of the [Rolls], we'll cover those later
+  reactable(defaultSorted = list("Value" = "desc"))
+
+# ggplotly(t_actions %>%
+#   group_by(TransactionDate, Value, CharacterName) %>%
+#   filter(TransactionDate > "2020/07/01") %>%
+#   count() %>%
+#   ggplot(aes(x = TransactionDate, y = Value)) + 
+#   geom_smooth() + 
+#   labs(
+#     title = "Transactions Over Time",
+#     x = "Transaction Date",
+#     y = "Count"
+#   )
+# )
+
+
+```
+
