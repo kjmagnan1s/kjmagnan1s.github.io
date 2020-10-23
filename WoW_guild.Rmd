@@ -110,20 +110,26 @@ t_actions %>%
   filter(Value > 15) %>%                              ## avoids any of the [Rolls], we'll cover those later
   reactable(defaultSorted = list("Value" = "desc"))
 
-ggplotly(t_actions %>%
-  group_by(TransactionDate, TransactionType, Value) %>%
-  filter(TransactionDate > "2020/07/01") %>%
-  filter(TransactionType == "EpAutomated" | TransactionType == "GpFromGear") %>%
-  count() %>%
-  ggplot(aes(x = TransactionDate, y = Value, color = TransactionType)) +
-  geom_line() +
-  labs(
-    title = "Transactions Over Time",
-    x = "Transaction Date",
-    y = "Count"
-  )
-)
-
+# ggplotly(t_actions %>%
+#   group_by(TransactionDate, TransactionType, Value) %>%
+#   filter(TransactionDate > "2020/07/01") %>%
+#   ## filter(TransactionType %in% c("EpAutomated", "GpFromGear")) %>%
+#   ggplot(aes(month(TransactionDate), Value, fill = TransactionType)) +
+#   geom_col(position = "dodge") +
+#   labs(
+#     title = "Transactions Over Time",
+#     x = "Transaction Month",
+#     y = "Count"
+#   )
+# )
 
 ```
 
+```{r}
+t_actions %>% 
+  filter(TransactionType == "GpFromGear") %>%
+  group_by(CharacterName, Memo, TransactionDate) %>%
+  summarise(Value) %>%
+  filter(Value > 15) %>%                              ## avoids any of the [Rolls], we'll cover those later
+  reactable(defaultSorted = list("Value" = "desc"))
+```
