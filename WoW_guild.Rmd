@@ -77,9 +77,28 @@ t_actions <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_10
 write.csv(t_actions, file = "~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_clean_10.21.20.csv")
 
 glimpse(t_actions)
-
 ```
-After chatting with the bot author, he made a new export function for me to get a richer dataset than the ones he programmed for the bot to export ('epgp' and 'loot' above). So now we have 8 columns and just over 16,000 rows data. 
+After chatting with the bot author, he made a new export function for me to get a richer dataset than the ones he programmed for the bot to export ('epgp' and 'loot' commented out above). So now we have 8 columns and just over 16,000 rows data. I'll offer some additional context and data explanation below:
+
++ DiscordUserID is the ID associated with a user. Because players can play more than one 'character', the bot tracks each of those characters EPGP separately but Discord still tracks unique user ID's. This variable will allow us to track user activity across all their characters.
+
++ CharacterName is the in-game character name
+
++ TransactionType describes the EPGP value entry type based on in-game actions. The types are start with either a EP (+) or GP (-) classification followed by the following:
+
+  - EpAutomated: EP awards for participating in raid, automatically assigned based on Raid attributes
+  
+  - EpDecay: Decay is used as an incentive to use the EPGP system and not hoard PR 
+  
+  - EpManual: Usually for EP adjustments or awards for in-game guild contributions
+  
+  - GpDecay: Decay is used as an incentive to use the EPGP system and not hoard PR
+  
+  - GpFromGear: GP awards for claiming loot/gear with PR
+  
+  - GpManual: Usually for EP adjustments/corrections
+  
+With the data cleaning and explanations out of the way, lets explore the EPGP data with some descriptive analyses in {r} before moving into an interactive Tableau Public dashboard.
 
 # Descriptives
 
@@ -91,18 +110,19 @@ t_actions %>%
   filter(Value > 15) %>%                              ## avoids any of the [Rolls], we'll cover those later
   reactable(defaultSorted = list("Value" = "desc"))
 
-# ggplotly(t_actions %>%
-#   group_by(TransactionDate, Value, CharacterName) %>%
-#   filter(TransactionDate > "2020/07/01") %>%
-#   count() %>%
-#   ggplot(aes(x = TransactionDate, y = Value)) + 
-#   geom_smooth() + 
-#   labs(
-#     title = "Transactions Over Time",
-#     x = "Transaction Date",
-#     y = "Count"
-#   )
-# )
+ggplotly(t_actions %>%
+  group_by(TransactionDate, TransactionType, Value) %>%
+  filter(TransactionDate > "2020/07/01") %>%
+  filter(TransactionType == "EpAutomated" | TransactionType == "GpFromGear") %>%
+  count() %>%
+  ggplot(aes(x = TransactionDate, y = Value, color = TransactionType)) +
+  geom_line() +
+  labs(
+    title = "Transactions Over Time",
+    x = "Transaction Date",
+    y = "Count"
+  )
+)
 
 
 ```
