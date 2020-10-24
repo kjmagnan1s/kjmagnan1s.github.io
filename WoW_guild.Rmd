@@ -124,13 +124,14 @@ t_actions %>%
 # )
 ```
 
-Some interesting findings in this table. I was really looking to see which character/player claimed the highest GP valued loot. Turns out it was a tie at 301 GP to Phanon for Ashkandi <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_50.jpg" width= 25px height= 25px> and Banesoul for Staff of the Shadow Flame <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_06.jpg" width= 25px height= 25px> which ironically both drop from the boss Nefarian in Blackwing Lair.
+Some interesting findings in this table. I was really looking to see which character/player claimed the highest GP valued loot. Turns out it was a tie at 301 GP to Phanon for Ashkandi <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_50.jpg" width= 25px height= 25px> and Banesoul for Staff of the Shadow Flame <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_06.jpg" width= 25px height= 25px> which ironically both drop from the boss Nefarian in Blackwing Lair (BWL). I also found it interesting most of the items claimed at the top of the list occurred very recently, within the past 2 months even though the top 2 items for GP were claimed from BWL which we have been raiding for months.
 
 This is probably a good time to mention that the character I play is Okara (don't ask, was the name I randomly chose back in Vanill), seen on this list near the top for claiming the Blessed Qiraji Augur Staff <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_20.jpg" width= 25px height= 25px> for 286 GP.
 
+Lets take this table view and make a plot of the top 20 items claimed, just to look at it visually instead:
+
 ```{r}
 ## to do:
-## top 20 GP items plot
 ## bar chart month by month ep accrued and gp spent ??
 
 ggplotly(
@@ -152,15 +153,6 @@ ggplotly(
   ), tooltip = "text"
   #layout(yaxis = list(categoryyorder = "category descending"))
 )
-
-t_actions %>% 
-  filter(TransactionType == "GpFromGear") %>%
-  group_by(CharacterName, Memo, TransactionDate) %>%
-  summarise(Value) %>%
-  filter(Value > 15) %>%                              ## avoids any of the [Rolls], we'll cover those later
-  reactable(defaultSorted = list("Value" = "desc"))
 ```
 
-Not 
-
-
+Right so nothing really jumps out at me here. The GP values are ever so slightly skewed to the right, indicating a smooth reduction in GP cost. One important note that any WoW player would catch onto, the top 20 list here are all weapons. In the EPGP system, weapons are normally the most sought after item and come with the highest GP values. 
