@@ -122,8 +122,9 @@ t_actions %>%
 #     y = "Count"
 #   )
 # )
-
 ```
+
+Some interesting findings in this table. I was most interested in finding the character who claimed the highest loot, which was Fanon for 
 
 ```{r}
 t_actions %>% 
