@@ -60,13 +60,13 @@ IV =
 There isn't much work to do here, the EPGP bot's data is fairly clean outside of a chunk of rows that do not have the correct date assigned to their entries. 
 
 ```{r warning = FALSE, message=FALSE}
-library(tidyverse) 
-library(lubridate) 
-library(ggraph) ## ggplot2
-library(vroom) ## improved csv reading & in line piping
-library(reactable) ## interactive tables
-library(plotly) ## interactive plots!!
-
+pacman::p_load(            ## load libraries at once, this package is a game changer
+               tidyverse,
+               lubridate, 
+               ggraph,     ## ggplot
+               vroom,      ## improved csv reading and in-line piping during load
+               reactable,  ## interactive tables
+               plotly)     ## interactive plots
 
 ## epgp <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_epgp_10.16.20.csv")
 ## loot <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_loot_10.16.20.csv")
