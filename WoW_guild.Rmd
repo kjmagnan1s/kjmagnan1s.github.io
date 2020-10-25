@@ -86,7 +86,7 @@ After chatting with the bot author, he made a new export function for me to get 
 
 + TransactionType describes the EPGP value entry type based on in-game actions. The types are start with either a EP (+) or GP (-) classification followed by the following:
 
-  - EpAutomated: EP awards for participating in raid, automatically assigned based on Raid attributes
+  - EpAutomated: EP awards for participating in raid, automatically assigned based on raid characteristics
   
   - EpDecay: Decay is used as an incentive to use the EPGP system and not hoard PR 
   
@@ -178,12 +178,22 @@ ggplotly(
   geom_col(position = "dodge") +
   theme(axis.text.x = element_text(angle = 75)) +
     labs(
-    title = "Top EP By Character",
+    title = "Top EP Earned By Character",
     x = NULL,
     y = "EP Amount"
     ), tooltip = "text"
 )
 ```
 
-Well now, we're finally getting into some of the juicy details. Now before I go any further, for any of my fellow guild members reading this and feeling #exposed, just a reminder the benefits of EPGP is transparency, this data is available to anyone. Alright, now lets start throwing some shade :D
+Well now, we're finally getting into some of the juicy details. The interactive chart above shows the top 20 characters for EpAutomated and EpManual EP types. Now before I go any further, for any of my fellow guild members reading this and feeling #exposed, just a reminder a benefit of EPGP is transparency, this data is available to anyone. Alright, now lets start throwing some shade :D
+
+Our guild's resident WoW celebrity, Kyx, or better known by her full name [SixPacKyx](https://twitter.com/sixpackyx), tops the list at #1 for most EP earned for attending guild raids (remember EpAutomated is awarded for attending raid events) since July. Gintama, aka the weapon hoarder, aka Mr Afk, ironically is in the top 20 for EP earned by raiding and also for EP earned by manual entry, meaning he contribute a lot of resources to the guild. The characters in the middle of the pack, from Baxterwar to Arkadus, were also an interesting find. These characters were in the top 20 for both EP earned by raiding and EP earned by donating resources.
+
+Alright, the last data point I want to investigate are the EPGP [Claim] and, specifically, [Roll] functions. The [Roll] function is a generally new feature of the bot and a new practice our guild leadership introduced. The premise is simple, when Blizzard released "Phase 5" of Classic Wow - essentially a patch or release of new content" - epic items looted during raids that were less desirable became useful for the guild. Before Phase 5, we would give out gear which no players wanted to spend GP on by letting players "/roll" for the item. With the release of this phase, items rolled would now cost GP because, in this phase, epic items can be disenchanted into expensive and useful materials. This is probably not worth explaining in anymore length, but this resulting change in Phase 5 meant that we would essentially charge players GP based on the going rate of the material the epic item disenchanted into. And in order to keep track of this for EPGP accounting, the [Claim] and [Roll] commands were created. (Since this command is new to Phase 5 content, all prior entries of an item should be considered a [Claim].)
+
+```{r}
+t_actions %>%
+  
+
+```
 
