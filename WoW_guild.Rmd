@@ -156,3 +156,31 @@ ggplotly(
 ```
 
 Right so nothing really jumps out at me here. The GP values are ever so slightly skewed to the right, indicating a smooth reduction in GP cost. One important note that any WoW player would catch onto, the top 20 list here are all weapons. In the EPGP system, weapons are normally the most sought after item and come with the highest GP values. 
+
+Thus far, we've briefly discussed EPGP as a loot distribution system. In order to gain EP, a player needs to either attend guild events or contribute in-game materials to the guild. These in-game materials require a player to spend time gathering the item or spend gold to buy the item and donate it to the guild. We've looked at some ways players spend GP, so let's look at some of the ways players gain EP.
+
+```{r}
+ggplotly(
+  t_actions %>%
+  filter(TransactionType %in% c("EpAutomated", "EpManual")) %>% 
+  select(CharacterName, Value, TransactionType) %>%
+  group_by(CharacterName, TransactionType) %>%
+  summarise(Value = sum(Value)) %>%
+  ungroup() %>%
+  group_by(TransactionType) %>%
+  slice_max(order_by = Value, 
+            n = 20,
+            with_ties = TRUE) %>%
+  ggplot(aes(x = fct_reorder(CharacterName, Value, .desc = TRUE), 
+             y = Value, 
+             fill = TransactionType, 
+             text = paste(Value, "total EP awarded for", TransactionType))) +
+  geom_col(position = "dodge") +
+  theme(axis.text.x = element_text(angle = 75)) +
+    labs(
+    title = "Top EP By Character",
+    x = NULL,
+    y = "EP Amount"
+    ), tooltip = "text"
+)
+```
