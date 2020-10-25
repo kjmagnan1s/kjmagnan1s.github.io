@@ -184,3 +184,6 @@ ggplotly(
     ), tooltip = "text"
 )
 ```
+
+Well now, we're finally getting into some of the juicy details. Now before I go any further, for any of my fellow guild members reading this and feeling #exposed, just a reminder the benefits of EPGP is transparency, this data is available to anyone. Alright, now lets start throwing some shade :D
+
