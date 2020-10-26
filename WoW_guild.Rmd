@@ -199,7 +199,8 @@ ggplotly (
     title =  " 'Roll' Popularity Over Time",
     x = NULL,
     y = "Count"
-    )
+    ) + 
+  scale_x_date(breaks = scales::pretty_breaks(21))
 )
 
 ## Show items per drop by date as a bar chart behind the line? Helps give context to the number of rolls.
