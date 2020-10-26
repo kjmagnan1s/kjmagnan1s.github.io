@@ -72,7 +72,16 @@ pacman::p_load(            ## load libraries at once, this package is a game cha
 ## loot <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_loot_10.16.20.csv")
 t_actions <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_10.21.20.csv") %>% 
   mutate(TransactionDate = as.Date(TransactionDateTime, format = '%m/%d/%Y')) %>% ## removing time stamps from date variable
-  mutate(TransactionDate = replace(TransactionDate, TransactionDate == "0001-01-01", "2020-08-01")) ## reassigned all incorrectly entered dates to August 1st, it was around this time when these records were assigned this date incorrectly and it was resolved.
+  mutate(TransactionDate = replace(TransactionDate, TransactionDate == "0001-01-01", "2020-08-01")) %>% ## reassigned all incorrectly entered dates to August 1st, it was around this time when these records were assigned this date incorrectly and it was resolved.
+  mutate(Memo = str_remove_all(Memo, c("\\]|\\["))) %>%
+  mutate(Type = ifelse(grepl("Roll", Memo), "Roll", "Claim")) %>%
+  # mutate(Type = if (grepl("Roll", Memo)) {
+  #     "Roll"
+  #   } else {
+  #     "Claim"}
+  # ) %>%
+  mutate(Memo = str_remove_all(Memo, c("Claim|Roll")))
+  
   
 write.csv(t_actions, file = "~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_clean_10.21.20.csv")
 
@@ -109,19 +118,6 @@ t_actions %>%
   summarise(Value) %>%
   filter(Value > 15) %>%                              ## avoids any of the [Rolls], we'll cover those later
   reactable(defaultSorted = list("Value" = "desc"))
-
-# ggplotly(t_actions %>%
-#   group_by(TransactionDate, TransactionType, Value) %>%
-#   filter(TransactionDate > "2020/07/01") %>%
-#   ## filter(TransactionType %in% c("EpAutomated", "GpFromGear")) %>%
-#   ggplot(aes(month(TransactionDate), Value, fill = TransactionType)) +
-#   geom_col(position = "dodge") +
-#   labs(
-#     title = "Transactions Over Time",
-#     x = "Transaction Month",
-#     y = "Count"
-#   )
-# )
 ```
 
 Some interesting findings in this table. I was really looking to see which character/player claimed the highest GP valued loot. Turns out it was a tie at 301 GP to Phanon for Ashkandi <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_50.jpg" width= 25px height= 25px> and Banesoul for Staff of the Shadow Flame <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_06.jpg" width= 25px height= 25px> which ironically both drop from the boss Nefarian in Blackwing Lair (BWL). I also found it interesting most of the items claimed at the top of the list occurred very recently, within the past 2 months even though the top 2 items for GP were claimed from BWL which we have been raiding for months.
@@ -137,7 +133,6 @@ Lets take this table view and make a plot of the top 20 items claimed, just to l
 ggplotly(
   t_actions %>%
   filter(TransactionType == "GpFromGear") %>%
-  mutate(Memo = str_remove_all(Memo, c("\\]|\\["))) %>%
   distinct(TransactionType, Memo, Value) %>%
   slice_max(order_by = Value, n = 20) %>%
   mutate(Memo = str_remove_all(Memo, "Claim")) %>%
@@ -192,8 +187,21 @@ Our guild's resident WoW celebrity, Kyx, or better known by her full name [SixPa
 Alright, the last data point I want to investigate are the EPGP [Claim] and, specifically, [Roll] functions. The [Roll] function is a generally new feature of the bot and a new practice our guild leadership introduced. The premise is simple, when Blizzard released "Phase 5" of Classic Wow - essentially a patch or release of new content" - epic items looted during raids that were less desirable became useful for the guild. Before Phase 5, we would give out gear which no players wanted to spend GP on by letting players "/roll" for the item. With the release of this phase, items rolled would now cost GP because, in this phase, epic items can be disenchanted into expensive and useful materials. This is probably not worth explaining in anymore length, but this resulting change in Phase 5 meant that we would essentially charge players GP based on the going rate of the material the epic item disenchanted into. And in order to keep track of this for EPGP accounting, the [Claim] and [Roll] commands were created. (Since this command is new to Phase 5 content, all prior entries of an item should be considered a [Claim].)
 
 ```{r}
-t_actions %>%
-  
+ggplotly (
+  t_actions %>%
+  group_by(TransactionDate) %>%
+  filter(Type == "Roll") %>%
+  count(Type) %>% 
+  ggplot(aes(x = TransactionDate, y = n)) + 
+  geom_point() + 
+  geom_line() +
+    labs(
+    title =  " 'Roll' Popularity Over Time",
+    x = NULL,
+    y = "Count"
+    )
+)
+
+## Show items per drop by date as a bar chart behind the line? Helps give context to the number of rolls.
 
 ```
-
