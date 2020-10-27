@@ -1,20 +1,22 @@
 ---
 title: "WoW Buzz Analysis"
 #author: "Kevin Magnan"
-#date: "10/21/2020"
+#date: "10/27/2020"
 output: html_document
 ---
-Published on October 21th, 2020
+Published on October 27th, 2020
 
-Having recently started blogging, I realized during my two part YMH blog post that writing and analysis become much easier when they are topics I enjoy (surprise, surprise). Even more, learning and refining my analytical skills is quite entertaining when it's topics I invest my time and energy. With that in mind, I thought what better data to work with next than World of Warcraft Classic.
+Having recently started blogging, I realized during my two part YMH post that writing and analysis become much easier when they are topics I enjoy (surprise, surprise right?!). Even more, learning and refining my analytical skills is quite entertaining when it's topics I invest my time and energy. With that in mind, I thought what better data to work with next than World of Warcraft Classic. This is a game I spent much of my childhood playing and I have many, many fond memories of this game. As you can imagine, when Blizzard Entertainment announced Classic Wow, the nostalgic teenager in me could not resist.
 
 Now before the the nerd alarms start going off ...
 
 <center><img src="~/GitHub/kjmagnan1s.github.io/images/southpark_wow.jpg" width=30% height=30%/><img src="~/GitHub/kjmagnan1s.github.io/images/blizcon_nerd_wow_cosplay.jpg" width=27% height=27%/></center>
 
-... World of Warcraft Classic ('Classic WoW') is Blizzard Entertainment's recreation of the 2004 critically acclaimed and world's most popular MMORPG game, commonly referred to as World of Warcraft Vanilla. [ ^1^ ](https://en.wikipedia.org/wiki/World_of_Warcraft) Part of the allure and success of Classic WoW can be directly attributed to its emphasis of social gameplay. In order to complete end-game level content, players must assemble and coordinate massive 25 to 40 person groups through large dungeons or zones, called Raids, within the game, overcoming game mechanics, group role requirements/duties, and leadership challenges all with the reward of powerful end-game items, referred to as "loot". In order to be able to coordinate with 40 other people, in-game organizations, called Guilds, were created for players to socialize and more easily organize towards end-game objectives. 
+<br>
 
-This is a game I spent much of my childhood playing and I have many, many fond memories of this game. As you can imagine, when Blizzard Entertainment announced Classic Wow, the nostalgic teenager in me could not resist. Even though a lot of things have changed since 2004, the need to find and join a good Classic WoW guild are as important as ever. What I found after joining my guild, Buzz, and running end-game content is that the playerbase of classic WoW is essentially the same as 2004, but 15 years older. Thus, most guilds are comprised of mid-career professionals with children, lifestyles, and far more life experiences who played WoW back in 2004.
+... World of Warcraft Classic ('Classic WoW') is Blizzard Entertainment's recreation of the 2004 critically acclaimed and world's most popular MMORPG game, commonly referred to as World of Warcraft Vanilla. [ ^1^ ](https://en.wikipedia.org/wiki/World_of_Warcraft) Part of the allure and success of Classic WoW can be directly attributed to its emphasis of social gameplay. In order to complete end-game content, players must assemble and coordinate massive 25 to 40 person groups through large dungeons or zones, called Raids, within the game, overcoming game mechanics, role requirements and duties, and leadership challenges, all with the reward of powerful end-game epic items, referred to as "loot". In order to be able to coordinate with 40 other people, in-game organizations, called Guilds, were created for players to socialize and more easily organize towards end-game objectives. 
+
+Even though a lot of things have changed since 2004, the need to find and join a good guild is as important as ever. What I found after joining my guild, Buzz, is that the playerbase of classic WoW is essentially the same as 2004, but 15 years older. Thus, most guilds are comprised of mid-career professionals with children, lifestyles, and far more life experiences who played WoW back in 2004.
 
 This post will explore these differences through data. This story begins a few months ago when our guild began running into some issues with guild management and loot distribution. See, loot in Classic WoW is extremely sought-after, so much so that there are countless stories of guilds completely disbanding over arguments about loot - a 'Google' search of "WoW loot drama" returns 1.9 million results. This led to guilds instituting loot rules or loot systems, such as DKP (Dragon Kill Points), Loot Council, or EPGP (Effort Points/Gear Points). Our guild, for example, decided early on in its formation that EPGP would be our method of loot distribution (I'll cover the elements of EPGP later in this post). When we began end-game content, we utilized a free-to-use EPGP Discord bot. But as of late, this bot has become unreliable and not easily customizable. It was at this point that one of our members skilled in C# coding decided to write a bot personalized to meet Buzz's needs. 
 
@@ -22,7 +24,7 @@ Now that a few months have elapsed since we deployed our own custom bot, I decid
 
 Before we proceed, there are probably a few key terms and gaming concepts I should mention:
 
-+ Raid zones in Classic WoW allow for up to 25 players or up to 40 players, depending on the raid. Raids are the main source of EPGP and loot in Classic WoW
++ Raid zones in Classic WoW allow for up to either 25 players or up to 40 players, depending on the raid. Raids are the main source of EPGP and loot in Classic WoW
 
 + EPGP is an accounting and tracking system for loot distribution. Participation in raids and other shared guild objectives accrue Effort Points (EP). Acquiring loot or in-game items increases Gear Points (GP). The ratio of Effort Points to Gear Points determine members priority (PR) for loot. The highest players PR determines who receives the loot:
 
@@ -54,7 +56,9 @@ IV =
 + The EPGP bot has gone through multiple iterations, with new changes and features added over time. This may result in slight inconsistencies across the data, though, the core elements of the bot have remained constant.
 
 + The EPGP bot has multiple data exporting capabilities. The goal of this blog post is to explore the EPGP data and learn some insights about Buzz.
+
 <br>
+
 ## Setup and data work
 
 There isn't much work to do here, the EPGP bot's data is fairly clean outside of a chunk of rows that do not have the correct date assigned to their entries. 
@@ -133,9 +137,33 @@ t_actions %>%
   reactable(defaultSorted = list("Value" = "desc"))   ## interactive table
 ```
 
-Some interesting findings in this table. I was really looking to see which character/player claimed the highest GP valued loot. Turns out it was a tie at 301 GP to Phanon for Ashkandi <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_50.jpg" width= 25px height= 25px> and Banesoul for Staff of the Shadow Flame <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_06.jpg" width= 25px height= 25px> which ironically both drop from the boss Nefarian in Blackwing Lair (BWL). I also found it interesting most of the items claimed at the top of the list occurred very recently, within the past 2 months even though the top 2 items for GP were claimed from BWL which we have been raiding for months.
+Some interesting findings in this table. I was really looking to see which character/player claimed the highest GP valued loot. Turns out it was a tie at 301 GP: Phanon for Ashkandi <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_50.jpg" width= 25px height= 25px> and Banesoul for Staff of the Shadow Flame <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_06.jpg" width= 25px height= 25px> - which, ironically, both drop from Nefarian, the final boss in Blackwing Lair (BWL). I also found it interesting that most of the items claimed at the top of the list occurred very recently, within the past 2 months, even though about half of the top 10 items in this list are from BWL, which we have been raiding for months. I guess we've had some great loot recently!
 
-This is probably a good time to mention that the character I play is Okara (don't ask, was the name I randomly chose back in Vanill), seen on this list near the top for claiming the Blessed Qiraji Augur Staff <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_20.jpg" width= 25px height= 25px> for 286 GP.
+This is probably a good time to mention that the character I play is Okara (don't ask, was the name I randomly chose back in Vanilla and I felt I had to keep it in Classic), seen on this list near the top for claiming the Blessed Qiraji Augur Staff <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_20.jpg" width= 25px height= 25px> for 286 GP.
+
+Lets take this table view and make a plot of the top 20 items claimed, just to look at it visually instead:
+
+```{r}
+ggplotly(
+  t_actions %>%
+  filter(TransactionType == "GpFromGear") %>%
+  distinct(TransactionType, Memo, Value) %>%
+  slice_max(order_by = Value, n = 20) %>%
+  mutate(Memo = str_remove_all(Memo, "Claim")) %>%
+  ggplot(aes(x = fct_reorder(Memo, Value, .desc = TRUE), y = Value, text = paste(
+    "<br> Item:", Memo,
+    "<br> GP Amount:",Value))) +
+  geom_col(position = "dodge") +
+  theme(axis.text.x = element_text(angle = 45)) +
+    labs(
+    title = "Top Loot for GP",
+    x = NULL,
+    y = "GP Amount"
+  ), tooltip = "text"
+)
+```
+
+Right so nothing really jumps out at me here. The GP values are ever so slightly skewed to the right, indicating a smooth reduction in GP cost as the items get cheaper. One important note that any WoW player would catch onto, the top 20 list here are all weapons. In the EPGP system, weapons are normally the most sought after item and come with the highest GP values. 
 
 The next descriptive type of analysis I wanted to see was overall EP and GP accruals since July. Without getting too technical, I'm interested in finding out how the distribution of EP and GP looks across the guild and if there are any outliers I can detect.
 
@@ -163,13 +191,15 @@ ggplotly(
 )
 ```
 
-Okay so some thing to point out in this chart. First, in my code I filtered out the 'Decay' values because I wanted to look at overall EP and GP values since the decays are arbitrary to promote using the system. Second, we have *a lot* of guild members in the system and a number of 'alts', or secondary characters to one unique player, that accrue EPGP.  I removed a small amount of characters with very low EPGP values in my code (>10) but there are still clearly a lot of characters with EPGP values. Lastly, a reminder that these charts are interactive, you can zoom, pan, and compare data with your mouse and using the tooltips. 
+Okay so there are quite a few things to point out in this chart. First, in my code I filtered out the 'decay' values because I wanted to look at overall EP and GP values and the decay values are arbitrary to promote using the system. Second, we have *a lot* of guild members in the system and a number of 'alts', or secondary characters to a Discord users main character, that accrue EPGP.  I removed a portion of characters with very low EPGP values in my code (>10) but there are still clearly a lot of characters with EPGP values. Lastly, a reminder that these charts are interactive, you can zoom, pan, and compare data with your mouse and using the tooltips. 
 
-Now with that out of the way, a number of values strike me as intriguing. Baxterwar, one of our guild's main tanks, has earned one of the highest EPGP values in the guild but also spent the most GP in the guild (mostly on gear to benefit the guild because tanks are so crucial. Thanks Baxter!) on items like <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_39.jpg" width=25px height=25px>. Damshaman, one of our main character's alt, has claimed a lot of epic items from raids in a very short time so his EPGP  is one of the only negative values! Finally, the juxtaposition of Triqueta and HighPriority's EP and GP is incredibly unique among users. This equates to these two players having some of the highest PR in the guild.
+Now with that out of the way, a number of values strike me as intriguing. Baxterwar, one of our guild's main tanks, has earned one of the highest EPGP values in the guild but also spent the most GP in the guild (mostly on gear to benefit the guild because tanks are so crucial. Thanks, Baxter!) on items like Thunderfury <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_39.jpg" width=25px height=25px>. Damshaman, one of our main character's alt, has claimed a lot of epic items from raids in a very short time so his EPGP  is one of the only negative values I found! Finally, the juxtaposition of Triqueta and HighPriority's EP and GP is incredibly unique among players. This equates to these players having some of the highest PR in the guild!
 
 ## Decay
 
-Decay values were, at first, a bit tricky to think about. After talking with some guild members, I have a few ideas on how to look into EPGP decay. To be clear, decay is applied flat, at fixed intervals - 20% weekly - to discourage EP hoarding. My guess is that because decay is out of sight and out of mind after having been announced, it has not changed behavior very much. I think that might change after players see this:
+Decay values were, at first, a bit tricky to think about. After talking with some guild members, I have a few ideas on how to view EPGP decay now. My guess is that because decay is out of sight and out of mind after having been announced, it has not changed behavior very much. I think that might change after players see this.
+
+Note: decay is applied flat, at fixed intervals - 20% weekly - to discourage EP hoarding. 
 
 ```{r fig.width=10}
 ggplotly(
@@ -197,9 +227,11 @@ ggplotly(
 )
 ```
 
-Initially, I began looking at decay across the board and was not very interested with the findings. I quickly realized that raw decay values are nothing more than a representation of a players behavior and engagement in the game. Since it is a flat 20% decay, it mimics overall EPGP values and does not add much to the conversation. However, if we look at decay as a fraction or ratio of player behavior, it becomes much more interesting. 
+Initially, I began looking at decay across the board and was not very interested with the findings. I quickly realized that raw decay values are nothing more than a representation of a players behavior and engagement in the game. Since it is a flat 20% decay, it mimics overall EPGP values and does not add much to the conversation. However, if we look at decay as a ratio of player behavior metrics, it becomes much more interesting.
 
-For example, the first 10 or so players above have lost the 
+For example, the first 10 or so players in this chart have lost almost 100% of the EP they earned through raiding and guild contributions. Many of these players have since quit the guild or have not participated in weekly raids for a few months. As we move down the x-axis, we start coming across more veteran guild members who have obtained most of their 'best-in-slot' gear and no longer need loot but continue to raid to help others obtain loot.
+
+Note: These values do not include the commensurate GP decay which is applied at the same amount (20%) and interval (weekly). Therefore, these values do not provide a complete picture of a character's PR.
 
 ```{r fig.width=10}
 items_by_char <-t_actions %>% 
@@ -214,13 +246,13 @@ ggplotly(
   select(CharacterName, TransactionType, Type, Memo, Value) %>%
   group_by(CharacterName) %>% 
   mutate(Value = abs(Value)) %>%
-  summarise(EP_Decay = sum(Value[TransactionType %in% c("EpDecay")])) %>%
+  summarise(EP_Decay = sum(Value[TransactionType %in% "EpDecay"])) %>%
   left_join(items_by_char, by = "CharacterName") %>% 
   mutate(Ratio = round(EP_Decay/Items_Claimed_GP, 2)) %>% 
   filter(Ratio > 0) %>% 
   slice_max(order_by = Ratio, n = 50) %>%
   ggplot(aes(x = fct_reorder(CharacterName, Ratio, .desc = TRUE), y = (Ratio), text = paste(
-    CharacterName, "lost", Ratio, "EP per", Items_Claimed_GP, "item(s)"))) +
+    CharacterName, "lost", Ratio, "EP to decay per", Items_Claimed_GP, "item(s)"))) +
   geom_col(position = "dodge") +
   theme(axis.text.x = element_text(angle = 75)) +
     labs(
@@ -230,34 +262,8 @@ ggplotly(
   ), tooltip = "text"
 )
 ```
-## Loot Distribution
 
-Lets take this table view and make a plot of the top 20 items claimed, just to look at it visually instead:
-
-```{r}
-## to do:
-## bar chart month by month ep accrued and gp spent ??
-
-ggplotly(
-  t_actions %>%
-  filter(TransactionType == "GpFromGear") %>%
-  distinct(TransactionType, Memo, Value) %>%
-  slice_max(order_by = Value, n = 20) %>%
-  mutate(Memo = str_remove_all(Memo, "Claim")) %>%
-  ggplot(aes(x = fct_reorder(Memo, Value, .desc = TRUE), y = Value, text = paste(
-    "<br> Item:", Memo,
-    "<br> GP Amount:",Value))) +
-  geom_col(position = "dodge") +
-  theme(axis.text.x = element_text(angle = 45)) +
-    labs(
-    title = "Top Loot for GP",
-    x = NULL,
-    y = "GP Amount"
-  ), tooltip = "text"
-)
-```
-
-Right so nothing really jumps out at me here. The GP values are ever so slightly skewed to the right, indicating a smooth reduction in GP cost as the items get cheaper. One important note that any WoW player would catch onto, the top 20 list here are all weapons. In the EPGP system, weapons are normally the most sought after item and come with the highest GP values. 
+This chart really speaks to the impact of decay on EPGP. The ratio of EP decay / numbers of items claimed for GP gives you an idea of how the 20% decay impacts your EP values. Now to be clear, I'm not faulting anyone for 'hoarding' EP or not claiming items during raids. If a player has all the loot they need and they continue to raid, they are supporting the guild. However, holding a lot of EP and claiming less items seems to have a larger impact because of decay.
 
 ## Effort Points and Gear Points
 
@@ -288,13 +294,13 @@ ggplotly(
 )
 ```
 
-Well now, we're finally getting into some of the juicy details. The interactive chart above shows the top 20 characters for EpAutomated and EpManual EP types. Now before I go any further, for any of my fellow guild members reading this and feeling #exposed, just a reminder a benefit of EPGP is transparency, this data is available to anyone. Alright, now lets start throwing some shade :D
+Well now, we're finally getting into some of the juicy details. The chart above shows the top 20 characters for EpAutomated and EpManual EP types. Now before I go any further, for any of my fellow guild members reading this and feeling #exposed, just a reminder a benefit of EPGP is transparency, this data is available to anyone. Alright, now lets start throwing some shade :D
 
-Our guild's resident WoW celebrity, Kyx, or better known by her full name [SixPacKyx](https://twitter.com/sixpackyx), tops the list at #1 for most EP earned for attending guild raids (remember EpAutomated is awarded for attending raid events) since July. Gintama, aka the weapon hoarder, aka Mr Afk, ironically is in the top 20 for EP earned by raiding and also for EP earned by manual entry, meaning he contribute a lot of resources to the guild. In the prior EPGP Values chart, Gintama clearly had the most EP overall but we now see that a large portion of his EP was a result of guild contributions. The characters in the middle of the pack, from Baxterwar to Arkadus, were also an interesting find. These characters were in the top 20 for both EP earned by raiding and EP earned by donating resources.
+Our guild's resident WoW celebrity, Kyx, or better known by her full name [SixPacKyx](https://twitter.com/sixpackyx), tops the list at #1 for most EP earned for attending guild raids (remember EpAutomated is awarded for attending raid events) since July. Gintama, aka the weapon hoarder, aka Mr Afk, ironically is in the top 20 for EP earned by raiding and also for EP earned by manual entry, meaning he contributes a lot of resources to the guild. In the prior EPGP Values chart, Gintama clearly had the most EP overall but we now see that a large portion of his EP was a result of guild contributions. The characters in the middle of the pack, from Baxterwar to Arkadus, were also an interesting find. These characters were in the top 20 for both EP earned by raiding and EP earned by donating resources. The remaining 9 characters accrued more EP from contributions than the rest of the guild but did not earn as much EP for raiding.
 
 ## Rollin' for Loot <img src="https://www.homestructions.com/rolldice/images/DiceRoller.png" width= 25px height= 25px>
 
-Alright, the last data point I want to investigate is the EPGP [Roll] functions. The [Roll] function is considered a new feature of the bot and a new method of obtaining loot our guild leadership introduced recently. The reasoning goes like this: when Blizzard released "Phase 5" of Classic Wow - essentially a patch or release of new content" - epic items looted during raids that were less desirable became useful for the guild. Before Phase 5, we would give out gear which no players wanted to spend GP on by letting players "/roll" for the item. With the release of this phase, items rolled would now cost GP because, in this phase, epic items can be broken down ('disenchanted') into expensive and useful materials. This is probably not worth explaining in anymore length, but this resulting change in Phase 5 meant that we would essentially charge players GP based on the going rate of the material which the epic item disenchanted into. And in order to keep track of this for EPGP accounting, the [Claim] and [Roll] commands were created. (Since this command is new to Phase 5 content, all prior entries of an item should be considered as [Claim].)
+Alright, the last data point I want to investigate is the EPGP [Roll] function. The [Roll] function is considered a new feature of the bot and represents a change in how characters can obtain loot. The reasoning goes like this: when Blizzard released "Phase 5" content for Classic Wow - essentially a patch or release of new content" - epic items looted during raids which were less desirable to players became useful for the guild. Before Phase 5, we would give out gear which no players wanted to spend GP on by letting players "/roll" for the item. With the release of this Phase 5, items rolled on would now cost GP because, in this phase, epic items can be broken down ('disenchanted') into expensive and useful materials. This is probably not worth explaining in anymore length, but this resulting change meant that the guild would begin charge players GP based on the market rate of the material which the epic item disenchanted into. And in order to keep track of this for EPGP accounting, the [Claim] and [Roll] commands were created. (Since this command is new to Phase 5 content, all prior entries of an item will be considered as [Claim]s.)
 
 ```{r}
 ggplotly (
@@ -304,9 +310,11 @@ ggplotly (
   filter(TransactionType == "GpFromGear") %>% 
   summarise(Rolls = sum(Type == "Roll"),
             Items = n()) %>% 
+  mutate(roll_pop = scales::percent(round(Rolls/(Rolls+Items), 1))) %>% 
   ggplot() + 
   geom_col(aes(x = TransactionDate, y = Items, text = paste(Items, "items were claimed for GP on", TransactionDate))) +
-  geom_point(aes(x = TransactionDate, y = Rolls, text = paste(Rolls, "people won a rolled items on", TransactionDate))) + 
+  geom_point(aes(x = TransactionDate, y = Rolls, text = paste(Rolls, "items were rolled for GP on", TransactionDate,
+                                                              "<br>",roll_pop, "of loot went to rolls"))) + 
   geom_line(aes(x = TransactionDate, y = Rolls)) +
     labs(
     title =  " 'Roll' Popularity Over Time",
@@ -317,5 +325,11 @@ ggplotly (
   tooltip = "text"
 )
 ```
+
+Well it would appear that 'Rolls' have not drastically impacted our EPGP system and they haven't really changed much over time. I think as more items drop and as more players get geared, we may see loot going to rolls more often but we could also see more alts attending raids and claiming items for GP. It may work itself out. Either way, rolling for loot would seems to hold steady at around 20-30% of total drops per raid night.
+
+There is certainly more analysis I could do with this data, such as looking at DiscordUserID looting behaviors instead of individual characters, visualizing EPGP and PR over time, and there might even be enough statistical power in this data to run some regressions. For now, I'm going to stop and move on to a Tableau Public Dashboard that will facilitate more interaction and visualizations of our guild's EPGP data. Maybe by the time Phase 6 is released and there are a few more months of data, I can return and run these charts again to see any changes.
+
+## Tableau Public Dashboard
 
 
