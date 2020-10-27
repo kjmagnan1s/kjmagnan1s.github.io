@@ -10,7 +10,7 @@ Having recently started blogging, I realized during my two part YMH blog post th
 
 Now before the the nerd alarms start going off ...
 
-<img src="~/GitHub/kjmagnan1s.github.io/images/southpark_wow.jpg" width=30% height=30%/><img src="~/GitHub/kjmagnan1s.github.io/images/blizcon_nerd_wow_cosplay.jpg" width=27% height=27%/>
+<center><img src="~/GitHub/kjmagnan1s.github.io/images/southpark_wow.jpg" width=30% height=30%/><img src="~/GitHub/kjmagnan1s.github.io/images/blizcon_nerd_wow_cosplay.jpg" width=27% height=27%/></center>
 
 ... World of Warcraft Classic ('Classic WoW') is Blizzard Entertainment's recreation of the 2004 critically acclaimed and world's most popular MMORPG game, commonly referred to as World of Warcraft Vanilla. [ ^1^ ](https://en.wikipedia.org/wiki/World_of_Warcraft) Part of the allure and success of Classic WoW can be directly attributed to its emphasis of social gameplay. In order to complete end-game level content, players must assemble and coordinate massive 25 to 40 person groups through large dungeons or zones, called Raids, within the game, overcoming game mechanics, group role requirements/duties, and leadership challenges all with the reward of powerful end-game items, referred to as "loot". In order to be able to coordinate with 40 other people, in-game organizations, called Guilds, were created for players to socialize and more easily organize towards end-game objectives. 
 
@@ -54,8 +54,8 @@ IV =
 + The EPGP bot has gone through multiple iterations, with new changes and features added over time. This may result in slight inconsistencies across the data, though, the core elements of the bot have remained constant.
 
 + The EPGP bot has multiple data exporting capabilities. The goal of this blog post is to explore the EPGP data and learn some insights about Buzz.
-
-# Setup and data work
+<br>
+## Setup and data work
 
 There isn't much work to do here, the EPGP bot's data is fairly clean outside of a chunk of rows that do not have the correct date assigned to their entries. 
 
@@ -90,7 +90,7 @@ write.csv(t_actions, file = "~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transa
 
 glimpse(t_actions)
 ```
-After chatting with the bot author, he made a new export function for me to get a richer dataset than the ones he programmed for the bot to export ('epgp' and 'loot' commented out above). So now we have 8 columns and just over 16,000 rows data. I'll offer some additional context and data explanation below:
+After chatting with our Buzz bot developer, he made a new export function for me to get a much more robust dataset than the ones he programmed for the bot to export ('epgp' and 'loot' commented out above). With that new export, we have 8 columns and just over 16,000 rows of data. Let's explain the variables and data below:
 
 + DiscordUserID is the ID associated with a user. Because players can play more than one 'character', the bot tracks each of those characters EPGP separately but Discord still tracks unique user ID's. This variable will allow us to track user activity across all their characters.
 
@@ -110,6 +110,14 @@ After chatting with the bot author, he made a new export function for me to get 
   
   - GpManual: Usually for EP adjustments/corrections
   
++ Value is the amount of EP or GP for the transaction
+
++ Memo is a short detailed description of the transaction type. Majority of these are automated but manual corrections would be entered here as well
+
++ TransactionDateTime and TransactionDate (added my me) are the dates and times of the entries
+
++ Type (added by me) is arbitrary and used for one of the charts. I'll explain more later. 
+  
 With the data cleaning and explanations out of the way, lets explore the EPGP data with some descriptive analyses in {r} before moving into an interactive Tableau Public dashboard.
 
 ## Descriptives
@@ -122,7 +130,7 @@ t_actions %>%
   group_by(CharacterName, Memo, TransactionDate) %>%
   summarise(Value) %>%
   filter(Value > 15) %>%                              ## avoids any of the Rolls, we'll cover those later
-  reactable(defaultSorted = list("Value" = "desc"))
+  reactable(defaultSorted = list("Value" = "desc"))   ## interactive table
 ```
 
 Some interesting findings in this table. I was really looking to see which character/player claimed the highest GP valued loot. Turns out it was a tie at 301 GP to Phanon for Ashkandi <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_50.jpg" width= 25px height= 25px> and Banesoul for Staff of the Shadow Flame <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_06.jpg" width= 25px height= 25px> which ironically both drop from the boss Nefarian in Blackwing Lair (BWL). I also found it interesting most of the items claimed at the top of the list occurred very recently, within the past 2 months even though the top 2 items for GP were claimed from BWL which we have been raiding for months.
@@ -141,13 +149,13 @@ ggplotly(
             GP = sum(Value[TransactionType %in% c("GpFromGear", "GpManual")])) %>%
   gather(EPGP, Value, -CharacterName) %>% 
   filter(Value > 10) %>%
-  #slice_max(order_by = Value, n = 20) %>%
+  slice_max(order_by = Value, n = 100) %>%
   ggplot(aes(x = fct_reorder(CharacterName, Value, .desc = TRUE), y = Value, fill = EPGP, text = paste(
     CharacterName, "has accrued", Value, EPGP, "points"))) +
   geom_col(position = "dodge") +
   theme(axis.text.x = element_text(angle = 75)) +
     labs(
-    title = "EPGP Values",
+    title = "Top 100 EPGP Values",
     x = "Character",
     y = "EPGP Amount"
   )
@@ -159,30 +167,69 @@ Okay so some thing to point out in this chart. First, in my code I filtered out 
 
 Now with that out of the way, a number of values strike me as intriguing. Baxterwar, one of our guild's main tanks, has earned one of the highest EPGP values in the guild but also spent the most GP in the guild (mostly on gear to benefit the guild because tanks are so crucial. Thanks Baxter!) on items like <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_39.jpg" width=25px height=25px>. Damshaman, one of our main character's alt, has claimed a lot of epic items from raids in a very short time so his EPGP  is one of the only negative values! Finally, the juxtaposition of Triqueta and HighPriority's EP and GP is incredibly unique among users. This equates to these two players having some of the highest PR in the guild.
 
+## Decay
+
+Decay values were, at first, a bit tricky to think about. After talking with some guild members, I have a few ideas on how to look into EPGP decay. To be clear, decay is applied flat, at fixed intervals - 20% weekly - to discourage EP hoarding. My guess is that because decay is out of sight and out of mind after having been announced, it has not changed behavior very much. I think that might change after players see this:
+
 ```{r fig.width=10}
+ggplotly(
+  t_actions %>% 
+  select(CharacterName, TransactionType, Type, Memo, Value, TransactionDate) %>%
+  group_by(CharacterName) %>% 
+  mutate(Value = abs(Value)) %>%
+  summarise(Max_Raid_Date = max(TransactionDate[TransactionType %in% "EpAutomated"]),
+            EP_Decay = sum(Value[TransactionType %in% c("EpDecay")]),
+            EP_Value = sum(Value[TransactionType %in% c("EpAutomated", "EpManual")])) %>%
+  mutate(Ratio = (EP_Decay/EP_Value)) %>% 
+  filter(Ratio > 0) %>% 
+  slice_max(order_by = Ratio, n = 75) %>%
+  ggplot(aes(x = fct_reorder(CharacterName, Ratio, .desc = TRUE), y = (Ratio), text = paste(
+    CharacterName, "has lost", EP_Decay, "EP to Decay. Put differently,", scales::percent(Ratio, accuracy = 0.1), "of their EP has Decayed",
+    "<br>Their last raid date was:", Max_Raid_Date))) +
+  geom_col(position = "dodge") +
+  theme(axis.text.x = element_text(angle = 75)) +
+    labs(
+    title = "Top 50 Decay Values as a % of EP Earned",
+    x = "Character",
+    y = "EP Decay/EP Earned"
+  ) + scale_y_continuous(labels = scales::percent),
+  tooltip = "text"
+)
+```
+
+Initially, I began looking at decay across the board and was not very interested with the findings. I quickly realized that raw decay values are nothing more than a representation of a players behavior and engagement in the game. Since it is a flat 20% decay, it mimics overall EPGP values and does not add much to the conversation. However, if we look at decay as a fraction or ratio of player behavior, it becomes much more interesting. 
+
+For example, the first 10 or so players above have lost the 
+
+```{r fig.width=10}
+items_by_char <-t_actions %>% 
+  select(CharacterName, TransactionType, Value) %>%
+  filter(TransactionType == "GpFromGear") %>% 
+  count(CharacterName, name = "Items_Claimed_GP", sort=TRUE)
+
+reactable(items_by_char)
+
 ggplotly(
   t_actions %>% 
   select(CharacterName, TransactionType, Type, Memo, Value) %>%
   group_by(CharacterName) %>% 
-  filter(Memo == "20% decay") %>%
   mutate(Value = abs(Value)) %>%
-  summarise(EP_Decay = sum(Value[TransactionType %in% c("EpDecay")]),
-            GP_Decay = sum(Value[TransactionType %in% c("GpDecay")])) %>%
-  gather(Decay, Value, -CharacterName) %>% 
-  #slice_max(order_by = Value, n = 20) %>%
-  ggplot(aes(x = fct_reorder(CharacterName, Value, .desc = TRUE), y = Value, fill = Decay, text = paste(
-    CharacterName, "has accrued", Value, "GP Decay"))) +
+  summarise(EP_Decay = sum(Value[TransactionType %in% c("EpDecay")])) %>%
+  left_join(items_by_char, by = "CharacterName") %>% 
+  mutate(Ratio = round(EP_Decay/Items_Claimed_GP, 2)) %>% 
+  filter(Ratio > 0) %>% 
+  slice_max(order_by = Ratio, n = 50) %>%
+  ggplot(aes(x = fct_reorder(CharacterName, Ratio, .desc = TRUE), y = (Ratio), text = paste(
+    CharacterName, "lost", Ratio, "EP per", Items_Claimed_GP, "item(s)"))) +
   geom_col(position = "dodge") +
   theme(axis.text.x = element_text(angle = 75)) +
     labs(
-    title = "Decay Values",
+    title = "EP Decay per Item Claimed for GP",
     x = "Character",
-    y = "Decay Amount"
+    y = "EP Decay/Items Claimed"
   ), tooltip = "text"
 )
-## ggplot decay values across users
 ```
-
 ## Loot Distribution
 
 Lets take this table view and make a plot of the top 20 items claimed, just to look at it visually instead:
@@ -258,7 +305,7 @@ ggplotly (
   summarise(Rolls = sum(Type == "Roll"),
             Items = n()) %>% 
   ggplot() + 
-  geom_col(aes(x = TransactionDate, y = Items, text = paste(Items, "items were claimed", TransactionDate))) +
+  geom_col(aes(x = TransactionDate, y = Items, text = paste(Items, "items were claimed for GP on", TransactionDate))) +
   geom_point(aes(x = TransactionDate, y = Rolls, text = paste(Rolls, "people won a rolled items on", TransactionDate))) + 
   geom_line(aes(x = TransactionDate, y = Rolls)) +
     labs(
