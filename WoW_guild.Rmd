@@ -59,7 +59,11 @@ IV =
 
 There isn't much work to do here, the EPGP bot's data is fairly clean outside of a chunk of rows that do not have the correct date assigned to their entries. 
 
-```{r warning = FALSE, message=FALSE}
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{r}
 pacman::p_load(            ## load libraries at once, this package is a game changer
                tidyverse,
                lubridate, 
@@ -70,17 +74,16 @@ pacman::p_load(            ## load libraries at once, this package is a game cha
 
 ## epgp <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_epgp_10.16.20.csv")
 ## loot <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_loot_10.16.20.csv")
+
 t_actions <- vroom("~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_10.21.20.csv") %>% 
-  mutate(TransactionDate = as.Date(TransactionDateTime, format = '%m/%d/%Y')) %>% ## removing time stamps from date variable
-  mutate(TransactionDate = replace(TransactionDate, TransactionDate == "0001-01-01", "2020-08-01")) %>% ## reassigned all incorrectly entered dates to August 1st, it was around this time when these records were assigned this date incorrectly and it was resolved.
+  ## removing time stamps from date variable
+  mutate(TransactionDate = as.Date(TransactionDateTime, format = '%m/%d/%Y')) %>% 
+  ## reassigned all incorrectly entered dates to August 1st, it was around this time when these records were assigned this date incorrectly and it was resolved.
+  mutate(TransactionDate = replace(TransactionDate, TransactionDate == "0001-01-01", "2020-08-01")) %>% 
   mutate(Memo = str_remove_all(Memo, c("\\]|\\["))) %>%
   mutate(Type = ifelse(grepl("Roll", Memo), "Roll", "Claim")) %>%
-  # mutate(Type = if (grepl("Roll", Memo)) {
-  #     "Roll"
-  #   } else {
-  #     "Claim"}
-  # ) %>%
-  mutate(Memo = str_remove_all(Memo, c("Claim|Roll")))
+  mutate(Memo = str_remove_all(Memo, c("Claim|Roll"))) %>% 
+  mutate(Memo = tolower(Memo))
   
   
 write.csv(t_actions, file = "~/GitHub/kjmagnan1s.github.io/blog_data/buzz_transactions_clean_10.21.20.csv")
@@ -109,20 +112,76 @@ After chatting with the bot author, he made a new export function for me to get 
   
 With the data cleaning and explanations out of the way, lets explore the EPGP data with some descriptive analyses in {r} before moving into an interactive Tableau Public dashboard.
 
-# Descriptives
+## Descriptives
+
+Starting with something simple, I wanted to see the most expensive items for GP that were claimed since the start of our new bot:
 
 ```{r warning = FALSE, message=FALSE}
 t_actions %>% 
   filter(TransactionType == "GpFromGear") %>%
   group_by(CharacterName, Memo, TransactionDate) %>%
   summarise(Value) %>%
-  filter(Value > 15) %>%                              ## avoids any of the [Rolls], we'll cover those later
+  filter(Value > 15) %>%                              ## avoids any of the Rolls, we'll cover those later
   reactable(defaultSorted = list("Value" = "desc"))
 ```
 
 Some interesting findings in this table. I was really looking to see which character/player claimed the highest GP valued loot. Turns out it was a tie at 301 GP to Phanon for Ashkandi <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_50.jpg" width= 25px height= 25px> and Banesoul for Staff of the Shadow Flame <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_06.jpg" width= 25px height= 25px> which ironically both drop from the boss Nefarian in Blackwing Lair (BWL). I also found it interesting most of the items claimed at the top of the list occurred very recently, within the past 2 months even though the top 2 items for GP were claimed from BWL which we have been raiding for months.
 
 This is probably a good time to mention that the character I play is Okara (don't ask, was the name I randomly chose back in Vanill), seen on this list near the top for claiming the Blessed Qiraji Augur Staff <img src="https://wow.zamimg.com/images/wow/icons/large/inv_staff_20.jpg" width= 25px height= 25px> for 286 GP.
+
+The next descriptive type of analysis I wanted to see was overall EP and GP accruals since July. Without getting too technical, I'm interested in finding out how the distribution of EP and GP looks across the guild and if there are any outliers I can detect.
+
+```{r fig.width=10}
+ggplotly(
+  t_actions %>%
+  select(CharacterName, TransactionType, Type, Memo, Value) %>%
+  filter(!(Memo == "20% decay")) %>%
+  group_by(CharacterName) %>% 
+  summarise(EP = sum(Value[TransactionType %in% c("EpAutomated", "EpManual")]),
+            GP = sum(Value[TransactionType %in% c("GpFromGear", "GpManual")])) %>%
+  gather(EPGP, Value, -CharacterName) %>% 
+  filter(Value > 10) %>%
+  ggplot(aes(x = fct_reorder(CharacterName, Value, .desc = TRUE), y = Value, fill = EPGP, text = paste(
+    CharacterName, "has accrued", Value, EPGP, "points"))) +
+  geom_col(position = "dodge") +
+  theme(axis.text.x = element_text(angle = 75)) +
+    labs(
+    title = "EPGP Values",
+    x = "Character",
+    y = "EPGP Amount"
+  )
+  ,tooltip = "text"
+)
+```
+
+Okay so some thing to point out in this chart. First, in my code I filtered out the 'Decay' values because I wanted to look at overall EP and GP values since the decays are arbitrary to promote using the system. Second, we have *a lot* of guild members in the system and a number of 'alts', or secondary characters to one unique player, that accrue EPGP.  I removed a small amount of characters with very low EPGP values in my code (>10) but there are still clearly a lot of characters with EPGP values. Lastly, a reminder that these charts are interactive, you can zoom, pan, and compare data with your mouse and using the tooltips. 
+
+Now with that out of the way, a number of values strike me as intriguing. Baxterwar, one of our guild's main tanks, has earned one of the highest EPGP values in the guild but also spent the most GP in the guild (mostly on gear to benefit the guild because tanks are so crucial. Thanks Baxter!) on items like <img src="https://wow.zamimg.com/images/wow/icons/large/inv_sword_39.jpg" width=25px height=25px>. Damshaman, one of our main character's alt, has claimed a lot of epic items from raids in a very short time so his EPGP  is one of the only negative values! Finally, the juxtaposition of Triqueta and HighPriority's EP and GP is incredibly unique among users. This equates to these two players having some of the highest PR in the guild.
+
+```{r fig.width=10}
+ggplotly(
+  t_actions %>% 
+  select(CharacterName, TransactionType, Type, Memo, Value) %>%
+  group_by(CharacterName) %>% 
+  filter(Memo == "20% decay") %>%
+  mutate(Value = abs(Value)) %>%
+  summarise(EP_Decay = sum(Value[TransactionType %in% c("EpDecay")]),
+            GP_Decay = sum(Value[TransactionType %in% c("GpDecay")])) %>%
+  gather(Decay, Value, -CharacterName) %>% 
+  ggplot(aes(x = fct_reorder(CharacterName, Value, .desc = TRUE), y = Value, fill = Decay, text = paste(
+    CharacterName, "has accrued", Value, "GP Decay"))) +
+  geom_col(position = "dodge") +
+  theme(axis.text.x = element_text(angle = 75)) +
+    labs(
+    title = "Decay Values",
+    x = "Character",
+    y = "Decay Amount"
+  ), tooltip = "text"
+)
+## ggplot decay values across users
+```
+
+## Loot Distribution
 
 Lets take this table view and make a plot of the top 20 items claimed, just to look at it visually instead:
 
@@ -139,20 +198,21 @@ ggplotly(
   ggplot(aes(x = fct_reorder(Memo, Value, .desc = TRUE), y = Value, text = paste(
     "<br> Item:", Memo,
     "<br> GP Amount:",Value))) +
-  geom_col() +
+  geom_col(position = "dodge") +
   theme(axis.text.x = element_text(angle = 45)) +
     labs(
     title = "Top Loot for GP",
     x = NULL,
     y = "GP Amount"
   ), tooltip = "text"
-  #layout(yaxis = list(categoryyorder = "category descending"))
 )
 ```
 
-Right so nothing really jumps out at me here. The GP values are ever so slightly skewed to the right, indicating a smooth reduction in GP cost. One important note that any WoW player would catch onto, the top 20 list here are all weapons. In the EPGP system, weapons are normally the most sought after item and come with the highest GP values. 
+Right so nothing really jumps out at me here. The GP values are ever so slightly skewed to the right, indicating a smooth reduction in GP cost as the items get cheaper. One important note that any WoW player would catch onto, the top 20 list here are all weapons. In the EPGP system, weapons are normally the most sought after item and come with the highest GP values. 
 
-Thus far, we've briefly discussed EPGP as a loot distribution system. In order to gain EP, a player needs to either attend guild events or contribute in-game materials to the guild. These in-game materials require a player to spend time gathering the item or spend gold to buy the item and donate it to the guild. We've looked at some ways players spend GP, so let's look at some of the ways players gain EP.
+## Effort Points and Gear Points
+
+Up to this point, we've briefly discussed EPGP as a loot distribution system. In order to gain EP, a player needs to either attend guild events or contribute in-game materials to the guild. These in-game materials require a player to spend time gathering the item or spend gold to buy the item and donate it to the guild. We've looked at overall EP and GP values and some ways players spend GP, so let's break down some of the ways players gain EP:
 
 ```{r}
 ggplotly(
@@ -161,7 +221,6 @@ ggplotly(
   select(CharacterName, Value, TransactionType) %>%
   group_by(CharacterName, TransactionType) %>%
   summarise(Value = sum(Value)) %>%
-  ungroup() %>%
   group_by(TransactionType) %>%
   slice_max(order_by = Value, 
             n = 20,
@@ -182,27 +241,32 @@ ggplotly(
 
 Well now, we're finally getting into some of the juicy details. The interactive chart above shows the top 20 characters for EpAutomated and EpManual EP types. Now before I go any further, for any of my fellow guild members reading this and feeling #exposed, just a reminder a benefit of EPGP is transparency, this data is available to anyone. Alright, now lets start throwing some shade :D
 
-Our guild's resident WoW celebrity, Kyx, or better known by her full name [SixPacKyx](https://twitter.com/sixpackyx), tops the list at #1 for most EP earned for attending guild raids (remember EpAutomated is awarded for attending raid events) since July. Gintama, aka the weapon hoarder, aka Mr Afk, ironically is in the top 20 for EP earned by raiding and also for EP earned by manual entry, meaning he contribute a lot of resources to the guild. The characters in the middle of the pack, from Baxterwar to Arkadus, were also an interesting find. These characters were in the top 20 for both EP earned by raiding and EP earned by donating resources.
+Our guild's resident WoW celebrity, Kyx, or better known by her full name [SixPacKyx](https://twitter.com/sixpackyx), tops the list at #1 for most EP earned for attending guild raids (remember EpAutomated is awarded for attending raid events) since July. Gintama, aka the weapon hoarder, aka Mr Afk, ironically is in the top 20 for EP earned by raiding and also for EP earned by manual entry, meaning he contribute a lot of resources to the guild. In the prior EPGP Values chart, Gintama clearly had the most EP overall but we now see that a large portion of his EP was a result of guild contributions. The characters in the middle of the pack, from Baxterwar to Arkadus, were also an interesting find. These characters were in the top 20 for both EP earned by raiding and EP earned by donating resources.
 
-Alright, the last data point I want to investigate are the EPGP [Claim] and, specifically, [Roll] functions. The [Roll] function is a generally new feature of the bot and a new practice our guild leadership introduced. The premise is simple, when Blizzard released "Phase 5" of Classic Wow - essentially a patch or release of new content" - epic items looted during raids that were less desirable became useful for the guild. Before Phase 5, we would give out gear which no players wanted to spend GP on by letting players "/roll" for the item. With the release of this phase, items rolled would now cost GP because, in this phase, epic items can be disenchanted into expensive and useful materials. This is probably not worth explaining in anymore length, but this resulting change in Phase 5 meant that we would essentially charge players GP based on the going rate of the material the epic item disenchanted into. And in order to keep track of this for EPGP accounting, the [Claim] and [Roll] commands were created. (Since this command is new to Phase 5 content, all prior entries of an item should be considered a [Claim].)
+## Rollin' for Loot <img src="https://www.homestructions.com/rolldice/images/DiceRoller.png" width= 25px height= 25px>
+
+Alright, the last data point I want to investigate is the EPGP [Roll] functions. The [Roll] function is considered a new feature of the bot and a new method of obtaining loot our guild leadership introduced recently. The reasoning goes like this: when Blizzard released "Phase 5" of Classic Wow - essentially a patch or release of new content" - epic items looted during raids that were less desirable became useful for the guild. Before Phase 5, we would give out gear which no players wanted to spend GP on by letting players "/roll" for the item. With the release of this phase, items rolled would now cost GP because, in this phase, epic items can be broken down ('disenchanted') into expensive and useful materials. This is probably not worth explaining in anymore length, but this resulting change in Phase 5 meant that we would essentially charge players GP based on the going rate of the material which the epic item disenchanted into. And in order to keep track of this for EPGP accounting, the [Claim] and [Roll] commands were created. (Since this command is new to Phase 5 content, all prior entries of an item should be considered as [Claim].)
 
 ```{r}
 ggplotly (
   t_actions %>%
+  select(TransactionDate, TransactionType, Type, Memo) %>%
   group_by(TransactionDate) %>%
-  filter(Type == "Roll") %>%
-  count(Type) %>% 
-  ggplot(aes(x = TransactionDate, y = n)) + 
-  geom_point() + 
-  geom_line() +
+  filter(TransactionType == "GpFromGear") %>% 
+  summarise(Rolls = sum(Type == "Roll"),
+            Items = n()) %>% 
+  ggplot() + 
+  geom_col(aes(x = TransactionDate, y = Items, text = paste(Items, "items were claimed", TransactionDate))) +
+  geom_point(aes(x = TransactionDate, y = Rolls, text = paste(Rolls, "people won a rolled items on", TransactionDate))) + 
+  geom_line(aes(x = TransactionDate, y = Rolls)) +
     labs(
     title =  " 'Roll' Popularity Over Time",
-    x = NULL,
-    y = "Count"
+    x = "Raid Date",
+    y = "Number of Items Dropped"
     ) + 
-  scale_x_date(breaks = scales::pretty_breaks(21))
+  scale_x_date(breaks = scales::pretty_breaks(15)),
+  tooltip = "text"
 )
-
-## Show items per drop by date as a bar chart behind the line? Helps give context to the number of rolls.
-
 ```
+
+
