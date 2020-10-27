@@ -141,6 +141,7 @@ ggplotly(
             GP = sum(Value[TransactionType %in% c("GpFromGear", "GpManual")])) %>%
   gather(EPGP, Value, -CharacterName) %>% 
   filter(Value > 10) %>%
+  #slice_max(order_by = Value, n = 20) %>%
   ggplot(aes(x = fct_reorder(CharacterName, Value, .desc = TRUE), y = Value, fill = EPGP, text = paste(
     CharacterName, "has accrued", Value, EPGP, "points"))) +
   geom_col(position = "dodge") +
@@ -168,6 +169,7 @@ ggplotly(
   summarise(EP_Decay = sum(Value[TransactionType %in% c("EpDecay")]),
             GP_Decay = sum(Value[TransactionType %in% c("GpDecay")])) %>%
   gather(Decay, Value, -CharacterName) %>% 
+  #slice_max(order_by = Value, n = 20) %>%
   ggplot(aes(x = fct_reorder(CharacterName, Value, .desc = TRUE), y = Value, fill = Decay, text = paste(
     CharacterName, "has accrued", Value, "GP Decay"))) +
   geom_col(position = "dodge") +
