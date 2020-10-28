@@ -54,6 +54,12 @@ Committed to achieving a data-driven society
 
 <h2> Current Projects: </h2>
 
+<font size='+1'>[World of Warcraft Buzz Analysis](WoW_guild.html)
+
+<img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/wow_img.png" 
+  width=10% height=10%/>
+
+
 <font size='+1'>[Your Mom's House Analysis, Part II - Text Analysis](YMH2.html)
 
 

@@ -14,6 +14,13 @@ output:
 
 <br>
 
+<font size='+1'>[World of Warcraft Buzz Analysis](WoW_guild.html)</font>\
+<font size='-2'>October 28, 2020</font>
+
+The World of Warcraft Classic guild I play with recently deployed their own bot to track game data. Figured what better opportunity to continue expanding my R skills and also working in a Tableau Dashboard Infographic!
+
+</br>
+
 <font size='+1'>[Your Mom's House Analysis, Part 2](YMH2.html)</font>\
 <font size='-2'>October 16, 2020</font>
 
