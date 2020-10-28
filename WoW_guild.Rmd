@@ -1,14 +1,14 @@
 ---
 title: "WoW Buzz Analysis"
 #author: "Kevin Magnan"
-#date: "10/27/2020"
+#date: "10/28/2020"
 output: html_document
 ---
-Published on October 27th, 2020
+Published on October 28th, 2020
 
-Having recently started blogging, I realized during my two part YMH post that writing and analysis become much easier when they are topics I enjoy (surprise, surprise right?!). Even more, learning and refining my analytical skills is quite entertaining when it's topics I invest my time and energy. With that in mind, I thought what better data to work with next than World of Warcraft Classic. This is a game I spent much of my childhood playing and I have many, many fond memories of this game. As you can imagine, when Blizzard Entertainment announced Classic Wow, the nostalgic teenager in me could not resist.
+Having recently started blogging, I realized during my two part YMH post that writing and analysis become much easier when they are topics I enjoy (surprise, surprise right?!). Even more, learning and refining my analytical skills is quite entertaining when it's topics that I find entertaining. With that in mind, I thought what better data to work with next than World of Warcraft Classic. This is a game I spent much of my childhood playing and I have many, many fond memories of this game. As you can imagine, when Blizzard Entertainment announced Classic Wow, the nostalgic teenager in me could not resist.
 
-Now before the the nerd alarms start going off ...
+Now before the the nerd alarms start going off, let me explain...
 
 <center><img src="~/GitHub/kjmagnan1s.github.io/images/southpark_wow.jpg" width=30% height=30%/><img src="~/GitHub/kjmagnan1s.github.io/images/blizcon_nerd_wow_cosplay.jpg" width=27% height=27%/></center>
 
@@ -18,11 +18,11 @@ Now before the the nerd alarms start going off ...
 
 Even though a lot of things have changed since 2004, the need to find and join a good guild is as important as ever. What I found after joining my guild, Buzz, is that the playerbase of classic WoW is essentially the same as 2004, but 15 years older. Thus, most guilds are comprised of mid-career professionals with children, lifestyles, and far more life experiences who played WoW back in 2004.
 
-This post will explore these differences through data. This story begins a few months ago when our guild began running into some issues with guild management and loot distribution. See, loot in Classic WoW is extremely sought-after, so much so that there are countless stories of guilds completely disbanding over arguments about loot - a 'Google' search of "WoW loot drama" returns 1.9 million results. This led to guilds instituting loot rules or loot systems, such as DKP (Dragon Kill Points), Loot Council, or EPGP (Effort Points/Gear Points). Our guild, for example, decided early on in its formation that EPGP would be our method of loot distribution (I'll cover the elements of EPGP later in this post). When we began end-game content, we utilized a free-to-use EPGP Discord bot. But as of late, this bot has become unreliable and not easily customizable. It was at this point that one of our members skilled in C# coding decided to write a bot personalized to meet Buzz's needs. 
+This story of this idea begins a few months ago when our guild began running into some issues with guild management and loot distribution. See, loot in Classic WoW is extremely sought-after, so much so that there are countless stories of guilds completely disbanding over arguments about loot - a 'Google' search of "WoW loot drama" returns 1.9 million results. This led to guilds instituting loot rules or loot systems, such as DKP (Dragon Kill Points), Loot Council, or EPGP (Effort Points/Gear Points). Our guild, for example, decided early on in its formation that EPGP would be our method of loot distribution (I'll cover the elements of EPGP later in this post). When we began end-game content, we utilized a free-to-use EPGP Discord bot. But as of late, this bot has become unreliable and not easily customizable. It was at this point that one of our members skilled in C# coding decided to write a bot personalized to meet Buzz's needs.  
 
-Now that a few months have elapsed since we deployed our own custom bot, I decided this was a great time to utilize a completely tracked EPGP loot system using R and Tableau. My hope is that by keeping this updated, our guild will be able to spend some time learning about how useful this bot one of our members created but also learn a little more about our guild and our data.
+Now that a few months have elapsed since we deployed our own custom bot, I decided this was a great time to utilize a completely tracked EPGP loot system using R and Tableau. My hope is that by looking into this data, some of our guild members will spend time learning about how useful our bot is but also learn a little more about our guild and loot behavior.
 
-Before we proceed, there are probably a few key terms and gaming concepts I should mention:
+Before we proceed, there are probably a few key terms and gaming concepts I should mention for anyone new to this universe:
 
 + Raid zones in Classic WoW allow for up to either 25 players or up to 40 players, depending on the raid. Raids are the main source of EPGP and loot in Classic WoW
 
@@ -331,5 +331,8 @@ Well it would appear that 'Rolls' have not drastically impacted our EPGP system 
 There is certainly more analysis I could do with this data, such as looking at DiscordUserID looting behaviors instead of individual characters, visualizing EPGP and PR over time, and there might even be enough statistical power in this data to run some regressions. For now, I'm going to stop and move on to a Tableau Public Dashboard that will facilitate more interaction and visualizations of our guild's EPGP data. Maybe by the time Phase 6 is released and there are a few more months of data, I can return and run these charts again to see any changes.
 
 ## Tableau Public Dashboard
+
+<center><img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/buzzinfographic.png"
+width= 100% height= 100%/></center>
 
 
