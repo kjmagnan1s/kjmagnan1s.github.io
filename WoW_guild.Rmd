@@ -14,7 +14,7 @@ Now before the the nerd alarms start going off, let me explain...
 
 <br>
 
-... World of Warcraft Classic ('Classic WoW') is Blizzard Entertainment's recreation of the 2004 critically acclaimed and world's most popular MMORPG game, commonly referred to as World of Warcraft Vanilla. [ ^1^ ](https://en.wikipedia.org/wiki/World_of_Warcraft) Part of the allure and success of Classic WoW can be directly attributed to its emphasis of social gameplay. In order to complete end-game content, players must assemble and coordinate massive 25 to 40 person groups through large dungeons or zones, called Raids, within the game, overcoming game mechanics, role requirements and duties, and leadership challenges, all with the reward of powerful end-game epic items, referred to as "loot". In order to be able to coordinate with 40 other people, in-game organizations, called Guilds, were created for players to socialize and more easily organize towards end-game objectives. 
+... World of Warcraft Classic ('Classic WoW') is Blizzard Entertainment's recreation of the 2004 critically acclaimed and world's most popular MMORPG game, commonly referred to as World of Warcraft Vanilla[ ^1^ ](https://en.wikipedia.org/wiki/World_of_Warcraft). Part of the allure and success of Classic WoW can be directly attributed to its emphasis of social gameplay. In order to complete end-game content, players must assemble and coordinate massive 25 to 40 person groups through large dungeons or zones, called Raids, within the game, overcoming game mechanics, role requirements and duties, and leadership challenges, all with the reward of powerful end-game epic items, referred to as "loot". In order to be able to coordinate with 40 other people, in-game organizations, called Guilds, were created for players to socialize and more easily organize towards end-game objectives. 
 
 Even though a lot of things have changed since 2004, the need to find and join a good guild is as important as ever. What I found after joining my guild, Buzz, is that the playerbase of classic WoW is essentially the same as 2004, but 15 years older. Thus, most guilds are comprised of mid-career professionals with children, lifestyles, and far more life experiences who played WoW back in 2004.
 
@@ -26,7 +26,7 @@ Before we proceed, there are probably a few key terms and gaming concepts I shou
 
 + Raid zones in Classic WoW allow for up to either 25 players or up to 40 players, depending on the raid. Raids are the main source of EPGP and loot in Classic WoW
 
-+ EPGP is an accounting and tracking system for loot distribution. Participation in raids and other shared guild objectives accrue Effort Points (EP). Acquiring loot or in-game items increases Gear Points (GP). The ratio of Effort Points to Gear Points determine members priority (PR) for loot. The highest players PR determines who receives the loot:
++ EPGP is an accounting and tracking system for loot distribution. Participation in raids and other shared guild objectives accrue Effort Points (EP). Acquiring loot or in-game items increases Gear Points (GP). The ratio of Effort Points to Gear Points determine members priority (PR) for loot. The highest players PR determines who receives the loot: ^2^
 
 <center>$PR = \frac{EP}{GP}$</center>
 <br>
@@ -35,7 +35,7 @@ Before we proceed, there are probably a few key terms and gaming concepts I shou
 
 + Effort Points, or EP, are pre-determined amounts for Raid participation. For guild objectives and items, average market in-game cost for these items is converted in EP.
 
-+ Gear Points, or GP, are pre-determined amounts for every item in Classic WoW, primarily based on the items attributes. [ ^2^ ](http://www.epgpweb.com) The exact GP equation for Buzz relies on item value and an items slot value:
++ Gear Points, or GP, are pre-determined amounts for every item in Classic WoW, primarily based on the items attributes. [ ^2^ ](http://www.epgpweb.com) The exact GP equation for Buzz relies on item value and an items slot value: ^2^
 
 <center>$$GP = IV^2 * 0.04 * SV$$</center>
 
@@ -330,9 +330,27 @@ Well it would appear that 'Rolls' have not drastically impacted our EPGP system 
 
 There is certainly more analysis I could do with this data, such as looking at DiscordUserID looting behaviors instead of individual characters, visualizing EPGP and PR over time, and there might even be enough statistical power in this data to run some regressions. For now, I'm going to stop and move on to a Tableau Public Dashboard that will facilitate more interaction and visualizations of our guild's EPGP data. Maybe by the time Phase 6 is released and there are a few more months of data, I can return and run these charts again to see any changes.
 
-## Tableau Public Dashboard
+<br>
+
+## Tableau Public Interactive Infographic
 
 <center><img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/buzzinfographic.png"
-width= 100% height= 100%/></center>
+width= 75% height= 75%/></center>
+
+<br>
+
+https://public.tableau.com/profile/kevin.magnan#!/vizhome/WoWGuildInfographic/WoWGuildInfographic
+
+<br>
+
+## Closing Up
+
+Alright, that's going to do it for me with this post. I really enjoyed splitting my time between R and Tableau and I've learned a ton of really useful but specific information on a video game I play, so there's that. Ha! 
 
 
+
+*Huge thanks and credit to Matt Fuqua - our Buzz Bot architect. Without the Buzz Bot, I would not have had such a rich and useful dataset for this post! Matt's work can be found on his [github](https://github.com/mfuqua3/BuzzBot).* 
+
+*^1^ World of Warcraft Vanilla citations from Wikipedia: https://en.wikipedia.org/wiki/World_of_Warcraft*
+
+*^2^ The EPGP language and formulas were written by Matt in his Buzz Bot documentation*
