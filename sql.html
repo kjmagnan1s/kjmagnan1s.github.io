@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Kevin Magnan" />
+
+
+<title>SQL code</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="images\favicon.ico">
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 54px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h2 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h3 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h4 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h5 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.section h6 {
+  padding-top: 59px;
+  margin-top: -59px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Kevin J. Magnan</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-user-astronaut"></span>
+     
+    About Me
+  </a>
+</li>
+<li>
+  <a href="blog.html">
+    <span class="fa fa-project-diagram"></span>
+     
+    Blog
+  </a>
+</li>
+<li>
+  <a href="past_work.html">
+    <span class="fa fa-archive"></span>
+     
+    Past Work
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-alt"></span>
+     
+    Resume
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="https://public.tableau.com/views/KevinMagnanInteractiveResume/Dashboard1?:embed=y&amp;:display_count=yes&amp;:origin=viz_share_link">
+        <span class="fa fa-chart-line"></span>
+         
+        Interactive
+      </a>
+    </li>
+    <li>
+      <a href="resume.pdf">
+        <span class="fa fa-file-pdf"></span>
+         
+        PDF
+      </a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-paper-plane"></span>
+     
+    Reach me
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="tableau_redirect.html">
+        <span class="fa fa fa fa-globe"></span>
+         
+        Tableau
+      </a>
+    </li>
+    <li>
+      <a href="linkedin_redirect.html">
+        <span class="fa fa-linkedin"></span>
+         
+        Linkedin
+      </a>
+    </li>
+    <li>
+      <a href="github_redirect.html">
+        <span class="fa fa-github"></span>
+         
+        github
+      </a>
+    </li>
+    <li>
+      <a href="mailto:kjmagnan1s@gmail.com">
+        <span class="fa fa-envelope"></span>
+         
+        Email
+      </a>
+    </li>
+    <li>
+      <a href="twitter_redirect.html">
+        <span class="fa fa-twitter"></span>
+         
+        Twitter
+      </a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<br><br>
+<hr>
+<pre class="sql"><code>
+/* **Scrubbed queries meant as an example of SQL code I have written. In no way does this code represents actual data or data tables** */
+
+/* crimes_historical */
+SELECT RPT_NO, DATE_OCCURRED, DATE_APPROVED, STNUM || &#39; &#39; || STDIR || &#39; &#39;|| STREET || &#39; &#39; || CITY || &#39; &#39; || STATE AS ADDRESS, UCR, FBI, &quot;PRIMARY&quot;, 
+DESCRIPTION, STATUS, 
+INDX, LOCATION, LOCATION_DESCR, DOMESTIC, SHOOTINGS, VEHICLE_THEFT, METHOD, METHOD_DESCR, BEATASGN, CAU, MOTIVE_DESCR, 
+BEAT, DISTRICT, WARPT_NO
+FROM DB.CRIMES
+--LEFT JOIN PRS_USER.ADDR_ADDRESS_MASTER c
+--ON a.STNUM = c.STREET_NO AND a.STDIR = c.STREET_DIRECTION AND a.STREET = c.STREET_NME
+WHERE DATE_APPROVED &gt;= &#39;11-FEB-2019&#39;
+AND DATE_APPROVED &lt;= &#39;10-MAR-2019&#39;
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+--AND &quot;CLASS&quot; IN (&#39;BURGLARY&#39;, &#39;ROBBERY&#39;, &#39;HOMICIDE&#39;, &#39;MOTOR VEHICLE THEFT&#39;, &#39;CRIM SEXUAL ASSAULT&#39;, &#39;THEFT&#39;)
+AND UCR IN (&#39;0110&#39;,&#39;0261&#39;,&#39;0262&#39;,&#39;0263&#39;,&#39;0264&#39;,&#39;0265&#39;,&#39;0266&#39;,&#39;0271&#39;,&#39;0272&#39;,&#39;0274&#39;,&#39;0275&#39;,&#39;0281&#39;,&#39;0291&#39;,&#39;031A&#39;,&#39;031B&#39;,&#39;0312&#39;,&#39;0313&#39;,&#39;0320&#39;,&#39;0325&#39;,
+&#39;0326&#39;,&#39;033A&#39;,&#39;033B&#39;,&#39;0330&#39;,&#39;0331&#39;,&#39;0334&#39;,&#39;0337&#39;,&#39;0340&#39;,&#39;041A&#39;,&#39;041B&#39;,&#39;0420&#39;,&#39;0430&#39;,&#39;0440&#39;,&#39;0450&#39;,&#39;0451&#39;,&#39;0452&#39;,&#39;0453&#39;,&#39;0454&#39;,&#39;0461&#39;,&#39;0462&#39;,&#39;0475&#39;,&#39;0479&#39;,
+&#39;0480&#39;,&#39;0481&#39;,&#39;0482&#39;,&#39;0483&#39;,&#39;0484&#39;,&#39;0487&#39;,&#39;0488&#39;,&#39;0489&#39;,&#39;1753&#39;,&#39;1754&#39;,&#39;0610&#39;,&#39;0620&#39;,&#39;0630&#39;,&#39;0650&#39;,&#39;0710&#39;,&#39;0720&#39;,&#39;0810&#39;,&#39;0910&#39;,&#39;0915&#39;,&#39;0917&#39;,&#39;0918&#39;,&#39;0920&#39;,
+&#39;0925&#39;,&#39;0927&#39;,&#39;0928&#39;,&#39;0930&#39;,&#39;0935&#39;,&#39;0937&#39;,&#39;0938&#39;)
+AND FBI IN (&#39;00&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;04B&#39;,&#39;05&#39;,&#39;06&#39;,&#39;07&#39;,&#39;09&#39;,&#39;01B&#39;,&#39;08A&#39;,&#39;08B&#39;,&#39;10&#39;,&#39;11&#39;,&#39;12&#39;,&#39;13&#39;,&#39;14&#39;,&#39;15&#39;,&#39;16&#39;,&#39;17&#39;,&#39;18&#39;,&#39;19&#39;,&#39;20&#39;,&#39;22&#39;,
+&#39;24&#39;,&#39;26&#39;,&#39;MCC&#39;,&#39;TRF&#39;,&#39;WRT&#39;,&#39;21&#39;)
+AND DISTRICT IN (&#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;22&#39;); 
+
+/* Index crimes */
+SELECT *
+FROM DB.CRIMES
+WHERE (DATE_OCCURRED &gt;= &#39;28-JAN-2018&#39; AND DATE_OCCURRED &lt;= &#39;24-FEB-2018&#39;
+OR DATE_OCCURRED &gt;= &#39;28-JAN-2019&#39; AND DATE_OCCURRED &lt;= &#39;24-FEB-2019&#39;)
+AND INDX IN (&#39;I&#39;)
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+AND AREA IN (&#39;3&#39;);
+
+
+/*Shootings*/
+/* shootings without the lat/long data */
+SELECT a.RPT_NO, a.BEAT, b.TABLE_SOURCE
+FROM DB.CRIMES a
+RIGHT JOIN RPT.COMPSTAT_SHOOTING b
+ON a.RPT_NO = b.RPT_NO
+WHERE a.DATE_OCCURRED &gt;= &#39;01-JAN-2018&#39;
+AND a.DATE_OCCURRED &lt;= &#39;31-DEC-2018&#39;
+--AND A.DISTRICT IN (&#39;04&#39;,&#39;05&#39;,&#39;06&#39;,&#39;07&#39;,&#39;22&#39;);
+
+/* The crimes table with shootings attached */
+/* crimes_historical */
+SELECT * 
+FROM DB.CRIMES a
+--LEFT JOIN RPT.COMPSTAT_SHOOTING b
+--ON a.RPT_NO = b.RPT_NO
+--LEFT JOIN PRS_USER.ADDR_ADDRESS_MASTER c
+--ON a.STNUM = c.STREET_NO AND a.STDIR = c.STREET_DIRECTION AND a.STREET = c.STREET_NME
+WHERE DATE_OCCURRED BETWEEN TO_DATE(&#39;01-MAY-2013&#39;) AND TO_DATE(&#39;30-SEP-2018&#39;)
+AND (rtrim((to_char(DATE_OCCURRED,&#39;MON&#39;))) in (&#39;MAY&#39;,&#39;JUN&#39;,&#39;JUL&#39;,&#39;AUG&#39;,&#39;SEP&#39;))
+--AND a.FBI IN (&#39;04B&#39;,&#39;04&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;05&#39;,&#39;07&#39;)
+AND UCR in (&#39;031A&#39;,&#39;031B&#39;,&#39;0326&#39;,&#39;033A&#39;,&#39;033B&#39;) 
+AND (FBI IN (&#39;00&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;04B&#39;,&#39;05&#39;,&#39;06&#39;,&#39;07&#39;,&#39;09&#39;,&#39;01B&#39;,&#39;08A&#39;,&#39;08B&#39;,&#39;10&#39;,
+&#39;11&#39;,&#39;12&#39;,&#39;13&#39;,&#39;14&#39;,&#39;15&#39;,&#39;16&#39;,&#39;17&#39;,&#39;18&#39;,&#39;19&#39;,&#39;20&#39;,&#39;22&#39;,&#39;24&#39;,&#39;26&#39;,&#39;MCC&#39;,&#39;TRF&#39;,&#39;WRT&#39;,&#39;21&#39;))
+AND a.STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+AND a.DISTRICT IN (&#39;02&#39;, &#39;03&#39;, &#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;08&#39;, &#39;09&#39;, &#39;10&#39;, &#39;11&#39;, &#39;15&#39;, &#39;25&#39;);
+
+/*Shooting Victims*/
+SELECT RPT_NO, COUNT(RPT_NO) AS VICTIMS
+FROM RPT.COMPSTAT_SHOOTING_VICTIM
+WHERE DATE_OCCURRED &gt;= &#39;04-FEB-2019&#39;
+AND DATE_OCCURRED &lt;= &#39;03-MAR-2019&#39;
+AND DISTRICT IN (&#39;03&#39;, &#39;08&#39;, &#39;09&#39;, &#39;10&#39;)
+GROUP BY RPT_NO;
+
+/*Inventories*/
+SELECT DISTINCT INCIDENT_NO, RECOVERED_DATE, STREET_NO || &#39; &#39; || STREET_DIRECTION || &#39; &#39; || STREET_NME || &#39; &#39; || a.CITY || &#39; &#39; || STATE AS REC_ADDRESS, a.DISTRICT,
+INVENTORY_TYPE, UCR, RPT_NO, DATE_OCCURRED
+FROM DB.EVIDENCENVENTORIES a
+INNER JOIN DB.CRIMES b
+ON a.INCIDENT_NO = b.RPT_NO
+WHERE b.DATE_OCCURRED &gt;= &#39;04-FEB-2019&#39;
+AND b.DATE_OCCURRED &lt;= &#39;03-MAR-2019&#39;
+AND a.DISTRICT IN (&#39;03&#39;, &#39;08&#39;)
+AND a.INVENTORY_TYPE IN (&#39;EXPENDED SHELL&#39;, &#39;FIRED BULLET&#39;);
+
+/*Inventories v2*/
+SELECT DISTINCT a.INCIDENT_NO, a.CREATED_DATE, a.STREET_NO || &#39; &#39; || a.STREET_DIRECTION || &#39; &#39; || a.STREET_NME || &#39; &#39; || a.CITY || &#39; &#39; || a.STATE AS REC_ADDRESS, a.DISTRICT,
+a.INVENTORY_TYPE, a.INCIDENT_TYPE, b.TABLE_SOURCE
+FROM DB.EVIDENCENVENTORIES a
+LEFT JOIN RPT.COMPSTAT_SHOOTING b
+ON a.INCIDENT_NO = b.RPT_NO
+WHERE RECOVERED_DATE &gt;= &#39;11-FEB-2019&#39;
+AND RECOVERED_DATE &lt;= &#39;10-MAR-2019&#39;
+AND a.DISTRICT IN (&#39;10&#39;)
+AND INVENTORY_TYPE IN (&#39;EXPENDED SHELL&#39;, &#39;FIRED BULLET&#39;);
+
+/* STREET_STOP Data */
+SELECT CONTACT_NO, CONTACT_SOURCE, CONTACT_TYPE, CONTACT_DATE, DISTRICT, BEAT, PD_UNIT_NO
+FROM DB.STREET_STOP_DETAILS
+WHERE CONTACT_DATE &gt;= &#39;11-FEB-2019&#39;
+AND CONTACT_DATE &lt; &#39;10-MAR-2019&#39;
+AND DISTRICT IN (&#39;07&#39;, &#39;04&#39;);
+
+/*ORDINANCE VIOLATIONS*/
+SELECT *
+FROM DB.PD_ORDINANCE_VIOLATION
+WHERE OVISSUED_DATE BETWEEN TO_DATE(&#39;01-JAN-2019&#39;) AND TO_DATE(&#39;28-FEB-2019&#39;)
+AND (rtrim((to_char(OVISSUED_DATE,&#39;MON&#39;))) in (&#39;JAN&#39;, &#39;FEB&#39;, &#39;MAR&#39;, &#39;OCT&#39;, &#39;NOV&#39;, &#39;DEC&#39;))
+AND UNIT_NUMBER IN (&#39;701&#39;, &#39;702&#39;, &#39;704&#39;);
+
+
+/* crimes historical */
+SELECT RPT_NO, DATE_OCCURRED, DATE_APPROVED, STNUM || &#39; &#39; || STDIR || &#39; &#39;|| STREET || &#39; &#39; || CITY || &#39; &#39; || STATE AS ADDRESS, UCR, FBI, &quot;PRIMARY&quot;, 
+DESCRIPTION, STATUS, 
+INDX, LOCATION, LOCATION_DESCR, DOMESTIC,  SHOOTINGS, VEHICLE_THEFT, METHOD, METHOD_DESCR, BEATASGN, CAU, MOTIVE_DESCR, 
+BEAT, DISTRICT, WARPT_NO
+FROM DB.CRIMES
+--LEFT JOIN PRS_USER.ADDR_ADDRESS_MASTER c
+--ON a.STNUM = c.STREET_NO AND a.STDIR = c.STREET_DIRECTION AND a.STREET = c.STREET_NME
+WHERE DATE_APPROVED &gt;= &#39;11-FEB-2019&#39;
+AND DATE_APPROVED &lt;= &#39;10-MAR-2019&#39;
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+--AND &quot;PRIMARY&quot; IN (&#39;BURGLARY&#39;, &#39;ROBBERY&#39;, &#39;HOMICIDE&#39;, &#39;MOTOR VEHICLE THEFT&#39;, &#39;CRIM SEXUAL ASSAULT&#39;, &#39;THEFT&#39;)
+AND UCR IN (&#39;0110&#39;,&#39;0261&#39;,&#39;0262&#39;,&#39;0263&#39;,&#39;0264&#39;,&#39;0265&#39;,&#39;0266&#39;,&#39;0271&#39;,&#39;0272&#39;,&#39;0274&#39;,&#39;0275&#39;,&#39;0281&#39;,&#39;0291&#39;,&#39;031A&#39;,&#39;031B&#39;,&#39;0312&#39;,&#39;0313&#39;,&#39;0320&#39;,&#39;0325&#39;,
+&#39;0326&#39;,&#39;033A&#39;,&#39;033B&#39;,&#39;0330&#39;,&#39;0331&#39;,&#39;0334&#39;,&#39;0337&#39;,&#39;0340&#39;,&#39;041A&#39;,&#39;041B&#39;,&#39;0420&#39;,&#39;0430&#39;,&#39;0440&#39;,&#39;0450&#39;,&#39;0451&#39;,&#39;0452&#39;,&#39;0453&#39;,&#39;0454&#39;,&#39;0461&#39;,&#39;0462&#39;,&#39;0475&#39;,&#39;0479&#39;,
+&#39;0480&#39;,&#39;0481&#39;,&#39;0482&#39;,&#39;0483&#39;,&#39;0484&#39;,&#39;0487&#39;,&#39;0488&#39;,&#39;0489&#39;,&#39;1753&#39;,&#39;1754&#39;,&#39;0610&#39;,&#39;0620&#39;,&#39;0630&#39;,&#39;0650&#39;,&#39;0710&#39;,&#39;0720&#39;,&#39;0810&#39;,&#39;0910&#39;,&#39;0915&#39;,&#39;0917&#39;,&#39;0918&#39;,&#39;0920&#39;,
+&#39;0925&#39;,&#39;0927&#39;,&#39;0928&#39;,&#39;0930&#39;,&#39;0935&#39;,&#39;0937&#39;,&#39;0938&#39;)
+AND FBI IN (&#39;00&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;04B&#39;,&#39;05&#39;,&#39;06&#39;,&#39;07&#39;,&#39;09&#39;,&#39;01B&#39;,&#39;08A&#39;,&#39;08B&#39;,&#39;10&#39;,&#39;11&#39;,&#39;12&#39;,&#39;13&#39;,&#39;14&#39;,&#39;15&#39;,&#39;16&#39;,&#39;17&#39;,&#39;18&#39;,&#39;19&#39;,&#39;20&#39;,&#39;22&#39;,
+&#39;24&#39;,&#39;26&#39;,&#39;MCC&#39;,&#39;TRF&#39;,&#39;WRT&#39;,&#39;21&#39;)
+AND DISTRICT IN (&#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;22&#39;); 
+
+/* Index crimes */
+SELECT *
+FROM DB.CRIMES
+WHERE (DATE_OCCURRED &gt;= &#39;28-JAN-2018&#39; AND DATE_OCCURRED &lt;= &#39;24-FEB-2018&#39;
+OR DATE_OCCURRED &gt;= &#39;28-JAN-2019&#39; AND DATE_OCCURRED &lt;= &#39;24-FEB-2019&#39;)
+AND INDX IN (&#39;I&#39;)
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+AND AREA IN (&#39;3&#39;);
+
+/* SELECT an RPT_NO # to investigate */
+SELECT * 
+FROM DB.CRIMES a
+LEFT JOIN PRS_USER.ADDR_ADDRESS_MASTER c
+ON a.STNUM = c.STREET_NO AND a.STDIR = c.STREET_DIRECTION AND a.STREET = c.STREET_NME
+WHERE RPT_NO IN (&#39;AA279023&#39;);
+
+/*Shootings*/
+/* shootings without the lat/long data */
+SELECT a.RPT_NO, a.BEAT, b.TABLE_SOURCE
+FROM DB.CRIMES a
+RIGHT JOIN RPT.COMPSTAT_SHOOTING b
+ON a.RPT_NO = b.RPT_NO
+WHERE a.DATE_OCCURRED &gt;= &#39;01-JAN-2018&#39;
+AND a.DATE_OCCURRED &lt;= &#39;31-DEC-2018&#39;
+--AND A.DISTRICT IN (&#39;04&#39;,&#39;05&#39;,&#39;06&#39;,&#39;07&#39;,&#39;22&#39;);
+
+/* Min date of any table */
+SELECT MIN(DATE_OCCURRED)
+FROM RPT.COMPSTAT_SHOOTING;
+
+/* The crimes table with shootings attached */
+/* crimes_historical */
+SELECT * 
+FROM DB.CRIMES a
+--LEFT JOIN RPT.COMPSTAT_SHOOTING b
+--ON a.RPT_NO = b.RPT_NO
+--LEFT JOIN PRS_USER.ADDR_ADDRESS_MASTER c
+--ON a.STNUM = c.STREET_NO AND a.STDIR = c.STREET_DIRECTION AND a.STREET = c.STREET_NME
+WHERE DATE_OCCURRED BETWEEN TO_DATE(&#39;01-MAY-2013&#39;) AND TO_DATE(&#39;30-SEP-2018&#39;)
+AND (rtrim((to_char(DATE_OCCURRED,&#39;MON&#39;))) in (&#39;MAY&#39;,&#39;JUN&#39;,&#39;JUL&#39;,&#39;AUG&#39;,&#39;SEP&#39;))
+--AND a.FBI IN (&#39;04B&#39;,&#39;04&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;05&#39;,&#39;07&#39;)
+AND UCR in (&#39;031A&#39;,&#39;031B&#39;,&#39;0326&#39;,&#39;033A&#39;,&#39;033B&#39;) 
+AND (FBI IN (&#39;00&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;04B&#39;,&#39;05&#39;,&#39;06&#39;,&#39;07&#39;,&#39;09&#39;,&#39;01B&#39;,&#39;08A&#39;,&#39;08B&#39;,&#39;10&#39;,
+&#39;11&#39;,&#39;12&#39;,&#39;13&#39;,&#39;14&#39;,&#39;15&#39;,&#39;16&#39;,&#39;17&#39;,&#39;18&#39;,&#39;19&#39;,&#39;20&#39;,&#39;22&#39;,&#39;24&#39;,&#39;26&#39;,&#39;MCC&#39;,&#39;TRF&#39;,&#39;WRT&#39;,&#39;21&#39;))
+AND a.STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+AND a.DISTRICT IN (&#39;02&#39;, &#39;03&#39;, &#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;08&#39;, &#39;09&#39;, &#39;10&#39;, &#39;11&#39;, &#39;15&#39;, &#39;25&#39;);
+
+/*Shooting Victims*/
+SELECT RPT_NO, COUNT(RPT_NO) AS VICTIMS
+FROM RPT.COMPSTAT_SHOOTING_VICTIM
+WHERE DATE_OCCURRED &gt;= &#39;04-FEB-2019&#39;
+AND DATE_OCCURRED &lt;= &#39;03-MAR-2019&#39;
+AND DISTRICT IN (&#39;03&#39;, &#39;08&#39;, &#39;09&#39;, &#39;10&#39;)
+GROUP BY RPT_NO;
+
+/*Homicide Counts*/
+SELECT RPT_NO_NO, COUNT(RPT_NO_NO) AS HOMICIDES
+FROM DB.HOMICIDE
+WHERE COMPSTAT_DATE &gt;= &#39;01-JAN-2019&#39;
+AND COMPSTAT_DATE &lt;= &#39;27-APR-2019&#39;
+GROUP BY RPT_NO_NO;
+
+/*Inventories*/
+SELECT DISTINCT INCIDENT_NO, RECOVERED_DATE, STREET_NO || &#39; &#39; || STREET_DIRECTION || &#39; &#39; || STREET_NME || &#39; &#39; || a.CITY || &#39; &#39; || STATE AS REC_ADDRESS, a.DISTRICT,
+INVENTORY_TYPE, UCR, RPT_NO, DATE_OCCURRED
+FROM DB.EVIDENCENVENTORIES a
+INNER JOIN DB.CRIMES b
+ON a.INCIDENT_NO = b.RPT_NO
+WHERE b.DATE_OCCURRED &gt;= &#39;04-FEB-2019&#39;
+AND b.DATE_OCCURRED &lt;= &#39;03-MAR-2019&#39;
+AND a.DISTRICT IN (&#39;03&#39;, &#39;08&#39;)
+AND a.INVENTORY_TYPE IN (&#39;EXPENDED SHELL&#39;, &#39;FIRED BULLET&#39;);
+
+/*Inventories v2*/
+SELECT DISTINCT a.INCIDENT_NO, a.CREATED_DATE, a.STREET_NO || &#39; &#39; || a.STREET_DIRECTION || &#39; &#39; || a.STREET_NME || &#39; &#39; || a.CITY || &#39; &#39; || a.STATE AS REC_ADDRESS, a.DISTRICT,
+a.INVENTORY_TYPE, a.INCIDENT_TYPE, b.TABLE_SOURCE
+FROM DB.EVIDENCENVENTORIES a
+LEFT JOIN RPT.COMPSTAT_SHOOTING b
+ON a.INCIDENT_NO = b.RPT_NO
+WHERE RECOVERED_DATE &gt;= &#39;11-FEB-2019&#39;
+AND RECOVERED_DATE &lt;= &#39;10-MAR-2019&#39;
+AND a.DISTRICT IN (&#39;10&#39;)
+AND INVENTORY_TYPE IN (&#39;EXPENDED SHELL&#39;, &#39;FIRED BULLET&#39;);
+
+/* STREET_STOP Data */
+SELECT CONTACT_NO, CONTACT_SOURCE, CONTACT_TYPE, CONTACT_DATE, DISTRICT, BEAT, PD_UNIT_NO
+FROM DB.STREET_STOP_DETAILS
+WHERE CONTACT_DATE &gt;= &#39;11-FEB-2019&#39;
+AND CONTACT_DATE &lt; &#39;10-MAR-2019&#39;
+AND DISTRICT IN (&#39;07&#39;, &#39;04&#39;);
+
+/*ORDINANCE_VIOLATION*/
+SELECT *
+FROM DB.PD_ORDINANCE_VIOLATION2
+WHERE NOVSSUED_DATE BETWEEN TO_DATE(&#39;01-JAN-2019&#39;) AND TO_DATE(&#39;28-FEB-2019&#39;)
+AND (rtrim((to_char(NOVSSUED_DATE,&#39;MON&#39;))) in (&#39;JAN&#39;, &#39;FEB&#39;, &#39;MAR&#39;, &#39;OCT&#39;, &#39;NOV&#39;, &#39;DEC&#39;))
+AND UNIT_NUMBER IN (&#39;701&#39;, &#39;702&#39;, &#39;704&#39;);
+
+/*CFS*/
+SELECT EVENTNUMBER, ENTRY_RECEIVED_DATE, CLOSE_COMPLETED_DATE, OCCSTREETNUMBER || &#39; &#39; || OCCSTREETDIR || &#39; &#39;|| OCCSTREETNAME || &#39; &#39; || &#39;Chicago IL&#39; AS OCC_ADDRESS,
+OCCLOCATION, &quot;ZONE&quot;, UNIT, BEAT_OF_OCCURRENCE, BEAT_OF_SERVICE, DISTRICT_OF_OCCURRENCE, DISTRICT_OF_SERVICE, SECTOR_OF_OCCURRENCE, SECTOR_OF_SERVICE, 
+SERVICESTREETNUMBER || &#39; &#39; || SERVICESTREETDIR || &#39; &#39; || SERVICESTREETNAME AS SERVICE_ADDRESS, SERVICELOCATION, INIT_911_DISPATCH_DESCR, FIN_911_DISPATCH_DESCR
+FROM DB.SERVICE_CALLS
+WHERE ENTRY_RECEIVED_DATE &gt;= &#39;11-MAR-2019&#39;
+AND ENTRY_RECEIVED_DATE &lt;= &#39;07-APR-2019&#39;
+AND FIN_911_DISPATCH IN (&#39;COMINT&#39;)
+AND UNIT LIKE (&#39;12%_%_%&#39;)
+;
+
+/*CFS RAPS*/
+SELECT EVENTNUMBER, ENTRY_RECEIVED_DATE, CLOSE_COMPLETED_DATE, OCCSTREETNUMBER || &#39; &#39; || OCCSTREETDIR || &#39; &#39;|| OCCSTREETNAME || &#39; &#39; || &#39;Chicago IL&#39; AS OCC_ADDRESS,
+OCCLOCATION, &quot;ZONE&quot;, UNIT, BEAT_OF_OCCURRENCE, BEAT_OF_SERVICE, DISTRICT_OF_OCCURRENCE, DISTRICT_OF_SERVICE, SECTOR_OF_OCCURRENCE, SECTOR_OF_SERVICE, 
+SERVICESTREETNUMBER || &#39; &#39; || SERVICESTREETDIR || &#39; &#39; || SERVICESTREETNAME AS SERVICE_ADDRESS, SERVICELOCATION, INIT_911_DISPATCH_DESCR, FIN_911_DISPATCH_DESCR,
+FIN_DISPOSITION_DESCR
+FROM DB.SERVICE_CALLS
+WHERE ENTRY_RECEIVED_DATE &gt;= &#39;28-MAY-2018&#39;
+AND ENTRY_RECEIVED_DATE &lt;= &#39;03-SEP-2018&#39;
+AND FIN_911_DISPATCH_DESCR IN (&#39;RADIO ASSIGNMENTS PENDING&#39;)
+;
+
+/* Arrest table without the long narrative field WARNING lots of text fields/data */
+SELECT ARREST, OFFENDER, ARREST_DATE, ARR_YEAR, ARR_MONTH, arr_day_of_month, arr_day_of_year, arr_hour,
+arr_beat, arr_district, PD_district, arresting_unit, arresting_beat, street_no, street_direction, street_nme,
+city, state, zip, county, location_code, location_descr, statute, stat_descr, UCR_code, class,
+secondary_class, o_district, o_beat, birth_date, age, birth_place, sex_code, race_code, unique_identifier_no, PD_arrest,
+arrest_unit_descr
+FROM DB.ARREST
+WHERE ARREST_DATE &gt;= &#39;18-MAR-2019&#39;
+AND ARREST_DATE &lt;= &#39;14-APR-2019&#39;
+AND PD_ARREST = &#39;Y&#39;
+AND ARR_DISTRICT = &#39;11&#39;;
+
+SELECT *
+FROM DB.HOMICIDE
+WHERE INJURY_DATE &gt;= &#39;01-JAN-2015&#39; 
+AND INVOLUNTARY = &#39;N&#39; 
+AND JUSTIFIABLE = &#39;N&#39;  
+AND COMPSTAT = &#39;Y&#39;;
+
+/*Homicide Counts*/
+SELECT INJURY_DESCRIPTION, COUNT(INJURY_DESCRIPTION)
+FROM DB.HOMICIDE
+GROUP BY INJURY_DESCRIPTION;
+
+/* shootings without the lat/long data */
+SELECT a.RPT_NO, a.DATE_OCCURRED, a.DATE_APPROVED, a.STNUM || &#39; &#39; || a.STDIR || &#39; &#39;|| a.STREET || &#39; &#39; || a.CITY || &#39; &#39; || a.STATE AS ADDRESS, a.UCR, a.FBI, &quot;PRIMARY&quot;, 
+a.DESCRIPTION, a.STATUS, 
+a.INDX, a.LOCATION, a.LOCATION_DESCR, a.DOMESTIC, a. a.SHOOTINGS, a.VEHICLE_THEFT, a.METHOD, a.METHOD_DESCR, a.BEATASGN, a.CAU, a.MOTIVE_DESCR, 
+a.BEAT, a.DISTRICT 
+FROM DB.CRIMES a
+RIGHT JOIN RPT.COMPSTAT_SHOOTING b
+ON a.RPT_NO = b.RPT_NO
+WHERE a.DATE_OCCURRED &gt;= &#39;01-JAN-2011&#39;
+AND a.DATE_OCCURRED &lt;= &#39;07-JUN-2019&#39;
+AND a.STREET LIKE &#39;%LAKE SHORE%&#39;
+OR a.STREET LIKE&#39;%SKYWAY%&#39;
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;);
+
+
+
+/* Query for all crimes */
+SELECT RPT_NO, DATE_OCCURRED, INV_ADDRESSES, PRIMARY, DESCRIPTION, LOCATION_DESCR, BEAT, DISTRICT, FBI, FBI_DESCR, FBINDX, UCR
+FROM DB.CRIMES
+WHERE TO_CHAR(DATE_OCCURRED, &#39;YYYY&#39;) = 2018 AND PRIMARY NOT IN (&#39;NON-CRIMINAL&#39;, &#39;OTHER OFFENSE&#39;);
+
+/* Shootings (with lat/long data */
+/* Shootings */
+SELECT * 
+FROM DB.CRIMES a
+RIGHT JOIN RPT.COMPSTAT_SHOOTING b
+ON a.RPT_NO = b.RPT_NO
+LEFT JOIN PRS_USER.ADDR_ADDRESS_MASTER c
+ON a.STNUM = c.STREET_NO AND a.STDIR = c.STREET_DIRECTION AND a.STREET = c.STREET_NME
+WHERE a.DATE_OCCURRED &gt;= &#39;01-JAN-2019&#39;
+AND a.DATE_OCCURRED &lt; &#39;09-APRIL-2019&#39;
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;);
+
+/* shootings without the lat/long data */
+SELECT * 
+FROM DB.CRIMES a
+RIGHT JOIN RPT.COMPSTAT_SHOOTING b
+ON a.RPT_NO = b.RPT_NO
+WHERE a.DATE_OCCURRED &gt;= &#39;01-JAN-2011&#39;
+AND a.DATE_OCCURRED &lt;= &#39;31-JAN-2019&#39;
+AND a.STREET LIKE &#39;%LAKE SHORE%&#39;
+OR a.STREET LIKE&#39;%SKYWAY%&#39;
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;);
+
+
+
+/* The crimes table with shootings attached */
+/* crimes_historical */
+SELECT * 
+FROM DB.CRIMES a
+--LEFT JOIN RPT.COMPSTAT_SHOOTING b
+--ON a.RPT_NO = b.RPT_NO
+--LEFT JOIN PRS_USER.ADDR_ADDRESS_MASTER c
+--ON a.STNUM = c.STREET_NO AND a.STDIR = c.STREET_DIRECTION AND a.STREET = c.STREET_NME
+WHERE DATE_OCCURRED BETWEEN TO_DATE(&#39;01-MAY-2013&#39;) AND TO_DATE(&#39;30-SEP-2018&#39;)
+AND (rtrim((to_char(DATE_OCCURRED,&#39;MON&#39;))) in (&#39;MAY&#39;,&#39;JUN&#39;,&#39;JUL&#39;,&#39;AUG&#39;,&#39;SEP&#39;))
+--AND a.FBI IN (&#39;04B&#39;,&#39;04&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;05&#39;,&#39;07&#39;)
+AND UCR in (&#39;031A&#39;,&#39;031B&#39;,&#39;0326&#39;,&#39;033A&#39;,&#39;033B&#39;) 
+AND (FBI IN (&#39;00&#39;,&#39;01A&#39;,&#39;01B&#39;,&#39;02&#39;,&#39;03&#39;,&#39;04A&#39;,&#39;04B&#39;,&#39;05&#39;,&#39;06&#39;,&#39;07&#39;,&#39;09&#39;,&#39;01B&#39;,&#39;08A&#39;,&#39;08B&#39;,&#39;10&#39;,
+&#39;11&#39;,&#39;12&#39;,&#39;13&#39;,&#39;14&#39;,&#39;15&#39;,&#39;16&#39;,&#39;17&#39;,&#39;18&#39;,&#39;19&#39;,&#39;20&#39;,&#39;22&#39;,&#39;24&#39;,&#39;26&#39;,&#39;MCC&#39;,&#39;TRF&#39;,&#39;WRT&#39;,&#39;21&#39;))
+AND a.STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+AND a.DISTRICT IN (&#39;02&#39;, &#39;03&#39;, &#39;04&#39;, &#39;05&#39;, &#39;06&#39;, &#39;07&#39;, &#39;08&#39;, &#39;09&#39;, &#39;10&#39;, &#39;11&#39;, &#39;15&#39;, &#39;25&#39;); 
+
+
+/*Motor Vehicle Theft*/
+SELECT * 
+FROM DB.CRIMES
+WHERE DISTRICT IN (&#39;10&#39;)
+AND UCR IN (&#39;0910&#39;,&#39;0920&#39;,&#39;0915&#39;,&#39;0917&#39;,&#39;0930&#39;)
+AND DATE_OCCURRED &gt;= &#39;03-JUN-2018&#39;
+AND STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;);
+
+/* Calls for service shots fired- for all cfs comment out &#39;init_911_dispatch&#39; line */
+SELECT *
+FROM DB.SERVICE_CALLS
+WHERE ENTRY_RECEIVED_DATE &gt;= &#39;16-NOV-2018&#39;
+AND ENTRY_RECEIVED_DATE &lt; &#39;19-NOV-2018&#39;
+AND INIT_911_DISPATCH IN (&#39;SHOTS&#39;,&#39;SHOTSF&#39;); 
+
+/* An example of pulling a narrative for a crime 
+DESCRIPTION from the NARRATIVE table*/
+SELECT a.*, b.DESCRIPTION
+FROM DB.CRIMES a
+LEFT JOIN DB.NARRATIVE b
+ON a.RPT_NO = b.RPT_NO_NO
+WHERE a.UCR IN (&#39;0910&#39;,&#39;0915&#39;,&#39;0930&#39;,&#39;0935&#39;)
+AND a.DISTRICT = &#39;04&#39;
+AND a.DATE_OCCURRED &gt;= &#39;01-OCT-18&#39;
+AND a.DATE_OCCURRED &lt; &#39;01-DEC-18&#39;
+AND a.STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;);
+
+
+
+/* Homicides table, 2014 to 2018 */
+SELECT *
+FROM DB.HOMICIDE
+WHERE JUSTIFIABLE = &#39;N&#39;
+AND COMPSTAT = &#39;Y&#39;
+AND INVOLUNTARY = &#39;N&#39;
+AND INJURY_DATE &gt;= &#39;01-JAN-2014&#39;
+AND INJURY_DATE &lt; &#39;01-JAN-2019&#39;;
+
+/* Arrest table without the long narrative field-  feel free to include it all just know it becomes a pain with large amounts of data */
+SELECT ARREST, OFFENDER, ARREST_DATE, ARR_YEAR, ARR_MONTH, arr_day_of_month, arr_day_of_year, arr_hour,
+arr_beat, arr_district, PD_district, arresting_unit, arresting_beat, street_no, street_direction, street_nme,
+city, state, zip, county, location_code, location_descr, statute, stat_descr, UCR_code, class,
+secondary_class, o_district, o_beat, birth_date, age, birth_place, sex_code, race_code, unique_identifier_no, PD_arrest,
+arrest_unit_descr
+FROM DB.ARREST
+WHERE ARREST_DATE &gt;= &#39;01-JAN-2018&#39;
+AND ARREST_DATE &lt;= &#39;31-DEC-2018&#39;
+--AND ARR_DISTRICT = &#39;02&#39;;
+/* WHERE ARR_YEAR &gt;= &#39;2018&#39;
+AND ARR_YEAR &lt; &#39;2018&#39;; */
+
+SELECT *
+FROM DB.ARREST
+WHERE ARR_YEAR = &#39;2018&#39;;
+
+/* Traffic stops */
+SELECT * 
+FROM DB.TRAFFIC_CC
+WHERE CONTACT_DATE &gt;= &#39;01-JAN-2016 00:00:00&#39;
+AND CONTACT_DATE &lt; &#39;01-JAN-2019 00:00:00&#39;
+AND CONTACT_TYPE = &#39;TRAFFIC&#39;;
+
+/* STREET_STOP Data */
+SELECT CONTACT_NO, CONTACT_SOURCE, CONTACT_TYPE, CONTACT_DATE, DISTRICT, BEAT, PD_UNIT_NO
+FROM DB.STREET_STOP_DETAILS
+WHERE CONTACT_DATE &gt;= &#39;11-FEB-2019&#39;
+AND CONTACT_DATE &lt; &#39;10-MAR-2019&#39;
+AND DISTRICT IN (&#39;07&#39;, &#39;04&#39;);
+SELECT CONTACT_NO, CONTACT_SOURCE, CONTACT_TYPE, CONTACT_DATE, DISTRICT, BEAT
+FROM DB.STREET_STOP_DETAILS
+WHERE TO_CHAR(CONTACT_DATE, &#39;YYYY&#39;) = 2018;
+
+SELECT *
+FROM DB.SPOTTER_LIVE_MV
+WHERE &quot;TIME&quot; &gt;= &#39;01-APR-2019&#39;
+AND &quot;TIME&quot; &lt; &#39;01-May-2019&#39;
+AND ;
+
+/* community area victim pull */
+SELECT a.*, b.*, c.COMMUNITY_AREA
+FROM DB.CRIMES a
+LEFT JOIN DB.VICTIMS b
+ON a.RPT_NO = b.RPT_NO
+LEFT JOIN DB.ADDRESSES c
+ON a.GEO_CODE = c.GEO_CODE
+WHERE a.STATUS NOT IN (&#39;2-UNFOUNDED&#39;,&#39;7-CLOSED NON-CRIMINAL&#39;)
+AND a.DATE_OCCURRED &gt;= &#39;28-MAY-2018&#39; AND a.DATE_OCCURRED &lt;= &#39;03-SEP-2018&#39;
+AND a.FBI IN (&#39;03&#39;, &#39;04A&#39;, &#39;04B&#39;, &#39;08A&#39;, &#39;08B&#39;) AND a.SHOOTINGS = &#39;N&#39;;
+
+/* specific query for streets of homicides */
+SELECT a.STREET_NO || &#39; &#39; || a.STREET_DIRECTION || &#39; &#39;|| a.STREET_NME || &#39; &#39; || a.CITY || &#39; &#39; || a.STATE AS ADDRESS, a.*
+FROM DB.HOMICIDE a
+WHERE INJURY_DATE &gt;= &#39;28-MAY-2018&#39; AND INJURY_DATE &lt;= &#39;03-SEP-2018&#39;
+AND JUSTIFIABLE = &#39;N&#39; AND INVOLUNTARY = &#39;N&#39; AND COMPSTAT = &#39;Y&#39;;
+
+/* another project specific query */
+SELECT a.*, COALESCE(b.FIRST_NAME, c.VFIRST) as first_name, COALESCE(b.LAST_NAME, c.VLAST) as last_name, c.*, e.COMMUNITY_AREA
+FROM RPT.COMPSTAT_SHOOTING_VICTIM a
+LEFT JOIN DB.INVOLVED_PARTIES b on a.ID=b.ID AND a.TABLE_SOURCE = &#39;DOC PARTIES&#39;
+LEFT JOIN DB.VICTIMS c on a.ID=c.NO AND a.TABLE_SOURCE = &#39;VICTIMS&#39;
+LEFT JOIN DB.CRIMES d on a.RPT_NO=d.RPT_NO
+LEFT JOIN DB.ADDRESSES e ON d.GEO_CODE = e.GEO_CODE
+WHERE d.DATE_OCCURRED &gt;= &#39;28-MAY-2018&#39; AND d.DATE_OCCURRED &lt;= &#39;03-SEP-2018&#39;;</code></pre>
+
+<style>
+div.white { background-color:#ffffff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "white">
+</div>
+
+&nbsp;
+<hr />
+
+<p style="text-align: center;"><span style="color: ##2c3e50;"><em>Website Coded in R by Kevin Magnan</em></span></p>
+
+
+&nbsp;
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

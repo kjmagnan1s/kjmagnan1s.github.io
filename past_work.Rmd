@@ -18,6 +18,10 @@ body {
 
 <br>
 
+[SQL](sql.html)
+
+<br>
+
 [GIS](gis.html)
 
 <br>
