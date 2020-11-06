@@ -1,14 +1,8 @@
 ---
 pagetitle: 'Past Work'
 author: 'Kevin Magnan'
-date: '10.04.2020'
+date: '11.06.2020'
 ---
-
-<style>
-body {
-  position: absolute;
-  left: 150px;}
-</style>
 
 <br>
 <br>
