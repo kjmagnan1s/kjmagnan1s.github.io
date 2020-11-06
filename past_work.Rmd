@@ -3,10 +3,8 @@ pagetitle: 'Past Work'
 author: 'Kevin Magnan'
 date: '11.06.2020'
 ---
+<br><hr><br><br>
 
-<br>
-<br>
-<br>
 <h3>
 [R](ranalysis.html)
 

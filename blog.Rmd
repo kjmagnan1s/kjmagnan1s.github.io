@@ -12,7 +12,7 @@ output:
 <!--   left: 300px;} -->
 <!-- </style> -->
 
-<br>
+<br><hr><br>
 
 <font size='+1'>[World of Warcraft Buzz Analysis](WoW_guild.html)</font>\
 <font size='-2'>October 28, 2020</font>

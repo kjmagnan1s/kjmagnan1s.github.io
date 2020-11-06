@@ -9,9 +9,8 @@ output:
 ---
 
 
-<br>
+<br><hr><br>
 
-<br/>
 
 # I am ...
 <br>

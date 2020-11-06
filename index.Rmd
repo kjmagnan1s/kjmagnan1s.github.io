@@ -17,11 +17,7 @@ output:
   ga('send', 'pageview');
 </script>
 
-<br>
-
-<hr>
-
-<br>
+<br><hr><br>
 
 <center>
 <div class="row">
