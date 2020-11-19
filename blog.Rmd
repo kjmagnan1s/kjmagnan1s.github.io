@@ -6,6 +6,7 @@ output:
   html_document:
     theme: lumen
 ---
+<!-- Not used -->
 <!-- <style> -->
 <!-- body { -->
 <!--   position: absolute; -->
@@ -14,35 +15,42 @@ output:
 
 <br><hr><br>
 
+<font size='+1'>[My Google Search History](google_searches.html)</font>\
+<font size='-2'>November 15th, 2020</font>
+
+Let's face it, we live on the internet now more than ever. In this blog post, I'll explore a major part of my internet activity - my Google search history. Time to start learning what the Google overlords know about me.   
+
+</br>
+
 <font size='+1'>[World of Warcraft Buzz Analysis](WoW_guild.html)</font>\
-<font size='-2'>October 28, 2020</font>
+<font size='-2'>October 28th, 2020</font>
 
 The World of Warcraft Classic guild I play with recently deployed their own bot to track game data. Figured what better opportunity to continue expanding my R skills and also working in a Tableau Dashboard Infographic!
 
 </br>
 
 <font size='+1'>[Your Mom's House Analysis, Part 2](YMH2.html)</font>\
-<font size='-2'>October 16, 2020</font>
+<font size='-2'>October 16th, 2020</font>
 
 And we are back with Part II of the YMH analysis. In this post, we look under the hood at the YouTube text-to-speech data we pulled from the official YMH Podcast channel. This blog post is full of **NSFW** text trends, episode descriptive statistics, a wordcloud and much more! Try it out!
 
 </br>
 
 <font size='+1'>[Your Mom's House Analysis, Part I](YMH.html)</font>\
-<font size='-2'>October 11, 2020</font>
+<font size='-2'>October 11th, 2020</font>
 
 After a brief 3 year break in blogging, I have returned and am diving into a linguistic analysis of my partner's favorite podcast, Your Mom's House (**Not Safe for Work** - you have been warned!) This project threw me for a loop with YouTube's API Call, new R libraries, and a command line headache!
 
 </br>
 <font size='+1'>[Chicago SSL Dashboard Open Data Analysis](SSL.html)</font>\
-<font size='-2'>June 14, 2017</font>
+<font size='-2'>June 14th, 2017</font>
 
 An exploratory analysis of newly public CPD SSL data found [here](https://data.cityofchicago.org/Public-Safety/Strategic-Subject-List-Historical/4aki-r3np)
 
 </br>
 
 <font size='+1'>[Chicago Census and Crime Spatial Analysis](SSL.html)</font>\
-<font size='-2'>June 5, 2017</font>
+<font size='-2'>June 5th, 2017</font>
 
 
 An exploratory spatial analysis of Chicago census demographcs and crime data utilizing [GeoDa](https://geodacenter.github.io/), a free and open spatial analysis GIS software developed by University of Chicago Professor Luc Anselin and his team.

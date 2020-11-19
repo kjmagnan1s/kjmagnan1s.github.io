@@ -1,0 +1,413 @@
+---
+title: "Exploring My Google Search History"
+#author: "Kevin magnan"
+#date: "11/13/2020"
+output: html_document
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+Published on November 15th, 2020
+
+"Hey Google, show me my search history."
+
+If you're like me, you Google just about everything from weather to conversions from tbsp to cup, how to feed a sourdough starter, TSLA stock, where is the nearest bar, and the list goes on and on. So when I stumbled upon a blog post about how to explore your Google search activity on https://towardsdatascience.com, written by Saúl Buentello (@cosmoduende), I knew I had to take a stab at analyzing my own search history.
+
+I won't go through the steps to generate your own Google search history extract, Saúl does a fantasic job walking you step by step through Goole's Takeout service in his blog [HERE](https://towardsdatascience.com/explore-your-activity-on-google-with-r-how-to-analyze-and-visualize-your-search-history-1fb74e5fb2b6). That being said, make sure to poke around the complete Google Takeout service. These days, tech companies collect troves of your data but they are also making it more accessible so it's important to understand what data they collect, how to restrict data collected on you, and how to utilize it for yourself!
+
+We'll pick up from Saúl's blog when he begins to load libraries and read the data. Now I already have some experience with textual analysis from my YMH two-part blog series. I've picked up a lot of tricks from that project so I'll be making changes and improvements to Saul's code below and adding more complex textual analysis. 
+
+## Steup and data work
+
+As always, we'll make use of the {pacman} package to load, install, and update the libraries we'll use for this analysis (I have also noted what each package is used for). I'm also going to try out some new visualization packages like {highcharter}.
+
+```{r}
+pacman::p_load(
+  tidyverse,     ## data cleaning
+  lubridate,     ## for working with dates
+  ggplot2,       ## plots
+  plotly,        ## interactive plots
+  janitor,       ## text cleaning
+  dygraphs,      ## interactive JavaScript charting library
+  reactable,     ## interactive tables
+  wordcloud,     ## cloud of words
+  rvest,         ## for manipulating html and xml files
+  tm,            ## text mining
+  tidytext,      ## text mining
+  highcharter    ## html interactive charts
+)
+
+theme_set(theme_minimal())
+```
+
+When you download your Google Takeout data, you should notice it comes as an html file. Take a second to load that file in your browser just to poke around. In order to read and manipulate those files in R, we'll make use of the {rvest} package. Now if you notice below, I've also downloaded my map search activity. I use Google Maps as much as Google Search and it made sense to grab that activity. I'm hoping that provides even more granularity to my search behaviors and I'd love to be able to map the data but that will depend on if Google exports the data with spatial variables like latitude and longitude.
+
+```{r}
+## read data
+mysearchfile <- read_html("~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout/Takeout/My Activity/Search/MyActivity.html", encoding = "UTF-8")
+```
+
+With the data loaded, I took a lot of cues from Saúl on manipulating the html structured data.
+
+```{r}
+## Scraping search date and time
+dateSearched <- mysearchfile %>% 
+  html_nodes(xpath = '//div[@class="mdl-grid"]/div/div') %>%
+  ## I gather this pulls the section of the HTML document with the relevant search data
+  str_extract(pattern = "(?<=<br>)(.*)(?<=PM|AM)") %>%
+  ## From that section of HTML search data, we extra the pattern that matches our desired date
+  mdy_hms()                                                  
+  ## lubridate month/day/year hour/minute/second
+## head(dateSearched)
+
+## Scraping search text
+textSearch <- mysearchfile %>% 
+  html_nodes(xpath = '//div[@class="mdl-grid"]/div/div') %>% 
+  ## looks like this xpath holds all the relevant 
+  str_extract(pattern = '(?<=<a)(.*)(?=</a>)') %>%           
+  ## this extracts the google search url product of each google search
+  str_extract(pattern = '(?<=\">)(.*)')                      
+  ## this extracts just the search phrase after the url
+  ## so a normal good search looks like "www.google.com/search?q=YOUR+SEARCH+HERE"
+  ## and this pipe simply extracts the 'YOUR+SEARCH+HERE' text
+## head(textSearch)
+
+## Scraping search type
+typeSearch <- mysearchfile %>% 
+  html_nodes(xpath = '//div[@class="mdl-grid"]/div/div') %>% 
+  str_extract(pattern = '(?<=mdl-typography--body-1\">)(.*)(?=<a)') %>%
+  str_extract(pattern = '(\\w+)(?=\\s)')
+## head(typeSearch)
+
+searchedData <- tibble(timestamp = dateSearched,
+                       date = as_date(dateSearched),
+                       day = weekdays(dateSearched),
+                       month = month(dateSearched, label = TRUE),
+                       year = year(dateSearched),
+                       hour = hour(dateSearched),
+                       search = textSearch,
+                       type = typeSearch)
+
+searchedData <- searchedData %>% 
+  mutate(day = factor(day, levels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))) %>%
+  na.omit %>% 
+  clean_names()     ## from janitor
+
+head(searchedData)
+```
+
+And just like that, we have our Google search data organized in a nice little table of 8 columns and 95,000 rows. Safe to say I've made a few searches in my day. Imagine having to look in a dictionary or research a question that many times `r emo::ji("eyes")`. 
+
+```{r, echo = FALSE, eval = FALSE, message = FALSE}
+## write to csv for later use, maybe a Tableau dashboard
+write.csv(searchedData, file = "~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout_search_data.csv")
+```
+
+## Data Exploratoration
+
+Starting with something simple, let's look at overall searches by year. I would imagine that my search history would grow linearly as technology becomes more and more relevant. We may even see a spike in 2020 for COVID.
+
+```{r}
+## searches over time
+searchedData %>% 
+  ggplot(aes(year, fill = stat(count))) +
+  geom_bar(width = 0.7) +
+  scale_fill_gradient(low = "yellow", high = "red") +
+  labs(title = "My Google Search History Over Time",
+       x = "Year", 
+       y = "Count"
+       ) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+# searchedData %>% 
+#   group_by(year) %>%
+#   summarise(count = n()) %>%  
+#   hchart(type = "column", hcaes(x = year, y = count))
+```
+
+Well that's surprising. Turns out my search activity reached it's peak in 2017 after a drop in searches after 2014 and has been steadily declining since the peak in 2017. I have a few hypotheses on why my search activity looks like this. Hopefully we'll figure out if any of my ideas hold true once we dive further into the data.
+
+```{r fig.width=18}
+## searches by month
+# searchedData %>%
+#   filter(year > 2012 & year < 2021) %>%
+#   ggplot(aes(year, fill = stat(count))) +
+#   scale_fill_gradient(low = "yellow", high = "red") +
+#   geom_bar(aes(month, group = year)) +
+#   theme(axis.text.x = element_text(vjust = 0.1, angle = 90)) +
+#   facet_grid(.~year, scales = "free") +
+#   labs(title = "Search History Over Time",
+#        x = "Year / Month", 
+#        y = "Count"
+#        )
+
+searchedData %>% 
+  filter(year > 2012 & year < 2021) %>%
+  group_by(year, month) %>% 
+  summarise(searches = n()) %>% 
+  hchart(type = "heatmap", hcaes(x = year, y = month, value = searches), name = "Searches") %>% 
+  hc_title(text = "Search History Over Time") %>% 
+  hc_xAxis(title = list(text="Year / Month")) %>% 
+  hc_yAxis(title = FALSE, reversed = TRUE) %>% 
+  hc_tooltip(borderColor = "black",
+             pointFormat = "{point.searches}") %>% 
+  hc_colorAxis(minColor = "yellow",
+               maxColor = "red") %>% 
+  hc_legend(align = "center", verticalAlign = "top", layout = "horizontal")
+```
+
+Here's my first shot at a heatmap chart from the {highcharter} package and just like that we've uncovered an anomaly in my search history! Something very interesting took place in September of 2017. I searched 1919 times in September, the highest number of searches by a long shot. The next closest month was April, 2014! Now before we look into this specific month, let's look at a few other descriptive statistics on time of day and day of week search behavior.
+
+```{r}
+## search by hour
+searchedData %>% 
+  ggplot(aes(hour, fill = stat(count))) +
+  scale_fill_gradient(low = "yellow", high = "red") +
+  geom_bar() +
+  labs(title = "Search History by Hour of Day",
+       x = "Hour", 
+       y = "Count"
+       ) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+```
+
+For anyone needing evidence of insomnia, this may be a good test! Turns out my search history is directly correlated with my sleep which probably happens to be a good point for my health. Not too surprising my search history essentially plots to a 9-5 schedule with some evening searching but mainly peaks throughout the day and a sharp decline during the late evening and early hours when I'm sleeping.
+
+```{r}
+## search by day
+searchedData %>% 
+  ggplot(aes(day, fill = stat(count))) +
+  scale_fill_gradient(low = "yellow", high = "red") +
+  geom_bar() +
+  labs(title = "Search History by Day of Week",
+       x = "Day", 
+       y = "Count"
+       ) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+```
+
+It also turns out my search history follows a normal work week. I search the most on Monday and by the time the weekend comes around, I'm searching far less and hopefully enjoying time outside or with friends and family.
+
+```{r}
+# searchedData %>% 
+#   ggplot(aes(day, fill = stat(count)))+
+#   scale_fill_gradient(low = "yellow", high = "red") +
+#   geom_bar(aes(hour, group = day)) +
+#   facet_grid(.~day, scales = "free") +
+#   labs(title = "Search History Day/Time Relationship",
+#        x = "Day / Hour", 
+#        y = "Count"
+#        )
+
+searchedData %>%
+  group_by(day, hour) %>% 
+  summarise(searches = n()) %>%
+  mutate(day = factor(day,
+                      levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))) %>% 
+  hchart(type = "heatmap", hcaes(x = hour, y = day, value = searches), name = "Searches") %>%
+  hc_title(text = "Search History Day/Time Heatmap") %>% 
+  hc_xAxis(title = list(text="Hour")) %>% 
+  hc_yAxis(title = FALSE, reversed = TRUE) %>% 
+  hc_tooltip(borderColor = "black",
+             pointFormat = "Searches: {point.searches}") %>% 
+  hc_colorAxis(minColor = "yellow",
+               maxColor = "red") %>% 
+  hc_legend(align = "center", verticalAlign = "top", layout = "horizontal")
+```
+
+Tying the temporal analysis together, my search trends are remarkably consistent by day and time. It does appear, though, as the week begins to wind down, my Google searching experiences a reduction in activity. Safe to say I may be partaking in a few early 'summer Friday's' at work! `r emo::ji("rofl")` 
+
+## Wordclouds
+
+Alright let's take a look at a few wordclouds next, starting with a cloud of all my search phrases and then moving onto some more specific analysis based on the observations we made above. I'll use the {tidytext} package to extract the words from all of my searches. {tidytext} is an incredibly powerful textual mining package I would suggest getting comfortable with if you plan on doing similar analyses with text mining data such as twitter, transcripts or books.
+
+```{r}
+## text mine google search phrases
+textData <- searchedData %>% 
+  select(date, search) %>%
+  mutate(search = tolower(search)) %>%
+  unnest_tokens("word", search) %>% 
+  ## count(word, sort = TRUE)
+  ## ^ to see how rough the data is before text cleaining
+  anti_join(stop_words) %>% 
+  filter(!(word %in% c("https", "http", "amp")))
+
+textData <- textData[-grep("\\b\\d+\\b", textData$word),]
+textData <- textData[-grep("(.*.)\\.com(.*.)\\S+\\s|[^[:alnum:]]", textData$word),]
+
+textDT <- textData %>%
+  count(word, sort = TRUE)
+
+## wordcloud for search terms
+textCloud <- wordcloud(words = textDT$word, freq = textDT$n,
+                       min.freq = 1, max.words = 150,
+                       random.order = FALSE, colors = brewer.pal(10, "Spectral"))
+```
+
+If you haven't figured it out yet, wordclouds are virtually effortless to make in R (after the data cleaning with {tidytext})and they are really useful in text analysis, making key terms 'pop' while also allowing the reader to make connections between words. Take the example of my wordcloud for all my Google searches since 2012. I live in Chicago so clearly Chicago is my most searched term, mainly to keep my searches local. Next up, I am a huge Reddit user and it's clear from my wordcloud I search Reddit **a lot**. Aside from scrolling and entertainment, I also use Reddit for more practical things like advice, suggestions, coding, and unbiased reviews. Before I purchase most any product or item, I'll search the product on Google, followed by "Reddit comments", to read reviews and thoughts from other people around the world. A few other interested observations - Tableau is my most searched analysis tool followed by QGIS; I think R didn't make it in the wordcloud because its just a letter (rmarkdown did make it on the wordcloud on the bottom right). Finally, lots of cooking terms in the wordcloud: recipe, knife, eats (serious eats), pizza, cheese, etc. I am an avid home chef so that's no surprise to me (or my fiance probably!).
+
+```{r}
+## wordcloud for just September, 2017 searches
+textDTSept <- textData %>%
+  filter(year(date) == 2017) %>%
+  filter(month(date) == 09) %>% 
+  count(word, sort = TRUE)
+
+
+textCloud <- wordcloud(words = textDT$word, freq = textDT$n,
+                       min.freq = 1, max.words = 150,
+                       random.order = FALSE, colors = brewer.pal(10, "Spectral"))
+```
+
+
+Now, ironically, this second wordcloud, specific for the September 2017 spike we found, does not really offer any insights into why there were so many searches. That's unfortunate but let's try a few other visuals to try and pull out some more insights into this particular period. 
+
+```{r fig.width=10}
+## plot search terms over time, by term
+ggplotly(
+  textData %>%
+    mutate(date = year(date)) %>% 
+    mutate(date = str_sub(date)) %>% 
+    group_by(date, word) %>%
+    summarise(count = n()) %>%
+    slice_max(order_by = count,
+              n = 10,
+              with_ties = TRUE) %>% 
+    ggplot(aes(x = date, y = count)) +
+    geom_text(aes(size = count, label = paste(word), text = paste(
+      "In", date, "I searched", word, count, "times"))) +
+    labs(
+      title = "Search Words By Year",
+      x = "Year",
+      y = "Search Count"
+    ) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+, tooltip = "text"
+)
+```
+
+Aha! We're finally finding somewhere on that 2017 search spike. Chicago was far and away my most searched term in 2017, nearly double any other term I've ever searched on Google (which ironically turn out to be 'Chicago'). This plot also shows my progression (and growth) of search terms over time - definitely a trip down memory lane! Back in 2008, my top search was for 'blackberry'. In 2009, 'windows' was my top search because Windows 7 was released that year and I distinctly remember participating in the Windows beta/developer versions which, by the way, was a terrible idea to test out an unstable version of Windows while simultaneously attending college. Between 2010 and 2016, my search history is noisy and difficult to interpret until I decided to resign as a police officer, move to Chicago and attend grad school at the University of Chicago around the summer of 2016. After 2016 my search history clears up to the themes we identified in the wordclouds. This plot was so helpful in digging into my search history, I wonder what a plot of key search terms specific to 2017 would look like ...
+
+```{r fig.width=10}
+## plot search terms for 2017
+ggplotly(
+  textData %>%
+    filter(year(date) == 2017) %>%  
+    group_by(date, word) %>%
+    mutate(date = factor(months(date))) %>% 
+    summarise(count = n()) %>%
+    slice_max(order_by = count,
+              n = 10,
+              with_ties = TRUE) %>% 
+    ggplot(aes(x = date, y = count)) +
+    geom_text(aes(size = count, label = paste(word), text = paste(
+      "In", date, "I searched", word, count, "times"))) +
+    labs(
+      title = "Search Words, by Month, 2017",
+      x = NULL,
+      y = "Search Count"
+    ) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+, tooltip = "text"
+)
+```
+<center>
+![](https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif) 
+</center>
+
+Wonder no further! Chicago was consistently one of my most searched terms in 2017, clearing up the reason why it was the top search for the year and why 2017 was such an outlier. Thinking back, the year 2017 brought a lot of changes and challenges to my life. I completed my graduate thesis and graduated from UChicago with my second master's, began a long and arduous job hunt, and started a new job at the UChicago Crime Lab. With that in mind, I'm not too surprised this year had such a high search volume.   
+
+*Important mental note here - with my start at a new job, my Google activity was essentially split between my personal Google account and my work Google account, thus the drop off in activity and starting in 2017 - though I'm not sure why it has not leveled off yet.*
+
+## Google Maps
+
+```{r warning=FALSE}
+pacman::p_load(jsonlite,
+               ggmap)
+
+mymapfile <- read_html  ("~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout/Takeout/My Activity/Maps/MyActivity.html", encoding = "UTF-8")
+loc_hist_takeout <- fromJSON("~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout/Takeout/My Activity/Maps/Location History.json", flatten = TRUE)
+locations <- loc_hist_takeout$locations
+```
+
+
+```{r}
+## Scraping map date and time
+dateMapped <- mymapfile %>% 
+  html_nodes(xpath = '//div[@class="mdl-grid"]/div/div') %>%
+  str_extract(pattern = "(?<=<br>)(.*)(?<=PM|AM)") %>%
+  mdy_hms()                                                  
+
+
+## Scraping map text
+textMapped <- mymapfile %>% 
+  html_nodes(xpath = '//div[@class="mdl-grid"]/div/div') %>% 
+  str_extract(pattern = '(?<=<a)(.*)(?=</a>)') %>%           
+  str_extract(pattern = '(?<=\">)(.*)')                      
+
+## Scraping map type
+typeMapped <- mymapfile %>% 
+  html_nodes(xpath = '//div[@class="mdl-grid"]/div/div') %>% 
+  str_extract(pattern = '(?<=mdl-typography--body-1\">)(.*)(?=<a)') %>%
+  str_extract(pattern = '(\\w+)(?=\\s)')
+
+mappedData <- tibble(timestamp = dateMapped,
+                       date = as_date(dateMapped),
+                       day = weekdays(dateMapped),
+                       month = month(dateMapped, label = TRUE),
+                       year = year(dateMapped),
+                       hour = hour(dateMapped),
+                       search = textMapped,
+                       type = typeMapped)
+
+mappedData <- mappedData %>% 
+  mutate(day = factor(day, levels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))) %>%
+  #na.omit %>% 
+  clean_names()     ## from janitor
+
+head(mappedData)
+```
+
+If there is any other tech service I use as much as Google Search, it would be Google Maps. I thought it would be fun to compare my Google Maps activity now that we've analyzed my search activity. I'm expecting much less Google Map activity throughout the week and significant increases in activity at night and on the weekends but as we saw before, my Google activity could very easily surprise me, although I expect less surprises with my map data as I assume most of my activity is on my phone and during personal time. I've also exported my Google location history data and I'm super excited to play around with mapping that data. I have a lot of experience in GIS and spatial analysis with Tableau, QGIS, ArcGIS, and GeoDa but not very much in R so I'm looking forward to experimenting with that here.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
