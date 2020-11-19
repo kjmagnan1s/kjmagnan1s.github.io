@@ -329,8 +329,27 @@ pacman::p_load(jsonlite,
 mymapfile <- read_html  ("~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout/Takeout/My Activity/Maps/MyActivity.html", encoding = "UTF-8")
 loc_hist_takeout <- fromJSON("~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout/Takeout/My Activity/Maps/Location History.json", flatten = TRUE)
 locations <- loc_hist_takeout$locations
+rm(loc_hist_takeout) ## free up memory from large json files
+
+## clean json data
+locations <- locations %>% 
+  ## convert the time column from milliseconds
+  mutate(time = as.POSIXct(as.numeric(timestampMs)/1000, origin = "1970-01-01")) %>%
+  ## clean/arrange date columns
+  mutate(day = day(time)) %>% 
+  mutate(day = ordered(day, levels = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))) %>% 
+  ## conver lat/long from E7 to coordinates
+  mutate(lat = latitudeE7/1e7) %>% 
+  mutate(long = longitudeE7/1e7) %>% 
+  ## remove unnecessary columns
+  select(time, lat, long)
 ```
 
+```{r, echo = FALSE, eval = FALSE, message = FALSE}
+## write to csv for later use, maybe a Tableau dashboard
+write.csv(locations, file = "~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout_location_data.csv")
+locations <- read.csv("~/GitHub/kjmagnan1s.github.io/blog_data/google_takeout_location_data.csv")
+```
 
 ```{r}
 ## Scraping map date and time
