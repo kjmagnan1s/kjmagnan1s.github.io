@@ -13,9 +13,9 @@ Published on November 20th, 2020
 
 _"Hey Google, show me my search history."_
 
-If you are like me, you Google just about everything from weather to conversions from tbsp to cup, how to feed a sourdough starter, TSLA stock, where is the nearest bar, and the list goes on and on. So when I stumbled upon a blog post explaining how to explore your own Google search activity on https://towardsdatascience.com, written by Saúl Buentello [@cosmoduende](https://twitter.com/cosmoduende?lang=en), I knew I had to take a stab at analyzing my own search history.
+If you are like me, you Google just about everything from weather to conversions from tbsp to cup, how to feed a sourdough starter, TSLA stock, where is the nearest bar, and the list goes on and on. So when I stumbled upon a blog post explaining how to explore your own Google search activity on [https://towardsdatascience.com](https://towardsdatascience.com/explore-your-activity-on-google-with-r-how-to-analyze-and-visualize-your-search-history-1fb74e5fb2b6), written by Saúl Buentello, @cosmoduende, I knew I had to take a stab at analyzing my own search history.
 
-I won't go through the steps to generate your own Google search history extract, Saúl does a fantasic job walking you step-by-step through Google's Takeout service in his blog [HERE](https://towardsdatascience.com/explore-your-activity-on-google-with-r-how-to-analyze-and-visualize-your-search-history-1fb74e5fb2b6). That being said, make sure to poke around the complete [Goole's Takeout](www.takeout.google.com) service. These days, tech companies collect troves of your data, but they are also making it more accessible. It's important to understand what data they collect, how to restrict data collected on you, and how to utilize it for yourself!
+I won't go through the steps to generate your own Google search history extract, Saúl does a fantasic job walking you step-by-step through Google's Takeout service in his blog [Here](https://towardsdatascience.com/explore-your-activity-on-google-with-r-how-to-analyze-and-visualize-your-search-history-1fb74e5fb2b6). That being said, make sure to poke around the complete [Goole's Takeout](www.takeout.google.com) service. These days, tech companies collect troves of your data, but they are also making it more accessible. It's important to understand what data they collect, how to restrict data collected on you, and how to utilize it for yourself!
 
 I will pick up from Saúl's blog where he begins to load libraries and read the Google Takeout data. I already have some experience with text analysis from my YMH two-part blog series and I've picked up a lot of tricks from that project. Because of my prior experience, I will be making changes and, what I consider, improvements to Saul's code below and adding more complex text analysis as well. 
 
@@ -196,7 +196,7 @@ Tying these temporal analyses together, my search trends are fairly consistent b
 
 Alright let's take a look at a few wordclouds next, starting with a cloud of my complete search tokens and then moving onto some more specific analysis based on the observations we made above. I will use the {tidytext} package to extract the words from all of my searches. {tidytext} is an incredibly powerful text mining package; I would suggest getting comfortable with it if you plan on doing similar analyses with text mining data such as twitter, transcripts or books.
 
-```{r text mining searches, fig.align="center"}
+```{r text mining searches, fig.width = 10, fig.align="center"}
 ## text mine google search phrases
 textData <- searchedData %>% 
   select(date, search) %>%
@@ -213,29 +213,30 @@ textData <- textData[-grep("(.*.)\\.com(.*.)\\S+\\s|[^[:alnum:]]", textData$word
 textDT <- textData %>%
   count(word, sort = TRUE)
 
+## side by side wordclouds
+par(mfrow=c(1,2))
+
 ## wordcloud for search terms
-textCloud <- wordcloud(words = textDT$word, freq = textDT$n,
-                       min.freq = 1, max.words = 150,
+textCloud <- wordcloud(words = textDT$word, main = "Title", 
+                       freq = textDT$n,
+                       min.freq = 1, max.words = 125,
                        random.order = FALSE, colors = brewer.pal(10, "Spectral"))
-```
 
-So if you haven't figured it out yet, wordclouds are simple to make in R (after the data cleaning with {tidytext} ) and they are really useful in text analysis, making key terms 'pop' while also allowing the reader to make connections between words. Take the example of my wordcloud for all my Google searches since 2012. I live in Chicago so it's almost expected that Chicago is my most searched term, mainly to keep my Google searches local. Next up, I am a huge Reddit user and it's clear from my wordcloud I search Reddit **a lot**. Aside from scrolling and entertainment, I also use Reddit for more practical things like advice, suggestions, coding, and unbiased reviews. Before I purchase any product or item, I will usually search the product on Google, followed by "Reddit comments" to read reviews and thoughts from other people around the world. A few other interested observations: Tableau is my most searched analysis tool followed by QGIS; I think R didn't make it in the wordcloud because its just a letter (rmarkdown did make it on the wordcloud on the bottom right). Finally, lots of cooking terms in the wordcloud including recipe, knife, eats (serious eats), pizza, cheese, etc. I am an avid home chef so that's no surprise to me (or my fiance!).
-
-```{r wordcloud 2, fig.align="center"}
-## wordcloud for just September, 2017 searches
 textDTSept <- textData %>%
   filter(year(date) == 2017) %>%
   filter(month(date) == 09) %>% 
   count(word, sort = TRUE)
 
 
-textCloud <- wordcloud(words = textDT$word, freq = textDT$n,
-                       min.freq = 1, max.words = 150,
+textCloud <- wordcloud(words = textDT$word, main = "Title", 
+                       freq = textDT$n,
+                       min.freq = 1, max.words = 125,
                        random.order = FALSE, colors = brewer.pal(10, "Spectral"))
 ```
 
+So if you haven't figured it out yet, wordclouds are simple to make in R (after the data cleaning with {tidytext} ) and they are really useful in text analysis, making key terms 'pop' while also allowing the reader to make connections between words. Take the example of the left wordcloud of all my Google searches since 2012. I live in Chicago so it's almost expected that Chicago is my most searched term, mainly to keep my Google searches local. Next up, I am a huge Reddit user and it's clear from my wordcloud I search Reddit **a lot**. Aside from scrolling and entertainment, I also use Reddit for more practical things like advice, suggestions, coding, and unbiased reviews. Before I purchase any product or item, I will usually search the product on Google, followed by "Reddit comments" to read reviews and thoughts from other people around the world. A few other interested observations: Tableau is my most searched analysis tool followed by QGIS; I think R didn't make it in the wordcloud because its just a letter (rmarkdown did make it on the wordcloud on the bottom right). Finally, lots of cooking terms in the wordcloud including recipe, knife, eats (serious eats), pizza, cheese, etc. I am an avid home chef so that's no surprise to me (or my fiance!).
 
-Now, ironically, this second wordcloud, specific for the September 2017 spike we found, does not really offer any insights into why there were so many searches. That's unfortunate but I have a few other ideas to try and pull out some more insights into this particular time period. 
+Now, ironically, the wordcloud on the right, specific to the September 2017 spike we found, does not really offer any insights into why there were so many searches. That's unfortunate but I have a few other ideas to try and pull out some more insights into this particular time period. 
 
 ```{r plotly search terms, fig.width=10}
 ## plot search terms over time, by term
