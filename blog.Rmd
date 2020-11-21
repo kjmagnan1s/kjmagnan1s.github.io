@@ -16,7 +16,7 @@ output:
 <br><hr><br>
 
 <font size='+1'>[My Google Search History](google_searches.html)</font>\
-<font size='-2'>November 15th, 2020</font>
+<font size='-2'>November 20th, 2020</font>
 
 Let's face it, we live on the internet now more than ever. In this blog post, I'll explore a major part of my internet activity - my Google search history. Time to start learning what the Google overlords know about me.   
 
