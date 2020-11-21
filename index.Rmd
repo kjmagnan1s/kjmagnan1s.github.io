@@ -50,6 +50,11 @@ Committed to achieving a data-driven society
 
 <h2> Current Projects: </h2>
 
+<font size='+1'>[Exploring My Google Search History](https://www.kevinjmagnan.com/google_searches.html)
+
+<img src="https://github.com/kjmagnan1s/kjmagnan1s.github.io/blob/master/images/google_history_gif_v2.gif" 
+  width=10% height=10%/>
+
 <font size='+1'>[Nintendo Switch Global Sales](https://public.tableau.com/views/NintendoSwitchSalesMM45/SWITCH?:language=en&:display_count=y&:origin=viz_share_link)
 
 <img src="https://raw.githubusercontent.com/kjmagnan1s/kjmagnan1s.github.io/master/images/switch.png" 
