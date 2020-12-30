@@ -30,7 +30,7 @@ navbar:
             href: https://public.tableau.com/views/KevinMagnanInteractiveResume/Dashboard1?:embed=y&:display_count=yes&:origin=viz_share_link
           - text: "---"
           - text: "PDF"
-            href: resume.pdf
+            href: KevinMagnan-Resume.pdf
       - text: "SAMPLE CODE"
         menu:
           - text: "SQL"
@@ -38,9 +38,6 @@ navbar:
           - text: "---"
           - text: "PYTHON"
             href: python.html
-          - text: "---"
-          - text: "R"
-            href: ranalysis.html
       - icon: fa-twitter
         href: twitter_redirect.html
       - image: images\tableau.png
