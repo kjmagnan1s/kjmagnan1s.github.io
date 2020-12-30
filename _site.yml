@@ -39,13 +39,13 @@ navbar:
           - text: "PYTHON"
             href: python.html
       - icon: fa-twitter
-        href: twitter_redirect.html
+        href: https://twitter.com/KevinMagnan
       - image: images\tableau.png
-        href: tableau_redirect.html
+        href: https://public.tableau.com/profile/kevin.magnan#!/
       - icon: fa-linkedin
-        href: linkedin_redirect.html
+        href: https://linkedin.com/in/kjmagnan1s
       - icon: fa-github
-        href: github_redirect.html
+        href: https://github.com/kjmagnan1s
       - icon: fa-envelope
         href: mailto:kjmagnan1s@gmail.com
       - icon: fa fa-rss
