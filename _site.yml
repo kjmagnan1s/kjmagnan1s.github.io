@@ -1,0 +1,70 @@
+name: "kevin-magnan-website-2.0"
+description: |
+  Personal Blog
+google_analytics: "UA-97380674-1"
+theme: theme.css
+favicon: images\favicon.ico
+base_url: https://www.kevinjmagnan.com
+output_dir: "docs"
+twitter:
+  site: "@KevinMagnan"
+  creator: "@KevinMagnan"
+cookie_consent:
+  style: simple
+  type: express
+  palette: dark
+  lang: en
+  cookies_policy: url
+navbar:
+  title: "KEVIN MAGNAN"
+  source_url: false  ## provides a github link in upper right to website source code
+  search: true
+  right:
+      - text: "BLOG"
+        href: index.html
+      - text: "ABOUT ME"
+        href: about.html
+      - text: "RESUME"
+        menu:
+          - text: "INTERACTIVE"
+            href: https://public.tableau.com/views/KevinMagnanInteractiveResume/Dashboard1?:embed=y&:display_count=yes&:origin=viz_share_link
+          - text: "---"
+          - text: "PDF"
+            href: resume.pdf
+      - text: "SAMPLE CODE"
+        menu:
+          - text: "SQL"
+            href: sql.html
+          - text: "---"
+          - text: "PYTHON"
+            href: python.html
+          - text: "---"
+          - text: "R"
+            href: ranalysis.html
+      - icon: fa-twitter
+        href: twitter_redirect.html
+      - image: images\tableau.png
+        href: tableau_redirect.html
+      - icon: fa-linkedin
+        href: linkedin_redirect.html
+      - icon: fa-github
+        href: github_redirect.html
+      - icon: fa-envelope
+        href: mailto:kjmagnan1s@gmail.com
+      - icon: fa fa-rss
+        href: index.xml
+collections:
+  posts:
+    categories: true
+    categories_metadata: true
+    authors_metadata: false
+    citations: false
+    disqus:
+      shortname: KevinMagnanBlog
+      hidden: false
+    feed_items_max: false
+    share: [twitter, linkedin]
+    custom: _custom.html
+output:
+  distill::distill_article:
+    toc: true
