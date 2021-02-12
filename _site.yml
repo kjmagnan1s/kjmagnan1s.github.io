@@ -30,7 +30,7 @@ navbar:
             href: https://public.tableau.com/views/KevinMagnanInteractiveResume/Dashboard1?:embed=y&:display_count=yes&:origin=viz_share_link
           - text: "---"
           - text: "PDF"
-            href: KevinMagnan-Resume.pdf
+            href: Kevin_Magnan_Resume.pdf
       - text: "SAMPLE CODE"
         menu:
           - text: "SQL"
