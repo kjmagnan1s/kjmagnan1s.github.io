@@ -23,7 +23,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -122,7 +121,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["2021-03-11-tableau-interactive-resume_files/anchor-4.2.2/anchor.min.js","2021-03-11-tableau-interactive-resume_files/bowser-1.9.3/bowser.min.js","2021-03-11-tableau-interactive-resume_files/distill-2.2.21/template.v2.js","2021-03-11-tableau-interactive-resume_files/header-attrs-2.7/header-attrs.js","2021-03-11-tableau-interactive-resume_files/jquery-1.11.3/jquery.min.js","2021-03-11-tableau-interactive-resume_files/popper-2.6.0/popper.min.js","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy-bundle.umd.min.js","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy-light-border.css","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy.css","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy.umd.min.js","2021-03-11-tableau-interactive-resume_files/webcomponents-2.0.0/webcomponents.js","figma.png","Resume_v2.png","tab_resume_img.png","the_best.gif","v2_layout.jpg","you_can_do_it.gif"]}
+  {"type":"character","attributes":{},"value":["2021-03-11-tableau-interactive-resume_files/anchor-4.2.2/anchor.min.js","2021-03-11-tableau-interactive-resume_files/bowser-1.9.3/bowser.min.js","2021-03-11-tableau-interactive-resume_files/distill-2.2.21/template.v2.js","2021-03-11-tableau-interactive-resume_files/header-attrs-2.6/header-attrs.js","2021-03-11-tableau-interactive-resume_files/header-attrs-2.7/header-attrs.js","2021-03-11-tableau-interactive-resume_files/jquery-1.11.3/jquery.min.js","2021-03-11-tableau-interactive-resume_files/popper-2.6.0/popper.min.js","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy-bundle.umd.min.js","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy-light-border.css","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy.css","2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy.umd.min.js","2021-03-11-tableau-interactive-resume_files/webcomponents-2.0.0/webcomponents.js","figma.png","powerbi.png","Resume_v2.png","tab_resume_img.png","the_best.gif","v2_layout.jpg","you_can_do_it.gif"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -314,11 +313,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: underline;
   }
 
-  d-article details {
-    grid-column: text;
-    margin-bottom: 0.8em;
-  }
-
   @media(min-width: 768px) {
 
   d-article pre,
@@ -473,17 +467,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
-  }
-
-  /* Citation hover box */
-
-  .tippy-box[data-theme~=light-border] {
-    background-color: rgba(250, 250, 250, 0.95);
-  }
-
-  .tippy-content > p {
-    margin-bottom: 0;
-    padding: 2px;
   }
 
 
@@ -1151,7 +1134,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       var layout = $(this).attr('data-layout');
 
       // apply layout to markdown level block elements
-      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      var elements = $(this).children().not('div.sourceCode, pre, script');
       elements.each(function(i, el) {
         var layout_div = $('<div class="' + layout + '"></div>');
         if (layout_div.hasClass('shaded')) {
@@ -1266,20 +1249,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
-
-      // hoverable references
-      $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
-        window.tippy(this, {
-          allowHTML: true,
-          content: refHtml,
-          maxWidth: 500,
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start'
-        });
-      });
 
       // clear polling timer
       clearInterval(tid);
@@ -1440,12 +1409,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="2021-03-11-tableau-interactive-resume_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="2021-03-11-tableau-interactive-resume_files/header-attrs-2.6/header-attrs.js"></script>
   <script src="2021-03-11-tableau-interactive-resume_files/jquery-1.11.3/jquery.min.js"></script>
-  <script src="2021-03-11-tableau-interactive-resume_files/popper-2.6.0/popper.min.js"></script>
-  <link href="2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="2021-03-11-tableau-interactive-resume_files/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="2021-03-11-tableau-interactive-resume_files/anchor-4.2.2/anchor.min.js"></script>
   <script src="2021-03-11-tableau-interactive-resume_files/bowser-1.9.3/bowser.min.js"></script>
   <script src="2021-03-11-tableau-interactive-resume_files/webcomponents-2.0.0/webcomponents.js"></script>
@@ -1500,43 +1465,44 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#dashboard-background-design-with-figma">Dashboard Background Design with Figma</a></li>
 <li><a href="#data-prep">Data Prep</a></li>
 <li><a href="#build-publish">Build &amp; Publish</a></li>
+<li><a href="#march-2021-update">March 2021 Update:</a></li>
 </ul>
 </nav>
 </div>
 <h2 id="background">Background</h2>
-<p>The idea of a Tableau interactive resume was not a new concept to me; I first published my version of a Tableau resume back in June of 2019. At that time, I was still learning a lot of Tableau concepts, visualization best practices, and I was certainly still ‘trapped’ within a more rigid framework of how to build a dashboard. As I reflected on this version of my interactive resume in 2021, I appreciated my mindset back in 2019 while, at the same time, I identified the various areas for improvement and opportunities to incorporate new Tableau techniques I had picked up over the years to build on my resume and the work of others in the #DataFam Tableau Public community.</p>
+<p>The idea of a Tableau interactive resume was not a new concept to me; I first published my version of it back in June of 2019. At that time, I was still learning a lot about Tableau concepts, visualization best practices, and was certainly still ‘trapped’ within a rigid framework of how to build a dashboard. As I reflected on a new version of my interactive resume in 2021, I appreciated my mindset back in 2019 while, at the same time, identifying numerous areas for improvement and opportunities to incorporate more advanced Tableau techniques I have cultivated over the years and following the work of others in the #DataFam Tableau Public community.</p>
 <figure>
 <img src="tab_resume_img.png" alt="My first Tableau interactive resume, circa 2019" /><figcaption aria-hidden="true">My first Tableau interactive resume, circa 2019</figcaption>
 </figure>
-<p>I hope that after reading this blog, you will feel empowered and motivated to explore and develop your own interactive resume and share it with the world!</p>
+<p>I hope that after reading this blog, you will feel empowered and motivated to explore and develop your interactive resume and share it with the world!</p>
 <iframe src="https://giphy.com/embed/Vccpm1O9gV1g4" width="480" height="302" frameBorder="0" class="giphy-embed" allowFullScreen>
 </iframe>
 <p>
-<a href="https://giphy.com/gifs/rob-schneider-you-can-do-it-the-waterboy-Vccpm1O9gV1g4">via GIPHY</a>
+<p><a href="https://giphy.com/gifs/rob-schneider-you-can-do-it-the-waterboy-Vccpm1O9gV1g4">via GIPHY</a></p>
 </p>
 <h2 id="planning-new-dashboard">Planning New Dashboard</h2>
-<p>The first place to start when considering how to build and visualize your resume is on Tableau Public. I am a huge advocate for not reinventing the wheel and, instead, leveraging and building off of the incredible wealth of examples built by the Tableau community (with proper inspiration/credit given, of course!). With that in mind, starting with a review of Tableau’s Interactive Resume Gallery <a href="https://public.tableau.com/en-us/s/interactive-resume-gallery" title="click to navigate to Tableau&#39;s Interactive Resume Gallery">here</a> is the best place to start for Tableau experts and newcomers, alike.</p>
+<p>The first place to start when considering how to build and visualize your resume is on Tableau Public. I am a huge advocate for not reinventing the wheel and, instead, leveraging and building off of the incredible wealth of examples built by the Tableau community (with proper inspiration/credit given, of course!). With that in mind, starting with a review of Tableau’s Interactive Resume Gallery <a href="https://public.tableau.com/en-us/s/interactive-resume-gallery" title="click to navigate to Tableau&#39;s Interactive Resume Gallery">here</a> is the best recommendation I can give for Tableau experts and newcomers, alike.</p>
 <p>From there, I also found Google searches for ‘interactive resume’ or ‘visual resume’ helpful ways to explore other resume configurations, opportunities for interactivity, and visual inspiration. These searches usually resulted in more graphic design and photography content - a helpful nuance to the more data-focused inspiration from the Tableau community.</p>
 <p>By the end of this exercise, I had sketched out my new Tableau interactive resume layout and was ready to move on to designing the content:</p>
 <figure>
 <img src="v2_layout.jpg" alt="Tableau resume version II layout" /><figcaption aria-hidden="true">Tableau resume version II layout</figcaption>
 </figure>
 <h2 id="dashboard-background-design-with-figma">Dashboard Background Design with Figma</h2>
-<p>At this stage in the development process, you can let your creativity and inspiration thrive. I have seen countless ways to design and customize the layout and format of your interactive resume. My preferred path to achieving a custom design and background is with an online tool I recently discovered thanks to the Twitter #DataFam community called Figma. Figma is a powerful online collaborative graphics editor with tons of useful features and helpful ways to systematically and accurately design a Tableau background within a space. I have been using Figma for over 6 months now on my interactive resume, at work, and in my dashboards for the weekly #MakeoverMonday Tableau community project.</p>
+<p>At this stage in the development process, you can let your creativity and inspiration thrive. I have seen countless ways to design and customize the layout and format of an interactive resume. My preferred path to achieving a custom design and background is with an online tool I recently discovered thanks to the Twitter #DataFam community called <a href="www.figma.com">Figma</a>. Figma is a powerful online collaborative graphics editor with tons of useful features and helpful ways to systematically and accurately design a Tableau background within a space. I have been using Figma for over 6 months on projects including my interactive resume, at work, and in my dashboards for the weekly #MakeoverMonday Tableau community challenge.</p>
 <p>If you are new to Figma, I would suggest researching some tutorials online to get started. I recommend watching this <a href="https://www.youtube.com/watch?v=pmLSGzka1yY" title="Link to Lindsey Betzendahl&#39;s YouTube Figma tutorial">video</a> by Lindsey Betzendahl <span class="citation" data-cites="ZenDollaData">[@ZenDollaData]</span>(<a href="https://twitter.com/ZenDollData" class="uri">https://twitter.com/ZenDollData</a>) as a good starting point.</p>
 <p>For my particular Tableau resume background, I relied on Figma to create the background shapes, color scheme, icons, and text boxes. <a href="https://www.figma.com/file/DEZAPsPGE81LRzFf495bC2/Resume?node-id=0%3A1" title="Link to my Figma background for my interactive resume">Here’s</a> a link if you would like to check out my design!</p>
 <figure>
 <img src="figma.png" alt="Background designed with Figma" /><figcaption aria-hidden="true">Background designed with Figma</figcaption>
 </figure>
 <h2 id="data-prep">Data Prep</h2>
-<p>Now that we have a background/shell to work with, it’s time I decided which visualizations I wanted to build for my dashboard, how the visualizations would function, and other unique aspects of an interactive dashboard like ‘Contact Me’ links, tooltips, and showcasing my portfolio. But before we get too far into the weeds on specific chart types and the iterative process of determining the best way to visualize the skills and experience from your resume, we need to talk about data prep (and data generation).</p>
-<p>This section may raise some eyebrows but, at the end of the day, you are the judge of the skills you possess, so quantifying those skills becomes a very subjective exercise. Naturally, I would recommend being honest. The best way I found to do this was to imagine I was in an interview and was asked to justify why each skill received its respective score.</p>
+<p>Now that we have a background/shell to work with, it’s time I decided which visualizations to build for my dashboard, how the visualizations would function, and other unique aspects of an interactive dashboard like ‘Contact Me’ links, tooltips, and showcasing my portfolio. But before we get too far into the weeds on specific chart types and the iterative process of determining the best way to visualize the skills and experience from your resume, we need to talk about data prep (and data generation).</p>
+<p>This section may raise some eyebrows but, at the end of the day, you are the judge of the skills you possess, so quantifying those skills becomes a very subjective exercise. Naturally, I would recommend being honest. The best way I found to do this was to imagine I was in an interview and was asked to justify why each skill received its respective score or expertise level.</p>
 <iframe src="https://giphy.com/embed/l1IY8mBoHYpksZG7e" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
 </iframe>
 <p>
-<a href="https://giphy.com/gifs/sonam-kapoor-koffee-with-karan-im-the-best-l1IY8mBoHYpksZG7e">via GIPHY</a>
+<p><a href="https://giphy.com/gifs/sonam-kapoor-koffee-with-karan-im-the-best-l1IY8mBoHYpksZG7e">via GIPHY</a></p>
 </p>
-<p>From there, the process of generating your resume data is fairly straightforward (for now). See the following table below as examples of where to start:</p>
+<p>From there, the process of generating your resume data is fairly straightforward. See the following table below as examples of where to start:</p>
 <table>
 <caption>Experience and education example</caption>
 <thead>
@@ -1646,19 +1612,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="https://public.tableau.com/views/Book1_16106818759710/Dashboard1?:language=en&amp;:display_count=y&amp;:origin=viz_share_link">Priyanka Bulla</a></li>
 </ul>
 <h2 id="build-publish">Build &amp; Publish</h2>
-<p>With respect to building and publishing your dashboard, this blog post won’t go into detail on the technical aspects of building out the vizzes on my particular interactive resume. If that’s something I receive a lot of interest or feedback on, I will gladly write that up. In the meantime, as you are exploring the Tableau Resume Gallery, make sure to bookmark or favorite the vizzes that speak to you. When you are ready, download the workbooks and dissect how the author created the viz for you to replicate and customize with your personal resume data that we walked through above! And be sure to include some of the more unique content on your interactive resume including fun ‘Contact Me’ buttons/symbols, achievements and certifications with respective links, and definitely interests and hobbies! The possibilities for displaying these very personal details to you are endless and make great call-outs to your creativity!</p>
+<p>With respect to building and publishing your dashboard, this blog post won’t go into any detail on the technical aspects of building out the vizzes in my particular interactive resume. If that’s something I receive a lot of interest or feedback on, I will gladly write that up. In the meantime, as you are exploring the Tableau Resume Gallery, make sure to bookmark or favorite the vizzes that speak to you. When you are ready, download the workbooks and dissect how the author created the viz for you to replicate and customize with your personal resume data that we walked through above! And be sure to include some of the more unique content on your interactive resume including ‘Contact Me’ buttons/symbols, achievements and certifications with respective links, and definitely interests &amp; hobbies! The possibilities for displaying these very personal details to you are endless and make great call-outs to your creativity!</p>
 <p>Without anymore jabbering from me, here is my Tableau interactive resume:</p>
 <div id="viz1615487644884" class="tableauPlaceholder" style="position: relative">
 <noscript>
-<a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Resume_v2&#47;1_rss.png' style='border: none' /></a>
+<p><a href='#'><img src="https://public.tableau.com/static/images/Ke/KevinMagnanInteractiveResume/Resume_v2/1_rss.png" alt=" " style="border: none"/></a></p>
 </noscript>
 <object class="tableauViz" style="display:none;">
-<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /><param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='KevinMagnanInteractiveResume&#47;Resume_v2' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Resume_v2&#47;1.png' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' />
+<p><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /><param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='KevinMagnanInteractiveResume&#47;Resume_v2' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Resume_v2&#47;1.png' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /></p>
 </object>
 </div>
 <script type='text/javascript'> var divElement = document.getElementById('viz1615487644884'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='875px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 <p>Link: <a href="https://tabsoft.co/3l8gOEn" class="uri">https://tabsoft.co/3l8gOEn</a></p>
+<h2 id="march-2021-update">March 2021 Update:</h2>
+<p>In my quest to become more skilled in data analytics and business intelligence tools, I have started branching out from Tableau (and R) to learn Microsoft’s Power BI software/language. I recently received very useful advice on ways to incorporate Power BI into my data visualization skillset by replicating dashboards or products I have made with Tableau in Power BI. The first dashboard that came to mind was my interactive resume. As a result, I was able to, without much fuss, replicate my interactive resume in Power BI with a few minor changes and some workarounds. Here it is!</p>
+<figure>
+<img src="powerbi.png" width="300" alt="Power BI Interactive Resume" /><figcaption aria-hidden="true">Power BI Interactive Resume</figcaption>
+</figure>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

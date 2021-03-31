@@ -31,17 +31,25 @@ knitr::opts_chunk$set(echo = TRUE,
 
 ## Background
 
-The idea of a Tableau interactive resume was not a new concept to me; I first published my version of a Tableau resume back in June of 2019. At that time, I was still learning a lot of Tableau concepts, visualization best practices, and I was certainly still 'trapped' within a more rigid framework of how to build a dashboard. As I reflected on this version of my interactive resume in 2021, I appreciated my mindset back in 2019 while, at the same time, I identified the various areas for improvement and opportunities to incorporate new Tableau techniques I had picked up over the years to build on my resume and the work of others in the \#DataFam Tableau Public community.
+The idea of a Tableau interactive resume was not a new concept to me; I first published my version of it back in June of 2019. At that time, I was still learning a lot about Tableau concepts, visualization best practices, and was certainly still 'trapped' within a rigid framework of how to build a dashboard. As I reflected on a new version of my interactive resume in 2021, I appreciated my mindset back in 2019 while, at the same time, identifying numerous areas for improvement and opportunities to incorporate more advanced Tableau techniques I have cultivated over the years and following the work of others in the \#DataFam Tableau Public community.
 
 ![My first Tableau interactive resume, circa 2019](tab_resume_img.png)
 
-I hope that after reading this blog, you will feel empowered and motivated to explore and develop your own interactive resume and share it with the world!
+I hope that after reading this blog, you will feel empowered and motivated to explore and develop your interactive resume and share it with the world!
 
-<iframe src="https://giphy.com/embed/Vccpm1O9gV1g4" width="480" height="302" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/rob-schneider-you-can-do-it-the-waterboy-Vccpm1O9gV1g4">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/Vccpm1O9gV1g4" width="480" height="302" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+
+<p>
+
+<a href="https://giphy.com/gifs/rob-schneider-you-can-do-it-the-waterboy-Vccpm1O9gV1g4">via GIPHY</a>
+
+</p>
 
 ## Planning New Dashboard
 
-The first place to start when considering how to build and visualize your resume is on Tableau Public. I am a huge advocate for not reinventing the wheel and, instead, leveraging and building off of the incredible wealth of examples built by the Tableau community (with proper inspiration/credit given, of course!). With that in mind, starting with a review of Tableau's Interactive Resume Gallery [here](https://public.tableau.com/en-us/s/interactive-resume-gallery "click to navigate to Tableau's Interactive Resume Gallery") is the best place to start for Tableau experts and newcomers, alike.
+The first place to start when considering how to build and visualize your resume is on Tableau Public. I am a huge advocate for not reinventing the wheel and, instead, leveraging and building off of the incredible wealth of examples built by the Tableau community (with proper inspiration/credit given, of course!). With that in mind, starting with a review of Tableau's Interactive Resume Gallery [here](https://public.tableau.com/en-us/s/interactive-resume-gallery "click to navigate to Tableau's Interactive Resume Gallery") is the best recommendation I can give for Tableau experts and newcomers, alike.
 
 From there, I also found Google searches for 'interactive resume' or 'visual resume' helpful ways to explore other resume configurations, opportunities for interactivity, and visual inspiration. These searches usually resulted in more graphic design and photography content - a helpful nuance to the more data-focused inspiration from the Tableau community.
 
@@ -51,7 +59,7 @@ By the end of this exercise, I had sketched out my new Tableau interactive resum
 
 ## Dashboard Background Design with Figma
 
-At this stage in the development process, you can let your creativity and inspiration thrive. I have seen countless ways to design and customize the layout and format of your interactive resume. My preferred path to achieving a custom design and background is with an online tool I recently discovered thanks to the Twitter \#DataFam community called Figma. Figma is a powerful online collaborative graphics editor with tons of useful features and helpful ways to systematically and accurately design a Tableau background within a space. I have been using Figma for over 6 months now on my interactive resume, at work, and in my dashboards for the weekly \#MakeoverMonday Tableau community project.
+At this stage in the development process, you can let your creativity and inspiration thrive. I have seen countless ways to design and customize the layout and format of an interactive resume. My preferred path to achieving a custom design and background is with an online tool I recently discovered thanks to the Twitter \#DataFam community called [Figma](www.figma.com). Figma is a powerful online collaborative graphics editor with tons of useful features and helpful ways to systematically and accurately design a Tableau background within a space. I have been using Figma for over 6 months on projects including my interactive resume, at work, and in my dashboards for the weekly \#MakeoverMonday Tableau community challenge.
 
 If you are new to Figma, I would suggest researching some tutorials online to get started. I recommend watching this [video](https://www.youtube.com/watch?v=pmLSGzka1yY "Link to Lindsey Betzendahl's YouTube Figma tutorial") by Lindsey Betzendahl [@ZenDollaData](<https://twitter.com/ZenDollData>) as a good starting point.
 
@@ -61,13 +69,21 @@ For my particular Tableau resume background, I relied on Figma to create the bac
 
 ## Data Prep
 
-Now that we have a background/shell to work with, it's time I decided which visualizations I wanted to build for my dashboard, how the visualizations would function, and other unique aspects of an interactive dashboard like 'Contact Me' links, tooltips, and showcasing my portfolio. But before we get too far into the weeds on specific chart types and the iterative process of determining the best way to visualize the skills and experience from your resume, we need to talk about data prep (and data generation).
+Now that we have a background/shell to work with, it's time I decided which visualizations to build for my dashboard, how the visualizations would function, and other unique aspects of an interactive dashboard like 'Contact Me' links, tooltips, and showcasing my portfolio. But before we get too far into the weeds on specific chart types and the iterative process of determining the best way to visualize the skills and experience from your resume, we need to talk about data prep (and data generation).
 
-This section may raise some eyebrows but, at the end of the day, you are the judge of the skills you possess, so quantifying those skills becomes a very subjective exercise. Naturally, I would recommend being honest. The best way I found to do this was to imagine I was in an interview and was asked to justify why each skill received its respective score.
+This section may raise some eyebrows but, at the end of the day, you are the judge of the skills you possess, so quantifying those skills becomes a very subjective exercise. Naturally, I would recommend being honest. The best way I found to do this was to imagine I was in an interview and was asked to justify why each skill received its respective score or expertise level.
 
-<iframe src="https://giphy.com/embed/l1IY8mBoHYpksZG7e" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/sonam-kapoor-koffee-with-karan-im-the-best-l1IY8mBoHYpksZG7e">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/l1IY8mBoHYpksZG7e" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
 
-From there, the process of generating your resume data is fairly straightforward (for now). See the following table below as examples of where to start:
+</iframe>
+
+<p>
+
+<a href="https://giphy.com/gifs/sonam-kapoor-koffee-with-karan-im-the-best-l1IY8mBoHYpksZG7e">via GIPHY</a>
+
+</p>
+
+From there, the process of generating your resume data is fairly straightforward. See the following table below as examples of where to start:
 
 | Start Year | End Year   | Institution/Employer | Role    | Achievement |
 |------------|------------|----------------------|---------|-------------|
@@ -110,12 +126,32 @@ For the visualization process, I relied **heavily** on the Tableau community and
 
 ## Build & Publish
 
-With respect to building and publishing your dashboard, this blog post won't go into detail on the technical aspects of building out the vizzes on my particular interactive resume. If that's something I receive a lot of interest or feedback on, I will gladly write that up. In the meantime, as you are exploring the Tableau Resume Gallery, make sure to bookmark or favorite the vizzes that speak to you. When you are ready, download the workbooks and dissect how the author created the viz for you to replicate and customize with your personal resume data that we walked through above! And be sure to include some of the more unique content on your interactive resume including fun 'Contact Me' buttons/symbols, achievements and certifications with respective links, and definitely interests and hobbies! The possibilities for displaying these very personal details to you are endless and make great call-outs to your creativity!
+With respect to building and publishing your dashboard, this blog post won't go into any detail on the technical aspects of building out the vizzes in my particular interactive resume. If that's something I receive a lot of interest or feedback on, I will gladly write that up. In the meantime, as you are exploring the Tableau Resume Gallery, make sure to bookmark or favorite the vizzes that speak to you. When you are ready, download the workbooks and dissect how the author created the viz for you to replicate and customize with your personal resume data that we walked through above! And be sure to include some of the more unique content on your interactive resume including 'Contact Me' buttons/symbols, achievements and certifications with respective links, and definitely interests & hobbies! The possibilities for displaying these very personal details to you are endless and make great call-outs to your creativity!
 
 Without anymore jabbering from me, here is my Tableau interactive resume:
 
-<div class='tableauPlaceholder' id='viz1615487644884' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Resume_v2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /><param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='KevinMagnanInteractiveResume&#47;Resume_v2' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Resume_v2&#47;1.png' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /></object></div><script type='text/javascript'> var divElement = document.getElementById('viz1615487644884'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='875px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+::: {#viz1615487644884 .tableauPlaceholder style="position: relative"}
+<noscript>
+
+<a href='#'><img src="https://public.tableau.com/static/images/Ke/KevinMagnanInteractiveResume/Resume_v2/1_rss.png" alt=" " style="border: none"/></a>
+
+</noscript>
+
+<object class="tableauViz" style="display:none;">
+
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /><param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='KevinMagnanInteractiveResume&#47;Resume_v2' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;KevinMagnanInteractiveResume&#47;Resume_v2&#47;1.png' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' />
+
+</object>
+:::
+
+```{=html}
+<script type='text/javascript'> var divElement = document.getElementById('viz1615487644884'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='875px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
+```
+Link: <https://tabsoft.co/3l8gOEn>
 
+## March 2021 Update:
 
-Link: https://tabsoft.co/3l8gOEn
+In my quest to become more skilled in data analytics and business intelligence tools, I have started branching out from Tableau (and R) to learn Microsoft's Power BI software/language. I recently received very useful advice on ways to incorporate Power BI into my data visualization skillset by replicating dashboards or products I have made with Tableau in Power BI. The first dashboard that came to mind was my interactive resume. As a result, I was able to, without much fuss, replicate my interactive resume in Power BI with a few minor changes and some workarounds. Here it is!
+
+![Power BI Interactive Resume](powerbi.png){width="300"}
