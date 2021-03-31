@@ -13,7 +13,7 @@ categories:
   - interactive
   - inspiration
 base_url: https://www.kevinjmagnan.com
-preview: Resume_v2.png
+preview: Resume_tooltip.png
 draft: no
 output:
   distill::distill_article:
