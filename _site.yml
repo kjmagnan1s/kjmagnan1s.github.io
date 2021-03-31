@@ -27,8 +27,7 @@ navbar:
       - text: "RESUME"
         menu:
           - text: "INTERACTIVE"
-            href: https://public.tableau.com/views/KevinMagnanInteractiveResume/Dashboard1?:embed=y&:display_count=yes&:origin=viz_share_link
-          - text: "---"
+            href: https://public.tableau.com/views/KevinMagnanInteractiveResume/Resume_v2?:language=en&:display_count=y&:toolbar=n&:origin=viz_share_link
           - text: "PDF"
             href: Kevin_Magnan_Resume.pdf
       - text: "SAMPLE CODE"
