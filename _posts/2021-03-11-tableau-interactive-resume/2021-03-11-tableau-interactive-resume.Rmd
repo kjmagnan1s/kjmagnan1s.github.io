@@ -1,7 +1,7 @@
 ---
 title: "Tableau Interactive Resume"
 description: |
-  A walkthrough of how to build an interactive resume that will double as a project to show your Tableau skills but also serve as a comprehensive resume.
+  A walkthrough on building an interactive resume to show your Tableau skills and also serve as a comprehensive resume of your skills, experience, and background.
 author:
   - name: Kevin Magnan
     url: https://twitter.com/KevinMagnan
