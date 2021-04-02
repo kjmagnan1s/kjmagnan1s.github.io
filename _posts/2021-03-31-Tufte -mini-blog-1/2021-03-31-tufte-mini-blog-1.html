@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -117,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["2021-03-31-tufte-mini-blog-1_files/anchor-4.2.2/anchor.min.js","2021-03-31-tufte-mini-blog-1_files/bowser-1.9.3/bowser.min.js","2021-03-31-tufte-mini-blog-1_files/distill-2.2.21/template.v2.js","2021-03-31-tufte-mini-blog-1_files/header-attrs-2.6/header-attrs.js","2021-03-31-tufte-mini-blog-1_files/jquery-1.11.3/jquery.min.js","2021-03-31-tufte-mini-blog-1_files/webcomponents-2.0.0/webcomponents.js","bookmark.jpg","dataword.jpg","preview.svg","sparkline.png","sparkline.svg","sparkline2.png","tufte-1.png"]}
+  {"type":"character","attributes":{},"value":["2021-03-31-tufte-mini-blog-1_files/anchor-4.2.2/anchor.min.js","2021-03-31-tufte-mini-blog-1_files/bowser-1.9.3/bowser.min.js","2021-03-31-tufte-mini-blog-1_files/distill-2.2.21/template.v2.js","2021-03-31-tufte-mini-blog-1_files/header-attrs-2.6/header-attrs.js","2021-03-31-tufte-mini-blog-1_files/header-attrs-2.7/header-attrs.js","2021-03-31-tufte-mini-blog-1_files/jquery-1.11.3/jquery.min.js","2021-03-31-tufte-mini-blog-1_files/popper-2.6.0/popper.min.js","2021-03-31-tufte-mini-blog-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","2021-03-31-tufte-mini-blog-1_files/tippy-6.2.7/tippy-light-border.css","2021-03-31-tufte-mini-blog-1_files/tippy-6.2.7/tippy.css","2021-03-31-tufte-mini-blog-1_files/tippy-6.2.7/tippy.umd.min.js","2021-03-31-tufte-mini-blog-1_files/webcomponents-2.0.0/webcomponents.js","bookmark.jpg","dataword.jpg","preview.svg","rick.webp","sparkline.png","sparkline.svg","sparkline2.png","tufte-1.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -309,6 +310,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: underline;
   }
 
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
   @media(min-width: 768px) {
 
   d-article pre,
@@ -463,6 +469,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
   }
 
 
@@ -1130,7 +1147,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       var layout = $(this).attr('data-layout');
 
       // apply layout to markdown level block elements
-      var elements = $(this).children().not('div.sourceCode, pre, script');
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
         var layout_div = $('<div class="' + layout + '"></div>');
         if (layout_div.hasClass('shaded')) {
@@ -1245,6 +1262,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
 
       // clear polling timer
       clearInterval(tid);
@@ -1405,8 +1436,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="2021-03-31-tufte-mini-blog-1_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="2021-03-31-tufte-mini-blog-1_files/header-attrs-2.7/header-attrs.js"></script>
   <script src="2021-03-31-tufte-mini-blog-1_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="2021-03-31-tufte-mini-blog-1_files/popper-2.6.0/popper.min.js"></script>
+  <link href="2021-03-31-tufte-mini-blog-1_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="2021-03-31-tufte-mini-blog-1_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="2021-03-31-tufte-mini-blog-1_files/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="2021-03-31-tufte-mini-blog-1_files/anchor-4.2.2/anchor.min.js"></script>
   <script src="2021-03-31-tufte-mini-blog-1_files/bowser-1.9.3/bowser.min.js"></script>
   <script src="2021-03-31-tufte-mini-blog-1_files/webcomponents-2.0.0/webcomponents.js"></script>
@@ -1458,6 +1493,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#background">Background</a></li>
 <li><a href="#sparklines-and-datawords">Sparklines and Datawords</a></li>
+<li><a href="#building-a-sparkline-and-dataword-dashboard">Building a sparkline and dataword dashboard</a></li>
 </ul>
 </nav>
 </div>
@@ -1475,10 +1511,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <figure>
 <img src="sparkline2.png" alt="Example of a sparkline and dataword from Tufte’s Visual Display of Quantitative Information" /><figcaption aria-hidden="true">Example of a sparkline and dataword from Tufte’s Visual Display of Quantitative Information</figcaption>
 </figure>
-<p>When I encountered this concept in Tufte’s book, I knew I wanted to maximize on the effectiveness of sparklines and design an entire dashboard around this idea. Fortunately, #MakeoverMonday’s weekly challenge covered global cash crops and the dataset provided had a variety of contextually relevant and interconnected dimensions. Additionally, Tufte provided a example of a visualization on forecasting economic indices in his book (page 180) with a template which I found to be perfect for this week’s #MM challenge.</p>
+<p>When I encountered this concept in Tufte’s book, I knew I wanted to capitalize on the effectiveness of sparklines and design an entire dashboard around this idea. Fortunately, #MakeoverMonday’s weekly challenge covered global cash crops and the dataset provided had a variety of contextually relevant and interconnected dimensions. Additionally, Tufte provided a example of a visualization on forecasting economic indices in his book (page 180) with a template which I found to be perfect for this week’s #MM challenge.</p>
 <figure>
-<img src="dataword.jpg" style="width:40.0%" alt="Dataword table inspiration - Tufte" /><figcaption aria-hidden="true">Dataword table inspiration - Tufte</figcaption>
+<img src="dataword.jpg" style="width:75.0%" alt="Dataword table inspiration - Tufte" /><figcaption aria-hidden="true">Dataword table inspiration - Tufte</figcaption>
 </figure>
+<p>After close examination, this visual has a few important characteristics I plan to replicate in a Tableau dashboard. Namely:</p>
+<ul>
+<li>Some kind of baseline or average value/dataword established across all dimensions (i.e. the black panel)</li>
+<li>Columns of datawords arranged ascending/descending based off the baseline value - in this example, based off how close they were to the baseline forecast</li>
+<li>Standardized containers for each dimension and value across the visual</li>
+<li>Descriptions or legends placed organically in blank areas caused by the arrangement of the datawords</li>
+</ul>
+<h2 id="building-a-sparkline-and-dataword-dashboard">Building a sparkline and dataword dashboard</h2>
+<p>Up until now, I have covered the why, the what, and the so what; now we will cover the how.</p>
+<figure>
+<img src="rick.webp" style="width:50.0%" alt="Now that we have everyting in order, time to Wubbalubbadubdub (Image source: tvfanatic.com)" /><figcaption aria-hidden="true">Now that we have everyting in order, time to Wubbalubbadubdub (Image source: tvfanatic.com)</figcaption>
+</figure>
+<p>Taking advantage of the global cash crops dataset posted to <a href="https://data.world/makeovermonday/2021w11">dataworld</a> for #MakeoverMonday, we can begin building this dashboard, making sure to incorporate as many of the observations from the visual Tufte included in his book above.</p>
+<p>The global cash crops dataset provides an advantageous structuring of this data for our intended visualization. We have a region column for 5 of the 6 continents (excluding Antarctica) plus a global category, an element column describing the type of crop resource measured, a year column and value column (including a unit of measure). Thus, we can arrange the columns based on element (crop production, harvest, and yield) broken up by region, and described by year and value/unit. Additionally, while no baseline or target to compare regions was provided, we can compare each region against the global value (more importantly, against the global percent change).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

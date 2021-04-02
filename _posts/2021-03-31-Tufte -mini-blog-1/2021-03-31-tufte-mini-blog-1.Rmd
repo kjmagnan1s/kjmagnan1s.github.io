@@ -48,6 +48,28 @@ At its core, sparklines and datawords are, as Tufte puts it, "data-intense, desi
 ![Example of a sparkline and dataword from Tufte's Visual Display of Quantitative Information](sparkline2.png)
 
 
-When I encountered this concept in Tufte's book, I knew I wanted to maximize on the effectiveness of sparklines and design an entire dashboard around this idea. Fortunately, \#MakeoverMonday's weekly challenge covered global cash crops and the dataset provided had a variety of contextually relevant and interconnected dimensions. Additionally, Tufte provided a example of a visualization on forecasting economic indices in his book (page 180) with a template which I found to be perfect for this week's \#MM challenge.
+When I encountered this concept in Tufte's book, I knew I wanted to capitalize on the effectiveness of sparklines and design an entire dashboard around this idea. Fortunately, \#MakeoverMonday's weekly challenge covered global cash crops and the dataset provided had a variety of contextually relevant and interconnected dimensions. Additionally, Tufte provided a example of a visualization on forecasting economic indices in his book (page 180) with a template which I found to be perfect for this week's \#MM challenge.
 
-![Dataword table inspiration - Tufte](dataword.jpg){width="40%"}
+![Dataword table inspiration - Tufte](dataword.jpg){width="75%"}
+
+After close examination, this visual has a few important characteristics I plan to replicate in a Tableau dashboard. Namely:
+
+* Some kind of baseline or average value/dataword established across all dimensions (i.e. the black panel)
+* Columns of datawords arranged ascending/descending based off the baseline value - in this example, based off how close they were to the baseline forecast
+* Standardized containers for each dimension and value across the visual
+* Descriptions or legends placed organically in blank areas caused by the arrangement of the datawords
+
+
+## Building a sparkline and dataword dashboard
+
+Up until now, I have covered the why, the what, and the so what; now we will cover the how.
+
+![Now that we have everyting in order, time to Wubbalubbadubdub (Image source: tvfanatic.com)](rick.webp){width="50%"}
+
+
+Taking advantage of the global cash crops dataset posted to [dataworld](https://data.world/makeovermonday/2021w11) for \#MakeoverMonday, we can begin building this dashboard, making sure to incorporate as many of the observations from the visual Tufte included in his book above.
+
+The global cash crops dataset provides an advantageous structuring of this data for our intended visualization. We have a region column for 5 of the 6 continents (excluding Antarctica) plus a global category, an element column describing the type of crop resource measured, a year column and value column (including a unit of measure). Thus, we can arrange the columns based on element (crop production, harvest, and yield) broken up by region, and described by year and value/unit. Additionally, while no baseline or target to compare regions was provided, we can compare each region against the global value (more importantly, against the global percent change). 
+
+
+
