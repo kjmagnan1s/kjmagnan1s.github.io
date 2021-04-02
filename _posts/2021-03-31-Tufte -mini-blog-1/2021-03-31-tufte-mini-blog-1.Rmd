@@ -1,0 +1,53 @@
+---
+title: "Lessons learned from Tufte: Sparklines and datawords"
+description: |
+  Using design theories and examples from Tufte's books, this mini-blog series will explore real world examples of my interpretation and inclusion of Tufte's teachings into my work.
+  
+  In this post, I explore a somewhat familiar topic of combining numbers and words in relevant context and space.
+author:
+  - name: Kevin Magnan
+    url: https://twitter.com/KevinMagnan
+date: "03-31-2021"
+categories:
+  - mini-blog
+  - Tableau
+  - data visualization
+  - Tufte
+base_url: https://www.kevinjmagnan.com
+preview: preview.svg
+draft: no
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE,
+                      R.options = list(width=80),
+                      fig.align="center")
+```
+
+## Background
+
+In my pursuit of professional growth and skill development, I have recently turned to design theory, visualization best practices, and authors who are held in high regard for these principles. One such author I have particularly enjoyed is Edward Tufte. After reading "The Visual Display of Quantitative Information", I was left with a dozen or so bookmarks of charts and visualization examples to replicate or incorporate into future work. Leveraging my backing in Tableau and R (& my growing skills in Power BI) and a wealth of data viz opportunities from community challenges including \#MakeoverMonday, \#RWFD, and \#TidyTuesday, I thought this would be a perfect excuse to incorporate the lessons learned from Tufte into my work, blog about the development of visualizations, and reflect on the practicality and use-case of each particular lesson from Tufte (and others!).
+
+![Time to get to work!](bookmark.jpg){width="50%"}
+
+## Sparklines and Datawords
+
+For the seasoned data analyst or data visualizer out there, I will venture to guess the concept of sparklines and datawords will not be a foreign concept. While the term Tufte uses may be new, this type of visual goes by many names (for example: callout numbers, callout boxes, dashboard cards, visual annotations) and is ubiquitous with business dashboards and sporting visuals, to name a few. What I found compelling from Tufte's writing was the extent to which these visuals can derive meaning, capitalize on context, and push the boundaries of data presentation within a relatively small footprint. I'll go into detail on what I mean by this in the next section.
+
+At its core, sparklines and datawords are, as Tufte puts it, "data-intense, design simple, word-sized graphics". Sparklines and datawords can simply compliment a textbox or act as standalone visual to call attention to a single measurement, but they can also be used as a comprehensive visualization in the form of a small multiples visual or combined with a large table of data.
+
+![Example of a sparkline and dataword from Twitter analytics](sparkline.png)
+
+
+![Example of a sparkline and dataword from Tufte's Visual Display of Quantitative Information](sparkline2.png)
+
+
+When I encountered this concept in Tufte's book, I knew I wanted to maximize on the effectiveness of sparklines and design an entire dashboard around this idea. Fortunately, \#MakeoverMonday's weekly challenge covered global cash crops and the dataset provided had a variety of contextually relevant and interconnected dimensions. Additionally, Tufte provided a example of a visualization on forecasting economic indices in his book (page 180) with a template which I found to be perfect for this week's \#MM challenge.
+
+![Dataword table inspiration - Tufte](dataword.jpg){width="40%"}

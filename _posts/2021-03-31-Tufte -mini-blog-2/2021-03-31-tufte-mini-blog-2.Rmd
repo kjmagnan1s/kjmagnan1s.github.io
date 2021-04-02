@@ -1,0 +1,32 @@
+---
+title: "Lessons learned from Tufte: Dot-Dash-Plot"
+description: |
+  Next up for this mini-blog series, a fresh take on a scatter plot and associated x- and y-axis.
+author:
+  - name: Kevin Magnan
+    url: https://twitter.com/KevinMagnan
+date: "03-31-2021"
+categories:
+  - mini-blog
+  - Tableau
+  - data visualization
+  - Tufte
+base_url: https://www.kevinjmagnan.com
+preview: preview.svg
+draft: no
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE,
+                      R.options = list(width=80),
+                      fig.align="center")
+```
+
+## Background
+
