@@ -77,9 +77,9 @@ Starting with the template, I will need one sheet with a dynamic text box and va
 
 With the easy part out of the way, I can now move on to the sparkline visual. You'll notice the example Tufte provided in his book was simply an arrangement of datawords. I am much more interested in including both the dataword and sparkline as the sparkline offers a historical, time-series context that should be useful with this dataset.
 
-The sparkline visual I went for is a simple line chart with a large end-point dot. This pronounced dot at the end of the line signifies the last date value of the line chart and also helps the viewer evaluate each respective line chart's historical trend as well as compare across sparklines of the same dimension(s).
+The sparkline visual I went for is a simple line chart with a large end-point dot and a 95% confidence interval band. The pronounced dot at the end of the line signifies the last date value of the line chart and also helps the viewer evaluate each respective line chart's historical trend as well as compare across sparklines of the same dimension(s).  The confidence interval, on the other hand, provides this incredibly powerful yet simplistic visualization of a normal range of values and the reader can quickyl evaluate whether a year or time period has performed above or below that range.
 
-This 'trick' is simple to accomplish in Tableau by utilizing the dual-axis functionality of a sheet (I plan on learning how to do something like this in PowerBI very soon!). Arguably the most difficult part of this viz is identifying the last point in the line chart. There are numerous ways to write this calculation but I found this IIF (i.e. *if and only if*) table calc to work best and most succinctly.
+The end-point dot 'trick' is simple to accomplish in Tableau by utilizing the dual-axis functionality of a sheet (I plan on learning how to do something like this in PowerBI very soon!). Arguably the most difficult part of this viz is identifying the last point in the line chart. There are numerous ways to write this calculation but I found this IIF (i.e. *if and only if*) table calc to work best and most succinctly.
 
 ```
 IIF(LAST()=0, SUM([Value]), NULL)
@@ -92,6 +92,7 @@ Once the dual axes are combined and synchronized, you should end up with a spark
 With the dataword and sparkline templates completed, the tedious work begins. This viz should end up having 36 separate sheets (3 rows of elements, 6 regions, and 2 vizzes for each region - dataword and sparkine) based on the original dataword and sparkline templates. The final touches for my viz included a title, a description, an interactive legend, or *how to read* section, and a footer with my Twitter signature and data source. In keeping with Tufte's example, I added a background to the worldwide dataword and sparkline visualizations across all 3 element dimensions to signify the baseline established by the global values.
 
 Here is the final product:
+
 
 ::: {#viz1617557606295 .tableauPlaceholder style="position: relative"}
 <noscript>
@@ -108,9 +109,11 @@ Here is the final product:
 :::
 
 ```{=html}
-<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='1200px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='1250px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 ```
+
+
 
 
 
