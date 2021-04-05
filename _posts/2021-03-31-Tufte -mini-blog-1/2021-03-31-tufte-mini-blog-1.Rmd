@@ -109,7 +109,7 @@ Here is the final product:
 :::
 
 ```{=html}
-<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='1250px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='1215px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 ```
 
@@ -117,4 +117,4 @@ Here is the final product:
 
 
 
-That's going to finish up my first blog post of this mini-series! I will be following up with a second post on a dot-dash-plot very shortly! 
+That's going to finish up my first blog post of this mini-series! I will be following up with a second post on a dot-dash-plot very soon! 
