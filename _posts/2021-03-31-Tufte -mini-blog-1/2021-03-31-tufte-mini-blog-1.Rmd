@@ -113,8 +113,5 @@ Here is the final product:
 </script>
 ```
 
-
-
-
-
+</br>
 That's going to finish up my first blog post of this mini-series! I will be following up with a second post on a dot-dash-plot very soon! 
