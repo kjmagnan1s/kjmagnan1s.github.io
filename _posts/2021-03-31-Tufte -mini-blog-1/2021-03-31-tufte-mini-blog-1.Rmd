@@ -1,7 +1,7 @@
 ---
 title: "Lessons learned from Tufte: Sparklines and datawords"
 description: |
-  Using design theories and examples from Tufte's books, this mini-blog series will explore real-world examples of my interpretation and inclusion of Tufte's teachings into my work.
+  Using design theories and examples from Edward Tufte, this mini-blog series will explore real-world examples of my interpretation and inclusion of Tufte's concepts and design into my work.
   
   In this post, I explore a somewhat familiar topic of combining numbers and words in relevant context and space.
 author:
@@ -109,7 +109,7 @@ Here is the final product:
 :::
 
 ```{=html}
-<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='1215px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='1220px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
 </script>
 ```
 
