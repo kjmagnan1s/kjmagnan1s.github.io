@@ -2472,6 +2472,16 @@ SAMPLE CODE
 <p>This ‘trick’ is simple to accomplish in Tableau by utilizing the dual-axis functionality of a sheet (I plan on learning how to do something like this in PowerBI very soon!). Arguably the most difficult part of this viz is identifying the last point in the line chart. There are numerous ways to write this calculation but I found this IIF (i.e. <em>if and only if</em>) table calc to work best and most succinctly.</p>
 <pre><code>IIF(LAST()=0, SUM([Value]), NULL)</code></pre>
 <p>Once the dual axes are combined and synchronized, you should end up with a sparkline template like this:</p>
+<div id="viz1617557606295" class="tableauPlaceholder" style="position: relative">
+<noscript>
+<p><a href='#'><img src="https://public.tableau.com/static/images/Ke/CashCropsMMW11/Line_template/1_rss.png" alt=" " style="border: none"/></a></p>
+</noscript>
+<object class="tableauViz" style="display:none;">
+<p><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /><param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CashCropsMMW11&#47;Line_template' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;CashCropsMMW11&#47;Line_template&#47;1.png' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /></p>
+</object>
+</div>
+<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='600px';vizElement.style.height='600px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
 <div id="viz1617555596640" class="tableauPlaceholder" style="position: relative">
 <noscript>
 <a href='#'><img alt='Line_template 'src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CashCropsMMW11&#47;Line_template&#47;1_rss.png' style='border: none' /></a>
@@ -2483,15 +2493,16 @@ SAMPLE CODE
 <pre><code>            &lt;script type=&#39;text/javascript&#39;&gt;var divElement = document.getElementById(&#39;viz1617555596640&#39;); var vizElement = divElement.getElementsByTagName(&#39;object&#39;)[0];                    vizElement.style.width=&#39;50%&#39;;vizElement.style.height=(divElement.offsetWidth*0.75)+&#39;px&#39;; var scriptElement = document.createElement(&#39;script&#39;); scriptElement.src=&#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;; vizElement.parentNode.insertBefore(scriptElement, vizElement); &lt;/script&gt;</code></pre>
 <p>With the dataword and sparkline templates completed, the tedious work begins. This viz should end up having 36 separate sheets (3 rows of elements, 6 regions, and 2 vizzes for each region - dataword and sparkine) based on the original dataword and sparkline templates. The final touches for my viz included a title, a description, an interactive legend, or <em>how to read</em> section, and a footer with my Twitter signature and data source. In keeping with Tufte’s example, I added a background to the worldwide dataword and sparkline visualizations across all 3 element dimensions to signify the baseline established by the global values.</p>
 <p>Here is the final product:</p>
-<div id="viz1617556323580" class="tableauPlaceholder" style="position: relative">
+<div id="viz1617557606295" class="tableauPlaceholder" style="position: relative">
 <noscript>
-<a href='#'><img alt='Cash Crops #MM W11 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CashCropsMMW11&#47;CashCropsMMW11&#47;1_rss.png' style='border: none'/></a>
+<p><a href='#'><img src="https://public.tableau.com/static/images/Ke/CashCropsMMW11/CashCropsMMW11/1_rss.png" alt=" " style="border: none"/></a></p>
 </noscript>
 <object class="tableauViz" style="display:none;">
-<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/><param name='embed_code_version' value='3'/><param name='site_root' value=''/><param name='name' value='CashCropsMMW11&#47;CashCropsMMW11'/><param name='tabs' value='no'/><param name='toolbar' value='yes'/><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ca&#47;CashCropsMMW11&#47;CashCropsMMW11&#47;1.png'/><param name='animate_transition' value='yes'/><param name='display_static_image' value='yes'/><param name='display_spinner' value='yes'/><param name='display_overlay' value='yes'/><param name='display_count' value='yes'/><param name='language' value='en'/>
+<p><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /><param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='CashCropsMMW11&#47;CashCropsMMW11' /><param name='tabs' value='no' /><param name='toolbar' value='no' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ke&#47;CashCropsMMW11&#47;CashCropsMMW11&#47;1.png' /><param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en' /></p>
 </object>
 </div>
-<script type='text/javascript'>var divElement = document.getElementById('viz1617556323580'); var vizElement = divElement.getElementsByTagName('object')[0];if(divElement.offsetWidth > 800){vizElement.style.width='1200px';vizElement.style.height='1327px';}else if(divElement.offsetWidth > 500 ){vizElement.style.width='1200px';vizElement.style.height='1327px';}else vizElement.style.width='100%';vizElement.style.height='3177px';} var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';vizElement.parentNode.insertBefore(scriptElement, vizElement); </script>
+<script type='text/javascript'> var divElement = document.getElementById('viz1617557606295'); var vizElement = divElement.getElementsByTagName('object')[0];         vizElement.style.width='1200px';vizElement.style.height='1100px'; var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
 <p>That’s going to finish up my first blog post of this mini-series! I will be following up with a second post on a dot-dash-plot very shortly!</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
