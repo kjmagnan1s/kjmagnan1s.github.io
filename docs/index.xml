@@ -11,20 +11,7 @@
       <link>https://www.kevinjmagnan.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 31 Mar 2021 00:00:00 +0000</lastBuildDate>
-    <item>
-      <title>Lessons learned from Tufte: Dot-Dash-Plot</title>
-      <dc:creator>Kevin Magnan</dc:creator>
-      <link>https://www.kevinjmagnan.com/posts/2021-03-31-Tufte -mini-blog-2</link>
-      <description>Next up for this mini-blog series, a fresh take on a scatter plot and associated x- and y-axis.</description>
-      <category>mini-blog</category>
-      <category>Tableau</category>
-      <category>data visualization</category>
-      <category>Tufte</category>
-      <guid>https://www.kevinjmagnan.com/posts/2021-03-31-Tufte -mini-blog-2</guid>
-      <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.kevinjmagnan.com/posts/2021-03-31-Tufte -mini-blog-2/preview.svg" medium="image" type="image/svg+xml"/>
-    </item>
+    <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Lessons learned from Tufte: Sparklines and datawords</title>
       <dc:creator>Kevin Magnan</dc:creator>
@@ -37,7 +24,7 @@ In this post, I explore a somewhat familiar topic of combining numbers and words
       <category>data visualization</category>
       <category>Tufte</category>
       <guid>https://www.kevinjmagnan.com/posts/2021-03-31-Tufte -mini-blog-1</guid>
-      <pubDate>Wed, 31 Mar 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 05 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://www.kevinjmagnan.com/posts/2021-03-31-Tufte -mini-blog-1/preview.svg" medium="image" type="image/svg+xml"/>
     </item>
     <item>
