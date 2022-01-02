@@ -3,6 +3,7 @@ title: "Tableau Conference 2021 Blog in Partnership with Slalom"
 description: |
   Check out this blog I wrote in partnership with Slalom Consulting and a colleague of mine at the company. Hopefully TC22 will return to in person so we can truly experience a TC event!
   
+  https://www.slalom.com/insight/data-viz-trends-2022
 author:
   - name: Kevin Magnan
     url: https://twitter.com/KevinMagnan
