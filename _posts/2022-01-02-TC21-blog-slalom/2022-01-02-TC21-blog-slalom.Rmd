@@ -14,7 +14,7 @@ categories:
   - data visualization
   - Conference
 base_url: https://www.slalom.com/insight/data-viz-trends-2022
-preview: thumbnail.jpg
+preview: thumbnail.png
 draft: no
 output:
   distill::distill_article:
