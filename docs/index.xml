@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
+    <title>KEVIN MAGNAN</title>
     <link>https://www.kevinjmagnan.com</link>
     <atom:link href="https://www.kevinjmagnan.com/index.xml" rel="self" type="application/rss+xml"/>
     <description>Personal Blog
 </description>
     <image>
-      <title/>
+      <title>KEVIN MAGNAN</title>
       <url>https://www.kevinjmagnan.com/images\favicon.ico</url>
       <link>https://www.kevinjmagnan.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 05 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Tableau Conference 2021 Blog in Partnership with Slalom</title>
+      <dc:creator>Kevin Magnan</dc:creator>
+      <link>https://www.kevinjmagnan.com/posts/2022-01-02-TC21-blog-slalom</link>
+      <description>Check out this blog I wrote in partnership with Slalom Consulting and a colleague of mine at the company. Hopefully TC22 will return to in person so we can truly experience a TC event!
+
+https://www.slalom.com/insight/data-viz-trends-2022</description>
+      <category>blog</category>
+      <category>Tableau</category>
+      <category>data visualization</category>
+      <category>Conference</category>
+      <guid>https://www.kevinjmagnan.com/posts/2022-01-02-TC21-blog-slalom</guid>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.kevinjmagnan.com/posts/2022-01-02-TC21-blog-slalom/thumbnail.png" medium="image" type="image/png" width="320" height="167"/>
+    </item>
     <item>
       <title>Lessons learned from Tufte: Sparklines and datawords</title>
       <dc:creator>Kevin Magnan</dc:creator>
@@ -39,7 +55,7 @@ In this post, I explore a familiar topic of combining text, numbers, and data li
       <category>inspiration</category>
       <guid>https://www.kevinjmagnan.com/posts/2021-03-11-tableau-interactive-resume</guid>
       <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://www.kevinjmagnan.com/posts/2021-03-11-tableau-interactive-resume/Resume_tooltip.svg" medium="image" type="image/svg+xml"/>
+      <media:content url="https://www.kevinjmagnan.com/posts/2021-03-11-tableau-interactive-resume/powerbi.png" medium="image" type="image/png" width="648" height="1165"/>
     </item>
     <item>
       <title>Google Takeout</title>
