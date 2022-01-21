@@ -2,50 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://www.kevinjmagnan.com/about.html</loc>
-    <lastmod>2021-03-31T10:59:15-05:00</lastmod>
+    <lastmod>2021-03-31T11:59:15-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/</loc>
-    <lastmod>2021-03-23T09:56:43-05:00</lastmod>
+    <lastmod>2022-01-20T23:07:42-05:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/python.html</loc>
-    <lastmod>2021-03-23T09:56:43-05:00</lastmod>
+    <lastmod>2021-03-23T10:56:43-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kevinjmagnan.com/README.html</loc>
+    <lastmod>2022-01-20T23:04:30-05:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/sql.html</loc>
-    <lastmod>2021-03-23T09:56:43-05:00</lastmod>
+    <lastmod>2021-03-23T10:56:43-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kevinjmagnan.com/posts/2022-01-02-TC21-blog-slalom/</loc>
+    <lastmod>2022-01-20T22:48:12-05:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2021-03-31-Tufte -mini-blog-1/</loc>
-    <lastmod>2021-04-05T10:36:31-05:00</lastmod>
+    <lastmod>2021-04-05T11:36:32-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2021-03-11-tableau-interactive-resume/</loc>
-    <lastmod>2021-03-31T12:18:04-05:00</lastmod>
+    <lastmod>2021-03-31T13:18:05-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2020-11-13-google-takeout/</loc>
-    <lastmod>2020-12-30T10:41:34-06:00</lastmod>
+    <lastmod>2021-03-23T10:56:39-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2020-10-28-wow-buzz-analysis/</loc>
-    <lastmod>2020-12-30T10:38:02-06:00</lastmod>
+    <lastmod>2021-03-23T10:56:39-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2020-10-16-ymh-analysis-p2/</loc>
-    <lastmod>2020-12-30T10:37:04-06:00</lastmod>
+    <lastmod>2021-03-23T10:56:39-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2020-10-11-ymh-analysis-p1/</loc>
-    <lastmod>2020-12-30T10:35:19-06:00</lastmod>
+    <lastmod>2021-03-23T10:56:39-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2017-06-14-chicago-ssl-scores/</loc>
-    <lastmod>2020-12-30T10:24:32-06:00</lastmod>
+    <lastmod>2021-03-23T10:56:39-04:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2017-06-05-mapping-with-geoda/</loc>
-    <lastmod>2020-12-30T10:23:58-06:00</lastmod>
+    <lastmod>2021-03-23T10:56:39-04:00</lastmod>
   </url>
 </urlset>
