@@ -62,6 +62,9 @@ pacman::p_load(
   highcharter    ## html interactive charts
 )
 
+# install.packages("devtools")
+devtools::install_github("hadley/emo")
+
 theme_set(theme_minimal())
 ```
 
@@ -327,7 +330,8 @@ _Important mental note here - with my start at a new job, my Google activity was
 pacman::p_load(jsonlite,  ## reading json files
                ggmap)     ## statis mapping
 
-pacman::p_load_gh("r-spatial/mapview") 
+pacman::p_load_gh(c("r-spatial/mapview",
+                   "dkahle/ggmap"))
 ## install mapview from github, there is a bug when knitr'ing to HTML with the CRAN version
 ```
 
@@ -491,14 +495,14 @@ mappedData %>%
   hc_legend(align = "center", verticalAlign = "top", layout = "horizontal")
 ```
 
-Here's anothe sanity check for insomnia... Turns out I don't use Google Maps very much after around midnight until 7 am which is a good sign! My activity throughout the day is spread out and is not too surprising. Quick note, we see my _summer Friday_ activity creeping up again at 11:00 hours where I'm most likely looking for a place to go grab a drink and some food with coworkers. 
+Here's another sanity check for insomnia... Turns out I don't use Google Maps very much after around midnight until 7 am which is a good sign! My activity throughout the day is spread out and is not too surprising. Quick note, we see my _summer Friday_ activity creeping up again at 11:00 hours where I'm most likely looking for a place to go grab a drink and some food with coworkers. 
 
 ```{r location history map, warning=FALSE}
 ## map my location history data for Chicago
 register_google(Sys.getenv("my_api"), ## Your API key goes here!
                 account_type = "standard")
 
-chi_town <- get_map("Chicago, IL", zoom = 11)
+chi_town <- get_map("Chicago, Illinois", zoom = 11)
 
 ggmap(chi_town) +
   stat_density2d(data = locations, aes(x = long, y = lat, fill = ..level.., alpha = ..level..),
