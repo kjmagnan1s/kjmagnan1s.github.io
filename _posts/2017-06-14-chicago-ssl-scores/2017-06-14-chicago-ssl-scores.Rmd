@@ -66,7 +66,7 @@ plot1 + xlab("SSL Score 2012-2016") + ylab("Count") + labs(title = "SSL Histogra
 
 We should see a relatively even distributed histogram of SSL scores for 2012 to 2016.  It looks like most of the SSL scores are between 200 and 400 with a peak at approximately 325.  
 
-![](images\SSL12-16.jpeg)
+![](SSL12-16.jpeg)
 
 Chicago's homicide rates and violent crime rates for 2016 are especially prolific in the media and within the city.  Let's look specifically at the 2016 SSL data.  Fortunately, in the SSL dataframe is a column called "LATEST.DATE" which indicates the latest date by year of police contact.  Let's subset the data for 2016 and see if it differs from the overall data.  First, we need to subset the data for 2016 , then we need to re-plot our new 2016 data.
 
@@ -81,7 +81,7 @@ plot16 + xlab("SSL Score 2016") + ylab("Count") + labs(title = "SSL Histogram fo
 
 This time, we get a new graph that is specific to the latest date of police contact for 2016.  We definitely see some small changes in the histogram but the overall structure of the distribution is the same.  I found it interesting that SSL scores equal to 500 saw a significantly large increase to the previous plot.  
 
-![](images\SSL16.jpeg)
+![](SSL16.jpeg)
 
 That's what 2016 looks like, but how have SSL scores difference from 2012 to 2016?  Well even though we do not have a great date for when SSL scores were entered, we can see when individuals with SSL scores were last in contact with the police as a proxy for SSL activity by date.  For this, we'll need to total up SSL subjects by year.  
 
@@ -97,7 +97,7 @@ names(ssl_table) <- c("Year", "Number_SSL_Subjects")
 p_year <- ggplot(data = ssl_table, aes(x = Year, y = Number_SSL_Subjects)) 
 p_year + geom_point(aes(color = Year)) + xlab("Year") + ylab("Number of SSL subjects")
 ```
-![](images\ssl_year.jpeg)
+![](ssl_year.jpeg)
 
 It appears that SSL contact by police has skyrocketed since 2012 and may have dropped a significant amount in 2016.  However, for such a short time frame, not much interpretation is appropriate.  
 
@@ -109,7 +109,7 @@ c_area <- ggplot(data = SSL16, aes(x = COMMUNITY.AREA, y = SSL.SCORE)) + geom_co
 c_area + theme(plot.title = element_text(hjust = 0.5)) + xlab("Community Area") + ylab("SSL Score") + labs(title = "Community Area SSL scores")
 ```
 
-![](images\SSL_hist_1.jpeg)
+![](SSL_hist_1.jpeg)
 
 Well this gives an ugly representation of the data for multiple reasons.  First, the communities areas are smushed together along the x-axis, making them indistinguishable  Also, it looks like we have an issue with the data, one area appears to constitute a huge majority of SSL scores.  Let's tackle this problem one step at a time.  First, let's adjust the graph to see community areas better by tilting the community area identifier.
 
@@ -119,7 +119,7 @@ c_area_clean <- ggplot(data = SSL16_clean, aes(x = COMMUNITY.AREA, y = SSL.SCORE
 c_area_clean + theme(axis.text.x = element_text(angle = 90)) + theme(plot.title = element_text(hjust = 0.5)) + xlab("Community Area") + ylab("SSL Score") + labs(title = "Community Area SSL scores")
 ```
 
-![](images\SSL_hist_2.jpeg)
+![](SSL_hist_2.jpeg)
 
 Much better, we can see all the community areas and their respective SSL scores.  However, we still have this large column with no community area attached to it.  Time to go back to the data.  
 
@@ -141,7 +141,7 @@ Let's finish by plotting the newly cleaned SSL scores by community area.
 c_area_clean2 <- ggplot(data = SSL16clean2, aes(x = COMMUNITY.AREA, y = SSL.SCORE)) + geom_col()
 c_area_clean2 + theme(axis.text.x = element_text(angle = 90)) + xlab("Community Area") + ylab("SSL Score") + labs(title = "Community Area SSL scores")
 ```
-![](images\Comm_area_SSL.jpeg)
+![](Comm_area_SSL.jpeg)
 
 What we end up with is a cleaned dataset of SSL scores, totaled, for each Chicago community area.  From the graph, we can see that one community area in particular, Austin, is responsible for a large majority of SSL scores compared to all other community areas.  The next closest community area appears to be West Garfield Park.  If we go back to our summary of community areas, this makes sense because Austin holds the largest count of SSL subjects at 4122 and West Garfield Park has the second highest count of subjects at 2295.  
 

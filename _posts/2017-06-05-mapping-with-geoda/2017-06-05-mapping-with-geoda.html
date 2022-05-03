@@ -20,19 +20,19 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -52,11 +52,11 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,7 +77,7 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,17 +85,18 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
   <title>Mapping with GeoDa</title>
-  
+
   <meta property="description" itemprop="description" content="Exploratory Analysis of Census, Crime, and Call for Service data in Chicago"/>
-  
-  
+
+
   <!--  https://schema.org/Article -->
   <meta property="article:published" itemprop="datePublished" content="2017-06-05"/>
   <meta property="article:created" itemprop="dateCreated" content="2017-06-05"/>
   <meta name="article:author" content="Kevin Magnan"/>
-  
+
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Mapping with GeoDa"/>
   <meta property="og:type" content="article"/>
@@ -104,7 +105,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="og:image:width" content="1023"/>
   <meta property="og:image:height" content="811"/>
   <meta property="og:locale" content="en_US"/>
-  
+
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary_large_image"/>
   <meta property="twitter:title" content="Mapping with GeoDa"/>
@@ -112,56 +113,56 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:image" content="https://www.kevinjmagnan.com/table.png"/>
   <meta property="twitter:image:width" content="1023"/>
   <meta property="twitter:image:height" content="811"/>
-  
+
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
-  
+
   <script type="text/json" id="radix-rmarkdown-metadata">
   {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","draft","categories","base_url","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Mapping with GeoDa"]},{"type":"character","attributes":{},"value":["Exploratory Analysis of Census, Crime, and Call for Service data in Chicago\n"]},{"type":"character","attributes":{},"value":["table.png"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["data science","geoda","mapping","public safety"]},{"type":"character","attributes":{},"value":["https://www.kevinjmagnan.com"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Kevin Magnan"]},{"type":"character","attributes":{},"value":["https://twitter.com/KevinMagnan"]}]}]},{"type":"character","attributes":{},"value":["06-05-2017"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["2017-06-05-mapping-with-geoda_files/anchor-4.2.2/anchor.min.js","2017-06-05-mapping-with-geoda_files/bowser-1.9.3/bowser.min.js","2017-06-05-mapping-with-geoda_files/distill-2.2.21/template.v2.js","2017-06-05-mapping-with-geoda_files/jquery-1.11.3/jquery.min.js","2017-06-05-mapping-with-geoda_files/webcomponents-2.0.0/webcomponents.js","table.PNG"]}
+  {"type":"character","attributes":{},"value":["2017-06-05-mapping-with-geoda_files/anchor-4.2.2/anchor.min.js","2017-06-05-mapping-with-geoda_files/bowser-1.9.3/bowser.min.js","2017-06-05-mapping-with-geoda_files/distill-2.2.21/template.v2.js","2017-06-05-mapping-with-geoda_files/header-attrs-2.14/header-attrs.js","2017-06-05-mapping-with-geoda_files/jquery-1.11.3/jquery.min.js","2017-06-05-mapping-with-geoda_files/jquery-3.6.0/jquery-3.6.0.js","2017-06-05-mapping-with-geoda_files/jquery-3.6.0/jquery-3.6.0.min.js","2017-06-05-mapping-with-geoda_files/jquery-3.6.0/jquery-3.6.0.min.map","2017-06-05-mapping-with-geoda_files/popper-2.6.0/popper.min.js","2017-06-05-mapping-with-geoda_files/tippy-6.2.7/tippy-bundle.umd.min.js","2017-06-05-mapping-with-geoda_files/tippy-6.2.7/tippy-light-border.css","2017-06-05-mapping-with-geoda_files/tippy-6.2.7/tippy.css","2017-06-05-mapping-with-geoda_files/tippy-6.2.7/tippy.umd.min.js","2017-06-05-mapping-with-geoda_files/webcomponents-2.0.0/webcomponents.js","bach.png","crime_rate_hist.png","formula.PNG","GI_call_r.png","GI_pcrime.png","GI_vcrime.png","hom_r.png","income.png","lesshs.png","LMI_call_r.png","LMI_pcrime.png","LMI_vcrime.png","pcrime_rate_map.png","pct_black.png","pct_dropout.png","pct_hisp.png","pct_white.png","qw.png","rw.png","table.PNG","unemploy_r.png","vcrime_rate_map.png","violent_property_crime.jpg","violent_property_crime_attribute_selection.jpg","violent_property_mean_elipse.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
-  
+
   <style type="text/css">
-  
+
   body {
     background-color: white;
   }
-  
+
   .pandoc-table {
     width: 100%;
   }
-  
+
   .pandoc-table>caption {
     margin-bottom: 10px;
   }
-  
+
   .pandoc-table th:not([align]) {
     text-align: left;
   }
-  
+
   .pagedtable-footer {
     font-size: 15px;
   }
-  
+
   d-byline .byline {
     grid-template-columns: 2fr 2fr;
   }
-  
+
   d-byline .byline h3 {
     margin-block-start: 1.5em;
   }
-  
+
   d-byline .byline .authors-affiliations h3 {
     margin-block-start: 0.5em;
   }
-  
+
   .authors-affiliations .orcid-id {
     width: 16px;
     height:16px;
@@ -170,12 +171,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     vertical-align: middle;
     padding-bottom: 2px;
   }
-  
+
   d-title .dt-tags {
     margin-top: 1em;
     grid-column: text;
   }
-  
+
   .dt-tags .dt-tag {
     text-decoration: none;
     display: inline-block;
@@ -189,24 +190,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
   }
-  
+
   .html-widget {
     margin-bottom: 2.0em;
   }
-  
+
   .l-screen-inset {
     padding-right: 16px;
   }
-  
+
   .l-screen .caption {
     margin-left: 10px;
   }
-  
+
   .shaded {
     background: rgb(247, 247, 247);
     padding-top: 20px;
@@ -214,75 +215,75 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .html-widget {
     margin-bottom: 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .shaded .shaded-content {
     background: white;
   }
-  
+
   .text-output {
     margin-top: 0;
     line-height: 1.5em;
   }
-  
+
   .hidden {
     display: none !important;
   }
-  
+
   d-article {
     padding-top: 2.5rem;
     padding-bottom: 30px;
   }
-  
+
   d-appendix {
     padding-top: 30px;
   }
-  
+
   d-article>p>img {
     width: 100%;
   }
-  
+
   d-article h2 {
     margin: 1rem 0 1.5rem 0;
   }
-  
+
   d-article h3 {
     margin-top: 1.5rem;
   }
-  
+
   d-article iframe {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 2.0em;
     width: 100%;
   }
-  
+
   /* Tweak code blocks */
-  
+
   d-article div.sourceCode code,
   d-article pre code {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   }
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: auto;
   }
-  
+
   d-article div.sourceCode {
     background-color: white;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 10px;
     font-size: 12px;
     border-left: 2px solid rgba(0,0,0,0.1);
   }
-  
+
   d-article pre {
     font-size: 12px;
     color: black;
@@ -294,45 +295,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   d-article pre a {
     border-bottom: none;
   }
-  
+
   d-article pre a:hover {
     border-bottom: none;
     text-decoration: underline;
   }
-  
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
   @media(min-width: 768px) {
-  
+
   d-article pre,
   d-article div.sourceCode,
   d-article div.sourceCode pre {
     overflow: visible !important;
   }
-  
+
   d-article div.sourceCode pre {
     padding-left: 18px;
     font-size: 14px;
   }
-  
+
   d-article pre {
     font-size: 14px;
   }
-  
+
   }
-  
+
   figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -340,9 +346,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   /* CSS for d-contents */
-  
+
   .d-contents {
     grid-column: text;
     color: rgba(0,0,0,0.8);
@@ -354,7 +360,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 0.25em;
     justify-self: start;
   }
-  
+
   @media(min-width: 1000px) {
     .d-contents.d-contents-float {
       height: 0;
@@ -365,82 +371,82 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-left: 2em;
     }
   }
-  
+
   .d-contents nav h3 {
     font-size: 18px;
     margin-top: 0;
     margin-bottom: 1em;
   }
-  
+
   .d-contents li {
     list-style-type: none
   }
-  
+
   .d-contents nav > ul {
     padding-left: 0;
   }
-  
+
   .d-contents ul {
     padding-left: 1em
   }
-  
+
   .d-contents nav ul li {
     margin-top: 0.6em;
     margin-bottom: 0.2em;
   }
-  
+
   .d-contents nav a {
     font-size: 13px;
     border-bottom: none;
     text-decoration: none
     color: rgba(0, 0, 0, 0.8);
   }
-  
+
   .d-contents nav a:hover {
     text-decoration: underline solid rgba(0, 0, 0, 0.6)
   }
-  
+
   .d-contents nav > ul > li > a {
     font-weight: 600;
   }
-  
+
   .d-contents nav > ul > li > ul {
     font-weight: inherit;
   }
-  
+
   .d-contents nav > ul > li > ul > li {
     margin-top: 0.2em;
   }
-  
-  
+
+
   .d-contents nav ul {
     margin-top: 0;
     margin-bottom: 0.25em;
   }
-  
+
   .d-article-with-toc h2:nth-child(2) {
     margin-top: 0;
   }
-  
-  
+
+
   /* Figure */
-  
+
   .figure {
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
   }
-  
+
   .figure img {
     width: 100%;
   }
-  
+
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
     line-height: 1.5em;
   }
-  
+
   .figure img.external {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -448,31 +454,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding: 18px;
     box-sizing: border-box;
   }
-  
+
   .figure .caption a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   .figure .caption b,
   .figure .caption strong, {
     font-weight: 600;
     color: rgba(0, 0, 0, 1.0);
   }
-  
+
   /* Citations */
-  
+
   d-article .citation {
     color: inherit;
     cursor: inherit;
   }
-  
+
   div.hanging-indent{
     margin-left: 1em; text-indent: -1em;
   }
-  
-  
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
   /* Tweak 1000px media break to show more text */
-  
+
   @media(min-width: 1000px) {
     .base-grid,
     distill-header,
@@ -488,11 +505,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 16px;
     }
-  
+
     .grid {
       grid-column-gap: 16px;
     }
-  
+
     d-article {
       font-size: 1.06rem;
       line-height: 1.7em;
@@ -501,7 +518,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       font-size: 13px;
     }
   }
-  
+
   @media(min-width: 1180px) {
     .base-grid,
     distill-header,
@@ -517,16 +534,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
       grid-column-gap: 32px;
     }
-  
+
     .grid {
       grid-column-gap: 32px;
     }
   }
-  
-  
+
+
   /* Get the citation styles for the appendix (not auto-injected on render since
      we do our own rendering of the citation appendix) */
-  
+
   d-appendix .citation-appendix,
   .d-appendix .citation-appendix {
     font-size: 11px;
@@ -543,9 +560,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     white-space: pre-wrap;
     word-wrap: break-word;
   }
-  
+
   /* Include appendix styles here so they can be overridden */
-  
+
   d-appendix {
     contain: layout style;
     font-size: 0.8em;
@@ -557,7 +574,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 60px;
     padding-bottom: 48px;
   }
-  
+
   d-appendix h3 {
     grid-column: page-start / text-start;
     font-size: 15px;
@@ -566,59 +583,59 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-bottom: 0;
     color: rgba(0,0,0,0.65);
   }
-  
+
   d-appendix h3 + * {
     margin-top: 1em;
   }
-  
+
   d-appendix ol {
     padding: 0 0 0 15px;
   }
-  
+
   @media (min-width: 768px) {
     d-appendix ol {
       padding: 0 0 0 30px;
       margin-left: -30px;
     }
   }
-  
+
   d-appendix li {
     margin-bottom: 1em;
   }
-  
+
   d-appendix a {
     color: rgba(0, 0, 0, 0.6);
   }
-  
+
   d-appendix > * {
     grid-column: text;
   }
-  
+
   d-appendix > d-footnote-list,
   d-appendix > d-citation-list,
   d-appendix > distill-appendix {
     grid-column: screen;
   }
-  
+
   /* Include footnote styles here so they can be overridden */
-  
+
   d-footnote-list {
     contain: layout style;
   }
-  
+
   d-footnote-list > * {
     grid-column: text;
   }
-  
+
   d-footnote-list a.footnote-backlink {
     color: rgba(0,0,0,0.3);
     padding-left: 0.5em;
   }
-  
-  
-  
+
+
+
   /* Anchor.js */
-  
+
   .anchorjs-link {
     /*transition: all .25s linear; */
     text-decoration: none;
@@ -629,86 +646,86 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-decoration: none;
     border-bottom: none;
   }
-  
+
   /* Social footer */
-  
+
   .social_footer {
     margin-top: 30px;
     margin-bottom: 0;
     color: rgba(0,0,0,0.67);
   }
-  
+
   .disqus-comments {
     margin-right: 30px;
   }
-  
+
   .disqus-comment-count {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
-  
+
   #disqus_thread {
     margin-top: 30px;
   }
-  
+
   .article-sharing a {
     border-bottom: none;
     margin-right: 8px;
   }
-  
+
   .article-sharing a:hover {
     border-bottom: none;
   }
-  
+
   .sidebar-section.subscribe {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .subscribe p {
     margin-bottom: 0.5em;
   }
-  
-  
+
+
   .article-footer .subscribe {
     font-size: 15px;
     margin-top: 45px;
   }
-  
-  
+
+
   .sidebar-section.custom {
     font-size: 12px;
     line-height: 1.6em;
   }
-  
+
   .custom p {
     margin-bottom: 0.5em;
   }
-  
+
   /* Styles for listing layout (hide title) */
   .layout-listing d-title, .layout-listing .d-title {
     display: none;
   }
-  
+
   /* Styles for posts lists (not auto-injected) */
-  
-  
+
+
   .posts-with-sidebar {
     padding-left: 45px;
     padding-right: 45px;
   }
-  
+
   .posts-list .description h2,
   .posts-list .description p {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   }
-  
+
   .posts-list .description h2 {
     font-weight: 700;
     border-bottom: none;
     padding-bottom: 0;
   }
-  
+
   .posts-list h2.post-tag {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     padding-bottom: 12px;
@@ -717,7 +734,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 60px;
     margin-bottom: 24px;
   }
-  
+
   .posts-list .post-preview {
     text-decoration: none;
     overflow: hidden;
@@ -725,29 +742,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: 24px 0;
   }
-  
+
   .post-preview-last {
     border-bottom: none !important;
   }
-  
+
   .posts-list .posts-list-caption {
     grid-column: screen;
     font-weight: 400;
   }
-  
+
   .posts-list .post-preview h2 {
     margin: 0 0 6px 0;
     line-height: 1.2em;
     font-style: normal;
     font-size: 24px;
   }
-  
+
   .posts-list .post-preview p {
     margin: 0 0 12px 0;
     line-height: 1.4em;
     font-size: 16px;
   }
-  
+
   .posts-list .post-preview .thumbnail {
     box-sizing: border-box;
     margin-bottom: 24px;
@@ -758,32 +775,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     width: 100%;
     display: block;
   }
-  
+
   .posts-list .metadata {
     font-size: 12px;
     line-height: 1.4em;
     margin-bottom: 18px;
   }
-  
+
   .posts-list .metadata > * {
     display: inline-block;
   }
-  
+
   .posts-list .metadata .publishedDate {
     margin-right: 2em;
   }
-  
+
   .posts-list .metadata .dt-authors {
     display: block;
     margin-top: 0.3em;
     margin-right: 2em;
   }
-  
+
   .posts-list .dt-tags {
     display: block;
     line-height: 1em;
   }
-  
+
   .posts-list .dt-tags .dt-tag {
     display: inline-block;
     color: rgba(0,0,0,0.6);
@@ -796,24 +813,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     text-transform: uppercase;
     font-weight: 500;
   }
-  
+
   .posts-list img {
     opacity: 1;
   }
-  
+
   .posts-list img[data-src] {
     opacity: 0;
   }
-  
+
   .posts-more {
     clear: both;
   }
-  
-  
+
+
   .posts-sidebar {
     font-size: 16px;
   }
-  
+
   .posts-sidebar h3 {
     font-size: 16px;
     margin-top: 0;
@@ -821,39 +838,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     font-weight: 400;
     text-transform: uppercase;
   }
-  
+
   .sidebar-section {
     margin-bottom: 30px;
   }
-  
+
   .categories ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
-  
+
   .categories li {
     color: rgba(0, 0, 0, 0.8);
     margin-bottom: 0;
   }
-  
+
   .categories li>a {
     border-bottom: none;
   }
-  
+
   .categories li>a:hover {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   }
-  
+
   .categories .active {
     font-weight: 600;
   }
-  
+
   .categories .category-count {
     color: rgba(0, 0, 0, 0.4);
   }
-  
-  
+
+
   @media(min-width: 768px) {
     .posts-list .post-preview h2 {
       font-size: 26px;
@@ -889,55 +906,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       padding-bottom: 24px;
     }
   }
-  
-  
+
+
   /* Improve display for browsers without grid (IE/Edge <= 15) */
-  
+
   .downlevel {
     line-height: 1.6em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
     margin: 0;
   }
-  
+
   .downlevel .d-title {
     padding-top: 6rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .downlevel .d-title h1 {
     font-size: 50px;
     font-weight: 700;
     line-height: 1.1em;
     margin: 0 0 0.5rem;
   }
-  
+
   .downlevel .d-title p {
     font-weight: 300;
     font-size: 1.2rem;
     line-height: 1.55em;
     margin-top: 0;
   }
-  
+
   .downlevel .d-byline {
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     font-size: 0.8rem;
     line-height: 1.8em;
   }
-  
+
   .downlevel .section-separator {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
-  
+
   .downlevel .d-article {
     font-size: 1.06rem;
     line-height: 1.7em;
     padding-top: 1rem;
     padding-bottom: 2rem;
   }
-  
-  
+
+
   .downlevel .d-appendix {
     padding-left: 0;
     padding-right: 0;
@@ -949,11 +966,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-top: 40px;
     padding-bottom: 48px;
   }
-  
+
   .downlevel .footnotes ol {
     padding-left: 13px;
   }
-  
+
   .downlevel .base-grid,
   .downlevel .distill-header,
   .downlevel .d-title,
@@ -970,7 +987,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-left: 40px;
     padding-right: 40px;
   }
-  
+
   @media(min-width: 768px) {
     .downlevel .base-grid,
     .downlevel .distill-header,
@@ -990,14 +1007,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     max-width: 900px;
   }
   }
-  
+
   .downlevel pre code {
     display: block;
     border-left: 2px solid rgba(0, 0, 0, .1);
     padding: 0 0 0 20px;
     font-size: 14px;
   }
-  
+
   .downlevel code, .downlevel pre {
     color: black;
     background: none;
@@ -1008,27 +1025,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-  
+
     -moz-tab-size: 4;
     -o-tab-size: 4;
     tab-size: 4;
-  
+
     -webkit-hyphens: none;
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
   }
-  
+
   .downlevel .posts-list .post-preview {
     color: inherit;
   }
-  
-  
-  
+
+
+
   </style>
-  
+
   <script type="application/javascript">
-  
+
   function is_downlevel_browser() {
     if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
                                    window.navigator.userAgent)) {
@@ -1037,20 +1054,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       return window.load_distill_framework === undefined;
     }
   }
-  
+
   // show body when load is complete
   function on_load_complete() {
-  
+
     // add anchors
     if (window.anchors) {
       window.anchors.options.placement = 'left';
       window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
     }
-  
-  
+
+
     // set body to visible
     document.body.style.visibility = 'visible';
-  
+
     // force redraw for leaflet widgets
     if (window.HTMLWidgets) {
       var maps = window.HTMLWidgets.findAll(".leaflet");
@@ -1063,39 +1080,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         });
       });
     }
-  
+
     // trigger 'shown' so htmlwidgets resize
     $('d-article').trigger('shown');
   }
-  
+
   function init_distill() {
-  
+
     init_common();
-  
+
     // create front matter
     var front_matter = $('<d-front-matter></d-front-matter>');
     $('#distill-front-matter').wrap(front_matter);
-  
+
     // create d-title
     $('.d-title').changeElementType('d-title');
-  
+
     // create d-byline
     var byline = $('<d-byline></d-byline>');
     $('.d-byline').replaceWith(byline);
-  
+
     // create d-article
     var article = $('<d-article></d-article>');
     $('.d-article').wrap(article).children().unwrap();
-  
+
     // move posts container into article
     $('.posts-container').appendTo($('d-article'));
-  
+
     // create d-appendix
     $('.d-appendix').changeElementType('d-appendix');
-  
+
     // flag indicating that we have appendix items
     var appendix = $('.appendix-bottom').children('h3').length > 0;
-  
+
     // replace footnotes with <d-footnote>
     $('.footnote-ref').each(function(i, val) {
       appendix = true;
@@ -1111,10 +1128,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     });
     // remove footnotes
     $('.footnotes').remove();
-  
+
     // move refs into #references-listing
     $('#references-listing').replaceWith($('#refs'));
-  
+
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
     });
@@ -1124,18 +1141,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       appendix = true;
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
     });
-  
+
     // show d-appendix if we have appendix content
     $("d-appendix").css('display', appendix ? 'grid' : 'none');
-  
+
     // localize layout chunks to just output
     $('.layout-chunk').each(function(i, val) {
-  
+
       // capture layout
       var layout = $(this).attr('data-layout');
-  
+
       // apply layout to markdown level block elements
-      var elements = $(this).children().not('div.sourceCode, pre, script');
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
       elements.each(function(i, el) {
         var layout_div = $('<div class="' + layout + '"></div>');
         if (layout_div.hasClass('shaded')) {
@@ -1146,40 +1163,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).wrap(layout_div);
         }
       });
-  
-  
+
+
       // unwrap the layout-chunk div
       $(this).children().unwrap();
     });
-  
+
     // remove code block used to force  highlighting css
     $('.distill-force-highlighting-css').parent().remove();
-  
+
     // remove empty line numbers inserted by pandoc when using a
     // custom syntax highlighting theme
     $('code.sourceCode a:empty').remove();
-  
+
     // load distill framework
     load_distill_framework();
-  
+
     // wait for window.distillRunlevel == 4 to do post processing
     function distill_post_process() {
-  
+
       if (!window.distillRunlevel || window.distillRunlevel < 4)
         return;
-  
+
       // hide author/affiliations entirely if we have no authors
       var front_matter = JSON.parse($("#distill-front-matter").html());
       var have_authors = front_matter.authors && front_matter.authors.length > 0;
       if (!have_authors)
         $('d-byline').addClass('hidden');
-  
+
       // article with toc class
       $('.d-contents').parent().addClass('d-article-with-toc');
-  
+
       // strip links that point to #
       $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
-  
+
       // add orcid ids
       $('.authors-affiliations').find('.author').each(function(i, el) {
         var orcid_id = front_matter.authors[i].orcidID;
@@ -1194,12 +1211,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           $(this).append(a);
         }
       });
-  
+
       // hide elements of author/affiliations grid that have no value
       function hide_byline_column(caption) {
         $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
       }
-  
+
       // affiliations
       var have_affiliations = false;
       for (var i = 0; i<front_matter.authors.length; ++i) {
@@ -1211,11 +1228,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
       if (!have_affiliations)
         $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
-  
+
       // published date
       if (!front_matter.publishedDate)
         hide_byline_column("Published");
-  
+
       // document object identifier
       var doi = $('d-byline').find('h3:contains("DOI")');
       var doi_p = doi.next().empty();
@@ -1235,54 +1252,71 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
            .html(front_matter.doi)
            .appendTo(doi_p);
       }
-  
+
        // change plural form of authors/affiliations
       if (front_matter.authors.length === 1) {
         var grid = $('.authors-affiliations');
         grid.children('h3:contains("Authors")').text('Author');
         grid.children('h3:contains("Affiliations")').text('Affiliation');
       }
-  
+
       // remove d-appendix and d-footnote-list local styles
       $('d-appendix > style:first-child').remove();
       $('d-footnote-list > style:first-child').remove();
-  
+
       // move appendix-bottom entries to the bottom
       $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
       $('.appendix-bottom').remove();
-  
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
       // clear polling timer
       clearInterval(tid);
-  
+
       // show body now that everything is ready
       on_load_complete();
     }
-  
+
     var tid = setInterval(distill_post_process, 50);
     distill_post_process();
-  
+
   }
-  
+
   function init_downlevel() {
-  
+
     init_common();
-  
+
      // insert hr after d-title
     $('.d-title').after($('<hr class="section-separator"/>'));
-  
+
     // check if we have authors
     var front_matter = JSON.parse($("#distill-front-matter").html());
     var have_authors = front_matter.authors && front_matter.authors.length > 0;
-  
+
     // manage byline/border
     if (!have_authors)
       $('.d-byline').remove();
     $('.d-byline').after($('<hr class="section-separator"/>'));
     $('.d-byline a').remove();
-  
+
     // remove toc
     $('.d-contents').remove();
-  
+
     // move appendix elements
     $('h1.appendix, h2.appendix').each(function(i, val) {
       $(this).changeElementType('h3');
@@ -1290,62 +1324,62 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     $('h3.appendix').each(function(i, val) {
       $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
     });
-  
-  
+
+
     // inject headers into references and footnotes
     var refs_header = $('<h3></h3>');
     refs_header.text('References');
     $('#refs').prepend(refs_header);
-  
+
     var footnotes_header = $('<h3></h3');
     footnotes_header.text('Footnotes');
     $('.footnotes').children('hr').first().replaceWith(footnotes_header);
-  
+
     // move appendix-bottom entries to the bottom
     $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
     $('.appendix-bottom').remove();
-  
+
     // remove appendix if it's empty
     if ($('.d-appendix').children().length === 0)
       $('.d-appendix').remove();
-  
+
     // prepend separator above appendix
     $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
-  
+
     // trim code
     $('pre>code').each(function(i, val) {
       $(this).html($.trim($(this).html()));
     });
-  
+
     // move posts-container right before article
     $('.posts-container').insertBefore($('.d-article'));
-  
+
     $('body').addClass('downlevel');
-  
+
     on_load_complete();
   }
-  
-  
+
+
   function init_common() {
-  
+
     // jquery plugin to change element types
     (function($) {
       $.fn.changeElementType = function(newType) {
         var attrs = {};
-  
+
         $.each(this[0].attributes, function(idx, attr) {
           attrs[attr.nodeName] = attr.nodeValue;
         });
-  
+
         this.replaceWith(function() {
           return $("<" + newType + "/>", attrs).append($(this).contents());
         });
       };
     })(jQuery);
-  
+
     // prevent underline for linked images
     $('a > img').parent().css({'border-bottom' : 'none'});
-  
+
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
@@ -1357,35 +1391,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           var fig = $(this);
           fig.css('width', fig.attr('width') + 'px');
         });
-  
+
       }
     });
-  
+
     // auto-append index.html to post-preview links in file: protocol
     // and in rstudio ide preview
     $('.post-preview').each(function(i, val) {
       if (window.location.protocol === "file:")
         $(this).attr('href', $(this).attr('href') + "index.html");
     });
-  
+
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
         $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
-  
+
     // add class to pandoc style tables
     $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
     $('.kable-table').children('table').addClass('pandoc-table');
-  
+
     // add figcaption style to table captions
     $('caption').parent('table').addClass("figcaption");
-  
+
     // initialize posts list
     if (window.init_posts_list)
       window.init_posts_list();
-  
+
     // implmement disqus comment link
     $('.disqus-comment-count').click(function() {
       window.headroom_prevent_pin = true;
@@ -1399,18 +1433,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       }
     });
   }
-  
+
   document.addEventListener('DOMContentLoaded', function() {
     if (is_downlevel_browser())
       init_downlevel();
     else
       window.addEventListener('WebComponentsReady', init_distill);
   });
-  
+
   </script>
-  
+
   <!--/radix_placeholder_distill-->
-  <script src="2017-06-05-mapping-with-geoda_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="2017-06-05-mapping-with-geoda_files/header-attrs-2.14/header-attrs.js"></script>
+  <script src="2017-06-05-mapping-with-geoda_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="2017-06-05-mapping-with-geoda_files/popper-2.6.0/popper.min.js"></script>
+  <link href="2017-06-05-mapping-with-geoda_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="2017-06-05-mapping-with-geoda_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="2017-06-05-mapping-with-geoda_files/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="2017-06-05-mapping-with-geoda_files/anchor-4.2.2/anchor.min.js"></script>
   <script src="2017-06-05-mapping-with-geoda_files/bowser-1.9.3/bowser.min.js"></script>
   <script src="2017-06-05-mapping-with-geoda_files/webcomponents-2.0.0/webcomponents.js"></script>
@@ -1426,7 +1465,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Mapping with GeoDa","description":"Exploratory Analysis of Census, Crime, and Call for Service data in Chicago","authors":[{"author":"Kevin Magnan","authorURL":"https://twitter.com/KevinMagnan","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2017-06-05T00:00:00.000-05:00","citationText":"Magnan, 2017"}
+{"title":"Mapping with GeoDa","description":"Exploratory Analysis of Census, Crime, and Call for Service data in Chicago","authors":[{"author":"Kevin Magnan","authorURL":"https://twitter.com/KevinMagnan","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2017-06-05T00:00:00.000-04:00","citationText":"Magnan, 2017"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1468,71 +1507,71 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="exploratory-analysis"><strong>Exploratory Analysis</strong></h2>
 <p>Chicago has historically been a segregated city and continues to be segregated in 2017. While the population of Chicago is roughly split into thirds for blacks, Hispanics, and whites, these populations, similar to crime rates, are not spatially distributed evenly within the city according to census data. These three populations display near perfect segregation, with black populations concentrated in the south and west communities, Hispanics concentrated in the northwest and southwest communities, and whites concentrated in the northern communities.</p>
 <figure>
-<img src="images\pct_black.png" alt="" /><figcaption>Figure 1 Percent Black</figcaption>
+<img src="pct_black.png" alt="Figure 1 Percent Black" /><figcaption aria-hidden="true">Figure 1 Percent Black</figcaption>
 </figure>
 <figure>
-<img src="images\pct_hisp.png" alt="" /><figcaption>Figure 2 Percent Hispanic</figcaption>
+<img src="pct_hisp.png" alt="Figure 2 Percent Hispanic" /><figcaption aria-hidden="true">Figure 2 Percent Hispanic</figcaption>
 </figure>
 <figure>
-<img src="images\pct_white.png" alt="" /><figcaption>Figure 3 Percent White</figcaption>
+<img src="pct_white.png" alt="Figure 3 Percent White" /><figcaption aria-hidden="true">Figure 3 Percent White</figcaption>
 </figure>
 <p>Racial demographics are not the only characteristic that exhibits spatial variability; in light of racial segregation, educational attainment and average household income also fall in line with a socioeconomic segregation narrative. Figures 4, 5, and 6 visualize the extremes to which Chicago is segregated economically and with educational attainment. Specifically, higher household incomes are located in the same regions which are occupied by majority whites while lower household incomes are associated with black and Hispanic populations. These same economic disconnects are seen in age 25 and older population educational attainment.</p>
 <figure>
-<img src="images\income.png" alt="" /><figcaption>Figure 4 Average Household Income</figcaption>
+<img src="income.png" alt="Figure 4 Average Household Income" /><figcaption aria-hidden="true">Figure 4 Average Household Income</figcaption>
 </figure>
 <figure>
-<img src="images\lesshs.png" alt="" /><figcaption>Figure 5 Percent of Population With Less Than High School Education</figcaption>
+<img src="lesshs.png" alt="Figure 5 Percent of Population With Less Than High School Education" /><figcaption aria-hidden="true">Figure 5 Percent of Population With Less Than High School Education</figcaption>
 </figure>
 <figure>
-<img src="images\bach.png" alt="" /><figcaption>Figure 6 Percent of Population With High School Education</figcaption>
+<img src="bach.png" alt="Figure 6 Percent of Population With High School Education" /><figcaption aria-hidden="true">Figure 6 Percent of Population With High School Education</figcaption>
 </figure>
 <p>Finally, as was alluded to by the University of Chicago Crime Lab’s Gun Violence report as well as the Chicago Police Department and numerous Chicago media outlets, Chicago crime is disproportionately concentrated in these areas of high black and Hispanic populations with low educational attainment and low incomes. Violent crime rates in figure 7 and homicide rates in figure 9 bring further evidence to the claim that Chicago’s violent crimes and murders occur in primarily black and Hispanic neighborhoods with low income and education. Property crimes, in figure 8, tell a slightly different story since these crimes are more prolific in areas with more wealth and property value, like Chicago’s Loop area.</p>
 <figure>
-<img src="images\vcrime_rate_map.png" alt="" /><figcaption>Figure 7 Violent Crime Rate per 100k</figcaption>
+<img src="vcrime_rate_map.png" alt="Figure 7 Violent Crime Rate per 100k" /><figcaption aria-hidden="true">Figure 7 Violent Crime Rate per 100k</figcaption>
 </figure>
 <figure>
-<img src="images\pcrime_rate_map.png" alt="" /><figcaption>Figure 8 Property Crime Rate per 100k</figcaption>
+<img src="pcrime_rate_map.png" alt="Figure 8 Property Crime Rate per 100k" /><figcaption aria-hidden="true">Figure 8 Property Crime Rate per 100k</figcaption>
 </figure>
 <figure>
-<img src="images\hom_r.png" alt="" /><figcaption>Figure 9 Homicide Rate per 100k</figcaption>
+<img src="hom_r.png" alt="Figure 9 Homicide Rate per 100k" /><figcaption aria-hidden="true">Figure 9 Homicide Rate per 100k</figcaption>
 </figure>
 <p>311 call rates, represented in figure 10, present a different narrative than one would imagine in the context of Chicago’s crime rates and population demographics. As far as what can be taken at face value from these figures, there does not appear to be any patterns or clusters of 311 call rates in an area. If communities were to have high collective efficacy and be proactive in keeping their neighborhood in order, then we would expect the areas with either high violent and high property crimes or low violent and property crimes to be calling the city of Chicago at the highest rates. Instead, we see a dispersed rate of 311 calls incongruent to property crime locations and only partially reflective of violent crimes and homicides.</p>
 <figure>
-<img src="images\call_rate_map.png" alt="" /><figcaption>Figure 10 311 Call Rate per 100k</figcaption>
+<img src="call_rate_map.png" alt="Figure 10 311 Call Rate per 100k" /><figcaption aria-hidden="true">Figure 10 311 Call Rate per 100k</figcaption>
 </figure>
 <p><br></p>
 <h2 id="spatial-analysis"><strong>Spatial Analysis</strong></h2>
 <p>In the exploratory analysis, I utilized quantile maps to visually investigate whether certain community area characteristics were clustering in specific areas of the city. To create a more scientific determination of clustering, I conducted global and local Moran I and Local Getis-Ord Gi* (G-i-star) analyses. As a precursor to these analyses, I experimented with three different spatial weight matrixes, queen contiguity, rook contiguity, and 5 nearest neighbors. Figures 11 and 11a show histograms of both the queen and rook contiguity weights (since nearest neighbor weights produced a flat graph it was not included); I determined that a rook spatial weight matrix was the best fit for the data since it most closely resembled a normal distribution and the connectivity map for the queen weights produced undesirable neighbors.</p>
 <figure>
-<img src="images\qw.png" alt="" /><figcaption>Figure 11 Queen Contiguity Spatial Weight</figcaption>
+<img src="qw.png" alt="Figure 11 Queen Contiguity Spatial Weight" /><figcaption aria-hidden="true">Figure 11 Queen Contiguity Spatial Weight</figcaption>
 </figure>
 <figure>
-<img src="images\rw.png" alt="" /><figcaption>Figure 11a Rook Contiguity Spatial Weight</figcaption>
+<img src="rw.png" alt="Figure 11a Rook Contiguity Spatial Weight" /><figcaption aria-hidden="true">Figure 11a Rook Contiguity Spatial Weight</figcaption>
 </figure>
 <p>To determine spatial autocorrelation, that is how grouped similar and dissimilar values are to one another, global Moran’s I tests were ran on the variables presented in the exploratory analysis with rook contiguity as the weights matrix. To no surprise, racial demographics produced highly positive values: black = 0.71, Hispanic = 0.61, and white = 0.69. Similarly, average household income, percent of population with less than a high school education, and percent of population with a bachelor’s degree had high positive Moran’s Index values at 0.59, 0.56, and 0.72 respectively. Finally, criminal activity exhibited spatial autocorrelation in its Moran’s I values; Violent crime produced a 0.52 index, property crime produced a 0.37 index and homicides produced a 0.47 index. 311 call rate spatial autocorrelation was less pronounced, with a Moran’s I value of 0.39. Overall, we see spatial autocorrelation high for racial demographics and bachelor’s degrees at around a 0.7 Moran’s I value while income and low education producing slightly lower values and crimes even more. However, violent crimes are systematically more spatially autocorrelated than property crimes and 311 call rates exhibit the lowest spatial autocorrelation of the variables.</p>
 <p>Global Moran’s I is limited, producing results which only determine if the entire spatial study area is autocorrelated; therefore, in order to determine which community areas have spatial autocorrelation and clustering, local Moran’s I and Gi star tests were ran. Beginning with 311 call rates, figure 12 and 12a displays the results of these tests. We can see that statistically significant (p &lt; 0.05) highly similar 311 call values and hot spots are largely present in the west community areas and 3 communities in the south. Meanwhile, dissimilar cold spots exist along the lake in communities like the Loop. For violent and property crimes, the local Moran’s I and Gi star tests show that the most northern communities represent dissimilar and cold locations in terms of crime rates. At the same time, violent and property crime hot spots and similar values are located in the areas we would expect, specifically the south and west for violent crimes (homicides matched these trends) and around the loop and some areas of the south for property crimes, see figures 13 and 14. It’s worth mentioning that average household income, less than high school education and bachelor’s degree local Moran I’s and Gi star’s similar/dissimilar and hot/cold spot values paralleled the findings from the exploratory analysis. In the interest of brevity, I decided not to include those maps.</p>
 <figure>
-<img src="images\GI_call_r.png" alt="" /><figcaption>Figure 12 GI Star 311 Call Rate</figcaption>
+<img src="GI_call_r.png" alt="Figure 12 GI Star 311 Call Rate" /><figcaption aria-hidden="true">Figure 12 GI Star 311 Call Rate</figcaption>
 </figure>
 <figure>
-<img src="images\LMI_call_r.png" alt="" /><figcaption>Figure 12a Local Moran’s I 311 Call Rate</figcaption>
+<img src="LMI_call_r.png" alt="Figure 12a Local Moran’s I 311 Call Rate" /><figcaption aria-hidden="true">Figure 12a Local Moran’s I 311 Call Rate</figcaption>
 </figure>
 <figure>
-<img src="images\GI_vcrime.png" alt="" /><figcaption>Figure 13 GI Star Violent Crime Rate</figcaption>
+<img src="GI_vcrime.png" alt="Figure 13 GI Star Violent Crime Rate" /><figcaption aria-hidden="true">Figure 13 GI Star Violent Crime Rate</figcaption>
 </figure>
 <figure>
-<img src="images\LMI_vcrime.png" alt="" /><figcaption>Figure 13a Local Moran’s I Violent Crime Rate</figcaption>
+<img src="LMI_vcrime.png" alt="Figure 13a Local Moran’s I Violent Crime Rate" /><figcaption aria-hidden="true">Figure 13a Local Moran’s I Violent Crime Rate</figcaption>
 </figure>
 <figure>
-<img src="images\GI_pcrime.png" alt="" /><figcaption>Figure 14 GI Star Property Crime Rate</figcaption>
+<img src="GI_pcrime.png" alt="Figure 14 GI Star Property Crime Rate" /><figcaption aria-hidden="true">Figure 14 GI Star Property Crime Rate</figcaption>
 </figure>
 <figure>
-<img src="images\LMI_pcrime.png" alt="" /><figcaption>Figure 14a Local Moran’s I Property Crime Rate</figcaption>
+<img src="images\LMI_pcrime.png" alt="Figure 14a Local Moran’s I Property Crime Rate" /><figcaption aria-hidden="true">Figure 14a Local Moran’s I Property Crime Rate</figcaption>
 </figure>
 <p>In the final section of this analysis, I assessed the spatial regression models used in this analysis. Model 1 was an OLS regression model with 311 call rates as the dependent variable and the independent variables as violent crime, property crime, white, black, Hispanic, average household income, less than high school education, and bachelor’s degree incorporating the rook contiguity spatial weights matrix .</p>
-<p><img src="images\formula.png" /></p>
+<p><img src="formula.PNG" /></p>
 <p>Based on Model 1’s diagnostics for spatial dependence results in which the Robust LM (error) test was not significant, I determined that a spatial error test would be appropriate this Model 2.</p>
-<p><img src="images\table.png" /></p>
+<p><img src="table.PNG" /></p>
 <p>Reviewing Table 1’s regression outputs, there is generally weak evidence that this model is effective in explaining the variation in Chicago’s 311 call rates. In Model 1, the only statistically significant independent variable is percent Hispanic with a positive coefficient of 124.28, suggesting that a larger Hispanic population is predictive of higher 311 call rates. Meanwhile, in the spatial error model we see violent crime, percent Hispanic, and percent with less than a high school education as statistically significant. This model gains more predictive power than Model 1 in its ability to predict how often a community area calls 311. Violent crime and percent Hispanic have positive coefficients while percent less than high school education has a negative coefficient, suggesting that higher crime rates and higher Hispanic populations are associated with greater 311 call rates while lower percentages of the population with less than high school education are associated with 311 call rates. Overall, both models perform poorly in predicting how often a community area calls 311 for local government services. Reviewing the R2 values for the two models, we see a small value for Model 1, 0.23, and nearly an increase of 50% for the spatial error model, 0.42. However, the majority of both models are not statistically significant so caution should be taken when considering the R2 values.</p>
 <p><br></p>
 <h2 id="conclusion"><strong>Conclusion</strong></h2>

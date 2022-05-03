@@ -20,19 +20,19 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -52,11 +52,11 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>KEVIN MAGNAN: Chicago SSL Scores</title>
@@ -125,7 +126,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["2017-06-14-chicago-ssl-scores_files/anchor-4.2.2/anchor.min.js","2017-06-14-chicago-ssl-scores_files/bowser-1.9.3/bowser.min.js","2017-06-14-chicago-ssl-scores_files/distill-2.2.21/template.v2.js","2017-06-14-chicago-ssl-scores_files/jquery-1.11.3/jquery.min.js","2017-06-14-chicago-ssl-scores_files/webcomponents-2.0.0/webcomponents.js","SSL12-16.jpeg"]}
+  {"type":"character","attributes":{},"value":["2017-06-14-chicago-ssl-scores_files/anchor-4.2.2/anchor.min.js","2017-06-14-chicago-ssl-scores_files/bowser-1.9.3/bowser.min.js","2017-06-14-chicago-ssl-scores_files/distill-2.2.21/template.v2.js","2017-06-14-chicago-ssl-scores_files/jquery-1.11.3/jquery.min.js","2017-06-14-chicago-ssl-scores_files/webcomponents-2.0.0/webcomponents.js","Comm_area_SSL.jpeg","SSL_hist_1.jpeg","SSL_hist_2.jpeg","ssl_year.jpeg","SSL12-16.jpeg","SSL16.jpeg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2369,7 +2370,12 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="../../site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
   <script src="../../site_libs/anchor-4.2.2/anchor.min.js"></script>
   <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
   <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
@@ -2495,14 +2501,14 @@ SAMPLE CODE
 <p>To start, let’s set our directory and load the .csv file, then load the libraries we will be using, in this instance it will be ggplot2 and tidyverse, both very powerful R libraries. Finally, let’s get a preliminary look at the data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='st'>"enter the path of your data here"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='st'>"enter the path of your data here"</span><span class='op'>)</span>
 
 <span class='co'># Load SSL list data</span>
 <span class='va'>ssl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"ssl.csv"</span><span class='op'>)</span>
 
 <span class='co'># Load Libraries</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 
 <span class='co'># Lets look at the data.frame</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ssl</span><span class='op'>)</span>
@@ -2515,18 +2521,18 @@ SAMPLE CODE
 <p>Let’s jump right into the interesting part of this dataset, the SSL scores and graph the distribution of scores. It should be noted that this dataset, straight from the Chicago data portal, is a complete de-sensitized dataset of the SSL scores from its inception in August of 2012 through 2016.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># Plot SSL Scores for Chicago</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Plot SSL Scores for Chicago</span>
 <span class='va'>plot1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>ssl</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>SSL.SCORE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>binwidth <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
 <span class='va'>plot1</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"SSL Score 2012-2016"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"Count"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"SSL Histogram 2012 to 2016"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>We should see a relatively even distributed histogram of SSL scores for 2012 to 2016. It looks like most of the SSL scores are between 200 and 400 with a peak at approximately 325.</p>
-<p><img src="images\SSL12-16.jpeg" /></p>
+<p><img src="SSL12-16.jpeg" /></p>
 <p>Chicago’s homicide rates and violent crime rates for 2016 are especially prolific in the media and within the city. Let’s look specifically at the 2016 SSL data. Fortunately, in the SSL dataframe is a column called “LATEST.DATE” which indicates the latest date by year of police contact. Let’s subset the data for 2016 and see if it differs from the overall data. First, we need to subset the data for 2016 , then we need to re-plot our new 2016 data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># subset just 2016</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># subset just 2016</span>
 <span class='va'>SSL16</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>ssl</span>, <span class='va'>LATEST.DATE</span> <span class='op'>==</span> <span class='fl'>2016</span><span class='op'>)</span>
 
 <span class='co'># plot SSL scores for 2016</span>
@@ -2536,11 +2542,11 @@ SAMPLE CODE
 </div>
 </div>
 <p>This time, we get a new graph that is specific to the latest date of police contact for 2016. We definitely see some small changes in the histogram but the overall structure of the distribution is the same. I found it interesting that SSL scores equal to 500 saw a significantly large increase to the previous plot.</p>
-<p><img src="images\SSL16.jpeg" /></p>
+<p><img src="SSL16.jpeg" /></p>
 <p>That’s what 2016 looks like, but how have SSL scores difference from 2012 to 2016? Well even though we do not have a great date for when SSL scores were entered, we can see when individuals with SSL scores were last in contact with the police as a proxy for SSL activity by date. For this, we’ll need to total up SSL subjects by year.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># create a list of SSL latest dates by year</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create a list of SSL latest dates by year</span>
 <span class='va'>ssl_year</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>ssl</span><span class='op'>$</span><span class='va'>LATEST.DATE</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>ssl_year</span><span class='op'>)</span>
 <span class='va'>ssl_yr_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>ssl_year</span><span class='op'>)</span>
@@ -2553,39 +2559,39 @@ SAMPLE CODE
 </code></pre>
 </div>
 </div>
-<p><img src="images\ssl_year.jpeg" /></p>
+<p><img src="ssl_year.jpeg" /></p>
 <p>It appears that SSL contact by police has skyrocketed since 2012 and may have dropped a significant amount in 2016. However, for such a short time frame, not much interpretation is appropriate.</p>
 <p>love looking at data in a spatial context. Therefore, let’s look at total SSL scores by community area to see if these scores are distributed within the communities we associate with high gang activity, homicides, and violence. Refer back to the column names in the data. We specifically had a variable called “COMMUNITY.AREA”, so we’ll use that for this plot</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># plot 2016 SSL scores for Chicago by Community Area</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># plot 2016 SSL scores for Chicago by Community Area</span>
 <span class='va'>c_area</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>SSL16</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>COMMUNITY.AREA</span>, y <span class='op'>=</span> <span class='va'>SSL.SCORE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>c_area</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"Community Area"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"SSL Score"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Community Area SSL scores"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p><img src="images\SSL_hist_1.jpeg" /></p>
+<p><img src="SSL_hist_1.jpeg" /></p>
 <p>Well this gives an ugly representation of the data for multiple reasons. First, the communities areas are smushed together along the x-axis, making them indistinguishable Also, it looks like we have an issue with the data, one area appears to constitute a huge majority of SSL scores. Let’s tackle this problem one step at a time. First, let’s adjust the graph to see community areas better by tilting the community area identifier.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># plot 2016 SSL scores for Chicago by Community Area</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># plot 2016 SSL scores for Chicago by Community Area</span>
 <span class='va'>c_area_clean</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>SSL16_clean</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>COMMUNITY.AREA</span>, y <span class='op'>=</span> <span class='va'>SSL.SCORE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>c_area_clean</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>hjust <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"Community Area"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"SSL Score"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Community Area SSL scores"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p><img src="images\SSL_hist_2.jpeg" /></p>
+<p><img src="SSL_hist_2.jpeg" /></p>
 <p>Much better, we can see all the community areas and their respective SSL scores. However, we still have this large column with no community area attached to it. Time to go back to the data.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>SSL16</span><span class='op'>$</span><span class='va'>COMMUNITY.AREA</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>SSL16</span><span class='op'>$</span><span class='va'>COMMUNITY.AREA</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>A summary of community area provides us with a breakdown of the counts for each community area. Right away, we see a blank column " " that has over 32,000 SSL scores attached to it. That cannot be right, somewhere along the line CPD wasn’t able to attach a community area to these individuals. With any spatial reference, we need to remove them from the analysis. (If you look at the data, there are also some NA’s in the Community Area column so we’ll remove the empty values and NA values)</p>
+<p>A summary of community area provides us with a breakdown of the counts for each community area. Right away, we see a blank column ” ” that has over 32,000 SSL scores attached to it. That cannot be right, somewhere along the line CPD wasn’t able to attach a community area to these individuals. With any spatial reference, we need to remove them from the analysis. (If you look at the data, there are also some NA’s in the Community Area column so we’ll remove the empty values and NA values)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># remove data with blank community area</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># remove data with blank community area</span>
 <span class='va'>SSL16clean2</span> <span class='op'>&lt;-</span> <span class='va'>SSL16</span><span class='op'>[</span><span class='op'>!</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>SSL16</span><span class='op'>$</span><span class='va'>COMMUNITY.AREA</span><span class='op'>)</span> <span class='op'>|</span> <span class='va'>SSL16</span><span class='op'>$</span><span class='va'>COMMUNITY.AREA</span> <span class='op'>==</span> <span class='st'>" "</span><span class='op'>)</span>, <span class='op'>]</span>
 </code></pre>
 </div>
@@ -2594,13 +2600,13 @@ SAMPLE CODE
 <p>Let’s finish by plotting the newly cleaned SSL scores by community area.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre><code><span class='co'># plot cleaned total 2016 scores for Chicago by Community Area</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># plot cleaned total 2016 scores for Chicago by Community Area</span>
 <span class='va'>c_area_clean2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>SSL16clean2</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>COMMUNITY.AREA</span>, y <span class='op'>=</span> <span class='va'>SSL.SCORE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>c_area_clean2</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle <span class='op'>=</span> <span class='fl'>90</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"Community Area"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"SSL Score"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Community Area SSL scores"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p><img src="images\Comm_area_SSL.jpeg" /></p>
+<p><img src="Comm_area_SSL.jpeg" /></p>
 <p>What we end up with is a cleaned dataset of SSL scores, totaled, for each Chicago community area. From the graph, we can see that one community area in particular, Austin, is responsible for a large majority of SSL scores compared to all other community areas. The next closest community area appears to be West Garfield Park. If we go back to our summary of community areas, this makes sense because Austin holds the largest count of SSL subjects at 4122 and West Garfield Park has the second highest count of subjects at 2295.</p>
 <p>This was a very basic exploratory analysis of some very important Chicago public safety. Hopefully, this post sheds some light on how powerful and quick plotting and graphing in R is, but more importantly that further analysis into CPD’s SSL scores is critical to understanding how to best utilize them.</p>
 <p>Until next time,</p>
