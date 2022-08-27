@@ -33,9 +33,10 @@ Published on August xx, 2022
 
 Very often, I am impressed or shocked to learn a new feature or problem {R} can solve. My most recent realization was {R} is a fantastic data migration tool. {R} is undoubtably a powerful tool when it comes to data cleaning and manipulating. Combine this superpower with the ability to connect to a legacy SQL database and push, via an API, clean ETL data into a new Salesforce environment and you've got the makings of a secure and effective data migration from a single tool.
 
+## Library setup
+
 Before diving in too deep, let's begin with the set-up. My favorite package for loading libraries is {pacman} because it allows me to list all my packages in a single statement. Additionally, {pacman} will install packages you do not currently have installed as well as install any updates from CRAN (or github) before loading into your environment.
 
-## Library setup
 ```{r load libraries}
 ## load multiple libraries and check on updates
 pacman::p_load(
@@ -57,9 +58,14 @@ pacman::p_load(
 )
 ```
 
+## Database Setup
 
+Whether or not you happen to have a SQL database sitting at your home or place of work, I found it incredibly easy to interact with and query a SQL database from R and RStudio. This was my first opportunity in either a personal or professional setting to interace with a databse in R and, while there are some frustrating learning curves, I found the entire process extremely efficient and productive. 
 
-## database setup
+As a point of best practices, remember when connecting to databases, APIs, or other credentialized environments to never save your passwords or secret keys in your script. While I was researching the SQL connection via R, I found a cheeky little library called {keyring} which made saving my sensitive credentials super easy. Combining a password manager with {keyring} should be more than sufficient to secure your logins.
+
+Final note when connecting to SQL databases; I found that occassionally the connection would fail or the tables would not populate. Refreshing the connection (via RStudio) or disconnecting and reconnecting once or twice always solved this issue.
+
 ```{r connect to SQL database}
 # establish credentials
 key_set(service = "service_name",
