@@ -1,0 +1,103 @@
+---
+title: "Migrate Data with R + API"
+description: |
+  Documenting my journey completing a data migration leveraging R and Salesforce's API.
+  
+author:
+  - name: Kevin Magnan
+    url: https://twitter.com/KevinMagnan
+date: "08-27-2022"
+categories:
+  - R
+  - Salesforce
+  - API
+  - ETL
+base_url: https://www.kevinjmagnan.com
+preview: preview.svg
+draft: no
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      message = FALSE,
+                      R.options = list(width=80),
+                      fig.align="center")
+```
+
+Published on August xx, 2022
+
+Very often, I am impressed or shocked to learn a new feature or problem {R} can solve. My most recent realization was {R} is a fantastic data migration tool. {R} is undoubtably a powerful tool when it comes to data cleaning and manipulating. Combine this superpower with the ability to connect to a legacy SQL database and push, via an API, clean ETL data into a new Salesforce environment and you've got the makings of a secure and effective data migration from a single tool.
+
+Before diving in too deep, let's begin with the set-up. My favorite package for loading libraries is {pacman} because it allows me to list all my packages in a single statement. Additionally, {pacman} will install packages you do not currently have installed as well as install any updates from CRAN (or github) before loading into your environment.
+
+## Library setup
+```{r load libraries}
+## load multiple libraries and check on updates
+pacman::p_load(
+  # allows connectivity between database and R, required by dplyr
+  DBI,
+  # simplified sql language
+  dplyr,
+  # provide DBI backend to any ODBC connection
+  odbc,
+  # leverage Salesforce API to migrate data
+  salesforcer,
+  # nifty library to secure credentials
+  keyring,
+  # may be helpful for connecting to API
+  httr,
+  httpuv,
+  # clean messy data, alternatively install tidyverse
+  tidyr
+)
+```
+
+
+
+## database setup
+```{r connect to SQL database}
+# establish credentials
+key_set(service = "service_name",
+        username = "user_name")
+
+# name the connection something short and easy to reuse later
+con <- dbConnect(odbc(),
+                 Driver = "SQL Server", 
+                 Database = "TSN",
+                 Server = "54.85.208.115",
+                 UID = key_list("service_name")[1,2],
+                 PWD = key_get("service_name", "user_name")
+                 )
+```
+
+## Salesforce API setup
+Leverage the SalesForce API and [Salesforcer](https://stevenmmortimer.github.io/salesforcer/) library in R
+```{r connect to Salesforce api}
+# authorize the RStudio console to connect with Salesforce API via logging in with basic credentials or OAuth2.0
+sf_auth(login_url = "https://[your-domain].my.salesforce.com")
+
+## test access
+# save user info
+user_info <- sf_user_info()
+# print Organization ID from user info 
+sprintf("Organization Id: %s", user_info$organizationId)
+# print User ID from user info 
+sprintf("User Id: %s", user_info$userId)
+# print your Token
+salesforcer_state()$token
+
+## Useful function to check errors and confirm completed jobs - print API bulk calls from your Salesforce connection
+sf_get_all_jobs_bulk()
+```
+
+
+
+
+
+
+
