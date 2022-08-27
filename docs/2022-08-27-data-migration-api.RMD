@@ -81,8 +81,14 @@ con <- dbConnect(odbc(),
                  )
 ```
 
-## Salesforce API setup
-Leverage the SalesForce API and [Salesforcer](https://stevenmmortimer.github.io/salesforcer/) library in R
+## Salesforce API Setup
+
+Quite possibly cooler than connecting to a SQL database, R can also directly connect to Salesforce's API via the library {salesforceR}. All credit here goes to Steven Mortimer, find more information and documentation on their library here [SalesforceR](https://stevenmmortimer.github.io/salesforcer/).
+
+For those living under a rock or not working in the CRM world (CRM = Customer Records Management), Salesforce is a cloud-based solution to manage and relate a company or organizations customer records across various apps, analytics, and reporting solutions. Salesforce, from my understanding, solves the issue companies faced during the early 2000's technology boom, creating countless disparate systems housing siloed customer data. Salesforce has since grown to include dozens of solutions including Slack for internal communication, Tableau for data analytics, Mulesoft for API integrations, and the list goes on. Salesforce is an incredibly successful company and it's tools have permeated much of the private and public space. As a result, skillsets in and around Salesforce are highly valuable, especially skillsets centered around migrating historical data into Salesforce.
+
+For more information and to get started with Salesforce, I highly suggest checking out their free training platform, [Trailhead](https://trailhead.salesforce.com/) in addition to reading my post :)
+
 ```{r connect to Salesforce api}
 # authorize the RStudio console to connect with Salesforce API via logging in with basic credentials or OAuth2.0
 sf_auth(login_url = "https://[your-domain].my.salesforce.com")
