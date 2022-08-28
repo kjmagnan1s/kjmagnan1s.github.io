@@ -107,7 +107,18 @@ salesforcer_state()$token
 sf_get_all_jobs_bulk()
 ```
 
+** As of February 2022, Salesforce requires multi-factor authentication (MFA) on user accounts. This may complicate how you authenticate RStudio based on your company/client environment. 
 
+## Leverage {dplyr} with databases
+
+If you are a data analyst or anyone frankly who interacts with data, you've surely come across the sentiment that SQL is the most important language and skillset to have as a data focused individual. It's not my perogative to dispute this statement, but these days there are a plethora of ways to perform ETL on data including but not limited to:
+
+* R
+* Tableau / Tableau Prep
+* Alteryx
+* PowerQuery / PowerBI
+* Python
+* etc
 
 
 
