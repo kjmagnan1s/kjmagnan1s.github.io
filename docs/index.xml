@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
-    <title>KEVIN MAGNAN</title>
     <link>https://www.kevinjmagnan.com</link>
     <atom:link href="https://www.kevinjmagnan.com/index.xml" rel="self" type="application/rss+xml"/>
     <description>Personal Blog
 </description>
     <image>
-      <title>KEVIN MAGNAN</title>
+      <title/>
       <url>https://www.kevinjmagnan.com/images\favicon.ico</url>
       <link>https://www.kevinjmagnan.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 31 May 2024 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Chicago Summer Violence Analysis</title>
+      <dc:creator>Kevin Magnan</dc:creator>
+      <link>https://www.kevinjmagnan.com/posts/2024-05-31-Chicago-Summer-Violence-Analysis</link>
+      <description>A detailed overview of my Chicago Summer Violence Dashboard, highlighting its key features, data sources, and practical applications for enhancing public safety in Chicago.
+
+Estimated Read Time: 6 minutes</description>
+      <category>Tableau</category>
+      <category>data visualization</category>
+      <category>GenAI</category>
+      <category>GIS</category>
+      <category>interactive</category>
+      <category>inspiration</category>
+      <guid>https://www.kevinjmagnan.com/posts/2024-05-31-Chicago-Summer-Violence-Analysis</guid>
+      <pubDate>Fri, 31 May 2024 00:00:00 +0000</pubDate>
+      <media:content url="https://www.kevinjmagnan.com/posts/2024-05-31-Chicago-Summer-Violence-Analysis/preview.png" medium="image" type="image/png" width="1653" height="1168"/>
+    </item>
     <item>
       <title>Tableau Conference 2021 Blog in Partnership with Slalom</title>
       <dc:creator>Kevin Magnan</dc:creator>

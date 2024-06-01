@@ -2,19 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://www.kevinjmagnan.com/about.html</loc>
-    <lastmod>2022-01-21T10:23:21-05:00</lastmod>
+    <lastmod>2024-05-31T20:56:23-05:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/</loc>
-    <lastmod>2022-01-21T09:04:00-05:00</lastmod>
+    <lastmod>2024-05-31T20:56:25-05:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/python.html</loc>
-    <lastmod>2022-01-21T09:04:00-05:00</lastmod>
+    <lastmod>2024-05-31T20:56:25-05:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/sql.html</loc>
-    <lastmod>2022-01-21T09:04:00-05:00</lastmod>
+    <lastmod>2024-05-31T20:56:25-05:00</lastmod>
+  </url>
+  <url>
+    <loc>https://www.kevinjmagnan.com/posts/2024-05-31-Chicago-Summer-Violence-Analysis/</loc>
+    <lastmod>2024-05-31T20:59:58-05:00</lastmod>
   </url>
   <url>
     <loc>https://www.kevinjmagnan.com/posts/2022-01-02-TC21-blog-slalom/</loc>
