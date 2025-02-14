@@ -37,8 +37,8 @@ navbar:
           - text: "---"
           - text: "PYTHON"
             href: python.html
-      - icon: fa-twitter
-        href: https://twitter.com/KevinMagnan
+      - icon: fa-brands fa-bluesky
+        href: https://bsky.app/profile/kevin-magnan.bsky.social
       - image: images\tableau.png
         href: https://public.tableau.com/profile/kevin.magnan#!/
       - icon: fa-linkedin
@@ -63,4 +63,19 @@ collections:
     custom: _custom.html
 output:
   distill::distill_article:
-    toc: true
+    css: theme.css
+html_head: |
+  <!-- Include custom JavaScript -->
+  <script src="custom.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- SEO Metadata -->
+  <meta name="description" content="A personal website showcasing projects and blog posts by Kevin Magnan.">
+  <meta name="keywords" content="personal website, blog, projects, portfolio">
+  <meta property="og:title" content="Kevin Magnan's Website">
+  <meta property="og:description" content="A personal website showcasing projects and blog posts by Kevin Magnan.">
+  <meta property="og:image" content="path/to/image.jpg">
