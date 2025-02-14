@@ -65,9 +65,6 @@ output:
   distill::distill_article:
     css: theme.css
 html_head: |
-  <!-- Include custom JavaScript -->
-  <script src="custom.js"></script>
-  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
