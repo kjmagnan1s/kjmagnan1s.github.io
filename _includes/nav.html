@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="{{ '/' | relative_url }}" class="nav-logo">
+      <span class="logo-text">KM</span>
+    </a>
+    
+    <button class="nav-toggle" aria-label="toggle navigation">
+      <span class="hamburger"></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Home</a>
+      <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' %}active{% endif %}">About</a>
+      <a href="{{ '/blog' | relative_url }}" class="nav-link {% if page.url == '/blog/' %}active{% endif %}">Blog</a>
+      <a href="{{ '/resume' | relative_url }}" class="nav-link {% if page.url == '/resume/' %}active{% endif %}">Resume</a>
+      <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url == '/contact/' %}active{% endif %}">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('nav-open');
+    navToggle.classList.toggle('open');
+  });
+</script>
+  

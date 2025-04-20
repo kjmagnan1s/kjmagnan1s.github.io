@@ -1,0 +1,9 @@
+{
+  "name": "blog-converter",
+  "version": "1.0.0",
+  "description": "Convert blog posts to Jekyll format",
+  "main": "convert_blog_posts.js",
+  "dependencies": {
+    "jsdom": "^22.1.0"
+  }
+}

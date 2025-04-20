@@ -1,0 +1,39 @@
+title: Kevin J. Magnan
+email: kjmagnan1s@gmail.com
+description: >-
+  Principal Consultant & Technology Lead at Slalom. I design AI‑powered analytics, secure cloud architectures, and data strategies that modernize justice and public‑safety services.
+baseurl: ""
+url: "https://kevinjmagnan.com"
+
+theme: minima
+
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+
+collections:
+  posts:
+    output: true
+
+sass:
+  style: compressed
+  sass_dir: _sass
+
+include:
+  - assets/css/custom.css
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
