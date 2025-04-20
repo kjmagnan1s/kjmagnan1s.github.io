@@ -5,12 +5,26 @@ exports.handler = async (event, context) => {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
-      body: 'Method Not Allowed'
+      body: JSON.stringify({ error: 'Method Not Allowed' })
     };
   }
 
   try {
     const { message } = JSON.parse(event.body);
+    
+    if (!message) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Message is required' })
+      };
+    }
+
+    if (!process.env.OPENAI_API_KEY) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: 'OpenAI API key is not configured' })
+      };
+    }
     
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY
@@ -39,9 +53,12 @@ exports.handler = async (event, context) => {
       })
     };
   } catch (error) {
+    console.error('Error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message })
+      body: JSON.stringify({ 
+        error: error.message || 'An error occurred while processing your request'
+      })
     };
   }
 }; 

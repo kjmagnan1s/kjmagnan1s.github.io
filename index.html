@@ -402,11 +402,24 @@ async function sendMessage() {
             body: JSON.stringify({ message }),
         });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const data = await response.json();
-        addMessage('assistant', data.reply);
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        if (data.reply) {
+            addMessage('assistant', data.reply);
+        } else {
+            throw new Error('No reply received from the server');
+        }
     } catch (error) {
         console.error('Error:', error);
-        addMessage('assistant', 'Sorry, there was an error processing your message.');
+        addMessage('assistant', 'Sorry, there was an error processing your message. Please try again later.');
     }
 }
 
