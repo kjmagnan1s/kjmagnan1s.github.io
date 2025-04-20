@@ -394,7 +394,7 @@ async function sendMessage() {
     input.value = '';
 
     try {
-        const response = await fetch('/.netlify/functions/chat', {
+        const response = await fetch('https://tubular-torte-6b51ae.netlify.app/.netlify/functions/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
