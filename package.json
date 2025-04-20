@@ -1,9 +1,8 @@
 {
-  "name": "blog-converter",
+  "name": "website_vibed",
   "version": "1.0.0",
-  "description": "Convert blog posts to Jekyll format",
-  "main": "convert_blog_posts.js",
+  "description": "Personal website with Netlify Functions",
   "dependencies": {
-    "jsdom": "^22.1.0"
+    "openai": "^4.0.0"
   }
 }
