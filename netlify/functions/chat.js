@@ -1,10 +1,27 @@
 const OpenAI = require('openai');
 
 exports.handler = async (event, context) => {
+  // Set CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': 'https://www.kevinjmagnan.com',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
+
+  // Handle preflight requests
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: ''
+    };
+  }
+
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers,
       body: JSON.stringify({ error: 'Method Not Allowed' })
     };
   }
@@ -15,6 +32,7 @@ exports.handler = async (event, context) => {
     if (!message) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ error: 'Message is required' })
       };
     }
@@ -22,6 +40,7 @@ exports.handler = async (event, context) => {
     if (!process.env.OPENAI_API_KEY) {
       return {
         statusCode: 500,
+        headers,
         body: JSON.stringify({ error: 'OpenAI API key is not configured' })
       };
     }
@@ -48,6 +67,7 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify({
         reply: completion.choices[0].message.content
       })
@@ -56,6 +76,7 @@ exports.handler = async (event, context) => {
     console.error('Error:', error);
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({ 
         error: error.message || 'An error occurred while processing your request'
       })
