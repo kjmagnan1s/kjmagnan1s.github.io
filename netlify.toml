@@ -1,0 +1,11 @@
+[build]
+  functions = "netlify/functions"
+  publish = "_site"
+  command = "bundle install && bundle exec jekyll build"
+
+[functions]
+  node_bundler = "esbuild"
+
+[build.environment]
+  RUBY_VERSION = "3.1.0"
+  NODE_VERSION = "18" 
