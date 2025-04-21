@@ -351,6 +351,14 @@ button:hover {
 <script>
 // Cookie Consent
 document.addEventListener('DOMContentLoaded', function() {
+    // Show initial greeting
+    const chatMessages = document.getElementById('chat-messages');
+    const welcomeMessage = document.createElement('div');
+    welcomeMessage.className = 'message assistant';
+    welcomeMessage.textContent = 'Hello! I\'m here to help you learn more about Kevin\'s work in data analytics and business intelligence. How can I assist you today?';
+    chatMessages.appendChild(welcomeMessage);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
     const cookieConsent = document.getElementById('cookie-consent');
     const acceptButton = document.getElementById('accept-cookies');
     
