@@ -8,54 +8,6 @@ description: "Analysis of Chicago summer violence patterns"
 thumbnail: /assets/images/blog/2024-05-31-Chicago-Summer-Violence-Analysis/thumbnail.png
 ---
 
-Chicago Summer Violence Analysis
-
-
-
-Tableau
-
-data visualization
-
-GenAI
-
-GIS
-
-interactive
-
-inspiration
-
-
-
-A detailed overview of my Chicago Summer Violence Dashboard, highlighting its key features, data sources, and practical applications for enhancing public safety in Chicago.
-
-Estimated Read Time: 6 minutes
-
-
-
-[  Kevin Magnan https://twitter.com/KevinMagnan ](  Kevin Magnan https://twitter.com/KevinMagnan )  
-
-05-31-2024
-
-
-
-Contents
-
-
-
-Introduction
-
-Hexagon Grids for Spatial Analysis
-
-Chicago Violence Reduction Dashboard Data
-
-Chicago Summer Violence Tableau Dashboard
-
-Conclusion
-
-Acknowledgments
-
-
-
 Introduction
 
 In today's justice and public safety landscape, data-driven decision-making is essential for addressing complex challenges. Recently, I was inspired by the University of Chicago Crime Lab's Chicago Summer Violence analysis and interactive map, which showcases an innovative approach to public safety issues. Motivated by their work and leveraging data from the City of Chicago Violence Reduction Dashboard, I created my own version of the dashboard with some improvements and customizations I have found in my career to be instrumental in conveying critical and timely public safety data to practitioners. I'm excited to introduce my Chicago Summer Violence Dashboard, highlighting its features, data sources, and its potential impact on violence reduction strategies.

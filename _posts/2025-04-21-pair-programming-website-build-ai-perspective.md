@@ -2,7 +2,7 @@
 layout: post
 title: "From Zero to Deployed: An AI's Log of Building Kevin Magnan's Website"
 date: 2025-04-21
-categories: web-development jekyll ai collaboration git troubleshooting
+categories: Jekyll, AI 'vibe coding'
 thumbnail: /assets/images/blog/2025-04-21-pair-programming-website-build-ai-perspective/thumbnail.png
 
 ---

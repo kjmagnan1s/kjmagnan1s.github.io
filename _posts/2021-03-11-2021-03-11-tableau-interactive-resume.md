@@ -8,50 +8,6 @@ description: "Interactive resume visualization in Tableau"
 thumbnail: /assets/images/blog/2021-03-11-tableau-interactive-resume/thumbnail.png
 ---
 
-Tableau Interactive Resume
-
-
-
-Tableau
-
-data visualization
-
-Figma
-
-interactive
-
-inspiration
-
-
-
-A walkthrough on building an interactive resume to show your Tableau skills and also serve as a comprehensive resume of your skills, experience, and background.
-
-
-
-[  Kevin Magnan https://twitter.com/KevinMagnan ](  Kevin Magnan https://twitter.com/KevinMagnan )  
-
-03-11-2021
-
-
-
-Contents
-
-
-
-Background
-
-Planning New Dashboard
-
-Dashboard Background Design with Figma
-
-Data Prep
-
-Build & Publish
-
-March 2021 Update:
-
-
-
 Background
 
 The idea of a Tableau interactive resume was not a new concept to me; I first published my version of it back in June of 2019. At that time, I was still learning a lot about Tableau concepts, visualization best practices, and was certainly still 'trapped' within a rigid framework of how to build a dashboard. As I reflected on a new version of my interactive resume in 2021, I appreciated my mindset back in 2019 while, at the same time, identifying numerous areas for improvement and opportunities to incorporate more advanced Tableau techniques I have cultivated over the years and following the work of others in the #DataFam Tableau Public community.
