@@ -3,7 +3,7 @@ const OpenAI = require('openai');
 exports.handler = async (event, context) => {
   // Set CORS headers
   const headers = {
-    'Access-Control-Allow-Origin': 'https://www.kevinjmagnan.com',
+    'Access-Control-Allow-Origin': 'https://kevinjmagnan.com',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
