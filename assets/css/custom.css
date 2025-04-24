@@ -342,13 +342,19 @@ p { margin-bottom: 1.5rem; }
   gap: 1rem;
 }
 
-.footer-social a {
-  color: var(--text-light);
+.footer-social i, .footer-social svg {
   font-size: 1.5rem;
+  color: var(--text-color);
   transition: color 0.3s ease;
 }
 
-.footer-social a:hover {
+.footer-social .bluesky-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+}
+
+.footer-social a:hover i, .footer-social a:hover svg {
   color: var(--primary-color);
 }
 
