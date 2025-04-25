@@ -1,0 +1,41 @@
+#timeline {
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.timeline-node {
+  fill: var(--primary-color);
+  transition: r 0.3s ease;
+  cursor: pointer;
+}
+
+.timeline-node:hover {
+  fill: var(--secondary-color);
+}
+
+.timeline-text {
+  font: 14px/1.4 "Inter", sans-serif;
+}
+
+.timeline-line {
+  stroke: var(--border-color);
+  stroke-width: 3;
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: absolute;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.tooltip.visible {
+  opacity: 1;
+} 
