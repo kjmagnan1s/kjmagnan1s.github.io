@@ -1,41 +1,111 @@
 #timeline {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 2rem auto;
+  position: relative;
+  overflow: hidden;
+  background: var(--background-alt);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-path {
+  stroke: var(--primary-color);
+  stroke-width: 2;
+  fill: none;
+  opacity: 0.8;
 }
 
 .timeline-node {
   fill: var(--primary-color);
-  transition: r 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .timeline-node:hover {
   fill: var(--secondary-color);
+  transform: scale(1.2);
 }
 
 .timeline-text {
   font: 14px/1.4 "Inter", sans-serif;
+  pointer-events: none;
 }
 
-.timeline-line {
-  stroke: var(--border-color);
-  stroke-width: 3;
+.timeline-date {
+  font-size: 12px;
+  fill: var(--text-light);
 }
 
 /* Tooltip styles */
 .tooltip {
   position: absolute;
-  padding: 8px 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  border-radius: 4px;
-  font-size: 12px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-color);
+  border-radius: 8px;
+  font-size: 14px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 300px;
+  border: 1px solid var(--border-color);
 }
 
 .tooltip.visible {
   opacity: 1;
+  transform: translateY(-5px);
+}
+
+.tooltip-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.tooltip-org {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-dates {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-blurb {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Zoom controls */
+.zoom-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.zoom-button {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.zoom-button:hover {
+  background: var(--background-alt);
+}
+
+/* Date range highlight */
+.date-range {
+  fill: var(--primary-color);
+  opacity: 0.1;
 } 
