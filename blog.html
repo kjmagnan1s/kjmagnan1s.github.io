@@ -19,17 +19,10 @@ permalink: /blog/
           <div class="post-text">
             <div class="post-header">
               <h2 class="post-title">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                <a href="{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url | relative_url }}{% endif %}" {% if post.external_url %}target="_blank"{% endif %}>{{ post.title }}</a>
               </h2>
               <div class="post-meta">
                 <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-                {% if post.categories.size > 0 %}
-                  <span class="post-categories">
-                    {% for category in post.categories %}
-                      <span class="category">{{ category }}</span>
-                    {% endfor %}
-                  </span>
-                {% endif %}
               </div>
             </div>
             
@@ -39,7 +32,7 @@ permalink: /blog/
               </div>
             {% endif %}
             
-            <a href="{{ post.url | relative_url }}" class="read-more">Read More</a>
+            <a href="{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url | relative_url }}{% endif %}" class="read-more" {% if post.external_url %}target="_blank"{% endif %}>Read More</a>
           </div>
         </div>
       </article>
@@ -140,6 +133,11 @@ permalink: /blog/
   margin-top: 0.5rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
+  flex-wrap: nowrap;
+}
+
+.post-date {
+  white-space: nowrap;
 }
 
 .post-categories {
@@ -148,11 +146,20 @@ permalink: /blog/
 }
 
 .category {
-  background: var(--accent-color);
+  background: var(--primary-color);
   color: white;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.category:hover {
+  background: var(--secondary-color);
 }
 
 .post-excerpt {
