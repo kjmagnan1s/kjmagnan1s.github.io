@@ -14,6 +14,19 @@
       <a href="{{ '/blog' | relative_url }}" class="nav-link {% if page.url == '/blog/' %}active{% endif %}">Blog</a>
       <a href="{{ '/resume' | relative_url }}" class="nav-link {% if page.url == '/resume/' %}active{% endif %}">Resume</a>
       <a href="{{ '/contact' | relative_url }}" class="nav-link {% if page.url == '/contact/' %}active{% endif %}">Contact</a>
+      
+      <!-- View Toggle -->
+      <div class="view-toggle">
+        {% if page.url contains '/robot' %}
+          <a href="{{ page.url | replace: '/robot', '' }}" class="toggle-link human" title="Switch to human view">
+            <i class="fas fa-user"></i> Human
+          </a>
+        {% else %}
+          <a href="/robot{{ page.url }}" class="toggle-link robot" title="Switch to robot view">
+            <i class="fas fa-robot"></i> Robot
+          </a>
+        {% endif %}
+      </div>
     </div>
   </div>
 </nav>

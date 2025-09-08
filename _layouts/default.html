@@ -23,9 +23,17 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/robot-toggle.css' | relative_url }}">
     
     <!-- Animation Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <!-- Dual View Links -->
+    <link rel="alternate" href="{{ site.url }}/robot/" title="Robot version" type="text/html">
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    
+    <!-- JSON-LD Structured Data -->
+    {% include jsonld.html %}
     
     {% seo %}
   </head>
@@ -56,6 +64,13 @@
           });
         });
       });
+
+      // Query parameter toggle for robot view
+      const params = new URLSearchParams(location.search);
+      const robotView = params.get("view") === "robot";
+      if (robotView && !location.pathname.includes('/robot')) {
+        location.replace("/robot" + location.pathname);
+      }
     </script>
   </body>
 </html>
