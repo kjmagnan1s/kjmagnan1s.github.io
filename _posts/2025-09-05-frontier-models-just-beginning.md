@@ -2,7 +2,7 @@
 layout: post
 title: "Frontier Models Are Just the Beginning"
 date: 2025-09-05
-categories: AI, Frontier Models, Specialized AI, Industry Applications
+categories: [AI, Frontier Models, Specialized AI, Industry Applications]
 thumbnail: /assets/images/blog/2025-09-05-frontier-models-just-beginning/b11545ee-d618-43b3-8036-b3b5a8a3d304.png
 ---
 

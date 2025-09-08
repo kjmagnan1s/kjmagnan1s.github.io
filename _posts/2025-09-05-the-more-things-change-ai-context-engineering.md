@@ -2,7 +2,7 @@
 layout: post
 title: "The More Things Change, The More They Stay the Same: Why AI Context Engineering Has Brought Us Full Circle in the Public Sector"
 date: 2025-09-05
-categories: AI, Public Sector, Data Management, Context Engineering
+categories: [AI, Public Sector, Data Management, Context Engineering]
 thumbnail: /assets/images/blog/2025-09-05-the-more-things-change-ai-context-engineering/foundation.png
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "The Power of Configurable Platforms in Public Safety Modernization"
 date: 2025-09-03
-categories: Public Safety, Salesforce, Technology Modernization, Case Management, CJIS Compliance
+categories: [Public Safety, Salesforce, Technology Modernization, Case Management, CJIS Compliance]
 external_url: "https://medium.com/slalom-blog/the-power-of-configurable-platforms-in-public-safety-modernization-a824d4b677d5"
 thumbnail: "/assets/images/blog/2025-09-03-power-configurable-platforms-public-safety-modernization/configurable_platforms_publicsafety.png"
 ---

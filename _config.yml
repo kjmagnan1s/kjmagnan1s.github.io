@@ -23,6 +23,9 @@ collections:
   posts:
     output: true
 
+# Permalink structure for blog posts
+permalink: /:year/:month/:day/:title.html
+
 sass:
   style: compressed
   sass_dir: _sass
