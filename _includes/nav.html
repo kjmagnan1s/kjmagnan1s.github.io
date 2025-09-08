@@ -18,11 +18,11 @@
       <!-- View Toggle -->
       <div class="view-toggle">
         {% if page.url contains '/robot' %}
-          <a href="{{ page.url | replace: '/robot', '' }}" class="toggle-link human" title="Switch to human view">
+          <a href="{{ site.baseurl }}{{ page.url | replace: '/robot', '' }}" class="toggle-link human" title="Switch to human view">
             <i class="fas fa-user"></i> Human
           </a>
         {% else %}
-          <a href="/robot{{ page.url }}" class="toggle-link robot" title="Switch to robot view">
+          <a href="{{ site.baseurl }}/robot/" class="toggle-link robot" title="Switch to robot view">
             <i class="fas fa-robot"></i> Robot
           </a>
         {% endif %}
