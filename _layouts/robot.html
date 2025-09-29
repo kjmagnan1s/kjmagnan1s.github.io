@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title | default: "Robot View - Kevin J. Magnan" }}</title>
+  <link rel="alternate" href="{{ site.url }}/" title="Human version" type="text/html">
+  <link rel="canonical" href="{{ site.url }}{{ page.url | replace: '/robot','' }}">
+  {% include jsonld.html robot="true" %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Machine-readable version of Kevin J. Magnan's professional profile">
+  <style>
+    body { 
+      font-family: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+      line-height: 1.6; 
+      max-width: 80ch; 
+      margin: 2rem auto; 
+      padding: 0 1rem;
+      background: #0a0a0a;
+      color: #00ff41;
+    }
+    
+    a { color: #00ccff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    pre, code { 
+      white-space: pre-wrap; 
+      background: #111; 
+      padding: 1rem;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    
+    .toggle-header {
+      border-bottom: 1px solid #333;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .section { margin: 2rem 0; }
+    .section h2 { color: #ffffff; border-bottom: 1px solid #333; }
+    
+    .entity { margin: 1rem 0; padding: 1rem; border: 1px solid #333; }
+    .entity-id { font-size: 0.9em; opacity: 0.7; }
+    
+    .nav-links { margin: 1rem 0; }
+    .nav-links a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+  <header class="toggle-header">
+    <div class="nav-links">
+      <a href="/" aria-label="Switch to human version">👤 Human View</a>
+      <a href="/api/profile.json" aria-label="Raw JSON API">📡 JSON API</a>
+      <a href="/sitemap.xml" aria-label="Sitemap">🗺️ Sitemap</a>
+    </div>
+    <h1>🤖 Robot View</h1>
+    <p>Machine-optimized version of <a href="{{ site.url }}/">kevinjmagnan.com</a></p>
+    <p><strong>Canonical:</strong> <a href="{{ site.url }}/">{{ site.url }}/</a></p>
+  </header>
+
+  <main>
+    {{ content }}
+    
+    <section class="section">
+      <h2>Structured Data (JSON-LD)</h2>
+      <p>This page includes rich structured data for AI agents and search engines.</p>
+      <details>
+        <summary>View Raw JSON-LD Schema</summary>
+        <pre><code>{{ site.data.site | jsonify }}</code></pre>
+      </details>
+    </section>
+
+    <section class="section">
+      <h2>API Endpoints</h2>
+      <ul>
+        <li><a href="/api/profile.json">Profile Data</a> - Complete professional profile</li>
+        <li><a href="/api/work.json">Work Portfolio</a> - Projects and case studies</li>
+        <li><a href="/api/publications.json">Publications</a> - Blog posts and articles</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

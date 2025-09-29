@@ -1,0 +1,20 @@
+---
+layout: null
+permalink: /api/profile.json
+---
+{% assign d = site.data.site %}
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ d.person.url }}#me",
+  "name": "{{ d.person.name }}",
+  "url": "{{ d.person.url }}",
+  "email": "{{ d.person.email }}",
+  "jobTitle": "{{ d.person.jobTitle }}",
+  "description": "{{ d.person.description }}",
+  "worksFor": {{ d.person.worksFor | jsonify }},
+  "sameAs": {{ d.person.sameAs | jsonify }},
+  "knowsAbout": {{ d.skills | jsonify }},
+  "expertise": {{ d.expertise | jsonify }},
+  "lastModified": "{{ site.time | date_to_xmlschema }}"
+}

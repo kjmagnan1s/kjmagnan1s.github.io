@@ -1,0 +1,40 @@
+---
+layout: null
+permalink: /api/publications.json
+---
+{% assign d = site.data.site %}
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList", 
+  "@id": "{{ site.url }}/#publications",
+  "name": "Kevin Magnan - All Publications & Blog Posts",
+  "description": "Complete collection of blog posts and articles",
+  "numberOfItems": {{ site.posts.size }},
+  "dateRange": {
+    "startDate": "{{ site.posts.last.date | date_to_xmlschema }}",
+    "endDate": "{{ site.posts.first.date | date_to_xmlschema }}"
+  },
+  "itemListElement": [
+    {% for post in site.posts %}
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "item": {
+        "@type": "BlogPosting",
+        "@id": "{{ site.url }}{{ post.url }}",
+        "headline": "{{ post.title }}",
+        "datePublished": "{{ post.date | date_to_xmlschema }}",
+        {% if post.description %}"description": "{{ post.description | escape }}",{% endif %}
+        {% if post.categories and post.categories.size > 0 %}"keywords": {{ post.categories | jsonify }},{% endif %}
+        {% if post.thumbnail %}"image": "{{ site.url }}{{ post.thumbnail }}",{% endif %}
+        {% if post.external_url %}"sameAs": "{{ post.external_url }}",{% endif %}
+        "url": "{{ site.url }}{{ post.url }}",
+        "author": {
+          "@id": "{{ d.person.url }}#me"
+        }
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "lastModified": "{{ site.time | date_to_xmlschema }}"
+}

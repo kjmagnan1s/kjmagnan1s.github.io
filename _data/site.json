@@ -1,0 +1,182 @@
+{
+  "person": {
+    "name": "Kevin J. Magnan",
+    "url": "https://kevinjmagnan.com",
+    "email": "mailto:kjmagnan1s@gmail.com",
+    "jobTitle": "Principal Consultant & Technology Lead",
+    "worksFor": {
+      "name": "Slalom",
+      "url": "https://slalom.com"
+    },
+    "description": "I design AI‑powered analytics, secure cloud architectures, and data strategies that modernize justice and public‑safety services.",
+    "sameAs": [
+      "https://www.linkedin.com/in/kevinjmagnan",
+      "https://github.com/kjmagnan1s",
+      "https://medium.com/@kjmagnan"
+    ]
+  },
+  "skills": [
+    "Public Safety Technology",
+    "CJIS Compliance", 
+    "AI Strategy",
+    "Cloud Architecture",
+    "Data Analytics",
+    "Government Modernization"
+  ],
+  "expertise": [
+    {
+      "area": "Justice & Public Safety",
+      "description": "Modernizing criminal justice systems with secure, compliant cloud solutions"
+    },
+    {
+      "area": "AI Implementation", 
+      "description": "Designing responsible AI systems for government and public sector"
+    },
+    {
+      "area": "Data Strategy",
+      "description": "Building data foundations that enable AI and analytics at scale"
+    }
+  ],
+  "projects": [
+    {
+      "id": "statewide-post-modernization",
+      "name": "Statewide POST Modernization",
+      "summary": "CJIS-compliant cloud migration for Peace Officer Standards and Training agency",
+      "url": "/work/post-modernization",
+      "tags": ["CJIS", "AWS GovCloud", "Data Migration", "Compliance"],
+      "type": "Public Safety Modernization"
+    },
+    {
+      "id": "configurable-platforms",
+      "name": "Configurable Platforms for Public Safety",
+      "summary": "Salesforce-based case management and certification tracking systems",
+      "url": "/work/configurable-platforms", 
+      "tags": ["Salesforce", "Case Management", "Low-Code", "Public Safety"],
+      "type": "Platform Implementation"
+    }
+  ],
+  "about": {
+    "overview": "I'm a Principal Consultant and Technology Lead at Slalom, where I co-lead our Justice and Public Safety (JPS) industry. My work is focused on modernizing public sector services through data strategy, analytics, and AI — helping agencies navigate complex challenges with clarity, innovation, and purpose.",
+    "background": "Before joining Slalom, I built my career at the intersection of public service and analytics. I began as a police officer, gaining first-hand experience in the operational, structural, and human challenges faced by law enforcement and justice agencies. That real-world perspective shaped my transition into data strategy and technology consulting.",
+    "focus_areas": [
+      {
+        "area": "Public Safety Modernization",
+        "description": "Transforming public safety systems with modern technology and data-driven approaches"
+      },
+      {
+        "area": "Data Strategy", 
+        "description": "Developing comprehensive data governance and analytics frameworks"
+      },
+      {
+        "area": "Analytics Design",
+        "description": "Creating intuitive dashboards and analytics solutions for decision-making"
+      },
+      {
+        "area": "Cloud Architecture",
+        "description": "Designing scalable and secure cloud-based solutions for government"
+      },
+      {
+        "area": "AI Strategy",
+        "description": "Implementing AI and automation solutions for public sector efficiency"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "company": "Slalom Consulting, LLC",
+      "location": "Detroit, MI", 
+      "positions": [
+        {
+          "title": "Senior Solution Architect",
+          "period": "June 2022 - Current",
+          "achievements": [
+            "Strengthened Slalom's Justice and Public Safety operations, leading to a robust 80% year-over-year growth across 45 global locations, securing over 10 new high-profile clients",
+            "Led seven diverse project teams managing project delivery focused on data strategy and analytics across a range of clients, including local, county, and state agencies",
+            "Cultivated a critical emerging client relationship, transforming it into a flagship account. Successfully grew the account to over $5 million in three years"
+          ]
+        },
+        {
+          "title": "Data and Analytics Consultant",
+          "period": "April 2021 – June 2022"
+        }
+      ]
+    },
+    {
+      "company": "University of Chicago Urban Labs",
+      "location": "Chicago, IL",
+      "positions": [
+        {
+          "title": "Research Manager", 
+          "period": "June 2019 – February 2021",
+          "achievements": [
+            "Led the design and release of the groundbreaking Violence Reduction Dashboard, a public-facing, near-real-time tool developed in partnership with the City of Chicago",
+            "Integrated complex, siloed public safety data and engaged in exploratory data analysis, delivering nine scalable, data-driven Tableau solutions"
+          ]
+        },
+        {
+          "title": "Embedded Research Analyst",
+          "period": "July 2017 – May 2019"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Chicago",
+      "location": "Chicago, IL",
+      "degree": "Master of Arts Program in the Social Sciences"
+    },
+    {
+      "institution": "Southeast Missouri State University", 
+      "location": "Cape Girardeau, MO",
+      "degree": "Master of Science, Criminal Justice Administration",
+      "honors": "Graduate Masters High Honors"
+    },
+    {
+      "institution": "Southeast Missouri State University",
+      "location": "Cape Girardeau, MO", 
+      "degree": "Bachelor of Science, Criminal Justice",
+      "honors": "Magna Cum Laude"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Tableau Certified Associate Consultant",
+      "year": "2021"
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner", 
+      "year": "2021"
+    },
+    {
+      "name": "Tableau Desktop Specialist",
+      "year": "2019"
+    }
+  ],
+  "publications": [
+    {
+      "title": "The More Things Change, The More They Stay the Same",
+      "date": "2025-09-05",
+      "url": "/2025/09/05/the-more-things-change-ai-context-engineering.html",
+      "summary": "Why AI context engineering has brought us full circle in the public sector"
+    },
+    {
+      "title": "Frontier Models Are Just the Beginning", 
+      "date": "2025-09-05",
+      "url": "/2025/09/05/frontier-models-just-beginning.html",
+      "summary": "The shift from general-purpose to specialized AI models"
+    },
+    {
+      "title": "Stop Calling It an 'AI Pilot'",
+      "date": "2025-08-22", 
+      "url": "/2025/08/22/stop-calling-it-ai-pilot.html",
+      "summary": "We're wasting PhD-level intelligence on intern-level tasks"
+    },
+    {
+      "title": "The Power of Configurable Platforms in Public Safety Modernization",
+      "date": "2025-09-03",
+      "url": "/2025/09/03/power-configurable-platforms-public-safety-modernization.html",
+      "summary": "Real-world lessons from helping agencies move beyond custom tech to scalable solutions"
+    }
+  ]
+}
