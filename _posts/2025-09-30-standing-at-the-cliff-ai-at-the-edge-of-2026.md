@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Standing at the Cliff: AI at the Edge of 2026"
-date: 2025-09-30
+date: 2025-09-29
 categories: ai future technology business strategy
 thumbnail: /assets/images/blog/cliff_with_rocket.png
 ---
