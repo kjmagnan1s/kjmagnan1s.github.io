@@ -4,7 +4,7 @@ title: "Two Webs, One Future: Humans, Robots, and the Internet's Split Personali
 date: 2025-09-07
 categories: [AI, Web Design, Future of Internet, Human-Computer Interaction]
 description: "Exploring the emerging dual Internet: one version built for people, another built for machines, and why both matter for the future of web design."
-thumbnail: /assets/images/blog/dualitry of web thumbnail.png
+thumbnail: /assets/images/blog/duality-of-web-thumbnail.png
 ---
 
 The Internet has always been a shape-shifter. At first it was a place for humans to publish and read static pages. Then it became a platform for apps, video, and interactive experiences. Now, as artificial intelligence models consume more and more of what we produce online, the web is mutating again.
