@@ -1,10 +1,12 @@
----layout: post
+---
+layout: post
 title: "From Brevity Bias to Context Intelligence"
 date: 2025-10-13
 categories: [AI, Public Safety]
 description: "Stanford's ACE framework shows how ChatGPT, Claude, and Gemini can evolve their own context instead of collapsing it. That capability is a critical shift for public safety systems that demand institutional memory."
 thumbnail: /assets/images/blog/2025-10-13-from-brevity-bias-to-context-intelligence/ACE.png
 ---
+
 Stanford’s new research on **Agentic Context Engineering (ACE)** offers a blueprint for building self-improving AI systems that evolve their reasoning without retraining. The framework tackles two chronic weaknesses of large language models: brevity bias and context collapse. It gives practitioners a structured method for solving both.
 In public safety, where continuity, precision, and institutional learning are non-negotiable, ACE is more than an academic contribution. It is a roadmap for transforming tools like ChatGPT, Claude, and Gemini from helpful assistants into reliable, memory-rich collaborators.
 ## The Dual Problem: Brevity Bias and Context Collapse
