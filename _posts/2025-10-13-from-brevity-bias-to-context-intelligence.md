@@ -47,13 +47,9 @@ Gemini excels at multimodal reasoning and continuous learning from structured da
 The Stanford team found that ACE delivered **10.6% higher agent performance**, **8.6% stronger domain reasoning**, and **86.9% lower adaptation latency**. More importantly, they showed that context can evolve like cognition.
 Across today’s commercial AI systems, ACE points to a model-agnostic truth: we do not need bigger models; we need smarter contexts.
 For public safety leaders, the challenge is not purely technical; it is architectural. Agencies that master contextual evolution will build AI systems that learn like humans, remember like institutions, and refuse to collapse their understanding in the name of brevity.
-
 ## Getting Started with Context-Aware AI
 Think of ACE in your workflow like a loop:
-
 ### Generate → Reflect → Curate → Repeat.
-
 Each iteration improves context quality and reduces “context collapse.” Instead of starting from scratch, your AI starts from institutional memory.
-
 Used consistently, ACE turns your models into adaptive collaborators—ones that learn how you work, not just what you ask.
 
