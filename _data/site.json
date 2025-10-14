@@ -17,7 +17,7 @@
   },
   "skills": [
     "Public Safety Technology",
-    "CJIS Compliance", 
+    "CJIS Compliance",
     "AI Strategy",
     "Cloud Architecture",
     "Data Analytics",
@@ -29,7 +29,7 @@
       "description": "Modernizing criminal justice systems with secure, compliant cloud solutions"
     },
     {
-      "area": "AI Implementation", 
+      "area": "AI Implementation",
       "description": "Designing responsible AI systems for government and public sector"
     },
     {
@@ -43,15 +43,25 @@
       "name": "Statewide POST Modernization",
       "summary": "CJIS-compliant cloud migration for Peace Officer Standards and Training agency",
       "url": "/work/post-modernization",
-      "tags": ["CJIS", "AWS GovCloud", "Data Migration", "Compliance"],
+      "tags": [
+        "CJIS",
+        "AWS GovCloud",
+        "Data Migration",
+        "Compliance"
+      ],
       "type": "Public Safety Modernization"
     },
     {
       "id": "configurable-platforms",
       "name": "Configurable Platforms for Public Safety",
       "summary": "Salesforce-based case management and certification tracking systems",
-      "url": "/work/configurable-platforms", 
-      "tags": ["Salesforce", "Case Management", "Low-Code", "Public Safety"],
+      "url": "/work/configurable-platforms",
+      "tags": [
+        "Salesforce",
+        "Case Management",
+        "Low-Code",
+        "Public Safety"
+      ],
       "type": "Platform Implementation"
     }
   ],
@@ -64,7 +74,7 @@
         "description": "Transforming public safety systems with modern technology and data-driven approaches"
       },
       {
-        "area": "Data Strategy", 
+        "area": "Data Strategy",
         "description": "Developing comprehensive data governance and analytics frameworks"
       },
       {
@@ -84,7 +94,7 @@
   "experience": [
     {
       "company": "Slalom Consulting, LLC",
-      "location": "Detroit, MI", 
+      "location": "Detroit, MI",
       "positions": [
         {
           "title": "Senior Solution Architect",
@@ -106,7 +116,7 @@
       "location": "Chicago, IL",
       "positions": [
         {
-          "title": "Research Manager", 
+          "title": "Research Manager",
           "period": "June 2019 – February 2021",
           "achievements": [
             "Led the design and release of the groundbreaking Violence Reduction Dashboard, a public-facing, near-real-time tool developed in partnership with the City of Chicago",
@@ -127,14 +137,14 @@
       "degree": "Master of Arts Program in the Social Sciences"
     },
     {
-      "institution": "Southeast Missouri State University", 
+      "institution": "Southeast Missouri State University",
       "location": "Cape Girardeau, MO",
       "degree": "Master of Science, Criminal Justice Administration",
       "honors": "Graduate Masters High Honors"
     },
     {
       "institution": "Southeast Missouri State University",
-      "location": "Cape Girardeau, MO", 
+      "location": "Cape Girardeau, MO",
       "degree": "Bachelor of Science, Criminal Justice",
       "honors": "Magna Cum Laude"
     }
@@ -145,7 +155,7 @@
       "year": "2021"
     },
     {
-      "name": "AWS Certified Cloud Practitioner", 
+      "name": "AWS Certified Cloud Practitioner",
       "year": "2021"
     },
     {
@@ -155,28 +165,40 @@
   ],
   "publications": [
     {
-      "title": "The More Things Change, The More They Stay the Same",
-      "date": "2025-09-05",
+      "url": "/2025/10/13/the-age-of-cheap-intelligence.html",
+      "date": "2025-10-13",
+      "summary": "Why routing cheaper intelligence will define AI leadership in 2026",
+      "title": "The Age of Cheap Intelligence"
+    },
+    {
+      "url": "/2025/10/13/from-brevity-bias-to-context-intelligence.html",
+      "date": "2025-10-13",
+      "summary": "Applying Stanford's ACE framework to build memory-rich public safety AI",
+      "title": "From Brevity Bias to Context Intelligence"
+    },
+    {
       "url": "/2025/09/05/the-more-things-change-ai-context-engineering.html",
-      "summary": "Why AI context engineering has brought us full circle in the public sector"
-    },
-    {
-      "title": "Frontier Models Are Just the Beginning", 
       "date": "2025-09-05",
+      "summary": "Why AI context engineering has brought us full circle in the public sector",
+      "title": "The More Things Change, The More They Stay the Same"
+    },
+    {
       "url": "/2025/09/05/frontier-models-just-beginning.html",
-      "summary": "The shift from general-purpose to specialized AI models"
+      "date": "2025-09-05",
+      "summary": "The shift from general-purpose to specialized AI models",
+      "title": "Frontier Models Are Just the Beginning"
     },
     {
-      "title": "Stop Calling It an 'AI Pilot'",
-      "date": "2025-08-22", 
-      "url": "/2025/08/22/stop-calling-it-ai-pilot.html",
-      "summary": "We're wasting PhD-level intelligence on intern-level tasks"
-    },
-    {
-      "title": "The Power of Configurable Platforms in Public Safety Modernization",
-      "date": "2025-09-03",
       "url": "/2025/09/03/power-configurable-platforms-public-safety-modernization.html",
-      "summary": "Real-world lessons from helping agencies move beyond custom tech to scalable solutions"
+      "date": "2025-09-03",
+      "summary": "Real-world lessons from helping agencies move beyond custom tech to scalable solutions",
+      "title": "The Power of Configurable Platforms in Public Safety Modernization"
+    },
+    {
+      "url": "/2025/08/22/stop-calling-it-ai-pilot.html",
+      "date": "2025-08-22",
+      "summary": "We're wasting PhD-level intelligence on intern-level tasks",
+      "title": "Stop Calling It an 'AI Pilot'"
     }
   ]
 }
