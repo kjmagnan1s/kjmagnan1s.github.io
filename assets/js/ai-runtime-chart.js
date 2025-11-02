@@ -11,6 +11,8 @@
     scale: 'log'
   };
 
+  const formatDate = d3.timeFormat('%b %d, %Y');
+
   function getDimensions() {
     const containerWidth =
       chartRoot.getBoundingClientRect().width || chartRoot.clientWidth || 960;
@@ -80,6 +82,12 @@
     .append('g')
     .attr('class', 'ai-runtime-chart__error-bars');
   const dotsGroup = chart.append('g').attr('class', 'ai-runtime-chart__dots');
+
+  const tooltip = d3
+    .select(chartRoot)
+    .append('div')
+    .attr('class', 'ai-runtime-chart__tooltip')
+    .style('opacity', 0);
 
   const controls = buildControls();
   chartRoot.prepend(controls);
@@ -198,9 +206,8 @@
     scales.yLinear.range([innerHeight, 0]);
     scales.yLog.range([innerHeight, 0]);
 
-    const points = latestData.filter(
-      (d) => d.metrics[state.metric] && d.metrics[state.metric].estimate
-    );
+    const points = latestData
+      .filter((d) => d.metrics[state.metric] && d.metrics[state.metric].estimate);
     if (!points.length) return;
 
     const yAccessor = (d) => d.metrics[state.metric].estimate;
@@ -224,18 +231,20 @@
     scales.yLog.domain(yLogDomain);
 
     const yScale = state.scale === 'linear' ? scales.yLinear : scales.yLog;
+    const tickTarget = innerWidth > 1020 ? 8 : innerWidth > 860 ? 7 : 6;
     const xAxis = d3
       .axisBottom(scales.x)
-      .ticks(innerWidth > 800 ? 7 : 5)
+      .ticks(tickTarget)
       .tickFormat(d3.timeFormat('%b %Y'))
-      .tickPadding(10);
+      .tickPadding(10)
+      .tickSizeOuter(0);
     const logTickValues = [
-      0.1, 0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024
+      1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024
     ];
     const yAxis = d3
       .axisLeft(yScale)
       .tickValues(state.scale === 'log' ? logTickValues.filter((v) => v >= yLogDomain[0] && v <= yLogDomain[1]) : null)
-      .ticks(state.scale === 'linear' ? 6 : null, '~f')
+      .ticks(state.scale === 'linear' ? 7 : null, '~f')
       .tickFormat((d) => formatDuration(d));
 
     xAxisGroup.transition().duration(600).call(xAxis);
@@ -310,7 +319,21 @@
           ? 'var(--ai-runtime-historical)'
           : 'var(--ai-runtime-forecast)'
       )
-      .attr('stroke-dasharray', (d) => (d.series === 'historical' ? null : '4 3'));
+      .attr('stroke-dasharray', (d) => (d.series === 'historical' ? null : '4 3'))
+      .on('mouseenter', (event, d) => {
+        tooltip
+          .style('opacity', 1)
+          .html(buildTooltipHtml(d));
+        positionTooltip(event);
+      })
+      .on('mousemove', (event) => {
+        positionTooltip(event);
+      })
+      .on('mouseleave', () => {
+        tooltip
+          .style('opacity', 0)
+          .style('transform', 'translate(-9999px, -9999px)');
+      });
 
     merged
       .select('title')
@@ -321,10 +344,51 @@
           ci.ciLow && ci.ciHigh
             ? ` (CI: ${formatDuration(ci.ciLow)} – ${formatDuration(ci.ciHigh)})`
             : '';
-        return `${d.model} • ${d3.timeFormat('%b %d, %Y')(d.date)} • ${formatDuration(
+        return `${d.model} • ${formatDate(d.date)} • ${formatDuration(
           value
         )}${ciText}`;
       });
+
+    function buildTooltipHtml(d) {
+      const primaryMetric = d.metrics[state.metric];
+      const primaryLabel = state.metric === 'p50' ? '50% success runtime' : '80% success runtime';
+      const primaryValue = formatDuration(primaryMetric.estimate);
+      const secondaryKey = state.metric === 'p50' ? 'p80' : 'p50';
+      const secondaryMetric = d.metrics[secondaryKey];
+      const secondaryLabel = secondaryKey === 'p80' ? '80% success runtime' : '50% success runtime';
+      const releaseLabel = d.series === 'forecast' ? 'Projected date' : 'Release date';
+      const narrativeLabel =
+        d.series === 'forecast'
+          ? 'Forecast via seven-month doubling'
+          : 'Observed benchmark';
+
+      const segments = [
+        `<strong>${d.model}</strong>`,
+        `<span>${narrativeLabel}</span>`,
+        `<div>${primaryLabel}: <b>${primaryValue}</b></div>`
+      ];
+
+      if (secondaryMetric) {
+        segments.push(`<div>${secondaryLabel}: <b>${formatDuration(secondaryMetric.estimate)}</b></div>`);
+      }
+
+      segments.push(`<div>${releaseLabel}: ${formatDate(d.date)}</div>`);
+
+      return segments.join('');
+    }
+
+    function positionTooltip(event) {
+      const [x, y] = d3.pointer(event, chartRoot);
+      const tooltipWidth = tooltip.node().offsetWidth || 0;
+      const tooltipHeight = tooltip.node().offsetHeight || 0;
+      const maxX = chartRoot.clientWidth - tooltipWidth - 16;
+      const targetX = Math.min(x + 24, maxX);
+      let targetY = y - tooltipHeight - 14;
+      if (targetY < 16) {
+        targetY = y + 20;
+      }
+      tooltip.style('transform', `translate(${targetX}px, ${targetY}px)`);
+    }
 
     allCircles
       .exit()
