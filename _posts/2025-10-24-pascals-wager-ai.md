@@ -28,15 +28,9 @@ Benchmarks are noisy. Leaderboards are gamed. A new metric cuts through the nois
 
 If the trend continues, we are staring at 4-hour, 8-hour, 16-hour, even 32-hour autonomous cycles in the near term. That is not a thought experiment. It is a calendar reminder. 
 
-<div
-  data-ai-runtime-chart
-  data-data-url="{{ '/assets/data/ai-runtime.json' | relative_url }}"
-></div>
+![METR runtime chart](/assets/images/blog/length-of-tasks-log.png)
 
-<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="{{ '/assets/js/ai-runtime-chart.js' | relative_url }}"></script>
-
-_Methodology: Historical data is sourced from [METR](https://metr.org/research/long-tasks) and its public benchmark releases. Forecast points extrapolate a seven-month doubling cadence from the latest available release._
+*Source: [METR](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/), “Measuring AI Ability to Complete Long Tasks.”*
 
 ## What Happens When Agents Work a Full Shift
 
