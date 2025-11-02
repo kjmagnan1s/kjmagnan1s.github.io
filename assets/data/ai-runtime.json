@@ -1,0 +1,252 @@
+[
+  {
+    "model": "Davinci 002",
+    "rawModel": "davinci_002",
+    "releaseDate": "2020-05-28",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 0.148821,
+        "ciLow": 0.066637,
+        "ciHigh": 0.243676
+      },
+      "p80": {
+        "estimate": 0.034119,
+        "ciLow": 0.012193,
+        "ciHigh": 0.062971
+      }
+    }
+  },
+  {
+    "model": "GPT 3 5 Turbo Instruct",
+    "rawModel": "gpt_3_5_turbo_instruct",
+    "releaseDate": "2022-03-15",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 0.604384,
+        "ciLow": 0.251627,
+        "ciHigh": 1.013756
+      },
+      "p80": {
+        "estimate": 0.173085,
+        "ciLow": 0.057532,
+        "ciHigh": 0.297097
+      }
+    }
+  },
+  {
+    "model": "GPT 4",
+    "rawModel": "gpt_4",
+    "releaseDate": "2023-03-14",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 5.364045,
+        "ciLow": 2.533155,
+        "ciHigh": 10.33667
+      },
+      "p80": {
+        "estimate": 0.965175,
+        "ciLow": 0.363716,
+        "ciHigh": 2.258098
+      }
+    }
+  },
+  {
+    "model": "GPT 4 1106",
+    "rawModel": "gpt_4_1106",
+    "releaseDate": "2023-11-06",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 8.557433,
+        "ciLow": 4.095271,
+        "ciHigh": 16.167595
+      },
+      "p80": {
+        "estimate": 1.453006,
+        "ciLow": 0.587894,
+        "ciHigh": 3.486769
+      }
+    }
+  },
+  {
+    "model": "GPT 4 0125",
+    "rawModel": "gpt_4_0125",
+    "releaseDate": "2024-01-25",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 5.366063,
+        "ciLow": 2.730505,
+        "ciHigh": 9.863144
+      },
+      "p80": {
+        "estimate": 1.197496,
+        "ciLow": 0.52932,
+        "ciHigh": 2.52974
+      }
+    }
+  },
+  {
+    "model": "Claude 3 Opus",
+    "rawModel": "claude_3_opus",
+    "releaseDate": "2024-03-04",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 6.422825,
+        "ciLow": 2.950573,
+        "ciHigh": 13.000937
+      },
+      "p80": {
+        "estimate": 1.125572,
+        "ciLow": 0.429994,
+        "ciHigh": 2.814267
+      }
+    }
+  },
+  {
+    "model": "GPT 4 Turbo",
+    "rawModel": "gpt_4_turbo",
+    "releaseDate": "2024-04-09",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 6.567339,
+        "ciLow": 3.332546,
+        "ciHigh": 12.196003
+      },
+      "p80": {
+        "estimate": 1.523202,
+        "ciLow": 0.705126,
+        "ciHigh": 3.221485
+      }
+    }
+  },
+  {
+    "model": "GPT 4o",
+    "rawModel": "gpt_4o",
+    "releaseDate": "2024-05-13",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 9.17045,
+        "ciLow": 4.429973,
+        "ciHigh": 18.253558
+      },
+      "p80": {
+        "estimate": 1.689572,
+        "ciLow": 0.716363,
+        "ciHigh": 3.883149
+      }
+    }
+  },
+  {
+    "model": "Claude 3 5 Sonnet",
+    "rawModel": "claude_3_5_sonnet",
+    "releaseDate": "2024-06-20",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 18.216831,
+        "ciLow": 9.327007,
+        "ciHigh": 33.608242
+      },
+      "p80": {
+        "estimate": 3.19928,
+        "ciLow": 1.337961,
+        "ciHigh": 7.142034
+      }
+    }
+  },
+  {
+    "model": "Claude 3 5 Sonnet 20241022",
+    "rawModel": "claude_3_5_sonnet_20241022",
+    "releaseDate": "2024-10-22",
+    "series": "historical",
+    "metrics": {
+      "p50": {
+        "estimate": 28.983512,
+        "ciLow": 13.889776,
+        "ciHigh": 57.616902
+      },
+      "p80": {
+        "estimate": 4.640773,
+        "ciLow": 1.749619,
+        "ciHigh": 11.069794
+      }
+    }
+  },
+  {
+    "model": "Forecast May 2025",
+    "rawModel": "forecast_202505",
+    "releaseDate": "2025-05-22",
+    "series": "forecast",
+    "metrics": {
+      "p50": {
+        "estimate": 57.967024
+      },
+      "p80": {
+        "estimate": 9.281546
+      }
+    }
+  },
+  {
+    "model": "Forecast Dec 2025",
+    "rawModel": "forecast_202512",
+    "releaseDate": "2025-12-22",
+    "series": "forecast",
+    "metrics": {
+      "p50": {
+        "estimate": 115.934048
+      },
+      "p80": {
+        "estimate": 18.563092
+      }
+    }
+  },
+  {
+    "model": "Forecast Jul 2026",
+    "rawModel": "forecast_202607",
+    "releaseDate": "2026-07-22",
+    "series": "forecast",
+    "metrics": {
+      "p50": {
+        "estimate": 231.868096
+      },
+      "p80": {
+        "estimate": 37.126184
+      }
+    }
+  },
+  {
+    "model": "Forecast Feb 2027",
+    "rawModel": "forecast_202702",
+    "releaseDate": "2027-02-22",
+    "series": "forecast",
+    "metrics": {
+      "p50": {
+        "estimate": 463.736192
+      },
+      "p80": {
+        "estimate": 74.252368
+      }
+    }
+  },
+  {
+    "model": "Forecast Sep 2027",
+    "rawModel": "forecast_202709",
+    "releaseDate": "2027-09-22",
+    "series": "forecast",
+    "metrics": {
+      "p50": {
+        "estimate": 927.472384
+      },
+      "p80": {
+        "estimate": 148.504736
+      }
+    }
+  }
+]

@@ -447,3 +447,89 @@ p { margin-bottom: 1.5rem; }
     flex-direction: column;
   }
 }
+
+/* AI Runtime Chart */
+:root {
+  --ai-runtime-historical: #2563eb;
+  --ai-runtime-forecast: #0f172a;
+  --ai-runtime-forecast-fill: rgba(15, 23, 42, 0.08);
+}
+
+[data-ai-runtime-chart] {
+  margin: 2rem 0 3rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.ai-runtime-chart__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.ai-runtime-chart__toggle {
+  display: inline-flex;
+  background: white;
+  border: 1px solid #d4d4d8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ai-runtime-chart__button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: transparent;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.ai-runtime-chart__button:not(:last-child) {
+  border-right: 1px solid #e2e8f0;
+}
+
+.ai-runtime-chart__button.is-active {
+  background: #1f2937;
+  color: white;
+}
+
+.ai-runtime-chart__axis text {
+  fill: #1f2937;
+  font-size: 0.85rem;
+}
+
+.ai-runtime-chart__axis path,
+.ai-runtime-chart__axis line {
+  stroke: #cbd5f5;
+}
+
+.ai-runtime-chart__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  fill: #1f2937;
+}
+
+.ai-runtime-chart__legend {
+  font-size: 0.9rem;
+  fill: #1f2937;
+}
+
+.ai-runtime-chart__legend-text {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  [data-ai-runtime-chart] {
+    padding: 1rem;
+  }
+
+  .ai-runtime-chart__controls {
+    justify-content: center;
+  }
+}
+
