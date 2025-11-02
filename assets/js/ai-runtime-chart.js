@@ -11,11 +11,19 @@
     scale: 'log'
   };
 
-  const dimensions = {
-    width: 900,
-    height: 520,
-    margin: { top: 60, right: 40, bottom: 70, left: 120 }
-  };
+  function getDimensions() {
+    const containerWidth =
+      chartRoot.getBoundingClientRect().width || chartRoot.clientWidth || 960;
+    const clampedWidth = Math.min(1100, Math.max(760, containerWidth));
+    const height = Math.round(clampedWidth * 0.58);
+    return {
+      width: clampedWidth,
+      height,
+      margin: { top: 90, right: 70, bottom: 90, left: 160 }
+    };
+  }
+
+  let dimensions = getDimensions();
 
   const svg = d3
     .select(chartRoot)
@@ -38,14 +46,11 @@
 
   const chart = svg
     .append('g')
-    .attr(
-      'transform',
-      `translate(${dimensions.margin.left}, ${dimensions.margin.top})`
-    );
+    .attr('transform', `translate(${dimensions.margin.left}, ${dimensions.margin.top})`);
 
-  const innerWidth =
+  let innerWidth =
     dimensions.width - dimensions.margin.left - dimensions.margin.right;
-  const innerHeight =
+  let innerHeight =
     dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
 
   const scales = {
@@ -172,6 +177,27 @@
   function renderLatest() {
     if (!latestData.length) return;
 
+    dimensions = getDimensions();
+    innerWidth =
+      dimensions.width - dimensions.margin.left - dimensions.margin.right;
+    innerHeight =
+      dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
+
+    svg.attr('viewBox', `0 0 ${dimensions.width} ${dimensions.height}`);
+    chart.attr('transform', `translate(${dimensions.margin.left}, ${dimensions.margin.top})`);
+    xAxisGroup.attr('transform', `translate(0, ${innerHeight})`);
+    title.attr('x', dimensions.width / 2);
+    const legendX =
+      dimensions.width - dimensions.margin.right - (state.scale === 'linear' ? 260 : 280);
+    legendGroup.attr(
+      'transform',
+      `translate(${legendX}, ${dimensions.margin.top - 46})`
+    );
+
+    scales.x.range([0, innerWidth]);
+    scales.yLinear.range([innerHeight, 0]);
+    scales.yLog.range([innerHeight, 0]);
+
     const points = latestData.filter(
       (d) => d.metrics[state.metric] && d.metrics[state.metric].estimate
     );
@@ -198,10 +224,18 @@
     scales.yLog.domain(yLogDomain);
 
     const yScale = state.scale === 'linear' ? scales.yLinear : scales.yLog;
-    const xAxis = d3.axisBottom(scales.x).ticks(6).tickFormat(d3.timeFormat('%b %Y'));
+    const xAxis = d3
+      .axisBottom(scales.x)
+      .ticks(innerWidth > 800 ? 7 : 5)
+      .tickFormat(d3.timeFormat('%b %Y'))
+      .tickPadding(10);
+    const logTickValues = [
+      0.1, 0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024
+    ];
     const yAxis = d3
       .axisLeft(yScale)
-      .ticks(state.scale === 'linear' ? 6 : 6, '~f')
+      .tickValues(state.scale === 'log' ? logTickValues.filter((v) => v >= yLogDomain[0] && v <= yLogDomain[1]) : null)
+      .ticks(state.scale === 'linear' ? 6 : null, '~f')
       .tickFormat((d) => formatDuration(d));
 
     xAxisGroup.transition().duration(600).call(xAxis);
@@ -211,8 +245,8 @@
       .selectAll('text')
       .style('text-anchor', 'end')
       .attr('dx', '-0.6em')
-      .attr('dy', '0.15em')
-      .attr('transform', 'rotate(-30)');
+      .attr('dy', '0.4em')
+      .attr('transform', 'rotate(-25)');
 
     yAxisGroup
       .selectAll('text')
@@ -222,6 +256,7 @@
 
     const lineGenerator = d3
       .line()
+      .curve(d3.curveMonotoneX)
       .defined((d) => !!yAccessor(d))
       .x((d) => scales.x(d.date))
       .y((d) => yScale(yAccessor(d)));
@@ -254,8 +289,8 @@
 
     circlesEnter
       .append('circle')
-      .attr('r', 6)
-      .attr('stroke-width', 2);
+      .attr('r', 7)
+      .attr('stroke-width', 2.2);
 
     circlesEnter.append('title');
 
@@ -312,8 +347,8 @@
         (enter) =>
           enter
             .append('line')
-            .attr('stroke', 'rgba(51, 65, 85, 0.35)')
-            .attr('stroke-width', 2)
+            .attr('stroke', 'rgba(51, 65, 85, 0.25)')
+            .attr('stroke-width', 1.8)
             .attr('x1', (d) => scales.x(d.date))
             .attr('x2', (d) => scales.x(d.date)),
         (update) => update,
@@ -334,7 +369,7 @@
     const itemsEnter = items
       .enter()
       .append('g')
-      .attr('transform', (d, i) => `translate(${i * 200}, 0)`);
+      .attr('transform', (d, i) => `translate(${i * 170}, 0)`);
 
     itemsEnter
       .append('line')
@@ -351,6 +386,8 @@
       .attr('class', 'ai-runtime-chart__legend-text');
 
     const merged = itemsEnter.merge(items);
+
+    merged.attr('transform', (d, i) => `translate(${i * 170}, 0)`);
 
     merged
       .select('line')

@@ -4,16 +4,16 @@ title: "It’s Time to Place a Pascal’s Wager on AI"
 date: 2025-10-24
 categories: [AI, Strategy, Future of Work]
 description: "Reframing Pascal’s Wager for the age of agentic AI and the exponential climb in uninterrupted runtime."
-thumbnail: /assets/images/blog/placeholder.png
+thumbnail: /assets/images/blog/pascalswager.png
 ---
 
-I had this idea as we are nearing the end of 2025 to propose a new Pascal’s Wager specifically for AI. If intelligence really is on an exponential curve with no ceiling, betting against it is the risky move. The upside is too massive, the downside of preparation is almost zero, and every signal points to acceleration, not a bubble.
+We are overdue for a new Pascal’s Wager. If intelligence really is on an exponential curve with no ceiling, betting against it is the risky move. The upside is too massive, the downside of preparation is almost zero, and every signal points to acceleration, not a bubble.
 
 ## What Pascal’s Wager Looks Like in 2025
 
 Pascal’s original wager was simple: if belief in something world-changing carries infinite upside and minimal downside, rational people choose belief. The modern version is not theological. It is practical. If AI truly compounds in capability, the smartest position is to behave as if we are headed toward AGI, superintelligence, or whatever you consider the next force multiplier. You reorganize your career, your skills, your workflows, and your teams around that trajectory.
 
-The alternative is treating AI like a fad or believing we are in some kind of "AI bubble". That is a bet that history will not reward.
+The alternative is treating AI like a fad. That is a bet that history will not reward.
 
 ## The Most Important Curve Nobody’s Arguing About
 
@@ -36,7 +36,7 @@ If the trend continues, we are staring at 4-hour, 8-hour, 16-hour, even 32-hour 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="{{ '/assets/js/ai-runtime-chart.js' | relative_url }}"></script>
 
-_Methodology: Historical data comes from METR’s public benchmark results. Forecast points extrapolate a seven-month doubling cadence from the latest available release._
+_Methodology: Historical data is sourced from [METR](https://metr.org/research/long-tasks) and its public benchmark releases. Forecast points extrapolate a seven-month doubling cadence from the latest available release._
 
 ## What Happens When Agents Work a Full Shift
 
