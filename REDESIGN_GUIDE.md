@@ -7,7 +7,7 @@ Your portfolio has been completely redesigned with a modern, professional layout
 ## Key Features Implemented
 
 ### 1. **Animated Particles Background**
-- **File**: `assets/vendor/particlesjs/app.js`
+- **File**: `assets/js/particles-config.js`
 - **Library**: Particles.js (2.0.0)
 - **What it does**: Creates animated blue particles that float around the hero section
 - **Current config**:
@@ -18,7 +18,7 @@ Your portfolio has been completely redesigned with a modern, professional layout
 
 **Customize**:
 ```javascript
-// In assets/vendor/particlesjs/app.js
+// In assets/js/particles-config.js
 "number": {
     "value": 40,  // Change particle count (30-100 for good effect)
 },
@@ -210,7 +210,7 @@ emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
 
 **To change theme**:
 1. Update colors in CSS variables
-2. Update particles color in `assets/vendor/particlesjs/app.js`
+2. Update particles color in `assets/js/particles-config.js`
 3. Update any hardcoded colors in inline styles
 
 ### 10. **Animations**
@@ -266,7 +266,7 @@ The design is fully responsive:
 - Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-**Note**: Particles.js may have reduced performance on older devices. Can disable on mobile in `assets/vendor/particlesjs/app.js` if needed.
+**Note**: Particles.js may have reduced performance on older devices. Can disable on mobile in `assets/js/particles-config.js` if needed.
 
 ## Performance Optimization
 
@@ -299,7 +299,7 @@ Supported icons: Twitter (`bxl-twitter`), GitHub (`bxl-github`), LinkedIn (`bxl-
 **Particles not showing?**
 - Check browser console for JavaScript errors
 - Ensure `particles-js` div is in HTML
-- Verify `assets/vendor/particlesjs/app.js` is loaded
+- Verify `assets/js/particles-config.js` is loaded
 
 **Text animation not working?**
 - Make sure Typed.js library is loaded from CDN

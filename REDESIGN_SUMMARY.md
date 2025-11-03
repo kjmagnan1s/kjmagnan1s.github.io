@@ -64,7 +64,7 @@ Your portfolio has been completely rebuilt with a modern, professional design in
 ### New Files
 - `assets/css/redesign.css` - Complete styling (723 lines)
 - `assets/js/redesign.js` - JavaScript functionality (282 lines)
-- `assets/vendor/particlesjs/app.js` - Particles configuration
+- `assets/js/particles-config.js` - Particles configuration
 - `REDESIGN_GUIDE.md` - Comprehensive customization guide
 - `REDESIGN_SUMMARY.md` - This file
 
