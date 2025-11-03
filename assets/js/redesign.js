@@ -208,7 +208,7 @@ function loadBlogPosts() {
     if (!blogContainer) return;
 
     // Fetch blog posts from Jekyll
-    fetch('/blog.html')
+    fetch('/blog/index.html')
         .then(response => response.text())
         .then(html => {
             // Parse blog posts from the HTML
