@@ -1,5 +1,20 @@
 /* Particles.js configuration for the hero background */
 (function() {
+    // Only initialize particles on the homepage
+    // Check if we're on the main index page and not on a blog post or other page
+    const isHomepage = window.location.pathname === '/' ||
+                       window.location.pathname === '/index.html' ||
+                       window.location.pathname.endsWith('/');
+
+    if (!isHomepage) {
+        // Hide particles container on non-homepage pages
+        const particlesContainer = document.getElementById('particles-js');
+        if (particlesContainer) {
+            particlesContainer.style.display = 'none';
+        }
+        return;
+    }
+
     if (typeof particlesJS === 'undefined') {
         console.warn('Particles.js library not found. Skipping particle background.');
         return;

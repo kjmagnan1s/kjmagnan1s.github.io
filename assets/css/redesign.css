@@ -175,7 +175,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(243, 244, 246, 0.82) 100%);
+    background: #ffffff;
     z-index: 0;
 }
 
@@ -276,6 +276,7 @@
 /* ======================================== */
 #main {
     margin-left: 100px;
+    background-color: var(--bg-light);
 }
 
 @media (max-width: 992px) {
