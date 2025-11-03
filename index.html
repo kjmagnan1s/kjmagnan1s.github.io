@@ -22,8 +22,8 @@ layout: null
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/assets/css/custom.css" rel="stylesheet">
-    <link href="/assets/css/redesign.css" rel="stylesheet">
+    <link href="{{ '/assets/css/custom.css' | relative_url }}" rel="stylesheet">
+    <link href="{{ '/assets/css/redesign.css' | relative_url }}" rel="stylesheet">
 
     <style>
         /* Animation keyframes */
@@ -125,7 +125,7 @@ layout: null
                     <!-- AI/ML Projects -->
                     <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
                         <div class="portfolio-wrap">
-                            <img src="/assets/images/portfolio/ai-safety-framework.svg" alt="AI Safety Framework" class="img-fluid">
+                            <img src="{{ '/assets/images/portfolio/ai-safety-framework.svg' | relative_url }}" alt="AI Safety Framework" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>AI Safety Framework</h4>
                                 <p>Responsible AI Implementation</p>
@@ -138,7 +138,7 @@ layout: null
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
                         <div class="portfolio-wrap">
-                            <img src="/assets/images/portfolio/predictive-modeling.svg" alt="Predictive Models" class="img-fluid">
+                            <img src="{{ '/assets/images/portfolio/predictive-modeling.svg' | relative_url }}" alt="Predictive Models" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Predictive Modeling Pipeline</h4>
                                 <p>ML Model Development</p>
@@ -152,7 +152,7 @@ layout: null
                     <!-- Analytics Projects -->
                     <div class="col-lg-4 col-md-6 portfolio-item filter-analytics">
                         <div class="portfolio-wrap">
-                            <img src="/assets/images/portfolio/data-dashboard.svg" alt="Analytics Dashboard" class="img-fluid">
+                            <img src="{{ '/assets/images/portfolio/data-dashboard.svg' | relative_url }}" alt="Analytics Dashboard" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Interactive Analytics Dashboard</h4>
                                 <p>Real-time Data Visualization</p>
@@ -165,7 +165,7 @@ layout: null
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-analytics">
                         <div class="portfolio-wrap">
-                            <img src="/assets/images/portfolio/business-intelligence.svg" alt="BI Solution" class="img-fluid">
+                            <img src="{{ '/assets/images/portfolio/business-intelligence.svg' | relative_url }}" alt="BI Solution" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Business Intelligence Platform</h4>
                                 <p>Data Strategy & Insights</p>
@@ -179,7 +179,7 @@ layout: null
                     <!-- Architecture Projects -->
                     <div class="col-lg-4 col-md-6 portfolio-item filter-architecture">
                         <div class="portfolio-wrap">
-                            <img src="/assets/images/portfolio/cloud-architecture.svg" alt="Cloud Architecture" class="img-fluid">
+                            <img src="{{ '/assets/images/portfolio/cloud-architecture.svg' | relative_url }}" alt="Cloud Architecture" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Scalable Cloud Architecture</h4>
                                 <p>AWS/Azure/GCP Solutions</p>
@@ -192,7 +192,7 @@ layout: null
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-architecture">
                         <div class="portfolio-wrap">
-                            <img src="/assets/images/portfolio/data-pipeline.svg" alt="Data Pipeline" class="img-fluid">
+                            <img src="{{ '/assets/images/portfolio/data-pipeline.svg' | relative_url }}" alt="Data Pipeline" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Data Pipeline Architecture</h4>
                                 <p>ETL & Data Integration</p>
@@ -297,131 +297,11 @@ layout: null
     <script src="https://cdn.jsdelivr.net/npm/venobox@2.1.8/dist/venobox.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
 
-    <!-- Particles.js - must load before app.js -->
+    <!-- Particles.js configuration -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-        (function() {
-            const initParticles = function() {
-                if (typeof particlesJS === 'undefined') {
-                    console.warn('Particles.js failed to load.');
-                    return;
-                }
-
-                particlesJS('particles-js', {
-                    "particles": {
-                        "number": {
-                            "value": 40,
-                            "density": {
-                                "enable": true,
-                                "value_area": 800
-                            }
-                        },
-                        "color": {
-                            "value": "#2563eb"
-                        },
-                        "shape": {
-                            "type": "circle",
-                            "stroke": {
-                                "width": 0,
-                                "color": "#2563eb"
-                            },
-                            "polygon": {
-                                "nb_sides": 5
-                            }
-                        },
-                        "opacity": {
-                            "value": 0.4,
-                            "random": false,
-                            "anim": {
-                                "enable": false,
-                                "speed": 1,
-                                "opacity_min": 0.1,
-                                "sync": false
-                            }
-                        },
-                        "size": {
-                            "value": 4,
-                            "random": true,
-                            "anim": {
-                                "enable": false,
-                                "speed": 40,
-                                "size_min": 0.1,
-                                "sync": false
-                            }
-                        },
-                        "line_linked": {
-                            "enable": true,
-                            "distance": 150,
-                            "color": "#2563eb",
-                            "opacity": 0.3,
-                            "width": 1
-                        },
-                        "move": {
-                            "enable": true,
-                            "speed": 4,
-                            "direction": "none",
-                            "random": false,
-                            "straight": false,
-                            "out_mode": "out",
-                            "bounce": false,
-                            "attract": {
-                                "enable": false,
-                                "rotateX": 600,
-                                "rotateY": 1200
-                            }
-                        }
-                    },
-                    "interactivity": {
-                        "detect_on": "canvas",
-                        "events": {
-                            "onhover": {
-                                "enable": false,
-                                "mode": "repulse"
-                            },
-                            "onclick": {
-                                "enable": false,
-                                "mode": "push"
-                            },
-                            "resize": true
-                        },
-                        "modes": {
-                            "grab": {
-                                "distance": 400,
-                                "line_linked": {
-                                    "opacity": 1
-                                }
-                            },
-                            "bubble": {
-                                "distance": 400,
-                                "size": 40,
-                                "duration": 2,
-                                "opacity": 8,
-                                "speed": 3
-                            },
-                            "repulse": {
-                                "distance": 200
-                            },
-                            "push": {
-                                "particles_nb": 4
-                            },
-                            "remove": {
-                                "particles_nb": 2
-                            }
-                        }
-                    },
-                    "retina_detect": true
-                });
-            };
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initParticles);
-            } else {
-                initParticles();
-            }
-        })();
-    </script>
+    <script src="{{ '/assets/vendor/particlesjs/app.js' | relative_url }}"></script>
 
     <!-- Main Script -->
-    <script src="/assets/js/redesign.js"></script>
+    <script src="{{ '/assets/js/redesign.js' | relative_url }}"></script>
 </body>
 </html> 

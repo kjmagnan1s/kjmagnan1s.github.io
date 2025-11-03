@@ -23,6 +23,11 @@ window.addEventListener('load', function() {
 // Typed.js Initialization
 onReady(function() {
     if (document.querySelector('.typed')) {
+        if (typeof Typed === 'undefined') {
+            console.warn('Typed.js library not loaded. Skipping hero text animation.');
+            return;
+        }
+
         const typedElement = document.querySelector('.typed');
         const items = typedElement.getAttribute('data-typed-items');
         if (items) {
