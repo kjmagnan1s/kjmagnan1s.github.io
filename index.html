@@ -1,404 +1,304 @@
 ---
-layout: default
-title: Home
+layout: null
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin J. Magnan - Principal Consultant & AI Architect</title>
+    <meta name="description" content="Principal Consultant & Technology Lead at Slalom. I design AI‑powered analytics, secure cloud architectures, and data strategies that modernize justice and public‑safety services.">
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-background"></div>
-    <div class="hero-content">
-        <h1>Kevin J. Magnan</h1>
-        <p class="description">Leading Slalom's efforts to build safer AI for the Justice & Public Safety industries.</p>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-        <!-- Chat Interface -->
-        <div class="chat-container">
-            <div id="chat-messages"></div>
-            <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Type your message...">
-                <button onclick="sendMessage()">Send</button>
+    <!-- Vendor CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/venobox@2.1.8/dist/venobox.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/css/custom.css" rel="stylesheet">
+    <link href="/assets/css/redesign.css" rel="stylesheet">
+
+    <style>
+        /* Animation keyframes */
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                filter: blur(10px);
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0);
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+
+    <!-- Mobile Nav Toggle -->
+    <button type="button" class="mobile-nav-toggle d-xl-none">
+        <i class="icofont-navigation-menu"></i>
+    </button>
+
+    <!-- Header/Navigation -->
+    <header id="header" class="d-flex flex-column justify-content-center">
+        <nav class="nav-menu">
+            <ul>
+                <li class="active"><a href="#hero"><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="#blog"><i class="bx bx-news"></i> <span>Blog</span></a></li>
+                <li><a href="#portfolio"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+                <li><a href="#about"><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="#contact"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="d-flex flex-column justify-content-center">
+        <div class="container" data-aos="zoom-in" data-aos-delay="100">
+            <h1>Kevin J. Magnan</h1>
+            <p>I'm <span class="typed" data-typed-items="a Principal Consultant, an AI Architect, a Technology Lead, a Problem Solver, a Builder"></span></p>
+            <p class="hero-subtitle">Designing AI-powered solutions for justice and public safety modernization.</p>
+            <div class="social-links">
+                <a href="https://twitter.com/yourhandle" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://github.com/kjmagnan1s" target="_blank" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://linkedin.com/in/kevinjmagnan" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Cookie Consent Banner -->
-<div id="cookie-consent" class="cookie-consent">
-    <div class="cookie-content">
-        <p>This website uses cookies to ensure you get the best experience. <a href="/privacy">Learn more</a></p>
-        <button id="accept-cookies" class="cookie-button">Accept</button>
-    </div>
-</div>
+    <main id="main">
+        <!-- Blog Section -->
+        <section id="blog" class="services">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Latest Articles</h2>
+                    <p>Insights on AI, public safety, and technology modernization</p>
+                </div>
+                <div class="row blog-container" id="blog-posts"></div>
+                <div class="text-center mt-4">
+                    <a href="/blog/" class="btn btn-primary">View All Articles</a>
+                </div>
+            </div>
+        </section>
 
-<!-- Back to Top Button -->
-<button id="back-to-top" class="back-to-top" aria-label="Back to top">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 15l-6-6-6 6"/>
-    </svg>
-</button>
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio section-bg">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Featured Projects</h2>
+                    <p>Work across data analytics, AI/ML, and cloud architecture</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                        <ul id="portfolio-filters">
+                            <li data-filter="*" class="filter-active">All</li>
+                            <li data-filter=".filter-ai">AI/ML</li>
+                            <li data-filter=".filter-analytics">Analytics</li>
+                            <li data-filter=".filter-architecture">Architecture</li>
+                        </ul>
+                    </div>
+                </div>
 
-<style>
-/* Hero Section Styles */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: var(--background-color);
-    padding: 2rem;
-    padding-top: 8rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200" id="portfolio-items">
+                    <!-- AI/ML Projects -->
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
+                        <div class="portfolio-wrap">
+                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=AI+Safety+Framework" alt="AI Safety Framework" class="img-fluid">
+                            <div class="portfolio-info">
+                                <h4>AI Safety Framework</h4>
+                                <p>Responsible AI Implementation</p>
+                                <div class="portfolio-links">
+                                    <a href="#" title="View Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    z-index: -1;
-}
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
+                        <div class="portfolio-wrap">
+                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Predictive+Modeling" alt="Predictive Models" class="img-fluid">
+                            <div class="portfolio-info">
+                                <h4>Predictive Modeling Pipeline</h4>
+                                <p>ML Model Development</p>
+                                <div class="portfolio-links">
+                                    <a href="#" title="View Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
+                    <!-- Analytics Projects -->
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-analytics">
+                        <div class="portfolio-wrap">
+                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Data+Dashboard" alt="Analytics Dashboard" class="img-fluid">
+                            <div class="portfolio-info">
+                                <h4>Interactive Analytics Dashboard</h4>
+                                <p>Real-time Data Visualization</p>
+                                <div class="portfolio-links">
+                                    <a href="#" title="View Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    color: var(--background-color);
-    animation: fadeInDown 1s ease-out;
-}
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-analytics">
+                        <div class="portfolio-wrap">
+                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Business+Intelligence" alt="BI Solution" class="img-fluid">
+                            <div class="portfolio-info">
+                                <h4>Business Intelligence Platform</h4>
+                                <p>Data Strategy & Insights</p>
+                                <div class="portfolio-links">
+                                    <a href="#" title="View Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-.subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--background-color);
-    opacity: 0.9;
-    animation: fadeInUp 1s ease-out 0.3s both;
-}
+                    <!-- Architecture Projects -->
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-architecture">
+                        <div class="portfolio-wrap">
+                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Cloud+Architecture" alt="Cloud Architecture" class="img-fluid">
+                            <div class="portfolio-info">
+                                <h4>Scalable Cloud Architecture</h4>
+                                <p>AWS/Azure/GCP Solutions</p>
+                                <div class="portfolio-links">
+                                    <a href="#" title="View Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-.description {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: var(--background-color);
-    opacity: 0.8;
-    animation: fadeInUp 1s ease-out 0.6s both;
-}
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-architecture">
+                        <div class="portfolio-wrap">
+                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Data+Pipeline" alt="Data Pipeline" class="img-fluid">
+                            <div class="portfolio-info">
+                                <h4>Data Pipeline Architecture</h4>
+                                <p>ETL & Data Integration</p>
+                                <div class="portfolio-links">
+                                    <a href="#" title="View Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-/* Chat Interface Styles */
-.chat-container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>About Me</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <p>
+                            As a Principal Consultant at Slalom, I lead initiatives to build safer, more responsible AI systems for justice and public safety.
+                            With expertise in analytics, cloud architecture, and technology strategy, I help organizations modernize their operations through data-driven solutions.
+                        </p>
+                        <p>
+                            My work focuses on translating complex technical challenges into practical, impactful solutions that serve the public good.
+                        </p>
+                        <div class="skills-section">
+                            <h3>Core Competencies</h3>
+                            <ul class="skills-list">
+                                <li><i class="icofont-check"></i> AI/ML Strategy & Implementation</li>
+                                <li><i class="icofont-check"></i> Data Analytics & Visualization</li>
+                                <li><i class="icofont-check"></i> Cloud Architecture (AWS, Azure, GCP)</li>
+                                <li><i class="icofont-check"></i> Public Safety Modernization</li>
+                                <li><i class="icofont-check"></i> Technical Leadership</li>
+                                <li><i class="icofont-check"></i> Data Strategy & Governance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-#chat-messages {
-    height: 300px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #eee;
-}
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Get In Touch</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <input type="text" name="name" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="subject" id="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message" id="message" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-.chat-input {
-    display: flex;
-    gap: 10px;
-}
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <h3>Kevin J. Magnan</h3>
+            <p>Principal Consultant & Technology Lead</p>
+            <div class="social-links">
+                <a href="https://twitter.com/yourhandle" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://github.com/kjmagnan1s" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://linkedin.com/in/kevinjmagnan" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Kevin J. Magnan. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
-#user-input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
-button {
-    padding: 8px 16px;
-    background-color: #1a365d;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+    <!-- Vendor Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/venobox@2.1.8/dist/venobox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="/assets/vendor/particlesjs/app.js"></script>
 
-button:hover {
-    background-color: #2c5282;
-}
-
-/* Message Styles */
-.message {
-    margin-bottom: 1rem;
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    max-width: 80%;
-    transition: all 0.3s ease;
-}
-
-.user-message {
-    background: rgba(255, 255, 255, 0.2);
-    margin-left: auto;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.bot-message {
-    background: rgba(255, 255, 255, 0.1);
-    margin-right: auto;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.typing {
-    opacity: 0.7;
-    font-style: italic;
-}
-
-/* Animations */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .description {
-        font-size: 1rem;
-    }
-    
-    .chat-container {
-        padding: 1.5rem;
-    }
-    
-    .chat-input {
-        flex-direction: column;
-    }
-    
-    #user-input {
-        width: 100%;
-    }
-}
-
-/* Cookie Consent Styles */
-.cookie-consent {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 1rem;
-    display: none;
-    z-index: 1000;
-}
-
-.cookie-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-}
-
-.cookie-content p {
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-.cookie-content a {
-    color: var(--primary-color);
-    text-decoration: underline;
-}
-
-.cookie-button {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.cookie-button:hover {
-    background: var(--secondary-color);
-}
-
-/* Back to Top Button Styles */
-.back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--primary-color);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    z-index: 999;
-}
-
-.back-to-top:hover {
-    background: var(--secondary-color);
-    transform: translateY(-3px);
-}
-
-.back-to-top svg {
-    width: 20px;
-    height: 20px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .cookie-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .back-to-top {
-        bottom: 1rem;
-        right: 1rem;
-    }
-}
-</style>
-
-<script>
-// Cookie Consent
-document.addEventListener('DOMContentLoaded', function() {
-    // Show initial greeting
-    const chatMessages = document.getElementById('chat-messages');
-    const welcomeMessage = document.createElement('div');
-    welcomeMessage.className = 'message assistant';
-    welcomeMessage.textContent = 'Hello! I\'m here to help you learn more about Kevin\'s work in data analytics and business intelligence. How can I assist you today?';
-    chatMessages.appendChild(welcomeMessage);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    const cookieConsent = document.getElementById('cookie-consent');
-    const acceptButton = document.getElementById('accept-cookies');
-    
-    if (!localStorage.getItem('cookiesAccepted')) {
-        cookieConsent.style.display = 'block';
-    }
-    
-    acceptButton.addEventListener('click', function() {
-        localStorage.setItem('cookiesAccepted', 'true');
-        cookieConsent.style.display = 'none';
-    });
-});
-
-// Back to Top Button
-document.addEventListener('DOMContentLoaded', function() {
-    const backToTopButton = document.getElementById('back-to-top');
-    
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopButton.style.display = 'flex';
-        } else {
-            backToTopButton.style.display = 'none';
-        }
-    });
-    
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-});
-
-async function sendMessage() {
-    const input = document.getElementById('user-input');
-    const message = input.value.trim();
-    if (!message) return;
-
-    // Add user message to chat
-    addMessage('user', message);
-    input.value = '';
-
-    try {
-        const response = await fetch('https://tubular-torte-6b51ae.netlify.app/.netlify/functions/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            mode: 'cors',
-            credentials: 'omit',
-            body: JSON.stringify({ message }),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        if (data.error) {
-            throw new Error(data.error);
-        }
-
-        if (data.reply) {
-            addMessage('assistant', data.reply);
-        } else {
-            throw new Error('No reply received from the server');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        addMessage('assistant', 'Sorry, there was an error processing your message. Please try again later.');
-    }
-}
-
-function addMessage(role, content) {
-    const chatMessages = document.getElementById('chat-messages');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${role}`;
-    messageDiv.textContent = content;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Allow sending message with Enter key
-document.getElementById('user-input').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        sendMessage();
-    }
-});
-</script> 
+    <!-- Main Script -->
+    <script src="/assets/js/redesign.js"></script>
+</body>
+</html> 
