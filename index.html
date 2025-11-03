@@ -14,6 +14,7 @@ layout: null
 
     <!-- Vendor CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/icofont@1.0.1/icofont.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/venobox@2.1.8/dist/venobox.min.css" rel="stylesheet">
@@ -124,7 +125,7 @@ layout: null
                     <!-- AI/ML Projects -->
                     <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
                         <div class="portfolio-wrap">
-                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=AI+Safety+Framework" alt="AI Safety Framework" class="img-fluid">
+                            <img src="/assets/images/portfolio/ai-safety-framework.svg" alt="AI Safety Framework" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>AI Safety Framework</h4>
                                 <p>Responsible AI Implementation</p>
@@ -137,7 +138,7 @@ layout: null
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-ai">
                         <div class="portfolio-wrap">
-                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Predictive+Modeling" alt="Predictive Models" class="img-fluid">
+                            <img src="/assets/images/portfolio/predictive-modeling.svg" alt="Predictive Models" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Predictive Modeling Pipeline</h4>
                                 <p>ML Model Development</p>
@@ -151,7 +152,7 @@ layout: null
                     <!-- Analytics Projects -->
                     <div class="col-lg-4 col-md-6 portfolio-item filter-analytics">
                         <div class="portfolio-wrap">
-                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Data+Dashboard" alt="Analytics Dashboard" class="img-fluid">
+                            <img src="/assets/images/portfolio/data-dashboard.svg" alt="Analytics Dashboard" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Interactive Analytics Dashboard</h4>
                                 <p>Real-time Data Visualization</p>
@@ -164,7 +165,7 @@ layout: null
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-analytics">
                         <div class="portfolio-wrap">
-                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Business+Intelligence" alt="BI Solution" class="img-fluid">
+                            <img src="/assets/images/portfolio/business-intelligence.svg" alt="BI Solution" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Business Intelligence Platform</h4>
                                 <p>Data Strategy & Insights</p>
@@ -178,7 +179,7 @@ layout: null
                     <!-- Architecture Projects -->
                     <div class="col-lg-4 col-md-6 portfolio-item filter-architecture">
                         <div class="portfolio-wrap">
-                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Cloud+Architecture" alt="Cloud Architecture" class="img-fluid">
+                            <img src="/assets/images/portfolio/cloud-architecture.svg" alt="Cloud Architecture" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Scalable Cloud Architecture</h4>
                                 <p>AWS/Azure/GCP Solutions</p>
@@ -191,7 +192,7 @@ layout: null
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-architecture">
                         <div class="portfolio-wrap">
-                            <img src="https://via.placeholder.com/400x300/2563eb/ffffff?text=Data+Pipeline" alt="Data Pipeline" class="img-fluid">
+                            <img src="/assets/images/portfolio/data-pipeline.svg" alt="Data Pipeline" class="img-fluid">
                             <div class="portfolio-info">
                                 <h4>Data Pipeline Architecture</h4>
                                 <p>ETL & Data Integration</p>
@@ -299,9 +300,13 @@ layout: null
     <!-- Particles.js - must load before app.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Initialize particles after particles.js library is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof particlesJS !== 'undefined') {
+        (function() {
+            const initParticles = function() {
+                if (typeof particlesJS === 'undefined') {
+                    console.warn('Particles.js failed to load.');
+                    return;
+                }
+
                 particlesJS('particles-js', {
                     "particles": {
                         "number": {
@@ -406,8 +411,14 @@ layout: null
                     },
                     "retina_detect": true
                 });
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initParticles);
+            } else {
+                initParticles();
             }
-        });
+        })();
     </script>
 
     <!-- Main Script -->

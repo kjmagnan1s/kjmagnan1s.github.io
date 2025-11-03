@@ -3,6 +3,15 @@
  * Main JavaScript File
  */
 
+// DOM ready helper
+function onReady(callback) {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', callback);
+    } else {
+        callback();
+    }
+}
+
 // Preloader
 window.addEventListener('load', function() {
     const preloader = document.getElementById('preloader');
@@ -12,7 +21,7 @@ window.addEventListener('load', function() {
 });
 
 // Typed.js Initialization
-document.addEventListener('DOMContentLoaded', function() {
+onReady(function() {
     if (document.querySelector('.typed')) {
         const typedElement = document.querySelector('.typed');
         const items = typedElement.getAttribute('data-typed-items');
@@ -73,6 +82,10 @@ document.addEventListener('click', function(e) {
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const header = document.querySelector('#header');
 
+    if (!mobileNavToggle || !header) {
+        return;
+    }
+
     if (!mobileNavToggle.contains(e.target) && !header.contains(e.target)) {
         if (document.body.classList.contains('mobile-nav-active')) {
             document.body.classList.remove('mobile-nav-active');
@@ -121,6 +134,10 @@ if (window.location.hash) {
 const backToTopButton = document.querySelector('.back-to-top');
 
 window.addEventListener('scroll', function() {
+    if (!backToTopButton) {
+        return;
+    }
+
     if (window.pageYOffset > 100) {
         backToTopButton.style.display = 'block';
     } else {
@@ -139,7 +156,7 @@ if (backToTopButton) {
 }
 
 // Portfolio Filtering with Isotope
-document.addEventListener('DOMContentLoaded', function() {
+onReady(function() {
     // Check if isotope is available
     if (typeof Isotope !== 'undefined') {
         const portfolioContainer = document.querySelector('.portfolio-container');
@@ -179,16 +196,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Load Blog Posts Dynamically
-document.addEventListener('DOMContentLoaded', function() {
-    loadBlogPosts();
-});
+onReady(loadBlogPosts);
 
 function loadBlogPosts() {
     const blogContainer = document.getElementById('blog-posts');
     if (!blogContainer) return;
 
     // Fetch blog posts from Jekyll
-    fetch('/blog/index.html')
+    fetch('/blog.html')
         .then(response => response.text())
         .then(html => {
             // Parse blog posts from the HTML
