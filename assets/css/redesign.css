@@ -120,8 +120,6 @@
     left: 0;
     z-index: 0;
     pointer-events: none;
-    opacity: 1;
-    transition: opacity 0.3s ease;
 }
 
 /* ======================================== */

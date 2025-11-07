@@ -52,19 +52,28 @@ onReady(function() {
         return;
     }
 
-    window.addEventListener('scroll', function() {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // Give particles.js time to initialize
+    setTimeout(function() {
+        window.addEventListener('scroll', function() {
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Hide particles if scrolled past hero section
-        if (scrollTop > heroBottom) {
-            particlesContainer.style.opacity = '0';
-            particlesContainer.style.pointerEvents = 'none';
-        } else {
-            particlesContainer.style.opacity = '1';
-            particlesContainer.style.pointerEvents = 'auto';
-        }
-    });
+            // Hide particles container and its canvas if scrolled past hero section
+            if (scrollTop > heroBottom) {
+                particlesContainer.style.display = 'none';
+                // Also try to pause particles.js if available
+                if (window.pJSDom && window.pJSDom[0]) {
+                    window.pJSDom[0].pJS.fn.particlesStop();
+                }
+            } else {
+                particlesContainer.style.display = 'block';
+                // Resume particles if available
+                if (window.pJSDom && window.pJSDom[0]) {
+                    window.pJSDom[0].pJS.fn.particlesStart();
+                }
+            }
+        });
+    }, 1000);
 });
 
 // Smooth Scroll Navigation
