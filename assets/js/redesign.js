@@ -62,19 +62,26 @@ onReady(function() {
         return;
     }
 
-    // On homepage - show particles in hero, hide when scrolling past
-    window.addEventListener('scroll', function() {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+    // On homepage - show particles in hero ONLY, hide when scrolling past
+    function updateParticlesVisibility() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
 
-        // Show particles ONLY if within hero section
-        if (scrollTop <= heroBottom) {
+        // Show particles ONLY when we're in the hero section (at top of page)
+        // If scroll position is less than hero height, we're still in hero
+        if (scrollTop < heroBottom - 100) {
             particlesContainer.style.display = 'block';
         } else {
-            // Scrolled past hero - hide particles
+            // Scrolled past hero into blog/portfolio sections - hide particles
             particlesContainer.style.display = 'none';
         }
-    });
+    }
+
+    // Initial check
+    updateParticlesVisibility();
+
+    // Update on scroll
+    window.addEventListener('scroll', updateParticlesVisibility);
 });
 
 // Smooth Scroll Navigation
