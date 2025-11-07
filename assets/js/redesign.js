@@ -52,10 +52,9 @@ onReady(function() {
         return;
     }
 
-    // Check page location - particles should only show on homepage
-    const isHomepage = window.location.pathname === '/' ||
-                       window.location.pathname === '/index.html' ||
-                       window.location.pathname.endsWith('/');
+    // Check page location - particles should only show on EXACTLY homepage (not /blog/ or /about/)
+    const pathname = window.location.pathname;
+    const isHomepage = pathname === '/' || pathname === '/index.html';
 
     if (!isHomepage) {
         // Not on homepage - hide particles completely
