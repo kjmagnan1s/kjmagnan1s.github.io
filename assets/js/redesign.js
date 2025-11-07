@@ -70,15 +70,9 @@ onReady(function() {
         // Show particles ONLY if within hero section
         if (scrollTop <= heroBottom) {
             particlesContainer.style.display = 'block';
-            if (window.pJSDom && window.pJSDom[0]) {
-                window.pJSDom[0].pJS.fn.particlesStart();
-            }
         } else {
             // Scrolled past hero - hide particles
             particlesContainer.style.display = 'none';
-            if (window.pJSDom && window.pJSDom[0]) {
-                window.pJSDom[0].pJS.fn.particlesStop();
-            }
         }
     });
 });
