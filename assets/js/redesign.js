@@ -43,7 +43,7 @@ onReady(function() {
     }
 });
 
-// Hide particles when scrolling past hero section
+// Show particles ONLY on hero section (hide when scrolling past)
 onReady(function() {
     const particlesContainer = document.getElementById('particles-js');
     const heroSection = document.getElementById('hero');
@@ -52,28 +52,36 @@ onReady(function() {
         return;
     }
 
-    // Give particles.js time to initialize
-    setTimeout(function() {
-        window.addEventListener('scroll', function() {
-            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // Check page location - particles should only show on homepage
+    const isHomepage = window.location.pathname === '/' ||
+                       window.location.pathname === '/index.html' ||
+                       window.location.pathname.endsWith('/');
 
-            // Hide particles container and its canvas if scrolled past hero section
-            if (scrollTop > heroBottom) {
-                particlesContainer.style.display = 'none';
-                // Also try to pause particles.js if available
-                if (window.pJSDom && window.pJSDom[0]) {
-                    window.pJSDom[0].pJS.fn.particlesStop();
-                }
-            } else {
-                particlesContainer.style.display = 'block';
-                // Resume particles if available
-                if (window.pJSDom && window.pJSDom[0]) {
-                    window.pJSDom[0].pJS.fn.particlesStart();
-                }
+    if (!isHomepage) {
+        // Not on homepage - hide particles completely
+        particlesContainer.style.display = 'none';
+        return;
+    }
+
+    // On homepage - show particles in hero, hide when scrolling past
+    window.addEventListener('scroll', function() {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Show particles ONLY if within hero section
+        if (scrollTop <= heroBottom) {
+            particlesContainer.style.display = 'block';
+            if (window.pJSDom && window.pJSDom[0]) {
+                window.pJSDom[0].pJS.fn.particlesStart();
             }
-        });
-    }, 1000);
+        } else {
+            // Scrolled past hero - hide particles
+            particlesContainer.style.display = 'none';
+            if (window.pJSDom && window.pJSDom[0]) {
+                window.pJSDom[0].pJS.fn.particlesStop();
+            }
+        }
+    });
 });
 
 // Smooth Scroll Navigation

@@ -32,7 +32,7 @@ body {
     font-family: 'Open Sans', 'Raleway', 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: var(--bg-light);
+    background-color: var(--bg-white);
 }
 
 /* ======================================== */
@@ -174,12 +174,12 @@ body {
 /* ======================================== */
 #main {
     margin-left: 100px;
-    background-color: var(--bg-light);
+    background-color: var(--bg-white);
 }
 
 main {
     margin-left: 100px;
-    background-color: var(--bg-light);
+    background-color: var(--bg-white);
     min-height: calc(100vh - 100px);
 }
 
