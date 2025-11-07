@@ -5,54 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ page.title }} | {{ site.title }}</title>
-    
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ '/assets/images/favicon.png' | relative_url }}" type="image/png">
     <link rel="icon" href="{{ '/assets/images/favicon.png' | relative_url }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ '/assets/images/favicon.png' | relative_url }}">
     <meta name="msapplication-TileImage" content="{{ '/assets/images/favicon.png' | relative_url }}">
-    <meta name="theme-color" content="#1a365d">
-    
+    <meta name="theme-color" content="#2563eb">
+
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/robot-toggle.css' | relative_url }}">
-    
+    <link href="https://cdn.jsdelivr.net/npm/icofont@1.0.1/icofont.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Unified Design CSS (includes sidebar nav, light grey bg, no particles) -->
+    <link rel="stylesheet" href="{{ '/assets/css/redesign.css' | relative_url }}">
+
     <!-- Animation Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    
+
     <!-- Dual View Links -->
     <link rel="alternate" href="{{ site.url }}/robot/" title="Robot version" type="text/html">
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
-    
+
     <!-- JSON-LD Structured Data -->
     {% include jsonld.html %}
-    
+
     {% seo %}
   </head>
   <body>
-    {% include nav.html %}
-    
+    <!-- Mobile Nav Toggle -->
+    <button type="button" class="mobile-nav-toggle d-xl-none">
+        <i class="icofont-navigation-menu"></i>
+    </button>
+
+    <!-- Header/Navigation Sidebar -->
+    <header id="header" class="d-flex flex-column justify-content-center">
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}><i class="bx bx-home"></i> <span>Home</span></a></li>
+                <li><a href="{{ '/blog' | relative_url }}" {% if page.url contains '/blog' %}class="active"{% endif %}><i class="bx bx-news"></i> <span>Blog</span></a></li>
+                <li><a href="{{ '/about' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}><i class="bx bx-user"></i> <span>About</span></a></li>
+                <li><a href="{{ '/contact' | relative_url }}" {% if page.url == '/contact/' %}class="active"{% endif %}><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+                <li><a href="{{ '/resume' | relative_url }}" {% if page.url == '/resume/' %}class="active"{% endif %}><i class="bx bx-file"></i> <span>Resume</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
    <main>
      {{ content }}
    </main>
 
-   {% include footer.html %}
+   <footer id="footer">
+     <div class="container">
+       <h3>Kevin J. Magnan</h3>
+       <p>{{ site.description }}</p>
+       <div class="social-links">
+         <a href="https://www.linkedin.com/in/kjmagnan1s/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+           <i class="fab fa-linkedin"></i>
+         </a>
+         <a href="https://github.com/kjmagnan1s" target="_blank" rel="noopener noreferrer" title="GitHub">
+           <i class="fab fa-github"></i>
+         </a>
+         <a href="mailto:kjmagnan1s@gmail.com" title="Email">
+           <i class="fas fa-envelope"></i>
+         </a>
+       </div>
+       <div class="copyright">
+         &copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.
+       </div>
+     </div>
+   </footer>
+
+   <!-- Particles container (only renders/animates on homepage) -->
+   <div id="particles-js"></div>
 
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Particles.js (only initializes on homepage) -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="{{ '/assets/js/particles-config.js' | relative_url }}"></script>
+
+    <!-- Main redesign script -->
+    <script src="{{ '/assets/js/redesign.js' | relative_url }}"></script>
+
     <script>
       // Initialize AOS animation library
       AOS.init({
-        duration: 800,
-        once: true
+        duration: 1000,
+        once: true,
+        easing: 'ease-in-out'
+      });
+
+      // Mobile nav toggle
+      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+      if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', function(e) {
+          document.body.classList.toggle('mobile-nav-active');
+          this.classList.toggle('open');
+        });
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const header = document.querySelector('#header');
+
+        if (!mobileNavToggle || !header) {
+          return;
+        }
+
+        if (!mobileNavToggle.contains(e.target) && !header.contains(e.target)) {
+          if (document.body.classList.contains('mobile-nav-active')) {
+            document.body.classList.remove('mobile-nav-active');
+            if (mobileNavToggle) mobileNavToggle.classList.remove('open');
+          }
+        }
       });
 
       // Smooth scroll for anchor links

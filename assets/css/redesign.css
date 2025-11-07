@@ -1,156 +1,14 @@
 /* ======================================== */
-/* Kevin J. Magnan - Redesigned Portfolio  */
+/* Homepage-Only Styles                     */
+/* Hero section, particles, and homepage    */
+/* specific styling                         */
 /* ======================================== */
 
-/* Root Colors - Custom Brand */
-:root {
-    --primary-blue: #2563eb;
-    --dark-blue: #1e40af;
-    --cyan-accent: #06b6d4;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    --text-light: #9ca3af;
-    --bg-white: #ffffff;
-    --bg-light: #f3f4f6;
-    --border-light: #e5e7eb;
-}
+/* Import shared design system */
+@import url('/assets/css/site.css');
 
 /* ======================================== */
-/* Header/Navigation Sidebar */
-/* ======================================== */
-#header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 9997;
-    width: 100px;
-    transition: all 0.5s ease;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-right: 1px solid var(--border-light);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow-y: auto;
-}
-
-@media (max-width: 992px) {
-    #header {
-        width: 300px;
-        background: var(--bg-white);
-        border-right: 1px solid var(--border-light);
-        left: -300px;
-    }
-}
-
-/* Navigation Menu */
-.nav-menu * {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.nav-menu > ul > li {
-    position: relative;
-    white-space: nowrap;
-}
-
-.nav-menu a {
-    display: flex;
-    align-items: center;
-    color: var(--text-secondary);
-    padding: 10px 18px;
-    margin-bottom: 8px;
-    transition: all 0.3s ease;
-    font-size: 15px;
-    border-radius: 50px;
-    background: var(--bg-light);
-    height: 56px;
-    width: 100%;
-    overflow: hidden;
-}
-
-.nav-menu a i {
-    font-size: 20px;
-    min-width: 20px;
-}
-
-.nav-menu a span {
-    padding: 0 5px 0 7px;
-    color: var(--text-secondary);
-}
-
-@media (min-width: 992px) {
-    .nav-menu a {
-        width: 56px;
-        justify-content: center;
-    }
-
-    .nav-menu a span {
-        display: none;
-        color: white;
-    }
-}
-
-.nav-menu .active > a,
-.nav-menu a:hover,
-.nav-menu li:hover > a {
-    color: white;
-    background: var(--primary-blue);
-}
-
-.nav-menu .active > a span,
-.nav-menu a:hover span,
-.nav-menu li:hover > a span {
-    color: white;
-}
-
-.nav-menu a:hover,
-.nav-menu li:hover > a {
-    width: 100%;
-}
-
-.nav-menu a:hover span,
-.nav-menu li:hover > a span {
-    display: block;
-}
-
-/* Mobile Navigation Toggle */
-.mobile-nav-toggle {
-    position: fixed;
-    right: 15px;
-    top: 15px;
-    z-index: 9998;
-    border: 0;
-    background: none;
-    font-size: 24px;
-    transition: all 0.4s ease;
-    outline: none;
-    line-height: 1;
-    cursor: pointer;
-    text-align: right;
-}
-
-.mobile-nav-toggle i {
-    color: var(--text-secondary);
-}
-
-.mobile-nav-active {
-    overflow: hidden;
-}
-
-.mobile-nav-active #header {
-    left: 0;
-}
-
-.mobile-nav-active .mobile-nav-toggle i {
-    color: var(--primary-blue);
-}
-
-/* ======================================== */
-/* Hero Section */
+/* Hero Section - Homepage Only */
 /* ======================================== */
 #hero {
     width: 100%;
@@ -251,7 +109,7 @@
 }
 
 /* ======================================== */
-/* Particles Background Customization */
+/* Particles Background - Homepage Only */
 /* ======================================== */
 #particles-js {
     width: 100%;
@@ -272,76 +130,7 @@
 }
 
 /* ======================================== */
-/* Main Content Area */
-/* ======================================== */
-#main {
-    margin-left: 100px;
-    background-color: var(--bg-light);
-}
-
-@media (max-width: 992px) {
-    #main {
-        margin-left: 0;
-    }
-}
-
-/* ======================================== */
-/* Sections & Typography */
-/* ======================================== */
-section {
-    padding: 60px 0;
-    overflow: hidden;
-}
-
-.section-bg {
-    background-color: var(--bg-light);
-}
-
-.section-title {
-    text-align: center;
-    padding-bottom: 30px;
-}
-
-.section-title h2 {
-    font-size: 32px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    position: relative;
-    color: var(--text-primary);
-}
-
-.section-title h2::before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 120px;
-    height: 1px;
-    background: var(--border-light);
-    bottom: 1px;
-    left: calc(50% - 60px);
-}
-
-.section-title h2::after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 40px;
-    height: 3px;
-    background: var(--primary-blue);
-    bottom: 0;
-    left: calc(50% - 20px);
-}
-
-.section-title p {
-    margin-bottom: 0;
-    color: var(--text-secondary);
-    font-size: 16px;
-}
-
-/* ======================================== */
-/* Blog Section */
+/* Blog/Portfolio Sections */
 /* ======================================== */
 .services {
     padding: 60px 0;
@@ -624,83 +413,9 @@ section {
 }
 
 /* ======================================== */
-/* Back to Top Button */
-/* ======================================== */
-.back-to-top {
-    position: fixed;
-    display: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    right: 15px;
-    bottom: 15px;
-    background: var(--primary-blue);
-    color: white;
-    transition: all 0.3s ease;
-    z-index: 99999;
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    line-height: 0;
-}
-
-.back-to-top i {
-    font-size: 20px;
-}
-
-.back-to-top:hover {
-    color: white;
-    background: var(--dark-blue);
-    transform: translateY(-3px);
-}
-
-/* ======================================== */
-/* Animations */
-/* ======================================== */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* AOS Custom Tweaks */
-[data-aos] {
-    opacity: 0;
-}
-
-/* ======================================== */
 /* Responsive Design */
 /* ======================================== */
 @media (max-width: 768px) {
-    #header {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--border-light);
-        padding: 10px 0;
-    }
-
-    #main {
-        margin-left: 0;
-    }
-
     #hero h1 {
         font-size: 2.5rem;
         line-height: 1.2;
@@ -708,14 +423,6 @@ section {
 
     #hero p {
         font-size: 1.2rem;
-    }
-
-    section {
-        padding: 40px 0;
-    }
-
-    .section-title h2 {
-        font-size: 24px;
     }
 
     .portfolio-container {
