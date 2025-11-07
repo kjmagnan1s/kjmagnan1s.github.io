@@ -43,6 +43,30 @@ onReady(function() {
     }
 });
 
+// Hide particles when scrolling past hero section
+onReady(function() {
+    const particlesContainer = document.getElementById('particles-js');
+    const heroSection = document.getElementById('hero');
+
+    if (!particlesContainer || !heroSection) {
+        return;
+    }
+
+    window.addEventListener('scroll', function() {
+        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Hide particles if scrolled past hero section
+        if (scrollTop > heroBottom) {
+            particlesContainer.style.opacity = '0';
+            particlesContainer.style.pointerEvents = 'none';
+        } else {
+            particlesContainer.style.opacity = '1';
+            particlesContainer.style.pointerEvents = 'auto';
+        }
+    });
+});
+
 // Smooth Scroll Navigation
 document.querySelectorAll('.nav-menu a, .scrollto').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
