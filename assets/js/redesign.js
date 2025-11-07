@@ -65,15 +65,21 @@ onReady(function() {
     // On homepage - show particles in hero ONLY, hide when scrolling past
     function updateParticlesVisibility() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+        const heroHeight = heroSection.offsetHeight;
+        const heroTop = heroSection.offsetTop;
+        const heroBottom = heroTop + heroHeight;
 
-        // Show particles ONLY when we're in the hero section (at top of page)
-        // If scroll position is less than hero height, we're still in hero
-        if (scrollTop < heroBottom - 100) {
+        // Debug logging
+        console.log('Scroll:', scrollTop, 'Hero Height:', heroHeight, 'Hero Bottom:', heroBottom);
+
+        // Show particles ONLY when viewing the hero section
+        // Hero is at the top, so if we haven't scrolled past it, show particles
+        if (scrollTop < (heroHeight * 0.8)) {
             particlesContainer.style.display = 'block';
+            console.log('SHOWING particles');
         } else {
-            // Scrolled past hero into blog/portfolio sections - hide particles
             particlesContainer.style.display = 'none';
+            console.log('HIDING particles');
         }
     }
 
