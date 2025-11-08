@@ -67,9 +67,9 @@ onReady(function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const heroHeight = heroSection.offsetHeight;
 
-        // Hide particles when we've scrolled past 30% of hero height
-        // Early fade-out for clean transition to blog section
-        if (scrollTop < (heroHeight * 0.3)) {
+        // Show particles throughout entire hero section, hide at exact boundary
+        // Subtract a small buffer (50px) to hide just before blog section appears
+        if (scrollTop < (heroHeight - 50)) {
             particlesContainer.style.display = 'block';
         } else {
             particlesContainer.style.display = 'none';
