@@ -66,20 +66,13 @@ onReady(function() {
     function updateParticlesVisibility() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const heroHeight = heroSection.offsetHeight;
-        const heroTop = heroSection.offsetTop;
-        const heroBottom = heroTop + heroHeight;
 
-        // Debug logging
-        console.log('Scroll:', scrollTop, 'Hero Height:', heroHeight, 'Hero Bottom:', heroBottom);
-
-        // Show particles ONLY when viewing the hero section
-        // Hero is at the top, so if we haven't scrolled past it, show particles
-        if (scrollTop < (heroHeight * 0.8)) {
+        // Hide particles when we've scrolled past 70% of hero height
+        // This creates a smooth fade-out before reaching the blog section
+        if (scrollTop < (heroHeight * 0.7)) {
             particlesContainer.style.display = 'block';
-            console.log('SHOWING particles');
         } else {
             particlesContainer.style.display = 'none';
-            console.log('HIDING particles');
         }
     }
 
