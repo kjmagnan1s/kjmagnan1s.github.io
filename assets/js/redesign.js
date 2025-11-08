@@ -43,45 +43,8 @@ onReady(function() {
     }
 });
 
-// Show particles ONLY on hero section (hide when scrolling past)
-onReady(function() {
-    const particlesContainer = document.getElementById('particles-js');
-    const heroSection = document.getElementById('hero');
-
-    if (!particlesContainer || !heroSection) {
-        return;
-    }
-
-    // Check page location - particles should only show on EXACTLY homepage (not /blog/ or /about/)
-    const pathname = window.location.pathname;
-    const isHomepage = pathname === '/' || pathname === '/index.html';
-
-    if (!isHomepage) {
-        // Not on homepage - hide particles completely
-        particlesContainer.style.display = 'none';
-        return;
-    }
-
-    // On homepage - show particles in hero ONLY, hide when scrolling past
-    function updateParticlesVisibility() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const heroHeight = heroSection.offsetHeight;
-
-        // Show particles throughout entire hero section, hide at exact boundary
-        // Subtract a small buffer (50px) to hide just before blog section appears
-        if (scrollTop < (heroHeight - 50)) {
-            particlesContainer.style.display = 'block';
-        } else {
-            particlesContainer.style.display = 'none';
-        }
-    }
-
-    // Initial check
-    updateParticlesVisibility();
-
-    // Update on scroll
-    window.addEventListener('scroll', updateParticlesVisibility);
-});
+// Particles are now position: absolute within hero section
+// No scroll detection needed - they stay fixed in hero and don't follow scroll
 
 // Smooth Scroll Navigation
 document.querySelectorAll('.nav-menu a, .scrollto').forEach(anchor => {
