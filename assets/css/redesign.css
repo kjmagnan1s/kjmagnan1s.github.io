@@ -315,9 +315,11 @@
 
 .blog-card-image {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
     display: block;
+    background: #f5f5f5;
 }
 
 .blog-card-placeholder {
