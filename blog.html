@@ -16,7 +16,7 @@ permalink: /blog/
         <div class="col-lg-4 col-md-6 blog-card-item">
           <div class="blog-card-wrap">
             {% if post.thumbnail %}
-              <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid blog-card-image">
+              <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="blog-card-image">
             {% else %}
               <div class="blog-card-placeholder"></div>
             {% endif %}
