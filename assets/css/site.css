@@ -111,13 +111,13 @@ body {
 
 @media (min-width: 992px) {
     .nav-menu a:hover {
-        width: 220px;
+        width: 170px;
         padding-right: 20px;
     }
 
     .nav-menu a:hover span {
         opacity: 1;
-        max-width: 180px;
+        max-width: 130px;
     }
 }
 
