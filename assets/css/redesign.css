@@ -165,7 +165,7 @@
 .portfolio {
     padding: 60px 0;
     position: relative;
-    background: var(--bg-white);
+    background: var(--bg-light);
 }
 
 #portfolio-filters {
