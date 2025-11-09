@@ -103,7 +103,30 @@ layout: null
                     <h2>Latest Articles</h2>
                     <p>Insights on AI, public safety, and technology modernization</p>
                 </div>
-                <div class="row blog-container" id="blog-posts"></div>
+
+                <div class="row blog-cards-container" data-aos="fade-up" data-aos-delay="200">
+                    {% for post in site.posts limit:6 %}
+                        <div class="col-lg-4 col-md-6 blog-card-item">
+                            <div class="blog-card-wrap">
+                                {% if post.thumbnail %}
+                                    <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid blog-card-image">
+                                {% else %}
+                                    <div class="blog-card-placeholder"></div>
+                                {% endif %}
+                                <div class="blog-card-info">
+                                    <h4>{{ post.title }}</h4>
+                                    {% if post.description %}
+                                        <p class="blog-card-description">{{ post.description }}</p>
+                                    {% endif %}
+                                    <div class="blog-card-links">
+                                        <a href="{{ post.url | relative_url }}" class="read-more-link" title="Read Full Article"><i class="bx bx-right-arrow-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
                 <div class="text-center mt-4">
                     <a href="/blog/" class="btn btn-primary">View All Articles</a>
                 </div>

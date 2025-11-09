@@ -4,41 +4,38 @@ title: Blog
 permalink: /blog/
 ---
 
-<div class="blog-container">
-  <h1 class="blog-title">Blog Posts</h1>
-  
-  <div class="blog-posts">
-    {% for post in site.posts %}
-      <article class="blog-post">
-        <div class="post-content">
-          {% if post.thumbnail %}
-            <div class="post-thumbnail">
-              <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}">
-            </div>
-          {% endif %}
-          <div class="post-text">
-            <div class="post-header">
-              <h2 class="post-title">
-                <a href="{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url | relative_url }}{% endif %}" {% if post.external_url %}target="_blank"{% endif %}>{{ post.title }}</a>
-              </h2>
-              <div class="post-meta">
-                <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-              </div>
-            </div>
-            
-            {% if post.description %}
-              <div class="post-excerpt">
-                {{ post.description }}
-              </div>
+<section id="blog-archive" class="blog-archive">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>All Articles</h2>
+      <p>Complete archive of insights on AI, public safety, and technology modernization</p>
+    </div>
+
+    <div class="row blog-cards-container" data-aos="fade-up" data-aos-delay="200">
+      {% for post in site.posts %}
+        <div class="col-lg-4 col-md-6 blog-card-item">
+          <div class="blog-card-wrap">
+            {% if post.thumbnail %}
+              <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="img-fluid blog-card-image">
+            {% else %}
+              <div class="blog-card-placeholder"></div>
             {% endif %}
-            
-            <a href="{% if post.external_url %}{{ post.external_url }}{% else %}{{ post.url | relative_url }}{% endif %}" class="read-more" {% if post.external_url %}target="_blank"{% endif %}>Read More</a>
+            <div class="blog-card-info">
+              <h4>{{ post.title }}</h4>
+              <p class="blog-card-date">{{ post.date | date: "%B %-d, %Y" }}</p>
+              {% if post.description %}
+                <p class="blog-card-description">{{ post.description }}</p>
+              {% endif %}
+              <div class="blog-card-links">
+                <a href="{{ post.url | relative_url }}" class="read-more-link" title="Read Full Article"><i class="bx bx-right-arrow-alt"></i></a>
+              </div>
+            </div>
           </div>
         </div>
-      </article>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
-</div>
+</section>
 
 <!-- Back to Top Button -->
 <button id="back-to-top" class="back-to-top" aria-label="Back to top">
