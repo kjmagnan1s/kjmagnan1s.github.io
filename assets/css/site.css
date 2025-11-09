@@ -44,7 +44,7 @@ body {
     left: 0;
     bottom: 0;
     z-index: 9997;
-    width: 100px;
+    width: auto;
     transition: all 0.5s ease;
     padding: 15px;
     background: transparent;
@@ -204,13 +204,11 @@ body {
 /* Main Content Area */
 /* ======================================== */
 #main {
-    margin-left: 100px;
-    background-color: var(--bg-white);
+    margin-left: 0;
 }
 
 main {
-    margin-left: 100px;
-    background-color: var(--bg-white);
+    margin-left: 0;
     min-height: calc(100vh - 100px);
 }
 
