@@ -135,6 +135,7 @@
 .services {
     padding: 60px 0;
     background-color: var(--bg-white);
+    position: relative;
 }
 
 .services .icon-box {
@@ -163,6 +164,7 @@
 /* ======================================== */
 .portfolio {
     padding: 60px 0;
+    position: relative;
 }
 
 #portfolio-filters {
@@ -291,6 +293,7 @@
 .about {
     padding: 60px 0;
     background: var(--bg-white);
+    position: relative;
 }
 
 .about p {
@@ -336,6 +339,7 @@
 .contact {
     padding: 60px 0;
     background: var(--bg-light);
+    position: relative;
 }
 
 .contact-form .form-group {

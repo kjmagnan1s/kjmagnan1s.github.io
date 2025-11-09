@@ -83,13 +83,13 @@ body {
     padding: 0 12px;
     margin-bottom: 12px;
     transition: all 0.3s ease;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
     border-radius: 24px;
     background: transparent;
     height: 48px;
     width: 48px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
 }
 
@@ -111,13 +111,13 @@ body {
 
 @media (min-width: 992px) {
     .nav-menu a:hover {
-        width: 160px;
+        width: 220px;
         padding-right: 20px;
     }
 
     .nav-menu a:hover span {
         opacity: 1;
-        max-width: 200px;
+        max-width: 180px;
     }
 }
 
