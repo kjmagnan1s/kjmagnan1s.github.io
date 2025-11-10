@@ -288,6 +288,42 @@
     gap: 30px;
 }
 
+/* Portfolio Coming Soon Card */
+.portfolio-coming-soon {
+    background: linear-gradient(135deg, var(--bg-light) 0%, #e0e7ff 100%);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--primary-blue);
+}
+
+.portfolio-info-static {
+    text-align: center;
+    padding: 40px;
+    opacity: 1;
+}
+
+.portfolio-info-static i {
+    font-size: 48px;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.portfolio-info-static h4 {
+    font-size: 20px;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.portfolio-info-static p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0;
+}
+
 /* ======================================== */
 /* Blog Card Section - Matching Portfolio */
 /* ======================================== */
