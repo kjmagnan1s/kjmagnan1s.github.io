@@ -11,9 +11,9 @@ permalink: /blog/
       <p>Complete archive of insights on AI, public safety, and technology modernization</p>
     </div>
 
-    <div class="row blog-cards-container" data-aos="fade-up" data-aos-delay="200">
+    <div class="blog-cards-container" data-aos="fade-up" data-aos-delay="200">
       {% for post in site.posts %}
-        <div class="col-lg-4 col-md-6 blog-card-item">
+        <div class="blog-card-item">
           <div class="blog-card-wrap">
             {% if post.thumbnail %}
               <img src="{{ post.thumbnail | relative_url }}" alt="{{ post.title }}" class="blog-card-image">
