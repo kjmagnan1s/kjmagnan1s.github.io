@@ -618,6 +618,7 @@
     color: white;
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    text-decoration: none;
 }
 
 @media (max-width: 768px) {
