@@ -6,7 +6,7 @@ permalink: /about/
 
 <div class="about-page">
   <div class="about-header" data-aos="fade-up">
-    <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="Kevin Magnan" class="profile-image">
+    <img src="{{ '/assets/images/headshot.png' | relative_url }}" alt="Kevin Magnan" class="profile-image">
     <h1>Kevin J. Magnan</h1>
     <p class="subtitle">Principal Consultant & Technology Lead at Slalom</p>
   </div>
