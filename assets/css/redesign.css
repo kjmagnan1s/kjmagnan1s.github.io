@@ -436,6 +436,32 @@
     color: var(--text-secondary);
 }
 
+.about-profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-blue);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(37, 99, 235, 0.3);
+}
+
+@media (max-width: 992px) {
+    .about .row {
+        flex-direction: column;
+    }
+
+    .about-profile-image {
+        margin-bottom: 30px;
+    }
+}
+
 .skills-section {
     margin-top: 30px;
     padding-top: 30px;
