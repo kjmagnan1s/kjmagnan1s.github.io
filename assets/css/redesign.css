@@ -90,6 +90,12 @@
     background: var(--primary-blue);
 }
 
+#hero .social-links a svg {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
 @media (max-width: 992px) {
     #hero {
         text-align: center;
