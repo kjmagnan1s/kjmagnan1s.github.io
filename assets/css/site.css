@@ -182,6 +182,14 @@ body {
     line-height: 1;
     cursor: pointer;
     text-align: right;
+    /* Hide on desktop, show only on mobile */
+    display: none;
+}
+
+@media (max-width: 1199.98px) {
+    .mobile-nav-toggle {
+        display: block;
+    }
 }
 
 .mobile-nav-toggle i {
