@@ -301,5 +301,229 @@ function scrollToElement(selector) {
     }
 }
 
+// ========================================
+// AI Chatbot Functionality
+// ========================================
+class Chatbot {
+    constructor() {
+        this.chatMessages = document.getElementById('chat-messages');
+        this.chatInput = document.getElementById('chat-input');
+        this.chatSend = document.getElementById('chat-send');
+        this.chatBody = document.getElementById('chatbot-body');
+        this.chatToggle = document.getElementById('chatbot-toggle');
+        this.chatStatus = document.getElementById('chat-status');
+
+        this.apiUrl = 'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/chat';
+        this.isTyping = false;
+        this.isCollapsed = false;
+
+        this.init();
+    }
+
+    init() {
+        if (!this.chatMessages || !this.chatInput || !this.chatSend) {
+            console.warn('Chatbot elements not found. Skipping chatbot initialization.');
+            return;
+        }
+
+        // Event listeners
+        this.chatSend.addEventListener('click', () => this.sendMessage());
+        this.chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                this.sendMessage();
+            }
+        });
+
+        // Toggle functionality
+        if (this.chatToggle && this.chatBody) {
+            this.chatToggle.addEventListener('click', () => this.toggleChat());
+        }
+
+        // Auto-resize input
+        this.chatInput.addEventListener('input', () => this.autoResizeInput());
+
+        console.log('Chatbot initialized successfully');
+    }
+
+    toggleChat() {
+        this.isCollapsed = !this.isCollapsed;
+
+        if (this.isCollapsed) {
+            this.chatBody.classList.add('collapsed');
+            this.chatToggle.classList.add('collapsed');
+        } else {
+            this.chatBody.classList.remove('collapsed');
+            this.chatToggle.classList.remove('collapsed');
+            // Focus input when opening
+            setTimeout(() => this.chatInput.focus(), 300);
+        }
+    }
+
+    autoResizeInput() {
+        this.chatInput.style.height = 'auto';
+        this.chatInput.style.height = Math.min(this.chatInput.scrollHeight, 100) + 'px';
+    }
+
+    async sendMessage() {
+        const message = this.chatInput.value.trim();
+
+        if (!message || this.isTyping) return;
+
+        // Add user message
+        this.addMessage(message, 'user');
+        this.chatInput.value = '';
+        this.autoResizeInput();
+
+        // Show typing indicator
+        this.showTypingIndicator();
+        this.updateStatus('sending');
+
+        try {
+            const response = await fetch(this.apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                mode: 'cors',
+                credentials: 'omit',
+                body: JSON.stringify({ message })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.error) {
+                throw new Error(data.error);
+            }
+
+            if (data.reply) {
+                this.removeTypingIndicator();
+                this.addMessage(data.reply, 'bot');
+                this.updateStatus('online');
+            } else {
+                throw new Error('No reply received from the server');
+            }
+
+        } catch (error) {
+            console.error('Chatbot error:', error);
+            this.removeTypingIndicator();
+
+            // Fallback responses
+            const fallbackResponses = [
+                "I'm having trouble connecting right now, but I'd be happy to tell you that Kevin specializes in AI and analytics for justice and public safety modernization.",
+                "Sorry, I'm experiencing technical difficulties. Kevin is a Principal Consultant at Slalom with expertise in cloud architecture and data strategy.",
+                "I can't connect at the moment, but Kevin has extensive experience in CJIS compliance and government technology modernization."
+            ];
+
+            const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+            this.addMessage(randomResponse, 'bot');
+            this.updateStatus('error');
+
+            // Reset status after 3 seconds
+            setTimeout(() => this.updateStatus('online'), 3000);
+        }
+    }
+
+    addMessage(content, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}-message`;
+
+        const icon = document.createElement('i');
+        icon.className = type === 'user' ? 'bx bx-user' : 'bx bx-bot';
+
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+
+        const paragraph = document.createElement('p');
+        paragraph.textContent = content;
+
+        messageContent.appendChild(paragraph);
+        messageDiv.appendChild(icon);
+        messageDiv.appendChild(messageContent);
+
+        this.chatMessages.appendChild(messageDiv);
+        this.scrollToBottom();
+    }
+
+    showTypingIndicator() {
+        this.isTyping = true;
+
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot-message typing-indicator-message';
+        typingDiv.id = 'typing-indicator';
+
+        const icon = document.createElement('i');
+        icon.className = 'bx bx-bot';
+
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        typingIndicator.innerHTML = `
+            <span></span>
+            <span></span>
+            <span></span>
+        `;
+
+        messageContent.appendChild(typingIndicator);
+        typingDiv.appendChild(icon);
+        typingDiv.appendChild(messageContent);
+
+        this.chatMessages.appendChild(typingDiv);
+        this.scrollToBottom();
+    }
+
+    removeTypingIndicator() {
+        this.isTyping = false;
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    updateStatus(status) {
+        if (!this.chatStatus) return;
+
+        const statusIcon = this.chatStatus.querySelector('i');
+        const statusText = this.chatStatus.querySelector('span');
+
+        // Remove all status classes
+        this.chatStatus.classList.remove('sending', 'error');
+
+        switch (status) {
+            case 'sending':
+                this.chatStatus.classList.add('sending');
+                statusIcon.className = 'bx bx-time-five';
+                statusText.textContent = 'AI Assistant Thinking...';
+                break;
+            case 'error':
+                this.chatStatus.classList.add('error');
+                statusIcon.className = 'bx bx-error';
+                statusText.textContent = 'Connection Error';
+                break;
+            case 'online':
+            default:
+                statusIcon.className = 'bx bx-check-circle';
+                statusText.textContent = 'AI Assistant Online';
+                break;
+        }
+    }
+
+    scrollToBottom() {
+        this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+    }
+}
+
+// Initialize chatbot when DOM is ready
+onReady(function() {
+    window.chatbot = new Chatbot();
+});
+
 // Export for global use
 window.scrollToElement = scrollToElement;
