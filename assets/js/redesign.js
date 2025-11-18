@@ -315,7 +315,7 @@ class Chatbot {
 
         this.apiUrl = 'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/chat';
         this.isTyping = false;
-        this.isCollapsed = false;
+        this.isCollapsed = true;
 
         this.init();
     }
