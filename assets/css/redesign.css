@@ -840,7 +840,7 @@
     max-width: 80%;
     padding: 6px 10px;
     border-radius: 16px;
-    font-size: 11px;
+    font-size: 13px;
     line-height: 1.2;
     position: relative;
 }
@@ -854,7 +854,7 @@
 
 .user-message .message-content {
     background: #1e40af;
-    color: #ffffff;
+    color: #ffffff !important;
     border-bottom-right-radius: 4px;
     box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
 }
@@ -870,7 +870,7 @@
 .message-content p {
     margin: 0;
     word-wrap: break-word;
-    font-size: 11px !important;
+    font-size: 13px !important;
     line-height: 1.2 !important;
 }
 
@@ -1027,7 +1027,7 @@
 
     .message-content {
         max-width: 85%;
-        font-size: 10px;
+        font-size: 12px;
         padding: 4px 8px;
     }
 
