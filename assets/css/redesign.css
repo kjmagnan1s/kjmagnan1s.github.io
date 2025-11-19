@@ -859,6 +859,14 @@
     box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
 }
 
+.user-message .message-content * {
+    color: #ffffff !important;
+}
+
+.user-message .message-content p {
+    color: #ffffff !important;
+}
+
 .message i {
     font-size: 18px;
     color: var(--primary-blue);
