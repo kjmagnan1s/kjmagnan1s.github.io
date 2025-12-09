@@ -330,6 +330,24 @@
     margin: 0;
 }
 
+/* Portfolio Image Container for Phone Screenshots */
+.portfolio-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    padding: 20px;
+}
+
+.portfolio-image-container img {
+    max-width: 50%;
+    width: auto;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+}
+
 /* ======================================== */
 /* Blog Card Section - Matching Portfolio */
 /* ======================================== */
