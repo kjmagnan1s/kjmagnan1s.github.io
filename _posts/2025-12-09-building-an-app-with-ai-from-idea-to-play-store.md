@@ -8,11 +8,11 @@ thumbnail: /assets/images/blog/aippliance_logo.jpeg
 ---
 
 **Download AIppliance Manager:**
-[App Store](https://apps.apple.com/us/app/aippliance-manager/id6446229585) | [Google Play](https://play.google.com/store/apps/details?id=com.smarthomeai.app)
+[App Store](https://apps.apple.com/us/app/aippliance-manager/id6446229585) | [Google Play](https://play.google.com/store/apps/details?id=com.smarthomeai.app) | [Website](https://aippliancemanager.com/)
 
 ---
 
-Three months ago, I had an idea. Today, that idea is live on the App Store and Google Play. [Website](https://aippliancemanager.com/)
+Three months ago, I had an idea. Today, that idea is live on the App Store and Google Play.
 
 My new app, AIppliance Manager, started as a simple frustration as a new homeowner: every time an appliance broke, or needed maintenance, or needed to be cleaned, I found myself hunched over trying to find a model number and googling for manual pdfs and error codes that returned forum posts from 2009. What if I could just ask my appliances questions and get real answers?
 
