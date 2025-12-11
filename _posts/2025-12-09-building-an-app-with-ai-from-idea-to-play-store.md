@@ -8,7 +8,7 @@ thumbnail: /assets/images/blog/aippliance_logo.jpeg
 ---
 
 **Download AIppliance Manager:**
-[App Store](https://apps.apple.com/us/app/aippliance-manager/id6446229585) | [Google Play](https://play.google.com/store/apps/details?id=com.smarthomeai.app) | [Website](https://aippliancemanager.com/)
+[App Store](https://apps.apple.com/us/app/aippliance-manager/id6754003121) | [Google Play](https://play.google.com/store/apps/details?id=com.smarthomeai.app) | [Website](https://aippliancemanager.com/)
 
 ---
 
@@ -75,4 +75,4 @@ If you have been waiting for permission to build something ambitious with AI, st
 
 ---
 
-*AIppliance Manager is available now on the [App Store](https://apps.apple.com/us/app/aippliance-manager/id6446229585), [Google Play](https://play.google.com/store/apps/details?id=com.smarthomeai.app), and at [aippliancemanager.com](https://aippliancemanager.com/).*
+*AIppliance Manager is available now on the [App Store](https://apps.apple.com/us/app/aippliance-manager/id6754003121), [Google Play](https://play.google.com/store/apps/details?id=com.smarthomeai.app), and at [aippliancemanager.com](https://aippliancemanager.com/).*
