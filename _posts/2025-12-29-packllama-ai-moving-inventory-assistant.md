@@ -4,7 +4,7 @@ title: "PackLlama: Building a B2B AI Product in Two Weeks"
 date: 2025-12-29
 categories: [AI, Development, Startups]
 description: "How I built PackLlama—a conversational AI moving inventory assistant—and deployed it as an embeddable B2B SaaS product. From frustrating forms to natural conversation, powered by Claude and Gemini."
-thumbnail: /assets/images/blog/packllama-logo.png
+thumbnail: /assets/images/blog/packllama.png
 ---
 
 **Try the demo:** [packllama.com](https://packllama.com)
