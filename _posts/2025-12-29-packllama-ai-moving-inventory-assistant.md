@@ -7,7 +7,7 @@ description: "How I built PackLlama—a conversational AI moving inventory assis
 thumbnail: /assets/images/blog/packllama.png
 ---
 
-**Try the demo:** [packllama.com](https://packllama.com)
+**Try the demo:** [packllama.app](https://packllama.app)
 
 ---
 
@@ -90,4 +90,4 @@ If you are sitting on an idea like this—a clear pain point, a better approach,
 
 ---
 
-*PackLlama is live at [packllama.com](https://packllama.com). Moving companies interested in embedding the widget can reach out at [aippliedlabs@gmail.com](mailto:aippliedlabs@gmail.com).*
+*PackLlama is live at [packllama.app](https://packllama.app). Moving companies interested in embedding the widget can reach out at [aippliedlabs@gmail.com](mailto:aippliedlabs@gmail.com).*
