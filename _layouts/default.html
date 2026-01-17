@@ -1,131 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ page.title }} | {{ site.title }}</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | truncate: 160 }}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
     <link rel="icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}">
-    <meta name="msapplication-TileImage" content="{{ '/assets/images/favicon_v2.png' | relative_url }}">
-    <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" content="#B87333">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/icofont@1.0.1/icofont.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
-    <!-- Unified Design CSS (includes sidebar nav, light grey bg, no particles) -->
-    <link rel="stylesheet" href="{{ '/assets/css/redesign.css' | relative_url }}">
-
-    <!-- Animation Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-
-    <!-- Dual View Links -->
-    <link rel="alternate" href="{{ site.url }}/robot/" title="Robot version" type="text/html">
+    <!-- Canonical -->
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 
-    <!-- JSON-LD Structured Data -->
-    {% include jsonld.html %}
-
     {% seo %}
-  </head>
-  <body>
-    <!-- Mobile Nav Toggle -->
-    <button type="button" class="mobile-nav-toggle" aria-label="Toggle mobile navigation">
-        <i class="icofont-navigation-menu"></i>
-    </button>
-
-    <!-- Header/Navigation Sidebar -->
-    <header id="header" class="d-flex flex-column justify-content-center">
-        <nav class="nav-menu">
-            <ul>
-                <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}><i class="bx bx-home"></i> <span>Home</span></a></li>
-                <li><a href="{{ '/blog' | relative_url }}" {% if page.url contains '/blog' %}class="active"{% endif %}><i class="bx bx-news"></i> <span>Blog</span></a></li>
-                <li><a href="{{ '/about' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}><i class="bx bx-user"></i> <span>About</span></a></li>
-                <li><a href="{{ '/contact' | relative_url }}" {% if page.url == '/contact/' %}class="active"{% endif %}><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
-                <li><a href="{{ '/resume' | relative_url }}" {% if page.url == '/resume/' %}class="active"{% endif %}><i class="bx bx-file"></i> <span>Resume</span></a></li>
-            </ul>
+</head>
+<body>
+    {% unless page.layout == 'home' or page.url == '/' %}
+    <header class="site-header">
+        <a href="{{ '/' | relative_url }}" class="site-logo">Kevin Magnan</a>
+        <nav class="site-nav">
+            <a href="{{ '/#writing' | relative_url }}">Writing</a>
+            <a href="{{ '/#work' | relative_url }}">Work</a>
+            <a href="{{ '/#about' | relative_url }}">About</a>
         </nav>
     </header>
+    {% endunless %}
 
-   <main>
-     {{ content }}
-   </main>
+    <main class="site-main">
+        {{ content }}
+    </main>
 
-   <footer id="footer">
-     <div class="container">
-       <h3>Kevin J. Magnan</h3>
-       <p>Principal Consultant & Technology Lead</p>
-       <div class="copyright">
-         &copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.
-       </div>
-     </div>
-   </footer>
+    <footer class="site-footer">
+        <p>&copy; <span class="current-year">{{ 'now' | date: "%Y" }}</span> Kevin J. Magnan</p>
+    </footer>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-
-    <!-- Main redesign script (no particles for blog/about/contact pages) -->
-    <script src="{{ '/assets/js/redesign.js' | relative_url }}"></script>
-
-    <script>
-      // Initialize AOS animation library
-      AOS.init({
-        duration: 1000,
-        once: true,
-        easing: 'ease-in-out'
-      });
-
-      // Mobile nav toggle
-      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-      if (mobileNavToggle) {
-        mobileNavToggle.addEventListener('click', function(e) {
-          document.body.classList.toggle('mobile-nav-active');
-          this.classList.toggle('open');
-        });
-      }
-
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', function(e) {
-        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-        const header = document.querySelector('#header');
-
-        if (!mobileNavToggle || !header) {
-          return;
-        }
-
-        if (!mobileNavToggle.contains(e.target) && !header.contains(e.target)) {
-          if (document.body.classList.contains('mobile-nav-active')) {
-            document.body.classList.remove('mobile-nav-active');
-            if (mobileNavToggle) mobileNavToggle.classList.remove('open');
-          }
-        }
-      });
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-          });
-        });
-      });
-
-      // Query parameter toggle for robot view
-      const params = new URLSearchParams(location.search);
-      const robotView = params.get("view") === "robot";
-      if (robotView && !location.pathname.includes('/robot')) {
-        location.replace("/robot" + location.pathname);
-      }
-    </script>
-  </body>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
 </html>

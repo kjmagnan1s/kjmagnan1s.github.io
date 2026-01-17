@@ -31,7 +31,7 @@ Take Google's new Pixel 10 and its Magic Cue feature. When someone texts you a q
 
 This is the paradox of mature AI: using more technology to use less technology. The goal isn't more screens, apps, or complexity. It's the opposite. It's friction disappearing until you barely notice the AI is there.
 
-But features like Magic Cue only work when the entire ecosystem—your data, workflows, and interfaces—is designed around AI from the ground up. That requires organizational transformation, not pilot programs.
+But features like Magic Cue only work when the entire ecosystem:your data, workflows, and interfaces:is designed around AI from the ground up. That requires organizational transformation, not pilot programs.
 
 ## Beyond Pilots: What Real AI Integration Looks Like
 
@@ -43,7 +43,7 @@ The organizations that figure this out won't just have a competitive advantage. 
 
 The public conversation obsesses over trivial tests: How many "r's" are in strawberry? Can a model count objects in images? This new model only increased its reasoning score from 88 to 91. These benchmarks say nothing about real-world value creation.
 
-The value is in amplifying human capacity at scale: analyzing patterns invisible to us, accelerating research cycles, and integrating seamlessly into decision-making. That's where today's AI models already excel—and it has nothing to do with whether ChatGPT-5 feels like a revolutionary leap over GPT-4.
+The value is in amplifying human capacity at scale: analyzing patterns invisible to us, accelerating research cycles, and integrating seamlessly into decision-making. That's where today's AI models already excel:and it has nothing to do with whether ChatGPT-5 feels like a revolutionary leap over GPT-4.
 
 ## The Real Failure
 

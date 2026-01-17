@@ -13,9 +13,9 @@ We're entering an era of the dual Internet: one version built for people, anothe
 
 ## The Human Web
 
-Humans love design, storytelling, and images. A good website isn't just information—it's a narrative with rhythm, hierarchy, and personality. My own site is no exception: it's a living resume, a portfolio of analytics work, and a digital handshake for anyone who wants to understand me and my work in public safety, technology, and AI.
+Humans love design, storytelling, and images. A good website isn't just information:it's a narrative with rhythm, hierarchy, and personality. My own site is no exception: it's a living resume, a portfolio of analytics work, and a digital handshake for anyone who wants to understand me and my work in public safety, technology, and AI.
 
-This is the **Seen Browser**—the layer of the web optimized for human eyes.
+This is the **Seen Browser**:the layer of the web optimized for human eyes.
 
 ## The Robot Web
 
@@ -23,17 +23,17 @@ But there's another kind of visitor on every page: the machine. Search engine cr
 
 As AI assistants become the primary way people "visit" the web, we need to start building machine-facing versions of our sites. This could be as simple as a `llms.txt` file that points AI tools to curated Markdown content, or as structured as a public API exposing data in JSON. Companies like Anthropic and Cloudflare are already experimenting with this, and SEO strategists are calling it the next frontier: making sure AI agents can understand your work as well as people can.
 
-This is the **Shadow Browser**—the layer of the web optimized for AI consumption.
+This is the **Shadow Browser**:the layer of the web optimized for AI consumption.
 
 ## Why I'm Doing Both
 
 For me, this isn't just a technical exercise. It's a statement about how I see the Internet evolving. By maintaining a human version of my site and a robot version, I'm acknowledging two audiences at once. Both are real. Both matter. Both deserve clarity.
 
-On the human side, you'll find polished writing, visuals, and context. On the robot side, you'll find structured data, simplified text, and a direct map of my work and expertise. The toggle between them is more than a UI trick—it's a philosophical nod to the Internet's split personality.
+On the human side, you'll find polished writing, visuals, and context. On the robot side, you'll find structured data, simplified text, and a direct map of my work and expertise. The toggle between them is more than a UI trick:it's a philosophical nod to the Internet's split personality.
 
 ## What Comes Next
 
-Will this duality last? Some argue that it's a stopgap—that AI models will soon be able to parse messy HTML as easily as humans. Others believe it's inevitable, that just as we once had to design mobile-first, we now need to design AI-first.
+Will this duality last? Some argue that it's a stopgap:that AI models will soon be able to parse messy HTML as easily as humans. Others believe it's inevitable, that just as we once had to design mobile-first, we now need to design AI-first.
 
 I don't know where it will land. What I do know is this: by building for both humans and machines, I'm future-proofing my presence online and making a small statement about where the Internet is heading.
 

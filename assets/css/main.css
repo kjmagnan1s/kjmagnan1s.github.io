@@ -1,0 +1,860 @@
+/* ==========================================================================
+   Kevin Magnan - Personal Website
+   Minimalist Design System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Custom Properties (Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+    /* Primary - Warm Copper/Terracotta */
+    --copper-500: #B87333;
+    --copper-600: #9A5F2A;
+    --copper-700: #7D4C22;
+    --copper-400: #D4956A;
+    --copper-300: #E5B896;
+    --copper-100: #FDF4ED;
+
+    /* Neutrals - Warm undertones */
+    --stone-900: #1C1917;
+    --stone-800: #292524;
+    --stone-700: #44403C;
+    --stone-600: #57534E;
+    --stone-500: #78716C;
+    --stone-400: #A8A29E;
+    --stone-300: #D6D3D1;
+    --stone-200: #E7E5E4;
+    --stone-100: #F5F5F4;
+    --white: #FAFAF9;
+
+    /* Semantic */
+    --text-primary: var(--stone-900);
+    --text-secondary: var(--stone-700);
+    --text-muted: var(--stone-500);
+    --bg-page: var(--white);
+    --bg-section: var(--stone-100);
+    --accent: var(--copper-500);
+    --accent-hover: var(--copper-600);
+    --border: var(--stone-300);
+
+    /* Typography */
+    --font-heading: 'Fraunces', Georgia, serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Fluid type scale */
+    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.25rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+    --text-2xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    --text-3xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    --text-4xl: clamp(2.5rem, 2rem + 3vw, 4rem);
+
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+
+    /* Layout */
+    --max-width-prose: 70ch;
+    --max-width-content: 900px;
+    --max-width-wide: 1200px;
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 300ms ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--text-primary);
+    background-color: var(--bg-page);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+/* --------------------------------------------------------------------------
+   3. Typography
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+p {
+    margin-bottom: var(--space-4);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+strong {
+    font-weight: 600;
+}
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--stone-100);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+}
+
+pre {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    background: var(--stone-900);
+    color: var(--stone-100);
+    padding: var(--space-6);
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: var(--space-6) 0;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: var(--space-6);
+    margin: var(--space-6) 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   4. Layout
+   -------------------------------------------------------------------------- */
+.site-main {
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+}
+
+.container-wide {
+    max-width: var(--max-width-wide);
+}
+
+section {
+    padding: var(--space-12) var(--space-6);
+}
+
+@media (min-width: 768px) {
+    section {
+        padding: var(--space-16) var(--space-6);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   5. Section Label
+   -------------------------------------------------------------------------- */
+.section-label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: var(--space-6);
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-8) var(--space-6);
+}
+
+.hero-content {
+    max-width: var(--max-width-content);
+}
+
+.hero-photo-wrapper {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto var(--space-6);
+    animation: fadeUp 0.6s ease-out both;
+}
+
+.hero-photo-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 3px solid var(--copper-500);
+    animation: pulse-ring 3s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.03);
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 60%;
+}
+
+@media (min-width: 768px) {
+    .hero-photo-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.hero-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.8s ease-out both;
+}
+
+.hero-tagline {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    color: var(--text-secondary);
+    max-width: 65ch;
+    margin: 0 auto;
+    line-height: 1.6;
+    animation: fadeUp 0.8s ease-out 0.15s both;
+}
+
+/* --------------------------------------------------------------------------
+   7. About Section
+   -------------------------------------------------------------------------- */
+.about {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row;
+        gap: var(--space-12);
+        align-items: flex-start;
+    }
+}
+
+.about-photo {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 60%;
+    border: 3px solid var(--accent);
+    flex-shrink: 0;
+    align-self: center;
+}
+
+@media (min-width: 768px) {
+    .about-photo {
+        width: 280px;
+        height: 280px;
+        align-self: flex-start;
+    }
+}
+
+.story {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.story p {
+    margin-bottom: var(--space-6);
+}
+
+.story-lead {
+    font-size: var(--text-xl);
+    color: var(--text-primary);
+    font-weight: 500;
+    border-left: 3px solid var(--accent);
+    padding-left: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   8. Divider
+   -------------------------------------------------------------------------- */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: var(--border);
+}
+
+.divider-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   9. Writing Section (Blog)
+   -------------------------------------------------------------------------- */
+.writing {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+}
+
+.post-list {
+    list-style: none;
+}
+
+.post-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.post-item:first-child {
+    border-top: 1px solid var(--border);
+}
+
+.post-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+}
+
+.post-link:hover {
+    color: var(--accent);
+}
+
+.post-link:hover .post-title {
+    color: var(--accent);
+}
+
+.post-title {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.post-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.post-link:hover .post-title::after {
+    width: 100%;
+}
+
+.post-meta {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.view-all {
+    display: inline-block;
+    margin-top: var(--space-6);
+    font-size: var(--text-sm);
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   10. Work Section (Portfolio)
+   -------------------------------------------------------------------------- */
+.work {
+    background: var(--stone-900);
+    color: var(--stone-100);
+}
+
+.work-content {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+}
+
+.work .section-label {
+    color: var(--copper-400);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .project-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.project-card {
+    background: var(--stone-800);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: var(--copper-500);
+}
+
+.project-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background: var(--stone-700);
+}
+
+.project-card-image-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, var(--stone-700) 0%, var(--stone-800) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--stone-500);
+    font-size: var(--text-sm);
+}
+
+.project-card-body {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+}
+
+.project-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--copper-400);
+    margin-bottom: var(--space-2);
+}
+
+.project-card-desc {
+    font-size: var(--text-sm);
+    color: var(--stone-400);
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+}
+
+.project-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.project-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25em 0.6em;
+    border-radius: 4px;
+    background: var(--copper-500);
+    color: white;
+}
+
+.project-badge--prototype {
+    background: #f97316;
+}
+
+.project-badge--live {
+    background: #22c55e;
+}
+
+.project-badge--client {
+    background: var(--stone-600);
+}
+
+.project-card-link {
+    font-size: var(--text-sm);
+    color: var(--copper-400);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.project-card-link:hover {
+    text-decoration: underline;
+    color: var(--copper-300);
+}
+
+/* --------------------------------------------------------------------------
+   11. Contact Section
+   -------------------------------------------------------------------------- */
+.contact {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-text {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+}
+
+.contact-email {
+    font-weight: 500;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+}
+
+.social-links a {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+    padding: var(--space-12) var(--space-6);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+}
+
+/* --------------------------------------------------------------------------
+   13. Site Header (for subpages)
+   -------------------------------------------------------------------------- */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-6);
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+}
+
+.site-logo {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.site-logo:hover {
+    color: var(--accent);
+}
+
+.site-nav {
+    display: flex;
+    gap: var(--space-6);
+}
+
+.site-nav a {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.site-nav a:hover {
+    color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   14. Blog Post Page
+   -------------------------------------------------------------------------- */
+.post-header {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6) var(--space-8);
+    text-align: center;
+}
+
+.post-header h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+}
+
+.post-date {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.post-content {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-16);
+}
+
+.post-content h2 {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-4);
+}
+
+.post-content h3 {
+    font-size: var(--text-xl);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+}
+
+.post-content ul, .post-content ol {
+    margin: var(--space-4) 0;
+    padding-left: var(--space-6);
+}
+
+.post-content li {
+    margin-bottom: var(--space-2);
+}
+
+.post-content img {
+    border-radius: 8px;
+    margin: var(--space-6) 0;
+}
+
+/* --------------------------------------------------------------------------
+   15. Blog List Page
+   -------------------------------------------------------------------------- */
+.blog-page {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6);
+}
+
+.blog-page h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-12);
+}
+
+/* --------------------------------------------------------------------------
+   15b. Single Post Page
+   -------------------------------------------------------------------------- */
+.post-page {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-6) var(--space-16);
+}
+
+.post-page .post-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+    padding: 0;
+}
+
+.post-page .post-header h1 {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+}
+
+.post-nav {
+    margin-top: var(--space-12);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border);
+}
+
+.post-nav a {
+    font-size: var(--text-sm);
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   16. Animations
+   -------------------------------------------------------------------------- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* --------------------------------------------------------------------------
+   17. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+    .hero {
+        min-height: 60vh;
+    }
+
+    .post-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-1);
+    }
+
+    .post-meta {
+        font-size: var(--text-xs);
+    }
+
+    .social-links {
+        gap: var(--space-4);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   18. Print Styles
+   -------------------------------------------------------------------------- */
+@media print {
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+    }
+
+    .site-header,
+    .site-footer,
+    .social-links {
+        display: none;
+    }
+}

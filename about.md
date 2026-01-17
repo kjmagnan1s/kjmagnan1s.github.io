@@ -14,9 +14,9 @@ permalink: /about/
   <div class="about-content" data-aos="fade-up">
     <section class="about-section">
       <h2>Professional Overview</h2>
-      <p>I'm a Principal Consultant and Technology Lead at Slalom, where I co-lead our Justice and Public Safety (JPS) industry. My work is focused on modernizing public sector services through data strategy, analytics, and AI — helping agencies navigate complex challenges with clarity, innovation, and purpose.</p>
+      <p>I'm a Principal Consultant and Technology Lead at Slalom, where I co-lead our Justice and Public Safety (JPS) industry. My work is focused on modernizing public sector services through data strategy, analytics, and AI, helping agencies navigate complex challenges with clarity, innovation, and purpose.</p>
       
-      <p>Before joining Slalom, I built my career at the intersection of public service and analytics. I began as a police officer, gaining first-hand experience in the operational, structural, and human challenges faced by law enforcement and justice agencies. That real-world perspective shaped my transition into data strategy and technology consulting — where I've since worked as a researcher, analyst, and technical advisor for a range of public sector stakeholders.</p>
+      <p>Before joining Slalom, I built my career at the intersection of public service and analytics. I began as a police officer, gaining first-hand experience in the operational, structural, and human challenges faced by law enforcement and justice agencies. That real-world perspective shaped my transition into data strategy and technology consulting, where I've since worked as a researcher, analyst, and technical advisor for a range of public sector stakeholders.</p>
     </section>
 
     <section class="about-section">
@@ -52,14 +52,14 @@ permalink: /about/
 
     <section class="about-section">
       <h2>Impact & Approach</h2>
-      <p>Throughout my career, I've partnered with city, county, and state-level organizations to design solutions that turn data into action — whether to improve service delivery, drive equity-focused outcomes, or enhance transparency and accountability. I've led work on initiatives ranging from socio-economic impact research to dashboard development and AI implementation strategies.</p>
+      <p>Throughout my career, I've partnered with city, county, and state-level organizations to design solutions that turn data into action, whether to improve service delivery, drive equity-focused outcomes, or enhance transparency and accountability. I've led work on initiatives ranging from socio-economic impact research to dashboard development and AI implementation strategies.</p>
 
       <p>At Slalom, I bring that full-spectrum experience to bear: leading technical solutioning, analytics delivery, and industry thought leadership across our JPS portfolio. I'm deeply committed to helping mission-driven institutions modernize with care, especially in ways that prioritize the needs of underserved or disproportionately impacted communities.</p>
     </section>
 
     <section class="about-section">
       <h2>About This Site</h2>
-      <p>You'll find this site filled with the ideas, tools, and solutions I work on — from interactive dashboards and technical code to reflections on AI, public safety, and the future of government.</p>
+      <p>You'll find this site filled with the ideas, tools, and solutions I work on, from interactive dashboards and technical code to reflections on AI, public safety, and the future of government.</p>
     </section>
   </div>
 </div>

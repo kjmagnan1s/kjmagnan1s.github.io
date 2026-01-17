@@ -6,7 +6,7 @@ categories: [AI, Frontier Models, Specialized AI, Industry Applications]
 thumbnail: /assets/images/blog/2025-09-05-frontier-models-just-beginning/b11545ee-d618-43b3-8036-b3b5a8a3d304.png
 ---
 
-We're used to the rhythm by now. A new frontier model drops, performance jumps, and everyone scrambles to test it out. ChatGPT-6, Gemini 3, Grok 5 — we'll see those roll out soon. But what comes after that probably won't be more general-purpose giants.
+We're used to the rhythm by now. A new frontier model drops, performance jumps, and everyone scrambles to test it out. ChatGPT-6, Gemini 3, Grok 5 : we'll see those roll out soon. But what comes after that probably won't be more general-purpose giants.
 
 The shift is already happening.
 

@@ -57,5 +57,5 @@ For public safety leaders, the challenge is not purely technical; it is architec
 Think of ACE in your workflow like a loop:
 #### Generate → Reflect → Curate → Repeat.
 Each iteration improves context quality and reduces “context collapse.” Instead of starting from scratch, your AI starts from institutional memory.
-Used consistently, ACE turns your models into adaptive collaborators—ones that learn how you work, not just what you ask.
+Used consistently, ACE turns your models into adaptive collaborators:ones that learn how you work, not just what you ask.
 
