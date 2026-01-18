@@ -65,6 +65,116 @@ layout: null
         .customized-conversation .conversation-greeting,
         .customized-conversation .conversation-response {
             text-align: center;
+            min-height: 100px;
+        }
+
+        /* Fade reveal effect - matches main site */
+        .greeting-text,
+        .response-text {
+            font-family: var(--font-body);
+            font-size: var(--text-xl);
+            line-height: 1.6;
+            margin: 0;
+            color: var(--text-muted);
+            opacity: 0.3;
+            transition: color 1.2s ease, opacity 1.2s ease;
+        }
+
+        .greeting-text.revealed,
+        .response-text.revealed {
+            color: var(--text-primary);
+            opacity: 1;
+        }
+
+        /* Loading state - matches main site */
+        .chat-loading {
+            display: none;
+            color: var(--text-muted);
+            font-size: var(--text-base);
+            font-style: italic;
+            text-align: center;
+            margin: var(--space-4) 0;
+        }
+
+        .chat-loading.active {
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .conversation-input {
+            width: 100%;
+            max-width: 700px;
+            margin: var(--space-8) auto 0;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.4s ease forwards;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: var(--space-3);
+            width: 100%;
+        }
+
+        .chat-input {
+            flex: 1;
+            min-width: 300px;
+            padding: var(--space-4) var(--space-6);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            color: var(--text-primary);
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.15);
+        }
+
+        .chat-submit {
+            padding: var(--space-4) var(--space-6);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--stone-900);
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .chat-submit:hover {
+            background: var(--accent-hover);
+        }
+
+        .chat-submit:active {
+            transform: scale(0.98);
+        }
+
+        .chat-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .customized-footer {
@@ -93,7 +203,7 @@ layout: null
     <div class="customized-page">
         <header class="customized-header">
             <a href="{{ '/' | relative_url }}" class="customized-logo">Kevin Magnan</a>
-            <p class="customized-subtitle">A conversation about fit</p>
+            <p class="customized-subtitle" id="role-subtitle"></p>
         </header>
 
         <div class="customized-conversation">
@@ -105,6 +215,8 @@ layout: null
                 <div class="conversation-response" id="response-area" style="display: none;">
                     <p class="response-text" id="response-text"></p>
                 </div>
+
+                <p class="chat-loading" id="chat-loading">Thinking...</p>
 
                 <div class="conversation-input" id="input-area" style="display: none;">
                     <form id="chat-form" class="chat-form">
@@ -125,36 +237,85 @@ layout: null
         </div>
 
         <footer class="customized-footer">
-            <a href="{{ '/' | relative_url }}">View full site &rarr;</a>
+            <a href="{{ '/' | relative_url }}">Navigate to my website &rarr;</a>
         </footer>
     </div>
 
     <script>
         /**
          * Customized Conversation Page
-         * Handles role-specific conversations with brand theming
+         * Config-driven role customization with URL slug support
+         * UX matches main site: fade reveal, cycling loading messages
          */
         (function() {
             'use strict';
 
-            // Get role slug from URL
-            const pathParts = window.location.pathname.split('/').filter(Boolean);
-            const roleSlug = pathParts.length > 1 ? pathParts[pathParts.length - 1] : null;
+            // =====================================================
+            // ROLE CONFIGURATIONS
+            // Add new roles here. The key is the URL slug.
+            // Example: kevinjmagnan.com/c/anthropic-pm
+            // =====================================================
+            const ROLES = {
+                'anthropic-pm': {
+                    company: 'Anthropic',
+                    role: 'Product Operations Manager, Public Sector',
+                    greeting: "Hi, I'm Kevin. I've spent the last decade at the intersection of technology and public sector transformation, and Anthropic's Product Operations Manager role is exactly where that experience becomes valuable. I know how government operates, what it takes to move AI initiatives forward responsibly, and how to bridge the gap between product teams and complex stakeholders. What would you like to know?"
+                }
+                // Add more roles like this:
+                // 'stripe-eng': {
+                //     company: 'Stripe',
+                //     role: 'Engineering Manager',
+                //     greeting: "Hi, I'm Kevin..."
+                // }
+            };
 
-            // Configuration
+            // Default fallback for unknown slugs
+            const DEFAULT_ROLE = {
+                company: null,
+                role: 'A conversation about fit',
+                greeting: "Hi, I'm Kevin. Ask me anything about my background and how I might fit your team."
+            };
+
+            // Get role slug from URL path (e.g., /c/anthropic-pm → 'anthropic-pm')
+            // Also supports query param for local testing (e.g., /c/?role=anthropic-pm)
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            const urlParams = new URLSearchParams(window.location.search);
+            const roleSlug = urlParams.get('role') || (pathParts.length > 1 ? pathParts[pathParts.length - 1] : null);
+
+            // Look up role config or use default
+            const currentRole = (roleSlug && ROLES[roleSlug]) ? ROLES[roleSlug] : DEFAULT_ROLE;
+
+            // Configuration - matches main site
             const CONFIG = {
                 apiEndpoint: '/.netlify/functions/claude-chat',
-                typeSpeed: 30,
-                typeSpeedResponse: 20,
-                defaultGreeting: "Hi, I'm Kevin. Ask me anything about my background and how I might fit your team."
+                revealDelay: 300,
+                loadingMessages: [
+                    "Thinking...",
+                    "Pulling from memory...",
+                    "Considering my experience...",
+                    "Reflecting on that...",
+                    "Let me think about this...",
+                    "Gathering my thoughts...",
+                    "Connecting the dots...",
+                    "Recalling relevant work...",
+                    "Formulating a response...",
+                    "Almost there...",
+                    "Digging into that question...",
+                    "Processing..."
+                ],
+                loadingInterval: 5000
             };
+
+            let loadingIntervalId = null;
 
             // DOM Elements
             const elements = {
+                roleSubtitle: document.getElementById('role-subtitle'),
                 greetingArea: document.getElementById('greeting-area'),
                 greetingText: document.getElementById('greeting-text'),
                 responseArea: document.getElementById('response-area'),
                 responseText: document.getElementById('response-text'),
+                loading: document.getElementById('chat-loading'),
                 inputArea: document.getElementById('input-area'),
                 chatForm: document.getElementById('chat-form'),
                 chatInput: document.getElementById('chat-input'),
@@ -162,8 +323,6 @@ layout: null
                 submitText: document.querySelector('.submit-text'),
                 submitLoading: document.querySelector('.submit-loading')
             };
-
-            let isTyping = false;
 
             /**
              * Apply brand colors
@@ -176,28 +335,41 @@ layout: null
             }
 
             /**
-             * Typewriter effect
+             * Reveal text with fade effect
              */
-            function typeWriter(element, text, speed, callback) {
-                isTyping = true;
-                element.textContent = '';
-                element.classList.remove('done');
-                element.classList.add('typing');
-
-                let i = 0;
-                function type() {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        isTyping = false;
-                        element.classList.remove('typing');
-                        element.classList.add('done');
-                        if (callback) callback();
-                    }
+            function revealText(element) {
+                if (element) {
+                    element.classList.add('revealed');
                 }
-                type();
+            }
+
+            /**
+             * Start cycling loading messages
+             */
+            function startLoadingMessages() {
+                if (!elements.loading) return;
+
+                let index = 0;
+                elements.loading.textContent = CONFIG.loadingMessages[index];
+                elements.loading.classList.add('active');
+
+                loadingIntervalId = setInterval(() => {
+                    index = (index + 1) % CONFIG.loadingMessages.length;
+                    elements.loading.textContent = CONFIG.loadingMessages[index];
+                }, CONFIG.loadingInterval);
+            }
+
+            /**
+             * Stop cycling loading messages
+             */
+            function stopLoadingMessages() {
+                if (loadingIntervalId) {
+                    clearInterval(loadingIntervalId);
+                    loadingIntervalId = null;
+                }
+                if (elements.loading) {
+                    elements.loading.classList.remove('active');
+                }
             }
 
             /**
@@ -209,48 +381,39 @@ layout: null
             }
 
             /**
-             * Fetch greeting from API (to get personalized greeting and brand colors)
+             * Display response with fade reveal
              */
-            async function fetchGreeting() {
-                try {
-                    const response = await fetch(CONFIG.apiEndpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            message: 'greeting',
-                            mode: 'greeting',
-                            roleSlug: roleSlug
-                        })
-                    });
+            function displayResponse(text) {
+                elements.responseText.textContent = text;
+                elements.responseText.classList.remove('revealed');
 
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data.brand) {
-                            applyBrandColors(data.brand);
-                        }
-                        return data.greeting || CONFIG.defaultGreeting;
-                    }
-                } catch (error) {
-                    console.error('Failed to fetch greeting:', error);
-                }
-                return CONFIG.defaultGreeting;
+                // Trigger reflow for animation
+                void elements.responseText.offsetWidth;
+
+                // Reveal after brief delay
+                setTimeout(() => {
+                    revealText(elements.responseText);
+                }, 100);
             }
 
             /**
              * Initialize
              */
-            async function init() {
-                // For now, use a default personalized greeting
-                // In production, this would fetch from the API based on roleSlug
-                let greeting = CONFIG.defaultGreeting;
-
-                if (roleSlug) {
-                    // Personalized greeting for role-specific pages
-                    greeting = "Hi, I'm Kevin. I understand you're considering me for a role at your organization. I've been thinking about why this opportunity excites me and how my background might be a fit. What would you like to know?";
+            function init() {
+                // Set subtitle based on role
+                if (currentRole.company) {
+                    elements.roleSubtitle.textContent = `${currentRole.company} | ${currentRole.role}`;
+                } else {
+                    elements.roleSubtitle.textContent = currentRole.role;
                 }
 
-                // Start typewriter
-                typeWriter(elements.greetingText, greeting, CONFIG.typeSpeed, showInput);
+                // Set greeting text and reveal with fade
+                elements.greetingText.textContent = currentRole.greeting;
+                setTimeout(() => {
+                    revealText(elements.greetingText);
+                    // Show input after greeting reveals
+                    setTimeout(showInput, 800);
+                }, CONFIG.revealDelay);
 
                 // Handle form submission
                 elements.chatForm.addEventListener('submit', handleSubmit);
@@ -263,9 +426,15 @@ layout: null
                 e.preventDefault();
 
                 const message = elements.chatInput.value.trim();
-                if (!message || isTyping) return;
+                if (!message) return;
 
-                // Show loading
+                // Hide input and greeting, show loading
+                elements.inputArea.style.display = 'none';
+                elements.greetingArea.style.display = 'none';
+                elements.responseArea.style.display = 'none';
+                startLoadingMessages();
+
+                // Show button loading state
                 elements.chatSubmit.disabled = true;
                 elements.submitText.style.display = 'none';
                 elements.submitLoading.style.display = 'inline';
@@ -292,21 +461,23 @@ layout: null
 
                     const reply = data.response || 'Sorry, I couldn\'t process that. Try asking something else.';
 
-                    // Transition to response
-                    elements.greetingArea.style.display = 'none';
-                    elements.inputArea.style.display = 'none';
+                    // Stop loading, show response with fade reveal
+                    stopLoadingMessages();
                     elements.responseArea.style.display = 'block';
+                    displayResponse(reply);
 
-                    typeWriter(elements.responseText, reply, CONFIG.typeSpeedResponse, () => {
+                    // Show input after response reveals
+                    setTimeout(() => {
                         elements.inputArea.style.display = 'block';
                         elements.chatInput.value = '';
                         elements.chatInput.focus();
-                    });
+                    }, 1000);
 
                 } catch (error) {
                     console.error('Chat error:', error);
+                    stopLoadingMessages();
                     elements.responseArea.style.display = 'block';
-                    elements.responseText.textContent = 'Something went wrong. Please try again.';
+                    displayResponse('Something went wrong. Please try again.');
                     elements.inputArea.style.display = 'block';
                 } finally {
                     elements.chatSubmit.disabled = false;
