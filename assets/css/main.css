@@ -27,15 +27,15 @@
     --stone-100: #F5F5F4;
     --white: #FAFAF9;
 
-    /* Semantic */
-    --text-primary: var(--stone-900);
-    --text-secondary: var(--stone-700);
-    --text-muted: var(--stone-500);
-    --bg-page: var(--white);
-    --bg-section: var(--stone-100);
-    --accent: var(--copper-500);
-    --accent-hover: var(--copper-600);
-    --border: var(--stone-300);
+    /* Semantic - Dark Theme (Warm Charcoal) */
+    --text-primary: var(--white);
+    --text-secondary: var(--stone-300);
+    --text-muted: var(--stone-400);
+    --bg-page: var(--stone-900);
+    --bg-section: var(--stone-800);
+    --accent: var(--copper-400);
+    --accent-hover: var(--copper-500);
+    --border: var(--stone-700);
 
     /* Typography */
     --font-heading: 'Fraunces', Georgia, serif;
@@ -514,7 +514,7 @@ section {
 }
 
 .project-card {
-    background: var(--stone-800);
+    background: var(--bg-section);
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid transparent;
@@ -537,7 +537,7 @@ section {
 .project-card-image-placeholder {
     width: 100%;
     aspect-ratio: 16 / 10;
-    background: linear-gradient(135deg, var(--stone-700) 0%, var(--stone-800) 100%);
+    background: linear-gradient(135deg, var(--border) 0%, var(--bg-section) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
