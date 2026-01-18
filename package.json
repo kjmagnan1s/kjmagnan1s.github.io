@@ -2,10 +2,8 @@
   "name": "website_vibed",
   "version": "1.0.0",
   "description": "Personal website with Netlify Functions",
+  "type": "module",
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "openai": "^4.28.0"
+    "@anthropic-ai/sdk": "^0.39.0"
   }
 }
