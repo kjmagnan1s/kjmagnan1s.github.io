@@ -18,3 +18,4 @@
   from = "/c/*"
   to = "/c/index.html"
   status = 200
+  force = true
