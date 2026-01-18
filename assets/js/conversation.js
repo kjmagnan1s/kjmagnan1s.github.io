@@ -8,7 +8,7 @@
 
     // Configuration
     const CONFIG = {
-        apiEndpoint: '/.netlify/functions/claude-chat',
+        apiEndpoint: 'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/claude-chat',
         revealDelay: 300, // ms before greeting starts revealing
         loadingMessages: [
             "Thinking...",
