@@ -11,4 +11,10 @@
   NODE_VERSION = "18"
 
 [[plugins]]
-  package = "@netlify/plugin-functions-install-core" 
+  package = "@netlify/plugin-functions-install-core"
+
+# Redirect /c/* to /c/index.html for custom conversation pages
+[[redirects]]
+  from = "/c/*"
+  to = "/c/index.html"
+  status = 200
