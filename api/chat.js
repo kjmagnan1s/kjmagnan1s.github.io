@@ -1,3 +1,8 @@
+/**
+ * @deprecated This file is deprecated. Use /netlify/functions/claude-chat.js instead.
+ * This was an Express router for local development with OpenAI.
+ * The new implementation uses Claude Sonnet 4.5 via Netlify Functions.
+ */
 const express = require('express');
 const router = express.Router();
 const OpenAI = require('openai');

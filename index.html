@@ -19,6 +19,116 @@ title: null
     <span class="divider-dot"></span>
 </div>
 
+<!-- Conversation Section -->
+<section class="conversation" id="conversation">
+    <h2 class="section-label">Ask Me Anything</h2>
+
+    <div class="conversation-container">
+        <div class="conversation-greeting" id="greeting-area">
+            <p class="greeting-text" id="greeting-text">Hi, I'm Kevin. Or at least, an AI that knows me pretty well. Ask me anything about my work, what drives me, or how I might fit what you're looking for.</p>
+        </div>
+
+        <div class="conversation-trigger" id="trigger-area">
+            <form id="trigger-form" class="trigger-form">
+                <input
+                    type="text"
+                    id="trigger-input"
+                    class="trigger-input"
+                    placeholder="Ask about my experience, what drives me, or how I might fit your team..."
+                    autocomplete="off"
+                >
+                <button type="submit" class="trigger-submit">Ask</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Chat Modal -->
+<div class="chat-modal-overlay" id="chat-modal">
+    <div class="chat-modal">
+        <header class="chat-modal-header">
+            <h3 class="chat-modal-title">Conversation with Kevin</h3>
+            <button class="chat-modal-close" id="chat-modal-close" aria-label="Close">&times;</button>
+        </header>
+
+        <div class="chat-modal-body">
+            <div class="chat-response-area">
+                <p class="chat-response-text" id="chat-response-text"></p>
+            </div>
+            <p class="chat-loading" id="chat-loading">Thinking...</p>
+        </div>
+
+        <footer class="chat-modal-footer">
+            <form id="chat-form" class="chat-form">
+                <input
+                    type="text"
+                    id="chat-input"
+                    class="chat-input"
+                    placeholder="Ask a follow-up or try something different..."
+                    autocomplete="off"
+                >
+                <button type="submit" class="chat-submit" id="chat-submit">
+                    <span class="submit-text">Ask</span>
+                    <span class="submit-loading" style="display: none;">...</span>
+                </button>
+            </form>
+        </footer>
+    </div>
+</div>
+
+<!-- Divider -->
+<div class="divider">
+    <span class="divider-dot"></span>
+</div>
+
+<!-- Fit Analysis Section -->
+<section class="fit-analysis" id="fit-analysis">
+    <h2 class="section-label">See How I Fit</h2>
+
+    <p class="fit-intro">Paste a job description below and I'll give you an honest assessment of where I'm a strong fit and where I might have gaps.</p>
+
+    <div class="fit-container">
+        <div class="fit-input-area" id="fit-input-area">
+            <textarea
+                id="job-description"
+                class="job-description-input"
+                placeholder="Paste job description here..."
+                rows="6"
+            ></textarea>
+            <button type="button" class="analyze-button" id="analyze-button">
+                <span class="analyze-text">Analyze My Fit</span>
+                <span class="analyze-loading" style="display: none;">
+                    <span class="spinner"></span>
+                    Analyzing...
+                </span>
+            </button>
+        </div>
+
+        <div class="fit-results" id="fit-results" style="display: none;">
+            <div class="fit-summary" id="fit-summary"></div>
+
+            <div class="fit-columns">
+                <div class="fit-column fit-column--strong">
+                    <h3 class="fit-column-title">Strong Fit</h3>
+                    <ul class="fit-list" id="strong-fit-list"></ul>
+                </div>
+
+                <div class="fit-column fit-column--gaps">
+                    <h3 class="fit-column-title">Potential Gaps</h3>
+                    <ul class="fit-list" id="gaps-list"></ul>
+                </div>
+            </div>
+
+            <button type="button" class="reset-button" id="reset-analysis">Try Another</button>
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="divider">
+    <span class="divider-dot"></span>
+</div>
+
 <!-- About Section -->
 <section class="about" id="about">
     <h2 class="section-label">About</h2>

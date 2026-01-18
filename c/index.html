@@ -1,0 +1,323 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation with Kevin Magnan</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
+    <link rel="icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
+    <meta name="theme-color" content="#B87333">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/conversation.css' | relative_url }}">
+
+    <style>
+        /* Customized page specific styles */
+        .customized-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-8);
+        }
+
+        .customized-header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .customized-logo {
+            font-family: var(--font-heading);
+            font-size: var(--text-xl);
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: var(--space-2);
+        }
+
+        .customized-logo:hover {
+            color: var(--accent);
+        }
+
+        .customized-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .customized-conversation {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .customized-conversation .conversation-greeting,
+        .customized-conversation .conversation-response {
+            text-align: center;
+        }
+
+        .customized-footer {
+            margin-top: auto;
+            padding-top: var(--space-12);
+            text-align: center;
+        }
+
+        .customized-footer a {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .customized-footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Brand color overrides - set via JavaScript */
+        .brand-themed {
+            --accent: var(--brand-primary, #B87333);
+            --accent-hover: var(--brand-accent, #9A5F2A);
+        }
+    </style>
+</head>
+<body class="brand-themed">
+    <div class="customized-page">
+        <header class="customized-header">
+            <a href="{{ '/' | relative_url }}" class="customized-logo">Kevin Magnan</a>
+            <p class="customized-subtitle">A conversation about fit</p>
+        </header>
+
+        <div class="customized-conversation">
+            <div class="conversation-container">
+                <div class="conversation-greeting" id="greeting-area">
+                    <p class="greeting-text" id="greeting-text"></p>
+                </div>
+
+                <div class="conversation-response" id="response-area" style="display: none;">
+                    <p class="response-text" id="response-text"></p>
+                </div>
+
+                <div class="conversation-input" id="input-area" style="display: none;">
+                    <form id="chat-form" class="chat-form">
+                        <input
+                            type="text"
+                            id="chat-input"
+                            class="chat-input"
+                            placeholder="Ask me anything about my fit for this role..."
+                            autocomplete="off"
+                        >
+                        <button type="submit" class="chat-submit" id="chat-submit">
+                            <span class="submit-text">Ask</span>
+                            <span class="submit-loading" style="display: none;">...</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class="customized-footer">
+            <a href="{{ '/' | relative_url }}">View full site &rarr;</a>
+        </footer>
+    </div>
+
+    <script>
+        /**
+         * Customized Conversation Page
+         * Handles role-specific conversations with brand theming
+         */
+        (function() {
+            'use strict';
+
+            // Get role slug from URL
+            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            const roleSlug = pathParts.length > 1 ? pathParts[pathParts.length - 1] : null;
+
+            // Configuration
+            const CONFIG = {
+                apiEndpoint: '/.netlify/functions/claude-chat',
+                typeSpeed: 30,
+                typeSpeedResponse: 20,
+                defaultGreeting: "Hi, I'm Kevin. Ask me anything about my background and how I might fit your team."
+            };
+
+            // DOM Elements
+            const elements = {
+                greetingArea: document.getElementById('greeting-area'),
+                greetingText: document.getElementById('greeting-text'),
+                responseArea: document.getElementById('response-area'),
+                responseText: document.getElementById('response-text'),
+                inputArea: document.getElementById('input-area'),
+                chatForm: document.getElementById('chat-form'),
+                chatInput: document.getElementById('chat-input'),
+                chatSubmit: document.getElementById('chat-submit'),
+                submitText: document.querySelector('.submit-text'),
+                submitLoading: document.querySelector('.submit-loading')
+            };
+
+            let isTyping = false;
+
+            /**
+             * Apply brand colors
+             */
+            function applyBrandColors(brand) {
+                if (brand) {
+                    document.documentElement.style.setProperty('--brand-primary', brand.primary || '#B87333');
+                    document.documentElement.style.setProperty('--brand-accent', brand.accent || '#9A5F2A');
+                }
+            }
+
+            /**
+             * Typewriter effect
+             */
+            function typeWriter(element, text, speed, callback) {
+                isTyping = true;
+                element.textContent = '';
+                element.classList.remove('done');
+                element.classList.add('typing');
+
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        isTyping = false;
+                        element.classList.remove('typing');
+                        element.classList.add('done');
+                        if (callback) callback();
+                    }
+                }
+                type();
+            }
+
+            /**
+             * Show input area
+             */
+            function showInput() {
+                elements.inputArea.style.display = 'block';
+                elements.chatInput.focus();
+            }
+
+            /**
+             * Fetch greeting from API (to get personalized greeting and brand colors)
+             */
+            async function fetchGreeting() {
+                try {
+                    const response = await fetch(CONFIG.apiEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message: 'greeting',
+                            mode: 'greeting',
+                            roleSlug: roleSlug
+                        })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.brand) {
+                            applyBrandColors(data.brand);
+                        }
+                        return data.greeting || CONFIG.defaultGreeting;
+                    }
+                } catch (error) {
+                    console.error('Failed to fetch greeting:', error);
+                }
+                return CONFIG.defaultGreeting;
+            }
+
+            /**
+             * Initialize
+             */
+            async function init() {
+                // For now, use a default personalized greeting
+                // In production, this would fetch from the API based on roleSlug
+                let greeting = CONFIG.defaultGreeting;
+
+                if (roleSlug) {
+                    // Personalized greeting for role-specific pages
+                    greeting = "Hi, I'm Kevin. I understand you're considering me for a role at your organization. I've been thinking about why this opportunity excites me and how my background might be a fit. What would you like to know?";
+                }
+
+                // Start typewriter
+                typeWriter(elements.greetingText, greeting, CONFIG.typeSpeed, showInput);
+
+                // Handle form submission
+                elements.chatForm.addEventListener('submit', handleSubmit);
+            }
+
+            /**
+             * Handle chat submission
+             */
+            async function handleSubmit(e) {
+                e.preventDefault();
+
+                const message = elements.chatInput.value.trim();
+                if (!message || isTyping) return;
+
+                // Show loading
+                elements.chatSubmit.disabled = true;
+                elements.submitText.style.display = 'none';
+                elements.submitLoading.style.display = 'inline';
+
+                try {
+                    const response = await fetch(CONFIG.apiEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message,
+                            mode: 'conversation',
+                            roleSlug: roleSlug
+                        })
+                    });
+
+                    if (!response.ok) throw new Error('API request failed');
+
+                    const data = await response.json();
+
+                    // Apply brand colors if returned
+                    if (data.brand) {
+                        applyBrandColors(data.brand);
+                    }
+
+                    const reply = data.response || 'Sorry, I couldn\'t process that. Try asking something else.';
+
+                    // Transition to response
+                    elements.greetingArea.style.display = 'none';
+                    elements.inputArea.style.display = 'none';
+                    elements.responseArea.style.display = 'block';
+
+                    typeWriter(elements.responseText, reply, CONFIG.typeSpeedResponse, () => {
+                        elements.inputArea.style.display = 'block';
+                        elements.chatInput.value = '';
+                        elements.chatInput.focus();
+                    });
+
+                } catch (error) {
+                    console.error('Chat error:', error);
+                    elements.responseArea.style.display = 'block';
+                    elements.responseText.textContent = 'Something went wrong. Please try again.';
+                    elements.inputArea.style.display = 'block';
+                } finally {
+                    elements.chatSubmit.disabled = false;
+                    elements.submitText.style.display = 'inline';
+                    elements.submitLoading.style.display = 'none';
+                }
+            }
+
+            // Initialize on load
+            init();
+        })();
+    </script>
+</body>
+</html>

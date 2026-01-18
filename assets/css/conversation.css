@@ -1,0 +1,489 @@
+/* ==========================================================================
+   Conversation & Fit Analysis Sections
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Conversation Section (Homepage Teaser)
+   -------------------------------------------------------------------------- */
+.conversation {
+    padding: var(--space-16) var(--space-6);
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+}
+
+.conversation-container {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.conversation-greeting {
+    max-width: var(--max-width-prose);
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.greeting-text {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    margin: 0;
+    /* Fade reveal effect */
+    color: var(--text-muted);
+    opacity: 0.3;
+    transition: color 1.2s ease, opacity 1.2s ease;
+}
+
+.greeting-text.revealed {
+    color: var(--text-primary);
+    opacity: 1;
+}
+
+/* Chat trigger button on homepage */
+.conversation-trigger {
+    width: 100%;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.4s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.trigger-form {
+    display: flex;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.trigger-input {
+    flex: 1;
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    background: var(--bg-section);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.trigger-input::placeholder {
+    color: var(--text-muted);
+}
+
+.trigger-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.15);
+}
+
+.trigger-submit {
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--stone-900);
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.trigger-submit:hover {
+    background: var(--accent-hover);
+}
+
+.trigger-submit:active {
+    transform: scale(0.98);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Chat Modal
+   -------------------------------------------------------------------------- */
+.chat-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.chat-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.chat-modal {
+    width: 90%;
+    max-width: 700px;
+    height: 70vh;
+    background: var(--bg-page);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0.95) translateY(20px);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.chat-modal-overlay.active .chat-modal {
+    transform: scale(1) translateY(0);
+}
+
+.chat-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--border);
+}
+
+.chat-modal-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.chat-modal-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: var(--text-xl);
+    line-height: 1;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.chat-modal-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.chat-modal-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-8);
+    overflow-y: auto;
+}
+
+.chat-response-area {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: var(--space-6);
+}
+
+.chat-response-text {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    margin: 0;
+    /* Fade reveal effect */
+    color: var(--text-muted);
+    opacity: 0.3;
+    transition: color 0.8s ease, opacity 0.8s ease;
+}
+
+.chat-response-text.revealed {
+    color: var(--text-primary);
+    opacity: 1;
+}
+
+.chat-modal-footer {
+    padding: var(--space-4) var(--space-6);
+    border-top: 1px solid var(--border);
+}
+
+.chat-form {
+    display: flex;
+    gap: var(--space-3);
+    width: 100%;
+}
+
+.chat-input {
+    flex: 1;
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    background: var(--bg-section);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.chat-input::placeholder {
+    color: var(--text-muted);
+}
+
+.chat-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.15);
+}
+
+.chat-submit {
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--stone-900);
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.chat-submit:hover {
+    background: var(--accent-hover);
+}
+
+.chat-submit:active {
+    transform: scale(0.98);
+}
+
+.chat-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Loading state */
+.chat-loading {
+    display: none;
+    color: var(--text-muted);
+    font-size: var(--text-base);
+    font-style: italic;
+}
+
+.chat-loading.active {
+    display: block;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Spinner */
+.spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--stone-700);
+    border-top-color: var(--stone-900);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: var(--space-2);
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Fit Analysis Section
+   -------------------------------------------------------------------------- */
+.fit-analysis {
+    padding: var(--space-16) var(--space-6);
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+}
+
+.fit-intro {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    max-width: var(--max-width-prose);
+    margin: 0 auto var(--space-8);
+}
+
+.fit-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.fit-input-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.job-description-input {
+    width: 100%;
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    background: var(--bg-section);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    resize: vertical;
+    min-height: 150px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.job-description-input::placeholder {
+    color: var(--text-muted);
+}
+
+.job-description-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.15);
+}
+
+.analyze-button {
+    align-self: flex-end;
+    padding: var(--space-4) var(--space-8);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--stone-900);
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.analyze-button:hover {
+    background: var(--accent-hover);
+}
+
+.analyze-button:active {
+    transform: scale(0.98);
+}
+
+.analyze-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Fit Results */
+.fit-results {
+    animation: fadeIn 0.4s ease;
+}
+
+.fit-summary {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+    font-style: italic;
+}
+
+.fit-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+@media (max-width: 600px) {
+    .fit-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+.fit-column {
+    padding: var(--space-6);
+    border-radius: 8px;
+    background: var(--bg-section);
+}
+
+.fit-column--strong {
+    border-left: 3px solid var(--copper-400);
+}
+
+.fit-column--gaps {
+    border-left: 3px solid var(--stone-500);
+}
+
+.fit-column-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+}
+
+.fit-column--strong .fit-column-title {
+    color: var(--copper-400);
+}
+
+.fit-column--gaps .fit-column-title {
+    color: var(--stone-400);
+}
+
+.fit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fit-list li {
+    padding: var(--space-3) 0;
+    color: var(--text-secondary);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+}
+
+.fit-list li:last-child {
+    border-bottom: none;
+}
+
+.reset-button {
+    display: block;
+    margin: 0 auto;
+    padding: var(--space-3) var(--space-6);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.reset-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}

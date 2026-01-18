@@ -1,0 +1,3 @@
+# Redirect all /c/* paths to the customized conversation page
+# The JavaScript on the page reads the slug from the URL
+/c/*  /c/index.html  200
