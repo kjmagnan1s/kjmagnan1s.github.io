@@ -2,6 +2,99 @@
 
 ## 2026-01-17
 
+### Bug Fix: API Endpoint Architecture for GitHub Pages + Netlify Hybrid Setup
+
+**Overview:**
+Debugged and fixed the Claude chat API which was returning 404/405 errors. Root cause: the site is hosted on GitHub Pages but the JavaScript was calling a relative Netlify function path. Fixed by using absolute Netlify URLs and clarified the hybrid architecture.
+
+---
+
+**Changes:**
+
+1. `assets/js/conversation.js:11` - Updated API endpoint from relative to absolute URL
+   - Before: `'/.netlify/functions/claude-chat'`
+   - After: `'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/claude-chat'`
+
+2. `c/index.html:290` - Same fix for customized conversation pages
+
+3. `package.json` - Fixed root package.json for Netlify function builds
+   - Added `"type": "module"` for ESM support
+   - Replaced `openai` dependency with `@anthropic-ai/sdk`
+
+4. `netlify.toml` - Multiple configuration attempts (ultimately not needed for current setup)
+   - Added redirect rule for `/c/*` paths
+   - Added `force = true` flag
+   - Added npm install to build command
+
+---
+
+**Bugs Fixed:**
+
+1. **API returning 404/405** - The Netlify function existed and worked, but kevinjmagnan.com DNS points to GitHub Pages (185.199.x.x IPs), not Netlify. Relative API paths were hitting GitHub Pages which doesn't have the function.
+   - Root cause: Hybrid architecture misunderstanding
+   - Fix: Use absolute Netlify URL for API calls
+
+2. **Custom conversation URLs returning 404** - `/c/anthropic-pm` works on Netlify (with redirects) but not GitHub Pages
+   - Root cause: GitHub Pages doesn't support server-side redirects
+   - Fix: Use query parameter format: `/c/?role=anthropic-pm`
+
+3. **Function not deploying** - Root `package.json` was missing `"type": "module"` and had old `openai` dependency instead of `@anthropic-ai/sdk`
+
+---
+
+**Testing:**
+
+- ✅ Main site chat (kevinjmagnan.com) - Working
+- ✅ Netlify function directly (tubular-torte-6b51ae.netlify.app) - Working
+- ✅ Custom role page via query param (`/c/?role=anthropic-pm`) - Working
+- ❌ Custom role page via path (`/c/anthropic-pm`) - 404 on GitHub Pages (expected, use query param)
+
+---
+
+**Architecture Clarification:**
+
+```
+kevinjmagnan.com (GitHub Pages)
+├── DNS: A records → 185.199.x.x (GitHub)
+├── Static site: Jekyll build
+├── /c/index.html - reads ?role= query param
+└── JS calls absolute Netlify URL for API
+
+tubular-torte-6b51ae.netlify.app (Netlify)
+├── Hosts: Netlify Functions only
+├── /.netlify/functions/claude-chat
+└── ANTHROPIC_API_KEY in env vars
+```
+
+---
+
+**Impact:**
+
+✅ Chat functionality now works on production site
+✅ Custom conversation pages work with query parameter format
+✅ Clear understanding of hybrid GitHub Pages + Netlify architecture
+
+---
+
+**Files Modified:**
+
+1. `assets/js/conversation.js` - Absolute API endpoint URL
+2. `c/index.html` - Absolute API endpoint URL
+3. `package.json` - ESM support and Anthropic SDK
+4. `netlify.toml` - Build configuration updates
+
+---
+
+**Remaining Work (Updated):**
+
+- [x] ~~Add ANTHROPIC_API_KEY to Netlify environment variables~~ Done
+- [x] ~~Debug API 404/405 errors~~ Fixed
+- [x] ~~Get chat working on production~~ Working
+- [ ] Kevin writes actual content for context documents
+- [ ] Test with real recruiter questions for persona validation
+
+---
+
 ### Feature: AI Conversation and Fit Analysis Tools for Recruiters
 
 **Overview:**
