@@ -59,7 +59,7 @@
         fitSummary: document.getElementById('fit-summary'),
         strongFitList: document.getElementById('strong-fit-list'),
         growthList: document.getElementById('growth-list'),
-        notfitList: document.getElementById('notfit-list'),
+        gapsList: document.getElementById('gaps-list'),
         resetButton: document.getElementById('reset-analysis')
     };
 
@@ -315,7 +315,7 @@
         // Populate all three columns
         populateList(elements.strongFitList, data.strongFit, 'None identified.');
         populateList(elements.growthList, data.growthAreas, 'None identified.');
-        populateList(elements.notfitList, data.notAFit, 'None identified.');
+        populateList(elements.gapsList, data.gaps, 'None identified.');
     }
 
     /**

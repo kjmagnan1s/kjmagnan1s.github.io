@@ -425,20 +425,23 @@
 
 .fit-column {
     padding: var(--space-6);
-    border-radius: 8px;
-    background: var(--bg-section);
+    border-radius: 12px;
+    border: 1px solid transparent;
 }
 
 .fit-column--strong {
-    border-left: 3px solid var(--copper-400);
+    background: rgba(34, 84, 61, 0.3);
+    border-color: rgba(74, 124, 89, 0.5);
 }
 
 .fit-column--growth {
-    border-left: 3px solid var(--stone-400);
+    background: rgba(64, 64, 64, 0.3);
+    border-color: rgba(100, 100, 100, 0.5);
 }
 
-.fit-column--notfit {
-    border-left: 3px solid var(--stone-600);
+.fit-column--gaps {
+    background: rgba(92, 84, 56, 0.3);
+    border-color: rgba(140, 120, 70, 0.5);
 }
 
 .fit-column-title {
@@ -450,15 +453,24 @@
 }
 
 .fit-column--strong .fit-column-title {
-    color: var(--copper-400);
+    color: #6aaa78;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--text-sm);
 }
 
 .fit-column--growth .fit-column-title {
     color: var(--stone-400);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--text-sm);
 }
 
-.fit-column--notfit .fit-column-title {
-    color: var(--stone-500);
+.fit-column--gaps .fit-column-title {
+    color: #c9a227;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--text-sm);
 }
 
 .fit-list {
@@ -468,15 +480,36 @@
 }
 
 .fit-list li {
-    padding: var(--space-3) 0;
-    color: var(--text-secondary);
+    padding: var(--space-2) 0;
+    padding-left: 1.5em;
+    color: var(--text-primary);
     font-size: var(--text-base);
-    line-height: 1.5;
-    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+    position: relative;
 }
 
-.fit-list li:last-child {
-    border-bottom: none;
+.fit-list li::before {
+    position: absolute;
+    left: 0;
+    font-size: 0.9em;
+}
+
+/* Strong fit: checkmarks */
+.fit-list--strong li::before {
+    content: "✓";
+    color: #6aaa78;
+}
+
+/* Growth areas: circles */
+.fit-list--growth li::before {
+    content: "○";
+    color: var(--stone-400);
+}
+
+/* Gaps: X marks */
+.fit-list--gaps li::before {
+    content: "✗";
+    color: #c9a227;
 }
 
 .reset-button {
