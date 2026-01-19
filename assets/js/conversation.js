@@ -29,39 +29,46 @@
 
     let loadingIntervalId = null;
 
-    // DOM Elements
-    const elements = {
-        // Homepage greeting
-        greetingText: document.getElementById('greeting-text'),
+    // DOM Elements - initialized in init() after DOM ready
+    let elements = null;
 
-        // Trigger form
-        triggerForm: document.getElementById('trigger-form'),
-        triggerInput: document.getElementById('trigger-input'),
+    /**
+     * Initialize DOM element references
+     */
+    function initElements() {
+        elements = {
+            // Homepage greeting
+            greetingText: document.getElementById('greeting-text'),
 
-        // Modal
-        modal: document.getElementById('chat-modal'),
-        modalClose: document.getElementById('chat-modal-close'),
-        responseText: document.getElementById('chat-response-text'),
-        loading: document.getElementById('chat-loading'),
-        chatForm: document.getElementById('chat-form'),
-        chatInput: document.getElementById('chat-input'),
-        chatSubmit: document.getElementById('chat-submit'),
-        submitText: document.querySelector('.submit-text'),
-        submitLoading: document.querySelector('.submit-loading'),
+            // Trigger form
+            triggerForm: document.getElementById('trigger-form'),
+            triggerInput: document.getElementById('trigger-input'),
 
-        // Fit Analysis
-        fitInputArea: document.getElementById('fit-input-area'),
-        jobDescription: document.getElementById('job-description'),
-        analyzeButton: document.getElementById('analyze-button'),
-        analyzeText: document.querySelector('.analyze-text'),
-        analyzeLoading: document.querySelector('.analyze-loading'),
-        fitResults: document.getElementById('fit-results'),
-        fitSummary: document.getElementById('fit-summary'),
-        strongFitList: document.getElementById('strong-fit-list'),
-        growthList: document.getElementById('growth-list'),
-        gapsList: document.getElementById('gaps-list'),
-        resetButton: document.getElementById('reset-analysis')
-    };
+            // Modal
+            modal: document.getElementById('chat-modal'),
+            modalClose: document.getElementById('chat-modal-close'),
+            responseText: document.getElementById('chat-response-text'),
+            loading: document.getElementById('chat-loading'),
+            chatForm: document.getElementById('chat-form'),
+            chatInput: document.getElementById('chat-input'),
+            chatSubmit: document.getElementById('chat-submit'),
+            submitText: document.querySelector('.submit-text'),
+            submitLoading: document.querySelector('.submit-loading'),
+
+            // Fit Analysis
+            fitInputArea: document.getElementById('fit-input-area'),
+            jobDescription: document.getElementById('job-description'),
+            analyzeButton: document.getElementById('analyze-button'),
+            analyzeText: document.querySelector('.analyze-text'),
+            analyzeLoading: document.querySelector('.analyze-loading'),
+            fitResults: document.getElementById('fit-results'),
+            fitSummary: document.getElementById('fit-summary'),
+            strongFitList: document.getElementById('strong-fit-list'),
+            growthList: document.getElementById('growth-list'),
+            gapsList: document.getElementById('gaps-list'),
+            resetButton: document.getElementById('reset-analysis')
+        };
+    }
 
     /**
      * Reveal text with fade effect
@@ -332,6 +339,9 @@
      * Initialize
      */
     function init() {
+        // Initialize DOM element references
+        initElements();
+
         // Check if elements exist
         if (!elements.greetingText) return;
 
