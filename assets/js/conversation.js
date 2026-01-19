@@ -56,6 +56,7 @@
             submitLoading: document.querySelector('.submit-loading'),
 
             // Fit Analysis
+            fitIntro: document.querySelector('.fit-intro'),
             fitInputArea: document.getElementById('fit-input-area'),
             jobDescription: document.getElementById('job-description'),
             analyzeButton: document.getElementById('analyze-button'),
@@ -126,6 +127,29 @@
         }, { threshold: 0.3 });
 
         const section = document.querySelector('.conversation');
+        if (section) {
+            observer.observe(section);
+        }
+    }
+
+    /**
+     * Initialize fit intro reveal on scroll
+     */
+    function initFitIntroReveal() {
+        if (!elements.fitIntro) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        revealText(elements.fitIntro);
+                    }, CONFIG.revealDelay);
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const section = document.querySelector('.fit-analysis');
         if (section) {
             observer.observe(section);
         }
@@ -347,6 +371,9 @@
 
         // Initialize greeting reveal
         initGreetingReveal();
+
+        // Initialize fit intro reveal
+        initFitIntroReveal();
 
         // Trigger form (homepage)
         if (elements.triggerForm) {

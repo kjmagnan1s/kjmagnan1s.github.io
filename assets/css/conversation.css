@@ -328,15 +328,18 @@
 
 .fit-intro {
     text-align: center;
-    color: var(--text-secondary);
     font-size: var(--text-lg);
     max-width: var(--max-width-prose);
     margin: 0 auto var(--space-8);
-    /* Fade reveal effect */
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.4s ease forwards;
-    animation-delay: 0.5s;
+    /* Fade reveal effect - matches greeting-text */
+    color: var(--text-muted);
+    opacity: 0.3;
+    transition: color 1.2s ease, opacity 1.2s ease;
+}
+
+.fit-intro.revealed {
+    color: var(--text-secondary);
+    opacity: 1;
 }
 
 .fit-container {
