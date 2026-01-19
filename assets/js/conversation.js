@@ -58,7 +58,8 @@
         fitResults: document.getElementById('fit-results'),
         fitSummary: document.getElementById('fit-summary'),
         strongFitList: document.getElementById('strong-fit-list'),
-        gapsList: document.getElementById('gaps-list'),
+        growthList: document.getElementById('growth-list'),
+        notfitList: document.getElementById('notfit-list'),
         resetButton: document.getElementById('reset-analysis')
     };
 
@@ -293,33 +294,28 @@
             elements.fitSummary.style.display = 'none';
         }
 
-        // Strong fit list
-        elements.strongFitList.innerHTML = '';
-        if (data.strongFit && data.strongFit.length > 0) {
-            data.strongFit.forEach(item => {
+        // Helper to populate a list
+        function populateList(listElement, items, emptyMessage) {
+            listElement.innerHTML = '';
+            if (items && items.length > 0) {
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    listElement.appendChild(li);
+                });
+            } else {
                 const li = document.createElement('li');
-                li.textContent = item;
-                elements.strongFitList.appendChild(li);
-            });
-        } else {
-            const li = document.createElement('li');
-            li.textContent = 'Unable to determine strong fit areas.';
-            elements.strongFitList.appendChild(li);
+                li.textContent = emptyMessage;
+                li.style.fontStyle = 'italic';
+                li.style.opacity = '0.7';
+                listElement.appendChild(li);
+            }
         }
 
-        // Gaps list
-        elements.gapsList.innerHTML = '';
-        if (data.potentialGaps && data.potentialGaps.length > 0) {
-            data.potentialGaps.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item;
-                elements.gapsList.appendChild(li);
-            });
-        } else {
-            const li = document.createElement('li');
-            li.textContent = 'No significant gaps identified.';
-            elements.gapsList.appendChild(li);
-        }
+        // Populate all three columns
+        populateList(elements.strongFitList, data.strongFit, 'None identified.');
+        populateList(elements.growthList, data.growthAreas, 'None identified.');
+        populateList(elements.notfitList, data.notAFit, 'None identified.');
     }
 
     /**
