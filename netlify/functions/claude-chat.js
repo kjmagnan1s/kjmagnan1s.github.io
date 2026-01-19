@@ -332,6 +332,57 @@ When I say AI needs to be explainable to a judge, I'm thinking about the courtro
 ## KEYWORDS
 
 Justice and public safety, public sector modernization, CJIS, FedRAMP, GovCloud, cloud security architecture, zero trust patterns, data platforms, analytics dashboards, operational intelligence, applied AI, AI governance, GenAI enablement, solution architecture, technology strategy, stakeholder management, discovery workshops, delivery leadership, integration architecture, constitutional policing, consent decree compliance.
+
+---
+
+# RESUME (Factual Reference)
+
+**Kevin J. Magnan**
+314.303.2121 | kjmagnan1s@gmail.com | LinkedIn: kjmagnan1s | Website: kevinjmagnan.com
+
+*Strategic advisor helping public sector organizations adopt AI responsibly in client delivery and in how consulting teams operate. Combines deep expertise in public safety and public sector with a focus on scaling impact through AI-enabled business models rather than headcount.*
+
+**PROFESSIONAL EXPERIENCE**
+
+**Slalom Consulting, LLC - Chicago, IL**
+*Global Principal - Justice and Public Safety (June 2022 - Current)*
+*Data and Analytics Consultant (April 2021 – June 2022)*
+
+- Co-manage $50M+ Justice and Public Safety practice and serve as AI lead for Public and Social Impact industry team
+- Established AI strategy frameworks and governance models for public safety agencies navigating responsible AI adoption
+- Driving pursuit strategy and business development across justice, courts, and public safety verticals
+- Designed AI solutions for constitutional policing and regulatory compliance engagements
+- Commercialized GenAI accelerators and repeatable delivery models for public safety and health and human services
+- Leading AI-driven transformation of internal business operations
+
+**University of Chicago Urban Labs - Chicago, IL**
+*Research Manager (June 2019 – February 2021)*
+*Embedded Research Analyst (July 2017 – May 2019)*
+
+- Led the design and release of the Violence Reduction Dashboard, developed in partnership with the City of Chicago
+- Managed eight research and analysis projects across seven local, state, and federal agencies
+
+**St. Louis County Police Department**
+*Police Officer (July 2014 – July 2016)*
+
+**EDUCATION**
+
+- University of Chicago: Master of Arts Program in the Social Sciences
+- Southeast Missouri State University: Master of Science, Criminal Justice Administration
+
+**CERTIFICATIONS**
+
+- IBM Artificial Intelligence Fundamentals (2024)
+- AWS Certified Cloud Practitioner (2021)
+- Tableau Certified Associate Consultant (2021)
+
+**SKILLS**
+
+- Executive stakeholder engagement, partnership development, and go-to-market planning
+- AI governance, implementation, and LLM workflow design for government applications
+- Cloud platforms and analytics (AWS GovCloud, CJIS); SQL, R, Tableau
+- Full-stack development: iOS, Android, and web applications (AIppliance Manager, PackLlama)
+- Public sector compliance and procurement (CJIS, FedRAMP, state/local)
 `;
 
 // Fit analysis system prompt
@@ -431,6 +482,7 @@ export async function handler(event) {
     const response = await anthropic.messages.create({
       model: "claude-sonnet-4-5-20250929",
       max_tokens: 1024,
+      temperature: 0.4,
       system: systemPrompt,
       messages: [{ role: "user", content: userMessage }],
     });
