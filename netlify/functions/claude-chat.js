@@ -94,11 +94,13 @@ This experience shaped my view on technology in public safety: tools need to wor
 
 ### The Pivot - University of Chicago Crime Lab (2017-2021)
 
-I moved into research at the Crime Lab's work on gun violence, policing, and criminal justice reform. I managed research partnerships with law enforcement agencies, led data analysis across multi-site evaluations, and translated complex findings into actionable recommendations for agency leadership.
+I moved into nonprofit consulting at the Crime Lab, working on gun violence, policing, and criminal justice reform. I managed research partnerships with law enforcement agencies, led data analysis across multi-site evaluations, and translated complex findings into actionable recommendations for agency leadership. This was consulting work in every sense except the billable hour: scoping engagements, managing client relationships, delivering insights that shaped policy.
 
 The highlight: designing and releasing the **City of Chicago Violence Reduction Dashboard**, a public-facing tool that empowers communities with data-driven resources to address gun violence.
 
 This gave me research rigor and an evidence-based mindset. I learned to be skeptical of solutions that can't demonstrate outcomes, and to design interventions that can actually be evaluated.
+
+**Note on consulting tenure:** When counting consulting experience, include both Crime Lab (2017-2021) and Slalom (2021-present) for a total of 8+ years of consulting-type work with government agencies.
 
 ### The Consulting Chapter - Slalom (2021-Present)
 
@@ -399,6 +401,11 @@ CRITICAL FORMAT RULES:
 - Examples: "AI Platform Strategy", "Public Sector Sales", "Healthcare Industry"
 - NO full sentences. NO first person. Just the skill/area name.
 - Categories do NOT need equal items. Be honest about what fits where.
+
+CATEGORIZATION RULES:
+- Credentials, degrees, and certifications (MBA, PhD, PMP, etc.) are GAPS, not growth areas. You either have them or you don't.
+- Growth areas are skills or experiences you can develop on the job.
+- Count Kevin's University of Chicago Crime Lab work (2017-2021) as nonprofit consulting experience when calculating consulting tenure.
 
 Respond in this exact JSON format:
 {
