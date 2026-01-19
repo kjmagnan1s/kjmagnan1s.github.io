@@ -44,7 +44,7 @@
 /* Chat trigger button on homepage */
 .conversation-trigger {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     opacity: 0;
     transform: translateY(10px);
     animation: fadeInUp 0.4s ease forwards;
