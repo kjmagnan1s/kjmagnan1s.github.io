@@ -4,6 +4,33 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+// Allowed origins for CORS - only these domains can call the API
+const ALLOWED_ORIGINS = [
+  "https://kevinjmagnan.com",
+  "https://www.kevinjmagnan.com",
+  "http://localhost:4000",
+  "http://localhost:4001",
+  "http://127.0.0.1:4000",
+  "http://127.0.0.1:4001",
+];
+
+/**
+ * Validate origin and return CORS headers
+ * Returns null if origin is not allowed
+ */
+function getCorsHeaders(origin) {
+  if (!origin) return null;
+
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    return {
+      "Access-Control-Allow-Origin": origin,
+      "Access-Control-Allow-Headers": "Content-Type",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+    };
+  }
+  return null;
+}
+
 // System prompt for Kevin's AI persona
 const SYSTEM_PROMPT = `You are Kevin Magnan. You're having a conversation with a recruiter who wants to learn about your background, experience, and fit for roles.
 
@@ -418,37 +445,85 @@ CONTEXT ABOUT KEVIN:
 ---
 `;
 
-// Role-specific context loader (placeholder)
+// Role-specific context loader
 function getRoleContext(roleSlug) {
-  // This will be expanded to load from /context/roles/[slug].md
   const roles = {
-    // Example structure - actual roles loaded from files
-    "example-role": {
-      company: "Example Corp",
-      role: "Product Manager",
-      brand: { primary: "#635bff", accent: "#00d4ff" },
-      context: "Additional context about why this role excites Kevin...",
+    "anthropic-pm": {
+      company: "Anthropic",
+      role: "Product Operations Manager, Public Sector",
+      brand: { primary: "#D4A574", accent: "#C4956A" },
+      context: `
+## Role-Specific Context: Anthropic Product Operations Manager, Public Sector
+
+### Why This Role Excites Me
+Anthropic is building the AI that will define how governments operate for the next generation. This role sits at the exact intersection of what I've spent a decade building toward: deep public sector expertise, product operations thinking, and a genuine belief that getting AI right in government is one of the most important challenges we face. I'm not applying to work "in AI" - I'm applying because Anthropic's mission of safe, beneficial AI is what I already live professionally.
+
+### Key Talking Points to Emphasize
+
+1. **I've done this exact work in a different context.** At Slalom, I built the operational infrastructure for a $50M practice from scratch - planning frameworks, pursuit processes, cross-functional coordination, launch playbooks. The difference is I did it for consulting delivery; this role does it for product.
+
+2. **Public sector isn't a vertical I'm learning - it's where I started.** Former police officer, Crime Lab researcher, now leading public safety AI strategy. When the job says "obsessed with specific use cases and impact within Public Sector organizations," that's not aspirational for me. That's my career.
+
+3. **I understand what "breaking down barriers to adoption" actually means in government.** Procurement cycles, CJIS compliance, stakeholder alignment across agencies, change management with sworn officers, explaining AI to city councils. I've navigated all of it.
+
+4. **Voice of customer synthesis is my consulting superpower.** Translating complex stakeholder input into actionable product/delivery insights is literally what I do.
+
+5. **I'm already building AI tools that transform operations.** Claude Code skills, Policy Partner, AI-powered pursuit tools. I'm not theorizing about AI enabling teams - I'm shipping it.
+
+### Why Anthropic Specifically
+- Mission alignment: "If we get AI right for public safety, we get it right for all of public sector" - that's how I've oriented my career
+- The product matters: Claude is genuinely useful. I've built applications with it, created internal tools, use it daily
+- Public sector focus: Most AI companies treat government as an afterthought. Anthropic creating a dedicated PubSec team signals they understand the opportunity and responsibility
+- The timing: Government AI adoption is at an inflection point. The decisions made now will shape how public sector uses AI for a generation
+
+### Relevant Experience for This Role
+- Co-built Slalom's Justice and Public Safety practice from early stage to $50M+ business
+- Created pursuit processes, delivery frameworks, team rituals, planning cadences
+- Led discovery and requirements for state police crime dashboard
+- Synthesized feedback from executives, analysts, and frontline officers into product requirements
+- Bridge between technical teams and government stakeholders
+- Designed analytics dashboards for operational intelligence
+
+### Things to Emphasize
+- Direct public sector experience (police officer, Crime Lab, government consulting) - not just "interested in public sector"
+- Already using Claude extensively - built apps, internal tools, daily workflow integration
+- Operations background in consulting translates directly to product operations
+- Understand both the opportunity AND the responsibility of AI in government
+
+### Things to Avoid
+- Don't oversell federal experience (stronger in state/local)
+- Don't claim traditional product management experience - frame as adjacent/complementary
+`,
     },
   };
   return roles[roleSlug] || null;
 }
 
 export async function handler(event) {
+  const origin = event.headers.origin || event.headers.Origin;
+  const corsHeaders = getCorsHeaders(origin);
+
+  // Reject requests from unauthorized origins
+  if (!corsHeaders) {
+    return {
+      statusCode: 403,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ error: "Origin not allowed" }),
+    };
+  }
+
   // Handle CORS preflight
   if (event.httpMethod === "OPTIONS") {
     return {
       statusCode: 204,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "POST, OPTIONS",
-      },
+      headers: corsHeaders,
     };
   }
 
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
+      headers: corsHeaders,
       body: JSON.stringify({ error: "Method not allowed" }),
     };
   }
@@ -459,7 +534,7 @@ export async function handler(event) {
     if (!message) {
       return {
         statusCode: 400,
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...corsHeaders },
         body: JSON.stringify({ error: "Message is required" }),
       };
     }
@@ -479,8 +554,21 @@ export async function handler(event) {
       if (roleSlug) {
         const roleContext = getRoleContext(roleSlug);
         if (roleContext) {
-          systemPrompt +=
-            `\n\n## Role-Specific Context\nCompany: ${roleContext.company}\nRole: ${roleContext.role}\n${roleContext.context}`;
+          systemPrompt += `
+
+## INTERVIEW MODE - IMPORTANT
+You are speaking with a recruiter or hiring manager from ${roleContext.company} about the ${roleContext.role} position. This is like a first interview conversation.
+
+INTERVIEW-SPECIFIC GUIDANCE:
+- Speak as if you're genuinely excited about THIS specific role at THIS specific company
+- Connect your experience directly to what they're looking for
+- Be conversational but professional - this is an interview, not a casual chat
+- When they ask questions, give focused answers that demonstrate fit
+- Weave in the talking points naturally, don't list them robotically
+- If asked "why this role" or "why this company," be specific and authentic
+- You can ask clarifying questions if it would help give a better answer
+
+${roleContext.context}`;
         }
       }
     }
@@ -525,7 +613,7 @@ export async function handler(event) {
       statusCode: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        ...corsHeaders,
       },
       body: JSON.stringify(parsedResponse),
     };
@@ -535,7 +623,7 @@ export async function handler(event) {
       statusCode: 500,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        ...corsHeaders,
       },
       body: JSON.stringify({
         error: "Failed to get response",
