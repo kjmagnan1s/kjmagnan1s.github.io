@@ -5,6 +5,14 @@ description: >-
 baseurl: ""
 url: "https://kevinjmagnan.com"
 
+# Social sharing image (Open Graph / Twitter Cards)
+image: /assets/images/web_thumbnail.png
+
+# Twitter handle (optional)
+twitter:
+  username: KevinMagnan
+  card: summary_large_image
+
 theme: minima
 
 markdown: kramdown
