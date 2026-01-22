@@ -1,0 +1,695 @@
+{
+  "meta": {
+    "generatedAt": "2026-01-22T03:10:18.870Z",
+    "firstDate": "2025-10-30T01:40:39.316Z",
+    "lastDate": "2026-01-21",
+    "daysActive": 41
+  },
+  "kpis": {
+    "totalMessages": 39090,
+    "totalSessions": 112,
+    "totalTokens": 32992015,
+    "totalOutputTokens": 5444451,
+    "estimatedCost": 4710,
+    "cacheSavings": 17594,
+    "daysActive": 41,
+    "avgMessagesPerDay": 953,
+    "totalToolCalls": 11598,
+    "longestStreak": 6,
+    "currentStreak": 1,
+    "planCount": 11
+  },
+  "timeline": [
+    {
+      "date": "2025-10-30",
+      "messages": 990,
+      "sessions": 1,
+      "toolCalls": 307
+    },
+    {
+      "date": "2025-11-01",
+      "messages": 2331,
+      "sessions": 1,
+      "toolCalls": 755
+    },
+    {
+      "date": "2025-11-11",
+      "messages": 1937,
+      "sessions": 1,
+      "toolCalls": 585
+    },
+    {
+      "date": "2025-11-13",
+      "messages": 440,
+      "sessions": 1,
+      "toolCalls": 145
+    },
+    {
+      "date": "2025-11-16",
+      "messages": 1049,
+      "sessions": 1,
+      "toolCalls": 372
+    },
+    {
+      "date": "2025-11-18",
+      "messages": 2211,
+      "sessions": 3,
+      "toolCalls": 750
+    },
+    {
+      "date": "2025-11-20",
+      "messages": 99,
+      "sessions": 1,
+      "toolCalls": 38
+    },
+    {
+      "date": "2025-11-21",
+      "messages": 5133,
+      "sessions": 2,
+      "toolCalls": 1391
+    },
+    {
+      "date": "2025-11-25",
+      "messages": 345,
+      "sessions": 3,
+      "toolCalls": 106
+    },
+    {
+      "date": "2025-11-26",
+      "messages": 2021,
+      "sessions": 3,
+      "toolCalls": 590
+    },
+    {
+      "date": "2025-11-28",
+      "messages": 645,
+      "sessions": 1,
+      "toolCalls": 206
+    },
+    {
+      "date": "2025-11-29",
+      "messages": 393,
+      "sessions": 1,
+      "toolCalls": 135
+    },
+    {
+      "date": "2025-12-01",
+      "messages": 3592,
+      "sessions": 3,
+      "toolCalls": 1076
+    },
+    {
+      "date": "2025-12-02",
+      "messages": 49,
+      "sessions": 1,
+      "toolCalls": 12
+    },
+    {
+      "date": "2025-12-03",
+      "messages": 1782,
+      "sessions": 1,
+      "toolCalls": 582
+    },
+    {
+      "date": "2025-12-05",
+      "messages": 230,
+      "sessions": 1,
+      "toolCalls": 84
+    },
+    {
+      "date": "2025-12-06",
+      "messages": 405,
+      "sessions": 1,
+      "toolCalls": 136
+    },
+    {
+      "date": "2025-12-09",
+      "messages": 1426,
+      "sessions": 4,
+      "toolCalls": 435
+    },
+    {
+      "date": "2025-12-10",
+      "messages": 691,
+      "sessions": 3,
+      "toolCalls": 258
+    },
+    {
+      "date": "2025-12-11",
+      "messages": 100,
+      "sessions": 1,
+      "toolCalls": 33
+    },
+    {
+      "date": "2025-12-14",
+      "messages": 40,
+      "sessions": 1,
+      "toolCalls": 12
+    },
+    {
+      "date": "2025-12-15",
+      "messages": 50,
+      "sessions": 1,
+      "toolCalls": 9
+    },
+    {
+      "date": "2025-12-18",
+      "messages": 46,
+      "sessions": 1,
+      "toolCalls": 10
+    },
+    {
+      "date": "2025-12-22",
+      "messages": 1261,
+      "sessions": 4,
+      "toolCalls": 329
+    },
+    {
+      "date": "2025-12-23",
+      "messages": 1419,
+      "sessions": 1,
+      "toolCalls": 389
+    },
+    {
+      "date": "2025-12-26",
+      "messages": 300,
+      "sessions": 1,
+      "toolCalls": 110
+    },
+    {
+      "date": "2025-12-28",
+      "messages": 1621,
+      "sessions": 3,
+      "toolCalls": 427
+    },
+    {
+      "date": "2025-12-29",
+      "messages": 57,
+      "sessions": 1,
+      "toolCalls": 19
+    },
+    {
+      "date": "2025-12-30",
+      "messages": 90,
+      "sessions": 2,
+      "toolCalls": 26
+    },
+    {
+      "date": "2025-12-31",
+      "messages": 698,
+      "sessions": 1,
+      "toolCalls": 206
+    },
+    {
+      "date": "2026-01-01",
+      "messages": 58,
+      "sessions": 10,
+      "toolCalls": 1
+    },
+    {
+      "date": "2026-01-02",
+      "messages": 343,
+      "sessions": 1,
+      "toolCalls": 92
+    },
+    {
+      "date": "2026-01-06",
+      "messages": 222,
+      "sessions": 14,
+      "toolCalls": 40
+    },
+    {
+      "date": "2026-01-08",
+      "messages": 508,
+      "sessions": 4,
+      "toolCalls": 133
+    },
+    {
+      "date": "2026-01-09",
+      "messages": 114,
+      "sessions": 8,
+      "toolCalls": 17
+    },
+    {
+      "date": "2026-01-11",
+      "messages": 120,
+      "sessions": 2,
+      "toolCalls": 49
+    },
+    {
+      "date": "2026-01-12",
+      "messages": 137,
+      "sessions": 4,
+      "toolCalls": 42
+    },
+    {
+      "date": "2026-01-14",
+      "messages": 106,
+      "sessions": 3,
+      "toolCalls": 15
+    },
+    {
+      "date": "2026-01-17",
+      "messages": 3415,
+      "sessions": 4,
+      "toolCalls": 920
+    },
+    {
+      "date": "2026-01-19",
+      "messages": 2270,
+      "sessions": 10,
+      "toolCalls": 653
+    },
+    {
+      "date": "2026-01-21",
+      "messages": 346,
+      "sessions": 2,
+      "toolCalls": 103
+    }
+  ],
+  "modelUsage": [
+    {
+      "name": "Opus 4.5",
+      "fullName": "claude-opus-4-5-20251101",
+      "outputTokens": 2365088,
+      "inputTokens": 928081,
+      "cacheRead": 1351347930,
+      "cacheCreation": 110242176,
+      "color": "#a855f7"
+    },
+    {
+      "name": "Haiku 4.5",
+      "fullName": "claude-haiku-4-5-20251001",
+      "outputTokens": 95375,
+      "inputTokens": 46142,
+      "cacheRead": 19018375,
+      "cacheCreation": 2657647,
+      "color": "#f97316"
+    },
+    {
+      "name": "Sonnet 4.5",
+      "fullName": "claude-sonnet-4-5-20250929",
+      "outputTokens": 2131634,
+      "inputTokens": 221243,
+      "cacheRead": 534681128,
+      "cacheCreation": 51967699,
+      "color": "#3b82f6"
+    },
+    {
+      "name": "GLM 4.6",
+      "fullName": "glm-4.6",
+      "outputTokens": 852354,
+      "inputTokens": 26352098,
+      "cacheRead": 352188766,
+      "cacheCreation": 0,
+      "color": "#10b981"
+    }
+  ],
+  "hourlyActivity": [
+    {
+      "hour": 7,
+      "count": 1,
+      "label": "7AM"
+    },
+    {
+      "hour": 8,
+      "count": 2,
+      "label": "8AM"
+    },
+    {
+      "hour": 9,
+      "count": 4,
+      "label": "9AM"
+    },
+    {
+      "hour": 10,
+      "count": 10,
+      "label": "10AM"
+    },
+    {
+      "hour": 11,
+      "count": 9,
+      "label": "11AM"
+    },
+    {
+      "hour": 12,
+      "count": 18,
+      "label": "12PM"
+    },
+    {
+      "hour": 13,
+      "count": 8,
+      "label": "1PM"
+    },
+    {
+      "hour": 14,
+      "count": 6,
+      "label": "2PM"
+    },
+    {
+      "hour": 15,
+      "count": 3,
+      "label": "3PM"
+    },
+    {
+      "hour": 16,
+      "count": 3,
+      "label": "4PM"
+    },
+    {
+      "hour": 17,
+      "count": 2,
+      "label": "5PM"
+    },
+    {
+      "hour": 19,
+      "count": 24,
+      "label": "7PM"
+    },
+    {
+      "hour": 20,
+      "count": 19,
+      "label": "8PM"
+    },
+    {
+      "hour": 21,
+      "count": 3,
+      "label": "9PM"
+    }
+  ],
+  "projects": [
+    {
+      "name": "AIppliance_Manager",
+      "count": 1632,
+      "color": "#eab308"
+    },
+    {
+      "name": "LeaderShift_v2",
+      "count": 1208,
+      "color": "#eab308"
+    },
+    {
+      "name": "AIppliance_Manager_iOS",
+      "count": 481,
+      "color": "#a855f7"
+    },
+    {
+      "name": "kjmagnan1s.github.io",
+      "count": 343,
+      "color": "#f97316"
+    },
+    {
+      "name": "moving-estimate-ai",
+      "count": 183,
+      "color": "#22d3ee"
+    },
+    {
+      "name": "Doughby",
+      "count": 89,
+      "color": "#eab308"
+    },
+    {
+      "name": "TikTok",
+      "count": 59,
+      "color": "#eab308"
+    },
+    {
+      "name": "kevinmagnan",
+      "count": 49,
+      "color": "#3b82f6"
+    },
+    {
+      "name": "ai-appliance-friend",
+      "count": 39,
+      "color": "#10b981"
+    },
+    {
+      "name": "Documents",
+      "count": 23,
+      "color": "#a855f7"
+    }
+  ],
+  "commands": [
+    {
+      "name": "/compact",
+      "count": 391
+    },
+    {
+      "name": "/model",
+      "count": 142
+    },
+    {
+      "name": "/exit",
+      "count": 122
+    },
+    {
+      "name": "/plugin",
+      "count": 83
+    },
+    {
+      "name": "/mcp",
+      "count": 31
+    },
+    {
+      "name": "/extra-usage",
+      "count": 23
+    },
+    {
+      "name": "/clear",
+      "count": 17
+    },
+    {
+      "name": "/permissions",
+      "count": 15
+    },
+    {
+      "name": "/context",
+      "count": 14
+    },
+    {
+      "name": "/upgrade",
+      "count": 13
+    },
+    {
+      "name": "/login",
+      "count": 11
+    },
+    {
+      "name": "/usage",
+      "count": 7
+    },
+    {
+      "name": "/cost",
+      "count": 6
+    },
+    {
+      "name": "/Users/kevinmagnan/Documents/GitHub/AIppliance_Manager_iOS/AIppliance",
+      "count": 5
+    },
+    {
+      "name": "/todos",
+      "count": 5
+    }
+  ],
+  "languages": [
+    {
+      "name": "Kotlin",
+      "count": 728,
+      "color": "#A97BFF"
+    },
+    {
+      "name": "Swift",
+      "count": 438,
+      "color": "#F05138"
+    },
+    {
+      "name": "JavaScript",
+      "count": 208,
+      "color": "#F7DF1E"
+    },
+    {
+      "name": "TypeScript",
+      "count": 157,
+      "color": "#3178C6"
+    },
+    {
+      "name": "HTML",
+      "count": 101,
+      "color": "#E34F26"
+    },
+    {
+      "name": "Java",
+      "count": 44,
+      "color": "#B07219"
+    },
+    {
+      "name": "Markdown",
+      "count": 31,
+      "color": "#083FA1"
+    },
+    {
+      "name": "SQL",
+      "count": 12,
+      "color": "#CC6699"
+    },
+    {
+      "name": "YAML",
+      "count": 5,
+      "color": "#CB171E"
+    },
+    {
+      "name": "Python",
+      "count": 4,
+      "color": "#3776AB"
+    }
+  ],
+  "commitsByDate": {
+    "2025-10-12": 1,
+    "2025-10-13": 2,
+    "2025-10-21": 5,
+    "2025-10-23": 1,
+    "2025-10-24": 2,
+    "2025-10-27": 1,
+    "2025-10-28": 1,
+    "2025-11-02": 1,
+    "2025-11-03": 1,
+    "2025-11-07": 1,
+    "2025-11-08": 1,
+    "2025-11-09": 1,
+    "2025-11-10": 2,
+    "2025-11-11": 3,
+    "2025-11-12": 2,
+    "2025-11-14": 1,
+    "2025-11-16": 4,
+    "2025-11-18": 3,
+    "2025-11-21": 2,
+    "2025-11-26": 1,
+    "2025-11-30": 1,
+    "2025-12-05": 1,
+    "2025-12-06": 1,
+    "2025-12-29": 1,
+    "2026-01-01": 4,
+    "2026-01-02": 1,
+    "2026-01-18": 1,
+    "2026-01-19": 3,
+    "2026-01-21": 4,
+    "2026-01-22": 1
+  },
+  "totalCommits": 54,
+  "hoursSaved": 613,
+  "todos": {
+    "completed": 86,
+    "pending": 59,
+    "inProgress": 15,
+    "total": 160,
+    "completionRate": 54
+  },
+  "streaks": [
+    {
+      "start": "2025-10-30T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-11-01T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-11-11T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-11-13T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-11-16T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-11-18T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-11-20T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2025-11-25T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2025-11-28T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2025-12-01T00:00:00.000Z",
+      "length": 3
+    },
+    {
+      "start": "2025-12-05T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2025-12-09T00:00:00.000Z",
+      "length": 3
+    },
+    {
+      "start": "2025-12-14T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2025-12-18T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-12-22T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2025-12-26T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2025-12-28T00:00:00.000Z",
+      "length": 6
+    },
+    {
+      "start": "2026-01-06T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2026-01-08T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2026-01-11T00:00:00.000Z",
+      "length": 2
+    },
+    {
+      "start": "2026-01-14T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2026-01-17T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2026-01-19T00:00:00.000Z",
+      "length": 1
+    },
+    {
+      "start": "2026-01-21T00:00:00.000Z",
+      "length": 1
+    }
+  ],
+  "peakDay": {
+    "date": "2025-11-21",
+    "messages": 5133
+  },
+  "longestSession": {
+    "duration": "22d 1h",
+    "messages": 990,
+    "date": "2025-10-30"
+  },
+  "errorPatterns": []
+}

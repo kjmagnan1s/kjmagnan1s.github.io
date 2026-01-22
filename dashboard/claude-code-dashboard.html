@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>83 Days with Claude</title>
+
+  <!-- CDN Dependencies -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Kevin's website palette */
+      --bg-primary: #1a1612;
+      --bg-secondary: #231e19;
+      --bg-card: #2a241e;
+      --bg-input: #1f1a15;
+      --accent-copper: #c9a87c;
+      --accent-copper-dim: #8b7355;
+      --accent-copper-glow: rgba(201, 168, 124, 0.15);
+      --text-primary: #e8e2da;
+      --text-secondary: #a89f94;
+      --text-muted: #6b635a;
+      --divider: #3a332b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .dashboard {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .dashboard.tiktok-mode {
+      max-width: 480px;
+      padding: 40px 20px 60px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 64px;
+      opacity: 0;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(36px, 7vw, 56px);
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .header .subtitle {
+      font-size: 15px;
+      color: var(--text-secondary);
+      letter-spacing: 0.5px;
+    }
+
+    /* Section Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 48px 0;
+    }
+
+    .divider-line {
+      width: 60px;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    .divider-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-copper);
+      border-radius: 50%;
+    }
+
+    /* Section Header */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-copper);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 16px;
+    }
+
+    .tiktok-mode .kpi-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .kpi-card {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    .kpi-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(42px, 6vw, 64px);
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .kpi-value.accent {
+      color: var(--accent-copper);
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* Chart Container */
+    .chart-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* GitHub Contribution Graph */
+    .contribution-graph {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contribution-grid {
+      display: flex;
+      gap: 5px;
+    }
+
+    .contribution-week {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .contribution-cell {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      background: var(--bg-card);
+      transition: all 0.2s;
+    }
+
+    .contribution-cell:hover {
+      transform: scale(1.2);
+    }
+
+    .contribution-cell.level-1 { background: rgba(201, 168, 124, 0.25); }
+    .contribution-cell.level-2 { background: rgba(201, 168, 124, 0.45); }
+    .contribution-cell.level-3 { background: rgba(201, 168, 124, 0.7); }
+    .contribution-cell.level-4 { background: var(--accent-copper); }
+
+    .contribution-legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .contribution-legend .contribution-cell {
+      width: 14px;
+      height: 14px;
+    }
+
+    .contribution-months {
+      display: flex;
+      gap: 5px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contribution-month {
+      text-align: left;
+    }
+
+    /* Languages */
+    .languages-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .language-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .language-name {
+      width: 110px;
+      font-size: 16px;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    .language-bar-container {
+      flex: 1;
+      height: 14px;
+      background: var(--bg-card);
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .language-bar {
+      height: 100%;
+      border-radius: 7px;
+      transition: width 1s ease-out;
+    }
+
+    .language-percent {
+      width: 50px;
+      font-size: 15px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Timeline */
+    .timeline-chart svg {
+      overflow: visible;
+    }
+
+    .timeline-area {
+      fill: url(#timelineGradient);
+    }
+
+    .timeline-line {
+      fill: none;
+      stroke: var(--accent-copper);
+      stroke-width: 2;
+    }
+
+    /* Model Donut */
+    .model-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .model-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .model-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .model-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* Hour Heatmap */
+    .hour-chart {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Progress Ring */
+    .progress-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .progress-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .progress-stat {
+      text-align: center;
+    }
+
+    .progress-stat-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px;
+      color: var(--text-primary);
+    }
+
+    .progress-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    /* Mode Toggle */
+    .mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .mode-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--divider);
+      color: var(--text-secondary);
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: 'Source Sans 3', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .mode-btn:hover, .mode-btn.active {
+      background: var(--accent-copper);
+      color: var(--bg-primary);
+      border-color: var(--accent-copper);
+    }
+
+    /* Replay Button */
+    .replay-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent-copper);
+      border: none;
+      color: var(--bg-primary);
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Source Sans 3', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      z-index: 100;
+    }
+
+    .replay-btn:hover {
+      background: var(--text-primary);
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: absolute;
+      background: var(--bg-secondary);
+      border: 1px solid var(--divider);
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 13px;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 1000;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contribution-cell {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mode-toggle">
+    <button class="mode-btn active" onclick="setMode('desktop')">Desktop</button>
+    <button class="mode-btn" onclick="setMode('tiktok')">TikTok</button>
+  </div>
+
+  <div id="dashboard" class="dashboard">
+    <header class="header">
+      <h1>83 Days with Claude</h1>
+      <p class="subtitle">October 30, 2025 — January 21, 2026</p>
+    </header>
+
+    <!-- KPIs -->
+    <div class="section-label">By the Numbers</div>
+    <div class="kpi-grid" id="kpi-grid"></div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Contribution Graph -->
+    <section class="section" id="contribution-section">
+      <div class="section-label">Commits Assisted</div>
+      <h2 class="section-title">Development Activity</h2>
+      <p class="section-subtitle">A GitHub-style view of our collaboration</p>
+      <div class="chart-container">
+        <div class="contribution-graph" id="contribution-chart"></div>
+      </div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Languages -->
+    <section class="section" id="languages-section">
+      <div class="section-label">Languages Used</div>
+      <h2 class="section-title">Technology Stack</h2>
+      <p class="section-subtitle">Files touched across all sessions</p>
+      <div class="chart-container">
+        <div class="languages-chart" id="languages-chart"></div>
+      </div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Timeline -->
+    <section class="section" id="timeline-section">
+      <div class="section-label">Activity Over Time</div>
+      <h2 class="section-title">Daily Messages</h2>
+      <p class="section-subtitle">Peaks, valleys, and everything in between</p>
+      <div class="chart-container" id="timeline-chart"></div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Model Usage -->
+    <section class="section" id="model-section">
+      <div class="section-label">AI Models</div>
+      <h2 class="section-title">Model Distribution</h2>
+      <p class="section-subtitle">Output tokens by Claude model</p>
+      <div class="chart-container model-chart" id="model-chart"></div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Hour Chart -->
+    <section class="section" id="hour-section">
+      <div class="section-label">When I Code</div>
+      <h2 class="section-title">Peak Hours</h2>
+      <p class="section-subtitle">Session distribution throughout the day</p>
+      <div class="chart-container hour-chart" id="hour-chart"></div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Task Completion -->
+    <section class="section" id="todo-section">
+      <div class="section-label">Task Tracking</div>
+      <h2 class="section-title">Completion Rate</h2>
+      <p class="section-subtitle">Todos tracked and completed</p>
+      <div class="chart-container progress-container" id="todo-chart"></div>
+    </section>
+  </div>
+
+  <button class="replay-btn" onclick="replayAnimations()">
+    <span>↻</span> Replay
+  </button>
+
+  <div class="tooltip" id="tooltip"></div>
+
+  <script>
+    let DATA = null;
+
+    async function init() {
+      try {
+        const response = await fetch('dashboard-data.json');
+        DATA = await response.json();
+        buildDashboard();
+        runAnimations();
+      } catch (e) {
+        console.error('Failed to load data:', e);
+      }
+    }
+
+    function buildDashboard() {
+      buildKPIs();
+      buildContributionGraph();
+      buildLanguages();
+      buildTimeline();
+      buildModelChart();
+      buildHourChart();
+      buildTodoChart();
+    }
+
+    // KPIs
+    function buildKPIs() {
+      const kpis = [
+        { value: DATA.kpis.totalMessages, label: 'Messages', accent: false },
+        { value: DATA.kpis.totalSessions, label: 'Sessions', accent: false },
+        { value: DATA.kpis.daysActive, label: 'Days', accent: false },
+        { value: DATA.hoursSaved || 613, label: 'Hours Saved', accent: true },
+        { value: DATA.kpis.estimatedCost, label: 'Est. Cost', prefix: '$', accent: true },
+        { value: DATA.kpis.cacheSavings, label: 'Cache Saved', prefix: '$', accent: true }
+      ];
+
+      const grid = document.getElementById('kpi-grid');
+      grid.innerHTML = kpis.map((kpi, i) => `
+        <div class="kpi-card" data-index="${i}">
+          <div class="kpi-value ${kpi.accent ? 'accent' : ''}" data-target="${kpi.value}" data-prefix="${kpi.prefix || ''}">${kpi.prefix || ''}0</div>
+          <div class="kpi-label">${kpi.label}</div>
+        </div>
+      `).join('');
+    }
+
+    // GitHub-style Contribution Graph
+    function buildContributionGraph() {
+      const container = document.getElementById('contribution-chart');
+      const startDate = new Date('2025-10-30');
+      const endDate = new Date('2026-01-21');
+      const commits = DATA.commitsByDate || {};
+
+      // Build weeks and track month positions
+      let currentDate = new Date(startDate);
+      // Adjust to start on Sunday
+      currentDate.setDate(currentDate.getDate() - currentDate.getDay());
+
+      let weeksHtml = '';
+      const maxCommits = Math.max(...Object.values(commits), 1);
+      const cellWidth = 23; // 18px cell + 5px gap
+
+      // Track month positions for labels
+      const monthPositions = [];
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      let lastMonth = -1;
+      let weekIndex = 0;
+
+      while (currentDate <= endDate) {
+        // Check if we're starting a new month
+        const currentMonth = currentDate.getMonth();
+        if (currentMonth !== lastMonth && currentDate >= startDate) {
+          monthPositions.push({ month: monthNames[currentMonth], weekIndex });
+          lastMonth = currentMonth;
+        }
+
+        let weekHtml = '<div class="contribution-week">';
+        for (let day = 0; day < 7; day++) {
+          const dateStr = currentDate.toISOString().split('T')[0];
+          const count = commits[dateStr] || 0;
+          let level = 0;
+          if (count > 0) level = 1;
+          if (count >= 2) level = 2;
+          if (count >= 4) level = 3;
+          if (count >= 6) level = 4;
+
+          const isInRange = currentDate >= startDate && currentDate <= endDate;
+          weekHtml += `<div class="contribution-cell ${isInRange ? 'level-' + level : ''}"
+            data-date="${dateStr}" data-count="${count}"
+            title="${dateStr}: ${count} commit${count !== 1 ? 's' : ''}"></div>`;
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+        weekHtml += '</div>';
+        weeksHtml += weekHtml;
+        weekIndex++;
+      }
+
+      const totalCommits = DATA.totalCommits || Object.values(commits).reduce((a, b) => a + b, 0);
+
+      // Build month labels
+      const totalWeeks = weekIndex;
+      let monthsHtml = '<div class="contribution-months" style="width: ' + (totalWeeks * cellWidth) + 'px;">';
+      for (let i = 0; i < monthPositions.length; i++) {
+        const pos = monthPositions[i];
+        const nextPos = monthPositions[i + 1] || { weekIndex: totalWeeks };
+        const width = (nextPos.weekIndex - pos.weekIndex) * cellWidth;
+        monthsHtml += `<div class="contribution-month" style="width: ${width}px;">${pos.month}</div>`;
+      }
+      monthsHtml += '</div>';
+
+      container.innerHTML = `
+        <div class="contribution-grid">${weeksHtml}</div>
+        ${monthsHtml}
+        <div class="contribution-legend">
+          <span>Less</span>
+          <div class="contribution-cell"></div>
+          <div class="contribution-cell level-1"></div>
+          <div class="contribution-cell level-2"></div>
+          <div class="contribution-cell level-3"></div>
+          <div class="contribution-cell level-4"></div>
+          <span>More</span>
+          <span style="margin-left: 16px; color: var(--accent-copper);">${totalCommits} commits assisted</span>
+        </div>
+      `;
+    }
+
+    // Languages
+    function buildLanguages() {
+      const container = document.getElementById('languages-chart');
+      const languages = DATA.languages.slice(0, 6);
+      const maxCount = Math.max(...languages.map(l => l.count));
+
+      container.innerHTML = languages.map(lang => {
+        const percent = ((lang.count / maxCount) * 100).toFixed(0);
+        const totalPercent = ((lang.count / languages.reduce((a, l) => a + l.count, 0)) * 100).toFixed(0);
+        return `
+          <div class="language-row">
+            <div class="language-name">${lang.name}</div>
+            <div class="language-bar-container">
+              <div class="language-bar" style="background: ${lang.color}; width: 0%;" data-width="${percent}%"></div>
+            </div>
+            <div class="language-percent">${totalPercent}%</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Timeline
+    function buildTimeline() {
+      const container = document.getElementById('timeline-chart');
+      const width = Math.min(container.clientWidth || 850, 850);
+      const height = 280;
+      const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+
+      const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+      const defs = svg.append('defs');
+      const gradient = defs.append('linearGradient')
+        .attr('id', 'timelineGradient')
+        .attr('x1', '0%').attr('y1', '0%')
+        .attr('x2', '0%').attr('y2', '100%');
+      gradient.append('stop').attr('offset', '0%').attr('stop-color', '#c9a87c').attr('stop-opacity', 0.4);
+      gradient.append('stop').attr('offset', '100%').attr('stop-color', '#c9a87c').attr('stop-opacity', 0.02);
+
+      const data = DATA.timeline;
+      const x = d3.scaleTime()
+        .domain(d3.extent(data, d => new Date(d.date)))
+        .range([margin.left, width - margin.right]);
+
+      const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.messages) * 1.1])
+        .range([height - margin.bottom, margin.top]);
+
+      const area = d3.area()
+        .x(d => x(new Date(d.date)))
+        .y0(height - margin.bottom)
+        .y1(d => y(d.messages))
+        .curve(d3.curveMonotoneX);
+
+      const line = d3.line()
+        .x(d => x(new Date(d.date)))
+        .y(d => y(d.messages))
+        .curve(d3.curveMonotoneX);
+
+      const areaPath = svg.append('path')
+        .datum(data)
+        .attr('class', 'timeline-area')
+        .attr('d', area)
+        .style('opacity', 0);
+
+      const linePath = svg.append('path')
+        .datum(data)
+        .attr('class', 'timeline-line')
+        .attr('d', line);
+
+      const totalLength = linePath.node().getTotalLength();
+      linePath.attr('stroke-dasharray', totalLength).attr('stroke-dashoffset', totalLength);
+
+      svg.append('g')
+        .attr('transform', `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).ticks(5).tickFormat(d3.timeFormat('%b %d')))
+        .attr('color', '#6b635a')
+        .attr('font-size', '11px')
+        .selectAll('line').attr('stroke', '#3a332b');
+
+      svg.append('g')
+        .attr('transform', `translate(${margin.left},0)`)
+        .call(d3.axisLeft(y).ticks(4).tickFormat(d => d >= 1000 ? (d/1000) + 'k' : d))
+        .attr('color', '#6b635a')
+        .attr('font-size', '11px')
+        .selectAll('line').attr('stroke', '#3a332b');
+
+      // Peak
+      const peak = data.reduce((max, d) => d.messages > max.messages ? d : max, data[0]);
+      svg.append('circle')
+        .attr('cx', x(new Date(peak.date)))
+        .attr('cy', y(peak.messages))
+        .attr('r', 5)
+        .attr('fill', '#c9a87c')
+        .style('opacity', 0);
+
+      svg.append('text')
+        .attr('x', x(new Date(peak.date)))
+        .attr('y', y(peak.messages) - 10)
+        .attr('text-anchor', 'middle')
+        .attr('fill', '#c9a87c')
+        .attr('font-size', '12px')
+        .text(peak.messages.toLocaleString())
+        .style('opacity', 0);
+
+      container._svg = svg;
+      container._line = linePath;
+      container._area = areaPath;
+      container._totalLength = totalLength;
+    }
+
+    // Model Donut
+    function buildModelChart() {
+      const container = document.getElementById('model-chart');
+      const width = 320;
+      const height = 320;
+      const radius = 130;
+
+      const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .append('g')
+        .attr('transform', `translate(${width/2},${height/2})`);
+
+      const data = DATA.modelUsage.filter(d => d.outputTokens > 0);
+      const total = d3.sum(data, d => d.outputTokens);
+
+      // Muted warm colors
+      const colors = ['#c9a87c', '#8b7355', '#a89f94', '#6b635a'];
+
+      const pie = d3.pie().value(d => d.outputTokens).sort(null).padAngle(0.02);
+      const arc = d3.arc().innerRadius(radius * 0.55).outerRadius(radius);
+
+      const arcs = svg.selectAll('.arc')
+        .data(pie(data))
+        .enter()
+        .append('g')
+        .attr('class', 'arc');
+
+      arcs.append('path')
+        .attr('fill', (d, i) => colors[i % colors.length])
+        .attr('d', arc)
+        .style('opacity', 0);
+
+      svg.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '-0.1em')
+        .attr('fill', '#e8e2da')
+        .attr('font-family', 'Playfair Display')
+        .attr('font-size', '32px')
+        .text(formatNumber(total));
+
+      svg.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '1.6em')
+        .attr('fill', '#6b635a')
+        .attr('font-size', '12px')
+        .attr('letter-spacing', '1.5px')
+        .text('TOKENS');
+
+      // Legend
+      const legendContainer = document.createElement('div');
+      legendContainer.className = 'model-legend';
+      legendContainer.innerHTML = data.map((d, i) => `
+        <div class="model-legend-item">
+          <div class="model-legend-dot" style="background: ${colors[i % colors.length]}"></div>
+          <span>${d.name}</span>
+        </div>
+      `).join('');
+      container.appendChild(legendContainer);
+
+      container._arcs = arcs;
+    }
+
+    // Hour Chart
+    function buildHourChart() {
+      const container = document.getElementById('hour-chart');
+      const width = 360;
+      const height = 360;
+      const radius = 145;
+
+      const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .append('g')
+        .attr('transform', `translate(${width/2},${height/2})`);
+
+      const hourData = [];
+      for (let i = 0; i < 24; i++) {
+        const found = DATA.hourlyActivity.find(h => h.hour === i);
+        hourData.push({ hour: i, count: found ? found.count : 0 });
+      }
+
+      const maxCount = Math.max(...hourData.map(d => d.count), 1);
+      const angleScale = d3.scaleLinear().domain([0, 24]).range([0, 2 * Math.PI]);
+      const radiusScale = d3.scaleLinear().domain([0, maxCount]).range([radius * 0.35, radius]);
+
+      const arcGen = d3.arc()
+        .innerRadius(radius * 0.35)
+        .startAngle(d => angleScale(d.hour) - Math.PI/24)
+        .endAngle(d => angleScale(d.hour) + Math.PI/24);
+
+      svg.selectAll('.hour-segment')
+        .data(hourData)
+        .enter()
+        .append('path')
+        .attr('class', 'hour-segment')
+        .attr('d', d => arcGen.outerRadius(radiusScale(d.count))(d))
+        .attr('fill', d => d.count > 0 ? `rgba(201, 168, 124, ${0.2 + (d.count / maxCount) * 0.8})` : '#2a241e')
+        .style('opacity', 0);
+
+      // Labels
+      [0, 6, 12, 18].forEach(h => {
+        const angle = angleScale(h) - Math.PI/2;
+        const labelRadius = radius + 18;
+        svg.append('text')
+          .attr('x', labelRadius * Math.cos(angle))
+          .attr('y', labelRadius * Math.sin(angle))
+          .attr('text-anchor', 'middle')
+          .attr('dy', '0.35em')
+          .attr('fill', '#6b635a')
+          .attr('font-size', '11px')
+          .text(h === 0 ? '12AM' : h === 12 ? '12PM' : h < 12 ? h + 'AM' : (h-12) + 'PM');
+      });
+
+      // Center
+      const peak = hourData.reduce((max, d) => d.count > max.count ? d : max, hourData[0]);
+      svg.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '-0.1em')
+        .attr('fill', '#c9a87c')
+        .attr('font-family', 'Playfair Display')
+        .attr('font-size', '36px')
+        .text(formatHour(peak.hour));
+
+      svg.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '1.5em')
+        .attr('fill', '#6b635a')
+        .attr('font-size', '12px')
+        .attr('letter-spacing', '1.5px')
+        .text('PEAK HOUR');
+
+      container._svg = svg;
+    }
+
+    // Todo Progress
+    function buildTodoChart() {
+      const container = document.getElementById('todo-chart');
+      const width = 260;
+      const height = 260;
+      const radius = 100;
+      const strokeWidth = 14;
+
+      const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .append('g')
+        .attr('transform', `translate(${width/2},${height/2})`);
+
+      const todos = DATA.todos;
+      const circumference = 2 * Math.PI * radius;
+
+      // Background
+      svg.append('circle')
+        .attr('r', radius)
+        .attr('fill', 'none')
+        .attr('stroke', '#2a241e')
+        .attr('stroke-width', strokeWidth);
+
+      // Progress
+      const progress = svg.append('circle')
+        .attr('r', radius)
+        .attr('fill', 'none')
+        .attr('stroke', '#c9a87c')
+        .attr('stroke-width', strokeWidth)
+        .attr('stroke-linecap', 'round')
+        .attr('stroke-dasharray', circumference)
+        .attr('stroke-dashoffset', circumference)
+        .attr('transform', 'rotate(-90)');
+
+      svg.append('text')
+        .attr('text-anchor', 'middle')
+        .attr('dy', '0.1em')
+        .attr('fill', '#e8e2da')
+        .attr('font-family', 'Playfair Display')
+        .attr('font-size', '42px')
+        .attr('class', 'todo-percent')
+        .text('0%');
+
+      // Stats below
+      const statsHtml = `
+        <div class="progress-stats">
+          <div class="progress-stat">
+            <div class="progress-stat-value">${todos.completed}</div>
+            <div class="progress-stat-label">Done</div>
+          </div>
+          <div class="progress-stat">
+            <div class="progress-stat-value">${todos.pending}</div>
+            <div class="progress-stat-label">Pending</div>
+          </div>
+          <div class="progress-stat">
+            <div class="progress-stat-value">${todos.total}</div>
+            <div class="progress-stat-label">Total</div>
+          </div>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', statsHtml);
+
+      container._progress = progress;
+      container._circumference = circumference;
+      container._percent = todos.completionRate;
+    }
+
+    // Animations
+    function runAnimations() {
+      const tl = gsap.timeline();
+
+      tl.to('.header', { opacity: 1, duration: 0.8, ease: 'power2.out' });
+
+      tl.to('.kpi-card', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: 'power2.out'
+      }, '-=0.4');
+
+      // Count KPIs
+      document.querySelectorAll('.kpi-value').forEach((el, i) => {
+        const target = parseInt(el.dataset.target);
+        const prefix = el.dataset.prefix || '';
+        gsap.to(el, {
+          innerHTML: target,
+          duration: 2,
+          delay: 0.6 + i * 0.1,
+          ease: 'power2.out',
+          snap: { innerHTML: 1 },
+          onUpdate: function() {
+            el.innerHTML = prefix + Math.round(parseFloat(el.innerHTML)).toLocaleString();
+          }
+        });
+      });
+
+      tl.to('.section', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out'
+      }, '-=1.5');
+
+      // Contribution cells
+      setTimeout(() => {
+        gsap.to('.contribution-cell', {
+          opacity: 1,
+          duration: 0.02,
+          stagger: 0.005
+        });
+      }, 1000);
+
+      // Language bars
+      setTimeout(() => {
+        document.querySelectorAll('.language-bar').forEach(bar => {
+          bar.style.width = bar.dataset.width;
+        });
+      }, 1500);
+
+      // Timeline
+      setTimeout(() => {
+        const container = document.getElementById('timeline-chart');
+        if (container._line) {
+          gsap.to(container._line.node(), { strokeDashoffset: 0, duration: 2, ease: 'power2.out' });
+          gsap.to(container._area.node(), { opacity: 1, duration: 1, delay: 1 });
+          gsap.to('#timeline-chart svg circle', { opacity: 1, duration: 0.5, delay: 2 });
+          gsap.to('#timeline-chart svg text:last-of-type', { opacity: 1, duration: 0.5, delay: 2 });
+        }
+      }, 2000);
+
+      // Model chart
+      setTimeout(() => {
+        gsap.to('#model-chart .arc path', { opacity: 1, duration: 0.6, stagger: 0.15 });
+      }, 2500);
+
+      // Hour chart
+      setTimeout(() => {
+        gsap.to('#hour-chart .hour-segment', { opacity: 1, duration: 0.04, stagger: 0.03 });
+      }, 3000);
+
+      // Todo ring
+      setTimeout(() => {
+        const container = document.getElementById('todo-chart');
+        if (container._progress) {
+          const offset = container._circumference * (1 - container._percent / 100);
+          gsap.to(container._progress.node(), { strokeDashoffset: offset, duration: 1.5, ease: 'power2.out' });
+          gsap.to('.todo-percent', {
+            innerHTML: container._percent,
+            duration: 1.5,
+            ease: 'power2.out',
+            snap: { innerHTML: 1 },
+            onUpdate: function() {
+              document.querySelector('.todo-percent').innerHTML = Math.round(parseFloat(document.querySelector('.todo-percent').innerHTML)) + '%';
+            }
+          });
+        }
+      }, 3500);
+    }
+
+    function replayAnimations() {
+      gsap.set('.header', { opacity: 0 });
+      gsap.set('.kpi-card', { opacity: 0, y: 10 });
+      gsap.set('.section', { opacity: 0, y: 15 });
+      gsap.set('.contribution-cell', { opacity: 0 });
+      document.querySelectorAll('.language-bar').forEach(bar => bar.style.width = '0%');
+      document.querySelectorAll('.kpi-value').forEach(el => {
+        el.innerHTML = (el.dataset.prefix || '') + '0';
+      });
+
+      const timelineContainer = document.getElementById('timeline-chart');
+      if (timelineContainer._line) {
+        timelineContainer._line.attr('stroke-dashoffset', timelineContainer._totalLength);
+        timelineContainer._area.style('opacity', 0);
+      }
+      gsap.set('#timeline-chart svg circle', { opacity: 0 });
+      gsap.set('#model-chart .arc path', { opacity: 0 });
+      gsap.set('#hour-chart .hour-segment', { opacity: 0 });
+
+      const todoContainer = document.getElementById('todo-chart');
+      if (todoContainer._progress) {
+        gsap.set(todoContainer._progress.node(), { strokeDashoffset: todoContainer._circumference });
+      }
+
+      setTimeout(runAnimations, 100);
+    }
+
+    function setMode(mode) {
+      const dashboard = document.getElementById('dashboard');
+      document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      dashboard.classList.toggle('tiktok-mode', mode === 'tiktok');
+    }
+
+    function formatNumber(num) {
+      if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
+      if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
+      if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+      return num.toLocaleString();
+    }
+
+    function formatHour(hour) {
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      const h = hour % 12 || 12;
+      return h + ampm;
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
