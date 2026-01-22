@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to Build a Dashboard from Your Claude Code Usage Data"
+title: "Claude Pilled 💊: How to Build a Dashboard from Your Claude Code Usage Data"
 date: 2026-01-21
 categories: [AI, Development, Tutorial]
 description: "Claude Code tracks everything. Here's how to extract that data, prompt Claude to visualize it, and what patterns you might discover about your own AI collaboration habits."
@@ -45,7 +45,7 @@ All your usage data lives in **~/.claude/**. Here's what's inside:
 
 Here's the prompt I used to kick off the dashboard build:
 
-> "Analyze the data in ~/.claude/ for usage patterns, usage over time, how I've advanced in my Claude Code usage. Look at MCP and skill calls, feedback loops or error loops. Look at how much activity we've generated from when I first used Claude Code to today. Create a user-centric dashboard that displays all of this in an intuitive way I can share. Have it open in a browser with D3.js animations, statistics, and big KPI numbers."
+> "Analyze the data in ~/.claude/ for usage patterns, usage over time, how I've advanced in my Claude Code usage. Look at MCP tools and skill invocations, feedback loops or error loops. Look at how much activity we've generated from when I first used Claude Code to today. Create a user-centric dashboard that displays all of this in an intuitive way I can share. Include a packed bubble chart for MCP servers and a 3-column layout for skills by category. Have it open in a browser with D3.js animations, statistics, and big KPI numbers."
 
 Claude Code then:
 1. Explored each data source to understand the schema
@@ -65,7 +65,6 @@ const dashboardData = {
   kpis: {
     totalMessages: stats.totalMessages,
     totalSessions: stats.totalSessions,
-    totalTokens: derived.totalTokens,
     estimatedCost: derived.estimatedCost,
     cacheSavings: derived.cacheSavings,
     hoursSaved: derived.hoursSaved
@@ -77,9 +76,15 @@ const dashboardData = {
   })),
   modelUsage: Object.entries(stats.modelUsage),
   hourlyActivity: Object.entries(stats.hourCounts),
-  // ... extracted from history.jsonl
   languages: extractLanguagesFromHistory(),
-  commitsByDate: extractCommitsFromHistory()
+  commitsByDate: extractCommitsFromHistory(),
+  // MCP servers you have configured
+  configuredMcps: discoverMcpServers(),
+  // Skills organized by category
+  skillUsage: {
+    all: extractSkillInvocations(),
+    uniqueByCategory: { anthropic: 8, community: 1, user: 7 }
+  }
 };
 ```
 
@@ -167,6 +172,35 @@ Later sessions: mostly Opus for complex architectural work.
 
 The data showed a clear transition as projects moved from prototyping to production. Different phases need different models.
 
+### MCP Tools: The Hidden Multipliers
+
+The packed bubble chart showing my connected MCP servers was eye-opening. Seven tools that extend Claude's capabilities:
+
+- **Supabase** - Database queries and management
+- **Claude in Chrome** - Browser automation and testing
+- **Context7** - Documentation lookups
+- **GitHub** - Repository operations
+- **Playwright** - End-to-end testing
+- **Slack** - Team notifications
+- **Railway** - Deployment automation
+
+These aren't just plugins—they're force multipliers. Each MCP connection means Claude can take action instead of just giving instructions.
+
+### Skills: Workflows I Actually Use
+
+The 3-column skills breakdown revealed my workflow patterns:
+
+| Anthropic (8) | Community (1) | My Skills (7) |
+|---------------|---------------|---------------|
+| frontend-design | superpowers-brainstorming | document-progress |
+| skill-creator | | project-onboarding |
+| webapp-testing | | gemini-ui-generator |
+| brand-guidelines | | legal-assistant |
+| security-review | | social-digital-marketing |
+| pdf, pptx, xlsx | | kevin-magnan-resume-builder |
+
+The Anthropic skills handle document generation and code review. Community skills like brainstorming help with ideation. My custom skills automate repetitive project tasks—onboarding to new codebases, documenting progress, generating UI with Gemini.
+
 ## Prompts to Try Yourself
 
 Start with exploration:
@@ -176,7 +210,7 @@ Then go deeper:
 > "Parse my ~/.claude/history.jsonl and show me which projects I've spent the most time on"
 
 Build the visualization:
-> "Create a single-file HTML dashboard with D3.js showing my Claude Code usage. Include: daily message timeline, model usage donut chart, hourly activity heatmap, and language breakdown. Make it dark mode with animated counters."
+> "Create a single-file HTML dashboard with D3.js showing my Claude Code usage. Include: daily message timeline, model usage donut chart, hourly activity heatmap, language breakdown, MCP tools as a packed bubble chart, and skills organized in 3 columns by category. Make it dark mode with animated counters."
 
 Customize the aesthetic:
 > "Use the frontend-design skill to match my website's aesthetic: dark backgrounds, copper accents, Playfair Display headers"
@@ -192,4 +226,4 @@ The dashboard itself took about two hours to build and iterate. The insights wil
 
 ---
 
-*My dashboard is live at [83 Days with Claude](/dashboard/claude-code-dashboard.html). Fork the approach, build your own, and see what your data reveals.*
+*My dashboard is live at [Claude Pilled 💊](/dashboard/claude-code-dashboard.html). Fork the approach, build your own, and see what your data reveals.*
