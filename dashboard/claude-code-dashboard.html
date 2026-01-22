@@ -429,6 +429,295 @@
       z-index: 1000;
     }
 
+    /* MCP Chart */
+    .mcp-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .mcp-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .mcp-name {
+      width: 160px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      text-align: right;
+      font-family: 'Source Sans 3', monospace;
+    }
+
+    .mcp-bar-container {
+      flex: 1;
+      height: 20px;
+      background: var(--bg-card);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .mcp-bar {
+      height: 100%;
+      border-radius: 10px;
+      transition: width 1s ease-out;
+    }
+
+    .mcp-count {
+      width: 80px;
+      font-size: 16px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Skills Chart */
+    .skills-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .skills-categories {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .skill-category {
+      text-align: center;
+    }
+
+    .skill-category-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .skill-category-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .skill-category.anthropic .skill-category-value { color: #a855f7; }
+    .skill-category.community .skill-category-value { color: #3b82f6; }
+    .skill-category.user .skill-category-value { color: var(--accent-copper); }
+
+    .skills-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .skills-column {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      border-top: 3px solid;
+    }
+
+    .skills-column.anthropic { border-color: #a855f7; }
+    .skills-column.community { border-color: #3b82f6; }
+    .skills-column.user { border-color: var(--accent-copper); }
+
+    .skills-column-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .skills-column-count {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36px;
+      font-weight: 500;
+      display: block;
+      line-height: 1;
+    }
+
+    .skills-column.anthropic .skills-column-count { color: #a855f7; }
+    .skills-column.community .skills-column-count { color: #3b82f6; }
+    .skills-column.user .skills-column-count { color: var(--accent-copper); }
+
+    .skills-column-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .skills-column-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .skills-column .skill-tag {
+      display: block;
+      font-size: 12px;
+      padding: 6px 10px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-family: 'Source Sans 3', monospace;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .skills-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 16px;
+      background: var(--bg-card);
+      border-radius: 8px;
+      border-left: 4px solid;
+    }
+
+    .skill-item.anthropic { border-color: #a855f7; }
+    .skill-item.community { border-color: #3b82f6; }
+    .skill-item.user { border-color: var(--accent-copper); }
+
+    .skill-name {
+      flex: 1;
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-family: 'Source Sans 3', monospace;
+    }
+
+    .skill-count {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .skill-badge {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .skill-badge.anthropic { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+    .skill-badge.community { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+    .skill-badge.user { background: rgba(201, 168, 124, 0.2); color: var(--accent-copper); }
+
+    /* MCP Packed Bubble Chart */
+    .mcp-bubble-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      height: 400px;
+      margin: 0 auto;
+    }
+
+    .mcp-bubble-container svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .mcp-bubble-node {
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    .mcp-bubble-node:hover {
+      filter: brightness(1.1);
+    }
+
+    .mcp-bubble-text {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      fill: white;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      pointer-events: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .skills-column {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 24px;
+      border-top: 4px solid;
+    }
+
+    .skills-column.superpowers { border-color: #a855f7; }
+    .skills-column.document { border-color: #3b82f6; }
+    .skills-column.user { border-color: var(--accent-copper); }
+
+    .skills-column-header {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skills-column.superpowers .skills-column-header { color: #a855f7; }
+    .skills-column.document .skills-column-header { color: #3b82f6; }
+    .skills-column.user .skills-column-header { color: var(--accent-copper); }
+
+    .skills-column-count {
+      font-size: 24px;
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 10px;
+      margin: 4px;
+      background: var(--bg-secondary);
+      border-radius: 16px;
+      color: var(--text-secondary);
+      font-family: 'Source Sans 3', monospace;
+    }
+
+    @media (max-width: 768px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
       .kpi-grid {
@@ -486,6 +775,38 @@
       <p class="section-subtitle">Files touched across all sessions</p>
       <div class="chart-container">
         <div class="languages-chart" id="languages-chart"></div>
+      </div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- MCP Usage -->
+    <section class="section" id="mcp-section">
+      <div class="section-label">MCP Ecosystem</div>
+      <h2 class="section-title">Connected Tools</h2>
+      <p class="section-subtitle">Model Context Protocol integrations in my workflow</p>
+      <div class="chart-container">
+        <div class="mcp-bubble-container" id="mcp-chart"></div>
+      </div>
+    </section>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-dot"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- Skills Usage -->
+    <section class="section" id="skills-section">
+      <div class="section-label">Skills Usage</div>
+      <h2 class="section-title">Custom Workflows</h2>
+      <p class="section-subtitle">Skills invoked across all sessions</p>
+      <div class="chart-container">
+        <div class="skills-chart" id="skills-chart"></div>
       </div>
     </section>
 
@@ -570,6 +891,8 @@
       buildKPIs();
       buildContributionGraph();
       buildLanguages();
+      buildMcpChart();
+      buildSkillsChart();
       buildTimeline();
       buildModelChart();
       buildHourChart();
@@ -695,6 +1018,146 @@
           </div>
         `;
       }).join('');
+    }
+
+    // MCP Packed Bubble Chart
+    function buildMcpChart() {
+      const container = document.getElementById('mcp-chart');
+      const configuredMcps = DATA.configuredMcps || [];
+
+      if (configuredMcps.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">No MCP data available</p>';
+        return;
+      }
+
+      const width = 500;
+      const height = 400;
+
+      // Assign sizes - larger for longer names
+      const sizeMap = {
+        'claude-in-chrome': 95,
+        'playwright': 80,
+        'supabase': 70,
+        'context7': 55,
+        'github': 50,
+        'slack': 45,
+        'railway': 60
+      };
+
+      const data = configuredMcps.map(mcp => ({
+        name: mcp.name,
+        value: sizeMap[mcp.name] || 50,
+        color: mcp.color
+      }));
+
+      // Create hierarchy for pack layout
+      const hierarchy = d3.hierarchy({ children: data })
+        .sum(d => d.value * d.value);
+
+      const pack = d3.pack()
+        .size([width - 20, height - 20])
+        .padding(8);
+
+      const root = pack(hierarchy);
+
+      const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMidYMid meet');
+
+      const nodes = svg.selectAll('.mcp-bubble-node')
+        .data(root.leaves())
+        .enter()
+        .append('g')
+        .attr('class', 'mcp-bubble-node')
+        .attr('transform', d => `translate(${d.x + 10},${d.y + 10})`);
+
+      nodes.append('circle')
+        .attr('r', d => d.r)
+        .attr('fill', d => d.data.color)
+        .style('opacity', 0);
+
+      nodes.each(function(d) {
+        const node = d3.select(this);
+        const name = d.data.name;
+
+        if (name === 'claude-in-chrome') {
+          // Multi-line for claude-in-chrome
+          node.append('text')
+            .attr('class', 'mcp-bubble-text')
+            .attr('dy', '-0.3em')
+            .style('font-size', '11px')
+            .text('CLAUDE IN')
+            .style('opacity', 0);
+          node.append('text')
+            .attr('class', 'mcp-bubble-text')
+            .attr('dy', '0.9em')
+            .style('font-size', '11px')
+            .text('CHROME')
+            .style('opacity', 0);
+        } else if (name === 'playwright') {
+          node.append('text')
+            .attr('class', 'mcp-bubble-text')
+            .attr('dy', '0.3em')
+            .style('font-size', '11px')
+            .text('PLAYWRIGHT')
+            .style('opacity', 0);
+        } else {
+          node.append('text')
+            .attr('class', 'mcp-bubble-text')
+            .attr('dy', '0.3em')
+            .style('font-size', d => Math.max(9, d.r / 4) + 'px')
+            .text(name.toUpperCase())
+            .style('opacity', 0);
+        }
+      });
+
+      container._nodes = nodes;
+    }
+
+    // Skills Chart (3 columns: Anthropic | Community | My Skills)
+    function buildSkillsChart() {
+      const container = document.getElementById('skills-chart');
+      const skillUsage = DATA.skillUsage || { all: [], uniqueByCategory: { anthropic: 0, community: 0, user: 0 } };
+      const skills = skillUsage.all || [];
+      const unique = skillUsage.uniqueByCategory || { anthropic: 8, community: 1, user: 7 };
+
+      // Group skills by category
+      const anthropicSkills = skills.filter(s => s.category === 'anthropic');
+      const communitySkills = skills.filter(s => s.category === 'community');
+      const userSkills = skills.filter(s => s.category === 'user');
+
+      container.innerHTML = `
+        <div class="skills-columns">
+          <div class="skills-column anthropic">
+            <div class="skills-column-header">
+              <span class="skills-column-count">${unique.anthropic}</span>
+              <span class="skills-column-label">Anthropic</span>
+            </div>
+            <div class="skills-column-list">
+              ${anthropicSkills.map(s => `<div class="skill-tag">${s.skill}</div>`).join('')}
+            </div>
+          </div>
+          <div class="skills-column community">
+            <div class="skills-column-header">
+              <span class="skills-column-count">${unique.community}</span>
+              <span class="skills-column-label">Community</span>
+            </div>
+            <div class="skills-column-list">
+              ${communitySkills.map(s => `<div class="skill-tag">${s.skill}</div>`).join('')}
+            </div>
+          </div>
+          <div class="skills-column user">
+            <div class="skills-column-header">
+              <span class="skills-column-count">${unique.user}</span>
+              <span class="skills-column-label">My Skills</span>
+            </div>
+            <div class="skills-column-list">
+              ${userSkills.map(s => `<div class="skill-tag">${s.skill}</div>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
     }
 
     // Timeline
@@ -1046,6 +1509,18 @@
         });
       }, 1500);
 
+      // MCP bubbles
+      setTimeout(() => {
+        gsap.to('#mcp-chart circle', { opacity: 1, duration: 0.4, stagger: 0.1 });
+        gsap.to('#mcp-chart text', { opacity: 1, duration: 0.3, stagger: 0.1, delay: 0.2 });
+      }, 1800);
+
+      // Skills section
+      setTimeout(() => {
+        gsap.to('.skill-category-value', { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, from: { opacity: 0, y: 20 } });
+        gsap.to('.skill-item', { opacity: 1, x: 0, duration: 0.3, stagger: 0.05, delay: 0.3, from: { opacity: 0, x: -20 } });
+      }, 2100);
+
       // Timeline
       setTimeout(() => {
         const container = document.getElementById('timeline-chart');
@@ -1092,6 +1567,10 @@
       gsap.set('.section', { opacity: 0, y: 15 });
       gsap.set('.contribution-cell', { opacity: 0 });
       document.querySelectorAll('.language-bar').forEach(bar => bar.style.width = '0%');
+      gsap.set('#mcp-chart circle', { opacity: 0 });
+      gsap.set('#mcp-chart text', { opacity: 0 });
+      gsap.set('.skill-category-value', { opacity: 0, y: 20 });
+      gsap.set('.skill-item', { opacity: 0, x: -20 });
       document.querySelectorAll('.kpi-value').forEach(el => {
         el.innerHTML = (el.dataset.prefix || '') + '0';
       });

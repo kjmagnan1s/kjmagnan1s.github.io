@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-01-22T03:10:18.870Z",
+    "generatedAt": "2026-01-22T17:06:31.217Z",
     "firstDate": "2025-10-30T01:40:39.316Z",
     "lastDate": "2026-01-21",
     "daysActive": 41
@@ -16,7 +16,7 @@
     "avgMessagesPerDay": 953,
     "totalToolCalls": 11598,
     "longestStreak": 6,
-    "currentStreak": 1,
+    "currentStreak": 0,
     "planCount": 11
   },
   "timeline": [
@@ -409,14 +409,14 @@
       "color": "#eab308"
     },
     {
+      "name": "kevinmagnan",
+      "count": 66,
+      "color": "#3b82f6"
+    },
+    {
       "name": "TikTok",
       "count": 59,
       "color": "#eab308"
-    },
-    {
-      "name": "kevinmagnan",
-      "count": 49,
-      "color": "#3b82f6"
     },
     {
       "name": "ai-appliance-friend",
@@ -425,22 +425,22 @@
     },
     {
       "name": "Documents",
-      "count": 23,
+      "count": 26,
       "color": "#a855f7"
     }
   ],
   "commands": [
     {
       "name": "/compact",
-      "count": 391
+      "count": 392
     },
     {
       "name": "/model",
-      "count": 142
+      "count": 143
     },
     {
       "name": "/exit",
-      "count": 122
+      "count": 123
     },
     {
       "name": "/plugin",
@@ -578,11 +578,11 @@
   "totalCommits": 54,
   "hoursSaved": 613,
   "todos": {
-    "completed": 86,
-    "pending": 59,
-    "inProgress": 15,
-    "total": 160,
-    "completionRate": 54
+    "completed": 81,
+    "pending": 58,
+    "inProgress": 14,
+    "total": 153,
+    "completionRate": 53
   },
   "streaks": [
     {
@@ -691,5 +691,133 @@
     "messages": 990,
     "date": "2025-10-30"
   },
-  "errorPatterns": []
+  "errorPatterns": [],
+  "mcpUsage": [
+    {
+      "server": "claude-in-chrome",
+      "count": 606,
+      "color": "#3b82f6"
+    },
+    {
+      "server": "supabase",
+      "count": 116,
+      "color": "#3ecf8e"
+    },
+    {
+      "server": "railway-mcp-server",
+      "count": 114,
+      "color": "#a855f7"
+    },
+    {
+      "server": "servername",
+      "count": 19,
+      "color": "#64748b"
+    },
+    {
+      "server": "context7",
+      "count": 12,
+      "color": "#f59e0b"
+    }
+  ],
+  "skillUsage": {
+    "all": [
+      { "skill": "frontend-design", "category": "anthropic" },
+      { "skill": "skill-creator", "category": "anthropic" },
+      { "skill": "webapp-testing", "category": "anthropic" },
+      { "skill": "brand-guidelines", "category": "anthropic" },
+      { "skill": "security-review", "category": "anthropic" },
+      { "skill": "pdf", "category": "anthropic" },
+      { "skill": "pptx", "category": "anthropic" },
+      { "skill": "xlsx", "category": "anthropic" },
+      { "skill": "superpowers-brainstorming", "category": "community" },
+      { "skill": "document-progress", "category": "user" },
+      { "skill": "project-onboarding", "category": "user" },
+      { "skill": "project-onboarding-generic", "category": "user" },
+      { "skill": "kevin-magnan-resume-builder", "category": "user" },
+      { "skill": "gemini-ui-generator", "category": "user" },
+      { "skill": "legal-assistant", "category": "user" },
+      { "skill": "social-digital-marketing", "category": "user" }
+    ],
+    "uniqueByCategory": {
+      "anthropic": 8,
+      "community": 1,
+      "user": 7
+    },
+    "total": 16
+  },
+  "configuredMcps": [
+    {
+      "name": "supabase",
+      "color": "#3ecf8e",
+      "category": "database"
+    },
+    {
+      "name": "claude-in-chrome",
+      "color": "#3b82f6",
+      "category": "browser"
+    },
+    {
+      "name": "context7",
+      "color": "#f59e0b",
+      "category": "docs"
+    },
+    {
+      "name": "github",
+      "color": "#6e5494",
+      "category": "vcs"
+    },
+    {
+      "name": "playwright",
+      "color": "#e11d48",
+      "category": "testing"
+    },
+    {
+      "name": "slack",
+      "color": "#4a154b",
+      "category": "comms"
+    },
+    {
+      "name": "railway",
+      "color": "#a855f7",
+      "category": "deployment"
+    }
+  ],
+  "availableSkills": {
+    "superpowers": [
+      "brainstorming",
+      "dispatching-parallel-agents",
+      "executing-plans",
+      "finishing-a-development-branch",
+      "receiving-code-review",
+      "requesting-code-review",
+      "subagent-driven-development",
+      "systematic-debugging",
+      "test-driven-development",
+      "using-git-worktrees",
+      "using-superpowers",
+      "verification-before-completion",
+      "writing-plans",
+      "writing-skills"
+    ],
+    "documentSkills": [
+      "example-skill",
+      "frontend-design",
+      "writing-rules",
+      "agent-development",
+      "command-development",
+      "hook-development",
+      "mcp-integration",
+      "plugin-settings",
+      "plugin-structure",
+      "skill-development"
+    ],
+    "userSkills": [
+      "document-progress",
+      "project-onboarding",
+      "project-onboarding-generic",
+      "kevin-magnan-resume-builder",
+      "gemini-ui-generator",
+      "building-ai-agent-on-cloudflare"
+    ]
+  }
 }

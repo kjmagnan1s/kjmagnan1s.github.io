@@ -7,9 +7,9 @@ description: "Claude Code tracks everything. Here's how to extract that data, pr
 thumbnail: /assets/images/blog/claude-code-dashboard.png
 ---
 
-Claude Code tracks everything you do with it. Every message, every tool call, every model switch, every session. Most users never look at this data. That's a mistake.
+Claude Code tracks everything you do with it. Every message, every tool call, every model switch, every session. Most users never look at this data.
 
-I built a dashboard to visualize 83 days of my Claude Code usage. The process taught me more about how I work with AI than any of the actual work did. Here's how to do it yourself.
+So I built a dashboard to visualize 83 days of my Claude Code usage. The process taught me just as much if not more about how I work with AI than any of the actual work did. Here's how to do it yourself.
 
 *Credit: This idea came from [Thariq Shihipar](https://x.com/trq212), who works on Claude Code at Anthropic and [shared the approach on X](https://x.com/trq212/status/2013788736358887858).*
 
@@ -145,7 +145,7 @@ I assumed my iOS work (Swift) would dominate. Instead:
 | HTML | 6% |
 | Java | 3% |
 
-The Kotlin dominance came from porting LeaderShift to Android—a massive 15-phase project I had mentally underweighted. The data doesn't lie about where your time actually goes.
+The Kotlin dominance came from porting a new app I'm developing in iOS over to Android, a massive 15-phase project I had frankly forgotten about because I shipped this work off to a handful of agents to rebuild in Android and I haven't had time to touch it since.
 
 ### Activity Clusters Around Shipping
 
