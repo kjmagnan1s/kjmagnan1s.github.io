@@ -11,14 +11,11 @@ Claude Code tracks everything you do with it. Every message, every tool call, ev
 
 I built a dashboard to visualize 83 days of my Claude Code usage. The process taught me more about how I work with AI than any of the actual work did. Here's how to do it yourself.
 
-*Credit: This idea came from [Thariq Shihipar](https://x.com/trq212), who works on Claude Code at Anthropic and shared the approach:*
-
-<blockquote class="twitter-tweet"><a href="https://x.com/trq212/status/2013788736358887858"></a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js"></script>
+*Credit: This idea came from [Thariq Shihipar](https://x.com/trq212), who works on Claude Code at Anthropic and [shared the approach on X](https://x.com/trq212/status/2013788736358887858).*
 
 ## What Claude Code Actually Collects
 
-All your usage data lives in `~/.claude/`. Here's what's inside:
+All your usage data lives in **~/.claude/**. Here's what's inside:
 
 ```
 ~/.claude/
@@ -86,7 +83,7 @@ const dashboardData = {
 };
 ```
 
-The extraction script parses `history.jsonl` line by line, counting file extensions to determine language usage and searching for commit-related commands.
+The extraction script parses **history.jsonl** line by line, counting file extensions to determine language usage and searching for commit-related commands.
 
 ## Calculating Hours Saved
 
