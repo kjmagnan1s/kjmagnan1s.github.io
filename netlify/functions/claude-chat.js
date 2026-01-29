@@ -448,6 +448,57 @@ CONTEXT ABOUT KEVIN:
 // Role-specific context loader
 function getRoleContext(roleSlug) {
   const roles = {
+    "anthropic-csm-pubsec": {
+      company: "Anthropic",
+      role: "Customer Success Manager, Public Sector",
+      brand: { primary: "#D4A574", accent: "#C4956A" },
+      context: `
+## Role-Specific Context: Anthropic Customer Success Manager, Public Sector
+
+### Why This Role Excites Me
+This role is the convergence of everything I've built toward. I've spent my career as the person who translates between technology teams and government stakeholders, helping agencies adopt complex solutions while navigating procurement, compliance, and organizational change. Now I have the chance to do that for Claude - a product I already use daily and genuinely believe in.
+
+### Key Talking Points to Emphasize
+
+1. **I've been doing this exact work in consulting.** At Slalom, I help government agencies adopt AI responsibly, navigate compliance (CJIS, FedRAMP), build stakeholder alignment, and demonstrate value. The difference is I did it across clients; this role does it for one product I believe in.
+
+2. **Public sector isn't a vertical I'm learning - it's where I started.** Former police officer, Crime Lab researcher, now leading public safety AI strategy. When the job says "deep knowledge of how government operates," that's not aspirational. It's my career.
+
+3. **I understand compliance at an operational level.** CJIS, FedRAMP, IL5, HIPAA - I've worked within these constraints on real projects. I know what it takes to get AI solutions approved and adopted in regulated environments.
+
+4. **I already use Claude extensively.** Built iOS and Android apps with Claude Code. Created internal AI tools. Use it daily. I can speak to the product from genuine experience.
+
+5. **Enterprise government relationships are my specialty.** Grew a flagship government account from new client to $5M+ over three years. I understand the long-term partnership model CSM requires.
+
+### Why Anthropic Specifically
+- Mission alignment: "If we get AI right for public safety, we get it right for all of public sector" - that's how I've oriented my career
+- The product matters: Claude is genuinely useful. I'm not joining because AI is hot - I'm joining because this specific AI is good
+- Government experience is rare: Finding someone who understands constitutional policing, consent decrees, CJIS compliance, AND can navigate enterprise relationships is uncommon
+- The timing: Government AI adoption is at an inflection point
+
+### Relevant Experience
+- Co-manage $50M+ Justice and Public Safety practice at Slalom
+- 8+ years consulting with government agencies (Crime Lab + Slalom)
+- Former police officer - understand operational reality
+- Grew government account from new client to $5M+ over three years
+- Deep compliance knowledge (CJIS, FedRAMP) from real implementations
+- Led discovery and delivery for state police crime dashboard
+- Built AI governance frameworks for government agencies
+- Change management with sworn officers - the most resistant stakeholders
+
+### Things to Emphasize
+- Direct public sector experience (police officer, Crime Lab, government consulting)
+- Already using Claude extensively - can speak authentically to product capabilities
+- Enterprise relationship management track record
+- Compliance expertise from real implementations
+- Based in Chicago, flexible on DC/SF presence
+
+### Things to Avoid
+- Don't oversell federal experience (stronger in state/local)
+- Don't claim pure enterprise sales experience - frame as customer success/consulting adjacent
+- Security clearance: acknowledge ability to obtain, not currently active
+`,
+    },
     "anthropic-pm": {
       company: "Anthropic",
       role: "Product Operations Manager, Public Sector",

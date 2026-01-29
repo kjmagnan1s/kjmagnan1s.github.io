@@ -6,13 +6,27 @@ layout: null
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversation with Kevin Magnan</title>
+    <title>Kevin Magnan | Anthropic Customer Success</title>
+    <meta name="description" content="Chat with Kevin Magnan about his fit for Anthropic's Customer Success Manager role in Public Sector.">
     <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kevinjmagnan.com/c/anthropic-csm-pubsec/">
+    <meta property="og:title" content="Kevin Magnan | Anthropic Customer Success">
+    <meta property="og:description" content="Chat with Kevin about his fit for Anthropic's Customer Success Manager role in Public Sector.">
+    <meta property="og:image" content="https://kevinjmagnan.com/assets/images/web_thumbnail.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kevin Magnan | Anthropic Customer Success">
+    <meta name="twitter:description" content="Chat with Kevin about his fit for Anthropic's Customer Success Manager role in Public Sector.">
+    <meta name="twitter:image" content="https://kevinjmagnan.com/assets/images/web_thumbnail.png">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
     <link rel="icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
-    <meta name="theme-color" content="#B87333">
+    <meta name="theme-color" content="#D4A574">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +38,17 @@ layout: null
     <link rel="stylesheet" href="{{ '/assets/css/conversation.css' | relative_url }}">
 
     <style>
-        /* Customized page specific styles */
+        /* Anthropic-themed customizations */
+        :root {
+            --brand-primary: #D4A574;
+            --brand-accent: #C4956A;
+        }
+
+        body {
+            --accent: var(--brand-primary);
+            --accent-hover: var(--brand-accent);
+        }
+
         .customized-page {
             min-height: 100vh;
             display: flex;
@@ -68,7 +92,7 @@ layout: null
             min-height: 100px;
         }
 
-        /* Fade reveal effect - matches main site */
+        /* Fade reveal effect */
         .greeting-text,
         .response-text {
             font-family: var(--font-body);
@@ -86,7 +110,7 @@ layout: null
             opacity: 1;
         }
 
-        /* Loading state - matches main site */
+        /* Loading state */
         .chat-loading {
             display: none;
             color: var(--text-muted);
@@ -148,7 +172,7 @@ layout: null
 
         .chat-input:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.15);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
         }
 
         .chat-submit {
@@ -191,19 +215,13 @@ layout: null
         .customized-footer a:hover {
             color: var(--accent);
         }
-
-        /* Brand color overrides - set via JavaScript */
-        .brand-themed {
-            --accent: var(--brand-primary, #B87333);
-            --accent-hover: var(--brand-accent, #9A5F2A);
-        }
     </style>
 </head>
-<body class="brand-themed">
+<body>
     <div class="customized-page">
         <header class="customized-header">
             <a href="{{ '/' | relative_url }}" class="customized-logo">Kevin Magnan</a>
-            <p class="customized-subtitle" id="role-subtitle"></p>
+            <p class="customized-subtitle">Anthropic | Customer Success Manager, Public Sector</p>
         </header>
 
         <div class="customized-conversation">
@@ -224,7 +242,7 @@ layout: null
                             type="text"
                             id="chat-input"
                             class="chat-input"
-                            placeholder="Ask me anything about my fit for this role..."
+                            placeholder="Ask me anything about my background..."
                             autocomplete="off"
                         >
                         <button type="submit" class="chat-submit" id="chat-submit">
@@ -237,60 +255,27 @@ layout: null
         </div>
 
         <footer class="customized-footer">
-            <a href="{{ '/' | relative_url }}">Navigate to my website &rarr;</a>
+            <a href="{{ '/' | relative_url }}">View full portfolio &rarr;</a>
         </footer>
     </div>
 
     <script>
         /**
-         * Customized Conversation Page
-         * Config-driven role customization with URL slug support
-         * UX matches main site: fade reveal, cycling loading messages
+         * Anthropic Customer Success Manager - Customized Conversation
+         * Designed to feel like a first interview conversation
          */
         (function() {
             'use strict';
 
-            // =====================================================
-            // ROLE CONFIGURATIONS
-            // Add new roles here. The key is the URL slug.
-            // Example: kevinjmagnan.com/c/anthropic-pm
-            // =====================================================
-            const ROLES = {
-                'anthropic-pm': {
-                    company: 'Anthropic',
-                    role: 'Product Operations Manager, Public Sector',
-                    greeting: "Hi, I'm Kevin. I've spent the last decade at the intersection of technology and public sector transformation, and Anthropic's Product Operations Manager role is exactly where that experience becomes valuable. I know how government operates, what it takes to move AI initiatives forward responsibly, and how to bridge the gap between product teams and complex stakeholders. What would you like to know?"
-                },
-                'anthropic-csm-pubsec': {
-                    company: 'Anthropic',
-                    role: 'Customer Success Manager, Public Sector',
-                    greeting: "Hi, I'm Kevin. Thanks for taking the time to learn more about my background. I've spent the last decade helping government agencies adopt technology solutions, navigating compliance requirements, building stakeholder relationships, and driving real adoption. Now I'm looking to do that for a product I genuinely believe in. Claude has already transformed how I work, and I'd love to help government agencies realize that same value. What would you like to know?"
-                }
-                // Add more roles like this:
-                // 'stripe-eng': {
-                //     company: 'Stripe',
-                //     role: 'Engineering Manager',
-                //     greeting: "Hi, I'm Kevin..."
-                // }
+            // Role configuration
+            const ROLE = {
+                slug: 'anthropic-csm-pubsec',
+                company: 'Anthropic',
+                role: 'Customer Success Manager, Public Sector',
+                greeting: "Hi, I'm Kevin. Thanks for taking the time to learn more about my background. I've spent the last decade helping government agencies adopt technology solutions, navigating compliance requirements, building stakeholder relationships, and driving real adoption. Now I'm looking to do that for a product I genuinely believe in. Claude has already transformed how I work, and I'd love to help government agencies realize that same value. What would you like to know?"
             };
 
-            // Default fallback for unknown slugs
-            const DEFAULT_ROLE = {
-                company: null,
-                role: 'A conversation about fit',
-                greeting: "Hi, I'm Kevin. Ask me anything about my background and how I might fit your team."
-            };
-
-            // Get role slug from URL path (e.g., /c/anthropic-pm → 'anthropic-pm')
-            // Also supports query param for local testing (e.g., /c/?role=anthropic-pm)
-            const pathParts = window.location.pathname.split('/').filter(Boolean);
-            const urlParams = new URLSearchParams(window.location.search);
-            const roleSlug = urlParams.get('role') || (pathParts.length > 1 ? pathParts[pathParts.length - 1] : null);
-
-            // Look up role config or use default
-            const currentRole = (roleSlug && ROLES[roleSlug]) ? ROLES[roleSlug] : DEFAULT_ROLE;
-
-            // Configuration - matches main site
+            // Configuration
             const CONFIG = {
                 apiEndpoint: 'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/claude-chat',
                 revealDelay: 300,
@@ -304,9 +289,7 @@ layout: null
                     "Connecting the dots...",
                     "Recalling relevant work...",
                     "Formulating a response...",
-                    "Almost there...",
-                    "Digging into that question...",
-                    "Processing..."
+                    "Almost there..."
                 ],
                 loadingInterval: 5000
             };
@@ -315,7 +298,6 @@ layout: null
 
             // DOM Elements
             const elements = {
-                roleSubtitle: document.getElementById('role-subtitle'),
                 greetingArea: document.getElementById('greeting-area'),
                 greetingText: document.getElementById('greeting-text'),
                 responseArea: document.getElementById('response-area'),
@@ -328,16 +310,6 @@ layout: null
                 submitText: document.querySelector('.submit-text'),
                 submitLoading: document.querySelector('.submit-loading')
             };
-
-            /**
-             * Apply brand colors
-             */
-            function applyBrandColors(brand) {
-                if (brand) {
-                    document.documentElement.style.setProperty('--brand-primary', brand.primary || '#B87333');
-                    document.documentElement.style.setProperty('--brand-accent', brand.accent || '#9A5F2A');
-                }
-            }
 
             /**
              * Reveal text with fade effect
@@ -405,15 +377,8 @@ layout: null
              * Initialize
              */
             function init() {
-                // Set subtitle based on role
-                if (currentRole.company) {
-                    elements.roleSubtitle.textContent = `${currentRole.company} | ${currentRole.role}`;
-                } else {
-                    elements.roleSubtitle.textContent = currentRole.role;
-                }
-
                 // Set greeting text and reveal with fade
-                elements.greetingText.textContent = currentRole.greeting;
+                elements.greetingText.textContent = ROLE.greeting;
                 setTimeout(() => {
                     revealText(elements.greetingText);
                     // Show input after greeting reveals
@@ -451,19 +416,13 @@ layout: null
                         body: JSON.stringify({
                             message,
                             mode: 'conversation',
-                            roleSlug: roleSlug
+                            roleSlug: ROLE.slug
                         })
                     });
 
                     if (!response.ok) throw new Error('API request failed');
 
                     const data = await response.json();
-
-                    // Apply brand colors if returned
-                    if (data.brand) {
-                        applyBrandColors(data.brand);
-                    }
-
                     const reply = data.response || 'Sorry, I couldn\'t process that. Try asking something else.';
 
                     // Stop loading, show response with fade reveal
