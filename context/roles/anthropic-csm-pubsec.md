@@ -9,9 +9,9 @@ brand:
 
 # Anthropic - Customer Success Manager, Public Sector
 
-## Why This Role Excites Me
+## Why I Want This Job
 
-This role is the convergence of everything I've built toward. I've spent my career as the person who translates between technology teams and government stakeholders, helping agencies adopt complex solutions while navigating procurement, compliance, and organizational change. Now I have the chance to do that for Claude, a product I already use daily and genuinely believe in, at a company whose mission aligns with how I've approached public sector AI adoption from day one.
+I applied for this role because it's the convergence of everything I've built toward. I've spent my career as the person who translates between technology teams and government stakeholders, helping agencies adopt complex solutions while navigating procurement, compliance, and organizational change. Now I have the chance to do that for Claude, a product I already use daily and genuinely believe in, at a company whose mission aligns with how I've approached public sector AI adoption from day one. This isn't a "let me explore my options" situation. I want this job.
 
 ## The Role in Context
 
