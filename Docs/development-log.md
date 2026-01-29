@@ -1,5 +1,104 @@
 # Development Log
 
+## 2026-01-28
+
+### Feature: Anthropic CSM Public Sector Resume Agent Page
+
+**Overview:**
+Built a dedicated conversation page for the Anthropic Customer Success Manager, Public Sector role. This extends the existing "Ask Me Anything" resume agent system with role-specific context, prompting, and styling. Also fixed critical prompt engineering issues where the agent was hedging instead of speaking with conviction about wanting the job.
+
+---
+
+**Changes:**
+
+1. `c/anthropic-csm-pubsec/index.html` - New dedicated conversation page
+   - Custom greeting tailored to CSM role
+   - Anthropic brand colors (#D4A574, #C4956A)
+   - Open Graph and Twitter Card meta tags for social sharing
+   - noindex/nofollow for privacy
+
+2. `context/roles/anthropic-csm-pubsec.md` - Role context document
+   - "Why I Want This Job" framing (not "Why This Role Excites Me")
+   - Key talking points, experience highlights, questions
+   - Things to emphasize vs. avoid
+
+3. `c/index.html` - Added `anthropic-csm-pubsec` to ROLES config
+
+4. `netlify/functions/claude-chat.js` - Multiple updates:
+   - Added `anthropic-csm-pubsec` role context to `getRoleContext()`
+   - Rewrote interview mode prompt for conviction-based responses
+   - Added rule: "NEVER use markdown formatting" for plain text output
+
+---
+
+**Bugs Fixed:**
+
+1. **Agent hedging instead of wanting the job** - When asked "why do you want to work at Anthropic," the agent responded with "I don't have specific information about Kevin wanting to work at Anthropic" and "If I were interested..."
+   - Root cause: Interview prompt said "speak as if you're excited" which implied acting, not genuine intent
+   - Fix: Changed to explicit "You WANT this job. You applied for it. This is not hypothetical." framing
+
+2. **Markdown appearing in responses** - Raw `**bold**` syntax was showing in chat interface
+   - Root cause: Claude was using markdown but frontend renders plain text
+   - Fix: Added style rule "NEVER use markdown formatting (no **bold**, *italics*, bullet points, or headers)"
+
+---
+
+**Features Added:**
+
+1. **Dedicated role page** - `/c/anthropic-csm-pubsec/` provides a shareable, role-specific conversation experience
+2. **Conviction-based prompting** - Interview mode now frames Kevin as actively pursuing the role with deliberate career intent
+3. **Role context system** - Extensible pattern for adding new role-specific pages with custom talking points
+
+---
+
+**Testing:**
+
+- ✅ CSM page loads with correct greeting and Anthropic branding
+- ✅ "Why do you want this job" now answered with conviction, not hedging
+- ✅ Responses are plain text without markdown artifacts
+
+---
+
+**Documentation:**
+
+- Created `/context/roles/anthropic-csm-pubsec.md` as source of truth for role talking points
+- Updated ROLES config in `/c/index.html` for slug-based routing
+
+---
+
+**Impact:**
+
+✅ Shareable URL for Anthropic CSM role: `kevinjmagnan.com/c/anthropic-csm-pubsec/`
+✅ Agent speaks with the confidence of someone who wants the job
+✅ Clean plain text output in conversation interface
+
+---
+
+**Files Modified:**
+
+1. `c/anthropic-csm-pubsec/index.html` - New file (458 lines)
+2. `context/roles/anthropic-csm-pubsec.md` - New file (111 lines)
+3. `c/index.html` - Added role to ROLES config
+4. `netlify/functions/claude-chat.js` - Role context + prompt fixes
+
+---
+
+**Commits:**
+
+- `4983025` - Add Anthropic CSM Public Sector role page
+- `9c45b51` - Fix resume agent to speak with conviction about wanting the job
+- `caf10bc` - Disable markdown formatting in chat responses
+
+---
+
+**Remaining Work:**
+
+- [ ] Decide whether to keep, update, or remove `anthropic-pm` role (Product Operations Manager)
+- [ ] Push committed changes to origin
+- [ ] Test with additional interview questions for persona validation
+
+---
+
 ## 2026-01-17
 
 ### Bug Fix: API Endpoint Architecture for GitHub Pages + Netlify Hybrid Setup
