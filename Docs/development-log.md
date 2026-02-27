@@ -1,5 +1,110 @@
 # Development Log
 
+## 2026-02-27
+
+### Diagnostic: Full Website Health Check and Bug Fixes
+
+**Overview:**
+Ran a comprehensive diagnostic on kevinjmagnan.com using Chrome browser automation, codebase analysis, and GitHub/Netlify status checks. Identified three issues: the "Ask Me Anything" chat was erroring out due to Anthropic API spending limits (not a code bug), a portfolio image was 404ing due to a filename mismatch, and a stale 52MB binary was sitting in the repo. Fixed the two code issues and improved error handling so users see actionable messages instead of generic failures.
+
+---
+
+**Changes:**
+
+1. `index.html:219` - Fixed portfolio image path
+   - Before: `claude-code-dashboard.png` (hyphens, does not exist)
+   - After: `claude_code_dashboard.png` (underscores, matches actual file on disk)
+
+2. `_posts/2026-01-21-83-days-with-claude-code.md:7` - Fixed blog post thumbnail path
+   - Before: `/assets/images/blog/claude-code-dashboard.png` (wrong directory, wrong filename)
+   - After: `/assets/images/portfolio/claude_code_dashboard.png` (correct path)
+
+3. `assets/js/conversation.js` - Improved error handling in three API call paths
+   - `sendMessage()` (line 185): Parse error response body, detect rate-limit messages
+   - `handleTriggerSubmit()` catch block: Show rate-limit-specific message with email fallback
+   - `handleChatSubmit()` catch block: Same rate-limit handling
+   - `handleFitAnalysis()` (line 309): Same pattern for fit analysis API calls
+
+4. `assets/images/blog/Zoom.pkg` - Removed stale 52MB binary from repo
+
+---
+
+**Bugs Fixed:**
+
+1. **Portfolio image 404** - The "83 Days with Claude Code" card in "What I've Made" showed broken alt text instead of the dashboard screenshot
+   - Root cause: `index.html` referenced `claude-code-dashboard.png` (hyphens) but the actual file is `claude_code_dashboard.png` (underscores)
+   - Also affected: Blog post thumbnail referenced a nonexistent path in `/assets/images/blog/`
+   - Fix: Corrected both references to match the actual filename and directory
+
+2. **Generic error message on API failure** - Users saw "Something went wrong. Please try again." with no indication the issue was temporary or what to do instead
+   - Root cause: All API errors were caught and displayed with the same generic message
+   - Fix: Frontend now parses the error response from the Netlify function, detects "usage limits" or "rate" in the error details, and shows: "The AI is temporarily unavailable due to API limits. Please try again later, or reach out directly at kjmagnan1s@gmail.com."
+
+3. **Stale binary in repo** - `assets/images/blog/Zoom.pkg` (52MB) was deleted locally but not committed
+   - Fix: Committed the deletion
+
+---
+
+**Diagnostic Findings (No Code Fix Needed):**
+
+1. **"Ask Me Anything" chat broken** - Anthropic API returning 400: "You have reached your specified API usage limits. You will regain access on 2026-03-01 at 00:00 UTC."
+   - Not a code bug. Spending limit needs to be increased in the Anthropic dashboard.
+   - Affects both chat and fit analysis (same API key)
+
+2. **Site health otherwise good:**
+   - GitHub Pages status: "built", HTTPS cert valid through 2026-05-16
+   - Last 5 Netlify deploys: all succeeded
+   - Zero JavaScript console errors from site code (only noise from Chrome shopping extension)
+   - All 14/15 network resources loaded successfully (only the image 404)
+   - All 7 external links present and correct (LinkedIn, TikTok, GitHub, Bluesky, X, PackLlama, AIppliance)
+   - Page layout, styling, and responsive behavior all clean
+
+3. **Architecture note:** No rate limiting on the Netlify function endpoint, which likely contributed to hitting the API budget. Consider adding basic rate limiting in a future session.
+
+---
+
+**Testing:**
+
+- Loaded kevinjmagnan.com in fresh Chrome tab (no cookies/cache issues)
+- Verified all 7 images load (6/7 before fix, 7/7 after)
+- Submitted "What is Kevin's background?" to Ask Me Anything
+- Confirmed modal opens, loading messages cycle, then error displays
+- Captured full API error chain: frontend fetch -> Netlify function 500 -> Anthropic API 400 (rate limited)
+- Verified no site-originated JavaScript errors in console
+
+---
+
+**Impact:**
+
+- Visitors now see the dashboard screenshot in the portfolio grid instead of broken alt text
+- When the API is rate-limited, users get a clear message with an email fallback instead of a dead-end error
+- Repo is 52MB lighter without the stale Zoom installer
+
+---
+
+**Files Modified:**
+
+1. `index.html` - Fixed image path (1 line)
+2. `_posts/2026-01-21-83-days-with-claude-code.md` - Fixed thumbnail path (1 line)
+3. `assets/js/conversation.js` - Rate-limit error detection and messaging (+27 lines, -6 lines)
+4. `assets/images/blog/Zoom.pkg` - Deleted (52MB binary)
+
+---
+
+**Commits:**
+
+- `f38bba2` - fix: broken dashboard image and generic chat error messages
+
+---
+
+**Remaining Work:**
+
+- [ ] Increase Anthropic API spending limit (or wait for March 1 reset)
+- [ ] Consider adding rate limiting to Netlify function to prevent future budget exhaustion
+- [ ] Push committed changes to origin
+
+---
+
 ## 2026-01-28
 
 ### Feature: Anthropic CSM Public Sector Resume Agent Page
