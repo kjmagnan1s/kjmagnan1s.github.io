@@ -182,7 +182,14 @@
             body: JSON.stringify({ message, mode: 'conversation' })
         });
 
-        if (!response.ok) throw new Error('API request failed');
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            const details = errorData.details || '';
+            if (details.includes('usage limits') || details.includes('rate')) {
+                throw new Error('rate_limited');
+            }
+            throw new Error('API request failed');
+        }
 
         const data = await response.json();
         return data.response || 'Sorry, I couldn\'t process that. Try asking something else.';
@@ -235,7 +242,9 @@
         } catch (error) {
             console.error('Chat error:', error);
             stopLoadingMessages();
-            displayResponse('Something went wrong. Please try again.');
+            displayResponse(error.message === 'rate_limited'
+                ? 'The AI is temporarily unavailable due to API limits. Please try again later, or reach out directly at kjmagnan1s@gmail.com.'
+                : 'Something went wrong. Please try again.');
         }
     }
 
@@ -264,7 +273,9 @@
         } catch (error) {
             console.error('Chat error:', error);
             stopLoadingMessages();
-            displayResponse('Something went wrong. Please try again.');
+            displayResponse(error.message === 'rate_limited'
+                ? 'The AI is temporarily unavailable due to API limits. Please try again later, or reach out directly at kjmagnan1s@gmail.com.'
+                : 'Something went wrong. Please try again.');
         } finally {
             elements.chatSubmit.disabled = false;
             elements.submitText.style.display = 'inline';
@@ -295,14 +306,23 @@
                 body: JSON.stringify({ message: jobDescription, mode: 'fit-analysis' })
             });
 
-            if (!response.ok) throw new Error('API request failed');
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                const details = errorData.details || '';
+                if (details.includes('usage limits') || details.includes('rate')) {
+                    throw new Error('rate_limited');
+                }
+                throw new Error('API request failed');
+            }
 
             const data = await response.json();
             renderFitResults(data);
 
         } catch (error) {
             console.error('Fit analysis error:', error);
-            alert('Something went wrong analyzing the job description. Please try again.');
+            alert(error.message === 'rate_limited'
+                ? 'The AI is temporarily unavailable due to API limits. Please try again later.'
+                : 'Something went wrong analyzing the job description. Please try again.');
         } finally {
             elements.analyzeButton.disabled = false;
             elements.analyzeText.style.display = 'inline';

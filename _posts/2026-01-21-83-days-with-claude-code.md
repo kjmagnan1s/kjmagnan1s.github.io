@@ -4,7 +4,7 @@ title: "Claude Pilled 💊: How to Build a Dashboard from Your Claude Code Usage
 date: 2026-01-21
 categories: [AI, Development, Tutorial]
 description: "Claude Code tracks everything. Here's how to extract that data, prompt Claude to visualize it, and what patterns you might discover about your own AI collaboration habits."
-thumbnail: /assets/images/blog/claude-code-dashboard.png
+thumbnail: /assets/images/portfolio/claude_code_dashboard.png
 ---
 
 Claude Code tracks everything you do with it. Every message, every tool call, every model switch, every session. Most users never look at this data.
