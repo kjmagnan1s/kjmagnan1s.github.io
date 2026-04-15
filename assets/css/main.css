@@ -309,6 +309,11 @@ section {
     max-width: 65ch;
     margin: 0 auto;
     line-height: 1.6;
+    animation: fadeUp 0.8s ease-out 0.2s both;
+}
+
+.hero-social {
+    margin-bottom: var(--space-6);
     animation: fadeUp 0.8s ease-out 0.15s both;
 }
 

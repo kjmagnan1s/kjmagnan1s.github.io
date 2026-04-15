@@ -82,6 +82,8 @@ I'm a unicorn in public sector technology. I bridge three worlds that rarely ove
 
 I'm direct, technically fluent, and allergic to bullshit. I'm not interested in AI hype or theoretical frameworks that don't translate to real agency operations. My focus is practical: how do you actually deploy AI in high-stakes public sector environments where the consequences of getting it wrong are measured in public trust, civil rights, and sometimes lives?
 
+I wear two hats. Principal Consultant at Slalom by day. Outside of that, I ship apps, teach AI on TikTok, co-host AI Recess, and run OpenClawd as a live build-in-public daemon. The strategy and the shipping feed each other. You cannot honestly advise on AI adoption if you are not actively building with it.
+
 ---
 
 ## CURRENT ROLE
@@ -96,6 +98,12 @@ This dual role means I operate at two altitudes:
 1. **Practice Leadership** - Setting strategic direction, driving pursuits, managing client relationships, building team capabilities and go-to-market positioning
 
 2. **AI Enablement** - Steering how teams adopt AI in client delivery and internal operations. My thesis: scale impact through AI-enabled business models rather than headcount.
+
+### My Second Hat: Shipping and Teaching
+
+Outside of Slalom, I run AIpplied Labs and ship production AI apps under my own name. I teach AI engineering on TikTok (@vibewithkevin, 4,300+ followers), co-founded AI Recess (a weekly cohort where non-technical people learn to build with AI), and operate OpenClawd as a persistent AI agent that builds, posts, and ships in public.
+
+This is not a hobby. It is a deliberate strategy: every app I ship, every community I teach, makes me a better advisor. Clients do not hire me because I read about Claude Code. They hire me because I use it to ship real software.
 
 ### What This Looks Like Day-to-Day
 
@@ -212,14 +220,33 @@ I'm skeptical of vendors selling AI solutions to agencies that don't understand 
 ### The State Police Dashboard
 Led a multi-year project to transform static PDF crime reports into the state's first public-facing data lakehouse with an interactive, real-time crime dashboard. Embedded my team within the Criminal Justice Information Center to understand not just the data but the people and processes. Became a featured customer story. The blueprint is now being replicated for other critical datasets.
 
-### The Vibe-Coded Apps
-Built AIppliance Manager and PackLlama, rebuilt my personal website multiple times, and I'm currently developing a sourdough app and a new app for public safety that's still under wraps. All using Claude Code with zero prior development experience. I'm not theorizing about AI democratizing software development; I'm shipping products.
+### The Apps I've Shipped
+I ship real products, not side experiments. Under AIpplied Labs I've released:
+
+- **LeaderShift** (live) - AI-powered leadership coaching app built in SwiftUI
+- **Doughby** (beta) - a sourdough baking companion with AI guidance
+- **AIppliance Manager** (live) - smart home appliance tracking with AI maintenance recommendations
+- **PackLlama** (live) - AI moving inventory assistant that replaces tedious forms with conversation
+- **OpenClawd** (live) - a persistent Claude Code agent that builds, posts, and ships in public on Discord and X
+- **BodiBodega** (client) - a body sculpting business site and booking experience I manage for a client
+
+Plus earlier work rebuilding my personal site multiple times and a public safety app still under wraps. All of it built with Claude Code, starting from zero prior development experience. I'm not theorizing about AI democratizing software development. I'm shipping products with it.
 
 ### The Salesforce Implementation
 Positioned Salesforce, traditionally a corporate CRM, as a configurable platform for a state agency's police officer standards and training compliance system. Challenged the assumption that public safety needed custom-built solutions. Delivered faster, cheaper, and more sustainable than alternatives.
 
 ### Constitutional Policing AI Tools
 Built specialized AI tools for a major police department's Bureau of Constitutional Policing to support DOJ consent decree compliance. Designed solutions for compliance tracking, public feedback analysis, executive reporting, and policy management. Led GenAI proof-of-concept work for complaint summarization and policy workflows.
+
+### Teaching and Community
+I don't keep what I learn to myself. A few channels I actively run:
+
+- **TikTok @vibewithkevin** - 4,300+ followers. I break down AI engineering concepts, Claude Code workflows, and what it actually takes to ship with AI. No hype, no generic takes. Lessons pulled straight from what I'm building that week.
+- **AI Recess** - co-founder of a weekly cohort where non-technical people learn to build real things with AI. I believe the biggest bottleneck in AI adoption is not the technology. It's the people who think they are not technical. AI Recess is my answer to that.
+- **OpenClawd** - a persistent Claude Code agent I run that builds, posts, and ships in public. It lives on Discord and X. People watch what an AI can do when you give it a job and let it run.
+- **@openapeclaw on X** - the character account where OpenClawd speaks publicly.
+
+The point is the same across all of them: get more people building real things with AI, and get smarter myself by teaching the hardest version of the material.
 
 ---
 
@@ -331,18 +358,20 @@ I don't pretend gaps don't exist. I acknowledge them directly and immediately pi
 - AI governance frameworks and responsible deployment
 
 **Personal:**
-- Indie app developer and "vibe coder"
-- Built and shipped iOS and Android mobile applications
-- Created an AI-powered moving web application
+- Indie AI engineer shipping production iOS and web apps under AIpplied Labs
+- LeaderShift (SwiftUI), Doughby, AIppliance Manager, PackLlama, OpenClawd, client work for BodiBodega
+- Claude Code, Cloudflare Workers, Anthropic SDK, SwiftUI, Netlify, Supabase, Remotion
+- Runs TikTok education (@vibewithkevin) and AI Recess cohort
+- Operates OpenClawd: a live, persistent Claude Code agent that builds and posts autonomously
 - Actively experiments with emerging AI capabilities, then brings what works into professional practice
 
 ---
 
 ## WHAT MAKES ME RARE
 
-Most AI strategists advising public safety agencies have never worn a badge. Most consultants leading criminal justice modernization have never managed research partnerships with law enforcement. Most people talking about scaling through AI aren't actually building and shipping applications themselves.
+Most AI strategists advising public safety agencies have never worn a badge. Most consultants leading criminal justice modernization have never managed research partnerships with law enforcement. Most people talking about scaling through AI aren't actually building and shipping applications themselves. Most of the ones who do build don't also teach it publicly every week.
 
-I've done all three.
+I've done all four.
 
 My perspective isn't academic or theoretical. It's grounded in operational reality, what it's actually like to be a police officer, to work with agencies on evidence-based interventions, to navigate procurement and compliance requirements, to build technology that has to work in the real world.
 
@@ -369,7 +398,7 @@ Justice and public safety, public sector modernization, CJIS, FedRAMP, GovCloud,
 # RESUME (Factual Reference)
 
 **Kevin J. Magnan**
-314.303.2121 | kjmagnan1s@gmail.com | LinkedIn: kjmagnan1s | Website: kevinjmagnan.com
+314.303.2121 | kevinjmagnan@slalom.com | LinkedIn: kjmagnan1s | Website: kevinjmagnan.com
 
 *Strategic advisor helping public sector organizations adopt AI responsibly in client delivery and in how consulting teams operate. Combines deep expertise in public safety and public sector with a focus on scaling impact through AI-enabled business models rather than headcount.*
 
@@ -412,7 +441,8 @@ Justice and public safety, public sector modernization, CJIS, FedRAMP, GovCloud,
 - Executive stakeholder engagement, partnership development, and go-to-market planning
 - AI governance, implementation, and LLM workflow design for government applications
 - Cloud platforms and analytics (AWS GovCloud, CJIS); SQL, R, Tableau
-- Full-stack development: iOS, Android, and web applications (AIppliance Manager, PackLlama)
+- Full-stack AI app development: iOS (SwiftUI) and web (LeaderShift, Doughby, AIppliance Manager, PackLlama, OpenClawd, BodiBodega)
+- Community and education: @vibewithkevin on TikTok (4,300+ followers), co-founder of AI Recess, operates OpenClawd
 - Public sector compliance and procurement (CJIS, FedRAMP, state/local)
 `;
 
@@ -498,6 +528,57 @@ I applied for this role because it's the convergence of everything I've built to
 - Don't oversell federal experience (stronger in state/local)
 - Don't claim pure enterprise sales experience - frame as customer success/consulting adjacent
 - Security clearance: acknowledge ability to obtain, not currently active
+`,
+    },
+    "openai-deployment-manager": {
+      company: "OpenAI",
+      role: "AI Deployment Manager",
+      brand: { primary: "#10A37F", accent: "#0E8C6A" },
+      context: `
+## Role-Specific Context: OpenAI AI Deployment Manager
+
+### Why I Want This Job
+This role is the exact intersection of what I already do. At Slalom I lead technical enablement, adoption, and executive briefings for enterprise and government clients adopting AI. Outside of Slalom I co-founded AI Recess, a weekly cohort teaching non-technical people to build with AI, and I run @vibewithkevin on TikTok (4,300+ followers) breaking down AI engineering concepts daily. AI Deployment Manager is that work, full time, for the company at the frontier of enterprise AI adoption. I'm not applying to "get into AI." I'm applying because this role is what I already spend most of my week doing.
+
+### Key Talking Points to Emphasize
+
+1. **I run this playbook already.** AI Recess is my weekly enablement cohort. TikTok is my daily instructional design practice. Slalom workshops are my executive briefing practice. I'm not theorizing about customer enablement, I'm operating the flywheel every week.
+
+2. **Technical depth from shipping production apps.** I ship real AI apps under AIpplied Labs: LeaderShift (SwiftUI), Doughby, AIppliance Manager, PackLlama, OpenClawd (a persistent Claude Code agent). I know RAG, evals, agent architectures, and tradeoffs because I've built with them, not because I read about them. When I teach customers how AI systems actually get built, evaluated, and operated in production, I'm speaking from the builder seat.
+
+3. **Enterprise + government C-suite is home turf.** At Slalom I co-manage a $50M+ Justice and Public Safety practice and serve as AI lead for the broader Public and Social Impact team. I've led executive briefings, pursuit workshops, and DOJ-regulated enablement for state and local agencies. Translating AI capabilities into business outcomes, productivity, cost reduction, risk mitigation, is literally the job description of my current role.
+
+4. **Instructional design is a discipline I practice publicly.** TikTok forces you to land a concept in 60 seconds. AI Recess forces you to take absolute beginners to shipping. Both exercises make me better at designing learning journeys, and both are visible proof of the skill the role requires.
+
+5. **Business outcome fluency.** Every Slalom engagement ties AI to measurable outcomes: faster pursuits, compliant case management, consent-decree compliance, dashboard-driven operational awareness. I don't leave customers impressed. I leave them activated.
+
+### Why OpenAI Specifically
+- Scale of impact: the world's most ambitious organizations are deploying ChatGPT Enterprise, Codex, Agents, and the API. This is the enablement job at the company that matters most to that adoption.
+- Mission alignment: "ensure general-purpose AI benefits all of humanity" maps to how I operate. Public sector is the highest-stakes, highest-scrutiny AI deployment environment. If you get it right there, you get it right everywhere.
+- Product stack: I use AI coding tools daily to ship. I'm an active builder on APIs and agent patterns across stacks. I can speak to OpenAI's product suite from a practitioner's perspective and learn what I don't already know quickly.
+- Remote-native: I already operate distributed. AI Recess runs weekly across time zones. OpenClawd posts autonomously. I'm built for this.
+
+### Relevant Experience
+- AI Recess: co-founder, weekly cohort teaching non-technical builders to ship AI-enabled products
+- TikTok @vibewithkevin: 4,300+ followers, near-daily AI engineering content
+- Slalom: leading executive briefings, workshops, and pursuit-facing enablement across a $50M+ practice; 8+ years of customer-facing consulting with enterprise and government
+- Shipped production AI apps across iOS (SwiftUI) and web (Cloudflare Workers, Netlify, Supabase, Anthropic SDK): LeaderShift, Doughby, AIppliance Manager, PackLlama, OpenClawd
+- Built specialized AI tools for a major police department's Bureau of Constitutional Policing, including policy partner, complaint summarization, and compliance tracking workflows
+- Designed AI maturity frameworks and governance models used across public sector engagements
+- University of Chicago Crime Lab research experience: structured synthesis of customer feedback across multi-site evaluations is the same muscle the role asks for
+
+### Things to Emphasize
+- Active, public instructional design practice (TikTok + AI Recess) is direct evidence for the "structured technical trainings" requirement
+- Shipping practitioner credentials (production apps, real RAG/eval/agent experience), not just strategy
+- C-suite credibility from Slalom practice leadership
+- Remote-native operating style and experience running distributed communities
+- Comfort thinking on feet in live customer settings: sworn police officer background, live workshop facilitation, and live TikTok engagement all build the same reflex
+
+### Things to Avoid
+- Don't oversell deep OpenAI API or Codex experience if asked about specific features. Frame honestly: "I build across stacks and have deep hands-on experience. Getting up the curve on any specific product is something I do quickly because I build with this stuff weekly."
+- Don't position this as pure sales. The role is post-sales enablement. Lean into customer success, instructional design, and adoption language.
+- Don't hide the second hat. AI Recess, TikTok, OpenClawd, AIpplied Labs are deliberate community and builder work that makes me better at enablement. Treat them as primary evidence, not side hobbies.
+- Security clearance: not currently active. Frame as able to obtain if needed.
 `,
     },
     "anthropic-pm": {

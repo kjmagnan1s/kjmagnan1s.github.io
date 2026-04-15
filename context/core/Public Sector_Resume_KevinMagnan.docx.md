@@ -1,5 +1,5 @@
 **Kevin J. Magnan**  
-314.303.2121 | [kjmagnan1s@gmail.com](mailto:kjmagnan1s@gmail.com) | [LinkedIn](https://www.linkedin.com/in/kjmagnan1s/) | [Website](https://www.kevinjmagnan.com/) | [Medium](https://medium.com/@kevin.magnan)
+314.303.2121 | [kevinjmagnan@slalom.com](mailto:kevinjmagnan@slalom.com) | [LinkedIn](https://www.linkedin.com/in/kjmagnan1s/) | [Website](https://www.kevinjmagnan.com/) | [Medium](https://medium.com/@kevin.magnan)
 
 *Strategic advisor helping public sector organizations adopt AI responsibly in client delivery and in how consulting teams operate. Combines deep expertise in public safety and public sector with a focus on scaling impact through AI-enabled business models rather than headcount.*
 

@@ -1,0 +1,458 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Magnan | OpenAI AI Deployment Manager</title>
+    <meta name="description" content="Chat with Kevin Magnan about his fit for OpenAI's AI Deployment Manager role.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kevinjmagnan.com/c/openai-deployment-manager/">
+    <meta property="og:title" content="Kevin Magnan | OpenAI AI Deployment Manager">
+    <meta property="og:description" content="Chat with Kevin about his fit for OpenAI's AI Deployment Manager role.">
+    <meta property="og:image" content="https://kevinjmagnan.com/assets/images/web_thumbnail.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kevin Magnan | OpenAI AI Deployment Manager">
+    <meta name="twitter:description" content="Chat with Kevin about his fit for OpenAI's AI Deployment Manager role.">
+    <meta name="twitter:image" content="https://kevinjmagnan.com/assets/images/web_thumbnail.png">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
+    <link rel="icon" href="{{ '/assets/images/favicon_v2.png' | relative_url }}" type="image/png">
+    <meta name="theme-color" content="#10A37F">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/conversation.css' | relative_url }}">
+
+    <style>
+        /* OpenAI-themed customizations */
+        :root {
+            --brand-primary: #10A37F;
+            --brand-accent: #0E8C6A;
+        }
+
+        body {
+            --accent: var(--brand-primary);
+            --accent-hover: var(--brand-accent);
+        }
+
+        .customized-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-8);
+        }
+
+        .customized-header {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .customized-logo {
+            font-family: var(--font-heading);
+            font-size: var(--text-xl);
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: var(--space-2);
+        }
+
+        .customized-logo:hover {
+            color: var(--accent);
+        }
+
+        .customized-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .customized-conversation {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .customized-conversation .conversation-greeting,
+        .customized-conversation .conversation-response {
+            text-align: center;
+            min-height: 100px;
+        }
+
+        /* Fade reveal effect */
+        .greeting-text,
+        .response-text {
+            font-family: var(--font-body);
+            font-size: var(--text-xl);
+            line-height: 1.6;
+            margin: 0;
+            color: var(--text-muted);
+            opacity: 0.3;
+            transition: color 1.2s ease, opacity 1.2s ease;
+        }
+
+        .greeting-text.revealed,
+        .response-text.revealed {
+            color: var(--text-primary);
+            opacity: 1;
+        }
+
+        /* Loading state */
+        .chat-loading {
+            display: none;
+            color: var(--text-muted);
+            font-size: var(--text-base);
+            font-style: italic;
+            text-align: center;
+            margin: var(--space-4) 0;
+        }
+
+        .chat-loading.active {
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .conversation-input {
+            width: 100%;
+            max-width: 700px;
+            margin: var(--space-8) auto 0;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.4s ease forwards;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: var(--space-3);
+            width: 100%;
+        }
+
+        .chat-input {
+            flex: 1;
+            min-width: 300px;
+            padding: var(--space-4) var(--space-6);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            color: var(--text-primary);
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .chat-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .chat-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.15);
+        }
+
+        .chat-submit {
+            padding: var(--space-4) var(--space-6);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--stone-900);
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .chat-submit:hover {
+            background: var(--accent-hover);
+        }
+
+        .chat-submit:active {
+            transform: scale(0.98);
+        }
+
+        .chat-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .customized-footer {
+            margin-top: auto;
+            padding-top: var(--space-12);
+            text-align: center;
+        }
+
+        .customized-footer a {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        .customized-footer a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="customized-page">
+        <header class="customized-header">
+            <a href="{{ '/' | relative_url }}" class="customized-logo">Kevin Magnan</a>
+            <p class="customized-subtitle">OpenAI | AI Deployment Manager</p>
+        </header>
+
+        <div class="customized-conversation">
+            <div class="conversation-container">
+                <div class="conversation-greeting" id="greeting-area">
+                    <p class="greeting-text" id="greeting-text"></p>
+                </div>
+
+                <div class="conversation-response" id="response-area" style="display: none;">
+                    <p class="response-text" id="response-text"></p>
+                </div>
+
+                <p class="chat-loading" id="chat-loading">Thinking...</p>
+
+                <div class="conversation-input" id="input-area" style="display: none;">
+                    <form id="chat-form" class="chat-form">
+                        <input
+                            type="text"
+                            id="chat-input"
+                            class="chat-input"
+                            placeholder="Ask me anything about my background..."
+                            autocomplete="off"
+                        >
+                        <button type="submit" class="chat-submit" id="chat-submit">
+                            <span class="submit-text">Ask</span>
+                            <span class="submit-loading" style="display: none;">...</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class="customized-footer">
+            <a href="{{ '/' | relative_url }}">View full portfolio &rarr;</a>
+        </footer>
+    </div>
+
+    <script>
+        /**
+         * OpenAI AI Deployment Manager - Customized Conversation
+         * Designed to feel like a first interview conversation
+         */
+        (function() {
+            'use strict';
+
+            // Role configuration
+            const ROLE = {
+                slug: 'openai-deployment-manager',
+                company: 'OpenAI',
+                role: 'AI Deployment Manager',
+                greeting: "Hi, I'm Kevin. Thanks for taking the time to learn about my fit for the AI Deployment Manager role. This job is a near-perfect match for how I already spend my time: leading AI enablement for enterprise and government clients at Slalom by day, and teaching non-technical builders to ship with AI through AI Recess and TikTok (@vibewithkevin) outside of that. What would you like to know?"
+            };
+
+            // Configuration
+            const CONFIG = {
+                apiEndpoint: 'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/claude-chat',
+                revealDelay: 300,
+                loadingMessages: [
+                    "Thinking...",
+                    "Pulling from memory...",
+                    "Considering my experience...",
+                    "Reflecting on that...",
+                    "Let me think about this...",
+                    "Gathering my thoughts...",
+                    "Connecting the dots...",
+                    "Recalling relevant work...",
+                    "Formulating a response...",
+                    "Almost there..."
+                ],
+                loadingInterval: 5000
+            };
+
+            let loadingIntervalId = null;
+
+            // DOM Elements
+            const elements = {
+                greetingArea: document.getElementById('greeting-area'),
+                greetingText: document.getElementById('greeting-text'),
+                responseArea: document.getElementById('response-area'),
+                responseText: document.getElementById('response-text'),
+                loading: document.getElementById('chat-loading'),
+                inputArea: document.getElementById('input-area'),
+                chatForm: document.getElementById('chat-form'),
+                chatInput: document.getElementById('chat-input'),
+                chatSubmit: document.getElementById('chat-submit'),
+                submitText: document.querySelector('.submit-text'),
+                submitLoading: document.querySelector('.submit-loading')
+            };
+
+            /**
+             * Reveal text with fade effect
+             */
+            function revealText(element) {
+                if (element) {
+                    element.classList.add('revealed');
+                }
+            }
+
+            /**
+             * Start cycling loading messages
+             */
+            function startLoadingMessages() {
+                if (!elements.loading) return;
+
+                let index = 0;
+                elements.loading.textContent = CONFIG.loadingMessages[index];
+                elements.loading.classList.add('active');
+
+                loadingIntervalId = setInterval(() => {
+                    index = (index + 1) % CONFIG.loadingMessages.length;
+                    elements.loading.textContent = CONFIG.loadingMessages[index];
+                }, CONFIG.loadingInterval);
+            }
+
+            /**
+             * Stop cycling loading messages
+             */
+            function stopLoadingMessages() {
+                if (loadingIntervalId) {
+                    clearInterval(loadingIntervalId);
+                    loadingIntervalId = null;
+                }
+                if (elements.loading) {
+                    elements.loading.classList.remove('active');
+                }
+            }
+
+            /**
+             * Show input area
+             */
+            function showInput() {
+                elements.inputArea.style.display = 'block';
+                elements.chatInput.focus();
+            }
+
+            /**
+             * Display response with fade reveal
+             */
+            function displayResponse(text) {
+                elements.responseText.textContent = text;
+                elements.responseText.classList.remove('revealed');
+
+                // Trigger reflow for animation
+                void elements.responseText.offsetWidth;
+
+                // Reveal after brief delay
+                setTimeout(() => {
+                    revealText(elements.responseText);
+                }, 100);
+            }
+
+            /**
+             * Initialize
+             */
+            function init() {
+                // Set greeting text and reveal with fade
+                elements.greetingText.textContent = ROLE.greeting;
+                setTimeout(() => {
+                    revealText(elements.greetingText);
+                    // Show input after greeting reveals
+                    setTimeout(showInput, 800);
+                }, CONFIG.revealDelay);
+
+                // Handle form submission
+                elements.chatForm.addEventListener('submit', handleSubmit);
+            }
+
+            /**
+             * Handle chat submission
+             */
+            async function handleSubmit(e) {
+                e.preventDefault();
+
+                const message = elements.chatInput.value.trim();
+                if (!message) return;
+
+                // Hide input and greeting, show loading
+                elements.inputArea.style.display = 'none';
+                elements.greetingArea.style.display = 'none';
+                elements.responseArea.style.display = 'none';
+                startLoadingMessages();
+
+                // Show button loading state
+                elements.chatSubmit.disabled = true;
+                elements.submitText.style.display = 'none';
+                elements.submitLoading.style.display = 'inline';
+
+                try {
+                    const response = await fetch(CONFIG.apiEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message,
+                            mode: 'conversation',
+                            roleSlug: ROLE.slug
+                        })
+                    });
+
+                    if (!response.ok) throw new Error('API request failed');
+
+                    const data = await response.json();
+                    const reply = data.response || 'Sorry, I couldn\'t process that. Try asking something else.';
+
+                    // Stop loading, show response with fade reveal
+                    stopLoadingMessages();
+                    elements.responseArea.style.display = 'block';
+                    displayResponse(reply);
+
+                    // Show input after response reveals
+                    setTimeout(() => {
+                        elements.inputArea.style.display = 'block';
+                        elements.chatInput.value = '';
+                        elements.chatInput.focus();
+                    }, 1000);
+
+                } catch (error) {
+                    console.error('Chat error:', error);
+                    stopLoadingMessages();
+                    elements.responseArea.style.display = 'block';
+                    displayResponse('Something went wrong. Please try again.');
+                    elements.inputArea.style.display = 'block';
+                } finally {
+                    elements.chatSubmit.disabled = false;
+                    elements.submitText.style.display = 'inline';
+                    elements.submitLoading.style.display = 'none';
+                }
+            }
+
+            // Initialize on load
+            init();
+        })();
+    </script>
+</body>
+</html>

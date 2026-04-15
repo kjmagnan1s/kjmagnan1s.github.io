@@ -243,7 +243,7 @@
             console.error('Chat error:', error);
             stopLoadingMessages();
             displayResponse(error.message === 'rate_limited'
-                ? 'The AI is temporarily unavailable due to API limits. Please try again later, or reach out directly at kjmagnan1s@gmail.com.'
+                ? 'The AI is temporarily unavailable due to API limits. Please try again later, or reach out directly at kevinjmagnan@slalom.com.'
                 : 'Something went wrong. Please try again.');
         }
     }
@@ -274,7 +274,7 @@
             console.error('Chat error:', error);
             stopLoadingMessages();
             displayResponse(error.message === 'rate_limited'
-                ? 'The AI is temporarily unavailable due to API limits. Please try again later, or reach out directly at kjmagnan1s@gmail.com.'
+                ? 'The AI is temporarily unavailable due to API limits. Please try again later, or reach out directly at kevinjmagnan@slalom.com.'
                 : 'Something went wrong. Please try again.');
         } finally {
             elements.chatSubmit.disabled = false;
