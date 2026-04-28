@@ -55,6 +55,8 @@ a:hover { border-bottom-color: var(--accent); }
   clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
+.print-only { display: none; }
+
 .wrap { max-width: 880px; margin: 0 auto; padding: 64px 32px 96px; }
 
 .print-btn {
@@ -207,6 +209,8 @@ a:hover { border-bottom-color: var(--accent); }
     font-size: 9.5pt !important; line-height: 1.32 !important;
   }
   .print-btn, .hero, .ai-tools, .resume-divider, .foot { display: none !important; }
+  .print-only { display: inline !important; }
+  .screen-only { display: none !important; }
   .wrap { max-width: 100%; padding: 0; margin: 0; }
   .resume { margin-top: 0 !important; }
   a { color: #000 !important; text-decoration: none !important; border-bottom: none !important; }
@@ -281,7 +285,8 @@ a:hover { border-bottom-color: var(--accent); }
     <div class="r-contact">
       <span>314.303.2121</span>
       <span>kjmagnan1s@gmail.com</span>
-      <span>Chicago, IL</span>
+      <span class="screen-only">Chicago, IL</span>
+      <span class="print-only">388 Du Pahze St, Naperville, IL 60565</span>
       <span><a href="https://www.tiktok.com/@vibewithkevin">TikTok</a></span>
       <span><a href="https://www.linkedin.com/in/kjmagnan1s/">LinkedIn</a></span>
       <span><a href="https://kevinjmagnan.com/">kevinjmagnan.com</a></span>
