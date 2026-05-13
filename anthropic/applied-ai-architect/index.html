@@ -1,0 +1,558 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Kevin J. Magnan, For Anthropic</title>
+<meta name="description" content="Application materials for Applied AI Architect, State and Local Government at Anthropic.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kevinjmagnan.com/anthropic/applied-ai-architect/">
+<meta property="og:title" content="Kevin J. Magnan, For Anthropic">
+<meta property="og:description" content="Why Anthropic, and why Applied AI Architect for State and Local Government.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --copper-500: #B87333;
+  --copper-600: #9A5F2A;
+  --copper-400: #D4956A;
+  --copper-300: #E5B896;
+  --stone-900: #1C1917;
+  --stone-800: #292524;
+  --stone-700: #44403C;
+  --stone-400: #A8A29E;
+  --stone-300: #D6D3D1;
+  --white: #FAFAF9;
+  --text-primary: var(--white);
+  --text-secondary: var(--stone-300);
+  --text-muted: var(--stone-400);
+  --bg-page: var(--stone-900);
+  --bg-section: var(--stone-800);
+  --accent: var(--copper-400);
+  --border: var(--stone-700);
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+a:hover { border-bottom-color: var(--accent); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.print-only { display: none; }
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 64px 32px 96px; }
+
+.print-btn {
+  position: fixed; top: 24px; right: 24px; z-index: 50;
+  background: var(--copper-500); color: var(--white);
+  border: none; padding: 12px 20px; border-radius: 999px;
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.04em; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.15s, background 0.2s;
+}
+.print-btn:hover { background: var(--copper-600); transform: translateY(-2px); }
+.print-btn::before { content: "\2193  "; }
+
+.hero { margin-bottom: 48px; }
+.eyebrow {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--copper-400); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--font-heading); font-weight: 600; font-size: 44px;
+  line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 20px;
+}
+.hero-lede {
+  font-size: 19px; line-height: 1.55; color: var(--text-secondary); max-width: 60ch; margin: 0;
+}
+.role-tag {
+  display: inline-block; margin-top: 18px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--text-muted); padding: 6px 12px;
+  border: 1px solid var(--border); border-radius: 999px;
+}
+
+.essay { margin-top: 48px; }
+.essay-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--copper-400); margin-bottom: 16px;
+}
+.essay h2 {
+  font-family: var(--font-heading); font-weight: 600; font-size: 30px;
+  line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 22px;
+}
+.essay p {
+  font-size: 17px; line-height: 1.75; color: var(--text-secondary);
+  margin: 0 0 18px;
+}
+.essay p strong, .essay p em { color: var(--copper-300); font-style: normal; font-weight: 600; }
+.essay .pull {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 22px; line-height: 1.35; color: var(--text-primary);
+  padding: 20px 24px; margin: 28px 0;
+  border-left: 3px solid var(--copper-400);
+  background: var(--bg-section);
+}
+
+.tool {
+  background: var(--bg-section); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px; margin: 56px 0 0;
+}
+.tool-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--copper-400); margin-bottom: 12px;
+}
+.tool h3 {
+  font-family: var(--font-heading); font-weight: 600; font-size: 22px;
+  margin: 0 0 6px; color: var(--text-primary);
+}
+.tool p.tool-help { font-size: 15px; color: var(--text-muted); margin: 0 0 18px; }
+
+.chat-form { display: flex; gap: 8px; }
+.chat-input {
+  flex: 1; background: var(--stone-900); color: var(--text-primary);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; font-family: var(--font-body); font-size: 16px; outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--copper-400); }
+.chat-submit {
+  background: var(--copper-500); color: var(--white); border: none; border-radius: 10px;
+  padding: 0 22px; font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+.chat-submit:hover:not(:disabled) { background: var(--copper-600); }
+.chat-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.chat-output {
+  margin-top: 18px; padding: 18px; background: var(--stone-900);
+  border: 1px solid var(--border); border-radius: 10px; min-height: 60px;
+  font-size: 16px; line-height: 1.7; white-space: pre-wrap; display: none;
+}
+.chat-output.active { display: block; }
+.chat-status { font-style: italic; color: var(--text-muted); }
+
+.resume { margin-top: 80px; }
+.resume-divider {
+  text-align: center; color: var(--copper-400); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.r-header { margin-bottom: 36px; }
+.r-name {
+  font-family: var(--font-heading); font-weight: 600; font-size: 40px;
+  line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 12px;
+}
+.r-contact { font-size: 15px; color: var(--text-secondary); }
+.r-contact span { margin-right: 14px; }
+
+.r-section { margin-bottom: 36px; }
+.r-section-title {
+  font-family: var(--font-heading); font-size: 22px; font-weight: 600;
+  letter-spacing: -0.005em; margin: 0 0 14px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.r-summary { font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+
+.r-role { margin-bottom: 24px; }
+.r-role:last-child { margin-bottom: 0; }
+.r-role-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 4px;
+}
+.r-employer { font-weight: 600; font-size: 17px; color: var(--text-primary); }
+.r-loc { font-size: 14px; color: var(--text-muted); }
+.r-title-line {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 10px;
+}
+.r-title { font-style: italic; color: var(--copper-300); font-size: 15px; }
+.r-dates { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.r-bullets { margin: 0; padding-left: 22px; }
+.r-bullets li { margin-bottom: 8px; color: var(--text-secondary); font-size: 15px; line-height: 1.55; }
+
+.proj-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 10px; }
+.proj {
+  background: var(--bg-section); border: 1px solid var(--border); border-radius: 12px;
+  padding: 18px; transition: border-color 0.2s, transform 0.15s;
+}
+.proj:hover { border-color: var(--copper-400); transform: translateY(-2px); }
+.proj-name {
+  font-family: var(--font-heading); font-size: 17px; font-weight: 600;
+  margin: 0 0 6px; color: var(--copper-300);
+}
+.proj-name a { color: inherit; }
+.proj-desc { font-size: 14px; color: var(--text-secondary); margin: 0 0 8px; line-height: 1.5; }
+.proj-stack { font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; }
+
+.tech-row { display: grid; grid-template-columns: 200px 1fr; gap: 16px; margin-bottom: 10px; align-items: baseline; }
+.tech-row .label {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--copper-400);
+}
+.tech-row .value { font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
+
+.foot {
+  margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border);
+  font-size: 14px; color: var(--text-muted); line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .wrap { padding: 48px 20px 64px; }
+  .hero h1 { font-size: 32px; }
+  .hero-lede { font-size: 17px; }
+  .essay h2 { font-size: 24px; }
+  .essay .pull { font-size: 18px; padding: 16px 18px; }
+  .r-name { font-size: 30px; }
+  .tech-row { grid-template-columns: 1fr; gap: 4px; }
+  .print-btn { top: 12px; right: 12px; padding: 10px 14px; font-size: 13px; }
+  .chat-form { flex-direction: column; }
+  .chat-submit { padding: 12px; }
+}
+
+@media print {
+  @page { size: letter; margin: 0.45in; }
+  body {
+    background: white !important; color: #000 !important;
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-size: 9.5pt !important; line-height: 1.32 !important;
+  }
+  .print-btn, .hero, .essay, .ai-tools, .resume-divider, .foot { display: none !important; }
+  .print-only { display: inline !important; }
+  .screen-only { display: none !important; }
+  .wrap { max-width: 100%; padding: 0; margin: 0; }
+  .resume { margin-top: 0 !important; }
+  a { color: #000 !important; text-decoration: none !important; border-bottom: none !important; }
+  .r-name { font-size: 18pt !important; color: #000 !important; margin-bottom: 3pt !important; }
+  .r-contact { font-size: 8.5pt !important; color: #000 !important; }
+  .r-contact span { margin-right: 8pt !important; }
+  .r-header { margin-bottom: 10pt !important; }
+  .r-section { margin-bottom: 10pt !important; page-break-inside: avoid; }
+  .r-section-title {
+    font-size: 10.5pt !important; color: #000 !important;
+    border-bottom: 0.5pt solid #000 !important; padding-bottom: 1pt !important; margin-bottom: 5pt !important;
+  }
+  .r-summary { color: #000 !important; font-size: 9.5pt !important; line-height: 1.35 !important; }
+  .r-employer { font-size: 10pt !important; color: #000 !important; }
+  .r-title { font-size: 9.5pt !important; color: #000 !important; font-style: italic; }
+  .r-loc, .r-dates { font-size: 8.5pt !important; color: #333 !important; }
+  .r-title-line { margin-bottom: 3pt !important; }
+  .r-role-head { margin-bottom: 1pt !important; }
+  .r-bullets { padding-left: 14pt !important; }
+  .r-bullets li { color: #000 !important; font-size: 9pt !important; margin-bottom: 1.5pt !important; line-height: 1.32 !important; }
+  .r-role { margin-bottom: 6pt !important; page-break-inside: avoid; }
+  .proj-grid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 4pt !important; margin-top: 4pt !important; }
+  .proj {
+    background: none !important; border: none !important;
+    padding: 0 !important; margin: 0 !important; transform: none !important;
+  }
+  .proj-name { color: #000 !important; font-size: 9.5pt !important; margin: 0 0 1pt !important; }
+  .proj-desc { color: #000 !important; font-size: 8.5pt !important; margin: 0 0 1pt !important; line-height: 1.3 !important; }
+  .proj-stack { color: #333 !important; font-size: 8pt !important; }
+  .tech-row { grid-template-columns: 110pt 1fr !important; gap: 6pt !important; margin-bottom: 2pt !important; }
+  .tech-row .label { color: #000 !important; font-size: 8.5pt !important; }
+  .tech-row .value { color: #000 !important; font-size: 9pt !important; line-height: 1.3 !important; }
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" id="print-btn" aria-label="Print resume to PDF">Print as PDF</button>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Kevin J. Magnan, For Anthropic</div>
+  <h1>Why Anthropic.</h1>
+  <p class="hero-lede">
+    Instead of a traditional resume, interact with one. Ask my AI agent anything about my career, my values, or how I think about AI in state and local government.
+  </p>
+  <div class="role-tag">Applied AI Architect &middot; State and Local Government</div>
+</header>
+
+<section class="ai-tools">
+  <div class="tool">
+    <div class="tool-label">Live Agent</div>
+    <h3>Ask me anything.</h3>
+    <p class="tool-help">A Claude agent with my background as context, primed for the Applied AI Architect SLG role. Ask about a specific deployment, a position I have taken, or how I would approach a particular SLG account.</p>
+
+    <form class="chat-form" id="chat-form">
+      <label for="chat-input" class="visually-hidden">Ask the agent a question</label>
+      <input type="text" class="chat-input" id="chat-input" placeholder="Ask me anything about my work..." autocomplete="off" aria-label="Ask the agent a question">
+      <button type="submit" class="chat-submit" id="chat-submit">Ask</button>
+    </form>
+
+    <div class="chat-output" id="chat-output" role="status" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="essay">
+  <div class="essay-label">Why Anthropic</div>
+
+  <p>I took an oath to the Constitution before I took a job in AI. That oath still governs my work.</p>
+
+  <p>For five years I have led Slalom's Justice and Public Safety Practice. I keep making the same argument inside agency rooms: public servants and the systems they deploy answer to the same document. Anthropic is the only AI lab whose technical foundation matches how government has to defend its decisions. For state and local government, Constitutional AI is not an analogy. It is the only architecture a CIO can defend in front of a city council, a federal monitor, or a judge.</p>
+
+  <p>I have already done this work. I have walked Slalom away from clients pushing facial recognition and mass-tracking databases when their data governance could not survive a FOIA request. I built our government AI enablement around one rule: everything we deploy has to be explainable, because "the AI told me so" is not an answer a public servant can give to a citizen or a court. The Violence Reduction Dashboard we built with the City of Chicago was designed against exactly that test.</p>
+
+  <div class="pull">
+    Most SLG sales motions land at low-risk agencies and grow from there. I'd flip it. Prove the safety story at the hardest case, public safety, and the rest of government follows.
+  </div>
+
+  <p>Police, courts, corrections, child welfare. Public safety with bad AI is the worst thing AI can do in this country. The DMV is not.</p>
+
+  <p>As Applied AI Architect I would sit next to the SLG CIO as their technical advisor. The evals I would help them build would measure constitutional and mission outcomes, not just model performance. The patterns I would see across agencies are the ones Anthropic's Product and Engineering teams need to hear about.</p>
+</section>
+
+<section class="essay">
+  <div class="essay-label">Additional Information</div>
+
+  <p>The work that survives the paperwork is the work that matters. A DMV clerk handing a sixteen-year-old their first license. A social worker who finally gets to call a family back instead of writing the case note. A patrol officer doing community policing instead of typing CAD entries. Anthropic's own labour-market work showed augmentation outpacing displacement across government, and the part that did not get enough coverage is structural: AI earns its place where it strips the documentation tax that keeps public servants away from the people they serve.</p>
+
+  <p>I have built my practice on a hard ranking. Get AI right for the highest-stakes agencies first, and the easier wins fall into place. Police, courts, corrections, child welfare, emergency response. These are the agencies where bad AI is catastrophic and where constitutional design is the only kind that survives outside review.</p>
+
+  <p>The other half of the work is teaching. I have trained 100+ public sector staff on what to ask an AI vendor before they sign a contract. That is what scales Claude from a single agency rollout to a statewide operating model.</p>
+
+  <p>I want to do this work at Anthropic because the technology matches the duty. I want to bring the agencies along.</p>
+</section>
+
+<div class="resume-divider">The Resume</div>
+
+<article class="resume">
+
+  <header class="r-header">
+    <h1 class="r-name">Kevin J. Magnan</h1>
+    <div class="r-contact">
+      <span>314.303.2121</span>
+      <span>kjmagnan1s@gmail.com</span>
+      <span class="print-only"><a href="https://kevinjmagnan.com/">kevinjmagnan.com</a></span>
+      <span class="screen-only"><a href="https://github.com/kjmagnan1s">GitHub</a></span>
+      <span class="screen-only"><a href="https://kevinjmagnan.com/">kevinjmagnan.com</a></span>
+      <span class="screen-only"><a href="https://www.linkedin.com/in/kjmagnan1s/">LinkedIn</a></span>
+      <span class="screen-only"><a href="https://www.tiktok.com/@vibewithkevin">TikTok</a></span>
+      <span class="screen-only"><a href="https://x.com/KevinMagnan">X</a></span>
+    </div>
+  </header>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Professional Summary</h2>
+    <p class="r-summary">
+      Applied AI architect and builder for state and local government. Senior Principal leading AI strategy and architecture across Slalom's $50M Public and Social Impact industry, shipping Claude in production with agencies today.
+    </p>
+  </section>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Professional Experience</h2>
+
+    <div class="r-role">
+      <div class="r-role-head">
+        <span class="r-employer">Slalom Consulting, LLC</span>
+        <span class="r-loc">Chicago, IL</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Senior Principal, State and Local Government</span>
+        <span class="r-dates">March 2026 to Current</span>
+      </div>
+      <div class="r-title-line" style="margin-top: -6px; margin-bottom: 10px;">
+        <span class="r-title">Past roles</span>
+        <span class="r-dates">April 2021 to March 2026</span>
+      </div>
+      <ul class="r-bullets">
+        <li>Lead Slalom's $50M Justice and Public Safety practice as Senior Principal and own Public and Social Impact AI Enablement across government, education, and nonprofit, setting AI architecture, evaluation, and enablement standards.</li>
+        <li>Architected and led delivery of a Snowflake Cortex AI and Claude internal affairs summarization platform at a statewide public safety agency. Compresses ~30 weekly IA reports from hours to seconds, powering a public dashboard and executive responses to governor's office and media inquiries on high-profile incidents.</li>
+        <li>Built and shipped an agentic Claude-powered GTM intelligence platform used by every account executive and pursuit team across PSI. Watches government solicitations, generates AI agency profiles for pre-meeting prep, drives pipeline analysis, and automates Salesforce data enrichment.</li>
+        <li>Built and shipped a Claude and AWS RAG policy analysis tool with a national initiative advancing women in law enforcement, helping agencies draft policies aligned to best practices. Used directly by the partner, partner agencies, and Slalom consultants.</li>
+        <li>Re-engineered Slalom's PSI delivery and RFP response motion end-to-end, redesigning the workflow and shipping the AI tooling that powers it, so senior expertise redirects toward customer strategy rather than first-draft assembly.</li>
+        <li>Named technical advisor for applied AI across PSI. Shepherd agency-facing technical communication for every account executive in the vertical, leading discovery, architecture reviews, and executive briefings from elected officials and C-suite through CIOs, engineers, and IT security.</li>
+      </ul>
+    </div>
+
+    <div class="r-role">
+      <div class="r-role-head">
+        <span class="r-employer">University of Chicago Urban Labs</span>
+        <span class="r-loc">Chicago, IL</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Research Manager</span>
+        <span class="r-dates">June 2019 to February 2021</span>
+      </div>
+      <div class="r-title-line" style="margin-top: -6px; margin-bottom: 10px;">
+        <span class="r-title">Embedded Research Analyst</span>
+        <span class="r-dates">July 2017 to May 2019</span>
+      </div>
+      <ul class="r-bullets">
+        <li>Led the design and release of the Violence Reduction Dashboard, developed in partnership with the City of Chicago to empower communities with data-driven resources to combat gun violence.</li>
+        <li>Managed eight research and analysis projects across seven local, state, and federal agencies, leading staff and delivering scalable data solutions for criminal justice and public safety initiatives.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Education</h2>
+    <div class="r-role">
+      <div class="r-role-head">
+        <span class="r-employer">University of Chicago</span>
+        <span class="r-loc">Chicago, IL</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Master of Arts, Program in the Social Sciences</span>
+      </div>
+    </div>
+    <div class="r-role" style="margin-top: 10px;">
+      <div class="r-role-head">
+        <span class="r-employer">Southeast Missouri State University</span>
+        <span class="r-loc">Cape Girardeau, MO</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Master of Science, Criminal Justice Administration</span>
+      </div>
+      <div class="r-title-line" style="margin-top: -6px;">
+        <span class="r-title">Bachelor of Science, Criminal Justice</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Skills</h2>
+    <ul class="r-bullets">
+      <li><strong style="color: var(--copper-300);">Applied AI:</strong> Claude, RAG architecture, agentic workflows, context engineering, deployment guardrails, AI explainability</li>
+      <li>Responsible AI governance, implementation, and LLM workflow design for government applications</li>
+      <li>Cloud platforms and analytics (AWS GovCloud, CJIS); SQL, R, Tableau</li>
+      <li>Full-stack AI engineering: iOS, Android, and web applications</li>
+      <li><strong style="color: var(--copper-300);">Compliance and trust:</strong> CJIS, FedRAMP, StateRAMP, GovCloud; frameworks for safe AI deployment in high-stakes state and local government environments</li>
+      <li><strong style="color: var(--copper-300);">Public learning practice:</strong> weekly+ across TikTok (@vibewithkevin), LinkedIn, and short-form blogs on government AI adoption, spanning engineer-facing deep dives on Claude API, agents, and evals through CIO-facing strategy on procurement, governance, and vendor evaluation</li>
+    </ul>
+  </section>
+
+</article>
+
+<footer class="foot">
+  <p>This page runs on the same Anthropic Claude backend that powers <a href="https://kevinjmagnan.com/">kevinjmagnan.com</a>.</p>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var API = 'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/claude-chat';
+  var ROLE_SLUG = 'anthropic-applied-ai-architect';
+
+  var els = {
+    chatForm: document.getElementById('chat-form'),
+    chatInput: document.getElementById('chat-input'),
+    chatSubmit: document.getElementById('chat-submit'),
+    chatOutput: document.getElementById('chat-output')
+  };
+
+  var loadingTimer = null;
+  var loadingMessages = [
+    'Thinking...',
+    'Pulling from memory...',
+    'Considering my experience...',
+    'Reflecting on that...',
+    'Connecting the dots...',
+    'Recalling relevant work...',
+    'Almost there...'
+  ];
+
+  function startLoading(target) {
+    stopLoading(target);
+    var i = 0;
+    target.textContent = loadingMessages[0];
+    target.classList.add('chat-status');
+    loadingTimer = setInterval(function () {
+      i = (i + 1) % loadingMessages.length;
+      target.textContent = loadingMessages[i];
+    }, 4000);
+  }
+
+  function stopLoading(target) {
+    if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
+    target.classList.remove('chat-status');
+  }
+
+  function callApi(message) {
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: message, mode: 'conversation', roleSlug: ROLE_SLUG })
+    }).then(function (res) {
+      if (!res.ok) {
+        return res.json().catch(function () { return {}; }).then(function (err) {
+          var details = err.details || '';
+          if (details.includes('usage limits') || details.includes('rate')) {
+            throw new Error('rate_limited');
+          }
+          throw new Error('api_failed');
+        });
+      }
+      return res.json();
+    });
+  }
+
+  function ask(message) {
+    if (!message) return;
+    els.chatOutput.classList.add('active');
+    els.chatSubmit.disabled = true;
+    els.chatSubmit.textContent = '...';
+    startLoading(els.chatOutput);
+
+    callApi(message).then(function (data) {
+      els.chatOutput.textContent = data.response || 'No response. Try a different question.';
+    }).catch(function (e) {
+      els.chatOutput.textContent = e.message === 'rate_limited'
+        ? 'AI is temporarily unavailable due to API limits. Reach me directly at kjmagnan1s@gmail.com.'
+        : 'Something went wrong. Try again, or reach me at kjmagnan1s@gmail.com.';
+    }).finally(function () {
+      stopLoading(els.chatOutput);
+      els.chatSubmit.disabled = false;
+      els.chatSubmit.textContent = 'Ask';
+      els.chatInput.value = '';
+    });
+  }
+
+  els.chatForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    ask(els.chatInput.value.trim());
+  });
+
+  document.getElementById('print-btn').addEventListener('click', function () {
+    window.print();
+  });
+
+})();
+</script>
+
+</body>
+</html>
