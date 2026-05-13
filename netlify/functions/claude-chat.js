@@ -843,13 +843,36 @@ export async function handler(event) {
   }
 
   try {
-    const { message, mode, roleSlug } = JSON.parse(event.body);
+    const { message, messages: clientMessages, mode, roleSlug } = JSON.parse(event.body);
 
-    if (!message || typeof message !== "string") {
+    // Multi-turn support. Frontends can either send `messages` (array of
+    // {role, content} for full conversation history) or fall back to `message`
+    // (single string) for backward compat with existing /c/ pages.
+    const isMultiTurn = Array.isArray(clientMessages) && clientMessages.length > 0;
+    const conversationMessages = isMultiTurn
+      ? clientMessages
+      : message && typeof message === "string"
+      ? [{ role: "user", content: message }]
+      : null;
+
+    if (!conversationMessages) {
       return {
         statusCode: 400,
         headers: { "Content-Type": "application/json", ...corsHeaders },
-        body: JSON.stringify({ error: "Message is required" }),
+        body: JSON.stringify({ error: "Message or messages array is required" }),
+      };
+    }
+
+    // The latest user turn is what we scan for length / injection.
+    const latestUserMessage = [...conversationMessages]
+      .reverse()
+      .find((m) => m.role === "user")?.content;
+
+    if (!latestUserMessage || typeof latestUserMessage !== "string") {
+      return {
+        statusCode: 400,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+        body: JSON.stringify({ error: "Latest message must be a string user turn" }),
       };
     }
 
@@ -858,7 +881,7 @@ export async function handler(event) {
       mode === "fit-analysis"
         ? MAX_FIT_ANALYSIS_LENGTH
         : MAX_CONVERSATION_LENGTH;
-    if (message.length > maxLength) {
+    if (latestUserMessage.length > maxLength) {
       return {
         statusCode: 400,
         headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -873,7 +896,7 @@ export async function handler(event) {
     // accepts arbitrary pasted JD text and is protected via the prompt + length cap.
     if (mode !== "fit-analysis") {
       for (const pattern of INJECTION_PATTERNS) {
-        if (pattern.test(message)) {
+        if (pattern.test(latestUserMessage)) {
           return {
             statusCode: 200,
             headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -884,12 +907,14 @@ export async function handler(event) {
     }
 
     let systemPrompt;
-    let userMessage = message;
+    let outgoingMessages = conversationMessages;
 
     if (mode === "fit-analysis") {
-      // Fit analysis mode - expects job description as message
+      // Fit analysis mode - expects job description as the only user message.
       systemPrompt = FIT_ANALYSIS_PROMPT + CONTEXT_DOCS;
-      userMessage = `Analyze this job description for fit:\n\n${message}`;
+      outgoingMessages = [
+        { role: "user", content: `Analyze this job description for fit:\n\n${latestUserMessage}` },
+      ];
     } else {
       // Conversation mode (default)
       systemPrompt = SYSTEM_PROMPT + CONTEXT_DOCS;
@@ -918,11 +943,11 @@ ${roleContext.context}`;
     }
 
     const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-5-20250929",
+      model: "claude-sonnet-4-6",
       max_tokens: 1024,
       temperature: 0.4,
       system: systemPrompt,
-      messages: [{ role: "user", content: userMessage }],
+      messages: outgoingMessages,
     });
 
     const reply = response.content[0].text;

@@ -158,6 +158,52 @@ a:hover { border-bottom-color: var(--accent); }
 .chat-output.active { display: block; }
 .chat-status { font-style: italic; color: var(--text-muted); }
 
+.chat-thread {
+  margin-top: 18px; padding: 0; display: none;
+  max-height: 520px; overflow-y: auto;
+}
+.chat-thread.active { display: block; }
+.chat-turn {
+  padding: 14px 16px; margin-bottom: 10px;
+  border-radius: 10px; font-size: 16px; line-height: 1.65;
+  white-space: pre-wrap;
+}
+.chat-turn-user {
+  background: var(--stone-900); border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.chat-turn-assistant {
+  background: var(--bg-section); border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.chat-turn-pending {
+  background: var(--bg-section); border: 1px solid var(--border);
+  color: var(--text-muted); font-style: italic;
+}
+.chat-turn-error {
+  background: var(--stone-900); border: 1px solid var(--copper-500);
+  color: var(--copper-300);
+}
+.chat-turn-label {
+  display: block; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--copper-400); margin-bottom: 6px;
+}
+
+.chat-starters {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 14px 0 16px;
+}
+.chip {
+  background: var(--stone-900); color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 8px 14px; font-family: var(--font-body); font-size: 13px;
+  cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.chip:hover { border-color: var(--copper-400); color: var(--text-primary); }
+.chip:disabled { opacity: 0.5; cursor: default; }
+.chat-starters.hidden { display: none; }
+
 .resume { margin-top: 80px; }
 .resume-divider {
   text-align: center; color: var(--copper-400); font-size: 12px; font-weight: 600;
@@ -302,15 +348,22 @@ a:hover { border-bottom-color: var(--accent); }
   <div class="tool">
     <div class="tool-label">Live Agent</div>
     <h3>Ask me anything.</h3>
-    <p class="tool-help">A Claude agent with my background as context, primed for the Applied AI Architect SLG role. Ask about a specific deployment, a position I have taken, or how I would approach a particular SLG account.</p>
+    <p class="tool-help">A Claude agent with my background as context, primed for the Applied AI Architect SLG role. Multi-turn conversation: ask a follow-up, push back, go deep.</p>
+
+    <div class="chat-thread" id="chat-thread" aria-live="polite"></div>
+
+    <div class="chat-starters" id="chat-starters" aria-label="Suggested questions">
+      <button type="button" class="chip" data-prompt="Walk me through the internal affairs summarization platform you architected. What was the hardest design decision?">Walk me through the IA platform</button>
+      <button type="button" class="chip" data-prompt="Why start with public safety for SLG AI adoption instead of the easier agencies?">Why public safety first?</button>
+      <button type="button" class="chip" data-prompt="How would you design evals for a Claude deployment at a state CIO's office? What are you measuring beyond model performance?">How would you design SLG evals?</button>
+      <button type="button" class="chip" data-prompt="Where would you push back on Anthropic's current SLG strategy?">Where you push back on Anthropic</button>
+    </div>
 
     <form class="chat-form" id="chat-form">
       <label for="chat-input" class="visually-hidden">Ask the agent a question</label>
       <input type="text" class="chat-input" id="chat-input" placeholder="Ask me anything about my work..." autocomplete="off" aria-label="Ask the agent a question">
       <button type="submit" class="chat-submit" id="chat-submit">Ask</button>
     </form>
-
-    <div class="chat-output" id="chat-output" role="status" aria-live="polite"></div>
   </div>
 </section>
 
@@ -472,41 +525,61 @@ a:hover { border-bottom-color: var(--accent); }
     chatForm: document.getElementById('chat-form'),
     chatInput: document.getElementById('chat-input'),
     chatSubmit: document.getElementById('chat-submit'),
-    chatOutput: document.getElementById('chat-output')
+    chatThread: document.getElementById('chat-thread'),
+    chatStarters: document.getElementById('chat-starters')
   };
+
+  // Conversation history sent to the API on every turn. Each entry is
+  // { role: 'user' | 'assistant', content: string }.
+  var conversation = [];
 
   var loadingTimer = null;
   var loadingMessages = [
     'Thinking...',
-    'Pulling from memory...',
-    'Considering my experience...',
-    'Reflecting on that...',
+    'Pulling from the deployment notes...',
+    'Recalling the state CIO conversation...',
+    'Checking the architecture archive...',
     'Connecting the dots...',
-    'Recalling relevant work...',
+    'Working through the constitutional angle...',
     'Almost there...'
   ];
 
+  function renderTurn(role, content, options) {
+    options = options || {};
+    var div = document.createElement('div');
+    div.className = 'chat-turn chat-turn-' + role + (options.pending ? ' chat-turn-pending' : '') + (options.error ? ' chat-turn-error' : '');
+    var label = document.createElement('span');
+    label.className = 'chat-turn-label';
+    label.textContent = role === 'user' ? 'You' : (options.error ? 'Error' : 'Kevin');
+    var body = document.createElement('span');
+    body.textContent = content;
+    div.appendChild(label);
+    div.appendChild(body);
+    els.chatThread.appendChild(div);
+    els.chatThread.classList.add('active');
+    els.chatThread.scrollTop = els.chatThread.scrollHeight;
+    return { div: div, body: body };
+  }
+
   function startLoading(target) {
-    stopLoading(target);
+    stopLoading();
     var i = 0;
-    target.textContent = loadingMessages[0];
-    target.classList.add('chat-status');
+    target.body.textContent = loadingMessages[0];
     loadingTimer = setInterval(function () {
       i = (i + 1) % loadingMessages.length;
-      target.textContent = loadingMessages[i];
+      target.body.textContent = loadingMessages[i];
     }, 4000);
   }
 
-  function stopLoading(target) {
+  function stopLoading() {
     if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
-    target.classList.remove('chat-status');
   }
 
-  function callApi(message) {
+  function callApi(messages) {
     return fetch(API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: message, mode: 'conversation', roleSlug: ROLE_SLUG })
+      body: JSON.stringify({ messages: messages, mode: 'conversation', roleSlug: ROLE_SLUG })
     }).then(function (res) {
       if (!res.ok) {
         return res.json().catch(function () { return {}; }).then(function (err) {
@@ -523,22 +596,46 @@ a:hover { border-bottom-color: var(--accent); }
 
   function ask(message) {
     if (!message) return;
-    els.chatOutput.classList.add('active');
+
+    // Hide starter chips once a real conversation begins.
+    if (els.chatStarters && !els.chatStarters.classList.contains('hidden')) {
+      els.chatStarters.classList.add('hidden');
+    }
+
+    // Render the user's turn immediately.
+    renderTurn('user', message);
+
+    // Add to conversation, then render a pending assistant turn for loading state.
+    conversation.push({ role: 'user', content: message });
+    var pending = renderTurn('assistant', '', { pending: true });
+
     els.chatSubmit.disabled = true;
     els.chatSubmit.textContent = '...';
-    startLoading(els.chatOutput);
+    els.chatInput.disabled = true;
+    startLoading(pending);
 
-    callApi(message).then(function (data) {
-      els.chatOutput.textContent = data.response || 'No response. Try a different question.';
+    callApi(conversation).then(function (data) {
+      var reply = data.response || 'No response. Try a different question.';
+      pending.div.classList.remove('chat-turn-pending');
+      pending.body.textContent = reply;
+      conversation.push({ role: 'assistant', content: reply });
     }).catch(function (e) {
-      els.chatOutput.textContent = e.message === 'rate_limited'
+      pending.div.classList.remove('chat-turn-pending');
+      pending.div.classList.add('chat-turn-error');
+      var labelEl = pending.div.querySelector('.chat-turn-label');
+      if (labelEl) labelEl.textContent = 'Error';
+      pending.body.textContent = e.message === 'rate_limited'
         ? 'AI is temporarily unavailable due to API limits. Reach me directly at kjmagnan1s@gmail.com.'
         : 'Something went wrong. Try again, or reach me at kjmagnan1s@gmail.com.';
+      // Remove the failed user turn from history so the next try isn't poisoned.
+      conversation.pop();
     }).finally(function () {
-      stopLoading(els.chatOutput);
+      stopLoading();
       els.chatSubmit.disabled = false;
       els.chatSubmit.textContent = 'Ask';
+      els.chatInput.disabled = false;
       els.chatInput.value = '';
+      els.chatInput.focus();
     });
   }
 
@@ -546,6 +643,16 @@ a:hover { border-bottom-color: var(--accent); }
     e.preventDefault();
     ask(els.chatInput.value.trim());
   });
+
+  // Starter chips pre-fill the input and submit.
+  if (els.chatStarters) {
+    els.chatStarters.addEventListener('click', function (e) {
+      var chip = e.target.closest('.chip');
+      if (!chip) return;
+      var prompt = chip.getAttribute('data-prompt');
+      if (prompt) ask(prompt);
+    });
+  }
 
   document.getElementById('print-btn').addEventListener('click', function () {
     window.print();
