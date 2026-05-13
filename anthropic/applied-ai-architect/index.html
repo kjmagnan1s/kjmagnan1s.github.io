@@ -576,10 +576,22 @@ a:hover { border-bottom-color: var(--accent); }
   }
 
   function callApi(messages) {
+    // Send both `messages` (array, for the multi-turn aware function) and
+    // `message` (string, latest user turn, for the older deployed function).
+    // Whichever version of the function is live can read the field it knows.
+    var latestUser = '';
+    for (var i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].role === 'user') { latestUser = messages[i].content; break; }
+    }
     return fetch(API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: messages, mode: 'conversation', roleSlug: ROLE_SLUG })
+      body: JSON.stringify({
+        message: latestUser,
+        messages: messages,
+        mode: 'conversation',
+        roleSlug: ROLE_SLUG
+      })
     }).then(function (res) {
       if (!res.ok) {
         return res.json().catch(function () { return {}; }).then(function (err) {
