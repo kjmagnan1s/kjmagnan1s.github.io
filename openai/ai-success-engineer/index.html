@@ -189,6 +189,14 @@ a:hover { border-bottom-color: var(--accent); }
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--green-400); margin-bottom: 6px;
 }
+.chat-turn-assistant strong { color: var(--green-300); font-weight: 600; }
+.chat-turn-assistant em { color: var(--text-primary); font-style: italic; }
+.chat-turn-assistant ul, .chat-turn-assistant ol {
+  margin: 6px 0 6px 0; padding-left: 20px;
+}
+.chat-turn-assistant li { margin-bottom: 4px; }
+.chat-turn-assistant p { margin: 0 0 10px; }
+.chat-turn-assistant p:last-child { margin-bottom: 0; }
 
 .chat-starters {
   display: flex; flex-wrap: wrap; gap: 8px;
@@ -203,6 +211,99 @@ a:hover { border-bottom-color: var(--accent); }
 .chip:hover { border-color: var(--green-400); color: var(--text-primary); }
 .chip:disabled { opacity: 0.5; cursor: default; }
 .chat-starters.hidden { display: none; }
+
+/* Resume visual enhancements (screen only - print rules reset below) */
+.r-print-bullets { display: none; }
+
+.r-stats-banner {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px; margin: 28px 0 36px; padding: 22px 26px;
+  border: 1px solid var(--border); border-radius: 14px;
+  background: linear-gradient(135deg, var(--bg-section) 0%, var(--stone-900) 100%);
+}
+.r-stat { display: flex; flex-direction: column; gap: 4px; }
+.r-stat-num {
+  font-family: var(--font-heading); font-size: 30px; font-weight: 600;
+  color: var(--green-300); letter-spacing: -0.02em; line-height: 1.05;
+}
+.r-stat-label {
+  font-size: 11px; color: var(--text-muted);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+.r-role-timeline { position: relative; padding-left: 24px; }
+.r-role-timeline::before {
+  content: ''; position: absolute; left: 4px; top: 10px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--green-500) 0%, var(--green-500) 60%, transparent 100%);
+}
+.r-role-timeline::after {
+  content: ''; position: absolute; left: 0; top: 6px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--green-500); box-shadow: 0 0 0 3px var(--bg-page);
+}
+
+.r-role-lead {
+  font-size: 16px; line-height: 1.65; color: var(--text-secondary);
+  font-style: italic; border-left: 2px solid var(--green-400);
+  padding: 4px 0 4px 14px; margin: 16px 0 22px;
+}
+.r-role-lead em { color: var(--green-300); font-style: italic; font-weight: 600; }
+
+.r-projects-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--green-400);
+  margin: 14px 0 12px;
+}
+.r-projects {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px; margin: 0 0 22px;
+}
+.r-project {
+  background: var(--bg-section); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px;
+  transition: border-color 0.2s, transform 0.15s;
+  display: flex; flex-direction: column;
+}
+.r-project:hover {
+  border-color: var(--green-400); transform: translateY(-2px);
+}
+.r-project-name {
+  font-family: var(--font-heading); font-size: 16px; font-weight: 600;
+  color: var(--text-primary); margin: 0 0 8px; line-height: 1.3;
+}
+.r-project-outcome {
+  font-size: 14px; color: var(--green-300); font-weight: 600;
+  margin: 0 0 10px; line-height: 1.45;
+}
+.r-project-body {
+  font-size: 13.5px; color: var(--text-secondary); line-height: 1.55;
+  margin: 0 0 14px;
+}
+.r-project-stack {
+  display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto;
+}
+.r-stack-tag {
+  font-size: 10.5px; color: var(--text-muted);
+  background: var(--stone-900); border: 1px solid var(--border);
+  padding: 3px 8px; border-radius: 999px; letter-spacing: 0.04em;
+}
+
+.r-skills-grid { display: flex; flex-direction: column; gap: 18px; }
+.r-skill-group { display: flex; flex-direction: column; gap: 8px; }
+.r-skill-cat {
+  font-family: var(--font-heading); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--green-400); margin: 0;
+}
+.r-skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.r-pill {
+  font-size: 13px; color: var(--text-secondary);
+  background: var(--bg-section); border: 1px solid var(--border);
+  padding: 5px 11px; border-radius: 999px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.r-pill:hover { border-color: var(--green-400); color: var(--text-primary); }
 
 .resume { margin-top: 80px; }
 .resume-divider {
@@ -272,6 +373,19 @@ a:hover { border-bottom-color: var(--accent); }
   .print-btn, .hero, .essay, .ai-tools, .resume-divider, .foot { display: none !important; }
   .print-only { display: inline !important; }
   .screen-only { display: none !important; }
+  /* Hide all the on-screen visual enhancements; the print version uses
+     the duplicated bullet-list content under .r-print-bullets. */
+  .r-stats-banner, .r-projects, .r-projects-label, .r-skills-grid { display: none !important; }
+  .r-print-bullets { display: block !important; }
+  .r-role-timeline { padding-left: 0 !important; }
+  .r-role-timeline::before, .r-role-timeline::after { display: none !important; }
+  .r-role-lead {
+    border-left: none !important; padding: 0 !important;
+    font-style: normal !important; color: #000 !important;
+    font-size: 9pt !important; line-height: 1.32 !important;
+    margin: 0 0 3pt !important;
+  }
+  .r-role-lead em { color: #000 !important; font-weight: 400 !important; }
   .wrap { max-width: 100%; padding: 0; margin: 0; }
   .resume { margin-top: 0 !important; }
   a { color: #000 !important; text-decoration: none !important; border-bottom: none !important; }
@@ -337,31 +451,7 @@ a:hover { border-bottom-color: var(--accent); }
 <section class="essay">
   <div class="essay-label">Why OpenAI</div>
 
-  <p>The AI Success Engineer JD says government customers have vital missions and they must be met with serious technology. I believe the people who wrote that meant it, which is rare for a job posting and is why I am writing back.</p>
-
-  <p>I was a sworn officer at St. Louis County PD for two years. I left for the University of Chicago Crime Lab because I wanted to know whether anything I had been doing on patrol actually worked. I ran research partnerships with police departments and city agencies there for four years, then joined Slalom in 2021 and ended up leading their Justice and Public Safety practice. The AI work I run now lands at the same kinds of agencies I used to work for.</p>
-
-  <p>Last year I led a Snowflake Cortex and Claude deployment at a statewide public safety agency. Roughly thirty internal affairs reports a week, each one a multi-hour read for the leadership team that had to brief the governor's office and respond to media on high-profile incidents. We moved that read time to seconds and stood up a public dashboard on top of it. The model was the easy part. Getting the agency to trust the output, integrating it with how the team already worked, and coaching the people who would have to defend the dashboard in front of cameras was the rest of it. The pilot graduated to production because I owned that arc, not because the model itself was clever.</p>
-
-  <div class="pull">
-    Once you have shipped AI inside a state public safety agency, every other enterprise customer feels like the easy version.
-  </div>
-
-  <p>The rest of the JD reads like a description of my current job at a different company. Embedding with customer teams to map workflows. Building adoption roadmaps tied to executive KPIs. Running executive readouts. Surfacing field patterns back to Product. Designing workshops that turn into expansion conversations. That is what my weeks are made of at Slalom. Three net-new AI implementation projects came out of customer workshops I designed last year. I would bring all of that work with me.</p>
-
-  <p>I also build outside of Slalom. Five production iOS and web apps shipped under my own name on the model APIs. A weekly cohort called <strong>AI Recess</strong> where I teach non-technical people to ship real things. A daily TikTok at <strong>@vibewithkevin</strong> where I break down what I am learning that week. None of it is a hobby. Adoption is a teaching problem before it is a technology problem, and I run the teaching practice in public to stay sharp on it.</p>
-
-  <p>The hardest part of post-deployment is almost never the model itself. It is the operating model around the model. The data sits in silos. The processes that matter only ever made it onto paper. The agents need context that nobody has the infrastructure to give them. Closing that gap is what an AI Success Engineer is actually for, and OpenAI's customers, government and enterprise, have the most to gain from somebody who has been closing it for the last decade.</p>
-</section>
-
-<section class="essay">
-  <div class="essay-label">Additional Information</div>
-
-  <p>I do not advise on AI without building with it. Under my own name I ship production iOS and web apps on the model APIs: <strong>LeaderShift</strong> (SwiftUI), <strong>Doughby</strong>, <strong>AIppliance Manager</strong>, <strong>PackLlama</strong>, <strong>OpenClawd</strong>. Plus weekly cohort teaching at AI Recess and daily instructional design on TikTok at @vibewithkevin. The shipping practice and the teaching practice feed the customer practice. You cannot honestly advise on adoption if you are not actively running through it yourself.</p>
-
-  <p>I have spent the last three years building the muscle this role asks for. Pilots that graduated to production. Adoption roadmaps tied to executive KPIs. Workshops that produced net-new implementation projects. Champion programs that scaled across 100+ consultants and the customers they serve. Every artifact translates.</p>
-
-  <p>This is the role I have been pointing my career at without knowing it had a name.</p>
+  <p>I started on patrol at St. Louis County PD, moved to the University of Chicago Crime Lab to research what actually changes outcomes in public safety, and now lead Slalom's $50M Justice and Public Safety practice. The thread across all of it has been the same: governments carry decades of tech debt that residents pay for in worse services, longer waits, and missed outcomes. AI is the first tool I have worked with that lets agencies leapfrog that debt instead of refactoring it for another generation, and I have spent the last three years proving that out inside the highest-stakes corners of state and local government. I want to bring that work to OpenAI's customers because lasting effectiveness for the residents on the other side of every government desk is the only measure that has ever mattered to me.</p>
 </section>
 
 <div class="resume-divider">The Resume</div>
@@ -389,10 +479,29 @@ a:hover { border-bottom-color: var(--accent); }
     </p>
   </section>
 
+  <section class="r-stats-banner" aria-label="Practice scope at a glance">
+    <div class="r-stat">
+      <span class="r-stat-num">$50M</span>
+      <span class="r-stat-label">PSI practice scope</span>
+    </div>
+    <div class="r-stat">
+      <span class="r-stat-num">8+ yrs</span>
+      <span class="r-stat-label">customer-facing consulting</span>
+    </div>
+    <div class="r-stat">
+      <span class="r-stat-num">100+</span>
+      <span class="r-stat-label">consultants trained</span>
+    </div>
+    <div class="r-stat">
+      <span class="r-stat-num">5</span>
+      <span class="r-stat-label">production AI apps shipped</span>
+    </div>
+  </section>
+
   <section class="r-section">
     <h2 class="r-section-title">Professional Experience</h2>
 
-    <div class="r-role">
+    <div class="r-role r-role-timeline">
       <div class="r-role-head">
         <span class="r-employer">Slalom Consulting, LLC</span>
         <span class="r-loc">Chicago, IL</span>
@@ -405,7 +514,56 @@ a:hover { border-bottom-color: var(--accent); }
         <span class="r-title">Past roles</span>
         <span class="r-dates">April 2021 to March 2026</span>
       </div>
+
+      <p class="r-role-lead">
+        Lead Slalom's $50M Justice and Public Safety practice as Senior Principal and own <em>Public and Social Impact AI Enablement</em> across government, education, and nonprofit. Get enterprise and government customers from first deployment to production AI that pays for itself, catching adoption stalls early and proving impact in dollars and hours.
+      </p>
+
+      <div class="r-projects-label">Production AI Shipped</div>
+      <div class="r-projects">
+        <article class="r-project">
+          <h4 class="r-project-name">Internal Affairs Summarization Platform</h4>
+          <p class="r-project-outcome">~30 weekly IA reports compressed from hours of review to seconds.</p>
+          <p class="r-project-body">Designed and led delivery at a statewide public safety agency. Pilot graduated to production after the executive readout drove the expansion decision. Now powers a public dashboard and executive responses to the governor's office and media on high-profile incidents.</p>
+          <div class="r-project-stack">
+            <span class="r-stack-tag">Snowflake Cortex AI</span>
+            <span class="r-stack-tag">Claude</span>
+          </div>
+        </article>
+        <article class="r-project">
+          <h4 class="r-project-name">PSI GTM Intelligence Platform</h4>
+          <p class="r-project-outcome">Every account executive in PSI runs on it.</p>
+          <p class="r-project-body">Mapped customer-team workflows, then engineered an agentic system that monitors government solicitations, generates AI customer profiles for pre-meeting prep, drives pipeline analysis, and automates Salesforce data enrichment. Captures pilot patterns and turns them into repeatable playbooks.</p>
+          <div class="r-project-stack">
+            <span class="r-stack-tag">Python</span>
+            <span class="r-stack-tag">Claude API</span>
+            <span class="r-stack-tag">Agent orchestration</span>
+            <span class="r-stack-tag">RAG</span>
+            <span class="r-stack-tag">Salesforce</span>
+          </div>
+        </article>
+        <article class="r-project">
+          <h4 class="r-project-name">Policy Analysis Tool, Women in Law Enforcement</h4>
+          <p class="r-project-outcome">In use by the partner, partner agencies, and Slalom consultants.</p>
+          <p class="r-project-body">RAG-based policy analysis system built with a national initiative advancing women's representation in law enforcement. Helps agencies draft policies aligned to best practices, then drove follow-on program adoption across the partner network.</p>
+          <div class="r-project-stack">
+            <span class="r-stack-tag">Python</span>
+            <span class="r-stack-tag">Claude API</span>
+            <span class="r-stack-tag">RAG</span>
+            <span class="r-stack-tag">Snowflake</span>
+            <span class="r-stack-tag">AWS</span>
+          </div>
+        </article>
+      </div>
+
       <ul class="r-bullets">
+        <li>Named technical advisor for applied AI across the industry. Lead post-deployment account work for enterprise and government customers: technical configuration, integration patterns, executive briefings, and adoption coaching from elected officials and C-suite through CIOs, engineers, and IT security.</li>
+        <li>Authored Slalom's PSI internal AI enablement program. 100+ consultants ship against the curriculum, evaluation criteria, operational playbooks, and champion-building workshops I wrote.</li>
+        <li>Generated three net-new AI implementation projects last year from 10+ customer workshops, executive briefings, and hands-on enablement sessions. Customers left the room building, not just inspired.</li>
+      </ul>
+
+      <!-- Print-only: full bullet list, replaces the cards in the PDF -->
+      <ul class="r-bullets r-print-bullets">
         <li>Lead Slalom's $50M Justice and Public Safety practice as Senior Principal and own Public and Social Impact AI Enablement across government, education, and nonprofit. Get enterprise and government customers from first deployment to production AI that pays for itself, catching adoption stalls early and proving impact in dollars and hours.</li>
         <li>Designed and led a Snowflake Cortex and Claude deployment at a statewide government customer that cut roughly 30 internal affairs reports per week from hours of manual review to seconds. Owned the full adoption arc: workflow mapping, KPI definition, executive readouts, and the change management that moved it from pilot to production.</li>
         <li>Built and shipped an agentic AI GTM intelligence platform used by every account executive and pursuit team across the industry. Mapped existing workflows, then engineered the system that monitors government solicitations, generates AI customer profiles, drives pipeline analysis, and automates Salesforce data enrichment. Hands-on Python, Claude API, agent orchestration, RAG.</li>
@@ -417,7 +575,7 @@ a:hover { border-bottom-color: var(--accent); }
       </ul>
     </div>
 
-    <div class="r-role">
+    <div class="r-role r-role-timeline">
       <div class="r-role-head">
         <span class="r-employer">University of Chicago Urban Labs</span>
         <span class="r-loc">Chicago, IL</span>
@@ -464,8 +622,88 @@ a:hover { border-bottom-color: var(--accent); }
   </section>
 
   <section class="r-section">
-    <h2 class="r-section-title">Capabilities</h2>
-    <ul class="r-bullets">
+    <h2 class="r-section-title">Skills</h2>
+
+    <div class="r-skills-grid">
+      <div class="r-skill-group">
+        <h4 class="r-skill-cat">Applied AI in production</h4>
+        <div class="r-skill-pills">
+          <span class="r-pill">OpenAI API</span>
+          <span class="r-pill">ChatGPT Enterprise patterns</span>
+          <span class="r-pill">Anthropic SDK</span>
+          <span class="r-pill">RAG architectures</span>
+          <span class="r-pill">Evaluation strategies</span>
+          <span class="r-pill">Agent orchestration</span>
+          <span class="r-pill">Embeddings &amp; retrieval</span>
+          <span class="r-pill">Fine-tuning tradeoffs</span>
+          <span class="r-pill">Deployment guardrails</span>
+        </div>
+      </div>
+      <div class="r-skill-group">
+        <h4 class="r-skill-cat">Engineering &amp; Stack</h4>
+        <div class="r-skill-pills">
+          <span class="r-pill">Python</span>
+          <span class="r-pill">JavaScript &amp; TypeScript</span>
+          <span class="r-pill">SwiftUI</span>
+          <span class="r-pill">REST APIs &amp; SDKs</span>
+          <span class="r-pill">CI/CD</span>
+          <span class="r-pill">Containers</span>
+          <span class="r-pill">AWS</span>
+          <span class="r-pill">Cloudflare Workers</span>
+          <span class="r-pill">Netlify Functions</span>
+          <span class="r-pill">Supabase</span>
+          <span class="r-pill">Snowflake</span>
+          <span class="r-pill">SQL</span>
+        </div>
+      </div>
+      <div class="r-skill-group">
+        <h4 class="r-skill-cat">Customer success &amp; enablement</h4>
+        <div class="r-skill-pills">
+          <span class="r-pill">Post-deployment adoption roadmaps</span>
+          <span class="r-pill">KPI definition</span>
+          <span class="r-pill">Value realization</span>
+          <span class="r-pill">Executive readouts</span>
+          <span class="r-pill">Workshop design</span>
+          <span class="r-pill">Champion building</span>
+          <span class="r-pill">Internal enablement</span>
+          <span class="r-pill">Change management</span>
+        </div>
+      </div>
+      <div class="r-skill-group">
+        <h4 class="r-skill-cat">Shipped production apps</h4>
+        <div class="r-skill-pills">
+          <span class="r-pill">LeaderShift (SwiftUI)</span>
+          <span class="r-pill">Doughby</span>
+          <span class="r-pill">AIppliance Manager</span>
+          <span class="r-pill">PackLlama</span>
+          <span class="r-pill">OpenClawd</span>
+        </div>
+      </div>
+      <div class="r-skill-group">
+        <h4 class="r-skill-cat">Enterprise security &amp; compliance</h4>
+        <div class="r-skill-pills">
+          <span class="r-pill">SSO</span>
+          <span class="r-pill">Domain verification</span>
+          <span class="r-pill">Encryption</span>
+          <span class="r-pill">CJIS</span>
+          <span class="r-pill">FedRAMP</span>
+          <span class="r-pill">GovCloud</span>
+          <span class="r-pill">HIPAA-adjacent</span>
+        </div>
+      </div>
+      <div class="r-skill-group">
+        <h4 class="r-skill-cat">Public learning practice</h4>
+        <div class="r-skill-pills">
+          <span class="r-pill">TikTok (@vibewithkevin)</span>
+          <span class="r-pill">AI Recess weekly cohort</span>
+          <span class="r-pill">Short-form blogs</span>
+          <span class="r-pill">Engineer-facing deep dives</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Print-only fallback: original bullet list -->
+    <ul class="r-bullets r-print-bullets">
       <li><strong style="color: var(--green-300);">Applied AI in production:</strong> OpenAI API, ChatGPT Enterprise patterns, Anthropic SDK, RAG architectures, evaluation strategies, agent orchestration, embeddings and retrieval pipelines, fine-tuning tradeoffs, deployment guardrails</li>
       <li><strong style="color: var(--green-300);">Engineering fluency:</strong> Python, JavaScript and TypeScript, SwiftUI, REST APIs, SDKs, CI/CD, containers, AWS, Cloudflare Workers, Netlify Functions, Supabase, Snowflake, SQL</li>
       <li><strong style="color: var(--green-300);">Customer success and enablement:</strong> post-deployment adoption roadmaps, KPI definition, value realization, executive readouts, workshop design, champion building, internal enablement, change management at large organizations</li>
@@ -510,6 +748,62 @@ a:hover { border-bottom-color: var(--accent); }
     'Almost there...'
   ];
 
+  // Inline markdown: splits text on **bold** and *italic*, appending real
+  // DOM nodes to parent. Uses textContent throughout, never innerHTML.
+  function appendInlineMarkdown(text, parent) {
+    var inlinePattern = /(\*\*[^*]+?\*\*|\*[^*\n]+?\*)/g;
+    var lastIdx = 0;
+    text.replace(inlinePattern, function (matched, _g1, offset) {
+      if (offset > lastIdx) {
+        parent.appendChild(document.createTextNode(text.slice(lastIdx, offset)));
+      }
+      if (matched.indexOf('**') === 0) {
+        var s = document.createElement('strong');
+        s.textContent = matched.slice(2, -2);
+        parent.appendChild(s);
+      } else {
+        var e = document.createElement('em');
+        e.textContent = matched.slice(1, -1);
+        parent.appendChild(e);
+      }
+      lastIdx = offset + matched.length;
+      return matched;
+    });
+    if (lastIdx < text.length) {
+      parent.appendChild(document.createTextNode(text.slice(lastIdx)));
+    }
+  }
+
+  // Block-level markdown: paragraphs split on blank lines, plus simple
+  // bullet and numbered lists. DOM construction only, no innerHTML.
+  function renderMarkdownInto(text, container) {
+    var blocks = text.split(/\n{2,}/);
+    for (var i = 0; i < blocks.length; i++) {
+      var block = blocks[i].trim();
+      if (!block) continue;
+      var lines = block.split(/\n/);
+      var isUL = lines.every(function (l) { return /^\s*[-*]\s+/.test(l); });
+      var isOL = lines.every(function (l) { return /^\s*\d+\.\s+/.test(l); });
+      if (isUL || isOL) {
+        var list = document.createElement(isUL ? 'ul' : 'ol');
+        lines.forEach(function (l) {
+          var li = document.createElement('li');
+          appendInlineMarkdown(l.replace(/^\s*([-*]|\d+\.)\s+/, ''), li);
+          list.appendChild(li);
+        });
+        container.appendChild(list);
+      } else {
+        var p = document.createElement('p');
+        var parts = block.split(/\n/);
+        parts.forEach(function (part, idx) {
+          appendInlineMarkdown(part, p);
+          if (idx < parts.length - 1) p.appendChild(document.createElement('br'));
+        });
+        container.appendChild(p);
+      }
+    }
+  }
+
   function renderTurn(role, content, options) {
     options = options || {};
     var div = document.createElement('div');
@@ -517,8 +811,12 @@ a:hover { border-bottom-color: var(--accent); }
     var label = document.createElement('span');
     label.className = 'chat-turn-label';
     label.textContent = role === 'user' ? 'You' : (options.error ? 'Error' : 'Kevin');
-    var body = document.createElement('span');
-    body.textContent = content;
+    var body = document.createElement('div');
+    if (role === 'assistant' && !options.pending && !options.error && content) {
+      renderMarkdownInto(content, body);
+    } else {
+      body.textContent = content;
+    }
     div.appendChild(label);
     div.appendChild(body);
     els.chatThread.appendChild(div);
@@ -586,7 +884,9 @@ a:hover { border-bottom-color: var(--accent); }
     callApi(conversation).then(function (data) {
       var reply = data.response || 'No response. Try a different question.';
       pending.div.classList.remove('chat-turn-pending');
-      pending.body.textContent = reply;
+      // Clear loading text, then build markdown DOM into the body.
+      while (pending.body.firstChild) pending.body.removeChild(pending.body.firstChild);
+      renderMarkdownInto(reply, pending.body);
       conversation.push({ role: 'assistant', content: reply });
     }).catch(function (e) {
       pending.div.classList.remove('chat-turn-pending');
