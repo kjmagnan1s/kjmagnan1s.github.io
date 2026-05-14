@@ -809,11 +809,6 @@ Most SLG sales motions land at low-risk agencies (DMV, parks, libraries) and exp
 - Walked Slalom away from facial recognition and mass-tracking engagements when client data governance could not survive a FOIA. Coached those clients into scoped, explainable pilots they could defend publicly.
 - Former sworn police officer (St. Louis County PD, 2014-2016). Operational ground truth in every conversation with chiefs, sheriffs, and state CIOs.
 
-### Certifications
-- IBM Artificial Intelligence Fundamentals (2024)
-- AWS Certified Cloud Practitioner (2021)
-- Tableau Certified Associate Consultant (2021)
-
 ### What I Bring That Other Architect Candidates Do Not
 
 - The Constitution-to-Constitutional-AI throughline is unique to me. I literally swore that oath before I worked in AI.
