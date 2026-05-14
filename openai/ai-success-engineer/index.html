@@ -1,0 +1,630 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Kevin J. Magnan, For OpenAI</title>
+<meta name="description" content="Application materials for AI Success Engineer at OpenAI.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kevinjmagnan.com/openai/ai-success-engineer/">
+<meta property="og:title" content="Kevin J. Magnan, For OpenAI">
+<meta property="og:description" content="Why OpenAI, and why AI Success Engineer.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green-500: #10A37F;
+  --green-600: #0E8C6A;
+  --green-400: #2BB594;
+  --green-300: #5BCFB1;
+  --stone-900: #1C1917;
+  --stone-800: #292524;
+  --stone-700: #44403C;
+  --stone-400: #A8A29E;
+  --stone-300: #D6D3D1;
+  --white: #FAFAF9;
+  --text-primary: var(--white);
+  --text-secondary: var(--stone-300);
+  --text-muted: var(--stone-400);
+  --bg-page: var(--stone-900);
+  --bg-section: var(--stone-800);
+  --accent: var(--green-400);
+  --border: var(--stone-700);
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+a:hover { border-bottom-color: var(--accent); }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.print-only { display: none; }
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 64px 32px 96px; }
+
+.print-btn {
+  position: fixed; top: 24px; right: 24px; z-index: 50;
+  background: var(--green-500); color: var(--white);
+  border: none; padding: 12px 20px; border-radius: 999px;
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.04em; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.15s, background 0.2s;
+}
+.print-btn:hover { background: var(--green-600); transform: translateY(-2px); }
+.print-btn::before { content: "\2193  "; }
+
+.hero { margin-bottom: 48px; }
+.eyebrow {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--green-400); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--font-heading); font-weight: 600; font-size: 44px;
+  line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 20px;
+}
+.hero-lede {
+  font-size: 19px; line-height: 1.55; color: var(--text-secondary); max-width: 60ch; margin: 0;
+}
+.role-tag {
+  display: inline-block; margin-top: 18px;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--text-muted); padding: 6px 12px;
+  border: 1px solid var(--border); border-radius: 999px;
+}
+
+.essay { margin-top: 48px; }
+.essay-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--green-400); margin-bottom: 16px;
+}
+.essay h2 {
+  font-family: var(--font-heading); font-weight: 600; font-size: 30px;
+  line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 22px;
+}
+.essay p {
+  font-size: 17px; line-height: 1.75; color: var(--text-secondary);
+  margin: 0 0 18px;
+}
+.essay p strong, .essay p em { color: var(--green-300); font-style: normal; font-weight: 600; }
+.essay .pull {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 22px; line-height: 1.35; color: var(--text-primary);
+  padding: 20px 24px; margin: 28px 0;
+  border-left: 3px solid var(--green-400);
+  background: var(--bg-section);
+}
+
+.tool {
+  background: var(--bg-section); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px; margin: 56px 0 0;
+}
+.tool-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--green-400); margin-bottom: 12px;
+}
+.tool h3 {
+  font-family: var(--font-heading); font-weight: 600; font-size: 22px;
+  margin: 0 0 6px; color: var(--text-primary);
+}
+.tool p.tool-help { font-size: 15px; color: var(--text-muted); margin: 0 0 18px; }
+
+.chat-form { display: flex; gap: 8px; }
+.chat-input {
+  flex: 1; background: var(--stone-900); color: var(--text-primary);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; font-family: var(--font-body); font-size: 16px; outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--green-400); }
+.chat-submit {
+  background: var(--green-500); color: var(--white); border: none; border-radius: 10px;
+  padding: 0 22px; font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+.chat-submit:hover:not(:disabled) { background: var(--green-600); }
+.chat-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.chat-output {
+  margin-top: 18px; padding: 18px; background: var(--stone-900);
+  border: 1px solid var(--border); border-radius: 10px; min-height: 60px;
+  font-size: 16px; line-height: 1.7; white-space: pre-wrap; display: none;
+}
+.chat-output.active { display: block; }
+.chat-status { font-style: italic; color: var(--text-muted); }
+
+.chat-thread {
+  margin-top: 18px; padding: 0; display: none;
+  max-height: 520px; overflow-y: auto;
+}
+.chat-thread.active { display: block; }
+.chat-turn {
+  padding: 14px 16px; margin-bottom: 10px;
+  border-radius: 10px; font-size: 16px; line-height: 1.65;
+  white-space: pre-wrap;
+}
+.chat-turn-user {
+  background: var(--stone-900); border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.chat-turn-assistant {
+  background: var(--bg-section); border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.chat-turn-pending {
+  background: var(--bg-section); border: 1px solid var(--border);
+  color: var(--text-muted); font-style: italic;
+}
+.chat-turn-error {
+  background: var(--stone-900); border: 1px solid var(--green-500);
+  color: var(--green-300);
+}
+.chat-turn-label {
+  display: block; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--green-400); margin-bottom: 6px;
+}
+
+.chat-starters {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 14px 0 16px;
+}
+.chip {
+  background: var(--stone-900); color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 8px 14px; font-family: var(--font-body); font-size: 13px;
+  cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.chip:hover { border-color: var(--green-400); color: var(--text-primary); }
+.chip:disabled { opacity: 0.5; cursor: default; }
+.chat-starters.hidden { display: none; }
+
+.resume { margin-top: 80px; }
+.resume-divider {
+  text-align: center; color: var(--green-400); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.r-header { margin-bottom: 36px; }
+.r-name {
+  font-family: var(--font-heading); font-weight: 600; font-size: 40px;
+  line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 12px;
+}
+.r-contact { font-size: 15px; color: var(--text-secondary); }
+.r-contact span { margin-right: 14px; }
+
+.r-section { margin-bottom: 36px; }
+.r-section-title {
+  font-family: var(--font-heading); font-size: 22px; font-weight: 600;
+  letter-spacing: -0.005em; margin: 0 0 14px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.r-summary { font-size: 16px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+
+.r-role { margin-bottom: 24px; }
+.r-role:last-child { margin-bottom: 0; }
+.r-role-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 4px;
+}
+.r-employer { font-weight: 600; font-size: 17px; color: var(--text-primary); }
+.r-loc { font-size: 14px; color: var(--text-muted); }
+.r-title-line {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 10px;
+}
+.r-title { font-style: italic; color: var(--green-300); font-size: 15px; }
+.r-dates { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.r-bullets { margin: 0; padding-left: 22px; }
+.r-bullets li { margin-bottom: 8px; color: var(--text-secondary); font-size: 15px; line-height: 1.55; }
+
+.foot {
+  margin-top: 64px; padding-top: 28px; border-top: 1px solid var(--border);
+  font-size: 14px; color: var(--text-muted); line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .wrap { padding: 48px 20px 64px; }
+  .hero h1 { font-size: 32px; }
+  .hero-lede { font-size: 17px; }
+  .essay h2 { font-size: 24px; }
+  .essay .pull { font-size: 18px; padding: 16px 18px; }
+  .r-name { font-size: 30px; }
+  .print-btn { top: 12px; right: 12px; padding: 10px 14px; font-size: 13px; }
+  .chat-form { flex-direction: column; }
+  .chat-submit { padding: 12px; }
+}
+
+@media print {
+  @page { size: letter; margin: 0.45in; }
+  body {
+    background: white !important; color: #000 !important;
+    font-family: 'Source Serif 4', Georgia, serif !important;
+    font-size: 9.5pt !important; line-height: 1.32 !important;
+  }
+  .print-btn, .hero, .essay, .ai-tools, .resume-divider, .foot { display: none !important; }
+  .print-only { display: inline !important; }
+  .screen-only { display: none !important; }
+  .wrap { max-width: 100%; padding: 0; margin: 0; }
+  .resume { margin-top: 0 !important; }
+  a { color: #000 !important; text-decoration: none !important; border-bottom: none !important; }
+  .r-name { font-size: 18pt !important; color: #000 !important; margin-bottom: 3pt !important; }
+  .r-contact { font-size: 8.5pt !important; color: #000 !important; }
+  .r-contact span { margin-right: 8pt !important; }
+  .r-header { margin-bottom: 10pt !important; }
+  .r-section { margin-bottom: 10pt !important; page-break-inside: avoid; }
+  .r-section-title {
+    font-size: 10.5pt !important; color: #000 !important;
+    border-bottom: 0.5pt solid #000 !important; padding-bottom: 1pt !important; margin-bottom: 5pt !important;
+  }
+  .r-summary { color: #000 !important; font-size: 9.5pt !important; line-height: 1.35 !important; }
+  .r-employer { font-size: 10pt !important; color: #000 !important; }
+  .r-title { font-size: 9.5pt !important; color: #000 !important; font-style: italic; }
+  .r-loc, .r-dates { font-size: 8.5pt !important; color: #333 !important; }
+  .r-title-line { margin-bottom: 3pt !important; }
+  .r-role-head { margin-bottom: 1pt !important; }
+  .r-bullets { padding-left: 14pt !important; }
+  .r-bullets li { color: #000 !important; font-size: 9pt !important; margin-bottom: 1.5pt !important; line-height: 1.32 !important; }
+  .r-role { margin-bottom: 6pt !important; page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" id="print-btn" aria-label="Print resume to PDF">Print as PDF</button>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Kevin J. Magnan, For OpenAI</div>
+  <h1>Why OpenAI.</h1>
+  <p class="hero-lede">
+    Instead of a traditional resume, interact with one. Ask my AI agent anything about my career, how I run AI deployments inside government and enterprise environments, and what I would actually own in this role.
+  </p>
+  <div class="role-tag">AI Success Engineer</div>
+</header>
+
+<section class="ai-tools">
+  <div class="tool">
+    <div class="tool-label">Live Agent</div>
+    <h3>Ask me anything.</h3>
+    <p class="tool-help">A live agent with my background as context, primed for the AI Success Engineer role. Multi-turn conversation: ask a follow-up, push back, go deep.</p>
+
+    <div class="chat-thread" id="chat-thread" aria-live="polite"></div>
+
+    <div class="chat-starters" id="chat-starters" aria-label="Suggested questions">
+      <button type="button" class="chip" data-prompt="Walk me through how you would own a post-deployment adoption roadmap for a new ChatGPT Enterprise government customer.">Post-deployment roadmap</button>
+      <button type="button" class="chip" data-prompt="A customer's adoption is stalling six weeks after deployment. How do you diagnose and fix it?">Adoption stall</button>
+      <button type="button" class="chip" data-prompt="What is your hands-on technical depth on the API, SDKs, RAG, and agents?">Technical depth</button>
+      <button type="button" class="chip" data-prompt="Why this role for a former police officer turned AI consultant?">Why this role</button>
+    </div>
+
+    <form class="chat-form" id="chat-form">
+      <label for="chat-input" class="visually-hidden">Ask the agent a question</label>
+      <input type="text" class="chat-input" id="chat-input" placeholder="Ask me anything about my work..." autocomplete="off" aria-label="Ask the agent a question">
+      <button type="submit" class="chat-submit" id="chat-submit">Ask</button>
+    </form>
+  </div>
+</section>
+
+<section class="essay">
+  <div class="essay-label">Why OpenAI</div>
+
+  <p>The AI Success Engineer team said it out loud: government customers have vital missions and they must be met with serious technology. That sentence is why this is the role.</p>
+
+  <p>I am a former sworn police officer who became a Crime Lab researcher who became a $50M practice lead at Slalom. The arc is the credential. Every customer-facing AI engagement I run today carries the operational truth of patrol work, the evidence rigor of Crime Lab research, and the read-the-room muscle of a consultant who has been in hard rooms. There are very few people who can sit with a state CIO, a sheriff, and an enterprise architect in the same week and earn trust in all three.</p>
+
+  <p>The work this role describes is the work I already do. I lead post-deployment adoption for enterprise and government customers running AI in production. Workflow mapping, KPI definition, executive readouts, change management with skeptical operators, expansion conversations with technical and business stakeholders. I have shipped real systems on the model APIs and SDKs, not slide decks about them.</p>
+
+  <div class="pull">
+    If you can survive deploying AI inside a state public safety agency, every other enterprise environment is the easy version.
+  </div>
+
+  <p>I want to do this work at OpenAI because the platform is where the highest-stakes customers are deciding whether AI sticks. Frontier capability with government on the customer list. That combination is rare, and it is exactly where my career has been pointed.</p>
+
+  <p>The hardest part of post-deployment work is rarely the model. It is the operating model. Siloed data. Paper processes. Agents do not click. They need context. Most organizations do not have the infrastructure to give it to them. That is the bottleneck, and that is the work.</p>
+</section>
+
+<section class="essay">
+  <div class="essay-label">Additional Information</div>
+
+  <p>I do not advise on AI without building with it. Under my own name I ship production iOS and web apps on the model APIs: <strong>LeaderShift</strong> (SwiftUI), <strong>Doughby</strong>, <strong>AIppliance Manager</strong>, <strong>PackLlama</strong>, <strong>OpenClawd</strong>. Plus weekly cohort teaching at AI Recess and daily instructional design on TikTok at @vibewithkevin. The shipping practice and the teaching practice feed the customer practice. You cannot honestly advise on adoption if you are not actively running through it yourself.</p>
+
+  <p>I have spent the last three years building the muscle this role asks for. Pilots that graduated to production. Adoption roadmaps tied to executive KPIs. Workshops that produced net-new implementation projects. Champion programs that scaled across 100+ consultants and the customers they serve. Every artifact translates.</p>
+
+  <p>This is the role I have been pointing my career at without knowing it had a name.</p>
+</section>
+
+<div class="resume-divider">The Resume</div>
+
+<article class="resume">
+
+  <header class="r-header">
+    <h1 class="r-name">Kevin J. Magnan</h1>
+    <div class="r-contact">
+      <span>314.303.2121</span>
+      <span>kjmagnan1s@gmail.com</span>
+      <span class="print-only"><a href="https://kevinjmagnan.com/">kevinjmagnan.com</a></span>
+      <span class="screen-only"><a href="https://github.com/kjmagnan1s">GitHub</a></span>
+      <span class="screen-only"><a href="https://kevinjmagnan.com/">kevinjmagnan.com</a></span>
+      <span class="screen-only"><a href="https://www.linkedin.com/in/kjmagnan1s/">LinkedIn</a></span>
+      <span class="screen-only"><a href="https://www.tiktok.com/@vibewithkevin">TikTok</a></span>
+      <span class="screen-only"><a href="https://x.com/KevinMagnan">X</a></span>
+    </div>
+  </header>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Professional Summary</h2>
+    <p class="r-summary">
+      Technical customer success leader and shipping AI engineer. Lead post-deployment AI adoption across Slalom's $50M Public and Social Impact industry, partnering with enterprise and government customers from first deployment through scaled production. Active builder on the model APIs and SDKs. Former police officer with government domain depth few AI hires can match.
+    </p>
+  </section>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Professional Experience</h2>
+
+    <div class="r-role">
+      <div class="r-role-head">
+        <span class="r-employer">Slalom Consulting, LLC</span>
+        <span class="r-loc">Chicago, IL</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Senior Principal, State and Local Government</span>
+        <span class="r-dates">March 2026 to Current</span>
+      </div>
+      <div class="r-title-line" style="margin-top: -6px; margin-bottom: 10px;">
+        <span class="r-title">Past roles</span>
+        <span class="r-dates">April 2021 to March 2026</span>
+      </div>
+      <ul class="r-bullets">
+        <li>Lead Slalom's $50M Justice and Public Safety practice as Senior Principal and own Public and Social Impact AI Enablement across government, education, and nonprofit. Get enterprise and government customers from first deployment to production AI that pays for itself, catching adoption stalls early and proving impact in dollars and hours.</li>
+        <li>Designed and led a Snowflake Cortex and Claude deployment at a statewide government customer that cut roughly 30 internal affairs reports per week from hours of manual review to seconds. Owned the full adoption arc: workflow mapping, KPI definition, executive readouts, and the change management that moved it from pilot to production.</li>
+        <li>Built and shipped an agentic AI GTM intelligence platform used by every account executive and pursuit team across the industry. Mapped existing workflows, then engineered the system that monitors government solicitations, generates AI customer profiles, drives pipeline analysis, and automates Salesforce data enrichment. Hands-on Python, Claude API, agent orchestration, RAG.</li>
+        <li>Built and shipped a RAG-based policy analysis system with a national initiative advancing women in law enforcement. Stack: Python, AWS, Snowflake, RAG, Claude API. Used directly by the partner organization, partner agencies, and Slalom consultants in customer engagements.</li>
+        <li>Named technical advisor for applied AI across the industry. Lead post-deployment account work for enterprise and government customers: technical configuration, integration patterns, executive briefings, and adoption coaching from elected officials and C-suite through CIOs, engineers, and IT security.</li>
+        <li>Authored Slalom's PSI internal AI enablement program. Curriculum, evaluation criteria, operational playbooks, and champion-building workshops used by 100+ consultants. Same instructional muscle I bring to customer enablement sessions.</li>
+        <li>Generated three net-new AI implementation projects last year from 10+ workshops, executive briefings, and hands-on enablement sessions. Customers left the room building, not just inspired.</li>
+        <li>Cross-functional navigator across Slalom Sales, Solutions Architecture, Delivery, and Cloud Partnerships. Translate field patterns and technical blockers from customer work into product and partnership decisions every quarter.</li>
+      </ul>
+    </div>
+
+    <div class="r-role">
+      <div class="r-role-head">
+        <span class="r-employer">University of Chicago Urban Labs</span>
+        <span class="r-loc">Chicago, IL</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Research Manager</span>
+        <span class="r-dates">June 2019 to February 2021</span>
+      </div>
+      <div class="r-title-line" style="margin-top: -6px; margin-bottom: 10px;">
+        <span class="r-title">Embedded Research Analyst</span>
+        <span class="r-dates">July 2017 to May 2019</span>
+      </div>
+      <ul class="r-bullets">
+        <li>Led the design and release of the Violence Reduction Dashboard, a 0-to-1 product built with the City of Chicago. Coached government users from first login to daily operational use. The pre-LLM version of the deployment work I do now.</li>
+        <li>Managed eight research and analysis projects across seven local, state, and federal customers. Built the measurement infrastructure agencies used to validate adoption and quantify impact. Evaluation layers before anyone called them that.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Education</h2>
+    <div class="r-role">
+      <div class="r-role-head">
+        <span class="r-employer">University of Chicago</span>
+        <span class="r-loc">Chicago, IL</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Master of Arts, Program in the Social Sciences</span>
+      </div>
+    </div>
+    <div class="r-role" style="margin-top: 10px;">
+      <div class="r-role-head">
+        <span class="r-employer">Southeast Missouri State University</span>
+        <span class="r-loc">Cape Girardeau, MO</span>
+      </div>
+      <div class="r-title-line">
+        <span class="r-title">Master of Science, Criminal Justice Administration</span>
+      </div>
+      <div class="r-title-line" style="margin-top: -6px;">
+        <span class="r-title">Bachelor of Science, Criminal Justice</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="r-section">
+    <h2 class="r-section-title">Capabilities</h2>
+    <ul class="r-bullets">
+      <li><strong style="color: var(--green-300);">Applied AI in production:</strong> OpenAI API, ChatGPT Enterprise patterns, Anthropic SDK, RAG architectures, evaluation strategies, agent orchestration, embeddings and retrieval pipelines, fine-tuning tradeoffs, deployment guardrails</li>
+      <li><strong style="color: var(--green-300);">Engineering fluency:</strong> Python, JavaScript and TypeScript, SwiftUI, REST APIs, SDKs, CI/CD, containers, AWS, Cloudflare Workers, Netlify Functions, Supabase, Snowflake, SQL</li>
+      <li><strong style="color: var(--green-300);">Customer success and enablement:</strong> post-deployment adoption roadmaps, KPI definition, value realization, executive readouts, workshop design, champion building, internal enablement, change management at large organizations</li>
+      <li><strong style="color: var(--green-300);">Shipping practitioner:</strong> production iOS (SwiftUI) and web (Cloudflare Workers, Anthropic SDK, Supabase, Netlify) apps shipped under my own name. LeaderShift, Doughby, AIppliance Manager, PackLlama, OpenClawd, plus client work</li>
+      <li><strong style="color: var(--green-300);">Public learning practice:</strong> TikTok @vibewithkevin, AI Recess weekly cohort teaching non-technical builders, short-form writing on enterprise AI adoption</li>
+      <li><strong style="color: var(--green-300);">Enterprise security and compliance:</strong> SSO, domain verification, encryption, data access and integration patterns across regulated environments (CJIS, FedRAMP, GovCloud, HIPAA-adjacent)</li>
+    </ul>
+  </section>
+
+</article>
+
+<footer class="foot">
+  <p>This page runs on the same chat backend that powers <a href="https://kevinjmagnan.com/">kevinjmagnan.com</a>.</p>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  var API = 'https://tubular-torte-6b51ae.netlify.app/.netlify/functions/claude-chat';
+  var ROLE_SLUG = 'openai-ai-success-engineer';
+
+  var els = {
+    chatForm: document.getElementById('chat-form'),
+    chatInput: document.getElementById('chat-input'),
+    chatSubmit: document.getElementById('chat-submit'),
+    chatThread: document.getElementById('chat-thread'),
+    chatStarters: document.getElementById('chat-starters')
+  };
+
+  var conversation = [];
+  var loadingTimer = null;
+  var loadingMessages = [
+    'Thinking...',
+    'Pulling from the deployment notes...',
+    'Recalling the workflow map...',
+    'Checking the playbook archive...',
+    'Connecting the dots...',
+    'Working through the adoption angle...',
+    'Almost there...'
+  ];
+
+  function renderTurn(role, content, options) {
+    options = options || {};
+    var div = document.createElement('div');
+    div.className = 'chat-turn chat-turn-' + role + (options.pending ? ' chat-turn-pending' : '') + (options.error ? ' chat-turn-error' : '');
+    var label = document.createElement('span');
+    label.className = 'chat-turn-label';
+    label.textContent = role === 'user' ? 'You' : (options.error ? 'Error' : 'Kevin');
+    var body = document.createElement('span');
+    body.textContent = content;
+    div.appendChild(label);
+    div.appendChild(body);
+    els.chatThread.appendChild(div);
+    els.chatThread.classList.add('active');
+    els.chatThread.scrollTop = els.chatThread.scrollHeight;
+    return { div: div, body: body };
+  }
+
+  function startLoading(target) {
+    stopLoading();
+    var i = 0;
+    target.body.textContent = loadingMessages[0];
+    loadingTimer = setInterval(function () {
+      i = (i + 1) % loadingMessages.length;
+      target.body.textContent = loadingMessages[i];
+    }, 4000);
+  }
+
+  function stopLoading() {
+    if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
+  }
+
+  function callApi(messages) {
+    var latestUser = '';
+    for (var i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].role === 'user') { latestUser = messages[i].content; break; }
+    }
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: latestUser,
+        messages: messages,
+        mode: 'conversation',
+        roleSlug: ROLE_SLUG
+      })
+    }).then(function (res) {
+      if (!res.ok) {
+        return res.json().catch(function () { return {}; }).then(function (err) {
+          var details = err.details || '';
+          if (details.includes('usage limits') || details.includes('rate')) {
+            throw new Error('rate_limited');
+          }
+          throw new Error('api_failed');
+        });
+      }
+      return res.json();
+    });
+  }
+
+  function ask(message) {
+    if (!message) return;
+    if (els.chatStarters && !els.chatStarters.classList.contains('hidden')) {
+      els.chatStarters.classList.add('hidden');
+    }
+    renderTurn('user', message);
+    conversation.push({ role: 'user', content: message });
+    var pending = renderTurn('assistant', '', { pending: true });
+
+    els.chatSubmit.disabled = true;
+    els.chatSubmit.textContent = '...';
+    els.chatInput.disabled = true;
+    startLoading(pending);
+
+    callApi(conversation).then(function (data) {
+      var reply = data.response || 'No response. Try a different question.';
+      pending.div.classList.remove('chat-turn-pending');
+      pending.body.textContent = reply;
+      conversation.push({ role: 'assistant', content: reply });
+    }).catch(function (e) {
+      pending.div.classList.remove('chat-turn-pending');
+      pending.div.classList.add('chat-turn-error');
+      var labelEl = pending.div.querySelector('.chat-turn-label');
+      if (labelEl) labelEl.textContent = 'Error';
+      pending.body.textContent = e.message === 'rate_limited'
+        ? 'AI is temporarily unavailable due to API limits. Reach me directly at kjmagnan1s@gmail.com.'
+        : 'Something went wrong. Try again, or reach me at kjmagnan1s@gmail.com.';
+      conversation.pop();
+    }).finally(function () {
+      stopLoading();
+      els.chatSubmit.disabled = false;
+      els.chatSubmit.textContent = 'Ask';
+      els.chatInput.disabled = false;
+      els.chatInput.value = '';
+      els.chatInput.focus();
+    });
+  }
+
+  els.chatForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    ask(els.chatInput.value.trim());
+  });
+
+  if (els.chatStarters) {
+    els.chatStarters.addEventListener('click', function (e) {
+      var chip = e.target.closest('.chip');
+      if (!chip) return;
+      var prompt = chip.getAttribute('data-prompt');
+      if (prompt) ask(prompt);
+    });
+  }
+
+  document.getElementById('print-btn').addEventListener('click', function () {
+    window.print();
+  });
+
+})();
+</script>
+
+</body>
+</html>

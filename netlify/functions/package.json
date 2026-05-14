@@ -4,6 +4,8 @@
   "description": "Netlify Functions for Claude API",
   "type": "module",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0"
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.37.0"
   }
 }

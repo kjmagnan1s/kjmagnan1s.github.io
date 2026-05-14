@@ -588,6 +588,67 @@ I applied for this role because it's the convergence of everything I've built to
 - Security clearance: acknowledge ability to obtain, not currently active
 `,
     },
+    "openai-ai-success-engineer": {
+      company: "OpenAI",
+      role: "AI Success Engineer",
+      brand: { primary: "#10A37F", accent: "#0E8C6A" },
+      context: `
+## Role-Specific Context: OpenAI AI Success Engineer
+
+### The One-Line Pitch
+The AI Success Engineer team said it out loud: government customers have vital missions and they must be met with serious technology. That sentence is why this is the role. Former sworn police officer, Crime Lab researcher, $50M Slalom practice lead. There are very few people on earth who can sit with a state CIO, a sheriff, and an enterprise architect in the same week and earn trust in all three rooms. I am one of them, and I want to do that work for OpenAI.
+
+### Why I Want This Job
+Post-deployment AI adoption inside enterprise and government customers is the work I already do at Slalom every week. I own adoption roadmaps tied to executive KPIs. I lead workflow mapping inside customer teams. I run executive readouts that determine whether a pilot graduates to production. I have shipped real systems on the model APIs and SDKs. AI Success Engineer is that work, full time, at the frontier lab whose government-customer mission is the closest match to my career.
+
+### Key Talking Points to Emphasize
+
+1. **Government is on the team's customer list.** Read the JD: "government customers have vital missions, and we must meet them with game-changing technology." That sentence is the reason I am here. Former police officer, Crime Lab researcher, $50M Slalom Justice and Public Safety practice lead. The government domain depth this team needs is the entire arc of my career.
+
+2. **I run post-deployment adoption end to end already.** At Slalom I own the work this JD describes: workflow mapping with customer teams, KPI definition, executive readouts, change management, expansion conversations. The Snowflake Cortex and Claude internal affairs deployment at a statewide government customer is my flagship case. It graduated from pilot to production because I owned the adoption arc, not because the model was clever.
+
+3. **Hands-on technical depth, not slide depth.** I ship production AI on the APIs. Python, Claude API, agent orchestration, RAG, evals, deployment guardrails. Under my own name: LeaderShift (SwiftUI), Doughby, AIppliance Manager, PackLlama, OpenClawd. Stacks: Cloudflare Workers, Anthropic SDK, Supabase, Netlify Functions. JavaScript, TypeScript, SwiftUI, REST APIs, SDKs, CI/CD, containers, AWS, Snowflake. When the JD asks for someone who can explain model behavior, embeddings, retrieval, and fine-tuning tradeoffs, I am that person.
+
+4. **C-suite to engineering, in the same week.** At Slalom I lead executive briefings with elected officials, state CIOs, sheriffs, and city council members. I also sit with technical teams on architecture reviews, integration patterns, and IT security. The JD asks for a thought partner for C-level stakeholders who can also dive deep with technical teams. That is the literal description of my current job.
+
+5. **Workshop and champion-building is my discipline.** I generated three net-new AI implementation projects last year from 10+ customer workshops. I authored Slalom's internal AI enablement program: curriculum, evaluation criteria, operational playbooks, and champion-building workshops used by 100+ consultants. Outside of Slalom, I run AI Recess (weekly cohort teaching non-technical builders) and TikTok @vibewithkevin (daily instructional design). Customer enablement is a discipline I practice publicly.
+
+6. **Cross-functional navigator is my current title in everything but name.** Slalom Sales, Solutions Architecture, Delivery, Cloud Partnerships. I am already the connective tissue across teams for every AI engagement in the industry.
+
+7. **Enterprise security and compliance is operational for me, not theoretical.** CJIS, FedRAMP, GovCloud, SSO, domain verification, encryption, data access patterns. I have worked inside these constraints on real customer deployments.
+
+### Why OpenAI Specifically
+- The platform is where the highest-stakes customers are deciding whether AI sticks. Frontier capability plus a stated commitment to government customers is rare and exactly where my career has been pointed.
+- The product surface is broad and deep: API and agentic platform, Codex, ChatGPT Enterprise. I want the breadth.
+- The post-sales motion at OpenAI is in inflection. Adoption playbooks for the first generation of enterprise AI are being written right now. I want a seat at the table where they get written.
+- I already use AI tooling daily to ship. The product fluency, customer-facing muscle, and mission fit line up at once.
+
+### Relevant Production AI Projects Shipped at Slalom
+- Snowflake Cortex and Claude internal affairs summarization deployment at a statewide government customer. Cut roughly 30 reports per week from hours of manual review to seconds. Owned full adoption arc.
+- Agentic AI GTM intelligence platform used by every account executive and pursuit team across the $50M PSI industry. Hands-on Python, Claude API, agent orchestration, RAG, Salesforce integration.
+- RAG-based policy analysis system with a national initiative advancing women in law enforcement. Stack: Python, AWS, Snowflake, RAG, Claude API.
+- Re-engineered Slalom's industry-wide delivery and proposal motion. Built the AI tooling that now powers it.
+
+### How I Would Approach the First 90 Days
+- Days 1 to 30. Embed with existing AI Success Engineers across at least three customer accounts spanning different verticals. Map the post-deployment patterns that are already working. Identify the adoption challenges that show up repeatedly but have not yet been productized as repeatable playbooks. Get hands on every product in the suite.
+- Days 31 to 60. Take primary ownership of one or two customer accounts. Stand up the adoption roadmap, KPI baseline, and value-realization plan. Run my first workshops. Begin contributing observations to Product, Research, and Engineering about field patterns.
+- Days 61 to 90. Lead full account portfolios. Shape the playbook for government and regulated-industry customers where my background gives OpenAI a credibility shortcut the team can use immediately. Start the expansion conversations on whichever accounts are ready.
+
+### Things to Emphasize
+- The government-customer arc is the spine. Lead with it.
+- Engineering fluency is real, not aspirational. Reference the apps, the stacks, and the SDK work.
+- Workshop and champion-building practice is observable in public (AI Recess, TikTok, Slalom internal program).
+- The Snowflake Cortex and Claude deployment is the flagship case. Use it.
+- Cross-functional muscle from Slalom industry leadership.
+
+### Things to Avoid
+- Do not pitch as "advisor only." The JD is explicit: hands-on technical deployments and ownership of adoption and value.
+- Do not over-index on public safety to the exclusion of other regulated industries. Mention HHS, education, and adjacent enterprise contexts where relevant.
+- Do not undersell the engineering fluency. Python, JavaScript, REST APIs, SDKs, CI/CD, containers, cloud platforms are real and observable in the shipped apps.
+- Security clearance: not currently active. Frame as able to obtain if needed.
+- Federal experience is real but lighter than state and local. Lead with state and local plus enterprise.
+`,
+    },
     "openai-deployment-manager": {
       company: "OpenAI",
       role: "AI Deployment Manager",
