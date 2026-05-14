@@ -611,7 +611,7 @@ Post-deployment AI adoption inside enterprise and government customers is the wo
 
 4. **C-suite to engineering, in the same week.** At Slalom I lead executive briefings with elected officials, state CIOs, sheriffs, and city council members. I also sit with technical teams on architecture reviews, integration patterns, and IT security. The JD asks for a thought partner for C-level stakeholders who can also dive deep with technical teams. That is the literal description of my current job.
 
-5. **Workshop and champion-building is my discipline.** I generated three net-new AI implementation projects last year from 10+ customer workshops. Outside of Slalom, I run AI Recess (weekly cohort teaching non-technical builders) and TikTok @vibewithkevin (daily instructional design). Customer enablement is a discipline I practice publicly.
+5. **Workshop and enablement practice.** I generated three net-new AI implementation projects last year from 10+ customer workshops. Outside of Slalom, I run AI Recess (weekly cohort teaching non-technical builders) and TikTok @vibewithkevin (daily instructional design). Customer enablement is a discipline I practice publicly.
 
 6. **Cross-functional navigator is my current title in everything but name.** Slalom Sales, Solutions Architecture, Delivery, Cloud Partnerships. I am already the connective tissue across teams for every AI engagement in the industry.
 
@@ -637,7 +637,7 @@ Post-deployment AI adoption inside enterprise and government customers is the wo
 ### Things to Emphasize
 - The government-customer arc is the spine. Lead with it.
 - Engineering fluency is real, not aspirational. Reference the apps, the stacks, and the SDK work.
-- Workshop and champion-building practice is observable in public (AI Recess, TikTok, Slalom internal program).
+- Workshop and enablement practice is observable in public (AI Recess, TikTok, Slalom customer workshops).
 - The Snowflake Cortex and Claude deployment is the flagship case. Use it.
 - Cross-functional muscle from Slalom industry leadership.
 
