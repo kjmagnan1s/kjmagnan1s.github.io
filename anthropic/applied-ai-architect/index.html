@@ -189,6 +189,14 @@ a:hover { border-bottom-color: var(--accent); }
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--copper-400); margin-bottom: 6px;
 }
+.chat-turn-assistant strong { color: var(--copper-300); font-weight: 600; }
+.chat-turn-assistant em { color: var(--text-primary); font-style: italic; }
+.chat-turn-assistant ul, .chat-turn-assistant ol {
+  margin: 6px 0 6px 0; padding-left: 20px;
+}
+.chat-turn-assistant li { margin-bottom: 4px; }
+.chat-turn-assistant p { margin: 0 0 10px; }
+.chat-turn-assistant p:last-child { margin-bottom: 0; }
 
 .chat-starters {
   display: flex; flex-wrap: wrap; gap: 8px;
@@ -353,10 +361,10 @@ a:hover { border-bottom-color: var(--accent); }
     <div class="chat-thread" id="chat-thread" aria-live="polite"></div>
 
     <div class="chat-starters" id="chat-starters" aria-label="Suggested questions">
-      <button type="button" class="chip" data-prompt="Walk me through the internal affairs summarization platform you architected. What was the hardest design decision?">Walk me through the IA platform</button>
-      <button type="button" class="chip" data-prompt="Why start with public safety for SLG AI adoption instead of the easier agencies?">Why public safety first?</button>
-      <button type="button" class="chip" data-prompt="How would you design evals for a Claude deployment at a state CIO's office? What are you measuring beyond model performance?">How would you design SLG evals?</button>
+      <button type="button" class="chip" data-prompt="What do you bring to an Applied AI Architect role that other consulting-track candidates don't?">What you bring that others don't</button>
+      <button type="button" class="chip" data-prompt="Why start with public safety for state and local government AI adoption instead of the easier agencies?">Why public safety first?</button>
       <button type="button" class="chip" data-prompt="Where would you push back on Anthropic's current SLG strategy?">Where you push back on Anthropic</button>
+      <button type="button" class="chip" data-prompt="How did your career go from sworn police officer to leading AI architecture for state and local government?">From cop to AI architect</button>
     </div>
 
     <form class="chat-form" id="chat-form">
@@ -544,6 +552,62 @@ a:hover { border-bottom-color: var(--accent); }
     'Almost there...'
   ];
 
+  // Inline markdown: splits text on **bold** and *italic*, appending real
+  // DOM nodes to parent. Uses textContent throughout, never innerHTML.
+  function appendInlineMarkdown(text, parent) {
+    var inlinePattern = /(\*\*[^*]+?\*\*|\*[^*\n]+?\*)/g;
+    var lastIdx = 0;
+    text.replace(inlinePattern, function (matched, _g1, offset) {
+      if (offset > lastIdx) {
+        parent.appendChild(document.createTextNode(text.slice(lastIdx, offset)));
+      }
+      if (matched.indexOf('**') === 0) {
+        var s = document.createElement('strong');
+        s.textContent = matched.slice(2, -2);
+        parent.appendChild(s);
+      } else {
+        var e = document.createElement('em');
+        e.textContent = matched.slice(1, -1);
+        parent.appendChild(e);
+      }
+      lastIdx = offset + matched.length;
+      return matched;
+    });
+    if (lastIdx < text.length) {
+      parent.appendChild(document.createTextNode(text.slice(lastIdx)));
+    }
+  }
+
+  // Block-level markdown: paragraphs split on blank lines, plus simple
+  // bullet and numbered lists. DOM construction only, no innerHTML.
+  function renderMarkdownInto(text, container) {
+    var blocks = text.split(/\n{2,}/);
+    for (var i = 0; i < blocks.length; i++) {
+      var block = blocks[i].trim();
+      if (!block) continue;
+      var lines = block.split(/\n/);
+      var isUL = lines.every(function (l) { return /^\s*[-*]\s+/.test(l); });
+      var isOL = lines.every(function (l) { return /^\s*\d+\.\s+/.test(l); });
+      if (isUL || isOL) {
+        var list = document.createElement(isUL ? 'ul' : 'ol');
+        lines.forEach(function (l) {
+          var li = document.createElement('li');
+          appendInlineMarkdown(l.replace(/^\s*([-*]|\d+\.)\s+/, ''), li);
+          list.appendChild(li);
+        });
+        container.appendChild(list);
+      } else {
+        var p = document.createElement('p');
+        var parts = block.split(/\n/);
+        parts.forEach(function (part, idx) {
+          appendInlineMarkdown(part, p);
+          if (idx < parts.length - 1) p.appendChild(document.createElement('br'));
+        });
+        container.appendChild(p);
+      }
+    }
+  }
+
   function renderTurn(role, content, options) {
     options = options || {};
     var div = document.createElement('div');
@@ -551,8 +615,12 @@ a:hover { border-bottom-color: var(--accent); }
     var label = document.createElement('span');
     label.className = 'chat-turn-label';
     label.textContent = role === 'user' ? 'You' : (options.error ? 'Error' : 'Kevin');
-    var body = document.createElement('span');
-    body.textContent = content;
+    var body = document.createElement('div');
+    if (role === 'assistant' && !options.pending && !options.error && content) {
+      renderMarkdownInto(content, body);
+    } else {
+      body.textContent = content;
+    }
     div.appendChild(label);
     div.appendChild(body);
     els.chatThread.appendChild(div);
@@ -629,7 +697,9 @@ a:hover { border-bottom-color: var(--accent); }
     callApi(conversation).then(function (data) {
       var reply = data.response || 'No response. Try a different question.';
       pending.div.classList.remove('chat-turn-pending');
-      pending.body.textContent = reply;
+      // Clear loading text, then build markdown DOM into the body.
+      while (pending.body.firstChild) pending.body.removeChild(pending.body.firstChild);
+      renderMarkdownInto(reply, pending.body);
       conversation.push({ role: 'assistant', content: reply });
     }).catch(function (e) {
       pending.div.classList.remove('chat-turn-pending');
