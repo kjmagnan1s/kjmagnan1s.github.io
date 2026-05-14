@@ -611,7 +611,7 @@ Post-deployment AI adoption inside enterprise and government customers is the wo
 
 4. **C-suite to engineering, in the same week.** At Slalom I lead executive briefings with elected officials, state CIOs, sheriffs, and city council members. I also sit with technical teams on architecture reviews, integration patterns, and IT security. The JD asks for a thought partner for C-level stakeholders who can also dive deep with technical teams. That is the literal description of my current job.
 
-5. **Workshop and champion-building is my discipline.** I generated three net-new AI implementation projects last year from 10+ customer workshops. I authored Slalom's internal AI enablement program: curriculum, evaluation criteria, operational playbooks, and champion-building workshops used by 100+ consultants. Outside of Slalom, I run AI Recess (weekly cohort teaching non-technical builders) and TikTok @vibewithkevin (daily instructional design). Customer enablement is a discipline I practice publicly.
+5. **Workshop and champion-building is my discipline.** I generated three net-new AI implementation projects last year from 10+ customer workshops. Outside of Slalom, I run AI Recess (weekly cohort teaching non-technical builders) and TikTok @vibewithkevin (daily instructional design). Customer enablement is a discipline I practice publicly.
 
 6. **Cross-functional navigator is my current title in everything but name.** Slalom Sales, Solutions Architecture, Delivery, Cloud Partnerships. I am already the connective tissue across teams for every AI engagement in the industry.
 
@@ -775,7 +775,7 @@ Most SLG sales motions land at low-risk agencies (DMV, parks, libraries) and exp
 
 5. **I ship production AI on the Anthropic API.** Claude Code, the Anthropic API, Claude for Enterprise patterns. OpenClaw (persistent Claude Code Discord bot), Claude Code skills (resume builder, website manager, claude-md creator), AIppliance Manager (iOS), AI Recess, Doughby, the chatbot on kevinjmagnan.com. Architect credibility comes from building, not slide decks.
 
-6. **Teaching is half the job and I do it daily.** Trained 100+ public sector staff on what to ask an AI vendor before they sign a contract. TikTok @vibewithkevin (4,300+ followers) is daily AI engineering instructional design. AI Recess is weekly cohort teaching. "Love of teaching, mentoring, and helping others succeed" from the JD is observable in my public practice, not aspirational.
+6. **Teaching is half the job and I do it daily.** TikTok @vibewithkevin (4,300+ followers) is daily AI engineering instructional design. AI Recess is weekly cohort teaching. Coaching Slalom team members 1:1 on applying AI to their work. "Love of teaching, mentoring, and helping others succeed" from the JD is observable in my public practice, not aspirational.
 
 7. **Police, Crime Lab, Slalom. Public sector is not a vertical I am learning.** Former sworn officer. University of Chicago Crime Lab researcher. Now leading SLG AI strategy at Slalom. "Prior experience working with US federal, state, and/or local agencies" is the entire arc of my career.
 
@@ -802,7 +802,7 @@ Most SLG sales motions land at low-risk agencies (DMV, parks, libraries) and exp
 ### Other Relevant Experience
 - Re-engineered Slalom's PSI delivery and RFP response motion end-to-end, redesigning the workflow and shipping the AI tooling that powers it.
 - Named technical advisor for applied AI across the PSI portfolio. Shepherds agency-facing technical communication for every AE in the vertical: discovery, architecture reviews, executive briefings, calibrating from elected officials and C-suite through CIOs, engineers, IT security, and vendors.
-- Authors and runs Slalom's PSI internal AI enablement program. Curriculum, evaluation criteria, operational playbooks used by 100+ consultants.
+- Owns Public and Social Impact AI Enablement as a horizontal designation across the PSI industry (government, education, nonprofit).
 - Publishes weekly+ across TikTok @vibewithkevin, LinkedIn, and short-form blogs on government AI adoption, spanning engineer-facing deep dives (Claude API, agent frameworks, eval patterns) through CIO-facing strategy (procurement, governance, vendor evaluation).
 - Violence Reduction Dashboard with the City of Chicago at Urban Labs (2017-2021): 0-to-1 product, launch playbooks, government early-access model, feedback systems. The pre-LLM version of the architecture work being done now.
 - Managed 8 research analysts at Urban Labs across 8 large-scale initiatives with 7 federal, state, and local agencies.
