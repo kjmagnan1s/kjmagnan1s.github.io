@@ -4,6 +4,12 @@
   "description": "A conversational agent that answers questions about Kevin J. Magnan's experience, skills, projects, and fit for a role, grounded in his real career history.",
   "url": "https://kevinjmagnan.com/api/agent",
   "preferredTransport": "JSONRPC",
+  "supportedInterfaces": [
+    {
+      "transport": "JSONRPC",
+      "url": "https://kevinjmagnan.com/api/agent"
+    }
+  ],
   "version": "1.0.0",
   "provider": {
     "organization": "Kevin J. Magnan",

@@ -28,7 +28,7 @@
   ],
   "service_documentation": "https://kevinjmagnan.com/auth.md",
   "agent_auth": {
-    "skill": "https://kevinjmagnan.com/.well-known/agent-skills/about-kevin/SKILL.md",
+    "skill": "https://kevinjmagnan.com/auth.md",
     "register_uri": "https://kevinjmagnan.com/auth/register",
     "identity_types_supported": [
       "identity_assertion",
