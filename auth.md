@@ -36,8 +36,7 @@ Protected Resource metadata.
 
 - **Register URI:** `https://kevinjmagnan.com/auth/register`
 - **Supported identity types:** `identity_assertion` (ID-JAG via
-  `urn:ietf:params:oauth:token-type:id-jag`, and `verified_email`) and
-  `anonymous`.
+  `urn:ietf:params:oauth:token-type:id-jag`).
 - **Credential types:** `client_secret`, `private_key_jwt`.
 - **Claim URI:** `https://kevinjmagnan.com/auth/claim`
 - **Revocation URI:** `https://kevinjmagnan.com/auth/revoke`

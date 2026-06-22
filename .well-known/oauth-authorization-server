@@ -31,23 +31,15 @@
     "skill": "https://kevinjmagnan.com/auth.md",
     "register_uri": "https://kevinjmagnan.com/auth/register",
     "identity_types_supported": [
-      "identity_assertion",
-      "anonymous"
+      "identity_assertion"
     ],
     "identity_assertion": {
       "assertion_types_supported": [
-        "urn:ietf:params:oauth:token-type:id-jag",
-        "verified_email"
+        "urn:ietf:params:oauth:token-type:id-jag"
       ],
       "credential_types_supported": [
         "client_secret",
         "private_key_jwt"
-      ],
-      "claim_uri": "https://kevinjmagnan.com/auth/claim"
-    },
-    "anonymous": {
-      "credential_types_supported": [
-        "client_secret"
       ],
       "claim_uri": "https://kevinjmagnan.com/auth/claim"
     },
