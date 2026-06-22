@@ -294,3 +294,110 @@ title: null
         <a href="https://aippliedlabs.com" target="_blank" rel="noopener" class="contact-email">aippliedlabs.com</a>
     </p>
 </section>
+
+<!-- WebMCP: expose site tools to AI agents via the browser.
+     https://webmachinelearning.github.io/webmcp/  -->
+<script>
+(function () {
+  "use strict";
+
+  function ok(text) { return { content: [{ type: "text", text: String(text) }] }; }
+
+  var TOOLS = [
+    {
+      name: "get_profile",
+      description: "Get Kevin J. Magnan's machine-readable profile (name, title, skills, expertise, links) as JSON-LD.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      execute: async function () {
+        try {
+          var res = await fetch("/api/profile.json", { headers: { accept: "application/json" } });
+          var data = await res.text();
+          return ok(data);
+        } catch (e) {
+          return ok("Profile available at https://kevinjmagnan.com/api/profile.json");
+        }
+      }
+    },
+    {
+      name: "ask_kevin",
+      description: "Ask a question about Kevin's experience, skills, projects, or background. Opens the conversation on the page with your question.",
+      inputSchema: {
+        type: "object",
+        properties: { question: { type: "string", description: "The question to ask about Kevin." } },
+        required: ["question"],
+        additionalProperties: false
+      },
+      execute: async function (args) {
+        var q = (args && args.question) || "";
+        var input = document.getElementById("trigger-input");
+        var form = document.getElementById("trigger-form");
+        if (input && form) {
+          input.value = q;
+          form.requestSubmit ? form.requestSubmit() : form.submit();
+          return ok('Opened the "Ask Me Anything" conversation with: ' + q);
+        }
+        return ok("Ask Kevin anything at https://kevinjmagnan.com/#conversation");
+      }
+    },
+    {
+      name: "assess_fit",
+      description: "Submit a job description to get an honest assessment of where Kevin is a strong fit and where there may be gaps.",
+      inputSchema: {
+        type: "object",
+        properties: { job_description: { type: "string", description: "The full job description text." } },
+        required: ["job_description"],
+        additionalProperties: false
+      },
+      execute: async function (args) {
+        var jd = (args && args.job_description) || "";
+        var box = document.getElementById("job-description");
+        if (box) {
+          box.value = jd;
+          box.dispatchEvent(new Event("input", { bubbles: true }));
+          return ok("Loaded the job description into the fit-assessment tool.");
+        }
+        return ok("Paste a job description at https://kevinjmagnan.com/ to assess fit.");
+      }
+    },
+    {
+      name: "navigate_to_section",
+      description: "Scroll the page to a named section.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          section: { type: "string", enum: ["conversation", "fit", "contact"], description: "Section to scroll to." }
+        },
+        required: ["section"],
+        additionalProperties: false
+      },
+      execute: async function (args) {
+        var id = (args && args.section) || "conversation";
+        var el = document.getElementById(id) || document.querySelector("." + id);
+        if (el && el.scrollIntoView) {
+          el.scrollIntoView({ behavior: "smooth" });
+          return ok("Scrolled to " + id + ".");
+        }
+        return ok("Section " + id + " not found.");
+      }
+    }
+  ];
+
+  function register() {
+    var mc = navigator.modelContext;
+    if (!mc) return;
+    try {
+      if (typeof mc.registerTool === "function") {
+        TOOLS.forEach(function (t) { mc.registerTool(t); });
+      } else if (typeof mc.provideContext === "function") {
+        mc.provideContext({ tools: TOOLS });
+      }
+    } catch (e) { /* no-op: never break the page for human visitors */ }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", register);
+  } else {
+    register();
+  }
+})();
+</script>

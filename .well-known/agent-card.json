@@ -1,0 +1,47 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Ask Kevin",
+  "description": "A conversational agent that answers questions about Kevin J. Magnan's experience, skills, projects, and fit for a role, grounded in his real career history.",
+  "url": "https://kevinjmagnan.com/api/agent",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "Kevin J. Magnan",
+    "url": "https://kevinjmagnan.com"
+  },
+  "iconUrl": "https://kevinjmagnan.com/assets/images/headshot.png",
+  "documentationUrl": "https://kevinjmagnan.com/robot/",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "defaultInputModes": [
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "ask-kevin",
+      "name": "Ask about Kevin",
+      "description": "Answer questions about Kevin's experience, skills, public-sector AI work, projects, and publications.",
+      "tags": ["profile", "career", "ai", "public-sector", "consulting"],
+      "examples": [
+        "What is Kevin's experience with public-safety technology?",
+        "Summarize Kevin's work on AI strategy for government.",
+        "What has Kevin published?"
+      ]
+    },
+    {
+      "id": "assess-fit",
+      "name": "Assess role fit",
+      "description": "Given a job description, return an honest assessment of where Kevin is a strong fit and where there are gaps.",
+      "tags": ["hiring", "fit", "assessment"],
+      "examples": [
+        "Here is a job description for an AI strategy lead. How well does Kevin fit?"
+      ]
+    }
+  ]
+}

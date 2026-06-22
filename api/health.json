@@ -1,0 +1,14 @@
+---
+layout: null
+permalink: /api/health.json
+---
+{
+  "status": "ok",
+  "service": "kevinjmagnan.com portfolio data API",
+  "version": "1.0.0",
+  "endpoints": [
+    "/api/profile.json",
+    "/api/work.json",
+    "/api/publications.json"
+  ]
+}

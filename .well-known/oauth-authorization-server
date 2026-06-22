@@ -1,0 +1,59 @@
+{
+  "issuer": "https://kevinjmagnan.com",
+  "authorization_endpoint": "https://kevinjmagnan.com/auth/authorize",
+  "token_endpoint": "https://kevinjmagnan.com/auth/token",
+  "registration_endpoint": "https://kevinjmagnan.com/auth/register",
+  "jwks_uri": "https://kevinjmagnan.com/.well-known/jwks.json",
+  "grant_types_supported": [
+    "authorization_code",
+    "client_credentials",
+    "urn:ietf:params:oauth:grant-type:token-exchange"
+  ],
+  "response_types_supported": [
+    "code"
+  ],
+  "code_challenge_methods_supported": [
+    "S256"
+  ],
+  "token_endpoint_auth_methods_supported": [
+    "none",
+    "client_secret_basic",
+    "private_key_jwt"
+  ],
+  "scopes_supported": [
+    "profile:read",
+    "work:read",
+    "publications:read",
+    "chat:converse"
+  ],
+  "service_documentation": "https://kevinjmagnan.com/auth.md",
+  "agent_auth": {
+    "skill": "https://kevinjmagnan.com/.well-known/agent-skills/about-kevin/SKILL.md",
+    "register_uri": "https://kevinjmagnan.com/auth/register",
+    "identity_types_supported": [
+      "identity_assertion",
+      "anonymous"
+    ],
+    "identity_assertion": {
+      "assertion_types_supported": [
+        "urn:ietf:params:oauth:token-type:id-jag",
+        "verified_email"
+      ],
+      "credential_types_supported": [
+        "client_secret",
+        "private_key_jwt"
+      ],
+      "claim_uri": "https://kevinjmagnan.com/auth/claim"
+    },
+    "anonymous": {
+      "credential_types_supported": [
+        "client_secret"
+      ],
+      "claim_uri": "https://kevinjmagnan.com/auth/claim"
+    },
+    "revocation_uri": "https://kevinjmagnan.com/auth/revoke",
+    "events_supported": [
+      "https://schemas.openid.net/secevent/risc/event-type/credential-revoked"
+    ]
+  }
+}

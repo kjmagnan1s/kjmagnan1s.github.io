@@ -1,0 +1,35 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://kevinjmagnan.com/api",
+      "service-desc": [
+        {
+          "href": "https://kevinjmagnan.com/api/openapi.json",
+          "type": "application/openapi+json",
+          "title": "Kevin J. Magnan portfolio data API (OpenAPI 3.1)"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://kevinjmagnan.com/robot/",
+          "type": "text/html",
+          "title": "Machine-readable robot view of the portfolio"
+        }
+      ],
+      "service-meta": [
+        {
+          "href": "https://kevinjmagnan.com/.well-known/agent-card.json",
+          "type": "application/json",
+          "title": "A2A agent card for the Ask Kevin agent"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://kevinjmagnan.com/api/health.json",
+          "type": "application/json",
+          "title": "API health endpoint"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/2025-06/server-card.json",
+  "serverInfo": {
+    "name": "kevin-magnan-portfolio",
+    "title": "Kevin J. Magnan Portfolio MCP Server",
+    "version": "1.0.0",
+    "description": "Read-only access to Kevin J. Magnan's professional profile, work history, and publications, plus a conversational tool that answers questions about his experience.",
+    "websiteUrl": "https://kevinjmagnan.com"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://kevinjmagnan.com/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "listChanged": false,
+      "subscribe": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "ask_kevin",
+      "description": "Ask a question about Kevin's experience, skills, projects, or fit for a role. Returns a grounded natural-language answer."
+    },
+    {
+      "name": "assess_fit",
+      "description": "Provide a job description and receive an honest assessment of where Kevin is a strong fit and where there may be gaps."
+    }
+  ],
+  "resources": [
+    {
+      "uri": "https://kevinjmagnan.com/api/profile.json",
+      "name": "profile",
+      "description": "Schema.org Person profile for Kevin J. Magnan.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "https://kevinjmagnan.com/api/work.json",
+      "name": "work-history",
+      "description": "Structured work history and projects.",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "https://kevinjmagnan.com/api/publications.json",
+      "name": "publications",
+      "description": "List of publications and writing.",
+      "mimeType": "application/json"
+    }
+  ]
+}

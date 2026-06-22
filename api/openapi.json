@@ -1,0 +1,69 @@
+---
+layout: null
+permalink: /api/openapi.json
+---
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Kevin J. Magnan Portfolio Data API",
+    "version": "1.0.0",
+    "description": "Read-only, public JSON endpoints exposing Kevin J. Magnan's professional profile, work history, and publications as machine-readable data.",
+    "contact": {
+      "name": "Kevin J. Magnan",
+      "url": "https://kevinjmagnan.com"
+    }
+  },
+  "servers": [
+    { "url": "https://kevinjmagnan.com" }
+  ],
+  "paths": {
+    "/api/profile.json": {
+      "get": {
+        "operationId": "getProfile",
+        "summary": "Get the Schema.org Person profile",
+        "responses": {
+          "200": {
+            "description": "Person profile as JSON-LD",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/api/work.json": {
+      "get": {
+        "operationId": "getWork",
+        "summary": "Get structured work history and projects",
+        "responses": {
+          "200": {
+            "description": "Work history",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/api/publications.json": {
+      "get": {
+        "operationId": "getPublications",
+        "summary": "Get publications and writing",
+        "responses": {
+          "200": {
+            "description": "Publications list",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    },
+    "/api/health.json": {
+      "get": {
+        "operationId": "getHealth",
+        "summary": "Liveness/health check",
+        "responses": {
+          "200": {
+            "description": "Service health",
+            "content": { "application/json": { "schema": { "type": "object" } } }
+          }
+        }
+      }
+    }
+  }
+}

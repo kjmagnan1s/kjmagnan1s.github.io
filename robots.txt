@@ -1,0 +1,70 @@
+# robots.txt for kevinjmagnan.com
+# RFC 9309 compliant. AI usage preferences declared via Content Signals
+# (https://contentsignals.org/, draft-romm-aipref-contentsignals).
+#
+# Policy summary: this is a public professional portfolio. Crawling for
+# search and use as live AI answer input is welcome. Use of this content to
+# train models is not permitted.
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+Disallow: /c/
+
+# --- AI crawlers: explicit per-bot policy (RFC 9309) ---
+
+# OpenAI: search/answer bots welcome, training crawler disallowed
+User-agent: GPTBot
+Content-Signal: ai-train=no
+Disallow: /
+
+User-agent: OAI-SearchBot
+Content-Signal: search=yes, ai-input=yes
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic: user-facing fetches welcome, training crawler disallowed
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Content-Signal: ai-train=no
+Disallow: /
+
+# Google Gemini training
+User-agent: Google-Extended
+Content-Signal: ai-train=no
+Disallow: /
+
+# Apple Intelligence training
+User-agent: Applebot-Extended
+Content-Signal: ai-train=no
+Disallow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# ByteDance training crawler
+User-agent: Bytespider
+Content-Signal: ai-train=no
+Disallow: /
+
+# Common Crawl (feeds many training datasets)
+User-agent: CCBot
+Content-Signal: ai-train=no
+Disallow: /
+
+# Perplexity answer engine
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://kevinjmagnan.com/sitemap.xml

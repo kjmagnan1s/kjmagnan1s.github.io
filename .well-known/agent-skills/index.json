@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "about-kevin",
+      "type": "skill-md",
+      "description": "Answer questions about Kevin J. Magnan's experience, skills, public-sector AI work, projects, and fit for a role, grounded in machine-readable profile data.",
+      "url": "https://kevinjmagnan.com/.well-known/agent-skills/about-kevin/SKILL.md",
+      "digest": "sha256:dd763959c71ef33591f8237b49962ed299b6228ad00296f604e0bc183ea37e53"
+    }
+  ]
+}
