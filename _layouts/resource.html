@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | Kevin Magnan</title>
+  <meta name="description" content="{{ page.description | escape }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="icon" href="/assets/images/favicon_v2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/resources.css">
+  <meta property="og:title" content="{{ page.title | escape }}">
+  <meta property="og:description" content="{{ page.description | escape }}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/assets/images/web_thumbnail.png">
+</head>
+<body class="resource-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="resource-header"><a class="resource-logo" href="/">Kevin Magnan</a><nav aria-label="Main navigation"><a href="/resources/" aria-current="{% if page.url == '/resources/' %}page{% else %}false{% endif %}">Resources</a><a href="/#writing">Writing</a><a href="/#about">About</a></nav></header>
+  <main id="main" class="resource-main">{{ content }}</main>
+  <footer class="resource-footer"><span>&copy; {{ 'now' | date: '%Y' }} Kevin J. Magnan</span><a href="https://www.tiktok.com/@vibewithkevin">Find me on TikTok</a></footer>
+  <script src="/assets/js/resources.js" defer></script>
+</body>
+</html>

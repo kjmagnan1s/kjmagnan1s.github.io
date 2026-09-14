@@ -1,0 +1,80 @@
+---
+layout: resource
+title: Make your AI-built website look like yours
+description: Paul Bakaus's Impeccable walkthrough, the GitHub link, and a practical guide to briefing and steering your AI design agent.
+---
+<article class="design-guide">
+  <a class="resource-back" href="/resources/">All resources</a>
+  <header class="guide-intro">
+    <div>
+      <h1>Make your AI-built website look like yours.</h1>
+      <p class="guide-deck">The Impeccable walkthrough from my TikTok, plus a few instructions to try on your own site.</p>
+      <div class="guide-actions">
+        <a class="guide-button" href="https://github.com/pbakaus/impeccable">Get Impeccable on GitHub</a>
+        <a href="#start">Start the walkthrough</a>
+      </div>
+      <p class="guide-credit">Collected by Kevin Magnan. Skill and demonstration by Paul Bakaus.</p>
+    </div>
+    <figure class="talk-feature">
+      <a class="video-poster" href="https://www.youtube.com/watch?v=v42opQpCy60&t=58" aria-label="Watch Paul's opening comparison on YouTube, starting at 0:58">
+        <img src="https://i.ytimg.com/vi/v42opQpCy60/hqdefault.jpg" width="480" height="360" alt="Paul Bakaus's Design at the Speed of Adjectives talk" fetchpriority="high">
+        <span class="watch-label">Watch the comparison <span aria-hidden="true">▶</span></span>
+      </a>
+      <figcaption><a href="https://www.youtube.com/watch?v=v42opQpCy60">Design at the Speed of Adjectives</a><br>Paul Bakaus / AI Engineer / 16 minutes</figcaption>
+    </figure>
+  </header>
+
+  <section class="source-note" aria-labelledby="comparison-title">
+    <h2 id="comparison-title">Same request. Different design direction.</h2>
+    <p>Paul opens with the same project, model, and request to make a section bolder, with and without Impeccable. He also points out what still needs work. Start at <a href="https://www.youtube.com/watch?v=v42opQpCy60&t=58">0:58</a> and compare the results yourself.</p>
+    <p class="small-note">This guide draws on Paul's demonstration. The example instructions below are adaptations for your own project, not results from a personal test.</p>
+  </section>
+
+  <section id="start" class="setup-section" aria-labelledby="setup-title">
+    <div class="section-heading"><span class="step-marker" aria-hidden="true">1</span><h2 id="setup-title">Get it into your project</h2></div>
+    <p>Impeccable adds design guidance to an AI coding tool. Open your website's project folder in the terminal, then run the install command from its <a href="https://github.com/pbakaus/impeccable#readme">official instructions</a>.</p>
+    <div class="copy-block"><div class="copy-heading"><span>In your terminal</span><button type="button" data-copy="install" aria-label="Copy install command" hidden>Copy</button></div><pre id="install">npx impeccable install</pre></div>
+    <p>Choose the coding tool you use during setup. Then open a session in that project and run:</p>
+    <div class="copy-block"><div class="copy-heading"><span>In your AI coding tool</span><button type="button" data-copy="initialize" aria-label="Copy initialization command" hidden>Copy</button></div><pre id="initialize">/impeccable init</pre></div>
+    <p class="small-note">Requires Node.js/npm for the terminal installer. Review the repository before installing. Installation adds local skill and hook configuration; it does not make your model usage free. In Codex, use <code>/skills</code> or <code>$impeccable</code> to find the skill if needed.</p>
+  </section>
+
+  <section class="brief-section" aria-labelledby="brief-title">
+    <div class="section-heading"><span class="step-marker" aria-hidden="true">2</span><h2 id="brief-title">Give it something to design for</h2></div>
+    <p>Before asking for changes, fill in these four details. A reference is more useful when you explain what you like about it.</p>
+    <dl class="brief-questions">
+      <div><dt>Who's it for?</dt><dd>The person visiting and the thing they came to do.</dd></div>
+      <div><dt>How should it feel?</dt><dd>Use words you can explain, such as calm, playful, or direct.</dd></div>
+      <div><dt>What should it avoid?</dt><dd>A look, pattern, or feeling that would be wrong for this project.</dd></div>
+      <div><dt>What's the reference?</dt><dd>A link or screenshot, plus the specific detail worth borrowing.</dd></div>
+    </dl>
+    <div class="copy-block"><div class="copy-heading"><span>Fill in the brackets before sending</span><button type="button" data-copy="brief" aria-label="Copy design brief" hidden>Copy brief</button></div><pre id="brief">This website is for [audience]. Their main task is [action].
+It should feel [qualities], because [reason].
+Avoid [patterns or feelings that don't fit].
+Reference: [link or screenshot]. I like its [specific detail].
+Preserve [existing brand, content, and functional constraints].
+Ask me about any missing context before making changes.</pre></div>
+    <a class="brief-source" href="https://www.youtube.com/watch?v=v42opQpCy60&t=436">Paul explains the briefing questions at 7:16</a>
+  </section>
+
+  <section class="directions-section" aria-labelledby="directions-title">
+    <div class="section-heading"><span class="step-marker" aria-hidden="true">3</span><h2 id="directions-title">Pick the change the page needs</h2></div>
+    <p>Work on one section at a time. These examples give you a starting point; replace the target with the part of your own site you're editing.</p>
+    <article class="direction-row">
+      <div><h3>Bolder</h3><p class="direction-summary">When everything has the same visual weight.</p></div>
+      <div><p>Make the important part easier to see through size, type, and hierarchy. Keep the project's existing design direction in view.</p><div class="copy-block"><div class="copy-heading"><span>Example instruction</span><button type="button" data-copy="bolder" aria-label="Copy bolder example" hidden>Copy</button></div><pre id="bolder">/impeccable bolder the main call-to-action section. Strengthen the hierarchy and typography while preserving our brand colors and existing copy.</pre></div></div>
+    </article>
+    <article class="direction-row">
+      <div><h3>Distill</h3><p class="direction-summary">When the page has too much going on.</p></div>
+      <div><p>Reduce the visual clutter around the visitor's main task. Specify anything that must stay, especially required content and functionality.</p><div class="copy-block"><div class="copy-heading"><span>Example instruction</span><button type="button" data-copy="distill" aria-label="Copy distill example" hidden>Copy</button></div><pre id="distill">/impeccable distill the services section. Make the next action easy to find. Preserve the service details, pricing, and working links.</pre></div></div>
+    </article>
+    <article class="direction-row">
+      <div><h3>Harden</h3><p class="direction-summary">When the happy-path preview looks finished.</p></div>
+      <div><p>Check what happens with long text, missing content, errors, and other edge cases. Ask for an audit as well when checking accessibility, responsiveness, and performance.</p><div class="copy-block"><div class="copy-heading"><span>Example instruction</span><button type="button" data-copy="harden" aria-label="Copy harden example" hidden>Copy</button></div><pre id="harden">/impeccable harden the contact form. Check long inputs, validation, error messages, and submission states. Preserve the existing submission behavior.</pre></div><p class="small-note">Follow with <code>/impeccable audit</code> for a broader quality check. Inspect the page on your phone and test the form yourself.</p></div>
+    </article>
+  </section>
+  <aside class="guide-close"><h2>Look at what came back.</h2><p>Compare it with the brief. Keep what works, point to what still feels off, and run another focused pass. Paul's opening example has flaws too. Leave time to inspect yours.</p><a href="https://www.youtube.com/watch?v=v42opQpCy60&t=496">Watch Paul explain the design vocabulary at 8:16</a></aside>
+  <aside class="business-note"><div><h2>Want help applying this to your business?</h2><p>I work with teams on putting AI into their workflows.</p></div><a href="https://aippliedlabs.com/">Explore AIpplied Labs</a></aside>
+  <footer class="guide-sources"><p>Sources: <a href="https://www.youtube.com/watch?v=v42opQpCy60">Paul Bakaus's talk, published by AI Engineer</a> and the <a href="https://github.com/pbakaus/impeccable">official Impeccable documentation</a>. Checked September 13, 2026. Commands can change; use the repository for the latest setup instructions.</p></footer>
+  <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
+</article>
