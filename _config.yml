@@ -32,7 +32,7 @@ collections:
     output: true
 
 # Permalink structure for blog posts
-permalink: /:year/:month/:day/:title.html
+permalink: /:year/:month/:day/:title
 
 sass:
   style: compressed
@@ -40,7 +40,9 @@ sass:
 
 include:
   - assets/css/custom.css
+  - llms.txt
   - _redirects
+  - _headers
   - .well-known
   - .well-known/api-catalog
   - .well-known/oauth-authorization-server
@@ -56,3 +58,18 @@ exclude:
   - context
   - api/chat.js
   - server.js
+  # Cloudflare Worker sources. These must never ship as public static assets:
+  # src/worker/chat-context.ts holds the full system prompt.
+  - src
+  - netlify
+  - wrangler.jsonc
+  - tsconfig.worker.json
+  - tsconfig.genui.json
+  - vitest.config.ts
+  - vite.config.ts
+  - package.json
+  - package-lock.json
+  - deno.lock
+  - .dev.vars
+  - .dev.vars.example
+  - Docs

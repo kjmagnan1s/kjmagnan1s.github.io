@@ -1,9 +1,38 @@
-<footer id="footer">
-    <div class="container">
-        <h3>Kevin J. Magnan</h3>
-        <p>Principal Consultant & Technology Lead</p>
-        <div class="copyright">
-            &copy; 2025 Kevin J. Magnan. All rights reserved.
-        </div>
-    </div>
-</footer> 
+{%- comment -%}
+Footer sitemap. This is the no-JavaScript fallback and the crawl path for the
+composed homepage, so every canonical URL is linked here in plain HTML.
+{%- endcomment -%}
+{%- assign d = site.data.site -%}
+<footer class="site-footer">
+    <nav class="footer-sitemap" aria-label="Site map">
+        <a href="{{ '/resume' | relative_url }}">Resume</a>
+        <a href="{{ '/work/' | relative_url }}">Work</a>
+        <a href="{{ '/blog/' | relative_url }}">Writing</a>
+        <a href="{{ '/building/' | relative_url }}">Building</a>
+        <a href="{{ '/play/' | relative_url }}">Play</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+
+    <nav class="footer-machine" aria-label="Machine readable">
+        <a href="{{ '/robot/' | relative_url }}">Robot view</a>
+        <a href="{{ '/api/profile.json' | relative_url }}">JSON API</a>
+        <a href="{{ '/llms.txt' | relative_url }}">llms.txt</a>
+    </nav>
+
+    <nav class="footer-social" aria-label="Elsewhere">
+        {%- for link in d.person.sameAs %}
+        <a href="{{ link }}" rel="me noopener" target="_blank">
+            {%- if link contains 'linkedin' -%}LinkedIn
+            {%- elsif link contains 'github' -%}GitHub
+            {%- elsif link contains 'medium' -%}Medium
+            {%- elsif link contains 'tiktok' -%}TikTok
+            {%- elsif link contains 'x.com' -%}X
+            {%- elsif link contains 'youtube' -%}YouTube
+            {%- else -%}{{ link | split: '//' | last | split: '/' | first | remove: 'www.' }}
+            {%- endif -%}
+        </a>
+        {%- endfor %}
+    </nav>
+
+    <p class="footer-legal">&copy; <span class="current-year">{{ 'now' | date: "%Y" }}</span> {{ d.person.name }}</p>
+</footer>

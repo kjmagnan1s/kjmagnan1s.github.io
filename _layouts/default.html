@@ -17,35 +17,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
+    <!-- Styles. site.css carries the footer sitemap and /building styles. -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/conversation.css' | relative_url }}">
+    {% if page.url == '/' %}
+    <!-- Built by `npm run build:shell` (vite). Styles the generative shell, so
+         the idle front page is correct before any JavaScript runs. -->
+    <link rel="stylesheet" href="{{ '/assets/genui/genui.css' | relative_url }}">
+    {% endif %}
 
     <!-- Canonical -->
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 
     {% seo %}
 </head>
-<body>
-    {% unless page.layout == 'home' or page.url == '/' %}
-    <header class="site-header">
-        <a href="{{ '/' | relative_url }}" class="site-logo">Kevin Magnan</a>
-        <nav class="site-nav">
-            <a href="{{ '/resources/' | relative_url }}">Resources</a>
-            <a href="{{ '/#writing' | relative_url }}">Writing</a>
-            <a href="{{ '/#work' | relative_url }}">Work</a>
-            <a href="{{ '/#about' | relative_url }}">About</a>
-        </nav>
-    </header>
-    {% endunless %}
+<body{% if page.url == '/' %} class="shell-page" data-shell="idle"{% endif %}>
+    {% include nav.html %}
 
     <main class="site-main">
         {{ content }}
     </main>
 
-    <footer class="site-footer">
-        <p>&copy; <span class="current-year">{{ 'now' | date: "%Y" }}</span> Kevin J. Magnan</p>
-    </footer>
+    {% include footer.html %}
 
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/conversation.js' | relative_url }}"></script>

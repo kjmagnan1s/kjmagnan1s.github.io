@@ -333,7 +333,6 @@ section {
 
 @media (min-width: 768px) {
     .about-content {
-        flex-direction: row;
         gap: var(--space-12);
         align-items: flex-start;
     }
@@ -830,6 +829,20 @@ section {
 @media (max-width: 640px) {
     .hero {
         min-height: 60vh;
+    }
+
+    /* Six nav links plus the logo do not fit one phone row. Stack and wrap
+       them instead of letting the bar scroll sideways. */
+    .site-header {
+        flex-direction: column;
+        gap: var(--space-2);
+        padding: var(--space-4);
+    }
+
+    .site-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--space-2) var(--space-4);
     }
 
     .post-link {

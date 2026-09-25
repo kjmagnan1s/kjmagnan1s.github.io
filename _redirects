@@ -1,3 +1,9 @@
-# Redirect all /c/* paths to the customized conversation page
-# The JavaScript on the page reads the slug from the URL
-/c/*  /c/index.html  200
+# The /c/* rewrite to /c/index.html lives in the Worker now, not here.
+# Cloudflare's assets layer rejects it as an infinite loop: the rewrite target
+# gets its `/index` stripped, which re-enters the same rule. src/worker/index.ts
+# serves /c/index.html for those paths instead, via run_worker_first in
+# wrangler.jsonc. Do not add that rule back or `wrangler deploy` fails.
+
+# Project deep links never had their own pages; send them to the anchored entry on /work/
+/work/post-modernization     /work/#post-modernization     301
+/work/configurable-platforms /work/#configurable-platforms 301

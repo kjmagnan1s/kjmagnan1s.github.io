@@ -10,7 +10,7 @@
     },
     "description": "I design AI‑powered analytics, secure cloud architectures, and data strategies that modernize justice and public‑safety services.",
     "sameAs": [
-      "https://www.linkedin.com/in/kevinjmagnan",
+      "https://www.linkedin.com/in/kjmagnan1s/",
       "https://github.com/kjmagnan1s",
       "https://medium.com/@kjmagnan"
     ]
@@ -63,6 +63,58 @@
         "Public Safety"
       ],
       "type": "Platform Implementation"
+    }
+  ],
+  "products": [
+    {
+      "id": "aipplied-labs",
+      "name": "AIpplied Labs",
+      "url": "https://aippliedlabs.com",
+      "summary": "AI engineering studio, where everything else gets built."
+    },
+    {
+      "id": "ai-recess",
+      "name": "AI Recess",
+      "url": "https://joinairecess.com",
+      "summary": "Community for AI builders, co-founded with two fellow creators."
+    },
+    {
+      "id": "leadershift",
+      "name": "LeaderShift",
+      "url": "https://leadershift.app",
+      "summary": "AI consulting for the public sector."
+    }
+  ],
+  "builds": [
+    {
+      "id": "trim-hero",
+      "name": "trim-hero",
+      "url": "https://github.com/kjmagnan1s/trim-hero",
+      "summary": "Claude Code skill that profiles your real API payload, ranks what each turn pays for, and trims the bloat behind an approval gate."
+    },
+    {
+      "id": "unifi-agent",
+      "name": "unifi-agent",
+      "url": "https://github.com/kjmagnan1s/unifi-agent",
+      "summary": "Safety-first agentic command and control for UniFi networks: hybrid API client, MCP server, and CLI with blast-radius guards."
+    },
+    {
+      "id": "anti-slop",
+      "name": "anti-slop",
+      "url": "https://github.com/kjmagnan1s/anti-slop",
+      "summary": "Detect, rewrite, and ingest AI slop, with a protect-list seam so it never flattens your voice."
+    },
+    {
+      "id": "slides",
+      "name": "slides",
+      "url": "https://github.com/kjmagnan1s/slides",
+      "summary": "Turn an outline into a self-contained, animated HTML slide deck. 16 formats, presenter mode, PDF export."
+    },
+    {
+      "id": "stardust",
+      "name": "stardust",
+      "url": "https://github.com/kjmagnan1s/stardust",
+      "summary": "Local search and markdown export for your GitHub stars. Claude Code skill plus CLI."
     }
   ],
   "about": {
@@ -165,37 +217,37 @@
   ],
   "publications": [
     {
-      "url": "/2025/10/13/the-age-of-cheap-intelligence.html",
+      "url": "/2025/10/13/age-of-cheap-intelligence",
       "date": "2025-10-13",
       "summary": "Why routing cheaper intelligence will define AI leadership in 2026",
       "title": "The Age of Cheap Intelligence"
     },
     {
-      "url": "/2025/10/13/from-brevity-bias-to-context-intelligence.html",
+      "url": "/2025/10/13/from-brevity-bias-to-context-intelligence",
       "date": "2025-10-13",
       "summary": "Applying Stanford's ACE framework to build memory-rich public safety AI",
       "title": "From Brevity Bias to Context Intelligence"
     },
     {
-      "url": "/2025/09/05/the-more-things-change-ai-context-engineering.html",
+      "url": "/2025/09/05/the-more-things-change-ai-context-engineering",
       "date": "2025-09-05",
       "summary": "Why AI context engineering has brought us full circle in the public sector",
       "title": "The More Things Change, The More They Stay the Same"
     },
     {
-      "url": "/2025/09/05/frontier-models-just-beginning.html",
+      "url": "/2025/09/05/frontier-models-just-beginning",
       "date": "2025-09-05",
       "summary": "The shift from general-purpose to specialized AI models",
       "title": "Frontier Models Are Just the Beginning"
     },
     {
-      "url": "/2025/09/03/power-configurable-platforms-public-safety-modernization.html",
+      "url": "/2025/09/03/power-configurable-platforms-public-safety-modernization",
       "date": "2025-09-03",
       "summary": "Real-world lessons from helping agencies move beyond custom tech to scalable solutions",
       "title": "The Power of Configurable Platforms in Public Safety Modernization"
     },
     {
-      "url": "/2025/08/22/stop-calling-it-ai-pilot.html",
+      "url": "/2025/08/22/stop-calling-it-ai-pilot",
       "date": "2025-08-22",
       "summary": "We're wasting PhD-level intelligence on intern-level tasks",
       "title": "Stop Calling It an 'AI Pilot'"

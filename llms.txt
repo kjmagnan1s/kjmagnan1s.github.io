@@ -1,0 +1,43 @@
+# llms.txt for kevinjmagnan.com
+# A plain-text guide for AI agents and answer engines.
+# Usage policy lives in /robots.txt. Search and live answer use are welcome.
+# Training on this content is not permitted.
+
+## Who
+
+Kevin J. Magnan, Principal Consultant and Technology Lead at Slalom.
+"I design AI-powered analytics, secure cloud architectures, and data strategies
+that modernize justice and public-safety services."
+
+## How this site works
+
+The homepage at https://kevinjmagnan.com/ composes itself for each visitor. It is
+a single chat input over prepared content, so it has no fixed body text to crawl.
+The static pages below are canonical. Cite those URLs, not the homepage.
+
+## Static pages
+
+/resume       Full work history, education, certifications, and skills.
+/blog         Every post, newest first. Writing on AI, public safety, and data.
+/building     Products and open source tools Kevin is building right now.
+/play         Experiments in progress. Currently a placeholder.
+/about        Background, focus areas, and the path from police officer to AI work.
+/robot/       The same person, work, and publication data rendered for machines.
+
+## Machine endpoints
+
+/robot/                          Structured HTML view with JSON-LD for the full graph.
+/api/profile.json                Person profile: name, title, employer, links.
+/api/work.json                   Selected projects with tags and summaries.
+/api/publications.json           Posts and articles with dates and summaries.
+/api/openapi.json                OpenAPI description of the read endpoints.
+/.well-known/agent-card.json     Agent card describing this site as a callable resource.
+/.well-known/api-catalog         Catalog of the endpoints above.
+/sitemap.xml                     Every indexable URL.
+
+## Elsewhere
+
+LinkedIn  https://www.linkedin.com/in/kjmagnan1s/
+GitHub    https://github.com/kjmagnan1s
+X         https://x.com/KevinMagnan
+TikTok    https://www.tiktok.com/@vibewithkevin

@@ -1,0 +1,664 @@
+/* --------------------------------------------------------------------------
+   The generative shell.
+
+   Built by `npm run build:shell` into assets/genui/genui.css and linked from
+   _layouts/default.html on the front page only. It styles static markup, so
+   the idle page is correct before genui.js runs and stays correct if it never
+   does. Tokens come from assets/css/main.css.
+   -------------------------------------------------------------------------- */
+
+/* 1. Page frame. The idle state fits the viewport: no scrolling at a desktop
+      width or a phone width. The composed state scrolls like any page. */
+
+body.shell-page {
+    min-height: 100svh;
+    overflow-x: clip;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+}
+
+body.shell-page .site-main {
+    min-height: 0;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    padding: var(--space-4) 0;
+}
+
+body.shell-page[data-shell="composed"] .site-main {
+    align-items: flex-start;
+}
+
+/* The header centres itself with auto margins, which a column flex parent
+   reads as "shrink to fit". Keep it full width so the bar still spans. */
+body.shell-page .site-header {
+    width: 100%;
+}
+
+body.shell-page .site-footer {
+    padding: var(--space-4) var(--space-6);
+}
+
+.shell {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+/* 2. Animated background mount point. Everything here is a placeholder wash
+      that the real background replaces. It never takes pointer events. */
+
+.shell-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(70% 55% at 50% 12%, rgba(184, 115, 51, 0.16), transparent 70%),
+        radial-gradient(45% 45% at 85% 85%, rgba(184, 115, 51, 0.08), transparent 70%);
+}
+
+/* 3. Hero. Collapses to a name line once a page has been composed. */
+
+.shell-hero {
+    text-align: center;
+}
+
+.shell-name {
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 1.8rem + 2.4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: var(--space-4);
+}
+
+.shell-tagline {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    max-width: 48ch;
+    margin: 0 auto var(--space-3);
+}
+
+.shell-subline {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: 48ch;
+    margin: 0 auto;
+}
+
+.shell-tagline,
+.shell-subline {
+    max-height: 10rem;
+    overflow: hidden;
+}
+
+[data-shell="composed"] .shell-hero {
+    text-align: left;
+}
+
+[data-shell="composed"] .shell-name {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+[data-shell="composed"] .shell-tagline,
+[data-shell="composed"] .shell-subline {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+/* 4. The ask box. In the composed state it pins to the top of the viewport. */
+
+.shell-ask {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.shell-ask-label {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.shell-ask-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--bg-section);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+}
+
+.shell-ask-row:focus-within {
+    border-color: var(--copper-500);
+}
+
+.shell-ask-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: none;
+    border: 0;
+    outline: none;
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    padding: var(--space-2) 0;
+}
+
+.shell-ask-input::placeholder {
+    color: var(--stone-500);
+}
+
+.shell-ask-submit {
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 999px;
+    background: var(--copper-500);
+    color: #1a1411;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-6);
+    cursor: pointer;
+}
+
+.shell-ask-submit:hover:not(:disabled) {
+    background: var(--copper-600);
+}
+
+.shell-ask-submit:disabled {
+    opacity: 0.55;
+    cursor: default;
+}
+
+[data-shell="composed"] .shell-ask {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding: var(--space-3) 0;
+}
+
+/* The bar is full bleed while the form itself stays on the content grid.
+   body has overflow-x: clip, so the overhang never adds a scrollbar. */
+[data-shell="composed"] .shell-ask::before {
+    content: "";
+    position: absolute;
+    inset: 0 -100vw;
+    z-index: -1;
+    background: rgba(28, 25, 23, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+[data-shell="composed"] .shell-ask-label {
+    display: none;
+}
+
+/* 5. Example prompts. Idle only: once a page exists, the input is the way in. */
+
+.shell-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+.shell-chip {
+    border: 1px solid var(--border);
+    background: none;
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-4);
+    cursor: pointer;
+}
+
+.shell-chip:hover {
+    border-color: var(--copper-500);
+    color: var(--copper-300);
+}
+
+[data-shell="composed"] .shell-chips {
+    display: none;
+}
+
+/* 6. Status line and the no-JavaScript fallback. */
+
+.shell-composed:empty {
+    display: none;
+}
+
+.shell-status {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0 0 var(--space-6);
+}
+
+[data-shell="composed"] .shell-status {
+    text-align: left;
+}
+
+.shell-noscript-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+}
+
+.shell-noscript-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+}
+
+/* 7. The composed page. Classes here cover what main.css does not. */
+
+.composed-page {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    padding-bottom: var(--space-8);
+}
+
+.composed-section {
+    padding: 0;
+}
+
+.composed-section-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+}
+
+.composed-section .section-label {
+    margin-bottom: var(--space-2);
+}
+
+.composed-section-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.composed-row {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+    .composed-row-2 { grid-template-columns: repeat(2, 1fr); }
+    .composed-row-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+.composed-intro-name {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-2);
+}
+
+.composed-intro-tagline {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.composed-text {
+    color: var(--text-secondary);
+    max-width: var(--max-width-prose);
+}
+
+.composed-text.is-lead {
+    font-size: var(--text-lg);
+    color: var(--text-primary);
+}
+
+.composed-text.is-muted {
+    color: var(--text-muted);
+}
+
+.composed-muted {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+}
+
+.composed-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+}
+
+.composed-card {
+    background: var(--bg-section);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: flex-start;
+}
+
+.composed-card.is-pressable {
+    cursor: pointer;
+}
+
+.composed-card.is-pressable:hover {
+    border-color: var(--copper-500);
+}
+
+.composed-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--copper-400);
+    margin: 0;
+}
+
+.composed-card-title a {
+    color: inherit;
+}
+
+.composed-card-title a:hover {
+    color: var(--copper-300);
+    text-decoration: underline;
+}
+
+.composed-card-meta {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.composed-card-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.composed-list {
+    margin: 0;
+    padding-left: var(--space-6);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.composed-list.is-plain {
+    list-style: none;
+    padding-left: 0;
+}
+
+.composed-more {
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.composed-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: 0;
+    margin: 0;
+}
+
+.composed-tags li {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.2em 0.8em;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.composed-tags.is-small li {
+    font-size: var(--text-xs);
+}
+
+.composed-stats {
+    width: 100%;
+}
+
+.composed-stat-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: var(--space-4);
+}
+
+.composed-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.composed-stat-value {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    color: var(--copper-400);
+}
+
+.composed-stat-label {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.composed-eyebrow {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin: var(--space-3) 0 var(--space-2);
+}
+
+.composed-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+}
+
+.composed-button {
+    border: 0;
+    border-radius: 999px;
+    background: var(--copper-500);
+    color: #1a1411;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: var(--space-3) var(--space-6);
+    cursor: pointer;
+}
+
+.composed-button:hover:not(:disabled) {
+    background: var(--copper-600);
+}
+
+.composed-button:disabled {
+    opacity: 0.55;
+    cursor: default;
+}
+
+.composed-cta,
+.composed-fit,
+.composed-game {
+    width: 100%;
+}
+
+.composed-textarea {
+    width: 100%;
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    padding: var(--space-3);
+    resize: vertical;
+}
+
+.composed-fit-result {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: flex-start;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+/* 8. How this page was built. Collapsed by default. */
+
+.shell-trace {
+    border-top: 1px solid var(--border);
+    padding-top: var(--space-4);
+    margin-bottom: var(--space-8);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.shell-trace summary {
+    cursor: pointer;
+    color: var(--copper-400);
+}
+
+.shell-trace-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.shell-trace-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin: 0;
+}
+
+.shell-trace-row b {
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-align: right;
+}
+
+.shell-wants {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.shell-wants li {
+    display: grid;
+    grid-template-columns: 5rem 1fr 2.5rem;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.shell-wants i {
+    display: block;
+    height: 6px;
+    min-width: 2px;
+    border-radius: 3px;
+    background: var(--stone-700);
+}
+
+.shell-wants li.is-wanted {
+    color: var(--text-secondary);
+}
+
+.shell-wants li.is-wanted i {
+    background: var(--copper-500);
+}
+
+.shell-wants b {
+    font-weight: 500;
+    text-align: right;
+}
+
+.shell-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.shell-steps li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+}
+
+.shell-steps b {
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.shell-trace-note {
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-xs);
+}
+
+/* 9. Motion. Every transition here is opt-in. */
+
+@media (prefers-reduced-motion: no-preference) {
+    .shell-hero,
+    .shell-name,
+    .shell-ask,
+    .shell-tagline,
+    .shell-subline {
+        transition:
+            max-height var(--transition-slow),
+            opacity var(--transition-slow),
+            font-size var(--transition-slow),
+            padding var(--transition-slow),
+            margin var(--transition-slow);
+    }
+
+    .composed-page > * {
+        animation: shell-rise var(--transition-slow) ease-out both;
+    }
+}
+
+@keyframes shell-rise {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+}
+
+/* 10. Phone. The nav wraps instead of running off the side. */
+
+@media (max-width: 640px) {
+    .shell {
+        padding: 0 var(--space-4);
+        gap: var(--space-4);
+    }
+
+    .shell-ask-submit {
+        padding: var(--space-3) var(--space-4);
+    }
+
+    [data-shell="composed"] .shell-ask {
+        padding: var(--space-2) 0;
+    }
+}

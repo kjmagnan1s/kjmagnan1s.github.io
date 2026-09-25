@@ -1,0 +1,7 @@
+# Static asset caching. Filenames are not hashed, so keep the shell bundle short-lived.
+/assets/genui/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+/assets/css/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+/assets/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
