@@ -3,7 +3,7 @@
     "name": "Kevin J. Magnan",
     "url": "https://kevinjmagnan.com",
     "email": "mailto:kevinjmagnan@slalom.com",
-    "jobTitle": "Principal Consultant & Technology Lead",
+    "jobTitle": "Senior Principal, Justice and Public Safety",
     "worksFor": {
       "name": "Slalom",
       "url": "https://slalom.com"
@@ -146,20 +146,17 @@
   "experience": [
     {
       "company": "Slalom Consulting, LLC",
-      "location": "Detroit, MI",
+      "location": "Chicago, IL",
       "positions": [
         {
-          "title": "Senior Solution Architect",
-          "period": "June 2022 - Current",
+          "title": "Senior Principal, Justice and Public Safety",
+          "period": "March 2026 – Current",
           "achievements": [
-            "Strengthened Slalom's Justice and Public Safety operations, leading to a robust 80% year-over-year growth across 45 global locations, securing over 10 new high-profile clients",
-            "Led seven diverse project teams managing project delivery focused on data strategy and analytics across a range of clients, including local, county, and state agencies",
-            "Cultivated a critical emerging client relationship, transforming it into a flagship account. Successfully grew the account to over $5 million in three years"
+            "Lead Slalom's Justice and Public Safety practice ($50M+), head internal Public and Social Impact AI enablement, and serve as senior advisor on AI adoption and strategy across Slalom's government clients",
+            "Drove $40M+ in public-sector revenue through trusted partnerships and strategic pursuit support",
+            "Generated three AI implementation projects by leading 10+ strategic and technical workshops with government stakeholders",
+            "Architected secure cloud solutions across AWS, Azure, Google, and Snowflake that meet CJIS, FedRAMP, and GovCloud standards"
           ]
-        },
-        {
-          "title": "Data and Analytics Consultant",
-          "period": "April 2021 – June 2022"
         }
       ]
     },
@@ -171,8 +168,8 @@
           "title": "Research Manager",
           "period": "June 2019 – February 2021",
           "achievements": [
-            "Led the design and release of the groundbreaking Violence Reduction Dashboard, a public-facing, near-real-time tool developed in partnership with the City of Chicago",
-            "Integrated complex, siloed public safety data and engaged in exploratory data analysis, delivering nine scalable, data-driven Tableau solutions"
+            "Led the design and release of nine scalable Tableau dashboards, including the City of Chicago Violence Reduction Dashboard",
+            "Collaborated with federal, state, and local law enforcement partners on joint gun violence reduction initiatives"
           ]
         },
         {
@@ -191,28 +188,21 @@
     {
       "institution": "Southeast Missouri State University",
       "location": "Cape Girardeau, MO",
-      "degree": "Master of Science, Criminal Justice Administration",
-      "honors": "Graduate Masters High Honors"
-    },
-    {
-      "institution": "Southeast Missouri State University",
-      "location": "Cape Girardeau, MO",
-      "degree": "Bachelor of Science, Criminal Justice",
-      "honors": "Magna Cum Laude"
+      "degree": "Master of Science, Criminal Justice Administration"
     }
   ],
   "certifications": [
     {
-      "name": "Tableau Certified Associate Consultant",
-      "year": "2021"
+      "name": "IBM Artificial Intelligence Fundamentals",
+      "year": "2024"
     },
     {
       "name": "AWS Certified Cloud Practitioner",
       "year": "2021"
     },
     {
-      "name": "Tableau Desktop Specialist",
-      "year": "2019"
+      "name": "Tableau Certified Associate Consultant",
+      "year": "2021"
     }
   ],
   "publications": [
