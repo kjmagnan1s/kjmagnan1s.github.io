@@ -1,6 +1,7 @@
 import type { Env } from "./env";
 import { handleChat } from "./chat";
 import { handleCompose } from "./compose";
+import { handleSubscribe } from "./subscribe";
 
 /**
  * Router for the kevinjmagnan.com Worker.
@@ -32,6 +33,9 @@ export default {
 
       case "/api/compose":
         return handleCompose(request, env, ctx);
+
+      case "/api/subscribe":
+        return handleSubscribe(request, env);
 
       case "/api/health":
         return new Response(JSON.stringify({ ok: true }), {

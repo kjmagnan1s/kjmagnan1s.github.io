@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin's Website Resource Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2340; --navy-deep: #071a31; --paper: #f3e6d3; --paper-dim: #cdbfae;
+    --orange: #e0662a; --rust: #a8431a; --ink: #0a1628; --ink-dim: #3b4a5e;
+    --font-heading: "Fraunces", Georgia, serif; --font-body: "Source Serif 4", Georgia, serif;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--orange); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+  a { color: inherit; }
+  code { font: .85em ui-monospace, "SF Mono", Menlo, monospace; background: rgba(10,22,40,.07); padding: .1em .35em; border-radius: 3px; }
+
+  .band { position: relative; isolation: isolate; }
+  .band::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); }
+  .band-navy { background: var(--navy-deep); color: var(--paper); }
+  .band-navy::before { opacity: .22; mix-blend-mode: overlay; }
+  .band-paper { background: var(--paper); }
+  .band-paper::before { opacity: .16; mix-blend-mode: multiply; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(16px, 5vw, 64px); }
+
+  .head { padding-top: 28px; padding-bottom: clamp(64px, 9vw, 120px); }
+  .home { display: inline-block; font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--paper); margin-bottom: clamp(56px, 9vw, 112px); }
+  .home span { color: var(--orange); margin-right: .35em; }
+  .home:hover { color: var(--orange); }
+  h1 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.6rem, 1.4rem + 5vw, 5.5rem); line-height: .98; letter-spacing: -.035em; max-width: 13ch; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .intro p { margin-top: 28px; max-width: 56ch; font-size: clamp(1.05rem, 1rem + .3vw, 1.2rem); color: var(--paper-dim); }
+  .meta { margin-top: 28px; font-family: var(--font-heading); font-style: italic; color: var(--orange); font-size: 1.05rem; }
+
+  nav { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1px solid rgba(10,22,40,.18); }
+  nav .wrap { display: flex; gap: 6px 22px; flex-wrap: wrap; padding-top: 16px; padding-bottom: 16px; }
+  nav { isolation: isolate; }
+  nav::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); opacity: .16; mix-blend-mode: multiply; }
+  nav a { font-size: .95rem; font-weight: 600; text-decoration: none; color: var(--ink-dim); }
+  nav a:hover { color: var(--rust); }
+
+  main .wrap { padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(80px, 10vw, 140px); }
+  h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3.1rem); line-height: 1.05; letter-spacing: -.03em; margin-top: clamp(72px, 9vw, 120px); padding-bottom: 18px; border-bottom: 2px solid var(--ink); }
+  main h2:first-of-type { margin-top: 0; }
+  h2 .num { font-style: italic; font-weight: 400; color: var(--rust); margin-right: .45em; }
+
+  ul.resources { list-style: none; }
+  ul.resources li { display: grid; grid-template-columns: 1fr 200px; grid-template-areas: "info thumb"; gap: clamp(20px, 4vw, 48px); align-items: start; padding: 26px 0; border-bottom: 1px solid rgba(10,22,40,.16); }
+  ul.resources li:not(:has(.thumb)) { grid-template-columns: 1fr; grid-template-areas: "info"; }
+  .thumb { grid-area: thumb; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 5px; background: var(--navy); box-shadow: 0 1px 0 rgba(10,22,40,.25), 0 18px 36px -20px rgba(10,22,40,.55); transition: transform .5s cubic-bezier(.16,1,.3,1); }
+  li:hover .thumb { transform: translateY(-4px) rotate(-.6deg); }
+  .info { grid-area: info; max-width: 64ch; }
+  .name { font-family: var(--font-heading); font-weight: 600; font-size: clamp(1.35rem, 1.15rem + .6vw, 1.7rem); letter-spacing: -.015em; line-height: 1.2; text-decoration: none; }
+  .name:hover { color: var(--rust); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .code { margin-left: .8em; font-size: .9rem; font-weight: 600; color: var(--rust); text-decoration: none; }
+  .code:hover { text-decoration: underline; }
+  .info p { margin-top: 8px; color: var(--ink-dim); line-height: 1.6; }
+
+  footer .wrap { padding-top: clamp(56px, 8vw, 96px); padding-bottom: clamp(56px, 8vw, 96px); }
+  footer p { max-width: 56ch; font-size: 1.1rem; color: var(--paper-dim); }
+  footer a { color: var(--orange); }
+  footer .sig { margin-top: 18px; font-family: var(--font-heading); font-style: italic; font-size: 1.3rem; color: var(--paper); }
+  footer .sig span { color: var(--orange); }
+
+  @media (max-width: 640px) {
+    ul.resources li { grid-template-columns: 1fr; grid-template-areas: "thumb" "info"; gap: 16px; }
+    .thumb { max-width: 100%; }
+    nav .wrap { flex-wrap: nowrap; overflow-x: auto; }
+    nav a { white-space: nowrap; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .thumb { transition: none; } }
+</style>
+</head>
+<body>
+<header class="band band-navy"><div class="wrap head">
+  <a class="home" href="/"><span>&larr;</span>Kevin Magnan</a>
+  <h1>The website resource <em>library.</em></h1>
+  <div class="intro">
+    <p>I've been saving website-building resources from X bookmarks and GitHub stars for months. This is the cleaned-up version of that pile: 83 tools, grouped by what you actually need mid-build.</p>
+    </div>
+  <div class="meta">Updated 2026-09-23 &middot; 83 resources &middot; 11 categories</div>
+</div></header>
+
+<nav><div class="wrap">
+  <a href="#motion">Motion</a>
+  <a href="#components">Components</a>
+  <a href="#agent-ui">Agent UI</a>
+  <a href="#workflow">Agent workflow</a>
+  <a href="#webgl">Shaders + WebGL</a>
+  <a href="#design-systems">Design systems</a>
+  <a href="#landing">Landing pages</a>
+  <a href="#backgrounds">Backgrounds</a>
+  <a href="#assets">Icons + assets</a>
+  <a href="#sound">Sound</a>
+  <a href="#infra">Infra + launch</a>
+</div></nav>
+
+<main class="band band-paper"><div class="wrap">
+
+<h2 id="motion"><span class="num">01</span>Motion and transitions</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/transitions-dev.jpg" alt="Transitions.dev" loading="lazy"><div class="info">
+    <a class="name" href="https://transitions.dev/" target="_blank" rel="noopener">Transitions.dev</a>
+    <p>Copy-and-paste React/CSS transition patterns: cards, modals, panels, page transitions, icon swaps, error and success states.</p></div></li>
+  <li><img class="thumb" src="thumbs/border-beam.jpg" alt="Border Beam" loading="lazy"><div class="info">
+    <a class="name" href="https://beam.jakubantalik.com/" target="_blank" rel="noopener">Border Beam</a>
+    <p>Lightweight React component that renders an animated glowing border beam. Multiple sizes, color variants, and themes. Jakub Antalik.</p></div></li>
+  <li><img class="thumb" src="thumbs/animate-text.jpg" alt="Animate Text" loading="lazy"><div class="info">
+    <a class="name" href="https://pixelpoint.io/skills/animate-text/" target="_blank" rel="noopener">Animate Text</a><a class="code" href="https://github.com/pixel-point/animate-text" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Text animation library from the Pixel Point team, the same people behind the agency site further down this page.</p></div></li>
+  <li><img class="thumb" src="thumbs/diffusion-lottie.jpg" alt="Diffusion Studio Lottie" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/diffusionstudio/lottie" target="_blank" rel="noopener">Diffusion Studio Lottie</a>
+    <p>Generate production-ready Lottie animations directly with Claude Code or Codex.</p></div></li>
+  <li><img class="thumb" src="thumbs/amicro.jpg" alt="Amicro" loading="lazy"><div class="info">
+    <a class="name" href="https://amicro.vercel.app/" target="_blank" rel="noopener">Amicro</a>
+    <p>Curated premium micro-interactions and transition components, React + Motion, tree-shakeable, installed via one CLI command. Buttons, card spreads, 3D carousels, loaders.</p></div></li>
+  <li><img class="thumb" src="thumbs/kinetics.jpg" alt="Kinetics" loading="lazy"><div class="info">
+    <a class="name" href="https://kinetics.colorion.co/" target="_blank" rel="noopener">Kinetics</a>
+    <p>144 open-source spring-physics interaction animations: buttons, inputs, loaders, transitions, sliders, cards. Live stiffness/damping controls, and each effect ships as CSS, React, and an AI prompt template, so an agent can rebuild it in any framework. The spring-based pick where Transitions.dev is pattern-based.</p></div></li>
+  <li><img class="thumb" src="thumbs/liquid-gooey.jpg" alt="Liquid Gooey" loading="lazy"><div class="info">
+    <a class="name" href="https://gooey.jakubantalik.com/" target="_blank" rel="noopener">Liquid Gooey</a>
+    <p>Liquid/gooey UI effects for React: melting cards, liquid trails, dissolve, push-spread. Tunable controls in an interactive playground, SVG-filter based. npm install liquid-gooey, MIT. Jakub Antalik.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/pixel-point/aval" alt="Aval" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/pixel-point/aval" target="_blank" rel="noopener">Aval</a>
+    <p>Open-source format for interactive video on the web: a built-in state machine, frame-accurate transitions, and transparent video. From the Pixel Point team.</p></div></li>
+</ul>
+
+<h2 id="components"><span class="num">02</span>Components and site features</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/originkit.jpg" alt="Originkit" loading="lazy"><div class="info">
+    <a class="name" href="https://www.originkit.dev/" target="_blank" rel="noopener">Originkit</a>
+    <p>Free animated component library, MIT. 3 delivery paths: copy the code, use it in Framer, or connect through MCP so an agent can pull components without a human copy-paste step.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/DavidHDev/react-bits" alt="React Bits" loading="lazy"><div class="info">
+    <a class="name" href="https://reactbits.dev/" target="_blank" rel="noopener">React Bits</a>
+    <p>Animated UI components for React, open source.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://www.obsidianui.dev/" target="_blank" rel="noopener">ObsidianUI</a>
+    <p>React and Tailwind CSS component library with interactive effects, featured components, and source code intended as a customizable starting point.</p></div></li>
+  <li><img class="thumb" src="thumbs/cult-ui.jpg" alt="Cult UI" loading="lazy"><div class="info">
+    <a class="name" href="https://cult-ui.com" target="_blank" rel="noopener">Cult UI</a><a class="code" href="https://github.com/nolly-studio/cult-ui" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Components crafted for design engineers. Tailwind, shadcn-compatible, MIT, copy-paste.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/jespervos/blossom-carousel" alt="Blossom Carousel" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/jespervos/blossom-carousel" target="_blank" rel="noopener">Blossom Carousel</a>
+    <p>Native-first carousel with drag support for pointer devices. Scroll-snap under the hood rather than a JS reimplementation.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/mickadesign/metadata-gen" alt="metadata-gen" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/mickadesign/metadata-gen" target="_blank" rel="noopener">metadata-gen</a>
+    <p>Zero-install CLI that generates OG images and favicon sets from your project's existing assets and config. The ship-day checklist items every site needs.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/paraschopra/make-pages-interactive" alt="make-pages-interactive" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/paraschopra/make-pages-interactive" target="_blank" rel="noopener">make-pages-interactive</a>
+    <p>Paras Chopra experiment for adding interactivity to static pages.</p></div></li>
+</ul>
+
+<h2 id="agent-ui"><span class="num">03</span>AI and agent interface components</h2>
+<p class="section-note">The primitives that are genuinely hard in agent products and have no settled conventions yet. Approvals only appear in Beautiful UI, citations only in AIcss, and Orbs is the thinking indicator alone. Pick per surface rather than standardizing on one.</p>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/beautiful-ui.jpg" alt="Beautiful UI" loading="lazy"><div class="info">
+    <a class="name" href="https://beautiful-ui-five.vercel.app/" target="_blank" rel="noopener">Beautiful UI</a>
+    <p>Crafted copy-paste primitives for AI-native interfaces: chat agents, thinking states, and human-in-the-loop approvals. React, MIT signalled. Lives on a Vercel preview URL, so it may move.</p></div></li>
+  <li><img class="thumb" src="thumbs/thinking-orbs.jpg" alt="Thinking Orbs" loading="lazy"><div class="info">
+    <a class="name" href="https://orbs.jakubantalik.com/" target="_blank" rel="noopener">Thinking Orbs</a>
+    <p>Dotted thought-orb loading indicators for AI and agent UIs. 6 hand-tuned states rather than one spinner, so "thinking" can read differently from "waiting on a tool". Auto dark/light. Jakub Antalik.</p></div></li>
+  <li><img class="thumb" src="thumbs/aicss.jpg" alt="AIcss" loading="lazy"><div class="info">
+    <a class="name" href="https://aicss.dev/" target="_blank" rel="noopener">AIcss</a>
+    <p>Copy-paste components for agent conversations: tool calls, streaming text, citations, thinking states, tables. Ships React, Vue, and Svelte in plain CSS with no Tailwind, which the others all assume.</p></div></li>
+  <li><img class="thumb" src="thumbs/fluidfunctionalism.jpg" alt="Fluid Functionalism" loading="lazy"><div class="info">
+    <a class="name" href="https://www.fluidfunctionalism.com/" target="_blank" rel="noopener">Fluid Functionalism</a>
+    <p>Open-source component system by @micka_design: 23 components with a documented motion language, a standard set plus agent primitives like ChatMessage, ThinkingIndicator, ThinkingSteps, and AskUserQuestions. Those last two are shapes none of the trio above ship.</p></div></li>
+  <li><img class="thumb" src="thumbs/generative-loaders.jpg" alt="Generative Loaders" loading="lazy"><div class="info">
+    <a class="name" href="https://generativeloaders.com/" target="_blank" rel="noopener">Generative Loaders</a>
+    <p>Animated React loaders purpose-built for AI generation states: text, inline, and image, each output type getting its own treatment. The loading half of the stack: Orbs covers thinking, this covers output streaming in.</p></div></li>
+</ul>
+
+<h2 id="workflow"><span class="num">04</span>Agent workflow tools</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/agentation.jpg" alt="Agentation" loading="lazy"><div class="info">
+    <a class="name" href="https://agentation.com/" target="_blank" rel="noopener">Agentation</a>
+    <p>Visual feedback tool for agents: annotate a rendered UI and hand that to your coding agent instead of describing the problem in prose.</p></div></li>
+</ul>
+
+<h2 id="webgl"><span class="num">05</span>Shaders, canvas, and WebGL</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/canvasui.jpg" alt="Canvas UI" loading="lazy"><div class="info">
+    <a class="name" href="https://canvasui.dev/" target="_blank" rel="noopener">Canvas UI</a>
+    <p>Open source html-in-canvas and WebGL effects for React, Solid, Preact, Vue, Svelte, and vanilla JS. Claims effects run over live HTML, which if true avoids the usual cost of turning your DOM into a texture.</p></div></li>
+  <li><img class="thumb" src="thumbs/threeui.jpg" alt="ThreeUI" loading="lazy"><div class="info">
+    <a class="name" href="https://threeui.com/browse" target="_blank" rel="noopener">ThreeUI</a>
+    <p>From DesignCode. 220 Three.js, WebGL, and canvas components plus complete landing-page templates, each shipping an implementation prompt beside its source, so the handoff to a coding agent is the product. Free Community tier on npm (<code>@designcodeio/threeui</code>, React 18.2+); Pro adds gated source via a CLI and a remote MCP server with OAuth. Whole pages, where Canvas UI and Liquid Metal are single effects. Pro pricing sits behind a sign-in.</p></div></li>
+  <li><img class="thumb" src="thumbs/liquid-metal.jpg" alt="Liquid Metal" loading="lazy"><div class="info">
+    <a class="name" href="https://metal.jakubantalik.com/" target="_blank" rel="noopener">Liquid Metal</a>
+    <p>Real-time WebGL metal shader for buttons and UI components. 3 presets, one slider. The chrome is computed on the GPU every frame, which is why it reads as real metal where CSS gradients fall flat. Check reduced-motion and low-end device cost before putting it on a primary CTA. Jakub Antalik.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/dmitrykurash/holocloth" alt="Holocloth" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/dmitrykurash/holocloth" target="_blank" rel="noopener">Holocloth</a>
+    <p>Real-time holographic cloth: drape posters and graphics on simulated fabric with an iridescent foil shader, Verlet physics, film grain, and transparent PNG export. Three.js + React, shaders from scratch.</p></div></li>
+  <li><img class="thumb" src="thumbs/mint-playground.jpg" alt="Mint Playground" loading="lazy"><div class="info">
+    <a class="name" href="https://play.mint.gg" target="_blank" rel="noopener">Mint Playground</a><a class="code" href="https://github.com/mintdotgg/mint-playground" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Open-source Three.js experiences built with Mint MCP and Mint Three.js skills. A reference set for agent-built WebGL.</p></div></li>
+  <li><img class="thumb" src="thumbs/books-threejs.jpg" alt="Trevor Noah books page" loading="lazy"><div class="info">
+    <a class="name" href="https://books-sigma-ashen.vercel.app" target="_blank" rel="noopener">Trevor Noah books page in Three.js</a><a class="code" href="https://github.com/thebuggeddev/books" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Remake of Trevor Noah's book-collection page in Three.js, built with Claude. A readable example of a 3D content page.</p></div></li>
+  <li><img class="thumb" src="thumbs/tea-leaf.jpg" alt="Tea Leaf Scroll World" loading="lazy"><div class="info">
+    <a class="name" href="https://put-lista-tea-journey.amirmushich.chatgpt.site" target="_blank" rel="noopener">Tea Leaf Scroll World</a><a class="code" href="https://github.com/amirmushichge/tea-leaf-scroll-world" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Immersive scroll-driven 3D journey following a tea leaf from mountain mist to cup. A scrollytelling reference.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/oso95/scroll-world" alt="scroll-world skill" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/oso95/scroll-world" target="_blank" rel="noopener">scroll-world skill</a>
+    <p>Agent skill that turns any brand into a scrollable 3D world landing page. The repeatable version of the tea-leaf pattern above.</p></div></li>
+  <li><img class="thumb" src="thumbs/pretext.jpg" alt="Cheng Lou pretext demos" loading="lazy"><div class="info">
+    <a class="name" href="https://chenglou.me/pretext/" target="_blank" rel="noopener">Cheng Lou pretext demos</a>
+    <p>Growing glossary of web UI and rendering demos, some practical, some pure showcase.</p></div></li>
+</ul>
+
+<h2 id="design-systems"><span class="num">06</span>Design systems and agent-readable design</h2>
+<p class="section-note">The DESIGN.md wave: portable design rules your coding agent can read, plus the skills that teach agents taste.</p>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/designmd-sh.jpg" alt="designmd.sh" loading="lazy"><div class="info">
+    <a class="name" href="https://designmd.sh/" target="_blank" rel="noopener">designmd.sh</a>
+    <p>Public registry of DESIGN.md files plus a CLI: <code>npx designmd.sh add &lt;owner/repo&gt;</code>. The actual tooling under all the DESIGN.md announcements.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/VoltAgent/awesome-design-md" alt="awesome-design-md" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/VoltAgent/awesome-design-md" target="_blank" rel="noopener">awesome-design-md</a>
+    <p>DESIGN.md files reverse-engineered from popular brand design systems. Drop one in and let the agent generate a matching UI.</p></div></li>
+  <li><img class="thumb" src="thumbs/refero-styles.jpg" alt="Refero Styles" loading="lazy"><div class="info">
+    <a class="name" href="https://styles.refero.design/" target="_blank" rel="noopener">Refero Styles</a>
+    <p>2,000+ DESIGN.md files scraped from real product websites &#8212; colors, typography, spacing, components. Plus design prompts and a Refero MCP that hands an agent real product screens and full user flows. The scale version of awesome-design-md.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://motionsites.ai/" target="_blank" rel="noopener">MotionSites AI</a><a class="code" href="https://motionsites.ai/mcp" target="_blank" rel="noopener">MCP &#8599;</a>
+    <p>500+ website-design prompts for landing pages, apps, sections, and animated backgrounds. Its MCP serves the prompts directly to Claude, Cursor, and Codex.</p></div></li>
+  <li><img class="thumb" src="thumbs/emil-skills.jpg" alt="Emil Kowalski skills" loading="lazy"><div class="info">
+    <a class="name" href="https://emilkowal.ski/skill" target="_blank" rel="noopener">Emil Kowalski skills</a><a class="code" href="https://github.com/emilkowalski/skills" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Skills for designers and engineers from the animations.dev author.</p></div></li>
+  <li><img class="thumb" src="thumbs/krehel-skills.jpg" alt="Jakub Krehel skills" loading="lazy"><div class="info">
+    <a class="name" href="https://jakub.kr/skills" target="_blank" rel="noopener">Jakub Krehel skills</a><a class="code" href="https://github.com/jakubkrehel/skills" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Agent skills for building great interfaces: animation, UI polish, accessibility, product writing.</p></div></li>
+  <li><img class="thumb" src="thumbs/feel-better.jpg" alt="make-interfaces-feel-better" loading="lazy"><div class="info">
+    <a class="name" href="https://jakub.kr/writing/details-that-make-interfaces-feel-better" target="_blank" rel="noopener">make-interfaces-feel-better</a><a class="code" href="https://github.com/jakubkrehel/make-interfaces-feel-better" target="_blank" rel="noopener">code &#8599;</a>
+    <p>The focused single skill out of Krehel's collection above.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/MengTo/Skills" alt="Meng To Skills" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/MengTo/Skills" target="_blank" rel="noopener">Meng To Skills</a>
+    <p>Agent skills for designers and builders, works across Codex, Claude, and Cursor.</p></div></li>
+  <li><img class="thumb" src="thumbs/taste-skill.jpg" alt="taste-skill" loading="lazy"><div class="info">
+    <a class="name" href="https://tasteskill.dev" target="_blank" rel="noopener">taste-skill</a><a class="code" href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">code &#8599;</a>
+    <p>A skill that gives an AI "good taste" and stops generic design slop. Same family as make-interfaces-feel-better.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/elayadesign/ai-design-skills" alt="ai-design-skills" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/elayadesign/ai-design-skills" target="_blank" rel="noopener">ai-design-skills</a>
+    <p>Design-skills repo from elayadesign. No description on the repo yet, may be early.</p></div></li>
+  <li><img class="thumb" src="thumbs/open-design.jpg" alt="Open Design" loading="lazy"><div class="info">
+    <a class="name" href="https://open-design.ai" target="_blank" rel="noopener">Open Design</a><a class="code" href="https://github.com/nexu-io/open-design" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Open-source Claude Design alternative: a local-first desktop app where your coding agent is the design engine for prototypes, landing pages, and dashboards. Real files, HTML/PDF export, bring your own key across 20+ CLIs.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://x.com/stitchbygoogle/status/2013752422058074518" target="_blank" rel="noopener">Stitch MCP server</a>
+    <p>Pipe Stitch UI designs directly into coding agents and IDEs: generate new screens and fetch their code without leaving the editor.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://x.com/sanyuan0704/status/2019258745705099670" target="_blank" rel="noopener">UI style exploration skill</a>
+    <p>Agent skill for exploring different UI styles and variations with back-and-forth between designs inside a coding agent.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://x.com/trq212/status/1989061937590837678" target="_blank" rel="noopener">Claude Code frontend-design plugin</a>
+    <p>Official frontend-design plugin for Claude Code that raises the visual quality of generated UI.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://designmd.sh/" target="_blank" rel="noopener">designmd.sh</a>
+    <p>Public registry of DESIGN.md files, the design-system documents coding agents read so the UI they build stays consistent. Install one with <code>npx designmd.sh add &lt;owner/repo&gt;</code>.</p></div></li>
+</ul>
+
+<h2 id="landing"><span class="num">07</span>Landing pages and inspiration</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/desengs.jpg" alt="DesEngs" loading="lazy"><div class="info">
+    <a class="name" href="https://desengs.com/" target="_blank" rel="noopener">DesEngs</a>
+    <p>Curated design-engineering resource directory, by design engineers: read, watch, listen, browse, use, build, and learn modes, plus a talent network. A directory of directories, good for finding what this page missed.</p></div></li>
+  <li><img class="thumb" src="thumbs/designspells.jpg" alt="Design Spells" loading="lazy"><div class="info">
+    <a class="name" href="https://designspells.com/" target="_blank" rel="noopener">Design Spells</a>
+    <p>322+ single design details from shipped products, each one named: the effort-selection animation in Claude Code, a hidden minigame in GitHub Copilot, Monzo's unlock. Pitched at one interaction rather than a whole library, so open it when a specific surface needs a decision. Free, RSS, open submissions.</p></div></li>
+  <li><img class="thumb" src="thumbs/footer-design.jpg" alt="Footer.design" loading="lazy"><div class="info">
+    <a class="name" href="https://www.footer.design/" target="_blank" rel="noopener">Footer.design</a>
+    <p>A curated gallery of website footers, and only footers. Filter by style: typographic, illustrative, grid, flat, animated, cards, bright, dark, large type, bold. Every entry links the live site so you inspect the real footer in place. Open it when the rest of a page is resolved and the footer still reads as a dumped link list.</p></div></li>
+  <li><img class="thumb" src="thumbs/posts-design.jpg" alt="posts.design" loading="lazy"><div class="info">
+    <a class="name" href="https://posts.design/" target="_blank" rel="noopener">posts.design</a>
+    <p>465 social posts that companies actually shipped: launch graphics, announcement cards, product updates, captured from live posts and attributed back to the source. Filter by recent, announcements, or brand. The announcement-graphic counterpart to Footer.design and Design Spells &mdash; one narrow surface, many real examples. Free, no signup.</p></div></li>
+  <li><img class="thumb" src="thumbs/supahero.jpg" alt="Supahero" loading="lazy"><div class="info">
+    <a class="name" href="https://supahero.io/" target="_blank" rel="noopener">Supahero</a>
+    <p>A curated gallery of hero sections, and only hero sections &mdash; 1,000+ from shipped sites: Figma, Stripe, Notion, Apple, Tesla, plus studios and portfolios, each with a dedicated detail view. The narrow-surface family (footers, social posts, single interactions) finally covers the highest-value surface on the page. Open it first for any hero build. Free; now part of screensdesign.com.</p></div></li>
+  <li><img class="thumb" src="thumbs/webinspoo.jpg" alt="WebInspoo" loading="lazy"><div class="info">
+    <a class="name" href="https://webinspoo.com/" target="_blank" rel="noopener">WebInspoo</a>
+    <p>SaaS website design inspiration gallery with unusually deep taxonomy: filter by category, tag, font, technology, and color. Ships a Site Inspector and an HTML-to-Figma extension, and it's the most agent-readable gallery on this page &mdash; it publishes an llms.txt and an MCP manifest, so your agent can query it instead of scraping it. Free to browse.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://surya.website/rling-qwen-to-paint-with-code" target="_blank" rel="noopener">Training AI to Paint with Code</a>
+    <p>Surya Narreddi's case study on training a language model to make images through editable code and reinforcement learning. Useful reference for AI creative tooling, reward design for subjective work, and long-form project storytelling.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://land-book.com/" target="_blank" rel="noopener">Land-book</a>
+    <p>Long-running curated website design gallery &mdash; landing pages, portfolios, product sites &mdash; browsable by category, style, and color, with a deep archive. Automated fetches hit a Cloudflare challenge, so browse it directly.</p></div></li>
+  <li><img class="thumb" src="thumbs/landing-gallery.jpg" alt="Landing.Gallery" loading="lazy"><div class="info">
+    <a class="name" href="https://www.landing.gallery/" target="_blank" rel="noopener">Landing.Gallery</a>
+    <p>1,614+ hand-picked landing pages, free, filterable by site builder (Webflow, Framer, Shopify), framework (Next.js, Astro, SvelteKit), and page type (pricing, careers, 404). Filter to your stack first.</p></div></li>
+  <li><img class="thumb" src="thumbs/manifestos-tech.jpg" alt="Tech Manifestos" loading="lazy"><div class="info">
+    <a class="name" href="https://www.manifestos.tech/" target="_blank" rel="noopener">Tech Manifestos</a>
+    <p>36 company manifestos and mission statements &mdash; Anthropic, OpenAI, xAI, Linear, Anduril, Tesla, Cursor, Mozilla &mdash; filterable by sector and decade. The only entry on this page pitched at the words rather than the layout, so open it for positioning and about-page copy. Free, no signup.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://www.inspora.design/" target="_blank" rel="noopener">Inspora</a>
+    <p>Website design inspiration and visual-reference library for finding a direction mid-build. Automated fetches currently hit a Vercel Security Checkpoint, so use a browser for the live gallery.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/MengTo/sketchbook" alt="Meng To sketchbook" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/MengTo/sketchbook" target="_blank" rel="noopener">Meng To sketchbook</a>
+    <p>Page-flipping sketchbook of Singapore in one static HTML file. Drag to turn pages, drag a magnifier across them. A single-file interactive-page reference.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/amirmushichge/mostar-cinematic-business-card" alt="Mostar cinematic business card" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/amirmushichge/mostar-cinematic-business-card" target="_blank" rel="noopener">Mostar cinematic business card</a>
+    <p>Cinematic interactive website experience inspired by Mostar. A one-page atmosphere reference.</p></div></li>
+  <li><img class="thumb" src="thumbs/pixelpoint.jpg" alt="Pixel Point website" loading="lazy"><div class="info">
+    <a class="name" href="https://pixelpoint.io" target="_blank" rel="noopener">Pixel Point website</a><a class="code" href="https://github.com/pixel-point/pixelpoint-website" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Full source of the Pixel Point agency's JAMStack marketing site. You get real production landing-page code to mine, the whole repo.</p></div></li>
+  <li><img class="thumb" src="thumbs/matthew-yu.jpg" alt="Matthew Yu portfolio" loading="lazy"><div class="info">
+    <a class="name" href="https://matthewyu-dev.vercel.app" target="_blank" rel="noopener">Matthew Yu portfolio</a><a class="code" href="https://github.com/matthewyuart/personalportfolio" target="_blank" rel="noopener">code &#8599;</a>
+    <p>Personal portfolio with full source on GitHub. A portfolio-design reference.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/aboul3ata/lazyweb-skill" alt="Lazyweb skill" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/aboul3ata/lazyweb-skill" target="_blank" rel="noopener">Lazyweb skill</a>
+    <p>Free screenshot references for web design plus an optional paid A/B-test agent.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://x.com/aiedge_/status/2027889115166085484" target="_blank" rel="noopener">Premium corporate site design prompt</a>
+    <p>Reusable prompt for dark-mode, minimalist corporate site design with abstract 3D fluid backgrounds and glowing gradients.</p></div></li>
+</ul>
+
+<h2 id="backgrounds"><span class="num">08</span>Backgrounds, gradients, and patterns</h2>
+<p class="section-note">Start with the output you need: copy-ready CSS, a downloadable asset, live browser code, or a reusable React component.</p>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/backgrounds-supply.jpg" alt="Backgrounds Supply" loading="lazy"><div class="info">
+    <a class="name" href="https://www.backgrounds.supply/" target="_blank" rel="noopener">Backgrounds Supply</a>
+    <p>Large collection of handcrafted and AI-generated backgrounds, wallpapers, and gradients, plus a Gradient Lab tool. Freemium, so check license terms per asset before client work.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://pryzm.design/" target="_blank" rel="noopener">Pryzm</a>
+    <p>Combine gradients, glass, grain, and photos, then export stills, animated loops, or live backgrounds for Framer, React, and plain HTML.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://colorflow.ls.graphics/" target="_blank" rel="noopener">ColorFlow</a>
+    <p>Advanced mesh-gradient generator and editor from LS Graphics.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://grainient.supply/" target="_blank" rel="noopener">Grainient</a>
+    <p>Grainy and smooth gradients, animated backgrounds, AI-generated backgrounds, and a real-time shader tool. Free and paid assets.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://cssgradient.io/" target="_blank" rel="noopener">CSS Gradient</a>
+    <p>Simple visual generator for linear and radial CSS gradients, with copy-ready CSS.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://www.gradientool.com/" target="_blank" rel="noopener">Gradientool</a>
+    <p>Customizable 3D and animated gradient maker for hero sections and product surfaces.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://www.ramps.studio/" target="_blank" rel="noopener">Ramps</a>
+    <p>Build color ramps and accessible palettes for interface states, surfaces, borders, and text.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://studio.zoxilsi.cc/" target="_blank" rel="noopener">Zoxilsi Gradient Studio</a>
+    <p>Mesh-gradient studio with a large preset collection, useful when you want a starting point instead of a blank canvas.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://tabbied.com/" target="_blank" rel="noopener">Tabbied</a>
+    <p>Free generator for customizable geometric background patterns.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://pro.beui.dev/" target="_blank" rel="noopener">beUI Pro</a>
+    <p>Premium React library with animated backgrounds and motion-focused UI blocks.</p></div></li>
+</ul>
+
+<h2 id="assets"><span class="num">09</span>SVG, icons, logos, and visual assets</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/spectrum.jpg" alt="Spectrum vector shapes" loading="lazy"><div class="info">
+    <a class="name" href="https://spectrums.framer.website/" target="_blank" rel="noopener">Spectrum vector shapes</a>
+    <p>Vector shape library for backgrounds and decorative elements.</p></div></li>
+  <li><img class="thumb" src="thumbs/lobe-icons.jpg" alt="Lobe Icons" loading="lazy"><div class="info">
+    <a class="name" href="https://icons.lobehub.com" target="_blank" rel="noopener">Lobe Icons</a><a class="code" href="https://github.com/lobehub/lobe-icons" target="_blank" rel="noopener">code &#8599;</a>
+    <p>AI and LLM brand logos for React and React Native, plus static SVG/PNG/WebP, no dependencies. Directly useful anywhere a product page name-drops models.</p></div></li>
+  <li><img class="thumb" src="https://opengraph.githubassets.com/1/cathrynlavery/diagram-design" alt="diagram-design" loading="lazy"><div class="info">
+    <a class="name" href="https://github.com/cathrynlavery/diagram-design" target="_blank" rel="noopener">diagram-design</a>
+    <p>13 editorial diagram types as self-contained HTML + SVG for Claude Code. "No shadows, no Mermaid-slop."</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://x.com/rincidium/status/2015930122776564113" target="_blank" rel="noopener">OG image prompt</a>
+    <p>Prompt template for generating a premium 16:9 open-graph hero image for a site or brand. Social sharing, headers, marketing.</p></div></li>
+</ul>
+
+<h2 id="sound"><span class="num">10</span>Sound and audio feedback</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/uisfx.jpg" alt="UI SFX" loading="lazy"><div class="info">
+    <a class="name" href="https://uisfx.com/" target="_blank" rel="noopener">UI SFX</a>
+    <p>936 interface sounds: 78 semantic cues (hover, press, select, delete) each rendered in 12 "feels" (Minimal, Glass, Arcade, Zen), so a whole product stays sonically consistent. npm, live synthesis, or MP3/Ogg download. Audio is CC0, code MIT, so it's safe in client and commercial work with no attribution.</p></div></li>
+</ul>
+
+<h2 id="infra"><span class="num">11</span>Site infrastructure and launch readiness</h2>
+<ul class="resources">
+  <li><img class="thumb" src="thumbs/cf-workers.jpg" alt="Cloudflare Workers best practices" loading="lazy"><div class="info">
+    <a class="name" href="https://developers.cloudflare.com/workers/best-practices/workers-best-practices/" target="_blank" rel="noopener">Cloudflare Workers best practices</a>
+    <p>Official production best-practices guide for Workers sites, also installable as an agent skill: <code>npx skills add cloudflare/skills</code>.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://x.com/code_rams/status/2030920724504838399" target="_blank" rel="noopener">Portless by Vercel Labs</a>
+    <p>Stable named local-dev URLs instead of localhost port numbers when you're running multiple site projects at once.</p></div></li>
+  <li><div class="info">
+    <a class="name" href="https://x.com/PrajwalTomar_/status/2027361076741066881" target="_blank" rel="noopener">Pre-launch security checklist</a>
+    <p>Web-app launch checklist: rate limits, RLS, CAPTCHA on auth and forms, server-side validation, secured API keys, env vars.</p></div></li>
+  <li><img class="thumb" src="thumbs/agentready.jpg" alt="isitagentready.com" loading="lazy"><div class="info">
+    <a class="name" href="http://isitagentready.com" target="_blank" rel="noopener">isitagentready.com</a>
+    <p>Cloudflare tool that audits how agent-ready and machine-readable your site is, and tells you how to fix it.</p></div></li>
+  <li><img class="thumb" src="thumbs/is-agentic.jpg" alt="Is Agentic" loading="lazy"><div class="info">
+    <a class="name" href="https://is-agentic.com/" target="_blank" rel="noopener">Is Agentic</a>
+    <p>Scores how ready a site is for AI agents, and shows the evidence behind each check rather than just a number: server-rendered content, HTTP behavior, document structure, error recovery, controls, plus API, OAuth, GraphQL, MCP, and dev-portal checks that switch on when the scan sees them. <code>npx is-agentic &lt;domain&gt;</code> runs the same scan in a pre-deploy step. Free, no signup. Run it next to isitagentready.com above; they weight different things.</p></div></li>
+  <li><img class="thumb" src="thumbs/checklist-design.jpg" alt="Checklist Design" loading="lazy"><div class="info">
+    <a class="name" href="https://www.checklist.design/" target="_blank" rel="noopener">Checklist Design</a>
+    <p>Design checklists for websites, web apps, mobile, components, and flows. Per-page (pricing, 404, careers), per-component (button, input, modal), and per-flow completeness checks before you ship. Figma plugin available.</p></div></li>
+</ul>
+</div></main>
+
+<footer class="band band-navy"><div class="wrap">
+  <p>Found something that belongs here? Send it to me on X at <a href="https://x.com/KevinMagnan" target="_blank" rel="noopener">@KevinMagnan</a> and I'll add it on the next pass.</p>
+  <p class="sig">Curated by <span>Kevin</span></p>
+</div></footer>
+</body>
+</html>

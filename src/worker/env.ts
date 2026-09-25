@@ -17,4 +17,9 @@ export interface Env {
   // Secrets. Set with `wrangler secret put <NAME>`.
   ANTHROPIC_API_KEY: string;
   TYPESAFE_API_KEY?: string;
+
+  // Beehiiv signup for the free kit. The publication ID is a plain var in
+  // wrangler.jsonc; the API key is a secret.
+  BEEHIIV_PUBLICATION_ID?: string;
+  BEEHIIV_API_KEY?: string;
 }

@@ -22,6 +22,12 @@
     "run_worker_first": ["/api/*", "/c/*"]
   },
 
+  // Beehiiv "Website list" publication for the kit signup. Not a secret.
+  // BEEHIIV_API_KEY is set with `wrangler secret put`.
+  "vars": {
+    "BEEHIIV_PUBLICATION_ID": "pub_209b2043-0276-4a7e-aa74-1163c7b88ec7"
+  },
+
   // Workers AI. The compose agent runs typesafe/jev through this.
   "ai": {
     "binding": "AI"

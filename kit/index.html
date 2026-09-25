@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Don't Start From Zero · Kevin Magnan</title>
+<meta name="description" content="The GitHub repos, skills, and plugins Kevin Magnan actually uses, and how to turn what you already know into a skill of your own.">
+<meta property="og:title" content="Don't Start From Zero">
+<meta property="og:description" content="The GitHub repos, skills, and plugins I actually use, and how to turn what you already know into a skill of your own.">
+<meta property="og:image" content="/kit/img/header.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2340; --navy-deep: #071a31; --paper: #f3e6d3; --paper-dim: #cdbfae;
+    --orange: #e0662a; --rust: #a8431a; --ink: #0a1628; --ink-dim: #3b4a5e;
+    --font-heading: "Fraunces", Georgia, serif; --font-body: "Source Serif 4", Georgia, serif;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 19px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--orange); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+  .band { position: relative; isolation: isolate; }
+  .band::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); }
+  .band-navy { background: var(--navy-deep); color: var(--paper); }
+  .band-navy::before { opacity: .22; mix-blend-mode: overlay; }
+  .band-paper::before { opacity: .16; mix-blend-mode: multiply; }
+
+  .head { max-width: 1120px; margin: 0 auto; padding: 28px clamp(16px, 5vw, 64px) clamp(56px, 8vw, 104px); display: grid; grid-template-columns: 6fr 5fr; gap: clamp(28px, 5vw, 64px); align-items: end; }
+  .home { grid-column: 1 / -1; font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--paper); margin-bottom: clamp(32px, 6vw, 72px); }
+  .home span { color: var(--orange); margin-right: .35em; }
+  .home:hover { color: var(--orange); }
+  .kicker { font-family: var(--font-heading); font-style: italic; color: var(--orange); font-size: 1.1rem; }
+  h1 { margin-top: 12px; font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.8rem, 1.4rem + 5vw, 5.4rem); line-height: .98; letter-spacing: -.035em; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .sub { margin-top: 24px; max-width: 46ch; font-size: 1.15rem; color: var(--paper-dim); }
+  .byline { margin-top: 18px; font-size: .98rem; color: var(--paper-dim); }
+  .head-art img { width: 100%; border-radius: 6px; box-shadow: 0 40px 70px -28px rgba(0,0,0,.7); rotate: 1.5deg; }
+
+  main .col { max-width: 720px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 32px) clamp(64px, 8vw, 112px); }
+  main h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.7rem); line-height: 1.08; letter-spacing: -.025em; margin: 1.9em 0 .6em; padding-top: .9em; border-top: 2px solid var(--ink); }
+  main h2:first-child { margin-top: 0; }
+  main h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1.4rem; letter-spacing: -.01em; margin: 1.6em 0 .4em; }
+  main p, main ul, main ol, main pre, main blockquote { margin-top: 1em; }
+  main p, main li { color: #22303f; }
+  main ul, main ol { padding-left: 1.3em; }
+  main li { margin-top: .45em; }
+  main li::marker { color: var(--rust); }
+  main a { color: var(--rust); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  main a:hover { color: var(--ink); }
+  main strong { color: var(--ink); }
+  main img { display: block; width: 100%; height: auto; margin: 1.6em 0; border-radius: 6px; box-shadow: 0 1px 0 rgba(10,22,40,.2), 0 28px 50px -26px rgba(10,22,40,.55); }
+  main code { font: .84em ui-monospace, "SF Mono", Menlo, monospace; background: rgba(10,22,40,.08); padding: .12em .38em; border-radius: 4px; }
+  main pre { position: relative; isolation: isolate; background: var(--navy-deep); color: #e8dccb; border-radius: 6px; padding: 24px 26px; overflow-x: auto; font-size: .95rem; line-height: 1.6; }
+  main pre code { background: none; padding: 0; color: inherit; font-size: .88em; white-space: pre; }
+  main hr { border: 0; border-top: 1px solid rgba(10,22,40,.2); margin: 2.4em 0; }
+
+  .cta { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 64px); }
+  .cta h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.2rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .cta h2 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .cta p { margin-top: 16px; max-width: 52ch; color: var(--paper-dim); }
+  .cta-links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 14px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-orange { background: var(--orange); color: var(--ink); }
+  .btn-ghost { color: var(--paper); border: 1px solid rgba(243,230,211,.4); }
+  .btn:hover { filter: brightness(1.08); }
+
+  @media (max-width: 760px) {
+    .head { grid-template-columns: 1fr; }
+    .head-art { order: -1; }
+    .home { order: -2; }
+    body { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<header class="band band-navy"><div class="head">
+  <a class="home" href="/"><span>&larr;</span>Kevin Magnan</a>
+  <div>
+    <p class="kicker">Free kit</p>
+    <h1>Don't start from <em>zero.</em></h1>
+    <p class="sub">The GitHub repos, skills, and plugins I actually use, and how to turn what you already know into a skill of your own.</p>
+    <p class="byline">By Kevin Magnan · @vibewithkevin</p>
+  </div>
+  <div class="head-art"><img src="img/header.jpg" alt="A hand from the clouds gives a small orange robot a finished block while a raw stone sits unused"></div>
+</div></header>
+
+<main class="band band-paper"><div class="col">
+<h2 id="why-start-from-someone-elses-work">1. Why start from someone else’s work</h2>
+<p>Most people start with AI the same way. They open a blank chat, type what they want, and rebuild something another person already made and gave away for free. Look at the people getting the most out of these tools and you’ll see what they have in common. They start from other people’s work: a skill or plugin someone published, a repo someone shared, a setup someone posted on X. They grab it, bend it to fit their job, and move on. That’s the whole idea of this kit. Don’t start from zero.</p>
+<p>Almost all of that work lives on GitHub, and you don’t need a coding background to use it. I came to AI after ten years in management consulting.</p>
+<p>A quick word on three terms before we go further:</p>
+<ul>
+<li><strong>A skill</strong> is a set of instructions, saved as a text file, that teaches an AI tool like Claude Code or Codex how to do one job well. Some skills also include small scripts or templates.</li>
+<li><strong>A plugin</strong> is a bundle you install in one go. It can hold several skills plus extras, like commands you type with a slash or a connection to another app. If a skill is one recipe, a plugin is the cookbook.</li>
+<li><strong>A repo</strong> (short for repository) is a project folder on GitHub. Most skills and plugins live in one.</li>
+</ul>
+<h2 id="github-without-the-fear">2. GitHub without the fear</h2>
+<p><img loading="lazy" src="img/s2-github.jpg" alt="The robot looks up at a huge library of shelves and boxes" /></p>
+<p>You barely need to read GitHub. I know it looks like a site built for programmers, because it was. You only need three things from it. It’s where people post the skills and tools they’ve built, and most of them are free. You find them by searching for the job you want done, or by following the right people. Section 4 shows you how to pick them. And once you find one, you don’t install it yourself. Copy the page’s link, paste it into Claude Code, and ask it to install the skill. (Plugins take two short commands you type yourself. Section 3 shows them.) Your agent reads the repo for you.</p>
+<p><img loading="lazy" src="img/s2-github-labeled.jpg" alt="My anti-slop repo page on GitHub, with four labels: what it does, how many people saved it, when it was last updated, and the README" /></p>
+<p>When you do land on a repo page, these are the only parts worth a glance:</p>
+<ol type="1">
+<li><strong>The name and one-line description</strong> at the top. This tells you what it does.</li>
+<li><strong>The star count.</strong> A star is how people bookmark a repo on GitHub. A few thousand means a lot of people found it useful. A handful means it’s new or niche, which means it’s less tested.</li>
+<li><strong>The last update</strong>, shown next to the file list. If nobody has touched it in a year, keep looking.</li>
+<li><strong>The README</strong>, the page of text below the files. Skim the first screen for what it does and who it’s for. Skip the install instructions. Your agent reads those.</li>
+</ol>
+<p>That’s it. You don’t need to understand the files, and you don’t need your own GitHub account to use what’s there.</p>
+<h2 id="your-first-skill-in-about-five-minutes">3. Your first skill in about five minutes</h2>
+<p><img loading="lazy" src="img/s3-install.jpg" alt="The robot slides a glowing cartridge into its chest beside an open pocket watch" /></p>
+<p>When I tested it, Claude Code took just over a minute from pasting the link to having the skill installed. Give yourself five, so you have time to read what it tells you.</p>
+<ol type="1">
+<li>Open Claude Code in the folder where you do your work.</li>
+<li>Paste this, with the link to the skill you want: <code>Install this skill so you can use it: &lt;link&gt;</code></li>
+<li>Read what Claude Code tells you. It says where it put the skill and points out anything worth a second look before you use it.</li>
+<li>Type <code>/reload-skills</code>. This command tells Claude Code to check again for skills added or changed since your session started, so the new one works without closing anything.</li>
+<li>Try it. Ask for the job the skill does. If it doesn’t kick in, type a slash and the skill’s name, like <code>/frontend-slides</code>.</li>
+</ol>
+<h3 id="installing-a-plugin">Installing a plugin</h3>
+<p>Plugins install with two commands you type into Claude Code yourself. The first adds the plugin’s home on GitHub, and the second installs it. Here’s how I installed Impeccable:</p>
+<ol type="1">
+<li><code>/plugin marketplace add pbakaus/impeccable</code></li>
+<li><code>/plugin install impeccable@impeccable</code></li>
+</ol>
+<p>The part after <code>add</code> is the repo’s address: the owner’s name, a slash, and the repo’s name. The part after <code>install</code> is the plugin’s name, then an @, then the name of its home. Then type <code>/reload-plugins</code>. This command switches on the plugin you just installed inside your current session, and everything in it shows up at once. Type <code>/plugin</code> any time to see what you have installed.</p>
+<p>Once one skill or plugin works, you’re no longer starting from zero. Every one after it installs the same way.</p>
+<h2 id="how-i-find-them">4. How I find them</h2>
+<p><img loading="lazy" src="img/s4-find.jpg" alt="The robot catches floating stars and paper cards with a butterfly net" /></p>
+<h3 id="where-to-look">Where to look</h3>
+<ul>
+<li><strong>Ask your agent.</strong> Tell Claude Code the job you want done and ask it to search GitHub for you: “Find me a skill for reviewing contracts, and show me the three most popular.” It searches, reads the pages, and reports back.</li>
+<li><strong>GitHub topics.</strong> Topics are tags people add to their repos. <a target="_blank" rel="noopener" href="https://github.com/topics/claude-skills">github.com/topics/claude-skills</a> lists nearly 9,000 repos, and <a target="_blank" rel="noopener" href="https://github.com/topics/agent-skills">github.com/topics/agent-skills</a> lists over 25,000. Sort by most stars.</li>
+<li><strong>Awesome lists.</strong> An awesome list is a repo that’s a hand-picked list of links. Search GitHub for “awesome claude skills.” <a target="_blank" rel="noopener" href="https://github.com/ComposioHQ/awesome-claude-skills">ComposioHQ/awesome-claude-skills</a> has over 75,000 stars.</li>
+<li><strong>The official shelves.</strong> Anthropic publishes its own skills at <a target="_blank" rel="noopener" href="https://github.com/anthropics/skills">github.com/anthropics/skills</a>. Claude Code also comes with an official plugin marketplace: type <code>/plugin</code> and open the <strong>Discover</strong> tab.</li>
+<li><strong>Check the author’s other work.</strong> When a skill works for you, open its author’s GitHub profile and look at what else they’ve made. I found a whole set of skills that way after using one from Matt Pocock.</li>
+<li><strong>Follow the trail.</strong> Most of what I use, I first saw in AI content: YouTube, TikTok, X, and podcasts. I watch and listen to a lot of it. When a creator mentions someone, or keeps talking with someone, I go look at that person too, and often find a new skill there. The next part shows how to pick who to follow.</li>
+</ul>
+<h3 id="who-to-follow">Who to follow</h3>
+<p>Following someone means their posts show up in your feed. On X, LinkedIn, and GitHub, you click <strong>Follow</strong> on their profile page.</p>
+<p>The people worth following work in your field and publish all the time. They post tips, share what they tried this week, and show their setups. People like that are usually the first to share a skill when they build one, and they share it on GitHub. So when someone in your field keeps teaching you useful things, find their GitHub profile and follow them there as well. What they build and star shows up on your GitHub home page.</p>
+<p>Start with three or four people like that in your own field. They’ll find more for you than a hundred general AI accounts.</p>
+<h3 id="my-weekly-habit">My weekly habit</h3>
+<p>Finding is half the work. The other half is saving what you find and deciding on it later. Here’s how I do that:</p>
+<ul>
+<li><strong>I bookmark on X.</strong> When someone posts a tool worth a look, I save it.</li>
+<li><strong>I star it on GitHub.</strong> My stars are my shortlist.</li>
+<li><strong>I review the stars every Thursday.</strong> A skill I built pulls in the repos I starred that week, and I turn the best of them into a carousel for TikTok and Instagram. I’ve made 18 of them so far.</li>
+</ul>
+<p>Save things when you see them, and decide on them once a week.</p>
+<h2 id="my-picks">5. My picks</h2>
+<p>These are the skills, plugins, and tools I use most, sorted by what you want to do. Every one of them was built by somebody else except anti-slop, and every one is free to install. A few connect to paid services, which I note. The ones marked <strong>(plugin)</strong> install with the two commands from section 3.</p>
+<h3 id="write">Write</h3>
+<ul>
+<li><strong>anti-slop</strong> (mine). Finds and rewrites the phrases that make writing sound machine-made. It’s my most-used skill: 275 uses so far. <a target="_blank" rel="noopener" href="https://github.com/kjmagnan1s/anti-slop">github.com/kjmagnan1s/anti-slop</a></li>
+</ul>
+<h3 id="make-videos">Make videos</h3>
+<ul>
+<li><strong>video-use.</strong> Edits talking-to-camera videos by conversation: cuts filler words and dead air, adds captions, and renders the final cut. <a target="_blank" rel="noopener" href="https://github.com/browser-use/video-use">github.com/browser-use/video-use</a></li>
+<li><strong>HyperFrames</strong> (plugin). Turns web pages into rendered video, which is how I make the motion graphics in my videos. <a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes">github.com/heygen-com/hyperframes</a></li>
+<li><strong>Higgsfield</strong> (plugin). Connects your agent to Higgsfield’s image and video generators. The generation itself is a paid service. <a target="_blank" rel="noopener" href="https://github.com/higgsfield-ai/skills">github.com/higgsfield-ai/skills</a></li>
+</ul>
+<h3 id="design-and-build">Design and build</h3>
+<ul>
+<li><strong>Impeccable</strong> (plugin). Critiques and polishes web design, and flags the parts that look like a template. <a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable">github.com/pbakaus/impeccable</a></li>
+<li><strong>frontend-slides.</strong> Builds animated slide decks as a web page, and can convert a PowerPoint file. <a target="_blank" rel="noopener" href="https://github.com/zarazhangrui/frontend-slides">github.com/zarazhangrui/frontend-slides</a></li>
+<li><strong>here.now.</strong> Publishes a file or folder to a shareable web link in one step. <a target="_blank" rel="noopener" href="https://github.com/heredotnow/skill">github.com/heredotnow/skill</a></li>
+</ul>
+<h3 id="research">Research</h3>
+<ul>
+<li><strong>Agent-Reach.</strong> Lets your agent read X, Reddit, YouTube, GitHub, and more, so research doesn’t stop at a regular web search. <a target="_blank" rel="noopener" href="https://github.com/Panniantong/Agent-Reach">github.com/Panniantong/Agent-Reach</a></li>
+</ul>
+<h3 id="automate">Automate</h3>
+<ul>
+<li><strong>gogcli.</strong> Gives your agent Gmail, Calendar, Drive, and Docs from the command line. <a target="_blank" rel="noopener" href="https://github.com/openclaw/gogcli">github.com/openclaw/gogcli</a></li>
+<li><strong>Codex inside Claude Code</strong> (plugin). Hands a task or a review to OpenAI’s Codex without leaving Claude Code. I use it for a second opinion. <a target="_blank" rel="noopener" href="https://github.com/openai/codex-plugin-cc">github.com/openai/codex-plugin-cc</a></li>
+<li><strong>Claude in Chrome.</strong> Lets Claude use your browser: open pages, click, and fill in forms. This one is a Chrome extension from Anthropic, so you install it from the Chrome Web Store, not GitHub.</li>
+</ul>
+<h2 id="your-expertise-as-a-skill">6. Your expertise as a skill</h2>
+<p><img loading="lazy" src="img/s6-expertise-v1-man.jpg" alt="A person writes an index card while the robot copies it into a notebook" /></p>
+<p>Here’s where my list stops being useful to you. Every pick above was built by someone who knew their own work well: an editor, a designer, a researcher. None of them knows yours. If you’re a small business owner, a technology leader, an office administrator, a paralegal, or an accountant, you carry a procedure in your head that no public skill has: the order you check things in, the mistakes you catch that a new hire misses, what a good one looks like. A skill is that procedure written down so an AI can follow it. You don’t need to code to write one, and you don’t need to put it on GitHub. It’s a text file on your computer. My most-used skill, anti-slop, started as three skills other people wrote. I merged them, then kept adding the tells I caught in my own writing.</p>
+<h3 id="write-your-first-one">Write your first one</h3>
+<ol type="1">
+<li><strong>Pick one task you do often and do well.</strong> Small and specific beats broad. “Review a vendor invoice before we pay it” is a skill. “Do accounting” isn’t.</li>
+<li><strong>Fill in the template below.</strong> Write it the way you’d explain the task to a sharp new hire on their first day.</li>
+<li><strong>Save it</strong> as a file named <code>SKILL.md</code> inside its own folder, in <code>~/.claude/skills/</code>. For example: <code>~/.claude/skills/invoice-review/SKILL.md</code>. Then type <code>/reload-skills</code> so Claude Code picks it up right away.</li>
+<li><strong>Run it on a real case.</strong> Watch where it goes wrong, fix that line in the file, and run it again.</li>
+</ol>
+<p>You can also skip the typing. Describe the task to Claude Code out loud, the way you’d walk someone through it, and ask it to write the skill for you. Then read what it wrote and fix what it got wrong. You’re the expert. It’s the typist.</p>
+<h3 id="the-template">The template</h3>
+<pre class="markdown"><code>---
+name: invoice-review
+description: Use when reviewing a vendor invoice before it gets paid.
+---
+
+# Invoice review
+
+## When to use this
+The situations where this skill applies, and the ones where it doesn&#39;t.
+
+## What good looks like
+Describe a finished job you&#39;d be proud of. Paste a real example if you have one.
+
+## The steps, in the order I do them
+1.
+2.
+3.
+
+## The mistakes I always catch
+What a new hire misses. This section is where your expertise lives.
+
+## What to hand back
+The format you want the result in: a checklist, a short email, a table.</code></pre>
+<p>The <code>description</code> line matters most. Claude Code reads it to decide when to use the skill, so name the situation where you’d use it.</p>
+<h3 id="two-of-mine-built-on-other-peoples-tools">Two of mine, built on other people’s tools</h3>
+<ul>
+<li><strong>Blotato.</strong> Blotato is a service that posts to social media. My skill on top of it publishes a finished video to TikTok and Instagram, with a cover frame I pick. The skill is my process for using it.</li>
+<li><strong>repo-carousel.</strong> Every week it pulls the GitHub repos I starred that week, drafts the copy, and renders the carousel slides. It’s the habit from section 4, written down so most of it runs without me. I still review the copy and post by hand.</li>
+</ul>
+<p>Neither one is public. Keep your skills on your own machine until you want to share them. You can post to GitHub later, if you want to.</p>
+<p>When you have a few skills for the same kind of work, you can bundle them into a plugin, so a teammate installs all of them with two commands. That’s a later step too. I’ve published one myself, karnak, which decides how hard Claude should think before each step. Start with one skill.</p>
+<h2 id="bonus-my-website-building-library">Bonus: my website-building library</h2>
+<p>Over 80 resources I’ve collected for building websites: motion and transitions, components, icons and logos, backgrounds, sound, design systems, and launch checklists. It’s the list I check before building any page.</p>
+<p><strong><a target="_blank" rel="noopener" href="/library/">See the library: kevinjmagnan.com/library</a></strong></p>
+<hr />
+<p>Start from someone else’s work. Then write down what only you know.</p>
+<p>Kevin</p>
+
+</div></main>
+
+<section class="band band-navy"><div class="cta">
+  <h2>Built something with <em>this?</em></h2>
+  <p>Show me. I share the best finds and new guides with the email list, and I post what I'm building on TikTok.</p>
+  <div class="cta-links">
+    <a class="btn btn-orange" href="https://www.tiktok.com/@vibewithkevin" target="_blank" rel="noopener">Follow on TikTok</a>
+    <a class="btn btn-ghost" href="/">Back to kevinjmagnan.com</a>
+  </div>
+</div></section>
+</body>
+</html>
