@@ -93,6 +93,7 @@ or 60 seconds, so that exact window cannot be expressed. The replacement:
 | ----------------- | -------------- | -------------- | -------------------------------------------- |
 | `CHAT_LIMITER`    | `/api/chat`    | 2 per 60s      | Same long-run average as 10 per 5 min, tighter burst |
 | `COMPOSE_LIMITER` | `/api/compose` | 6 per 60s      | New endpoint, no prior baseline              |
+| `SUBSCRIBE_LIMITER` | `/api/subscribe` | 3 per 60s    | Kit signup, stops scripted list stuffing     |
 
 The key is the `CF-Connecting-IP` header, which Cloudflare sets and a caller
 cannot forge. The old function read `x-forwarded-for`, which a caller could.

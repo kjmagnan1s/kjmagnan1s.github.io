@@ -2,17 +2,20 @@ import { describe, it, expect, vi, afterEach } from "vitest";
 import type { Env } from "./env";
 import { handleSubscribe } from "./subscribe";
 
+const limiter = (success = true) => ({ limit: vi.fn().mockResolvedValue({ success }) });
+
 const env = (over: Partial<Env> = {}) =>
   ({
+    SUBSCRIBE_LIMITER: limiter(),
     BEEHIIV_API_KEY: "test-key",
     BEEHIIV_PUBLICATION_ID: "pub_test",
     ...over,
   }) as Env;
 
-const post = (body: unknown, raw?: string) =>
+const post = (body: unknown, raw?: string, headers: Record<string, string> = {}) =>
   new Request("https://kevinjmagnan.com/api/subscribe", {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: { "content-type": "application/json", ...headers },
     body: raw ?? JSON.stringify(body),
   });
 
@@ -67,6 +70,39 @@ describe("handleSubscribe", () => {
       send_welcome_email: true,
       utm_campaign: "dont-start-from-zero",
     });
+  });
+
+  it("rejects a cross-site origin without calling Beehiiv", async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal("fetch", fetchMock);
+    const res = await handleSubscribe(
+      post({ email: "a@b.co" }, undefined, { Origin: "https://evil.example" }),
+      env()
+    );
+    expect(res.status).toBe(403);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("accepts a same-origin request", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("{}", { status: 201 })));
+    const res = await handleSubscribe(
+      post({ email: "a@b.co" }, undefined, { Origin: "https://kevinjmagnan.com" }),
+      env()
+    );
+    expect(res.status).toBe(200);
+  });
+
+  it("returns 429 when the caller's IP is over the limit", async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal("fetch", fetchMock);
+    const SUBSCRIBE_LIMITER = limiter(false);
+    const res = await handleSubscribe(
+      post({ email: "a@b.co" }, undefined, { "CF-Connecting-IP": "203.0.113.7" }),
+      env({ SUBSCRIBE_LIMITER } as Partial<Env>)
+    );
+    expect(res.status).toBe(429);
+    expect(SUBSCRIBE_LIMITER.limit).toHaveBeenCalledWith({ key: "203.0.113.7" });
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 
   it("returns 502 when Beehiiv fails", async () => {

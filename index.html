@@ -356,6 +356,7 @@
       <a href="#do">What you can build</a>
       <a href="#about">About</a>
       <a href="/resume">Resume</a>
+      <a href="https://aippliedlabs.com/">Work with me</a>
     </div>
   </nav>
 
@@ -365,6 +366,7 @@
     <p class="hero-tagline reveal" style="--i:3">I teach tech-ish people to build with AI, using the same tools that run my own work every day.</p>
     <div class="hero-actions reveal" style="--i:4">
       <a class="btn btn-primary" href="#free">Get the free kit</a>
+      <a class="btn btn-ghost" href="https://aippliedlabs.com/">Work with me</a>
       <a class="btn btn-ghost" href="#try">Try the demo<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
@@ -376,7 +378,7 @@
 <section class="band band-navy" id="try" data-block="playground" aria-labelledby="try-title">
   <div class="wrap">
     <h2 id="try-title" class="display fade">Tell the page what you <em>want.</em></h2>
-    <p class="lede fade">Ask it anything you want to do with AI. Jev reads your question and builds this page around you, in under a second.</p>
+    <p class="lede fade">Ask it anything you want to do with AI. This is a preview of the page Jev builds around your question.</p>
     <div class="play">
       <div class="fade">
         <form class="play-form" id="play-form">
@@ -390,10 +392,10 @@
           <button class="chip" type="button" data-intent="start">Start with Claude Code</button>
           <button class="chip" type="button" data-intent="book">Book Kevin to speak</button>
         </div>
-        <p class="play-note">Powered by Jev, a new kind of AI model that makes decisions instead of writing text. That's why it answers this fast.</p>
+        <p class="play-note">Preview with sample answers. The live version runs on Jev, a new kind of AI model that makes decisions instead of writing text.</p>
       </div>
       <div class="stage fade" id="stage" aria-live="polite">
-        <div class="stage-head"><span>Your page</span><span id="stage-conf">Built by Jev</span></div>
+        <div class="stage-head"><span>Your page</span><span id="stage-conf">Preview</span></div>
         <h3 id="stage-title">Pick an example, or type your own.</h3>
         <div class="stage-blocks" id="stage-blocks"></div>
       </div>
@@ -501,7 +503,7 @@
         <p class="about-mission">AI turned that data work into building anything I can picture: apps, automations, and every tool on this page. I describe exactly what I want and push until it works. Today that skill is enough to start a business, launch an app, or make the odd project only you would think of.</p>
         <p>Now I want to help a lot more people get there: on stage, on podcasts, and in classes. If you're planning an event, a show, or a course like that, let's talk.</p>
         <div class="open"><span>Speaking</span><span>Podcasts</span><span>Workshops</span><span>Collaborations</span></div>
-        <div class="hero-actions"><a class="btn btn-ink" href="#contact-placeholder">Get in touch</a><a class="btn btn-ink-ghost" href="/resume">Resume</a></div>
+        <div class="hero-actions"><a class="btn btn-ink" href="mailto:kevinjmagnan@gmail.com">Get in touch</a><a class="btn btn-ink-ghost" href="/resume">Resume</a></div>
       </div>
     </div>
   </div>
@@ -591,12 +593,11 @@
     var K = { write: /writ|word|voice|email|post|newsletter|blog/i, automate: /automat|chore|week|time|agent|busy|repeat/i,
               start: /start|begin|learn|claude|code|new|beginner|how/i, book: /book|speak|podcast|hire|talk|event|consult|team/i };
     var title = document.getElementById("stage-title"), box = document.getElementById("stage-blocks"),
-        conf = document.getElementById("stage-conf"), chips = document.querySelectorAll(".chip");
+        chips = document.querySelectorAll(".chip");
     function show(key) {
       var a = A[key]; if (!a) return;
       chips.forEach(function (c) { c.setAttribute("aria-pressed", c.dataset.intent === key); });
       title.textContent = a.title;
-      conf.textContent = "Built for you by Jev";
       box.innerHTML = a.blocks.map(function (b, i) {
         return '<a class="sblock" style="--k:' + i + '" href="' + b[2] + '"><div><b>' + b[0] + '</b><span>' + b[1] + '</span></div></a>';
       }).join("");

@@ -42,7 +42,7 @@
       "name": "CHAT_LIMITER",
       "namespace_id": "1001",
       "simple": {
-        "limit": 10,
+        "limit": 2,
         "period": 60
       }
     },
@@ -51,6 +51,14 @@
       "namespace_id": "1002",
       "simple": {
         "limit": 6,
+        "period": 60
+      }
+    },
+    {
+      "name": "SUBSCRIBE_LIMITER",
+      "namespace_id": "1003",
+      "simple": {
+        "limit": 3,
         "period": 60
       }
     }

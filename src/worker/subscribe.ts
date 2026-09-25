@@ -1,4 +1,5 @@
 import type { Env } from "./env";
+import { getCorsHeaders } from "./chat";
 
 /**
  * POST /api/subscribe
@@ -18,6 +19,14 @@ function json(body: unknown, status = 200): Response {
 
 export async function handleSubscribe(request: Request, env: Env): Promise<Response> {
   if (request.method !== "POST") return json({ ok: false, error: "method" }, 405);
+  if (!getCorsHeaders(request.headers.get("Origin"), request.url)) {
+    return json({ ok: false, error: "origin" }, 403);
+  }
+
+  const { success } = await env.SUBSCRIBE_LIMITER.limit({
+    key: request.headers.get("CF-Connecting-IP") ?? "anon",
+  });
+  if (!success) return json({ ok: false, error: "rate_limited" }, 429);
 
   let data: { email?: unknown; company?: unknown };
   try {

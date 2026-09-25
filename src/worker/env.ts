@@ -13,6 +13,7 @@ export interface Env {
   // Per-IP rate limiters. See wrangler.jsonc for the configured windows.
   CHAT_LIMITER: RateLimit;
   COMPOSE_LIMITER: RateLimit;
+  SUBSCRIBE_LIMITER: RateLimit;
 
   // Secrets. Set with `wrangler secret put <NAME>`.
   ANTHROPIC_API_KEY: string;
