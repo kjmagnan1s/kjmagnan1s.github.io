@@ -15,6 +15,7 @@ request
   |
   +-- /api/chat      -> src/worker/chat.ts      (Claude, same-origin only, rate limited)
   +-- /api/compose   -> src/worker/compose/     (Workers AI, typesafe/jev)
+  +-- /api/play      -> src/worker/play/        (home page playground, typesafe/jev, rate limited)
   +-- /api/subscribe -> src/worker/subscribe.ts (Beehiiv kit signup, same-origin only, rate limited)
   +-- /api/health    -> { "ok": true }
   |
@@ -56,7 +57,7 @@ it in.
 
 ```sh
 wrangler secret put ANTHROPIC_API_KEY
-wrangler secret put TYPESAFE_API_KEY   # only if the compose agent needs it
+wrangler secret put TYPESAFE_API_KEY   # /api/play, and the compose agent if it needs it
 wrangler secret put BEEHIIV_API_KEY    # /api/subscribe
 ```
 
@@ -100,6 +101,7 @@ or 60 seconds, so that exact window cannot be expressed. The replacement:
 | `CHAT_LIMITER`    | `/api/chat`    | 2 per 60s      | Same long-run average as 10 per 5 min, tighter burst |
 | `COMPOSE_LIMITER` | `/api/compose` | 6 per 60s      | New endpoint, no prior baseline              |
 | `SUBSCRIBE_LIMITER` | `/api/subscribe` | 3 per 60s    | Kit signup, stops scripted list stuffing     |
+| `PLAY_LIMITER`    | `/api/play`    | 12 per 60s     | Home page playground, each example chip is one Jev call |
 
 The key is the `CF-Connecting-IP` header, which Cloudflare sets and a caller
 cannot forge. The old function read `x-forwarded-for`, which a caller could.
@@ -200,9 +202,9 @@ wrangler tail kevinjmagnan-com
 
 **The shell is parked.** The redesigned `index.html` is standalone HTML with no
 Jekyll front matter, so it doesn't render through `_layouts/default.html` and
-doesn't load `genui.js` or `genui.css`. Its Jev playground is a static preview
-with fixed answers. The shell source (`src/genui/`), its Vite build, and
-`/api/compose` stay in the repo for the live Jev playground. The rest of this
+doesn't load `genui.js` or `genui.css`. Its Jev playground calls `/api/play`
+instead. The shell source (`src/genui/`), its Vite build, and `/api/compose`
+stay in the repo. The rest of this
 section describes the shell as it worked on the old Jekyll-layout front page,
 which provided the markup (the `#bg` mount point, the ask form, and the
 `#composed` div) that the shell expects.

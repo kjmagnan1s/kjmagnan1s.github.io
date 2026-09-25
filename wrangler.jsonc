@@ -61,6 +61,16 @@
         "limit": 3,
         "period": 60
       }
+    },
+    {
+      // Home page playground. One Jev call per try, and visitors click
+      // through the example chips, so this allows more than /api/compose.
+      "name": "PLAY_LIMITER",
+      "namespace_id": "1004",
+      "simple": {
+        "limit": 12,
+        "period": 60
+      }
     }
   ],
 

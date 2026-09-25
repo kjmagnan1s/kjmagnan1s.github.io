@@ -392,7 +392,7 @@
 <section class="band band-navy" id="try" data-block="playground" aria-labelledby="try-title">
   <div class="wrap">
     <h2 id="try-title" class="display fade">Tell the page what you <em>want.</em></h2>
-    <p class="lede fade">Tell it who you are and one thing you want AI to help with. Jev picks the parts of this site that fit and builds the page around you.</p>
+    <p class="lede fade">Tell it who you are and one thing you want AI to help with. Jev picks what fits you from everything here and builds your page.</p>
     <div class="play">
       <div class="fade">
         <form class="play-form" id="play-form">
@@ -406,10 +406,10 @@
           <button class="chip" type="button" data-intent="start">Start with Claude Code</button>
           <button class="chip" type="button" data-intent="book">Book Kevin to speak</button>
         </div>
-        <p class="play-note">Preview with sample answers. The live version runs on Jev, a new kind of AI model that makes decisions instead of writing text.</p>
+        <p class="play-note">Runs live on Jev, a new kind of AI model that makes decisions instead of writing text.</p>
       </div>
       <div class="stage fade" id="stage" aria-live="polite">
-        <div class="stage-head"><span>Your page</span><span id="stage-conf">Preview</span></div>
+        <div class="stage-head"><span>Your page</span><span id="stage-conf"></span></div>
         <h3 id="stage-title">Pick an example, or type your own.</h3>
         <div class="stage-blocks" id="stage-blocks"></div>
       </div>
@@ -584,44 +584,66 @@
   })();
 </script>
 <script>
-  // Playground preview. Fixed answers stand in for Jev until the backend exists.
+  // Playground. Jev reads the visitor's sentence and picks the heading and
+  // three blocks to show (src/worker/play). Chips send a sample sentence.
   (function () {
-    var A = {
-      write: { title: "Make AI sound like you.", conf: 0.94, blocks: [
-        ["anti-slop", "Finds and rewrites the patterns that make writing sound machine-made.", "#do"],
-        ["The free kit", "The writing tools I use every day, with real examples.", "#free"],
-        ["Naperthrill", "A whole newsletter drafted by my systems and edited by me.", "https://naperthrill.co/"] ] },
-      automate: { title: "Hand off the repeat work.", conf: 0.91, blocks: [
-        ["unifi-agent", "One work order, then I walked away. 10x faster WiFi.", "#do"],
-        ["Oa", "Talk into a ring, and a draft of the change appears.", "#do"],
-        ["33 jobs that run themselves", "What runs every hour, day, and week in my setup.", "#about"] ] },
-      start: { title: "Start with Claude Code.", conf: 0.96, blocks: [
-        ["Claude Code crash course", "My most-watched video: 141K plays, 6,750 saves.", "https://www.tiktok.com/@vibewithkevin/video/7591684867440626974"],
-        ["The free kit", "The setup I actually use, step by step.", "#free"],
-        ["Watch me build", "293 videos of real builds, start to finish.", "#videos"] ] },
-      book: { title: "Bring Kevin in.", conf: 0.93, blocks: [
-        ["Speaking and podcasts", "Talks and interviews on building with AI.", "#about"],
-        ["AIpplied Labs", "Consulting for teams that want this at work.", "https://aippliedlabs.com/"],
-        ["Resume", "Ten years of consulting, and what I build now.", "/resume"] ] }
+    var SAMPLES = {
+      write: "I want to write faster and still sound like myself",
+      automate: "I want to hand off the repeat work that eats my week",
+      start: "I'm new to this and want to start with Claude Code",
+      book: "I want to book Kevin to speak at our event"
     };
-    var K = { write: /writ|word|voice|email|post|newsletter|blog/i, automate: /automat|chore|week|time|agent|busy|repeat/i,
-              start: /start|begin|learn|claude|code|new|beginner|how/i, book: /book|speak|podcast|hire|talk|event|consult|team/i };
-    var title = document.getElementById("stage-title"), box = document.getElementById("stage-blocks"),
-        chips = document.querySelectorAll(".chip");
-    function show(key) {
-      var a = A[key]; if (!a) return;
-      chips.forEach(function (c) { c.setAttribute("aria-pressed", c.dataset.intent === key); });
-      title.textContent = a.title;
-      box.innerHTML = a.blocks.map(function (b, i) {
-        return '<a class="sblock" style="--k:' + i + '" href="' + b[2] + '"><div><b>' + b[0] + '</b><span>' + b[1] + '</span></div></a>';
-      }).join("");
+    var form = document.getElementById("play-form"), input = document.getElementById("play-input"),
+        button = form.querySelector("button"), title = document.getElementById("stage-title"),
+        box = document.getElementById("stage-blocks"), label = document.getElementById("stage-conf"),
+        chips = document.querySelectorAll(".chip"), seq = 0;
+
+    function render(page) {
+      title.textContent = page.title;
+      box.textContent = "";
+      page.blocks.forEach(function (b, i) {
+        var a = document.createElement("a"), div = document.createElement("div"),
+            name = document.createElement("b"), text = document.createElement("span");
+        a.className = "sblock"; a.href = b.href; a.style.setProperty("--k", i);
+        name.textContent = b.title; text.textContent = b.text;
+        div.append(name, text); a.append(div); box.append(a);
+      });
     }
-    chips.forEach(function (c) { c.addEventListener("click", function () { show(c.dataset.intent); }); });
-    document.getElementById("play-form").addEventListener("submit", function (e) {
+
+    async function ask(message, chip) {
+      var mine = ++seq;
+      chips.forEach(function (c) { c.setAttribute("aria-pressed", c === chip); });
+      button.disabled = true;
+      label.textContent = "Jev is deciding…";
+      box.setAttribute("aria-busy", "true");
+      try {
+        var res = await fetch("/api/play", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: message })
+        });
+        var data = await res.json().catch(function () { return {}; });
+        if (mine !== seq) return;
+        if (!res.ok) throw new Error(data.error || "Jev didn't answer. Try again in a moment.");
+        render(data);
+        label.textContent = "Built by Jev";
+      } catch (err) {
+        if (mine !== seq) return;
+        title.textContent = err.message || "Jev didn't answer. Try again in a moment.";
+        box.textContent = "";
+        label.textContent = "";
+      } finally {
+        if (mine === seq) { button.disabled = false; box.removeAttribute("aria-busy"); }
+      }
+    }
+
+    chips.forEach(function (c) {
+      c.addEventListener("click", function () { ask(SAMPLES[c.dataset.intent], c); });
+    });
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var v = document.getElementById("play-input").value, hit = "start";
-      for (var k in K) if (K[k].test(v)) { hit = k; break; }
-      show(hit);
+      var v = input.value.trim();
+      if (v) ask(v, null); else input.focus();
     });
   })();
 </script>

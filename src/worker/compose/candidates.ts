@@ -218,7 +218,7 @@ export function buildCandidates(): Candidate[] {
   // Credentials and contact
   add(
     "education",
-    "EducationList: graduate and undergraduate degrees with honors. Resume content.",
+    "EducationList: graduate degrees. Resume content.",
     {
       type: "EducationList",
       props: {
