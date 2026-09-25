@@ -1,6 +1,7 @@
 import type { Env } from "./env";
 import { handleChat } from "./chat";
 import { handleCompose } from "./compose";
+import { handlePlay } from "./play";
 import { handleSubscribe } from "./subscribe";
 
 /**
@@ -33,6 +34,9 @@ export default {
 
       case "/api/compose":
         return handleCompose(request, env, ctx);
+
+      case "/api/play":
+        return handlePlay(request, env);
 
       case "/api/subscribe":
         return handleSubscribe(request, env);
