@@ -1,0 +1,309 @@
+---
+layout: null
+title: Resume
+permalink: /resume
+description: Kevin Magnan's resume. Roles at Slalom and the University of Chicago Urban Labs, public-safety data work, education, and certifications.
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume | Kevin Magnan</title>
+<meta name="description" content="{{ page.description }}">
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#071a31">
+<link rel="canonical" href="https://kevinjmagnan.com/resume">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kevin Magnan">
+<meta property="og:title" content="Resume · Kevin Magnan">
+<meta property="og:description" content="{{ page.description }}">
+<meta property="og:url" content="https://kevinjmagnan.com/resume">
+<meta property="og:image" content="https://kevinjmagnan.com/assets/brand/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  /* Same tokens and print-world look as the home page (index.html). */
+  :root {
+    --navy: #0b2340;
+    --navy-deep: #071a31;
+    --paper: #f3e6d3;
+    --paper-dim: #cdbfae;
+    --orange: #e0662a;
+    --rust: #a8431a;
+    --ink: #0a1628;
+    --ink-dim: #3b4a5e;
+    --font-heading: "Fraunces", Georgia, serif;
+    --font-body: "Source Serif 4", Georgia, serif;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; scrollbar-color: #2a3f5c var(--navy-deep); }
+  body { background: var(--navy-deep); color: var(--paper); font-family: var(--font-body); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  ::selection { background: var(--orange); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+
+  .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 24px clamp(16px, 5vw, 64px); font-size: .95rem; max-width: 1240px; margin: 0 auto; }
+  .nav a { color: var(--paper); text-decoration: none; opacity: .9; }
+  .nav a:hover, .nav a[aria-current] { opacity: 1; }
+  .nav a[aria-current] { text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--orange); }
+  .nav-links { display: flex; flex-wrap: wrap; gap: 8px clamp(16px, 3vw, 32px); }
+  .nav-mark { font-family: var(--font-heading); font-weight: 600; letter-spacing: -.01em; }
+
+  .band { position: relative; isolation: isolate; overflow: hidden; }
+  .band::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); }
+  .band-navy { background: var(--navy-deep); color: var(--paper); }
+  .band-navy::before { opacity: .22; mix-blend-mode: overlay; }
+  .band-paper { background: var(--paper); color: var(--ink); }
+  .band-paper::before { opacity: .16; mix-blend-mode: multiply; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: clamp(56px, 8vw, 112px) clamp(16px, 5vw, 64px); }
+  .wrap-top { padding-top: clamp(32px, 5vw, 64px); }
+
+  .eyebrow { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--paper-dim); margin-bottom: 18px; }
+  .band-paper .eyebrow { color: var(--rust); }
+  .display { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.6rem, 1.4rem + 5vw, 5.25rem); line-height: .98; letter-spacing: -.035em; text-wrap: balance; }
+  .display em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .lede { margin-top: 24px; max-width: 56ch; font-size: clamp(1.05rem, 1rem + .3vw, 1.2rem); line-height: 1.6; color: var(--paper-dim); }
+  .sub { font-family: var(--font-heading); font-weight: 600; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); letter-spacing: -.02em; }
+
+  .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; font: 600 .95rem/1 var(--font-body); text-decoration: none; cursor: pointer; border: 1px solid rgba(243,230,211,.4); background: transparent; color: var(--paper); transition: transform .2s, background .2s; }
+  .btn:hover { transform: translateY(-1px); background: rgba(243,230,211,.08); }
+  .btn[aria-pressed="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+  /* Experience: one row per employer, dates on the left like the home page board */
+  .jobs { list-style: none; padding: 0; margin-top: 40px; border-top: 2px solid var(--ink); }
+  .job { display: grid; grid-template-columns: minmax(180px, 1fr) 3fr; gap: 12px clamp(16px, 4vw, 56px); padding: 32px 0; border-bottom: 1px solid rgba(10,22,40,.18); }
+  .job-org { font-family: var(--font-heading); font-weight: 600; font-size: 1.3rem; letter-spacing: -.01em; line-height: 1.2; }
+  .job-loc { color: var(--ink-dim); font-size: .95rem; margin-top: 6px; }
+  .role { display: flex; justify-content: space-between; gap: 4px 16px; flex-wrap: wrap; align-items: baseline; }
+  .role + .role { margin-top: 6px; }
+  .role-title { font-weight: 600; font-size: 1.1rem; }
+  .role-when { font-family: var(--font-heading); font-style: italic; color: var(--rust); white-space: nowrap; }
+  .job ul { margin-top: 16px; padding-left: 1.1em; color: var(--ink-dim); max-width: 70ch; }
+  .job li + li { margin-top: 8px; }
+  .job li::marker { color: var(--rust); }
+
+  /* Education, credentials, skills */
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(32px, 5vw, 64px); margin-top: 40px; }
+  .col h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1.35rem; padding-bottom: 12px; border-bottom: 2px solid var(--paper); margin-bottom: 8px; }
+  .col ul { list-style: none; padding: 0; }
+  .col li { padding: 14px 0; border-bottom: 1px solid rgba(243,230,211,.16); }
+  .col b { display: block; font-weight: 600; }
+  .col .meta { display: block; color: var(--paper-dim); font-size: .95rem; }
+  .col .note { display: block; color: var(--orange); font-family: var(--font-heading); font-style: italic; font-size: .95rem; }
+  .cert { display: flex; justify-content: space-between; gap: 16px; }
+
+  /* Tableau view */
+  .dash { margin-top: 40px; overflow-x: auto; }
+  .dash .tableauPlaceholder { width: fit-content; max-width: 100%; margin: 0 auto; border-radius: 8px; overflow: hidden; }
+
+  footer { padding: 32px clamp(16px, 5vw, 64px) 48px; max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--paper-dim); font-size: .9rem; }
+  footer a { color: var(--paper-dim); }
+
+  @media (max-width: 720px) {
+    .job { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .nav, .actions, footer, #dashboard { display: none !important; }
+    body, .band-navy, .band-paper { background: #fff; color: #000; }
+    .band::before { display: none; }
+    .lede, .col .meta, .job ul, .job-loc { color: #333; }
+    .wrap { padding: 16px 0; }
+    .col h3 { border-color: #000; }
+    .col li { border-color: #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<header class="band band-navy">
+  <nav class="nav" aria-label="Primary">
+    <a class="nav-mark" href="/">Kevin Magnan</a>
+    <div class="nav-links">
+      <a href="/#try">Demo</a>
+      <a href="/#free">Free kit</a>
+      <a href="/#about">About</a>
+      <a href="/resume" aria-current="page">Resume</a>
+      <a href="https://aippliedlabs.com/">Work with me</a>
+    </div>
+  </nav>
+  <div class="wrap wrap-top">
+    <p class="eyebrow">Resume</p>
+    <h1 class="display">Kevin J. <em>Magnan</em></h1>
+    <p class="lede">Police officer, then public-safety researcher at the University of Chicago, then data and AI consulting at Slalom. Read it here, print it, or explore the interactive version.</p>
+    <div class="actions" role="group" aria-label="Resume view">
+      <button class="btn" type="button" id="staticViewBtn" aria-pressed="true" aria-controls="resume">Resume</button>
+      <button class="btn" type="button" id="dashboardViewBtn" aria-pressed="false" aria-controls="dashboard">Interactive dashboard</button>
+      <button class="btn" type="button" id="printBtn">Print</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<div id="resume">
+  <section class="band band-paper" aria-labelledby="exp-title">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <h2 id="exp-title" class="sub">Where I've worked</h2>
+      <ol class="jobs">
+        <li class="job">
+          <div>
+            <p class="job-org">Slalom Consulting, LLC</p>
+            <p class="job-loc">Detroit, MI</p>
+          </div>
+          <div>
+            <p class="role"><span class="role-title">Senior Solution Architect</span><span class="role-when">June 2022 – present</span></p>
+            <p class="role"><span class="role-title">Data and Analytics Consultant</span><span class="role-when">April 2021 – June 2022</span></p>
+            <ul>
+              <li>Strengthened Slalom's Justice and Public Safety operations, leading to 80% year-over-year growth across 45 global locations and more than 10 new high-profile clients.</li>
+              <li>Led seven project teams delivering data strategy and analytics work for local, county, and state agencies.</li>
+              <li>Grew a new client relationship into a flagship account worth more than $5 million in three years.</li>
+              <li>Served as a subject matter expert for Slalom's national public-safety offerings across more than 10 markets.</li>
+              <li>Developing Slalom's generative AI strategy and point of view, focused on ethical use in public safety.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div>
+            <p class="job-org">University of Chicago Urban Labs</p>
+            <p class="job-loc">Chicago, IL</p>
+          </div>
+          <div>
+            <p class="role"><span class="role-title">Research Manager</span><span class="role-when">June 2019 – February 2021</span></p>
+            <p class="role"><span class="role-title">Embedded Research Analyst</span><span class="role-when">July 2017 – May 2019</span></p>
+            <ul>
+              <li>Led the design and release of the Violence Reduction Dashboard, a public, near-real-time tool built with the City of Chicago.</li>
+              <li>Integrated siloed public-safety data and delivered nine data-driven Tableau solutions.</li>
+              <li>Led a team of eight field-based research analysts building data models and advanced analytics.</li>
+              <li>Managed and mentored staff across eight large research and analysis projects.</li>
+              <li>Designed and ran training programs in public-safety data analytics.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div>
+            <p class="job-org">Metropolitan Planning Council</p>
+            <p class="job-loc">Chicago, IL</p>
+          </div>
+          <div>
+            <p class="role"><span class="role-title">Research Assistant</span><span class="role-when">October 2016 – May 2017</span></p>
+          </div>
+        </li>
+        <li class="job">
+          <div>
+            <p class="job-org">Saint Louis County Police Department</p>
+            <p class="job-loc">St. Louis, MO</p>
+          </div>
+          <div>
+            <p class="role"><span class="role-title">Police Officer</span><span class="role-when">July 2014 – July 2016</span></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band band-navy" aria-labelledby="more-title">
+    <div class="wrap">
+      <p class="eyebrow">Background</p>
+      <h2 id="more-title" class="sub">Education, credentials, and skills</h2>
+      <div class="cols">
+        <div class="col">
+          <h3>Education</h3>
+          <ul>
+            <li><b>University of Chicago</b><span class="meta">Master of Arts Program in the Social Sciences</span><span class="meta">Chicago, IL</span></li>
+            <li><b>Southeast Missouri State University</b><span class="meta">Master of Science, Criminal Justice Administration</span><span class="meta">Cape Girardeau, MO</span><span class="note">Graduate Masters High Honors</span></li>
+            <li><b>Southeast Missouri State University</b><span class="meta">Bachelor of Science, Criminal Justice</span><span class="meta">Cape Girardeau, MO</span><span class="note">Magna Cum Laude</span></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Certifications</h3>
+          <ul>
+            <li class="cert"><span>Tableau Certified Associate Consultant</span><span class="meta">2021</span></li>
+            <li class="cert"><span>AWS Certified Cloud Practitioner</span><span class="meta">2021</span></li>
+            <li class="cert"><span>Tableau Desktop Specialist</span><span class="meta">2019</span></li>
+          </ul>
+          <h3 style="margin-top: 40px">Affiliations</h3>
+          <ul>
+            <li><b>University of Chicago MAPSS Alumni Executive Committee</b><span class="meta">Committee member, September 2022 – present. Mentor and Development, and Growth and Insight committees.</span></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Skills</h3>
+          <ul>
+            <li>Leading Scrum teams within Agile delivery</li>
+            <li>Visualization in Tableau, Power BI, and R</li>
+            <li>Automated ETL with SQL, Tableau Prep, and Alteryx</li>
+            <li>Clear written and verbal communication</li>
+            <li>Self-motivated, with an entrepreneurial mindset</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="dashboard" class="band band-navy" aria-label="Interactive resume dashboard" hidden>
+  <div class="wrap wrap-top">
+    <div class="dash">
+      <div class="tableauPlaceholder" id="viz1745077262291" style="position: relative">
+        <noscript><img alt="Interactive resume dashboard" src="https://public.tableau.com/static/images/Ke/KevinMagnanInteractiveResume/Resume_v2/1_rss.png" style="border: none; width: 100%"></noscript>
+        <object class="tableauViz" style="display: none;">
+          <param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F">
+          <param name="embed_code_version" value="3">
+          <param name="site_root" value="">
+          <param name="name" value="KevinMagnanInteractiveResume/Resume_v2">
+          <param name="tabs" value="no">
+          <param name="toolbar" value="no">
+          <param name="static_image" value="https://public.tableau.com/static/images/Ke/KevinMagnanInteractiveResume/Resume_v2/1.png">
+          <param name="animate_transition" value="yes">
+          <param name="display_static_image" value="yes">
+          <param name="display_spinner" value="yes">
+          <param name="display_overlay" value="yes">
+          <param name="display_count" value="yes">
+          <param name="language" value="en-US">
+          <param name="filter" value="publish=yes">
+        </object>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><span>© 2026 Kevin Magnan</span><span><a href="/">Home</a> · <a href="/blog/">Writing</a> · <a href="https://aippliedlabs.com/">AIpplied Labs</a></span></footer>
+
+<script>
+  (function () {
+    var staticBtn = document.getElementById("staticViewBtn");
+    var dashBtn = document.getElementById("dashboardViewBtn");
+    var resume = document.getElementById("resume");
+    var dashboard = document.getElementById("dashboard");
+    var tableauLoaded = false;
+
+    function show(dash) {
+      resume.hidden = dash;
+      dashboard.hidden = !dash;
+      staticBtn.setAttribute("aria-pressed", String(!dash));
+      dashBtn.setAttribute("aria-pressed", String(dash));
+      if (dash && !tableauLoaded) {
+        tableauLoaded = true;
+        var viz = dashboard.querySelector("object");
+        viz.style.width = "100%";
+        viz.style.height = window.innerWidth < 720 ? "1400px" : "1000px";
+        var s = document.createElement("script");
+        s.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
+        viz.parentNode.insertBefore(s, viz);
+      }
+    }
+
+    staticBtn.addEventListener("click", function () { show(false); });
+    dashBtn.addEventListener("click", function () { show(true); });
+    document.getElementById("printBtn").addEventListener("click", function () { show(false); window.print(); });
+  })();
+</script>
+</body>
+</html>
