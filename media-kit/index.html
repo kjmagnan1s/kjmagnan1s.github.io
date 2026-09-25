@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kevin Magnan · @vibewithkevin · Creator Media Kit</title>
+<meta name="description" content="AI tools, tested on camera. Media kit for @vibewithkevin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=JetBrains+Mono:wght@700&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F3E8;
+    --ivory: #FAF9F5;
+    --ink: #121212;
+    --yellow: #FFF200;
+    --coral: #CC785C;
+    --coral-rust: #C24A2C;
+    --halftone-gray: #8A8A8A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.45;
+    position: relative;
+  }
+  /* paper grain */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 999;
+  }
+  .page { max-width: 880px; margin: 0 auto; padding: 56px 34px 0; }
+
+  /* ---- atoms ---- */
+  .kicker {
+    display: inline-block;
+    font-family: Inter, sans-serif; font-weight: 800; font-size: 12.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: var(--yellow); color: var(--ink);
+    padding: 7px 14px;
+    clip-path: polygon(1% 8%, 99% 0%, 100% 88%, 98% 100%, 2% 96%, 0% 12%);
+  }
+  .kicker.coral { background: var(--coral); color: #fff; }
+  .band {
+    background: var(--yellow);
+    box-decoration-break: clone; -webkit-box-decoration-break: clone;
+    padding: 0 0.12em;
+    clip-path: polygon(0.5% 12%, 99% 4%, 100% 90%, 97.5% 100%, 1.5% 94%, 0% 18%);
+  }
+  .mono {
+    font-family: "JetBrains Mono", monospace; font-weight: 700;
+    font-size: 12px; letter-spacing: 0.08em;
+  }
+  h1, h2 {
+    font-family: "Libre Franklin", sans-serif; font-weight: 900;
+    letter-spacing: -0.02em; line-height: 1.05;
+  }
+  h1 { font-size: clamp(44px, 9vw, 78px); line-height: 0.98; letter-spacing: -0.028em; }
+  h2 { font-size: clamp(26px, 4.6vw, 38px); margin-bottom: 18px; }
+  .lead { font-size: clamp(18px, 2.4vw, 21px); line-height: 1.44; }
+
+  .meta-strip {
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding-bottom: 18px; border-bottom: 1px solid rgba(18,18,18,0.12);
+    margin-bottom: 40px;
+  }
+  .meta-strip .mono { color: rgba(18,18,18,0.65); }
+
+  /* cover */
+  .cover { display: flex; gap: 36px; align-items: center; flex-wrap: wrap; margin-bottom: 26px; }
+  .cover-text { flex: 1 1 400px; }
+  .cover .cutout {
+    flex: 0 0 240px; max-width: 240px;
+    transform: rotate(2.5deg);
+  }
+  .cutout img {
+    display: block; width: 100%;
+    box-shadow: 0 4px 14px rgba(18,18,18,0.22);
+  }
+  .cutout .cap { margin-top: 10px; text-align: center; color: rgba(18,18,18,0.6); }
+  .handle-row { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .chipset { display: inline-block; font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; background: var(--ink); color: var(--ivory); padding: 8px 14px; border: 2px solid #fff; }
+  .chipset.coral { background: var(--coral); }
+  .chipset a { color: inherit; text-decoration: none; }
+
+  /* stat lockups */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 30px; margin: 46px 0 8px; }
+  @media (max-width: 700px) { .stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } }
+  .stat .fig {
+    font-family: "Libre Franklin", sans-serif; font-weight: 900;
+    font-size: clamp(40px, 6.5vw, 58px); line-height: 0.92; letter-spacing: -0.03em;
+  }
+  .stat .fig .unit { position: relative; z-index: 0; }
+  .stat .fig .unit::after {
+    content: ""; position: absolute; left: -2%; right: -3%; bottom: 2px; height: 0.32em;
+    background: var(--yellow); z-index: -1;
+    clip-path: polygon(0% 20%, 99% 0%, 100% 85%, 2% 100%);
+  }
+  .stat .cap { font-size: 14.5px; margin-top: 9px; color: rgba(18,18,18,0.78); }
+  .stat.coral .fig { color: var(--coral-rust); }
+  .source-line { margin: 14px 0 0; color: rgba(18,18,18,0.55); }
+
+  /* torn divider */
+  .torn { height: 26px; margin: 52px -34px 46px;
+    background: var(--ink);
+    clip-path: polygon(0 45%, 4% 20%, 9% 60%, 15% 25%, 22% 55%, 28% 15%, 35% 50%, 42% 30%, 49% 65%, 56% 22%, 63% 58%, 70% 28%, 77% 52%, 84% 18%, 91% 55%, 96% 30%, 100% 48%, 100% 55%, 0 55%);
+    opacity: 0.9;
+  }
+
+  section { margin-bottom: 54px; }
+
+  /* receipt cards */
+  .receipts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 26px; }
+  .receipt {
+    background: #fff; border: 2.5px solid var(--ink);
+    box-shadow: 5px 6px 0 rgba(18,18,18,0.14);
+    border-radius: 0; position: relative;
+    text-decoration: none; color: var(--ink);
+    display: block;
+  }
+  .receipt:nth-child(1) { transform: rotate(-1.2deg); }
+  .receipt:nth-child(2) { transform: rotate(0.8deg); }
+  .receipt:nth-child(3) { transform: rotate(-0.6deg); }
+  .receipt .tab {
+    position: absolute; top: -12px; left: 12px;
+    background: var(--coral); color: #fff;
+    font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px;
+  }
+  .receipt img { display: block; width: 100%; border-bottom: 2px solid var(--ink); }
+  .receipt .body { padding: 14px 14px 12px; }
+  .receipt .title { font-family: Inter, sans-serif; font-weight: 800; font-size: 14.5px; line-height: 1.3; }
+  .receipt .strip { margin-top: 10px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+  .receipt .strip .stat-inline { color: var(--coral-rust); }
+  .receipt .strip .url { color: rgba(18,18,18,0.5); }
+
+  ul.plain { list-style: none; }
+  ul.plain li { padding-left: 26px; position: relative; margin-bottom: 12px; }
+  ul.plain li::before {
+    content: ""; position: absolute; left: 0; top: 7px; width: 12px; height: 12px;
+    background: var(--coral);
+    clip-path: polygon(8% 12%, 95% 2%, 100% 88%, 10% 98%);
+  }
+
+  /* formats chips */
+  .formats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 8px; }
+  .format {
+    border: 1px solid rgba(18,18,18,0.25); padding: 18px;
+    background: var(--ivory);
+    transform: rotate(-0.4deg);
+  }
+  .format:nth-child(even) { transform: rotate(0.5deg); }
+  .format .name { font-family: Inter, sans-serif; font-weight: 800; font-size: 15px; margin-bottom: 6px; }
+  .format p { font-size: 15px; color: rgba(18,18,18,0.82); }
+
+  /* audience metrics panel */
+  .metrics-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 8px; }
+  @media (max-width: 640px) { .metrics-wrap { grid-template-columns: 1fr; } }
+  .metric-block .mb-head {
+    font-family: Inter, sans-serif; font-weight: 800; font-size: 12.5px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral-rust);
+    padding-bottom: 8px; margin-bottom: 4px; border-bottom: 2px solid var(--ink);
+  }
+  .metric-row {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid rgba(18,18,18,0.12);
+  }
+  .metric-row .k { font-size: 15px; color: rgba(18,18,18,0.82); }
+  .metric-row .v {
+    font-family: "Libre Franklin", sans-serif; font-weight: 900; font-size: 19px;
+    letter-spacing: -0.02em; white-space: nowrap;
+  }
+  .metric-row .v.hl { position: relative; z-index: 0; padding: 0 3px; }
+  .metric-row .v.hl::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 1px; height: 9px;
+    background: var(--yellow); z-index: -1;
+    clip-path: polygon(0% 20%, 99% 0%, 100% 85%, 2% 100%);
+  }
+  .metric-row .v.todo { color: var(--coral); font-family: "JetBrains Mono", monospace; font-size: 13px; font-weight: 700; }
+
+  /* trailing-window strip */
+  .window-strip { margin-top: 30px; border: 2.5px solid var(--ink); background: var(--ivory); box-shadow: 5px 6px 0 rgba(18,18,18,0.12); }
+  .window-strip .ws-head {
+    font-family: Inter, sans-serif; font-weight: 800; font-size: 12.5px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--ink); color: var(--ivory); padding: 9px 16px;
+  }
+  .window-cells { display: grid; grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 640px) { .window-cells { grid-template-columns: repeat(2, 1fr); } }
+  .wcell { padding: 18px 16px; border-right: 1px solid rgba(18,18,18,0.16); border-bottom: 1px solid rgba(18,18,18,0.16); }
+  .window-cells > .wcell:nth-child(4n) { border-right: 0; }
+  .window-cells > .wcell:nth-last-child(-n+4) { border-bottom: 0; }
+  @media (max-width: 640px) {
+    .window-cells > .wcell:nth-child(4n) { border-right: 1px solid rgba(18,18,18,0.16); }
+    .window-cells > .wcell:nth-child(2n) { border-right: 0; }
+    .window-cells > .wcell:nth-last-child(-n+4) { border-bottom: 1px solid rgba(18,18,18,0.16); }
+    .window-cells > .wcell:nth-last-child(-n+2) { border-bottom: 0; }
+  }
+  .wcell .wv {
+    font-family: "Libre Franklin", sans-serif; font-weight: 900;
+    font-size: clamp(26px, 3.6vw, 34px); line-height: 1; letter-spacing: -0.03em;
+  }
+  .wcell.hero .wv { color: var(--coral-rust); position: relative; z-index: 0; }
+  .wcell.hero .wv::after {
+    content: ""; position: absolute; left: -3%; right: -4%; bottom: 1px; height: 0.3em;
+    background: var(--yellow); z-index: -1;
+    clip-path: polygon(0% 20%, 99% 0%, 100% 85%, 2% 100%);
+  }
+  .wcell .wk { margin-top: 8px; font-size: 13.5px; line-height: 1.32; color: rgba(18,18,18,0.75); }
+
+  /* age distribution bars */
+  .agebars { margin-top: 40px; }
+  .agerow { display: flex; align-items: center; gap: 14px; margin-bottom: 11px; }
+  .agelabel {
+    flex: 0 0 56px; font-family: "JetBrains Mono", monospace; font-weight: 700;
+    font-size: 13px; letter-spacing: 0.04em; color: rgba(18,18,18,0.75);
+  }
+  .agebar { flex: 1 1 auto; height: 22px; background: rgba(18,18,18,0.06); position: relative; }
+  .agefill {
+    display: block; height: 100%; background: var(--coral);
+    border-right: 2px solid var(--ink);
+  }
+  .agefill.peak { background: var(--coral-rust); }
+  .agepct {
+    flex: 0 0 44px; text-align: right;
+    font-family: "Libre Franklin", sans-serif; font-weight: 900; font-size: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  /* closing */
+  .closing {
+    background: var(--ink); color: var(--ivory);
+    margin: 0 -34px; padding: 60px 34px 48px;
+    clip-path: polygon(0 22px, 4% 6px, 9% 24px, 15% 4px, 22% 20px, 28% 2px, 35% 18px, 42% 8px, 49% 26px, 56% 5px, 63% 22px, 70% 8px, 77% 20px, 84% 3px, 91% 21px, 96% 9px, 100% 18px, 100% 100%, 0 100%);
+  }
+  .closing h2 { color: var(--ivory); }
+  .closing .lead { color: rgba(250,249,245,0.85); }
+  .closing .actions { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .closing .foot { margin-top: 44px; color: rgba(250,249,245,0.5); }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body::before { display: none; }
+    /* clip-path drops wrapped lines in print; keep the highlight flat instead */
+    .band { clip-path: none; }
+    .agebars, .window-strip { break-inside: avoid; }
+    .page { max-width: 100%; padding-top: 24px; }
+    section { break-inside: avoid; margin-bottom: 34px; }
+    .torn { margin: 30px -34px 28px; }
+    .closing { break-inside: avoid; }
+    a { text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="meta-strip">
+    <span class="mono">CREATOR MEDIA KIT · 2026</span>
+    <span class="mono">TIKTOK.COM/@VIBEWITHKEVIN</span>
+  </div>
+
+  <header class="cover">
+    <div class="cover-text">
+      <span class="kicker">AI tools · tested on camera</span>
+      <h1 style="margin-top:20px;">KEVIN<br>MAGNAN</h1>
+      <p class="lead" style="margin-top:22px;">I make short, fast tutorials about the AI tools I use to build real things. My audience watches, <span class="band">saves the video</span>, and goes to set the tool up themselves.</p>
+      <div class="handle-row">
+        <span class="chipset coral"><a href="https://www.tiktok.com/@vibewithkevin">TikTok · @vibewithkevin</a></span>
+        <span class="chipset"><a href="https://instagram.com/vibe_withkevin">IG · @vibe_withkevin</a></span>
+        <span class="chipset"><a href="https://youtube.com/@kevinmagnan">YT · @kevinmagnan</a></span>
+        <span class="chipset"><a href="mailto:aippliedlabs@gmail.com">aippliedlabs@gmail.com</a></span>
+      </div>
+    </div>
+    <figure class="cutout">
+      <img src="assets/avatar_clean.png" alt="Kevin Magnan, halftone portrait">
+      <figcaption class="cap mono">KEVIN · AI ENGINEER · CREATOR</figcaption>
+    </figure>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="fig">268<span class="unit">K</span></div><div class="cap">views in the last month across TikTok and Instagram</div></div>
+    <div class="stat coral"><div class="fig">12,745</div><div class="cap">followers in the AI builder niche, both platforms</div></div>
+    <div class="stat"><div class="fig">9.3<span class="unit">%</span></div><div class="cap">engagement rate across the last 30 videos, interactions over plays</div></div>
+    <div class="stat coral"><div class="fig">305<span class="unit">K</span></div><div class="cap">plays across the last 30 videos alone</div></div>
+    <div class="stat"><div class="fig">11,280</div><div class="cap">saves across those same 30 videos</div></div>
+    <div class="stat coral"><div class="fig">6,753</div><div class="cap">saves on the top video. Saves are the signup signal.</div></div>
+  </div>
+  <p class="source-line mono">SOURCE: PUBLIC FOLLOWERS + FEATURED PLAYS REFRESHED 2026-09-22 · ANALYTICS PULLED 2026-08-15</p>
+
+  <div class="torn"></div>
+
+  <section>
+    <span class="kicker coral">The work</span>
+    <h2 style="margin-top:16px;">Videos people file away and act on</h2>
+    <p style="max-width:640px; margin-bottom:34px;">Claude Code walkthroughs, agent workflows, app builds in real time. The format is a builder showing his actual setup, so the videos get treated like instructions. That's why the save rates run high.</p>
+    <div class="receipts">
+      <a class="receipt" href="https://www.tiktok.com/@vibewithkevin/video/7591684867440626974">
+        <span class="tab">Video 01</span>
+        <img src="assets/cover_crashcourse_clean.png" alt="Claude Code crash course video cover">
+        <div class="body">
+          <div class="title">Claude Code crash course, from its creator's thread</div>
+          <div class="strip mono"><span class="stat-inline">141.1K PLAYS</span><span>6,753 SAVES</span></div>
+        </div>
+      </a>
+      <a class="receipt" href="https://www.tiktok.com/@vibewithkevin/video/7665095788648811807">
+        <span class="tab">Video 02</span>
+        <img src="assets/cover_appsim_clean.png" alt="App building with AI video cover">
+        <div class="body">
+          <div class="title">Building apps with Gemini and Claude Code simulations</div>
+          <div class="strip mono"><span class="stat-inline">92.1K PLAYS</span><span>2,284 SAVES</span></div>
+        </div>
+      </a>
+      <a class="receipt" href="https://www.tiktok.com/@vibewithkevin/video/7658522370243710238">
+        <span class="tab">Video 03</span>
+        <img src="assets/cover_fable5_clean.png" alt="Fable 5 free window video cover">
+        <div class="body">
+          <div class="title">5 things to build in the Fable 5 free window</div>
+          <div class="strip mono"><span class="stat-inline">31.7K PLAYS</span><span>1,047 SAVES</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <span class="kicker coral">The audience</span>
+    <h2 style="margin-top:16px;">Builders with their wallets out</h2>
+    <div style="max-width:640px;">
+      <p style="margin-bottom:14px;">My comments are engineers asking about my MCP setup and founders asking which plan to buy. These are people who already pay for AI tools and are deciding what to add next.</p>
+      <p>The number I'd point you at is saves. My save rate runs about 3.7% of plays, and the top video was saved 6,753 times. A save means someone filed your product demo to come back to. For a tools company, that's the metric that predicts signups.</p>
+    </div>
+
+    <div class="window-strip">
+      <div class="ws-head">Reach · trailing month</div>
+      <div class="window-cells">
+        <div class="wcell hero"><div class="wv">268K</div><div class="wk">views, both platforms</div></div>
+        <div class="wcell"><div class="wv">176K</div><div class="wk">TikTok post views, last 28 days</div></div>
+        <div class="wcell"><div class="wv">92K</div><div class="wk">Instagram views, last 30 days</div></div>
+        <div class="wcell"><div class="wv">12,745</div><div class="wk">followers, TikTok + Instagram</div></div>
+        <div class="wcell"><div class="wv">28</div><div class="wk">videos posted in the window</div></div>
+        <div class="wcell"><div class="wv">6.3K</div><div class="wk">TikTok views per day</div></div>
+        <div class="wcell"><div class="wv">+553</div><div class="wk">TikTok followers added since 2026-07-23</div></div>
+        <div class="wcell"><div class="wv">324</div><div class="wk">videos published to date</div></div>
+      </div>
+    </div>
+
+    <div class="metrics-wrap">
+      <div class="metric-block">
+        <div class="mb-head">Per-video performance · TikTok</div>
+        <div class="metric-row"><span class="k">TikTok followers</span><span class="v">9,743</span></div>
+        <div class="metric-row"><span class="k">Instagram followers</span><span class="v">3,002</span></div>
+        <div class="metric-row"><span class="k">Engagement rate</span><span class="v hl">9.3%</span></div>
+        <div class="metric-row"><span class="k">Save rate</span><span class="v hl">3.7%</span></div>
+        <div class="metric-row"><span class="k">Like rate</span><span class="v">4.6%</span></div>
+        <div class="metric-row"><span class="k">Avg. plays / video</span><span class="v">10,178</span></div>
+        <div class="metric-row"><span class="k">Avg. saves / video</span><span class="v">376</span></div>
+        <div class="metric-row"><span class="k">Avg. comments / video</span><span class="v">22</span></div>
+        <div class="metric-row"><span class="k">Avg. shares / video</span><span class="v">86</span></div>
+        <div class="metric-row"><span class="k">Top video reach</span><span class="v">141.1K</span></div>
+      </div>
+      <div class="metric-block">
+        <div class="mb-head">Who's watching · TikTok</div>
+        <div class="metric-row"><span class="k">Gender split</span><span class="v">86% M · 14% F</span></div>
+        <div class="metric-row"><span class="k">Primary age band</span><span class="v hl">35–44</span></div>
+        <div class="metric-row"><span class="k">Ages 25–54 (prime)</span><span class="v hl">80%</span></div>
+        <div class="metric-row"><span class="k">Top country</span><span class="v">US · 56%</span></div>
+        <div class="metric-row"><span class="k">Also strong</span><span class="v">Canada · 4%</span></div>
+        <div class="metric-row"><span class="k">Audience</span><span class="v" style="font-size:15px;">Builders &amp; founders</span></div>
+        <div class="metric-row"><span class="k">Buys AI tools already</span><span class="v hl">Yes</span></div>
+        <div class="metric-row"><span class="k">Decides team stack</span><span class="v hl">Often</span></div>
+      </div>
+    </div>
+
+    <div class="agebars">
+      <div class="mb-head" style="margin-bottom:18px;">Age distribution</div>
+      <div class="agerow"><span class="agelabel">18–24</span><span class="agebar"><span class="agefill" style="width:15%"></span></span><span class="agepct">5%</span></div>
+      <div class="agerow"><span class="agelabel">25–34</span><span class="agebar"><span class="agefill" style="width:70%"></span></span><span class="agepct">23%</span></div>
+      <div class="agerow"><span class="agelabel">35–44</span><span class="agebar"><span class="agefill peak" style="width:100%"></span></span><span class="agepct">33%</span></div>
+      <div class="agerow"><span class="agelabel">45–54</span><span class="agebar"><span class="agefill" style="width:73%"></span></span><span class="agepct">24%</span></div>
+      <div class="agerow"><span class="agelabel">55+</span><span class="agebar"><span class="agefill" style="width:45%"></span></span><span class="agepct">15%</span></div>
+    </div>
+    <p class="source-line mono">REACH: TIKTOK ANALYTICS OVERVIEW (28-DAY WINDOW) + INSTAGRAM PROFESSIONAL DASHBOARD (30-DAY WINDOW) · PER-VIDEO FIGURES: 30 MOST RECENT TIKTOK VIDEOS, PULLED 2026-08-15 · DEMOGRAPHICS: TIKTOK CREATOR ANALYTICS, TRAILING 12 MONTHS · PUBLIC FOLLOWERS + FEATURED PLAYS REFRESHED 2026-09-22</p>
+  </section>
+
+  <section>
+    <span class="kicker coral">The edge</span>
+    <h2 style="margin-top:16px;">A homebuilt AI production pipeline</h2>
+    <div style="max-width:640px;">
+      <p style="margin-bottom:16px;">I built my own editing stack. Transcription, cuts, per-word captions, and the editorial collage overlays you see on every video are run by AI agents I wrote myself. A video that looks like a week of agency work takes me an afternoon.</p>
+      <ul class="plain">
+        <li><strong>Fast turnarounds.</strong> Concept to posted in days, and revisions are cheap because the edit is scripted, so changes re-render instead of getting re-cut by hand.</li>
+        <li><strong>A creator who can actually use your product.</strong> I'm an AI engineer. If your tool has an API, an SDK, or an agent surface, I'll demo the real thing on camera.</li>
+        <li><strong>The pipeline is the proof.</strong> If you sell AI tooling, my production process is a live demo of what tools like yours make possible.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <span class="kicker coral">Working together</span>
+    <h2 style="margin-top:16px;">Formats</h2>
+    <div class="formats">
+      <div class="format"><div class="name">Dedicated video</div><p>A full video on your product, in my format: real setup, real workflow, on camera.</p></div>
+      <div class="format"><div class="name">Integration</div><p>30 to 60 seconds of your product inside a topical video where it naturally fits.</p></div>
+      <div class="format"><div class="name">Series</div><p>A multi-video arc. Setup, a real project built with your tool, results.</p></div>
+      <div class="format"><div class="name">UGC + usage rights</div><p>Content made for your channels and ads, at the same production quality.</p></div>
+    </div>
+    <p style="margin-top:22px; max-width:640px;">Rates on request. Tell me the product and the goal, and I'll come back with a concept and a price within 48 hours.</p>
+  </section>
+
+</div>
+
+<div class="closing">
+  <div class="page" style="padding-top:0;">
+    <h2>Have a product my audience should see?</h2>
+    <p class="lead" style="max-width:560px; margin-top:10px;">I only pitch tools I'd use on my own projects. If that's yours, let's talk.</p>
+    <div class="actions">
+      <span class="chipset coral"><a href="mailto:aippliedlabs@gmail.com">EMAIL KEVIN</a></span>
+      <span class="chipset"><a href="https://www.tiktok.com/@vibewithkevin">TIKTOK</a></span>
+      <span class="chipset"><a href="https://instagram.com/vibe_withkevin">INSTAGRAM</a></span>
+      <span class="chipset"><a href="https://youtube.com/@kevinmagnan">YOUTUBE</a></span>
+      <span class="chipset"><a href="https://github.com/kjmagnan1s">GITHUB</a></span>
+    </div>
+    <p class="foot mono">KEVIN MAGNAN · @VIBEWITHKEVIN · PUBLIC FOLLOWERS + FEATURED PLAYS 2026-09-22 · ANALYTICS PULLED 2026-08-15</p>
+  </div>
+</div>
+
+</body>
+</html>
