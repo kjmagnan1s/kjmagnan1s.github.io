@@ -1,6 +1,18 @@
 /* ======================================== */
-/* Kevin J. Magnan - Unified Site Design   */
-/* Shared design system for all pages      */
+/* Kevin J. Magnan - legacy skin plus the   */
+/* footer sitemap and /building styles.     */
+/*                                          */
+/* Loaded after main.css on every page, so  */
+/* the rules that used to fight it are gone */
+/* (2026-09-19): the global element styles  */
+/* for body, headings, links, sections and  */
+/* buttons, the :root text tokens main.css  */
+/* already owns, the .container width, and  */
+/* [data-aos] { opacity: 0 }, which hid     */
+/* every animated block on /about and       */
+/* /resume because no AOS library loads.    */
+/* What is left is class-scoped and inert   */
+/* unless a page opts into it.              */
 /* ======================================== */
 
 /* Root Colors - Custom Brand */
@@ -8,8 +20,6 @@
     --primary-blue: #2563eb;
     --dark-blue: #1e40af;
     --cyan-accent: #06b6d4;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
     --text-light: #9ca3af;
     --bg-white: #ffffff;
     --bg-light: #f3f4f6;
@@ -21,18 +31,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    width: 100%;
-}
-
-body {
-    font-family: 'Open Sans', 'Raleway', 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: var(--text-primary);
-    background-color: var(--bg-white);
 }
 
 /* ======================================== */
@@ -215,11 +213,6 @@ body {
     margin-left: 0;
 }
 
-main {
-    margin-left: 0;
-    min-height: calc(100vh - 100px);
-}
-
 @media (max-width: 992px) {
     #main,
     main {
@@ -230,45 +223,9 @@ main {
 /* ======================================== */
 /* Typography */
 /* ======================================== */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-h1 { font-size: 3rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 2rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
-
-p {
-    margin-bottom: 1.5rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
-}
-
-a {
-    color: var(--primary-blue);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--dark-blue);
-    text-decoration: underline;
-}
-
 /* ======================================== */
 /* Sections & Typography */
 /* ======================================== */
-section {
-    padding: 60px 0;
-    overflow: hidden;
-}
-
 .section-bg {
     background-color: var(--bg-light);
 }
@@ -319,8 +276,7 @@ section {
 /* ======================================== */
 /* Buttons */
 /* ======================================== */
-.btn,
-button {
+.btn {
     display: inline-block;
     padding: 12px 24px;
     border-radius: 4px;
@@ -332,16 +288,12 @@ button {
     font-size: 15px;
 }
 
-.btn-primary,
-.btn:not([class*="btn-"]),
-button:not([class*="btn-"]) {
+.btn-primary {
     background-color: var(--primary-blue);
     color: white;
 }
 
-.btn-primary:hover,
-.btn:not([class*="btn-"]):hover,
-button:not([class*="btn-"]):hover {
+.btn-primary:hover {
     background-color: var(--dark-blue);
     color: white;
 }
@@ -424,20 +376,9 @@ button:not([class*="btn-"]):hover {
     }
 }
 
-/* AOS Custom Tweaks */
-[data-aos] {
-    opacity: 0;
-}
-
 /* ======================================== */
 /* Containers */
 /* ======================================== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -489,14 +430,6 @@ button:not([class*="btn-"]):hover {
 /* Responsive Design */
 /* ======================================== */
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.5rem; }
-
-    section {
-        padding: 40px 0;
-    }
-
     .section-title h2 {
         font-size: 24px;
     }
@@ -508,4 +441,67 @@ button:not([class*="btn-"]):hover {
     .col-md-12 {
         flex: 0 0 calc(100% - 20px);
     }
+}
+
+/* ======================================== */
+/* Footer sitemap and the /building page    */
+/* Used by _includes/footer.html and        */
+/* building.md. Degrades to inline links    */
+/* if this sheet is not loaded.             */
+/* ======================================== */
+
+.site-footer .footer-sitemap,
+.site-footer .footer-machine,
+.site-footer .footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.site-footer .footer-machine a,
+.site-footer .footer-social a {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.site-footer .footer-legal {
+    margin-top: 1rem;
+}
+
+/* The static pages the front page links to use the `page` layout, which has
+   no container of its own. Give each one the same reading column main.css
+   uses elsewhere so the text is not flush to the window edge. */
+.building-page,
+.work-page,
+.play-page {
+    width: 100%;
+    max-width: var(--max-width-content, 900px);
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.building-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.building-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-light, #e5e7eb);
+}
+
+.building-item h3 {
+    margin: 0 0 0.25rem;
+}
+
+.building-item p {
+    margin: 0;
+    color: var(--text-secondary, #6b7280);
+}
+
+.building-back {
+    margin-top: 2rem;
 }

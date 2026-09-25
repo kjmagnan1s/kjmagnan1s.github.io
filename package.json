@@ -1,9 +1,39 @@
 {
   "name": "website_vibed",
   "version": "1.0.0",
-  "description": "Personal website with Netlify Functions",
+  "description": "Personal website on a Cloudflare Worker with static assets",
   "type": "module",
+  "scripts": {
+    "build:site": "npm run build:shell && python3 scripts/generate_sitemap.py && bundle exec jekyll build",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc -p tsconfig.worker.json --noEmit",
+    "test": "vitest run",
+    "build:shell": "vite build",
+    "typecheck:shell": "tsc -p tsconfig.genui.json --noEmit"
+  },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.39.0"
+    "@anthropic-ai/sdk": "^0.127.0",
+    "@json-render/core": "0.21.0",
+    "@json-render/react": "0.21.0",
+    "@typesafe-ai/sdk": "0.6.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260919.1",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.0",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.135.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "esbuild@0.28.1": true,
+    "workerd@1.20260918.1": true
   }
 }

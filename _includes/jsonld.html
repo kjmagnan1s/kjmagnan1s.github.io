@@ -33,7 +33,7 @@
             "@id": "{{ site.url }}{{ p.url }}",
             "name": "{{ p.name }}",
             "about": {{ p.tags | jsonify }},
-            "description": "{{ p.summary | escape }}",
+            "description": {{ p.summary | jsonify }},
             "genre": "{{ p.type }}"
           }
         }{% unless forloop.last %},{% endunless %}
@@ -55,7 +55,7 @@
             "@id": "{{ site.url }}{{ post.url }}",
             "headline": "{{ post.title }}",
             "datePublished": "{{ post.date | date_to_xmlschema }}",
-            {% if post.description %}"description": "{{ post.description | escape }}",{% endif %}
+            {% if post.description %}"description": {{ post.description | jsonify }},{% endif %}
             {% if post.categories and post.categories.size > 0 %}"keywords": {{ post.categories | jsonify }},{% endif %}
             {% if post.thumbnail %}"image": "{{ site.url }}{{ post.thumbnail }}",{% endif %}
             "author": {

@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Resume
+description: Kevin Magnan's resume. Roles at Slalom and the University of Chicago Urban Labs, public-safety data work, education, and certifications.
 ---
 
 <section class="resume-page">

@@ -1,327 +1,67 @@
 ---
 layout: default
 title: null
+description: Kevin Magnan builds AI systems and runs the agents that build them. Ask for the page you want and this one assembles itself.
 ---
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-photo-wrapper">
-            <img src="{{ '/assets/images/headshot.png' | relative_url }}" alt="Kevin Magnan" class="hero-photo">
-        </div>
-        <h1 class="hero-name">Kevin Magnan</h1>
-        <div class="social-links hero-social">
-            <a href="{{ '/resources/' | relative_url }}">Resources</a>
-            <a href="https://linkedin.com/in/kjmagnan1s" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://tiktok.com/@vibewithkevin" target="_blank" rel="noopener">TikTok</a>
-            <a href="https://github.com/kjmagnan1s" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://x.com/KevinMagnan" target="_blank" rel="noopener">X</a>
-        </div>
-        <p class="hero-tagline">I build AI systems, and I run the agents that build them.</p>
-        <p class="hero-tagline">15 years of public service and research behind the judgment.<br>
+<!-- The generative shell. Everything below is static HTML: a crawler with no
+     JavaScript gets the hero, the form, the example prompts, and a link row to
+     every canonical page. assets/genui/genui.js upgrades it in place. -->
+
+<div id="bg" class="shell-bg" aria-hidden="true">
+    <!-- animated background mounts here -->
+</div>
+
+<div class="shell">
+    <header class="shell-hero" id="shell-hero">
+        <h1 class="shell-name">Kevin Magnan</h1>
+        <p class="shell-tagline">I build AI systems, and I run the agents that build them.</p>
+        <p class="shell-subline">15 years of public service and research behind the judgment.<br>
             7 weeks of logs behind the throughput.</p>
+    </header>
+
+    <form id="ask" class="shell-ask" autocomplete="off">
+        <label class="shell-ask-label" for="ask-input">What do you want to see about Kevin?</label>
+        <div class="shell-ask-row">
+            <input
+                type="text"
+                id="ask-input"
+                name="ask"
+                class="shell-ask-input"
+                placeholder="Ask to see my resume, my blogs, or play a game"
+                autocomplete="off"
+                enterkeyhint="go"
+            >
+            <button type="submit" class="shell-ask-submit" id="ask-submit">Build it</button>
+        </div>
+    </form>
+
+    <div class="shell-chips" id="ask-chips">
+        <button type="button" class="shell-chip" data-prompt="Show me your resume">Show me your resume</button>
+        <button type="button" class="shell-chip" data-prompt="What have you built?">What have you built?</button>
+        <button type="button" class="shell-chip" data-prompt="Let's play a game">Let's play a game</button>
     </div>
-</section>
 
-<!-- Divider -->
-<div class="divider">
-    <span class="divider-dot"></span>
+    <div id="composed" class="shell-composed"></div>
+
+    <noscript>
+        <p class="shell-noscript-note">The page builds itself with JavaScript. Here is the whole site by hand:</p>
+        <nav class="shell-noscript-links" aria-label="Site map">
+            <a href="{{ '/resume' | relative_url }}">Resume</a>
+            <a href="{{ '/work/' | relative_url }}">Work</a>
+            <a href="{{ '/building/' | relative_url }}">Building</a>
+            <a href="{{ '/blog/' | relative_url }}">Writing</a>
+            <a href="{{ '/play/' | relative_url }}">Play</a>
+        </nav>
+    </noscript>
 </div>
 
-<!-- Conversation Section -->
-<section class="conversation" id="conversation">
-    <h2 class="section-label">Ask Me Anything</h2>
+{% include jsonld.html %}
 
-    <div class="conversation-container">
-        <div class="conversation-greeting" id="greeting-area">
-            <p class="greeting-text" id="greeting-text">Hi, I'm Kevin. Or at least, an AI that knows me pretty well. Ask me anything about my work, what drives me, or how I might fit what you're looking for.</p>
-        </div>
+<script type="module" defer src="{{ '/assets/genui/genui.js' | relative_url }}"></script>
 
-        <div class="conversation-trigger" id="trigger-area">
-            <form id="trigger-form" class="trigger-form">
-                <input
-                    type="text"
-                    id="trigger-input"
-                    class="trigger-input"
-                    placeholder="Ask me anything..."
-                    autocomplete="off"
-                >
-                <button type="submit" class="trigger-submit">Ask</button>
-            </form>
-        </div>
-    </div>
-</section>
-
-<!-- Chat Modal -->
-<div class="chat-modal-overlay" id="chat-modal">
-    <div class="chat-modal">
-        <header class="chat-modal-header">
-            <h3 class="chat-modal-title">Conversation with Kevin</h3>
-            <button class="chat-modal-close" id="chat-modal-close" aria-label="Close">&times;</button>
-        </header>
-
-        <div class="chat-modal-body">
-            <div class="chat-response-area">
-                <p class="chat-response-text" id="chat-response-text"></p>
-            </div>
-            <p class="chat-loading" id="chat-loading">Thinking...</p>
-        </div>
-
-        <footer class="chat-modal-footer">
-            <form id="chat-form" class="chat-form">
-                <input
-                    type="text"
-                    id="chat-input"
-                    class="chat-input"
-                    placeholder="Ask a follow-up or try something different..."
-                    autocomplete="off"
-                >
-                <button type="submit" class="chat-submit" id="chat-submit">
-                    <span class="submit-text">Ask</span>
-                    <span class="submit-loading" style="display: none;">...</span>
-                </button>
-            </form>
-        </footer>
-    </div>
-</div>
-
-<!-- Divider -->
-<div class="divider">
-    <span class="divider-dot"></span>
-</div>
-
-<!-- Fit Analysis Section -->
-<section class="fit-analysis" id="fit-analysis">
-    <h2 class="section-label">See How I Fit</h2>
-
-    <p class="fit-intro">Paste a job description below and I'll give you an honest assessment of where I'm a strong fit and where I might have gaps.</p>
-
-    <div class="fit-container">
-        <div class="fit-input-area" id="fit-input-area">
-            <textarea
-                id="job-description"
-                class="job-description-input"
-                placeholder="Paste job description here..."
-                rows="6"
-            ></textarea>
-            <button type="button" class="analyze-button" id="analyze-button">
-                <span class="analyze-text">Analyze My Fit</span>
-                <span class="analyze-loading" style="display: none;">
-                    <span class="spinner"></span>
-                    Analyzing...
-                </span>
-            </button>
-        </div>
-
-        <div class="fit-results" id="fit-results" style="display: none;">
-            <div class="fit-summary" id="fit-summary"></div>
-
-            <div class="fit-columns">
-                <div class="fit-column fit-column--strong">
-                    <h3 class="fit-column-title">Strong</h3>
-                    <ul class="fit-list fit-list--strong" id="strong-fit-list"></ul>
-                </div>
-
-                <div class="fit-column fit-column--growth">
-                    <h3 class="fit-column-title">Growth Areas</h3>
-                    <ul class="fit-list fit-list--growth" id="growth-list"></ul>
-                </div>
-
-                <div class="fit-column fit-column--gaps">
-                    <h3 class="fit-column-title">Gaps to Consider</h3>
-                    <ul class="fit-list fit-list--gaps" id="gaps-list"></ul>
-                </div>
-            </div>
-
-            <button type="button" class="reset-button" id="reset-analysis">Try Another</button>
-        </div>
-    </div>
-</section>
-
-<!-- Divider -->
-<div class="divider">
-    <span class="divider-dot"></span>
-</div>
-
-<!-- About Section -->
-<section class="about" id="about">
-    <h2 class="section-label">About</h2>
-
-    <div class="about-content">
-        <div class="story">
-            <p class="story-lead">I believe that if we get AI right for public safety, we get it right for all of public
-                sector.</p>
-
-            <p>I started my career as a public servant, working on the ground in
-                communities facing real challenges. That perspective shaped everything that followed: research at the
-                University of Chicago, and now leading AI strategy for public sector clients at Slalom.</p>
-
-            <p>Today, I'm a Principal Consultant co-leading Slalom's Justice and Public Safety practice. I help
-                government agencies navigate the complexities of technology and AI adoption: not just the technology,
-                but the policy,
-                ethics, and change management that determine whether it actually works.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Divider -->
-<div class="divider">
-    <span class="divider-dot"></span>
-</div>
-
-<!-- How I Work Now -->
-<section class="about" id="how-i-work">
-    <h2 class="section-label">How I Work Now</h2>
-
-    <div class="about-content">
-        <div class="story">
-            <p class="story-lead">I spend most of my time deciding what to delegate and how to verify it came back
-                right.</p>
-
-            <p>The agents write the code. My job is the goal and the quality bar, plus the loop that closes when the
-                work is genuinely good.</p>
-
-            <p>It's the skill I'm betting the next 5 years on.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Divider -->
-<div class="divider">
-    <span class="divider-dot"></span>
-</div>
-
-<!-- Writing Section -->
-<section class="writing" id="writing">
-    <h2 class="section-label">Writing</h2>
-
-    <ul class="post-list">
-        {% for post in site.posts limit:8 %}
-        <li class="post-item">
-            <a href="{{ post.url | relative_url }}" class="post-link">
-                <span class="post-title">{{ post.title }}</span>
-                <span class="post-meta">{{ post.date | date: "%b %Y" }}</span>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
-
-    <a href="{{ '/blog' | relative_url }}" class="view-all">All writing &rarr;</a>
-</section>
-
-<!-- Divider -->
-<div class="divider">
-    <span class="divider-dot"></span>
-</div>
-
-<!-- Work Section -->
-<section class="work" id="work">
-    <div class="work-content">
-        <h2 class="section-label">What I've Made</h2>
-
-        <div class="project-grid">
-            <a href="https://packllama.app" target="_blank" rel="noopener" class="project-card">
-                <img src="{{ '/assets/images/portfolio/packllama_app.png' | relative_url }}" alt="PackLlama"
-                    class="project-card-image">
-                <div class="project-card-body">
-                    <h3 class="project-card-title">PackLlama</h3>
-                    <p class="project-card-desc">AI-powered moving inventory assistant. Conversational interface that
-                        replaces tedious forms.</p>
-                    <div class="project-card-meta">
-                        <span class="project-badge project-badge--live">Live</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="https://aippliancemanager.com" target="_blank" rel="noopener" class="project-card">
-                <img src="{{ '/assets/images/portfolio/aippliance-app.png' | relative_url }}" alt="AIppliance Manager"
-                    class="project-card-image">
-                <div class="project-card-body">
-                    <h3 class="project-card-title">AIppliance Manager</h3>
-                    <p class="project-card-desc">Smart home appliance tracking with AI-driven maintenance
-                        recommendations.</p>
-                    <div class="project-card-meta">
-                        <span class="project-badge project-badge--live">Live</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="{{ '/2026/01/21/83-days-with-claude-code.html' | relative_url }}" class="project-card">
-                <img src="{{ '/assets/images/portfolio/claude_code_dashboard.png' | relative_url }}" alt="83 Days with Claude Code"
-                    class="project-card-image">
-                <div class="project-card-body">
-                    <h3 class="project-card-title">83 Days with Claude</h3>
-                    <p class="project-card-desc">Interactive dashboard visualizing 39,090 messages and 613 hours saved building with AI.</p>
-                    <div class="project-card-meta">
-                        <span class="project-badge project-badge--live">Live</span>
-                    </div>
-                </div>
-            </a>
-
-            <div class="project-card">
-                <img src="{{ '/assets/images/portfolio/chicago-vrd.png' | relative_url }}"
-                    alt="Chicago Violence Reduction Dashboard" class="project-card-image">
-                <div class="project-card-body">
-                    <h3 class="project-card-title">Chicago Violence Reduction Dashboard</h3>
-                    <p class="project-card-desc">Data strategy and analytics platform supporting violence intervention
-                        initiatives.</p>
-                    <div class="project-card-meta">
-                        <span class="project-badge project-badge--client">Client Work</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="{{ '/assets/images/portfolio/msp-crimedashboard.png' | relative_url }}"
-                    alt="Michigan State Police Crime Dashboard" class="project-card-image">
-                <div class="project-card-body">
-                    <h3 class="project-card-title">MSP Crime Dashboard</h3>
-                    <p class="project-card-desc">Public-facing crime analytics providing transparency for Michigan
-                        residents.</p>
-                    <div class="project-card-meta">
-                        <span class="project-badge project-badge--client">Client Work</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="{{ '/assets/images/portfolio/tableaupublic.png' | relative_url }}"
-                    alt="Tableau Public Portfolio" class="project-card-image">
-                <div class="project-card-body">
-                    <h3 class="project-card-title">Tableau Public</h3>
-                    <p class="project-card-desc">Data visualization portfolio showcasing analytics and storytelling
-                        work.</p>
-                    <div class="project-card-meta">
-                        <span class="project-badge">Portfolio</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Divider -->
-<div class="divider">
-    <span class="divider-dot"></span>
-</div>
-
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <h2 class="section-label">Get in Touch</h2>
-
-    <p class="contact-text">
-        For inquiries, collaborations, or to say hello:<br>
-        <a href="mailto:kevinjmagnan@slalom.com" class="contact-email">kevinjmagnan@slalom.com</a>
-    </p>
-
-    <p class="contact-text">
-        For business and speaking inquiries:<br>
-        <a href="https://aippliedlabs.com" target="_blank" rel="noopener" class="contact-email">aippliedlabs.com</a>
-    </p>
-</section>
-
-<!-- WebMCP: expose site tools to AI agents via the browser.
-     https://webmachinelearning.github.io/webmcp/  -->
+<!-- WebMCP: expose the front page to AI agents in the browser.
+     https://webmachinelearning.github.io/webmcp/ -->
 <script>
 (function () {
   "use strict";
@@ -336,8 +76,7 @@ title: null
       execute: async function () {
         try {
           var res = await fetch("/api/profile.json", { headers: { accept: "application/json" } });
-          var data = await res.text();
-          return ok(data);
+          return ok(await res.text());
         } catch (e) {
           return ok("Profile available at https://kevinjmagnan.com/api/profile.json");
         }
@@ -345,64 +84,23 @@ title: null
     },
     {
       name: "ask_kevin",
-      description: "Ask a question about Kevin's experience, skills, projects, or background. Opens the conversation on the page with your question.",
+      description: "Ask this site to build a page about Kevin. Say who you are and what you want to see; the front page composes itself around the answer.",
       inputSchema: {
         type: "object",
-        properties: { question: { type: "string", description: "The question to ask about Kevin." } },
+        properties: { question: { type: "string", description: "What you want to see about Kevin." } },
         required: ["question"],
         additionalProperties: false
       },
       execute: async function (args) {
         var q = (args && args.question) || "";
-        var input = document.getElementById("trigger-input");
-        var form = document.getElementById("trigger-form");
+        var input = document.getElementById("ask-input");
+        var form = document.getElementById("ask");
         if (input && form) {
           input.value = q;
           form.requestSubmit ? form.requestSubmit() : form.submit();
-          return ok('Opened the "Ask Me Anything" conversation with: ' + q);
+          return ok("Building the page for: " + q);
         }
-        return ok("Ask Kevin anything at https://kevinjmagnan.com/#conversation");
-      }
-    },
-    {
-      name: "assess_fit",
-      description: "Submit a job description to get an honest assessment of where Kevin is a strong fit and where there may be gaps.",
-      inputSchema: {
-        type: "object",
-        properties: { job_description: { type: "string", description: "The full job description text." } },
-        required: ["job_description"],
-        additionalProperties: false
-      },
-      execute: async function (args) {
-        var jd = (args && args.job_description) || "";
-        var box = document.getElementById("job-description");
-        if (box) {
-          box.value = jd;
-          box.dispatchEvent(new Event("input", { bubbles: true }));
-          return ok("Loaded the job description into the fit-assessment tool.");
-        }
-        return ok("Paste a job description at https://kevinjmagnan.com/ to assess fit.");
-      }
-    },
-    {
-      name: "navigate_to_section",
-      description: "Scroll the page to a named section.",
-      inputSchema: {
-        type: "object",
-        properties: {
-          section: { type: "string", enum: ["conversation", "fit", "contact"], description: "Section to scroll to." }
-        },
-        required: ["section"],
-        additionalProperties: false
-      },
-      execute: async function (args) {
-        var id = (args && args.section) || "conversation";
-        var el = document.getElementById(id) || document.querySelector("." + id);
-        if (el && el.scrollIntoView) {
-          el.scrollIntoView({ behavior: "smooth" });
-          return ok("Scrolled to " + id + ".");
-        }
-        return ok("Section " + id + " not found.");
+        return ok("Ask for a page at https://kevinjmagnan.com/");
       }
     }
   ];

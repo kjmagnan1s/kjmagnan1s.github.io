@@ -2,151 +2,205 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://kevinjmagnan.com/</loc>
-        <lastmod>2025-10-13</lastmod>
+        <lastmod>2026-09-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://kevinjmagnan.com/about/</loc>
-        <lastmod>2025-10-13</lastmod>
+        <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://kevinjmagnan.com/blog/</loc>
-        <lastmod>2025-10-13</lastmod>
+        <lastmod>2026-09-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/resume/</loc>
-        <lastmod>2025-10-13</lastmod>
+        <loc>https://kevinjmagnan.com/resume</loc>
+        <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/contact/</loc>
-        <lastmod>2025-10-13</lastmod>
+        <loc>https://kevinjmagnan.com/work/</loc>
+        <lastmod>2026-09-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/contact</loc>
+        <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://kevinjmagnan.com/building/</loc>
+        <lastmod>2026-09-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/play/</loc>
+        <lastmod>2026-09-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <url>
         <loc>https://kevinjmagnan.com/robot/</loc>
-        <lastmod>2025-10-13</lastmod>
+        <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://kevinjmagnan.com/api/profile.json</loc>
-        <lastmod>2025-10-13</lastmod>
+        <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2017/06/05/2017-06-05-mapping-with-geoda.html</loc>
+        <loc>https://kevinjmagnan.com/2017/06/05/2017-06-05-mapping-with-geoda</loc>
         <lastmod>2017-06-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2017/06/14/2017-06-14-chicago-ssl-scores.html</loc>
+        <loc>https://kevinjmagnan.com/2017/06/14/2017-06-14-chicago-ssl-scores</loc>
         <lastmod>2017-06-14</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2020/10/11/2020-10-11-ymh-analysis-p1.html</loc>
+        <loc>https://kevinjmagnan.com/2020/10/11/2020-10-11-ymh-analysis-p1</loc>
         <lastmod>2020-10-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2020/10/16/2020-10-16-ymh-analysis-p2.html</loc>
+        <loc>https://kevinjmagnan.com/2020/10/16/2020-10-16-ymh-analysis-p2</loc>
         <lastmod>2020-10-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2020/10/28/2020-10-28-wow-buzz-analysis.html</loc>
+        <loc>https://kevinjmagnan.com/2020/10/28/2020-10-28-wow-buzz-analysis</loc>
         <lastmod>2020-10-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2020/11/13/2020-11-13-google-takeout.html</loc>
+        <loc>https://kevinjmagnan.com/2020/11/13/2020-11-13-google-takeout</loc>
         <lastmod>2020-11-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2021/03/11/2021-03-11-tableau-interactive-resume.html</loc>
+        <loc>https://kevinjmagnan.com/2021/03/11/2021-03-11-tableau-interactive-resume</loc>
         <lastmod>2021-03-11</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2021/04/05/2021-03-31-Tufte -mini-blog-1.html</loc>
+        <loc>https://kevinjmagnan.com/2021/04/05/2021-03-31-Tufte-mini-blog-1</loc>
         <lastmod>2021-04-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2022/01/01/2022-01-02-TC21-blog-slalom.html</loc>
+        <loc>https://kevinjmagnan.com/2022/01/01/2022-01-02-TC21-blog-slalom</loc>
         <lastmod>2022-01-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2024/05/31/2024-05-31-Chicago-Summer-Violence-Analysis.html</loc>
+        <loc>https://kevinjmagnan.com/2024/05/31/2024-05-31-Chicago-Summer-Violence-Analysis</loc>
         <lastmod>2024-05-31</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/07/23/building-foundation-statewide-public-safety-modernization.html</loc>
+        <loc>https://kevinjmagnan.com/2025/07/23/building-foundation-statewide-public-safety-modernization</loc>
         <lastmod>2025-07-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/04/21/pair-programming-website-build-ai-perspective.html</loc>
+        <loc>https://kevinjmagnan.com/2025/04/21/pair-programming-website-build-ai-perspective</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/08/22/stop-calling-it-ai-pilot.html</loc>
+        <loc>https://kevinjmagnan.com/2025/08/22/stop-calling-it-ai-pilot</loc>
         <lastmod>2025-08-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/09/03/power-configurable-platforms-public-safety-modernization.html</loc>
+        <loc>https://kevinjmagnan.com/2025/09/03/power-configurable-platforms-public-safety-modernization</loc>
         <lastmod>2025-09-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/09/05/frontier-models-just-beginning.html</loc>
+        <loc>https://kevinjmagnan.com/2025/09/05/frontier-models-just-beginning</loc>
         <lastmod>2025-09-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/09/05/the-more-things-change-ai-context-engineering.html</loc>
+        <loc>https://kevinjmagnan.com/2025/09/05/the-more-things-change-ai-context-engineering</loc>
         <lastmod>2025-09-05</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/09/07/two-webs-one-future-humans-robots-internet-split-personality.html</loc>
+        <loc>https://kevinjmagnan.com/2025/09/07/two-webs-one-future-humans-robots-internet-split-personality</loc>
         <lastmod>2025-09-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://kevinjmagnan.com/2025/09/29/standing-at-the-cliff-ai-at-the-edge-of-2026.html</loc>
+        <loc>https://kevinjmagnan.com/2025/09/29/standing-at-the-cliff-ai-at-the-edge-of-2026</loc>
         <lastmod>2025-09-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/2025/10/13/age-of-cheap-intelligence</loc>
+        <lastmod>2025-10-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/2025/10/13/from-brevity-bias-to-context-intelligence</loc>
+        <lastmod>2025-10-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/2025/10/24/pascals-wager-ai</loc>
+        <lastmod>2025-10-24</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/2025/12/09/building-an-app-with-ai-from-idea-to-play-store</loc>
+        <lastmod>2025-12-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/2025/12/29/packllama-ai-moving-inventory-assistant</loc>
+        <lastmod>2025-12-29</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://kevinjmagnan.com/2026/01/21/83-days-with-claude-code</loc>
+        <lastmod>2026-01-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
