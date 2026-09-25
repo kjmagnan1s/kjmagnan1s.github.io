@@ -1,6 +1,7 @@
 # Local secrets for `wrangler dev`. Copy this file to `.dev.vars` and fill it in.
 # `.dev.vars` is gitignored. In production these are set with
-# `wrangler secret put ANTHROPIC_API_KEY` (and TYPESAFE_API_KEY), not from a file.
+# `wrangler secret put ANTHROPIC_API_KEY` (and TYPESAFE_API_KEY, BEEHIIV_API_KEY),
+# not from a file.
 
 ANTHROPIC_API_KEY=
 TYPESAFE_API_KEY=

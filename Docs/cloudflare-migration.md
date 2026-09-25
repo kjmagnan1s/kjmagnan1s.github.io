@@ -15,6 +15,7 @@ request
   |
   +-- /api/chat      -> src/worker/chat.ts      (Claude, same-origin only, rate limited)
   +-- /api/compose   -> src/worker/compose/     (Workers AI, typesafe/jev)
+  +-- /api/subscribe -> src/worker/subscribe.ts (Beehiiv kit signup, same-origin only, rate limited)
   +-- /api/health    -> { "ok": true }
   |
   +-- everything else -> env.ASSETS.fetch(request) -> _site
@@ -56,7 +57,12 @@ it in.
 ```sh
 wrangler secret put ANTHROPIC_API_KEY
 wrangler secret put TYPESAFE_API_KEY   # only if the compose agent needs it
+wrangler secret put BEEHIIV_API_KEY    # /api/subscribe
 ```
+
+The Beehiiv publication ID is not a secret. It is the `BEEHIIV_PUBLICATION_ID`
+var in `wrangler.jsonc`. Until both are set, `/api/subscribe` returns 503 with
+`{"ok":false,"error":"not_configured"}`.
 
 Secrets are per-Worker and per-environment. They are not in the repo and not in
 `wrangler.jsonc`. Until `ANTHROPIC_API_KEY` is set, `/api/chat` returns a clean
@@ -145,7 +151,7 @@ The Netlify function kept a CORS allowlist of production hostnames because the
 API lived on a different domain. It does not any more. `/api/chat` now accepts a
 request when the `Origin` header is absent, when it matches the request URL's own
 origin, or when it is one of the four Jekyll dev origins. Everything else gets a
-403 before any work happens.
+403 before any work happens. `/api/subscribe` applies the same check.
 
 ## DNS cutover
 
@@ -192,11 +198,14 @@ wrangler tail kevinjmagnan-com
 
 ## Shell
 
-The front page is a generative shell. `index.html` is static: the nav, an
-animated-background mount point, the hero, the ask form, three example prompts,
-an empty `#composed` div, and a `<noscript>` link row to every canonical page.
-A crawler with no JavaScript gets all of that. `assets/genui/genui.js` upgrades
-it in place; nothing static is rewritten.
+**The shell is parked.** The redesigned `index.html` is standalone HTML with no
+Jekyll front matter, so it doesn't render through `_layouts/default.html` and
+doesn't load `genui.js` or `genui.css`. Its Jev playground is a static preview
+with fixed answers. The shell source (`src/genui/`), its Vite build, and
+`/api/compose` stay in the repo for the live Jev playground. The rest of this
+section describes the shell as it worked on the old Jekyll-layout front page,
+which provided the markup (the `#bg` mount point, the ask form, and the
+`#composed` div) that the shell expects.
 
 ### Build order
 
@@ -207,21 +216,21 @@ bundle exec jekyll build
 
 `npm run build:site` runs both in that order, and the order matters: Jekyll
 copies `assets/` into `_site`, so the Vite output has to exist first. Filenames
-are fixed (no content hash) because `_layouts/default.html` and `index.html`
-reference them literally. `vite.config.ts` sets `outDir: "assets/genui"`,
+are fixed (no content hash) because `_layouts/default.html` references them
+literally. `vite.config.ts` sets `outDir: "assets/genui"`,
 `emptyOutDir: true`, `cssCodeSplit: false`, and fixed
 `entryFileNames`/`assetFileNames`.
 
 `src/` stays excluded from Jekyll, so the client source never ships. The built
-output under `assets/genui/` is not gitignored; decide separately whether to
-commit it or build it in CI.
+output under `assets/genui/` is gitignored, so run `npm run build:site` (or
+`npm run build:shell`) before a Jekyll build that needs it.
 
 Typecheck the client with `npm run typecheck:shell`
 (`tsconfig.genui.json`). `npm run typecheck` still covers the Worker only.
 
 ### Animated background
 
-`index.html` has the mount point:
+The old front page had the mount point:
 
 ```html
 <div id="bg" class="shell-bg" aria-hidden="true">
