@@ -365,6 +365,7 @@ layout: null
   async function getText(path, fallback) {
     try {
       var res = await fetch(path);
+      if (!res.ok) throw new Error(res.status);
       return ok(await res.text());
     } catch (e) {
       return ok(fallback);
@@ -409,15 +410,13 @@ layout: null
 
   var mc = navigator.modelContext;
   if (!mc) return;
-  var controller = typeof AbortController === "function" ? new AbortController() : null;
   try {
     if (typeof mc.registerTool === "function") {
-      TOOLS.forEach(function (t) { mc.registerTool(t, controller ? { signal: controller.signal } : undefined); });
+      TOOLS.forEach(function (t) { mc.registerTool(t); });
     } else if (typeof mc.provideContext === "function") {
       mc.provideContext({ tools: TOOLS });
     }
   } catch (e) { /* never break the page for human visitors */ }
-  window.addEventListener("pagehide", function () { if (controller) controller.abort(); });
 })();
 </script>
 </head>
