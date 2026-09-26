@@ -134,16 +134,16 @@ I'm a unicorn in public sector technology. I bridge three worlds that rarely ove
 
 I'm direct, technically fluent, and allergic to bullshit. I'm not interested in AI hype or theoretical frameworks that don't translate to real agency operations. My focus is practical: how do you actually deploy AI in high-stakes public sector environments where the consequences of getting it wrong are measured in public trust, civil rights, and sometimes lives?
 
-I wear two hats. Principal Consultant at Slalom by day. Outside of that, I ship apps, teach AI on TikTok, co-host AI Recess, and run OpenClawd as a live build-in-public daemon. The strategy and the shipping feed each other. You cannot honestly advise on AI adoption if you are not actively building with it.
+I wear two hats. Senior Principal at Slalom by day. Outside of that, I ship apps, teach AI on TikTok, co-host AI Recess, and run OpenClawd as a live build-in-public daemon. The strategy and the shipping feed each other. You cannot honestly advise on AI adoption if you are not actively building with it.
 
 ---
 
 ## CURRENT ROLE
 
-**Global Principal, Justice and Public Safety at Slalom Consulting**
+**Senior Principal, Justice and Public Safety at Slalom Consulting**
 *AI Lead, Public and Social Impact Industry Team*
 
-I co-lead Slalom's $50M+ Justice and Public Safety practice while serving as AI lead for the broader Public and Social Impact team covering government, education, and nonprofit sectors.
+I lead Slalom's $50M+ Justice and Public Safety practice while serving as AI lead for the broader Public and Social Impact team covering government, education, and nonprofit sectors.
 
 This dual role means I operate at two altitudes:
 
@@ -159,7 +159,7 @@ This is not a hobby. It is a deliberate strategy: every app I ship, every commun
 
 ### What This Looks Like Day-to-Day
 
-- Weekly strategy sessions with my co-lead, building assets, making decisions, shaping operating model
+- Weekly practice strategy sessions, building assets, making decisions, shaping operating model
 - Leading RFP pursuits across justice, courts, corrections, and public safety verticals
 - Developing AI maturity frameworks and governance models that become reusable IP
 - Building and commercializing GenAI solutions (like "Policy Partner" for policy management)
@@ -457,10 +457,10 @@ Justice and public safety, public sector modernization, CJIS, FedRAMP, GovCloud,
 **PROFESSIONAL EXPERIENCE**
 
 **Slalom Consulting, LLC - Chicago, IL**
-*Global Principal - Justice and Public Safety (June 2022 - Current)*
-*Data and Analytics Consultant (April 2021 – June 2022)*
+*Senior Principal - Justice and Public Safety (March 2026 - Current)*
+*Prior roles (April 2021 - March 2026)*
 
-- Co-manage $50M+ Justice and Public Safety practice and serve as AI lead for Public and Social Impact industry team
+- Lead $50M+ Justice and Public Safety practice and serve as AI lead for Public and Social Impact industry team
 - Established AI strategy frameworks and governance models for public safety agencies navigating responsible AI adoption
 - Driving pursuit strategy and business development across justice, courts, and public safety verticals
 - Designed AI solutions for constitutional policing and regulatory compliance engagements
@@ -566,7 +566,7 @@ I applied for this role because it's the convergence of everything I've built to
 - The timing: Government AI adoption is at an inflection point
 
 ### Relevant Experience
-- Co-manage $50M+ Justice and Public Safety practice at Slalom
+- Lead $50M+ Justice and Public Safety practice at Slalom
 - 8+ years consulting with government agencies (Crime Lab + Slalom)
 - Former police officer - understand operational reality
 - Grew government account from new client to $5M+ over three years
@@ -665,7 +665,7 @@ This role is the exact intersection of what I already do. At Slalom I lead techn
 
 2. **Technical depth from shipping production apps.** I ship real AI apps under AIpplied Labs: LeaderShift (SwiftUI), Doughby, AIppliance Manager, PackLlama, OpenClawd (a persistent Claude Code agent). I know RAG, evals, agent architectures, and tradeoffs because I've built with them, not because I read about them. When I teach customers how AI systems actually get built, evaluated, and operated in production, I'm speaking from the builder seat.
 
-3. **Enterprise + government C-suite is home turf.** At Slalom I co-manage a $50M+ Justice and Public Safety practice and serve as AI lead for the broader Public and Social Impact team. I've led executive briefings, pursuit workshops, and DOJ-regulated enablement for state and local agencies. Translating AI capabilities into business outcomes, productivity, cost reduction, risk mitigation, is literally the job description of my current role.
+3. **Enterprise + government C-suite is home turf.** At Slalom I lead a $50M+ Justice and Public Safety practice and serve as AI lead for the broader Public and Social Impact team. I've led executive briefings, pursuit workshops, and DOJ-regulated enablement for state and local agencies. Translating AI capabilities into business outcomes, productivity, cost reduction, risk mitigation, is literally the job description of my current role.
 
 4. **Instructional design is a discipline I practice publicly.** TikTok forces you to land a concept in 60 seconds. AI Recess forces you to take absolute beginners to shipping. Both exercises make me better at designing learning journeys, and both are visible proof of the skill the role requires.
 

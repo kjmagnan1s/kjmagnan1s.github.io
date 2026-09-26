@@ -8,13 +8,13 @@ permalink: /about/
   <div class="about-header" data-aos="fade-up">
     <img src="{{ '/assets/images/headshot.png' | relative_url }}" alt="Kevin Magnan" class="profile-image">
     <h1>Kevin J. Magnan</h1>
-    <p class="subtitle">Principal Consultant & Technology Lead at Slalom</p>
+    <p class="subtitle">Senior Principal, Justice and Public Safety at Slalom</p>
   </div>
 
   <div class="about-content" data-aos="fade-up">
     <section class="about-section">
       <h2>Professional Overview</h2>
-      <p>I'm a Principal Consultant and Technology Lead at Slalom, where I co-lead our Justice and Public Safety (JPS) industry. My work is focused on modernizing public sector services through data strategy, analytics, and AI, helping agencies navigate complex challenges with clarity, innovation, and purpose.</p>
+      <p>I'm a Senior Principal at Slalom, where I lead our Justice and Public Safety (JPS) practice. My work is focused on modernizing public sector services through data strategy, analytics, and AI, helping agencies navigate complex challenges with clarity, innovation, and purpose.</p>
       
       <p>Before joining Slalom, I built my career at the intersection of public service and analytics. I began as a police officer, gaining first-hand experience in the operational, structural, and human challenges faced by law enforcement and justice agencies. That real-world perspective shaped my transition into data strategy and technology consulting, where I've since worked as a researcher, analyst, and technical advisor for a range of public sector stakeholders.</p>
     </section>

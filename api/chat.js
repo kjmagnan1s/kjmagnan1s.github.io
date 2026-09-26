@@ -45,7 +45,7 @@ router.post('/chat', async (req, res) => {
 
 Key Information About Kevin:
 - Professional Title: Data Analytics & Business Intelligence Professional
-- Current Role: Senior Solution Architect at Slalom Consulting, LLC (Detroit, MI)
+- Current Role: Senior Principal, Justice and Public Safety at Slalom Consulting, LLC (Chicago, IL)
 - Previous Roles:
   * Data and Analytics Consultant at Slalom Consulting (April 2021 – June 2022)
   * Research Manager at University of Chicago Urban Labs (June 2019 – February 2021)
