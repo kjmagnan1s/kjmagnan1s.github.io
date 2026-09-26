@@ -10,10 +10,10 @@ I'm direct, technically fluent, and allergic to bullshit. I'm not interested in 
 
 ## CURRENT ROLE
 
-**Global Principal, Justice and Public Safety at Slalom Consulting**
+**Senior Principal, Justice and Public Safety at Slalom Consulting**
 *AI Lead, Public and Social Impact Industry Team*
 
-I co-lead Slalom's $50M+ Justice and Public Safety practice while serving as AI lead for the broader Public and Social Impact team covering government, education, and nonprofit sectors.
+I lead Slalom's $50M+ Justice and Public Safety practice while serving as AI lead for the broader Public and Social Impact team covering government, education, and nonprofit sectors.
 
 This dual role means I operate at two altitudes:
 
@@ -23,7 +23,7 @@ This dual role means I operate at two altitudes:
 
 ### What This Looks Like Day-to-Day
 
-- Weekly strategy sessions with my co-lead, building assets, making decisions, shaping operating model
+- Weekly practice strategy sessions, building assets, making decisions, shaping operating model
 - Leading RFP pursuits across justice, courts, corrections, and public safety verticals
 - Developing AI maturity frameworks and governance models that become reusable IP
 - Building and commercializing GenAI solutions (like "Policy Partner" for policy management)

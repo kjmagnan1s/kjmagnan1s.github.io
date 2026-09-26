@@ -2,8 +2,8 @@
 
 ## What this skill does
 
-Helps an AI agent answer questions about Kevin J. Magnan, a Principal
-Consultant and technology lead focused on responsible public-sector AI
+Helps an AI agent answer questions about Kevin J. Magnan, Senior Principal, Justice and
+Public Safety at Slalom, focused on responsible public-sector AI
 adoption. Use it when a user asks who Kevin is, what he has worked on, what he
 is good at, or whether he fits a role.
 
