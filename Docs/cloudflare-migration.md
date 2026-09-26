@@ -13,6 +13,7 @@ Wrangler auth profile: `personal` (already bound to this directory)
 ```
 request
   |
+  +-- /              -> src/worker/markdown.ts  (HTML plus Link headers; Accept: text/markdown gets _site/index.md)
   +-- /api/chat      -> src/worker/chat.ts      (Claude, same-origin only, rate limited)
   +-- /api/compose   -> src/worker/compose/     (Workers AI, typesafe/jev)
   +-- /api/play      -> src/worker/play/        (home page playground, typesafe/jev, rate limited)
@@ -22,11 +23,11 @@ request
   +-- everything else -> env.ASSETS.fetch(request) -> _site
 ```
 
-`wrangler.jsonc` sets `run_worker_first: ["/api/*", "/c/*"]`, so every other
+`wrangler.jsonc` sets `run_worker_first: ["/", "/api/*", "/c/*"]`, so every other
 static request goes straight to the assets layer without touching Worker code.
 `not_found_handling: "404-page"` makes the assets layer serve the site's own
 `404.html`. The `_redirects` file that Jekyll copies into `_site` is read by the
-assets layer. A `_headers` file would be picked up the same way if one is added.
+assets layer, and so is `_headers`.
 
 **`/c/*` is served by the Worker, not by `_redirects`.** The old rule
 `/c/*  /c/index.html  200` is rejected at deploy time with
@@ -213,11 +214,13 @@ which provided the markup (the `#bg` mount point, the ask form, and the
 ### Build order
 
 ```sh
-npm run build:shell     # vite build -> assets/genui/{genui.js,genui.css}
+npm run build:shell                  # vite build -> assets/genui/{genui.js,genui.css}
+python3 scripts/generate_sitemap.py
 bundle exec jekyll build
+python3 scripts/generate_markdown.py # pandoc -> _site/index.md, needs pandoc installed
 ```
 
-`npm run build:site` runs both in that order, and the order matters: Jekyll
+`npm run build:site` runs these in that order, and the order matters: Jekyll
 copies `assets/` into `_site`, so the Vite output has to exist first. Filenames
 are fixed (no content hash) because the layout that mounts the shell
 references them literally. `vite.config.ts` sets `outDir: "assets/genui"`,

@@ -354,6 +354,71 @@ layout: null
   @media (prefers-reduced-motion: reduce) { .sblock { animation: none; opacity: 1; transform: none; } }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 </style>
+<!-- WebMCP: expose the homepage to AI agents in the browser.
+     https://webmachinelearning.github.io/webmcp/ -->
+<script>
+(function () {
+  "use strict";
+
+  function ok(text) { return { content: [{ type: "text", text: String(text) }] }; }
+
+  async function getText(path, fallback) {
+    try {
+      var res = await fetch(path);
+      if (!res.ok) throw new Error(res.status);
+      return ok(await res.text());
+    } catch (e) {
+      return ok(fallback);
+    }
+  }
+
+  var TOOLS = [
+    {
+      name: "get_profile",
+      description: "Get Kevin Magnan's profile (name, title, skills, links) as JSON-LD.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      annotations: { readOnlyHint: true },
+      execute: function () { return getText("/api/profile.json", "https://kevinjmagnan.com/api/profile.json"); }
+    },
+    {
+      name: "get_page_markdown",
+      description: "Get this homepage as Markdown: who Kevin is, what he builds, his videos, and the free kit.",
+      inputSchema: { type: "object", properties: {}, additionalProperties: false },
+      annotations: { readOnlyHint: true },
+      execute: function () { return getText("/index.md", "https://kevinjmagnan.com/index.md"); }
+    },
+    {
+      name: "build_my_page",
+      description: "Run the homepage demo. Say who you are and one thing you want AI to help with; the demo picks what fits from the site and shows it on the page.",
+      inputSchema: {
+        type: "object",
+        properties: { request: { type: "string", description: "Who you are and what you want AI to help with." } },
+        required: ["request"],
+        additionalProperties: false
+      },
+      execute: async function (args) {
+        var text = (args && args.request) || "";
+        var input = document.getElementById("play-input");
+        var form = document.getElementById("play-form");
+        if (!input || !form) return ok("Try the demo at https://kevinjmagnan.com/#try");
+        input.value = text;
+        if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event("submit", { cancelable: true }));
+        return ok("Building the page for: " + text);
+      }
+    }
+  ];
+
+  var mc = navigator.modelContext;
+  if (!mc) return;
+  try {
+    if (typeof mc.registerTool === "function") {
+      TOOLS.forEach(function (t) { mc.registerTool(t); });
+    } else if (typeof mc.provideContext === "function") {
+      mc.provideContext({ tools: TOOLS });
+    }
+  } catch (e) { /* never break the page for human visitors */ }
+})();
+</script>
 </head>
 <body>
 

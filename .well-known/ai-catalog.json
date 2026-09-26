@@ -1,0 +1,51 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Kevin J. Magnan",
+    "identifier": "did:web:kevinjmagnan.com"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:kevinjmagnan.com:agent:ask-kevin",
+      "displayName": "Ask Kevin",
+      "type": "application/a2a-agent-card+json",
+      "url": "https://kevinjmagnan.com/.well-known/agent-card.json",
+      "representativeQueries": [
+        "what is Kevin Magnan's experience with AI",
+        "what has Kevin Magnan built with Claude Code",
+        "is Kevin Magnan a fit for an AI strategy role"
+      ]
+    },
+    {
+      "identifier": "urn:air:kevinjmagnan.com:server:portfolio",
+      "displayName": "Kevin J. Magnan Portfolio MCP Server",
+      "type": "application/mcp-server-card+json",
+      "url": "https://kevinjmagnan.com/.well-known/mcp/server-card.json",
+      "representativeQueries": [
+        "get Kevin Magnan's profile",
+        "list Kevin Magnan's publications",
+        "list Kevin Magnan's projects"
+      ]
+    },
+    {
+      "identifier": "urn:air:kevinjmagnan.com:skill:about-kevin",
+      "displayName": "About Kevin skill",
+      "type": "application/agent-skills-index+json",
+      "url": "https://kevinjmagnan.com/.well-known/agent-skills/index.json",
+      "representativeQueries": [
+        "answer questions about Kevin Magnan",
+        "summarize Kevin Magnan's career"
+      ]
+    },
+    {
+      "identifier": "urn:air:kevinjmagnan.com:api:portfolio",
+      "displayName": "Kevin J. Magnan portfolio data API",
+      "type": "application/openapi+json",
+      "url": "https://kevinjmagnan.com/api/openapi.json",
+      "representativeQueries": [
+        "fetch Kevin Magnan's work history as JSON",
+        "fetch Kevin Magnan's posts as JSON"
+      ]
+    }
+  ]
+}

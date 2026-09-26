@@ -1,13 +1,14 @@
 import type { Env } from "./env";
 import { handleChat } from "./chat";
 import { handleCompose } from "./compose";
+import { handleHome } from "./markdown";
 import { handlePlay } from "./play";
 import { handleSubscribe } from "./subscribe";
 
 /**
  * Router for the kevinjmagnan.com Worker.
  *
- * wrangler.jsonc sets `run_worker_first: ["/api/*", "/c/*"]`, so every other
+ * wrangler.jsonc sets `run_worker_first: ["/", "/api/*", "/c/*"]`, so every other
  * static asset is served straight from the assets layer and this code never
  * sees it. The default branch still defers to ASSETS so the static JSON files
  * that live under /api/ in the Jekyll build (health.json, openapi.json,
@@ -29,6 +30,9 @@ export default {
     }
 
     switch (pathname) {
+      case "/":
+        return handleHome(request, env);
+
       case "/api/chat":
         return handleChat(request, env, ctx);
 
