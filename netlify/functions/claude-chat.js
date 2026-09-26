@@ -134,7 +134,7 @@ I'm a unicorn in public sector technology. I bridge three worlds that rarely ove
 
 I'm direct, technically fluent, and allergic to bullshit. I'm not interested in AI hype or theoretical frameworks that don't translate to real agency operations. My focus is practical: how do you actually deploy AI in high-stakes public sector environments where the consequences of getting it wrong are measured in public trust, civil rights, and sometimes lives?
 
-I wear two hats. Principal Consultant at Slalom by day. Outside of that, I ship apps, teach AI on TikTok, co-host AI Recess, and run OpenClawd as a live build-in-public daemon. The strategy and the shipping feed each other. You cannot honestly advise on AI adoption if you are not actively building with it.
+I wear two hats. Senior Principal at Slalom by day. Outside of that, I ship apps, teach AI on TikTok, co-host AI Recess, and run OpenClawd as a live build-in-public daemon. The strategy and the shipping feed each other. You cannot honestly advise on AI adoption if you are not actively building with it.
 
 ---
 

@@ -416,7 +416,7 @@ class Chatbot {
             // Fallback responses
             const fallbackResponses = [
                 "I'm having trouble connecting right now, but I'd be happy to tell you that Kevin specializes in AI and analytics for justice and public safety modernization.",
-                "Sorry, I'm experiencing technical difficulties. Kevin is a Principal Consultant at Slalom with expertise in cloud architecture and data strategy.",
+                "Sorry, I'm experiencing technical difficulties. Kevin is a Senior Principal at Slalom, leading its Justice and Public Safety practice.",
                 "I can't connect at the moment, but Kevin has extensive experience in CJIS compliance and government technology modernization."
             ];
 

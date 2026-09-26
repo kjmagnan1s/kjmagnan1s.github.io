@@ -86,7 +86,7 @@ export function buildCandidates(): Candidate[] {
   // Identity
   add(
     "bio_overview",
-    "Text: one-paragraph professional overview (Principal Consultant and Technology Lead, public sector data strategy, analytics, and AI). Good for recruiters and anyone wanting a summary.",
+    "Text: one-paragraph professional overview (Senior Principal, Justice and Public Safety at Slalom; public sector data strategy, analytics, and AI). Good for recruiters and anyone wanting a summary.",
     { type: "Text", props: { text: site.about.overview, variant: "lead" } },
     { topics: ["resume", "summary"] },
   );
