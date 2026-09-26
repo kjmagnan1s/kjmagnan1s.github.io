@@ -47,6 +47,7 @@ include:
   - .well-known/api-catalog
   - .well-known/oauth-authorization-server
   - .well-known/oauth-protected-resource
+  - .well-known/ai-catalog.json
 
 exclude:
   - Gemfile
@@ -61,6 +62,7 @@ exclude:
   # Cloudflare Worker sources. These must never ship as public static assets:
   # src/worker/chat-context.ts holds the full system prompt.
   - src
+  - scripts
   - netlify
   - wrangler.jsonc
   - tsconfig.worker.json

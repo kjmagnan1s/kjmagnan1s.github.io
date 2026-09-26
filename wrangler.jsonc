@@ -13,13 +13,14 @@
   // Jekyll writes the whole site into _site. `_redirects` and `_headers` are
   // read by the assets layer. 404-page serves the site's own 404.html for
   // unmatched paths. run_worker_first keeps the Worker out of the way of every
-  // other static request: it runs for /api/* and for /c/*, and index.ts falls
+  // other static request: it runs for /api/*, for /c/*, and for / (Markdown
+  // negotiation and Link headers, see src/worker/markdown.ts), and index.ts falls
   // back to ASSETS for the static JSON files that also live under /api/.
   "assets": {
     "directory": "_site",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*", "/c/*"]
+    "run_worker_first": ["/", "/api/*", "/c/*"]
   },
 
   // Beehiiv "Website list" publication for the kit signup. Not a secret.
