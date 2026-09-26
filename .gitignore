@@ -38,3 +38,6 @@ assets/genui/
 
 # Claude Code personal settings
 .claude/settings.local.json
+
+# Python bytecode
+__pycache__/
