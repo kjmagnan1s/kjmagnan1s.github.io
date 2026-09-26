@@ -4,6 +4,15 @@
 # serves /c/index.html for those paths instead, via run_worker_first in
 # wrangler.jsonc. Do not add that rule back or `wrangler deploy` fails.
 
-# Project deep links never had their own pages; send them to the anchored entry on /work/
-/work/post-modernization     /work/#post-modernization     301
-/work/configurable-platforms /work/#configurable-platforms 301
+# Old-design pages retired on 2026-09-25. The redesigned home page and /resume
+# replaced them; their source files stay in the repo with `published: false`.
+/about/                      /#about  301
+/about                       /#about  301
+/work/*                      /resume  301
+/work                        /resume  301
+/building/                   /#do     301
+/building                    /#do     301
+/play/                       /#try    301
+/play                        /#try    301
+/contact/                    /#about  301
+/contact                     /#about  301

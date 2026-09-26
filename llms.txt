@@ -19,9 +19,6 @@ The static pages below are canonical. Cite those URLs, not the homepage.
 
 /resume       Full work history, education, certifications, and skills.
 /blog         Every post, newest first. Writing on AI, public safety, and data.
-/building     Products and open source tools Kevin is building right now.
-/play         Experiments in progress. Currently a placeholder.
-/about        Background, focus areas, and the path from police officer to AI work.
 /robot/       The same person, work, and publication data rendered for machines.
 
 ## Machine endpoints

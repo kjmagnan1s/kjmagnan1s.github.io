@@ -1,4 +1,6 @@
 ---
+# Retired 2026-09-25: the redesigned home page replaced this page; _redirects sends its URL there.
+published: false
 layout: page
 title: About Me
 permalink: /about/

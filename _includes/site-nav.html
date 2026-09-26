@@ -1,0 +1,16 @@
+{%- comment -%}
+Primary nav for every page, including the home page and /resume.
+Pass class="reveal" style="--i:0" on the home page for its intro animation.
+{%- endcomment -%}
+<nav class="nav{% if include.class %} {{ include.class }}{% endif %}"{% if include.style %} style="{{ include.style }}"{% endif %} aria-label="Primary">
+  <a class="nav-mark" href="/">Kevin Magnan</a>
+  <div class="nav-links">
+    {%- for item in site.data.nav %}
+    {%- assign here = false -%}
+    {%- if item.url == '/blog/' and page.url contains '/blog' -%}{%- assign here = true -%}{%- endif -%}
+    {%- if item.url == '/blog/' and page.layout == 'post' -%}{%- assign here = true -%}{%- endif -%}
+    {%- if item.url == '/resume' and page.url contains '/resume' -%}{%- assign here = true -%}{%- endif %}
+    <a href="{{ item.url }}"{% if here %} aria-current="page"{% endif %}>{{ item.label }}</a>
+    {%- endfor %}
+  </div>
+</nav>

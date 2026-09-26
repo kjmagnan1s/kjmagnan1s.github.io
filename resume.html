@@ -107,6 +107,7 @@ description: Kevin Magnan's resume. Roles at Slalom and the University of Chicag
 
   footer { padding: 32px clamp(16px, 5vw, 64px) 48px; max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--paper-dim); font-size: .9rem; }
   footer a { color: var(--paper-dim); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 
   @media (max-width: 720px) {
     .job { grid-template-columns: 1fr; }
@@ -126,16 +127,7 @@ description: Kevin Magnan's resume. Roles at Slalom and the University of Chicag
 <body>
 
 <header class="band band-navy">
-  <nav class="nav" aria-label="Primary">
-    <a class="nav-mark" href="/">Kevin Magnan</a>
-    <div class="nav-links">
-      <a href="/#try">Demo</a>
-      <a href="/#free">Free kit</a>
-      <a href="/#about">About</a>
-      <a href="/resume" aria-current="page">Resume</a>
-      <a href="https://aippliedlabs.com/">Work with me</a>
-    </div>
-  </nav>
+  {% include site-nav.html %}
   <div class="wrap wrap-top">
     <p class="eyebrow">Resume</p>
     <h1 class="display">Kevin J. <em>Magnan</em></h1>
@@ -271,7 +263,7 @@ description: Kevin Magnan's resume. Roles at Slalom and the University of Chicag
 </section>
 </main>
 
-<footer><span>© 2026 Kevin Magnan</span><span><a href="/">Home</a> · <a href="/blog/">Writing</a> · <a href="https://aippliedlabs.com/">AIpplied Labs</a></span></footer>
+{% include site-footer.html %}
 
 <script>
   (function () {

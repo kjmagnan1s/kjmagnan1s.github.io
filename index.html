@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -215,6 +218,7 @@
   .follow a:hover b { color: var(--orange); }
   footer { padding: 32px clamp(16px, 5vw, 64px) 48px; max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--paper-dim); font-size: .9rem; }
   footer a { color: var(--paper-dim); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 
   @media (max-width: 900px) {
     .board-row { grid-template-columns: 1fr 24px; row-gap: 6px; }
@@ -362,17 +366,7 @@
     </video>
   </div>
 
-  <nav class="nav reveal" style="--i:0" aria-label="Primary">
-    <a class="nav-mark" href="/">Kevin Magnan</a>
-    <div class="nav-links">
-      <a href="#try">Demo</a>
-      <a href="#free">Free kit</a>
-      <a href="#do">What you can build</a>
-      <a href="#about">About</a>
-      <a href="/resume">Resume</a>
-      <a href="https://aippliedlabs.com/">Work with me</a>
-    </div>
-  </nav>
+  {% include site-nav.html class="reveal" style="--i:0" %}
 
   <div class="hero-copy">
     <div class="hero-id reveal" style="--i:1"><img src="assets/avatar.png" alt="" width="56" height="56"><p><b>Kevin Magnan</b><span>AI engineer and educator · @vibewithkevin</span></p></div>
@@ -544,7 +538,7 @@
       <a href="https://github.com/kjmagnan1s"><span>GitHub</span><b>kjmagnan1s</b></a>
     </div>
   </div>
-  <footer><span>© 2026 Kevin Magnan</span><span><a href="/resume">Resume</a> · <a href="/blog/">Writing</a> · <a href="https://aippliedlabs.com/">AIpplied Labs</a></span></footer>
+  {% include site-footer.html %}
 </section>
 </main>
 

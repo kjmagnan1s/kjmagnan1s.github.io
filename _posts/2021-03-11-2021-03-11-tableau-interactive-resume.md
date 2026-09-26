@@ -44,7 +44,9 @@ Dashboard Background Design with Figma
 
 At this stage in the development process, you can let your creativity and inspiration thrive. I have seen countless ways to design and customize the layout and format of an interactive resume. My preferred path to achieving a custom design and background is with an online tool I recently discovered thanks to the Twitter #DataFam community called Figma. Figma is a powerful online collaborative graphics editor with tons of useful features and helpful ways to systematically and accurately design a Tableau background within a space. I have been using Figma for over 6 months on projects including my interactive resume, at work, and in my dashboards for the weekly #MakeoverMonday Tableau community challenge.
 
-[If you are new to Figma, I would suggest researching some tutorials online to get started. I recommend watching this video by Lindsey Betzendahl [@ZenDollaData](https://twitter.com/ZenDollData) as a good starting point.](If you are new to Figma, I would suggest researching some tutorials online to get started. I recommend watching this video by Lindsey Betzendahl [@ZenDollaData](https://twitter.com/ZenDollData) as a good starting point.)For my particular Tableau resume background, I relied on Figma to create the background shapes, color scheme, icons, and text boxes. Here's a link if you would like to check out my design!
+If you are new to Figma, I would suggest researching some tutorials online to get started. I recommend watching this video by Lindsey Betzendahl [@ZenDollaData](https://twitter.com/ZenDollData) as a good starting point.
+
+For my particular Tableau resume background, I relied on Figma to create the background shapes, color scheme, icons, and text boxes. Here's a link if you would like to check out my design!
 
 
 
@@ -240,7 +242,9 @@ Without anymore jabbering from me, here is my Tableau interactive resume:
 
 
 
-[Link: https://tabsoft.co/3l8gOEn](Link: https://tabsoft.co/3l8gOEn)March 2021 Update:
+Link: <https://tabsoft.co/3l8gOEn>
+
+March 2021 Update:
 
 In my quest to become more skilled in data analytics and business intelligence tools, I have started branching out from Tableau (and R) to learn Microsoft's Power BI software/language. I recently received very useful advice on ways to incorporate Power BI into my data visualization skillset by replicating dashboards or products I have made with Tableau in Power BI. The first dashboard that came to mind was my interactive resume. As a result, I was able to, without much fuss, replicate my interactive resume in Power BI with a few minor changes and some workarounds. Here it is!
 
