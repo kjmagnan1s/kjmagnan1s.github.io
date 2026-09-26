@@ -200,10 +200,11 @@ wrangler tail kevinjmagnan-com
 
 ## Shell
 
-**The shell is parked.** The redesigned `index.html` is standalone HTML with no
-Jekyll front matter, so it doesn't render through `_layouts/default.html` and
-doesn't load `genui.js` or `genui.css`. Its Jev playground calls `/api/play`
-instead. The shell source (`src/genui/`), its Vite build, and `/api/compose`
+**The shell is parked.** The redesigned `index.html` sets `layout: null` (its
+front matter exists only so it can use the shared header and footer includes),
+so it doesn't render through `_layouts/default.html`. No page loads `genui.js`
+or `genui.css`: the rewritten `_layouts/default.html` dropped them. The home
+page's Jev playground calls `/api/play` instead. The shell source (`src/genui/`), its Vite build, and `/api/compose`
 stay in the repo. The rest of this
 section describes the shell as it worked on the old Jekyll-layout front page,
 which provided the markup (the `#bg` mount point, the ask form, and the
@@ -218,8 +219,8 @@ bundle exec jekyll build
 
 `npm run build:site` runs both in that order, and the order matters: Jekyll
 copies `assets/` into `_site`, so the Vite output has to exist first. Filenames
-are fixed (no content hash) because `_layouts/default.html` references them
-literally. `vite.config.ts` sets `outDir: "assets/genui"`,
+are fixed (no content hash) because the layout that mounts the shell
+references them literally. `vite.config.ts` sets `outDir: "assets/genui"`,
 `emptyOutDir: true`, `cssCodeSplit: false`, and fixed
 `entryFileNames`/`assetFileNames`.
 
@@ -274,8 +275,9 @@ a card click stays on whatever host is serving the page.
 
 ### site.css
 
-`_layouts/default.html` now loads `assets/css/site.css` after `main.css` for the
-footer sitemap and the `/building` styles. That file was a whole legacy skin
+`_layouts/default.html` no longer loads `main.css` or `site.css`; it loads
+`assets/css/v2.css` only. The history below applies to the old layout.
+`site.css` was a whole legacy skin
 that had never been loaded, and its global rules fought `main.css`: it redefined
 the `--text-primary` and `--text-secondary` tokens, set a white page background
 and a sans body font, restyled every heading, link, section and button, and hid
