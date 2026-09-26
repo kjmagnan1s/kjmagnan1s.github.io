@@ -1,0 +1,12 @@
+{%- comment -%}
+Footer for every page. Same links as the header, because on phones the header
+shows only "Work with me" and this is the full menu.
+{%- endcomment -%}
+<footer class="site-foot">
+  <span>© {{ 'now' | date: "%Y" }} Kevin Magnan</span>
+  <nav class="foot-links" aria-label="Footer">
+    {%- for item in site.data.nav %}
+    <a href="{{ item.url }}">{{ item.label }}</a>
+    {%- endfor %}
+  </nav>
+</footer>

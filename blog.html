@@ -2,19 +2,27 @@
 layout: default
 title: Writing
 permalink: /blog/
+description: Essays and write-ups by Kevin Magnan on AI, public-sector data, and building with AI tools.
 ---
+<header class="band band-navy">
+  {% include site-nav.html %}
+  <div class="wrap wrap-top">
+    <p class="eyebrow">Writing</p>
+    <h1 class="display">Notes from <em>building.</em></h1>
+    <p class="lede">Essays on AI and public-sector data, plus write-ups of things I built. Newest first.</p>
+  </div>
+</header>
 
-<div class="blog-page">
-    <h1>Writing</h1>
-
-    <ul class="post-list">
-        {% for post in site.posts %}
-        <li class="post-item">
-            <a href="{{ post.url | relative_url }}" class="post-link">
-                <span class="post-title">{{ post.title }}</span>
-                <span class="post-meta">{{ post.date | date: "%b %Y" }}</span>
-            </a>
-        </li>
-        {% endfor %}
+<main class="band band-paper">
+  <div class="wrap">
+    <ul class="posts">
+      {%- for post in site.posts %}
+      <li><a href="{{ post.url }}"><span class="post-name">{{ post.title }}</span><span class="post-when">{{ post.date | date: "%B %Y" }}</span></a></li>
+      {%- endfor %}
     </ul>
+  </div>
+</main>
+
+<div class="band band-navy">
+  {% include site-footer.html %}
 </div>

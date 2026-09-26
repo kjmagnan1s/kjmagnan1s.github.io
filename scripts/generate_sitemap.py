@@ -61,13 +61,8 @@ def collect_urls() -> List[dict]:
         )
 
     add_url("/", ROOT / "index.html", "weekly", "1.0")
-    add_url("/about/", ROOT / "about.md", "monthly", "0.8")
     add_url("/blog/", ROOT / "blog.html", "weekly", "0.7")
     add_url("/resume", ROOT / "resume.html", "monthly", "0.7")
-    add_url("/work/", ROOT / "work.md", "weekly", "0.8")
-    add_url("/contact", ROOT / "contact.html", "monthly", "0.6")
-    add_url("/building/", ROOT / "building.md", "weekly", "0.8")
-    add_url("/play/", ROOT / "play.md", "monthly", "0.4")
     add_url("/robot/", ROOT / "robot.md", "monthly", "0.5")
     add_url("/api/profile.json", ROOT / "api" / "profile.json", "monthly", "0.4")
 
