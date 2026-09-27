@@ -1,40 +1,35 @@
-# llms.txt for kevinjmagnan.com
-# A plain-text guide for AI agents and answer engines.
-# Usage policy lives in /robots.txt. Search and live answer use are welcome.
-# Training on this content is not permitted.
+# Kevin Magnan
 
-## Who
+> Kevin J. Magnan is an AI engineer and educator (@vibewithkevin). He teaches tech-ish people to build with AI, using the same tools that run his own work every day. He is also Senior Principal, Justice and Public Safety at Slalom.
 
-Kevin J. Magnan, Senior Principal, Justice and Public Safety at Slalom.
-"I design AI-powered analytics, secure cloud architectures, and data strategies
-that modernize justice and public-safety services."
+Usage policy lives in [robots.txt](https://kevinjmagnan.com/robots.txt). Search and live answer use are welcome. Training on this content is not permitted.
 
-## How this site works
+## Pages
 
-The homepage at https://kevinjmagnan.com/ composes itself for each visitor. It is
-a single chat input over prepared content, so it has no fixed body text to crawl.
-The static pages below are canonical. Cite those URLs, not the homepage.
+- [Home](https://kevinjmagnan.com/): Who Kevin is, a demo that builds a page for each visitor, a free kit, featured builds, and videos. A Markdown copy is at [/index.md](https://kevinjmagnan.com/index.md), or request `/` with `Accept: text/markdown`.
+- [Resume](https://kevinjmagnan.com/resume): Full work history, education, certifications, and skills.
+- [Writing](https://kevinjmagnan.com/blog/): Every post, newest first. Writing on AI, public safety, and data.
+- [Media kit](https://kevinjmagnan.com/media-kit/): Audience, reach, and partnership details for @vibewithkevin.
 
-## Static pages
+## Structured data
 
-/resume       Full work history, education, certifications, and skills.
-/blog         Every post, newest first. Writing on AI, public safety, and data.
-/robot/       The same person, work, and publication data rendered for machines.
+- [Robot view](https://kevinjmagnan.com/robot/): Person, work, and publication data rendered for machines, with JSON-LD.
+- [Profile](https://kevinjmagnan.com/api/profile.json): Name, title, employer, and links.
+- [Work](https://kevinjmagnan.com/api/work.json): Selected projects with tags and summaries.
+- [Publications](https://kevinjmagnan.com/api/publications.json): Posts and articles with dates and summaries.
+- [OpenAPI](https://kevinjmagnan.com/api/openapi.json): Description of the read endpoints above.
 
-## Machine endpoints
+## Discovery
 
-/robot/                          Structured HTML view with JSON-LD for the full graph.
-/api/profile.json                Person profile: name, title, employer, links.
-/api/work.json                   Selected projects with tags and summaries.
-/api/publications.json           Posts and articles with dates and summaries.
-/api/openapi.json                OpenAPI description of the read endpoints.
-/.well-known/agent-card.json     Agent card describing this site as a callable resource.
-/.well-known/api-catalog         Catalog of the endpoints above.
-/sitemap.xml                     Every indexable URL.
+- [AI catalog](https://kevinjmagnan.com/.well-known/ai-catalog.json): Agentic Resource Discovery manifest.
+- [API catalog](https://kevinjmagnan.com/.well-known/api-catalog): Linkset of the endpoints above.
+- [About Kevin skill](https://kevinjmagnan.com/.well-known/agent-skills/about-kevin/SKILL.md): Agent skill for answering questions about Kevin.
+- [Sitemap](https://kevinjmagnan.com/sitemap.xml): Every indexable URL.
 
-## Elsewhere
+## Optional
 
-LinkedIn  https://www.linkedin.com/in/kjmagnan1s/
-GitHub    https://github.com/kjmagnan1s
-X         https://x.com/KevinMagnan
-TikTok    https://www.tiktok.com/@vibewithkevin
+- [LinkedIn](https://www.linkedin.com/in/kjmagnan1s/)
+- [GitHub](https://github.com/kjmagnan1s)
+- [X](https://x.com/KevinMagnan)
+- [TikTok](https://www.tiktok.com/@vibewithkevin)
+- [AIpplied Labs](https://aippliedlabs.com/): Kevin's consulting practice, for client work.

@@ -6,6 +6,7 @@ layout: null
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="I teach tech-ish people to build with AI, using the tools that run my own work.">
 <title>Kevin Magnan</title>
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
@@ -21,11 +22,139 @@ layout: null
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://kevinjmagnan.com/assets/brand/og-home.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="hero-kites-poster.webp">
+<link rel="preload" href="/assets/fonts/Fraunces-latin-3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/SourceSerif4-latin-5.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="hero-kites-poster.webp" imagesrcset="hero-kites-poster-960.webp 960w, hero-kites-poster.webp 1920w" imagesizes="100vw" fetchpriority="high">
 <style>
+  /* Self-hosted Google Fonts (Fraunces, Source Serif 4), latin + latin-ext. Source: assets/fonts/fonts.css */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-ext-0.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-ext-0.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-1.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-ext-2.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-ext-2.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-ext-2.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/fonts/Fraunces-latin-3.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/SourceSerif4-latin-ext-4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/SourceSerif4-latin-5.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/fonts/SourceSerif4-latin-ext-4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/fonts/SourceSerif4-latin-5.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/SourceSerif4-latin-ext-4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/SourceSerif4-latin-5.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
   :root {
     --navy: #0b2340;
     --navy-deep: #071a31;
@@ -44,7 +173,7 @@ layout: null
   /* Hero */
   .hero { position: relative; min-height: 100svh; overflow: hidden; display: flex; flex-direction: column; isolation: isolate; }
   .hero-media, .hero-media video, .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; }
-  .hero-media { z-index: -2; background: var(--navy) url("hero-kites-poster.webp") 70% 50% / cover no-repeat; }
+  .hero-media { z-index: -2; background: var(--navy); }
   .hero::after { /* left scrim for legibility, bottom fade into the next section */
     content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
     background:
@@ -73,7 +202,7 @@ layout: null
   .scroll-cue { position: absolute; left: 50%; bottom: 20px; translate: -50% 0; color: var(--paper-dim); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; }
 
   /* Delayed reveal: each line rises and sharpens in turn after the kites have had a moment */
-  .reveal { opacity: 0; transform: translateY(14px); filter: blur(6px);
+  .reveal { opacity: .01; transform: translateY(14px); filter: blur(6px); /* .01, not 0: Chrome skips opacity-0 text as an LCP candidate */
     animation: reveal .9s cubic-bezier(.2,.7,.2,1) forwards;
     animation-delay: calc(var(--reveal-delay) + var(--i, 0) * 160ms); }
   @keyframes reveal { to { opacity: 1; transform: none; filter: none; } }
@@ -248,7 +377,7 @@ layout: null
 
   @media (max-width: 720px) {
     /* Phones: the art gets its own band at the top, the copy sits below on navy */
-    .hero-media { bottom: auto; height: 58svh; background-position: 64% 50%; }
+    .hero-media { bottom: auto; height: 58svh; }
     .hero-media video, .hero-media img { object-position: 64% 50%; }
     .hero::after { background: linear-gradient(180deg, rgba(7,26,49,0) 0%, rgba(7,26,49,0) 44svh, var(--navy-deep) 58svh); }
     .hero-copy { margin-top: auto; margin-bottom: 64px; padding-top: 52svh; }
@@ -424,7 +553,8 @@ layout: null
 
 <section class="hero" aria-label="Introduction">
   <div class="hero-media" aria-hidden="true">
-    <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="hero-kites-poster.webp">
+    <img src="hero-kites-poster.webp" srcset="hero-kites-poster-960.webp 960w, hero-kites-poster.webp 1920w" sizes="100vw" alt="" fetchpriority="high">
+    <video id="hero-video" autoplay muted loop playsinline preload="auto">
       <source src="hero-kites-1080.webm" type="video/webm" media="(min-width: 721px)">
       <source src="hero-kites-1080.mp4" type="video/mp4" media="(min-width: 721px)">
       <source src="hero-kites-720.mp4" type="video/mp4">
@@ -434,7 +564,7 @@ layout: null
   {% include site-nav.html class="reveal" style="--i:0" %}
 
   <div class="hero-copy">
-    <div class="hero-id reveal" style="--i:1"><img src="assets/avatar.png" alt="" width="56" height="56"><p><b>Kevin Magnan</b><span>AI engineer and educator · @vibewithkevin</span></p></div>
+    <div class="hero-id reveal" style="--i:1"><img src="assets/avatar-112.webp" alt="" width="56" height="56"><p><b>Kevin Magnan</b><span>AI engineer and educator · @vibewithkevin</span></p></div>
     <h1 class="hero-name reveal" style="--i:2">Stay ahead by building.</h1>
     <p class="hero-tagline reveal" style="--i:3">I teach tech-ish people to build with AI, using the same tools that run my own work every day.</p>
     <div class="hero-actions reveal" style="--i:4">
@@ -500,7 +630,7 @@ layout: null
         <p class="signup-note">You'll also get new guides when I publish them. Unsubscribe anytime.</p>
       </div>
       <div class="kit-cover fade" aria-hidden="true">
-        <img src="assets/kit-header.jpg" alt="" loading="lazy">
+        <img src="assets/kit-header.webp" alt="" loading="lazy">
         <div class="kit-cover-text">
           <small>Kevin Magnan · @vibewithkevin</small>
           <b>Don't start from <em>zero</em></b>
@@ -517,7 +647,7 @@ layout: null
     <p class="lede fade">Every one of these runs in my own life right now.</p>
     <div class="goals">
       <article class="goal fade" data-block="goal-publish">
-        <div class="spread-media top"><video muted loop playsinline preload="none" poster="assets/naperthrill-almanac-poster.jpg"><source src="assets/naperthrill-almanac.webm" type="video/webm"><source src="assets/naperthrill-almanac.mp4" type="video/mp4"></video></div>
+        <div class="spread-media top"><video muted loop playsinline preload="none" poster="assets/naperthrill-almanac-poster.webp"><source src="assets/naperthrill-almanac.webm" type="video/webm"><source src="assets/naperthrill-almanac.mp4" type="video/mp4"></video></div>
         <div>
           <p class="goal-want">Run a publication <em>by yourself.</em></p>
           <div class="proof"><b>Naperthrill <i>· 6 hours to 10 minutes an issue</i></b><p>My local newsletter reaches 300+ readers. My systems read the local pages and feeds and draft the stories. I approve every one.</p></div>
@@ -525,7 +655,7 @@ layout: null
         </div>
       </article>
       <article class="goal fade" data-block="goal-write">
-        <div class="spread-media"><video muted loop playsinline preload="none" poster="assets/antislop-poster.jpg"><source src="assets/antislop.webm" type="video/webm"><source src="assets/antislop.mp4" type="video/mp4"></video></div>
+        <div class="spread-media"><video muted loop playsinline preload="none" poster="assets/antislop-poster.webp"><source src="assets/antislop.webm" type="video/webm"><source src="assets/antislop.mp4" type="video/mp4"></video></div>
         <div>
           <p class="goal-want">Make AI write <em>like you.</em></p>
           <div class="proof"><b>anti-slop <i>· my most-used skill, 275 runs</i></b><p>It finds the patterns that make writing sound machine-made and rewrites them. It's free and open source.</p></div>
@@ -533,7 +663,7 @@ layout: null
         </div>
       </article>
       <article class="goal fade" data-block="goal-chores">
-        <div class="spread-media"><video muted loop playsinline preload="none" poster="assets/unifi-agent-poster.jpg" aria-label="The agent finds two access points on the same channel, previews moving one to a new channel, waits for approval, and the WiFi gets 10x faster with 48 tests passing"><source src="assets/unifi-agent.webm" type="video/webm"><source src="assets/unifi-agent.mp4" type="video/mp4"></video></div>
+        <div class="spread-media"><video muted loop playsinline preload="none" poster="assets/unifi-agent-poster.webp" aria-label="The agent finds two access points on the same channel, previews moving one to a new channel, waits for approval, and the WiFi gets 10x faster with 48 tests passing"><source src="assets/unifi-agent.webm" type="video/webm"><source src="assets/unifi-agent.mp4" type="video/mp4"></video></div>
         <div>
           <p class="goal-want">Hand off the <em>chores.</em></p>
           <div class="proof"><b>unifi-agent <i>· 10x faster WiFi</i></b><p>I gave it one work order and walked away. It found two access points fighting over a channel and fixed it once I said yes.</p></div>
@@ -541,7 +671,7 @@ layout: null
         </div>
       </article>
       <article class="goal fade" data-block="goal-voice">
-        <div class="spread-media"><video muted loop playsinline preload="none" poster="assets/oa-ring-poster.jpg" aria-label="A tap on the ring records a voice note, Jev routes it to Claude Code, and a draft pull request opens for review"><source src="assets/oa-ring.webm" type="video/webm"><source src="assets/oa-ring.mp4" type="video/mp4"></video></div>
+        <div class="spread-media"><video muted loop playsinline preload="none" poster="assets/oa-ring-poster.webp" aria-label="A tap on the ring records a voice note, Jev routes it to Claude Code, and a draft pull request opens for review"><source src="assets/oa-ring.webm" type="video/webm"><source src="assets/oa-ring.mp4" type="video/mp4"></video></div>
         <div>
           <p class="goal-want">Build by <em>talking.</em></p>
           <div class="proof"><b>Oa <i>· from a ring to a pull request</i></b><p>I talk into a Pebble ring, and Claude Code or Codex opens a draft of the change. Nothing merges without me.</p></div>
@@ -558,9 +688,9 @@ layout: null
     <h2 id="videos-title" class="display fade">Watch me <em>build.</em></h2>
     <p class="lede fade">324 videos as @vibewithkevin, for 13,000+ followers on TikTok, Instagram, and YouTube.</p>
     <div class="videos">
-      <a class="vid fade" href="https://www.tiktok.com/@vibewithkevin/video/7591684867440626974"><img src="assets/cover-crashcourse.jpg" alt="Claude Code crash course video cover" loading="lazy"><div class="vid-cap"><b>141K plays</b><span>Claude Code crash course · 6,750 saves</span></div></a>
-      <a class="vid fade" href="https://www.tiktok.com/@vibewithkevin/video/7665095788648811807"><img src="assets/cover-appsim.jpg" alt="Building apps with one prompt video cover" loading="lazy"><div class="vid-cap"><b>92.9K plays</b><span>Apps from one request, tested in the terminal</span></div></a>
-      <a class="vid fade" href="https://www.tiktok.com/@vibewithkevin/video/7658522370243710238"><img src="assets/cover-fable5.jpg" alt="Five things to build with Fable 5 video cover" loading="lazy"><div class="vid-cap"><b>31.8K plays</b><span>5 things to build with Fable 5</span></div></a>
+      <a class="vid fade" href="https://www.tiktok.com/@vibewithkevin/video/7591684867440626974"><img src="assets/cover-crashcourse.webp" alt="Claude Code crash course video cover" loading="lazy"><div class="vid-cap"><b>141K plays</b><span>Claude Code crash course · 6,750 saves</span></div></a>
+      <a class="vid fade" href="https://www.tiktok.com/@vibewithkevin/video/7665095788648811807"><img src="assets/cover-appsim.webp" alt="Building apps with one prompt video cover" loading="lazy"><div class="vid-cap"><b>92.9K plays</b><span>Apps from one request, tested in the terminal</span></div></a>
+      <a class="vid fade" href="https://www.tiktok.com/@vibewithkevin/video/7658522370243710238"><img src="assets/cover-fable5.webp" alt="Five things to build with Fable 5 video cover" loading="lazy"><div class="vid-cap"><b>31.8K plays</b><span>5 things to build with Fable 5</span></div></a>
     </div>
     <div class="hero-actions fade" style="margin-top:40px"><a class="btn btn-primary" href="https://www.tiktok.com/@vibewithkevin">Follow on TikTok</a><a class="btn btn-ghost" href="/media-kit/">Media kit for brands</a></div>
   </div>
@@ -569,7 +699,7 @@ layout: null
 <section class="band band-paper" id="about" data-block="about" aria-labelledby="about-title">
   <div class="wrap">
     <div class="about">
-      <div class="about-photo fade"><img src="assets/avatar.png" alt="Kevin Magnan in the mountains" loading="lazy"></div>
+      <div class="about-photo fade"><img src="assets/avatar.webp" alt="Kevin Magnan in the mountains" loading="lazy"></div>
       <div class="about-copy fade">
         <h2 id="about-title" class="display">Hi, I'm <em>Kevin.</em></h2>
         <p class="about-intro">I lead AI strategy at Slalom. I've spent 10 years in management consulting, building data systems for states and some of the largest cities in the country. Before that, I was a police officer, and that's where I learned how to support the people who serve the public.</p>
