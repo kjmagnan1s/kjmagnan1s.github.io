@@ -22,6 +22,8 @@ def to_markdown(html: str) -> str:
         html,
         flags=re.S | re.I,
     )
+    # Decorative images (empty alt) would become bare ![]() lines.
+    html = re.sub(r"<img\b[^>]*\balt=([\"'])\1[^>]*>", "", html, flags=re.I)
     # Pandoc reads only <main> when a page has one, which drops the hero and
     # footer. Treat it as a plain container instead.
     html = re.sub(r"<(/?)main([\s>])", r"<\1div\2", html, flags=re.I)
