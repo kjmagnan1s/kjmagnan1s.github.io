@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make Your Homepage Move · Kevin Magnan</title>
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#071a31">
+<meta name="description" content="How Kevin Magnan built the moving kites hero and the animated 404 on kevinjmagnan.com: a 5-second AI video behind a normal webpage, with every prompt, setting, and command.">
+<meta property="og:title" content="Make Your Homepage Move">
+<meta property="og:description" content="A 5-second AI video behind a normal webpage. The exact prompts, the loop trick, the settings, and the 404.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://kevinjmagnan.com/hero/img/og.jpg">
+<link rel="preload" as="image" href="img/poster.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2340; --navy-deep: #071a31; --paper: #f3e6d3; --paper-dim: #cdbfae;
+    --orange: #e0662a; --rust: #a8431a; --ink: #0a1628; --ink-dim: #3b4a5e;
+    --font-heading: "Fraunces", Georgia, serif; --font-body: "Source Serif 4", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 19px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  ::selection { background: var(--orange); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+  .band { position: relative; isolation: isolate; }
+  .band::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); }
+  .band-navy { background: var(--navy-deep); color: var(--paper); }
+  .band-navy::before { opacity: .22; mix-blend-mode: overlay; }
+  .band-paper::before { opacity: .16; mix-blend-mode: multiply; }
+
+  .head { max-width: 1120px; margin: 0 auto; padding: 28px clamp(16px, 5vw, 64px) clamp(56px, 8vw, 104px); display: grid; grid-template-columns: 6fr 5fr; gap: clamp(28px, 5vw, 64px); align-items: end; }
+  .home { grid-column: 1 / -1; font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--paper); margin-bottom: clamp(32px, 6vw, 72px); }
+  .home span { color: var(--orange); margin-right: .35em; }
+  .home:hover { color: var(--orange); }
+  .kicker { font-family: var(--font-heading); font-style: italic; color: var(--orange); font-size: 1.1rem; }
+  h1 { margin-top: 12px; font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.8rem, 1.4rem + 5vw, 5.4rem); line-height: .98; letter-spacing: -.035em; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .sub { margin-top: 24px; max-width: 46ch; font-size: 1.15rem; color: var(--paper-dim); }
+  .byline { margin-top: 18px; font-size: .98rem; color: var(--paper-dim); }
+  .head-art { position: relative; }
+  .head-art video, .head-art img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; box-shadow: 0 40px 70px -28px rgba(0,0,0,.7); rotate: 1.5deg; background: var(--navy); }
+  .head-art figcaption { margin-top: 14px; font-size: .88rem; color: var(--paper-dim); font-style: italic; }
+
+  main .col { max-width: 720px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 32px) clamp(64px, 8vw, 112px); }
+  main h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.7rem); line-height: 1.08; letter-spacing: -.025em; margin: 1.9em 0 .6em; padding-top: .9em; border-top: 2px solid var(--ink); }
+  main h2:first-child { margin-top: 0; }
+  main h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1.4rem; letter-spacing: -.01em; margin: 1.6em 0 .4em; }
+  main p, main ul, main ol, main pre, main blockquote { margin-top: 1em; }
+  main p, main li { color: #22303f; }
+  main ul, main ol { padding-left: 1.3em; }
+  main li { margin-top: .45em; }
+  main li::marker { color: var(--rust); }
+  main a { color: var(--rust); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  main a:hover { color: var(--ink); }
+  main strong { color: var(--ink); }
+  main img, main video { display: block; width: 100%; height: auto; margin: 1.6em 0; border-radius: 6px; box-shadow: 0 1px 0 rgba(10,22,40,.2), 0 28px 50px -26px rgba(10,22,40,.55); background: var(--navy); }
+  main code { font: .84em var(--mono); background: rgba(10,22,40,.08); padding: .12em .38em; border-radius: 4px; overflow-wrap: anywhere; }
+  main pre { position: relative; isolation: isolate; background: var(--navy-deep); color: #e8dccb; border-radius: 6px; padding: 24px 26px; overflow-x: auto; font-size: .95rem; line-height: 1.6; }
+  main pre code { background: none; padding: 0; color: inherit; font-size: .88em; white-space: pre; overflow-wrap: normal; }
+  main pre.wrap code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  main hr { border: 0; border-top: 1px solid rgba(10,22,40,.2); margin: 2.4em 0; }
+
+  /* Added for this guide: same tokens as the kit */
+  figure { margin: 1.6em 0; }
+  figure img, figure video { margin: 0; }
+  figcaption { margin-top: 10px; font-size: .9rem; line-height: 1.5; color: var(--ink-dim); }
+  figcaption b { color: var(--ink); font-weight: 600; }
+  .toc { margin-top: 1.4em; padding: 20px 24px 20px 2.6em; border: 1px solid rgba(10,22,40,.2); border-radius: 6px; columns: 2; column-gap: 32px; }
+  .toc li { margin-top: .2em; break-inside: avoid; }
+  .copy-block { position: relative; margin-top: 1em; }
+  .copy-block pre { margin-top: 0; padding-top: 44px; }
+  .copy-label { position: absolute; top: 12px; left: 26px; z-index: 1; font: 600 .72rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--orange); }
+  .copy { position: absolute; top: 8px; right: 8px; z-index: 1; font: 600 .78rem/1 var(--font-body); padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(243,230,211,.35); background: rgba(243,230,211,.08); color: var(--paper); cursor: pointer; }
+  .copy:hover { background: var(--orange); border-color: var(--orange); color: var(--ink); }
+  .said { margin-top: 1em; padding: 16px 20px; border: 1px solid rgba(10,22,40,.16); background: rgba(255,255,255,.35); border-radius: 6px; }
+  .said small { display: block; font: 600 .78rem/1.4 var(--mono); letter-spacing: .01em; color: var(--rust); }
+  .said p { margin-top: 6px; font-style: italic; color: var(--ink); }
+  .said p + p { margin-top: 8px; }
+  .rounds { list-style: none; padding: 0 !important; margin-top: 1.4em; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 14px; }
+  .rounds li, .rounds figure { margin: 0; }
+  .rounds img { margin: 0; aspect-ratio: 16 / 9; object-fit: cover; box-shadow: 0 1px 0 rgba(10,22,40,.2), 0 14px 26px -18px rgba(10,22,40,.6); }
+  .rounds figcaption { margin-top: 6px; font-size: .82rem; }
+  .rounds .tag { font: 700 .72rem/1 var(--mono); color: var(--rust); margin-right: 4px; }
+  .rounds .win img { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 1.6em 0; }
+  .duo figure { margin: 0; }
+  .duo .label { display: inline-block; margin-bottom: 8px; font: 700 .74rem/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; background: var(--ink); color: var(--paper); }
+  .duo .label.bad { background: var(--rust); }
+  .duo .label.good { background: var(--orange); color: var(--ink); }
+  table { width: 100%; margin-top: 1.2em; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid rgba(10,22,40,.18); vertical-align: top; }
+  th { font-family: var(--font-heading); font-weight: 600; border-bottom: 2px solid var(--ink); }
+  td code { font-size: .8em; }
+  td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 1.4em; }
+  .opt { padding: 22px 22px 24px; border-radius: 6px; border: 1px solid rgba(10,22,40,.25); background: rgba(255,255,255,.4); }
+  .opt.best { background: var(--navy-deep); color: var(--paper); border-color: var(--navy-deep); }
+  .opt h3 { margin: 0; font-size: 1.3rem; }
+  .opt .price { margin-top: 2px; font: 600 .82rem/1.4 var(--mono); color: var(--rust); }
+  .opt.best .price { color: var(--orange); }
+  .opt p { margin-top: .7em; font-size: .98rem; }
+  .opt.best p { color: var(--paper-dim); }
+  .tweets { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 1.4em; }
+  .tweet { display: flex; flex-direction: column; border-radius: 8px; background: #fbf5ec; border: 1px solid rgba(10,22,40,.16); box-shadow: 0 18px 30px -24px rgba(10,22,40,.55); overflow: hidden; }
+  .tweet img { margin: 0; border-radius: 0; box-shadow: none; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; }
+  .tweet-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
+  .tweet-head { display: flex; justify-content: space-between; gap: 8px; font-size: .84rem; }
+  .tweet-head b { color: var(--ink); }
+  .tweet-head span { color: var(--ink-dim); white-space: nowrap; }
+  .tweet-body p { margin-top: 8px; font-size: .92rem; line-height: 1.5; color: var(--ink); }
+  .tweet-body a { margin-top: auto; padding-top: 12px; font-size: .86rem; font-weight: 600; }
+
+  .cta { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 64px); }
+  .cta h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.2rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .cta h2 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .cta p { margin-top: 16px; max-width: 52ch; color: var(--paper-dim); }
+  .cta-links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 14px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-orange { background: var(--orange); color: var(--ink); }
+  .btn-ghost { color: var(--paper); border: 1px solid rgba(243,230,211,.4); }
+  .btn:hover { filter: brightness(1.08); }
+
+  /* Signup: same markup and behavior as the homepage #free form */
+  .join { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 64px); }
+  .join h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.2rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .join h2 em { font-style: italic; font-weight: 400; color: var(--rust); }
+  .join .lede { margin-top: 16px; max-width: 56ch; color: var(--ink-dim); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .signup { margin-top: 28px; display: flex; gap: 8px; max-width: 480px; }
+  .signup input { flex: 1; min-width: 0; padding: 14px 18px; border-radius: 999px; border: 1px solid rgba(10,22,40,.35); background: rgba(255,255,255,.5); color: var(--ink); font: 1rem var(--font-body); }
+  .signup input::placeholder { color: var(--ink-dim); }
+  .btn-ink { background: var(--ink); color: var(--paper); border: 0; font: 600 1rem/1 var(--font-body); cursor: pointer; white-space: nowrap; }
+  .signup-status { margin-top: 12px; min-height: 1.4em; font-weight: 600; color: var(--ink); }
+  .signup-status.err { color: var(--rust); }
+  .signup.sent { display: none; }
+  .signup-note { margin-top: 12px; font-size: .9rem; color: var(--ink-dim); }
+
+  @media (max-width: 760px) {
+    .head { grid-template-columns: 1fr; }
+    .head-art { order: -1; }
+    .home { order: -2; }
+    body { font-size: 18px; }
+    .rounds { grid-template-columns: 1fr 1fr; }
+    .toc { columns: 1; }
+    .options, .tweets { grid-template-columns: 1fr; }
+    main pre { padding-left: 18px; padding-right: 18px; }
+    .copy-label { left: 18px; }
+  }
+  @media (max-width: 480px) {
+    .signup { flex-direction: column; }
+    .signup .btn-ink { padding: 14px 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<header class="band band-navy"><div class="head">
+  <a class="home" href="/"><span>&larr;</span>Kevin Magnan</a>
+  <div>
+    <p class="kicker">Free guide · you commented "hero"</p>
+    <h1>Make your homepage <em>move.</em></h1>
+    <p class="sub">The whole trick is a 5-second AI video playing behind a normal webpage. Three steps: one wide image, turn it into a 5-second video, and hand both to Claude Code. The clip cost me $2.31, and I loaded $20 of Higgsfield credit to start. Here are the exact prompts, the loop trick, and a bonus page for broken links.</p>
+    <p class="byline">By Kevin Magnan · @vibewithkevin</p>
+  </div>
+  <figure class="head-art">
+    <video class="auto" autoplay muted loop playsinline preload="auto" poster="img/poster.webp" aria-label="The kites hero from kevinjmagnan.com: a giant hand flies three robot kites over a hill while a small orange robot waves up at them">
+      <source src="img/hero-loop.mp4" type="video/mp4">
+    </video>
+    <figcaption>The live hero on kevinjmagnan.com, 4.6 seconds on a loop.</figcaption>
+  </figure>
+</div></header>
+
+<main class="band band-paper"><div class="col">
+
+<h2 id="what">1. What you're building</h2>
+<p>This is the hero on my homepage. A giant hand flies three kites (Claude, Grok Bot, and Codex) over a hill, and a little orange robot waves up at them. The kites bob, the tails flutter, and the headline rises in after a beat.</p>
+<p>Underneath, it's two layers. On top sits a normal HTML page with a headline and buttons. Behind it, a 4.6-second video plays on a loop. The video is the only AI part.</p>
+<img loading="lazy" src="img/site-home.webp" width="1200" height="750" alt="The kevinjmagnan.com homepage: the headline Stay ahead by building sits in the empty navy sky on the left, with the kites and the hand on the right">
+<h3>The stack</h3>
+<ul>
+<li><strong>Image:</strong> Codex's built-in image tool. ChatGPT's image model works too. No per-image charge.</li>
+<li><strong>Video:</strong> Seedance 2.5 image-to-video through the Higgsfield API. $2.31 for a 5-second clip at 720p.</li>
+<li><strong>Build:</strong> Claude Code (Opus 5.5) for the page, the loop fix, the robot fix, compression, and the checks. ffmpeg, a free video tool, does the video work underneath.</li>
+</ul>
+<p>Total paid spend for the hero and the 404 together: $4.62. Everything else ran on tools I already pay for.</p>
+<ol class="toc">
+<li><a href="#what">What you're building</a></li>
+<li><a href="#image">Step one: the image</a></li>
+<li><a href="#video">Step two: the video</a></li>
+<li><a href="#loop">The loop trick</a></li>
+<li><a href="#arm">The robot-arm fix</a></li>
+<li><a href="#build">Step three: the build</a></li>
+<li><a href="#notfound">The 404</a></li>
+<li><a href="#options">Free option vs best option</a></li>
+<li><a href="#gotchas">Gotchas</a></li>
+<li><a href="#credits">Where this came from</a></li>
+</ol>
+
+<h2 id="image">2. Step one: the image</h2>
+<p>Start with one wide image. Everything after this depends on it, so spend your rounds here.</p>
+<h3>The composition rule</h3>
+<p>Leave empty space where your headline goes. Every image prompt I ran carried this exact sentence:</p>
+<div class="copy-block"><span class="copy-label">The rule</span><pre class="wrap"><code>Keep the left 40 percent of the frame as calm empty navy sky with no objects, so website headline text can sit there.</code></pre></div>
+<p>Your headline and buttons go on top of that space. Busy art behind text is hard to read, and moving art behind text is worse. Keep that side calm, and repeat the sentence in every edit round.</p>
+
+<h3>Who wrote the prompts</h3>
+<p>I didn't type the image prompts. I gave direction in Claude Code, and Claude Code wrote the prompts and ran Codex in the background (<code>codex exec</code>), 2 to 5 minutes per image. Only have ChatGPT? Paste the same prompts there, download the image, and skip the "Save to ./…" line. Here's what my direction actually looked like, typos and all:</p>
+<div class="said"><small>Me in Claude Code · Sep 22, 4:12 PM</small><p>"I want a cool image like the claude robot controlled as a puppet to elicit the thinking of my controlling or managing AI. … help me expand my thinking here, waht are other images we could draw up to show off my design chops and show off the metaphor of controlling AI agents like a puppeteer controls the puppet"</p></div>
+<div class="said"><small>Me · 5:07 PM</small><p>"Can you match the codex blue and the grokbot logo not the grok logo. Web search it"</p></div>
+<div class="said"><small>Me · 5:36 and 5:37 PM</small><p>"One note about the image, the grok and codex icons are larger than the Claude one, make the other two smaller"</p><p>"In addition, maybe make the kite tails match the two other colors, right now they are the Claude colors"</p></div>
+<p>React to drafts in plain words, and let the agent turn your reaction into a prompt. Rough is fine.</p>
+
+<h3>The rounds</h3>
+<p>About six rounds from four concepts to the final frame. Here's what changed each time:</p>
+<ul class="rounds">
+<li><figure><img loading="lazy" src="img/round-A-kite-swarm.webp" width="640" height="360" alt="Round A: a swarm of small robot kites"><figcaption><span class="tag">A</span>Kite swarm. Claude said it looked like a baby mobile.</figcaption></figure></li>
+<li class="win"><figure><img loading="lazy" src="img/round-B-kite-few.webp" width="640" height="360" alt="Round B: three robot kites on strings from a giant hand"><figcaption><span class="tag">B</span>Three kites. The one I picked.</figcaption></figure></li>
+<li><figure><img loading="lazy" src="img/round-C-loom.webp" width="640" height="360" alt="Round C: robots weaving threads like a loom"><figcaption><span class="tag">C</span>Loom. Too busy.</figcaption></figure></li>
+<li><figure><img loading="lazy" src="img/round-D-procession.webp" width="640" height="360" alt="Round D: a line of marionette robots walking a hill"><figcaption><span class="tag">D</span>Procession. Claude's first pick.</figcaption></figure></li>
+<li><figure><img loading="lazy" src="img/round-B2-trio-characters.webp" width="640" height="360" alt="Round B2: the kites get Grok and Codex faces"><figcaption><span class="tag">B2</span>Kites get characters: Grok and Codex faces.</figcaption></figure></li>
+<li><figure><img loading="lazy" src="img/round-B3-trio-logos.webp" width="640" height="360" alt="Round B3: plain diamond kites with logos"><figcaption><span class="tag">B3</span>Logo diamond kites. Lost to B2.</figcaption></figure></li>
+<li><figure><img loading="lazy" src="img/round-B4-robots-true-icons.webp" width="640" height="360" alt="Round B4: robot kites built from the real app icons"><figcaption><span class="tag">B4</span>Real app icons passed in as reference images.</figcaption></figure></li>
+<li class="win"><figure><img loading="lazy" src="img/round-B5-shaped-true-icons.webp" width="640" height="360" alt="Round B5: a dome kite and a cloud kite shaped like the app icons"><figcaption><span class="tag">B5</span>Kites shaped like the icons. The winner.</figcaption></figure></li>
+<li><figure><img loading="lazy" src="img/round-B6-final-still.webp" width="640" height="360" alt="Round B6: fix pass with more space between kites"><figcaption><span class="tag">B6</span>Fix pass: tilted Grok eyes, even sizes, more sky between kites.</figcaption></figure></li>
+<li><figure><img loading="lazy" src="img/round-B7-final-still.webp" width="640" height="360" alt="Round B7: smaller Grok and Codex kites with matching tails"><figcaption><span class="tag">B7</span>Smaller Grok and Codex kites, tails recolored to match.</figcaption></figure></li>
+<li class="win"><figure><img loading="lazy" src="img/final-still.webp" width="640" height="360" alt="The final still at 1920 by 1080"><figcaption><span class="tag">Final</span>B7 resized to 1920x1080. This frame went to Seedance.</figcaption></figure></li>
+</ul>
+<p>Claude ranked the procession first. I picked the kites anyway. Make drafts you can react to, then trust your gut over the ranking.</p>
+
+<h3>The prompt for the final round</h3>
+<p>Every edit round used the same shape: keep everything identical, then a numbered list of only the changes. This is B7, verbatim:</p>
+<div class="copy-block"><span class="copy-label">Codex · round B7</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Generate an image. Edit this image and keep everything identical: style, grain, colors, the hand, strings, clouds, hill, small robot, positions, and the empty left 40 percent. Make only these changes: 1) The orange Claude kite at the top is the size reference. Shrink the silver Grok Bot dome kite (middle) by about 10 percent and the blue-violet Codex cloud kite (bottom) by about 20 percent, so all three kites have the same overall width and height. Keep each kite in the same position, attached to its string. 2) Recolor the ribbon tails to match each kite: the Claude kite keeps its orange tails; the Grok Bot kite gets silver-white and charcoal tails; the Codex kite gets tails in its blue-to-violet gradient. Keep the same ribbon shape, length, and engraved print texture. Landscape 16:9. No text or words. Save the final image to ./B7-final-still.png</code></pre></div>
+<p>The model over-shrank the two kites (they came out 20 to 25% smaller). I kept it. Claude's kite reads as the lead agent now, which fits the metaphor.</p>
+
+<h3>Start your own: the first-round template</h3>
+<p>Round one sent four scenes at once, each with the same style block and a reference image, so every draft lived in the same world. Swap in your scene and your style:</p>
+<div class="copy-block"><span class="copy-label">Codex · first-round prompt</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Generate an image. [Your scene in two or three sentences.] Match the reference image exactly in style: [your style words]. Landscape 16:9, wider than tall. Keep the left 40 percent of the frame as calm empty sky with no objects, so website headline text can sit there. No text, no logos. Save the final image to ./draft-a.png</code></pre></div>
+
+<h3>What worked in the prompts</h3>
+<ul>
+<li><strong>Edits only list the changes.</strong> "Keep everything identical … Make only these changes: 1) 2) 3)."</li>
+<li><strong>Number your reference images.</strong> "Image 1 is the scene to edit. Image 2 is the Grok Bot app icon. Image 3 is the Codex app icon."</li>
+<li><strong>Pass the real logo as an image.</strong> Describing "the Grok logo" got the wrong mark. Claude pulled the actual app icons off my Mac and passed them in, and that fixed it.</li>
+<li><strong>"No text or words" in every prompt.</strong> Image models love to add a fake headline.</li>
+<li><strong>Give moving things room.</strong> B6 asked for clear sky around each kite, so they could bob in the video without overlapping.</li>
+</ul>
+
+<h2 id="video">3. Step two: the video</h2>
+<p>One still is enough. I asked Claude Code whether I needed extra frames to guide the animation. Its answer set up the loop trick:</p>
+<div class="said"><small>Claude Code · Sep 22, 5:18 PM</small><p>"You need only one still: the finished kite image. Seedance handles the rest. Use that same still as both the first and last frame, and the clip loops by design."</p></div>
+<h3>The prompt</h3>
+<p>Seedance 2.5 image-to-video: 5 seconds, 720p, no audio, and the same still as the first and the last frame. Here's my exact prompt:</p>
+<div class="copy-block"><span class="copy-label">Seedance · hero prompt</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Three kites bob gently in a steady breeze, each on its own rhythm. Ribbon tails ripple and flutter. Strings sway slightly. Midway through, the small orange robot on the hill raises one arm, waves up at the kites twice, and lowers its arm back to its starting pose. The hand, clouds, and hill stay completely still. Locked camera, no zoom, no pan.</code></pre></div>
+<ul>
+<li><strong>Same still as the first and last frame.</strong> The clip has to end where it started.</li>
+<li><strong>Say what moves:</strong> kites bob, tails ripple, strings sway, the robot waves.</li>
+<li><strong>Say what stays still:</strong> the hand, the clouds, the hill.</li>
+<li><strong>Lock the camera:</strong> "Locked camera, no zoom, no pan."</li>
+</ul>
+<p>Why one wave instead of a dance? A wave ends back in the starting pose, so it loops. (And the robot is about 40 pixels tall at 720p, so a dance would be wasted anyway.)</p>
+<figure>
+  <video class="auto" autoplay muted loop playsinline preload="metadata" poster="img/poster.webp" aria-label="The raw Seedance clip: kites bob, and the robot raises a distorted arm">
+    <source src="img/seedance-raw.mp4" type="video/mp4">
+  </video>
+  <figcaption><b>Raw Seedance output,</b> 1280x720, 5.04 seconds. Watch the robot on the right. We'll fix that arm in section 5.</figcaption>
+</figure>
+
+<h3>Getting the clip from Higgsfield</h3>
+<p>Higgsfield has a pay-as-you-go API, separate from the app membership. You don't need to learn it. Go to Higgsfield's API platform (it's separate from the app), make an API key, and add credit. The key is a password that lets Claude Code use your account. Paste it to Claude Code once and ask it to store it safely, then hand it the rest. My first submit came back <code>not_enough_credits</code> (no charge), so I topped up $20. My clip came back in about 5 minutes.</p>
+<div class="copy-block"><span class="copy-label">Paste into Claude Code</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Use the Higgsfield API to animate ./hero-still.png with Seedance 2.5 image-to-video. Use the Higgsfield key I gave you, keep it saved somewhere safe on my computer, and never show it on screen. First, call the free estimate endpoint and tell me the price before you spend anything. Then upload the still and submit a 5-second, 720p clip with no audio, using the same image as the first and last frame, with this prompt: [your motion prompt]. Poll until it finishes and save the video as ./seedance-raw.mp4.</code></pre></div>
+<p><strong>Gotcha:</strong> skip the Higgsfield CLI. It logs in through your browser and spends app-plan credits. My free plan had 10 credits, and this clip cost 35. The API key draws on its own prepaid balance.</p>
+<p>Seedance and Kling both work well for this. I used Seedance.</p>
+
+<h3>The receipts</h3>
+<p>Higgsfield's free estimate put a 5-second, 720p clip at <strong>$2.31</strong>, and that's what it charged. My balance went from $20.00 to $17.69 after the hero and $15.38 after the 404.</p>
+<table>
+<tr><th>Setting</th><th>Cost per clip</th></tr>
+<tr><td>480p, 5 seconds</td><td class="num">$1.03</td></tr>
+<tr><td>720p, 5 seconds (what I ran)</td><td class="num">$2.31</td></tr>
+<tr><td>720p, 8 seconds</td><td class="num">$3.70</td></tr>
+</table>
+<p>My reaction at the time: "damn $2.31 isnt nothing." Get the free estimate first, and check the settings and prompt before you pay.</p>
+
+<h2 id="loop">4. The loop trick</h2>
+<p>Same first and last frame gets you close, but you can still see a small jump.</p>
+<p>Claude Code measured the seam by scoring how alike the first and last frames are (1.0 means identical). The raw clip scored 0.902, which shows up as a small jump every 5 seconds.</p>
+<p>The fix is a crossfade: blend the last half second into the first half second. The loop gets shorter (5.04 down to 4.58 seconds), and the seam score goes up to 0.959. I can't spot the jump anymore.</p>
+<h3>Lock what shouldn't move</h3>
+<p>720p looks soft at full screen. So Claude Code upscaled the clip to 1080p and pasted the sharp still back over everything that should stay still, through a feathered mask: the headline sky on the left, the hill, and the clouds on the right. Only the kites come from the video, and the headline area never shimmers.</p>
+<div class="duo">
+  <figure><img loading="lazy" src="img/final-still.webp" width="640" height="360" alt="The final still"><figcaption>The sharp still.</figcaption></figure>
+  <figure><img loading="lazy" src="img/lock-mask.webp" width="640" height="360" alt="The lock mask: white on the left, top right, and along the bottom; black over the kites"><figcaption>The mask. White uses the still, black uses the video.</figcaption></figure>
+</div>
+
+<p>You won't do either fix by hand. The build prompt in section 6 tells Claude Code to check the seam and lock the still parts for you.</p>
+
+<h2 id="arm">5. The robot-arm fix</h2>
+<p>Seedance mangled the robot's arm. In the still, the arm is a tiny nub, so the model had to invent one, and it invented a big one.</p>
+<div class="said"><small>Me · Sep 22, 8:37 PM</small><p>"the issue is the robots hand got distorted and its too big. probably because the image in the picture doesnt show the robots hand so seedance has to make it up. how can we work on this without spending more API calls and money"</p></div>
+<div class="duo">
+  <figure><span class="label bad">Seedance raw</span>
+    <video class="auto" autoplay muted loop playsinline preload="metadata" aria-label="Close-up of the raw clip: the robot raises a long, distorted arm"><source src="img/arm-raw.mp4" type="video/mp4"></video>
+  </figure>
+  <figure><span class="label good">Claude Code fix</span>
+    <video class="auto" autoplay muted loop playsinline preload="metadata" aria-label="Close-up of the fixed clip: the robot waves a small blocky arm in stop-motion steps"><source src="img/arm-fixed.mp4" type="video/mp4"></video>
+  </figure>
+</div>
+<p>I described the problem (my message above) and asked for a fix that cost nothing extra. Claude Code did all of this in about 6 minutes, for $0:</p>
+<ol>
+<li><strong>Freeze the robot.</strong> Paste the robot from the still over every frame through a feathered box mask. Now it can't distort.</li>
+<li><strong>Draw the wave.</strong> Crop the robot out of the still, scale it up 4x, and have Codex draw three arm poses: half raised, straight up, and tilted out.</li>
+<li><strong>Cut out each pose.</strong> A color mask (saturated orange counts as robot), a feathered edge, and the patch goes back at the robot's exact spot.</li>
+<li><strong>Flip through the poses</strong> at about 6 per second, between 1.5 and 3.5 seconds: half, up, tilt, up, tilt, up, half, rest.</li>
+</ol>
+<img loading="lazy" src="img/poses-sheet.webp" width="1200" height="255" alt="Four crops of the robot: the rest pose, then arm half raised, straight up, and tilted out">
+<p>It moves in steps, like stop-motion. For a blocky toy robot, that's the right look. The pose prompts all shared this prefix:</p>
+<div class="copy-block"><span class="copy-label">Codex · pose edit</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Generate an image. Edit this image. It is a close crop of a small orange blocky cube robot standing on a dark hill in front of engraved clouds. Keep everything identical: the exact same framing, background, clouds, hill, lighting, print texture, robot body position, size, legs, and face. Change only the robot's arm on the left side of the image. The arm stays small and blocky, the same thickness as the robot's legs, made of two short orange blocks. Do not make it long or add a hand; the end of the arm is a plain square block. Output the same aspect ratio as the input.
+
+Pose: the arm is raised straight up above the robot's head, waving at the sky.</code></pre></div>
+<p>Anything you want animated has to be clearly visible in the still.</p>
+
+<h2 id="build">6. Step three: the build</h2>
+<p>Hand the clip to Claude Code. Here's what I actually said:</p>
+<div class="said"><small>Me in Claude Code · Sep 22, 8:47 PM</small><p>"I'm super happy with this. now lets package it up for a hero image on a website, with text to populate after a short delay, like a nice appear effect. and then move into the rest of the website."</p></div>
+<p>That was enough because my session already had all the context. You're starting fresh, so paste this instead. It's everything my session ended up doing, in one prompt. You don't need to understand a word of it. It's written for Claude Code, so paste it as-is:</p>
+<div class="copy-block"><span class="copy-label">Paste into Claude Code</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>I have a 5-second looping video (clip.mp4) and the still image it was made from (still.png). Build a hero section for my homepage with the clip playing behind the page.
+
+1. Loop: compare the first and last frames with ffmpeg SSIM. If there's a visible jump, crossfade the last 0.5 seconds into the first 0.5 seconds with xfade.
+2. Sharpness: upscale to 1080p and overlay the sharp still through a feathered mask on every region that shouldn't move, especially the empty side where the headline goes. Only the moving parts should come from the video.
+3. Compress with ffmpeg, no audio, +faststart: a 1080p H.264 mp4 and a VP9 webm for desktop, a 720p mp4 for phones. Aim for under 700 KB each.
+4. Poster: export the first frame as a webp at 1920 and 960 wide. Use it as a real &lt;img&gt; with srcset behind the video, and preload it with fetchpriority="high".
+5. Video tag: autoplay muted loop playsinline. Pause it when it scrolls off screen or the tab is hidden.
+6. Text: put the headline and buttons in the empty side of the art with a soft dark gradient behind them. After 1.2 seconds, reveal each line in turn: rise 14px, fade in, and un-blur from 6px over 0.9s, 160ms apart. Start them at opacity .01, not 0, so PageSpeed still finds an LCP element.
+7. Reduced motion: if the visitor prefers reduced motion, hide the video, show the poster, and show the text without animating it.
+8. Phones: give the art its own band at the top and put the copy below it on a solid background.
+9. Check your work: serve it locally, screenshot it at 1440 and 390 wide with headless Chrome, look at the screenshots, and fix anything off before you show me.</code></pre></div>
+
+<p>No site yet? Ask Claude Code to build the whole homepage around the hero. Already on a site builder? Give Claude Code the finished files and ask how to add a background video on your platform.</p>
+<p>The 1.2-second delay gives the kites a moment alone before the words show up.</p>
+<p>The finished hero is small. A desktop visitor loads about 380 KB for the whole moving hero, and a phone loads about 310 KB. The raw Seedance clip was 1.9 MB.</p>
+
+<h2 id="notfound">7. The 404</h2>
+<p>This one's my favorite. Hit a broken link on my site and you land in a field where a giant kite crashed long ago. The camera pushes through the flowers toward it, then drifts back.</p>
+<figure>
+  <video class="auto" autoplay muted loop playsinline preload="metadata" poster="img/lost-kite-poster.webp" aria-label="The 404 scene: the camera glides through out-of-focus wildflowers toward a giant fallen kite and a small orange robot">
+    <source src="img/lost-kite.mp4" type="video/mp4">
+  </video>
+  <figcaption><b>The 404 loop,</b> 10 seconds: 5 forward, 5 in reverse.</figcaption>
+</figure>
+<p>The idea came from @DesignByMoein's post (it's in section 10). Here's what I told Claude Code after showing it the post:</p>
+<div class="said"><small>Me · Sep 24, 9:57 PM</small><p>"See how much more lively and extravagent the scenary is than our hero image? I would like to go that route"</p></div>
+<p>So I dropped the print style for a bright 3D-film look and kept only the robot. A 404 has barely any text, so I could pack a lot more into the scene. It still keeps the upper-left third calm for the big "404."</p>
+<h3>The image</h3>
+<div class="copy-block"><span class="copy-label">Codex · 404 image</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Use your built-in image generation tool to create ONE image and save it as ./fallen-kite-404-v1.png in this folder. Do not write code; just generate and save the image.
+
+The attached image is ONLY a reference for the character: the small orange cube robot standing on the hill (blocky body, simple face, short legs). Keep that robot design, but render it in the new style below. Do not copy anything else from the attached image.
+
+Scene (wide cinematic 16:9 landscape, very detailed, vivid, lively):
+A giant diamond-shaped kite that crashed here long ago lies tilted in a lush green meadow at warm golden hour. It is enormous, as big as a house, its fabric faded and patched, its wooden spars weathered, overgrown with climbing vines, moss, and wildflowers. Its long ribbon tail, also overgrown, winds away across the rolling hills into the distance. The small orange cube robot stands in the grass in front of it, tiny by comparison, looking up at it.
+
+Style: stylized high-detail 3D animated-film look, rich saturated color, bright blue sky with huge sculpted white cumulus clouds, soft distant blue mountains, a few birds. The foreground is packed with tall grass and red, orange, pink, and white wildflowers, strongly out of focus (shallow depth of field), framing the bottom of the image. Sharp focus on the kite and robot in the middle distance. Joyful, adventurous, peaceful.
+
+Composition: place the kite and robot in the right 60% of the frame. Keep the upper-left third calmer (sky, clouds, distant hills) so large text can sit there later. No text, letters, logos, or watermarks anywhere in the image.</code></pre></div>
+<div class="duo">
+  <figure><span class="label bad">v1</span><img loading="lazy" src="img/404-v1.webp" width="800" height="450" alt="404 image v1: the fallen kite has two dark square holes and looks like a house"><figcaption>Two dark squares on the kite. It read as a house, or a face.</figcaption></figure>
+  <figure><span class="label good">v2</span><img loading="lazy" src="img/404-v2.webp" width="800" height="450" alt="404 image v2: the kite is a clean patched diamond with crossed spars"><figcaption>One edit: "Change only the giant kite so it clearly reads as a kite."</figcaption></figure>
+</div>
+<p>The blurry flowers in the foreground are on purpose. They give the camera something to move through, and the blur hides 720p softness.</p>
+<h3>The video: a camera move with no end frame</h3>
+<p>The hero locks the camera. The 404 moves it. A dolly shot can't end where it started, so this one sends a first frame only, with no last frame. Same 5 seconds, 720p, no audio, and another $2.31.</p>
+<div class="copy-block"><span class="copy-label">Seedance · 404 prompt</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Slow cinematic dolly forward and slightly to the right, low to the ground, gliding through the out-of-focus wildflowers in the foreground toward the giant fallen kite and the small orange robot. Parallax: foreground flowers pass by faster than the kite and hills. Gentle breeze: grass and flowers sway softly, the kite's ribbon tail lifts slightly, two birds drift across the sky. The kite, the robot, and the landscape stay in place; only the camera moves. Warm golden-hour light, smooth and steady, no cuts.</code></pre></div>
+<h3>The ping-pong loop</h3>
+<p>Have Claude Code play it forward, then backward. That gives you 10 seconds with no seam.</p>
+<p>Shipped sizes: 2.2 MB for the webm, 2.8 MB for the mp4. Only lost visitors ever load it.</p>
+<h3>Make it a real 404</h3>
+<p>A good-looking 404 page still has to return the right status code, or search engines index your error page as a real one. Ask Claude Code to show this page for every broken link and tell Google it's an error page, then test it with a made-up link. On my site it was a one-line fix.</p>
+<img loading="lazy" src="img/site-404.webp" width="1200" height="750" alt="The live 404 page: a big 404, the line This page flew off, and a button back home, over the fallen kite scene">
+<p>The copy came from Claude: "404. This page flew off. Let's get you home."</p>
+
+<h2 id="options">8. Free option vs best option</h2>
+<div class="options">
+  <div class="opt">
+    <h3>Free</h3>
+    <p class="price">Claude Code + CSS · $0</p>
+    <p>Skip the video. Have Claude Code animate your text and a few page elements in CSS. It looks really good, and I've done it on a few other sites.</p>
+  </div>
+  <div class="opt best">
+    <h3>Best</h3>
+    <p class="price">Image + Seedance + Claude Code · about $2.30</p>
+    <p>Codex for the still, Seedance for the motion, and Claude Code for the loop, the fixes, the compression, and the page. Everything in sections 2 through 6.</p>
+  </div>
+</div>
+<p>For the free route, start with this:</p>
+<div class="copy-block"><span class="copy-label">Paste into Claude Code</span><button class="copy" type="button">Copy</button><pre class="wrap"><code>Animate my homepage hero with CSS only, no video. After a short delay, reveal the headline, tagline, and buttons one line at a time: each rises, fades in, and un-blurs, about 160ms apart. Add slow, subtle motion to one or two background elements. Turn every animation off for visitors who prefer reduced motion. Then screenshot it at 1440 and 390 wide and fix anything that looks off.</code></pre></div>
+
+<h2 id="gotchas">9. Gotchas</h2>
+<ol>
+<li><strong>Video models invent what they can't see.</strong> If a body part is hidden in the still, the model makes one up. Show it clearly, or plan to patch it like the robot arm.</li>
+<li><strong>Same first and last frame still leaves a small jump.</strong> A 0.5-second crossfade hides it.</li>
+<li><strong>720p is soft at full screen.</strong> Lock everything that doesn't move to the sharp still.</li>
+<li><strong>Camera moves can't use an end frame.</strong> Send the first frame only and ping-pong the clip.</li>
+<li><strong>The Higgsfield CLI and API bill separately.</strong> The CLI spends app credits, and the API key spends a prepaid balance. Check the free estimate before you pay.</li>
+<li><strong>Image models over-correct sizes.</strong> "Shrink by about 10%" came out closer to 20%. Ask for less than you want.</li>
+<li><strong>Describing a logo gets you the wrong logo.</strong> Pass the real icon as a numbered reference image.</li>
+<li><strong>Phones crop the art.</strong> On a phone, my robot and most of the hand fall outside the frame, so the wave only shows on desktop. A proper phone version needs a vertical crop and one more paid run. I haven't done it.</li>
+<li><strong>Text that starts fully invisible can tank your Google speed score.</strong> The build prompt already handles it. My phone score went from 67 to 89.</li>
+</ol>
+
+<h2 id="credits">10. Where this came from</h2>
+<p>I'd been saving sites like these on X for months before I built mine. These are the posts that pushed me to finally do it. Go follow these people.</p>
+<div class="tweets">
+  <article class="tweet">
+    <img loading="lazy" src="img/trevornoah-books.webp" width="560" height="420" alt="Still from the post video: a 3D book interaction recreated in Three.js">
+    <div class="tweet-body">
+      <div class="tweet-head"><b>@MengTo</b><span>Jul 29, 2026</span></div>
+      <p>"I keep seeing the same pattern with Three.js games, shaders, p5.js, and now 3D UI. Give a coding agent a strong reference, the live URL, and the source repo. It can study the mechanics, recreate them, and give you a working place to experiment."</p>
+      <a href="https://x.com/MengTo/status/2082265920173711530" target="_blank" rel="noopener">View on X &rarr;</a>
+    </div>
+  </article>
+  <article class="tweet">
+    <img loading="lazy" src="img/iamtanzil-hero.webp" width="560" height="389" alt="Still from the post video: an animated hero section">
+    <div class="tweet-body">
+      <div class="tweet-head"><b>@iamtanzil_</b><span>Aug 5, 2026</span></div>
+      <p>"Another cool hero section. Try the prompt yourself"</p>
+      <a href="https://x.com/iamtanzil_/status/2084864298615218473" target="_blank" rel="noopener">View on X &rarr;</a>
+    </div>
+  </article>
+  <article class="tweet">
+    <img loading="lazy" src="img/kage.webp" width="560" height="420" alt="Still from the post video: the Kage landing page, a 3D Japanese temple scene">
+    <div class="tweet-body">
+      <div class="tweet-head"><b>@MengTo</b><span>Aug 8, 2026</span></div>
+      <p>"I open-sourced the Kage landing page and the three.js skills behind it. … For a site where every section scrolls through a 3D world, that's surprisingly good."</p>
+      <a href="https://x.com/MengTo/status/2086023649526452265" target="_blank" rel="noopener">View on X &rarr;</a>
+    </div>
+  </article>
+  <article class="tweet">
+    <img loading="lazy" src="img/moein-404.webp" width="560" height="302" alt="Still from the post video: a 404 page over a meadow with a giant overgrown wreck">
+    <div class="tweet-body">
+      <div class="tweet-head"><b>@DesignByMoein</b><span>Aug 9, 2026</span></div>
+      <p>"Every page needs to be designed! Even 404! Built by GPT + My Video builder (Not Higgsfield) + Cursor + My Custom Skills"</p>
+      <a href="https://x.com/DesignByMoein/status/2086309461061505136" target="_blank" rel="noopener">View on X &rarr;</a>
+    </div>
+  </article>
+  <article class="tweet">
+    <img loading="lazy" src="img/opus5-butterfly.webp" width="560" height="420" alt="Still from the post video: a Three.js landing page with branches and a butterfly">
+    <div class="tweet-body">
+      <div class="tweet-head"><b>@MengTo</b><span>Aug 17, 2026</span></div>
+      <p>"I'm blown away by the quality of the landing pages that Opus 5 can create in Three.js. Prompting it with "orbit using mouse" is enough to create a 3D parallax effect."</p>
+      <a href="https://x.com/MengTo/status/2089252548473688076" target="_blank" rel="noopener">View on X &rarr;</a>
+    </div>
+  </article>
+  <article class="tweet">
+    <img loading="lazy" src="img/pengzheng-clay.webp" width="560" height="428" alt="Still from the post video: a personal site with a row of 3D clay dioramas of places">
+    <div class="tweet-body">
+      <div class="tweet-head"><b>@pengzheng_</b><span>Aug 30, 2026</span></div>
+      <p>"my personal website updates itself every time i go somewhere. i text my Grok Bot a photo of the place. it turns it into a 3D clay diorama, makes day + night versions, and pushes it live to my homepage in 2 minutes."</p>
+      <a href="https://x.com/pengzheng_/status/2094115772838903817" target="_blank" rel="noopener">View on X &rarr;</a>
+    </div>
+  </article>
+</div>
+<hr>
+<p>Leave the empty space, lock the camera, and let Claude Code do the fiddly parts. Then send me what you build.</p>
+<p>Kevin</p>
+
+</div></main>
+
+<section class="band band-paper" aria-labelledby="join-title"><div class="join">
+  <h2 id="join-title">Want the next <em>one?</em></h2>
+  <p class="lede">Join the list and I'll send you my free kit, <em>Don't Start From Zero</em>: the GitHub repos, skills, and plugins I actually use. New guides like this one land in the same inbox.</p>
+  <form class="signup" id="kit-form" novalidate>
+    <label for="kit-email" class="sr">Email address</label>
+    <input id="kit-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+    <input class="hp" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-ink" type="submit">Send me the kit</button>
+  </form>
+  <p class="signup-status" id="kit-status" role="status" aria-live="polite"></p>
+  <p class="signup-note">Unsubscribe anytime.</p>
+</div></section>
+
+<section class="band band-navy"><div class="cta">
+  <h2>Built something with <em>this?</em></h2>
+  <p>Show me. Tag me on TikTok, where I post what I'm building.</p>
+  <div class="cta-links">
+    <a class="btn btn-orange" href="https://www.tiktok.com/@vibewithkevin" target="_blank" rel="noopener">Follow @vibewithkevin</a>
+    <a class="btn btn-ghost" href="/kit/">Read the free kit</a>
+    <a class="btn btn-ghost" href="/">Back to kevinjmagnan.com</a>
+  </div>
+</div></section>
+
+<script>
+  // Copy buttons on the code blocks.
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var code = btn.parentNode.querySelector("pre code");
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(code.innerText).then(done, function () { btn.textContent = "Select and copy"; });
+    });
+  });
+  // Play the demo clips only while they're on screen. With reduced motion, show controls and don't autoplay.
+  (function () {
+    var vids = document.querySelectorAll("video.auto");
+    var calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    vids.forEach(function (v) {
+      if (calm) { v.removeAttribute("autoplay"); v.pause(); v.controls = true; }
+    });
+    if (calm || !("IntersectionObserver" in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !document.hidden) e.target.play().catch(function () {}); else e.target.pause();
+      });
+    }, { rootMargin: "200px 0px" });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+</script>
+<script>
+(() => {
+  const form = document.getElementById("kit-form");
+  const status = document.getElementById("kit-status");
+  if (!form) return;
+  const say = (msg, err) => { status.textContent = msg; status.classList.toggle("err", !!err); };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("That email doesn't look right. Check it and try again.", true); form.email.focus(); return; }
+    const btn = form.querySelector("button");
+    btn.disabled = true; say("Sending...");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, company: form.company.value }),
+      });
+      if (res.ok) { form.classList.add("sent"); say("You're in. Check your inbox for the kit."); return; }
+      say(res.status === 400 ? "That email doesn't look right. Check it and try again." : "Something went wrong on my end. Try again in a minute.", true);
+    } catch { say("Something went wrong on my end. Try again in a minute.", true); }
+    btn.disabled = false;
+  });
+})();
+</script>
+</body>
+</html>
