@@ -142,11 +142,11 @@
 
 <h2 id="prompt">1. The prompt</h2>
 <p>Open Claude Code in your project folder and paste this in. It tests one call on both versions before it switches anything.</p>
-<div class="copy-block"><span class="copy-label">Paste into Claude Code</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>Find every place in this project that calls TypeSafe's Jev API. Pick one call and run it with the same input on jev-1.13.0 and on jev-1.14.0, and show me anything that changed. Then switch every call to the model jev-1.14.0 and send these two headers on every request: TypeSafe-Danger-Zone-Images: true and TypeSafe-Danger-Zone-Long-Context: true. If my code compares Jev's numbers to a cutoff, run my test cases on both versions and show me what moved before you change any cutoff.</code></pre></div>
+<div class="copy-block"><span class="copy-label">Paste into Claude Code</span><button class="copy" type="button">Copy prompt</button><pre class="wrap"><code>Find every place in this project that calls TypeSafe's Jev API. Before you change anything, pick one call and run it with the same input on jev-1.13.0 and on jev-1.14.0, and show me anything that changed. If my code compares Jev's numbers to a cutoff, also run my test cases on both versions and show me what moved. Then switch every call to the model jev-1.14.0, and ask me before you change any cutoff. Send TypeSafe-Danger-Zone-Images: true only on requests that include an image or a Box question, and TypeSafe-Danger-Zone-Long-Context: true only on requests that can go over 64,000 tokens.</code></pre></div>
 <p class="hint">Swap in your own project. If you don't use Claude Code, the same steps work by hand.</p>
 
 <h2 id="settings">2. The two settings</h2>
-<p>TypeSafe calls these "danger zone" settings. Your app sends them as headers on each request.</p>
+<p>TypeSafe calls these "danger zone" settings. Your app sends them as headers, only on the requests that need them.</p>
 <div class="cards">
   <div class="card">
     <h3><code>TypeSafe-Danger-Zone-Images: true</code></h3>
@@ -172,7 +172,7 @@
 </ol>
 
 <h2 id="test">4. Test one call first</h2>
-<p>TypeSafe's CEO, Diogo Almeida, said 1.14 is much smarter but should be very hard to notice. The tool that grades my TikTok scripts noticed. On 1.14 it still caught every bad example, and it also flagged two of my best scripts. My cutoffs were tuned to the old version.</p>
+<p>TypeSafe calls 1.14 "small, subtle improvements to everything" and says most things should be a tiny bit better. The tool that grades my TikTok scripts noticed. On 1.14 it still caught every bad example, and it also flagged two of my best scripts. My cutoffs were tuned to the old version.</p>
 <p>If your app compares Jev's numbers to a cutoff, run your test cases on both versions before you switch. The prompt above does that for you.</p>
 
 <div class="sources">
@@ -212,20 +212,12 @@
 </div></section>
 
 <script>
-  // Copy button on the prompt. Falls back to selecting the text if the clipboard API is blocked.
+  // Copy button on the prompt.
   document.querySelectorAll(".copy").forEach(function (btn) {
-    var label = btn.getAttribute("data-label") || "Copy";
     btn.addEventListener("click", function () {
       var code = btn.parentNode.querySelector("pre code");
-      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1800); };
-      var fallback = function () {
-        var r = document.createRange(); r.selectNodeContents(code);
-        var s = getSelection(); s.removeAllRanges(); s.addRange(r);
-        var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
-        s.removeAllRanges();
-        if (ok) done(); else btn.textContent = "Select and copy";
-      };
-      if (navigator.clipboard) navigator.clipboard.writeText(code.innerText).then(done, fallback); else fallback();
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy prompt"; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(code.innerText).then(done, function () { btn.textContent = "Select and copy"; });
     });
   });
 </script>
