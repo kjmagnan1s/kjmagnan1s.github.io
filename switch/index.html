@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upgrade Your Jev Calls to 1.14 · Kevin Magnan</title>
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#071a31">
+<meta name="description" content="The prompt from my video that moves your Jev calls to 1.14 with images and long context on, plus what I learned testing it.">
+<meta property="og:title" content="Upgrade your Jev calls to 1.14, with images and long context on">
+<meta property="og:description" content="The prompt from my video that moves your Jev calls to 1.14 with images and long context on, plus what I learned testing it.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://kevinjmagnan.com/switch/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2340; --navy-deep: #071a31; --paper: #f3e6d3; --paper-dim: #cdbfae;
+    --orange: #e0662a; --rust: #a8431a; --ink: #0a1628; --ink-dim: #3b4a5e;
+    --font-heading: "Fraunces", Georgia, serif; --font-body: "Source Serif 4", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 19px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  ::selection { background: var(--orange); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+  .band { position: relative; isolation: isolate; }
+  .band::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); }
+  .band-navy { background: var(--navy-deep); color: var(--paper); }
+  .band-navy::before { opacity: .22; mix-blend-mode: overlay; }
+  .band-paper::before { opacity: .16; mix-blend-mode: multiply; }
+
+  .head { max-width: 1120px; margin: 0 auto; padding: 28px clamp(16px, 5vw, 64px) clamp(56px, 8vw, 104px); }
+  .home { display: inline-block; font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--paper); margin-bottom: clamp(32px, 6vw, 72px); }
+  .home span { color: var(--orange); margin-right: .35em; }
+  .home:hover { color: var(--orange); }
+  .kicker { font-family: var(--font-heading); font-style: italic; color: var(--orange); font-size: 1.1rem; }
+  h1 { margin-top: 12px; max-width: 16ch; font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.6rem, 1.4rem + 4.4vw, 5rem); line-height: .98; letter-spacing: -.035em; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .sub { margin-top: 24px; max-width: 52ch; font-size: 1.15rem; color: var(--paper-dim); }
+  .byline { margin-top: 18px; font-size: .98rem; color: var(--paper-dim); }
+
+  main .col { max-width: 720px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 32px) clamp(64px, 8vw, 112px); }
+  main h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.7rem); line-height: 1.08; letter-spacing: -.025em; margin: 1.9em 0 .6em; padding-top: .9em; border-top: 2px solid var(--ink); }
+  main h2:first-child { margin-top: 0; }
+  main h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1.4rem; letter-spacing: -.01em; margin: 1.6em 0 .4em; }
+  main p, main ul, main ol, main pre { margin-top: 1em; }
+  main p, main li { color: #22303f; }
+  main ul, main ol { padding-left: 1.3em; }
+  main li { margin-top: .45em; }
+  main li::marker { color: var(--rust); }
+  main a { color: var(--rust); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  main a:hover { color: var(--ink); }
+  main strong { color: var(--ink); }
+  main code { font: .84em var(--mono); background: rgba(10,22,40,.08); padding: .12em .38em; border-radius: 4px; overflow-wrap: anywhere; }
+  main pre { position: relative; isolation: isolate; background: var(--navy-deep); color: #e8dccb; border-radius: 6px; padding: 24px 26px; overflow-x: auto; font-size: .95rem; line-height: 1.6; }
+  main pre code { background: none; padding: 0; color: inherit; font-size: .88em; white-space: pre; overflow-wrap: normal; }
+  main pre.wrap code { white-space: pre-wrap; overflow-wrap: anywhere; }
+  main hr { border: 0; border-top: 1px solid rgba(10,22,40,.2); margin: 2.4em 0; }
+
+  .copy-block { position: relative; margin-top: 1em; }
+  .copy-block pre { margin-top: 0; padding-top: 56px; }
+  .copy-label { position: absolute; top: 20px; left: 26px; z-index: 1; font: 600 .72rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--orange); }
+  .copy { position: absolute; top: 8px; right: 8px; z-index: 1; font: 600 .78rem/1 var(--font-body); padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(243,230,211,.35); background: rgba(243,230,211,.08); color: var(--paper); cursor: pointer; }
+  .copy:hover { background: var(--orange); border-color: var(--orange); color: var(--ink); }
+  .hint { font-size: .95rem; color: var(--ink-dim) !important; }
+
+  /* Added for this guide: same tokens as /hero/ */
+  .cards { display: grid; gap: 14px; margin-top: 1.4em; }
+  .card { padding: 20px 22px 22px; border-radius: 6px; border: 1px solid rgba(10,22,40,.25); background: rgba(255,255,255,.4); }
+  .card h3 { margin: 0; font-size: 1rem; }
+  .card h3 code { font-size: .86rem; font-weight: 600; color: var(--rust); background: none; padding: 0; }
+  .card p { margin-top: .5em; font-size: .98rem; }
+  .warn { margin-top: 1.4em; padding: 16px 20px; border: 1px solid rgba(168,67,26,.35); background: rgba(224,102,42,.08); border-radius: 6px; font-size: .98rem; color: var(--ink); }
+  .warn b { display: block; font: 600 .78rem/1.4 var(--mono); letter-spacing: .02em; color: var(--rust); margin-bottom: 4px; }
+  .tips > li { margin-top: 1.1em; }
+  .stat { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 1em 0; }
+  .stat div { padding: 18px 20px; border-radius: 6px; background: var(--navy-deep); color: var(--paper-dim); font-size: .92rem; line-height: 1.5; }
+  .stat div:last-child { background: rgba(255,255,255,.4); border: 1px solid rgba(10,22,40,.25); color: var(--ink-dim); }
+  .stat b { display: block; font-family: var(--font-heading); font-weight: 700; font-size: 2.6rem; line-height: 1; letter-spacing: -.03em; color: var(--orange); margin-bottom: 8px; }
+  .stat div:last-child b { color: var(--rust); }
+  .sources { margin-top: 2.4em; padding-top: 1.2em; border-top: 1px solid rgba(10,22,40,.2); font-size: .95rem; }
+  .sources h3 { margin-top: 0; font-size: 1.1rem; }
+  .sources p { color: var(--ink-dim); }
+
+  .cta { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 64px); }
+  .cta h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.2rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .cta h2 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .cta p { margin-top: 16px; max-width: 52ch; color: var(--paper-dim); }
+  .cta-links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 14px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-orange { background: var(--orange); color: var(--ink); }
+  .btn-ghost { color: var(--paper); border: 1px solid rgba(243,230,211,.4); }
+  .btn:hover { filter: brightness(1.08); }
+
+  /* Signup: same markup and behavior as the homepage #free form */
+  .join { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 64px); }
+  .join h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.2rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .join h2 em { font-style: italic; font-weight: 400; color: var(--rust); }
+  .join .lede { margin-top: 16px; max-width: 56ch; color: var(--ink-dim); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .signup { margin-top: 28px; display: flex; gap: 8px; max-width: 480px; }
+  .signup input { flex: 1; min-width: 0; padding: 14px 18px; border-radius: 999px; border: 1px solid rgba(10,22,40,.35); background: rgba(255,255,255,.5); color: var(--ink); font: 1rem var(--font-body); }
+  .signup input::placeholder { color: var(--ink-dim); }
+  .btn-ink { background: var(--ink); color: var(--paper); border: 0; font: 600 1rem/1 var(--font-body); cursor: pointer; white-space: nowrap; }
+  .signup-status { margin-top: 12px; min-height: 1.4em; font-weight: 600; color: var(--ink); }
+  .signup-status.err { color: var(--rust); }
+  .signup.sent { display: none; }
+  .signup-note { margin-top: 12px; font-size: .9rem; color: var(--ink-dim); }
+
+  @media (max-width: 760px) {
+    body { font-size: 18px; }
+    main pre { padding-left: 18px; padding-right: 18px; }
+    .copy-label { left: 18px; }
+  }
+  @media (max-width: 480px) {
+    .stat { grid-template-columns: 1fr; }
+    .signup { flex-direction: column; }
+    .signup .btn-ink { padding: 14px 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<header class="band band-navy"><div class="head">
+  <a class="home" href="/"><span>&larr;</span>Kevin Magnan</a>
+  <p class="kicker">Free guide · from @vibewithkevin</p>
+  <h1>Upgrade your Jev calls to <em>1.14</em>, with images and long context on</h1>
+  <p class="sub">Here's the prompt from my video, the two settings it turns on, and what I learned testing them. Jev is TypeSafe's AI model that only makes calls, like yes or no, or which one of these.</p>
+  <p class="byline">By Kevin Magnan · @vibewithkevin</p>
+</div></header>
+
+<main class="band band-paper"><div class="col">
+
+<h2 id="prompt">1. The prompt</h2>
+<p>Open Claude Code in your project folder and paste this in. It tests one call on both versions before it switches anything.</p>
+<div class="copy-block"><span class="copy-label">Paste into Claude Code</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>Find every place in this project that calls TypeSafe's Jev API. Before you change anything, pick one call and run it with the same input on jev-1.13.0 and on jev-1.14.0, and show me anything that changed. If my code compares Jev's numbers to a cutoff, also run my test cases on both versions and show me what moved. Then switch every call to the model jev-1.14.0 and send these two headers on every request: TypeSafe-Danger-Zone-Images: true and TypeSafe-Danger-Zone-Long-Context: true. Ask me before you change any cutoff.</code></pre></div>
+<p class="hint">Swap in your own project. If you don't use Claude Code, the same steps work by hand.</p>
+
+<h2 id="settings">2. The two settings</h2>
+<p>TypeSafe calls these "danger zone" settings. Your app sends them as headers on each request. I turn both on for every call.</p>
+<div class="cards">
+  <div class="card">
+    <h3><code>TypeSafe-Danger-Zone-Images: true</code></h3>
+    <p>Lets you put a photo anywhere you'd put text in a Jev question. It also turns on Box, a new question type in 1.14: you name something, and Jev draws a box around where it is in the picture.</p>
+  </div>
+  <div class="card">
+    <h3><code>TypeSafe-Danger-Zone-Long-Context: true</code></h3>
+    <p>Raises the limit from about 64,000 tokens per request to 262,000, at the same price. TypeSafe's docs say it's slower and less accurate.</p>
+  </div>
+</div>
+<div class="warn"><b>TypeSafe's own warning</b>"we think there is still way too much jaggedness for us to vouch for these for production use cases." Build prototypes with them first. On my normal requests, turning both on changed nothing: same answers, same speed.</div>
+
+<h2 id="tips">3. What I learned testing it</h2>
+<ol class="tips">
+  <li><strong>Shrink photos first.</strong> Each side has to be between 256 and 1,568 pixels, and Jev doesn't resize for you. One bad image fails the whole request. My first try with TypeSafe's chart failed until I shrank it.</li>
+  <li><strong>On long text, give it options.</strong> I hid one sentence about a spare ladder key in about 75,000 tokens of my notes, then asked two ways:
+    <div class="stat">
+      <div><b>98%</b>Multiple choice: "where is the key kept?" It picked the bucket.</div>
+      <div><b>26%</b>Yes or no: "does it say where the key is?"</div>
+    </div>
+    That's one test, not a law. In shorter text the same yes-or-no question did better.</li>
+  <li><strong>Box always returns a box,</strong> even when the thing isn't in the picture. In the same request, ask yes or no whether it's there, and ignore the box when that answer is low.</li>
+</ol>
+
+<h2 id="test">4. Test one call first</h2>
+<p>I heard TypeSafe's CEO, Diogo Almeida, say 1.14 is much smarter but should be very hard to notice. The tool that grades my TikTok scripts noticed. On 1.14 it still caught every bad example, and it also flagged two of my best scripts. My cutoffs were tuned to the old version.</p>
+<p>If your app compares Jev's numbers to a cutoff, run your test cases on both versions before you switch. The prompt above does that for you.</p>
+
+<div class="sources">
+  <h3>Sources</h3>
+  <ul>
+    <li><a href="https://typesafe.ai/blog/jev-1-14">TypeSafe's Jev 1.14 announcement</a></li>
+    <li><a href="https://docs.typesafe.ai/go/images">Jev docs: sending images</a></li>
+    <li><a href="https://docs.typesafe.ai/go/box">Jev docs: Box questions</a></li>
+    <li><a href="https://docs.typesafe.ai/models">Jev models and limits</a></li>
+  </ul>
+  <p>Kevin Magnan, @vibewithkevin. Tested October 14, 2026.</p>
+</div>
+
+</div></main>
+
+<section class="band band-paper" aria-labelledby="join-title"><div class="join">
+  <h2 id="join-title">Want the next <em>one?</em></h2>
+  <p class="lede">Join the list and I'll send you my free kit, <em>Don't Start From Zero</em>: the GitHub repos, skills, and plugins I actually use. New guides like this one land in the same inbox.</p>
+  <form class="signup" id="kit-form" novalidate>
+    <label for="kit-email" class="sr">Email address</label>
+    <input id="kit-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+    <input class="hp" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-ink" type="submit">Send me the kit</button>
+  </form>
+  <p class="signup-status" id="kit-status" role="status" aria-live="polite"></p>
+  <p class="signup-note">Unsubscribe anytime.</p>
+</div></section>
+
+<section class="band band-navy"><div class="cta">
+  <h2>Built something with <em>this?</em></h2>
+  <p>Show me. Tag me on TikTok, where I post what I'm building.</p>
+  <div class="cta-links">
+    <a class="btn btn-orange" href="https://www.tiktok.com/@vibewithkevin" target="_blank" rel="noopener">Follow @vibewithkevin</a>
+    <a class="btn btn-ghost" href="/kit/">Read the free kit</a>
+    <a class="btn btn-ghost" href="/">Back to kevinjmagnan.com</a>
+  </div>
+</div></section>
+
+<script>
+  // Copy button on the prompt. Falls back to selecting the text if the clipboard API is blocked.
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    var label = btn.getAttribute("data-label") || "Copy";
+    btn.addEventListener("click", function () {
+      var code = btn.parentNode.querySelector("pre code");
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1800); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(code);
+        var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+        s.removeAllRanges();
+        if (ok) done(); else btn.textContent = "Select and copy";
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(code.innerText).then(done, fallback); else fallback();
+    });
+  });
+</script>
+<script>
+(() => {
+  const form = document.getElementById("kit-form");
+  const status = document.getElementById("kit-status");
+  if (!form) return;
+  const say = (msg, err) => { status.textContent = msg; status.classList.toggle("err", !!err); };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("That email doesn't look right. Check it and try again.", true); form.email.focus(); return; }
+    const btn = form.querySelector("button");
+    btn.disabled = true; say("Sending...");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, company: form.company.value }),
+      });
+      if (res.ok) { form.classList.add("sent"); say("You're in. Check your inbox for the kit."); return; }
+      say(res.status === 400 ? "That email doesn't look right. Check it and try again." : "Something went wrong on my end. Try again in a minute.", true);
+    } catch { say("Something went wrong on my end. Try again in a minute.", true); }
+    btn.disabled = false;
+  });
+})();
+</script>
+</body>
+</html>
