@@ -237,7 +237,7 @@ export const RANK_QUESTIONS = {
 /**
  * Ranking knobs, tuned on a 15-prompt replay against jev-1.14.0 (2026-10-14).
  * - Round 1: `any_fit` at or below CONTINUE_FLOOR means nothing fits, and the
- *   page keeps only the hero and links.
+ *   page takes no ranked card.
  * - Later rounds: `more` at or below MORE_FLOOR stops the ranking. It is
  *   higher because `more` sat between 0.5 and 0.6 on padding (an extra tool
  *   on a government-work page, a third round of essays for a nonprofit).
@@ -335,7 +335,6 @@ async function selectByRanking(
   const confidence = new Map<string, number>();
   let inputTokens = 0;
   let first: Record<string, JevAnswer> = {};
-  let fits = false;
   let absoluteYes = new Set<string>();
   for (let round = 0; round < MAX_RANK_ROUNDS; round++) {
     const remaining = cards.filter((id) => !chosen.includes(id));
@@ -375,7 +374,6 @@ async function selectByRanking(
     }
     if (!remaining.length) break;
     const go = (res.answers[continueName]?.noul ?? 0) > (round === 0 ? CONTINUE_FLOOR : MORE_FLOOR);
-    if (round === 0) fits = go;
     if (!go) break;
     const rank = res.answers[RANK_QUESTIONS.rank];
     const probabilities =
@@ -386,12 +384,8 @@ async function selectByRanking(
       confidence.set(id, probabilities[id] ?? 0);
     }
   }
-  // Nothing fits: no content card, the absolute ones included.
-  const on = new Set<string>(ALWAYS_INCLUDED);
-  if (fits || !cards.length) {
-    for (const id of chosen) on.add(id);
-    for (const id of absoluteYes) on.add(id);
-  }
+  // Ranked cards already passed `any_fit` in round 1; an absolute card follows only its own yes/no.
+  const on = new Set<string>([...ALWAYS_INCLUDED, ...chosen, ...absoluteYes]);
   for (const [card, section] of sectionOf) if (on.has(card)) on.add(section);
 
   const answers: Awaited<ReturnType<Evaluate>>["answers"] = {};

@@ -249,6 +249,13 @@ describe("listwise card ranking", () => {
     expect((await selectWith(no.ask, "I'm organizing an AI meetup")).picked).not.toContain("contact_cta");
   });
 
+  it("shows contact when the visitor wants it even though no ranked card fits", async () => {
+    const { ask, calls } = scriptedAsk([{ rank: { bio_overview: 0.6, post_0: 0.3 }, go: 0.2 }], 0.9);
+    const { picked } = await selectWith(ask, "How can I email Kevin?");
+    expect(calls).toHaveLength(1);
+    expect(picked).toEqual(["contact_cta", "hero", "links", "section_contact"].sort());
+  });
+
   it("asks more of a later round than of round 1 before taking its cards", async () => {
     const between = (CONTINUE_FLOOR + MORE_FLOOR) / 2;
     const { ask, calls } = scriptedAsk([
