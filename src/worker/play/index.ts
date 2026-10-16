@@ -1,5 +1,6 @@
 import { TypeSafeClient } from "@typesafe-ai/sdk";
 import type { Env } from "../env";
+import { JEV_HEADERS, JEV_MODEL } from "../jev";
 import { playRequest, toPlayResult, type PlayAnswers } from "./blocks";
 
 export { BLOCKS, INTENTS, pickBlocks, playRequest, toPlayResult } from "./blocks";
@@ -15,10 +16,14 @@ export type AskJev = (
 
 const askJev: AskJev = async (apiKey, { state, questions }) => {
   const client = new TypeSafeClient({ apiKey });
-  const res = await client.systemOne({
-    state: state as Record<string, never>,
-    questions: questions as never,
-  });
+  const res = await client.systemOne(
+    {
+      model: JEV_MODEL,
+      state: state as Record<string, never>,
+      questions: questions as never,
+    },
+    { headers: JEV_HEADERS },
+  );
   return res.answers as unknown as PlayAnswers;
 };
 

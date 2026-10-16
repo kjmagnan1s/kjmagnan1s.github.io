@@ -1,4 +1,5 @@
 import type { TypeSafeClient } from "@typesafe-ai/sdk";
+import { JEV_HEADERS, JEV_MODEL } from "../jev";
 
 export const VISITOR_TYPES = [
   "recruiter",
@@ -155,10 +156,14 @@ export async function routeWithJev(
 ): Promise<Route> {
   const started = Date.now();
   const { state, questions } = routerRequest(input);
-  const res = await client.systemOne({
-    state: state as Record<string, never>,
-    questions: questions as never,
-  });
+  const res = await client.systemOne(
+    {
+      model: JEV_MODEL,
+      state: state as Record<string, never>,
+      questions: questions as never,
+    },
+    { headers: JEV_HEADERS },
+  );
   return toRoute(
     res.answers as unknown as RouterAnswers,
     res.usage.input_tokens,

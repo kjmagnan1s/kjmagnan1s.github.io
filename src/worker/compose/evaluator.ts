@@ -1,80 +1,145 @@
 import type { Experimental_CompositionEvaluator } from "@json-render/core";
-import { TypeSafeClient, choice } from "@typesafe-ai/sdk";
+import { TypeSafeClient, choice, noul } from "@typesafe-ai/sdk";
 import type { Env } from "../env";
+import { JEV_HEADERS, JEV_MODEL } from "../jev";
 import { ALWAYS_INCLUDED, candidateTopics, sectionOf } from "./candidates";
 import { routeWithJev, routeWithWorkersAi, type Route, type RouteInput } from "./router";
 
 export type Evaluate = Experimental_CompositionEvaluator;
 
-/** The composer always asks Choice questions, so both adapters only handle that type. */
-interface JevChoiceAnswer {
-  choice: string;
-  confidence: number;
+/** Raw Jev question shapes. The SDK helpers and the Workers AI binding take the same JSON. */
+export type JevQuestion =
+  | { type: "choice"; instructions: string; criteria: Record<string, string> }
+  | { type: "noul"; instructions: string; criteria?: { true: string; false: string } };
+
+/** A raw Jev answer: `choice`, `confidence`, and `probabilities` for a Choice, `noul` for a Noul. */
+export interface JevAnswer {
+  choice?: string;
+  confidence?: number;
+  probabilities?: Record<string, number>;
+  noul?: number;
 }
 
-/** Composer evaluator on the TypeSafe SDK. Every composer question is a Choice. */
-export function createTypeSafeEvaluator(client: TypeSafeClient): Evaluate {
+/**
+ * One Jev request on either transport. The composer only asks Choice
+ * questions, but the site's ranking also needs Nouls and the full Choice
+ * distribution, so the transports speak this wider shape and `toEvaluate`
+ * narrows it for the composer.
+ */
+export type Ask = (request: {
+  state: Record<string, unknown>;
+  questions: Record<string, JevQuestion>;
+  signal?: AbortSignal;
+}) => Promise<{ answers: Record<string, JevAnswer>; inputTokens: number }>;
+
+/** Jev over the TypeSafe SDK. */
+export function createTypeSafeAsk(client: TypeSafeClient): Ask {
   return async ({ state, questions, signal }) => {
     const res = await client.systemOne(
       {
+        model: JEV_MODEL,
         // The composer already deep-clones state; round-trip once more to
         // satisfy the SDK's JSON value type.
         state: JSON.parse(JSON.stringify(state)),
         questions: Object.fromEntries(
           Object.entries(questions).map(([name, q]) => [
             name,
-            choice(q.instructions, q.criteria),
+            q.type === "noul" ? noul(q.instructions, q.criteria) : choice(q.instructions, q.criteria),
           ]),
         ),
       },
-      { signal },
+      { signal, headers: JEV_HEADERS },
     );
     return {
-      answers: Object.fromEntries(
-        Object.entries(res.answers).map(([name, a]) => [
-          name,
-          { choice: (a as JevChoiceAnswer).choice, confidence: (a as JevChoiceAnswer).confidence },
-        ]),
-      ),
-      usage: { inputTokens: res.usage.input_tokens },
+      answers: res.answers as unknown as Record<string, JevAnswer>,
+      inputTokens: res.usage.input_tokens,
     };
   };
 }
 
 /**
- * Composer evaluator on the Workers AI binding. `typesafe/jev` takes the same
- * question JSON the SDK sends and answers with the same field names, so the
- * only real work is unwrapping `usage.input_tokens`.
+ * Jev over the Workers AI binding. `typesafe/jev` takes the same question
+ * JSON the SDK sends and answers with the same field names.
  *
  * Verified against the docs page for typesafe/jev: the response is
  * `{ model, answers: { [name]: { type, choice, confidence, probabilities } },
  * usage: { input_tokens, output_tokens } }`.
  */
-export function createWorkersAiEvaluator(env: Env): Evaluate {
+export function createWorkersAiAsk(env: Env): Ask {
   return async ({ state, questions }) => {
     const res = (await (env.AI as unknown as {
       run(model: string, body: unknown): Promise<unknown>;
-    }).run("typesafe/jev", {
-      state: JSON.parse(JSON.stringify(state)),
-      questions: Object.fromEntries(
-        Object.entries(questions).map(([name, q]) => [
-          name,
-          { type: "choice", instructions: q.instructions, criteria: q.criteria },
-        ]),
-      ),
-    })) as {
-      answers: Record<string, JevChoiceAnswer>;
+    }).run("typesafe/jev", { state: JSON.parse(JSON.stringify(state)), questions })) as {
+      answers: Record<string, JevAnswer>;
       usage?: { input_tokens?: number };
     };
+    return { answers: res.answers, inputTokens: res.usage?.input_tokens ?? 0 };
+  };
+}
+
+/** The composer's view of an Ask: Choice questions in, `{ choice, confidence }` out. */
+export function toEvaluate(ask: Ask): Evaluate {
+  return async ({ state, questions, signal }) => {
+    const { answers, inputTokens } = await ask({ state, questions, signal });
     return {
       answers: Object.fromEntries(
-        Object.entries(res.answers).map(([name, a]) => [
+        Object.entries(answers).map(([name, a]) => [
           name,
-          { choice: a.choice, confidence: a.confidence },
+          { choice: a.choice ?? "", confidence: a.confidence },
         ]),
       ),
-      usage: { inputTokens: res.usage?.input_tokens ?? 0 },
+      usage: { inputTokens },
     };
+  };
+}
+
+/** Composer evaluator on the TypeSafe SDK, without site policy. */
+export function createTypeSafeEvaluator(client: TypeSafeClient): Evaluate {
+  return toEvaluate(createTypeSafeAsk(client));
+}
+
+/** Composer evaluator on the Workers AI binding, without site policy. */
+export function createWorkersAiEvaluator(env: Env): Evaluate {
+  return toEvaluate(createWorkersAiAsk(env));
+}
+
+/**
+ * Offline Ask for development and tests. Composer questions go to
+ * `createMockEvaluator`. The ranking questions are answered from
+ * `state.context.wanted_topics`: `rank` spreads its probability evenly over
+ * the relevant cards, `any_fit` and `more` say whether a relevant card is
+ * left, and `contact` says whether the route wants contact.
+ */
+export function createMockAsk(): Ask {
+  const evaluate = createMockEvaluator();
+  return async ({ state, questions, signal }) => {
+    const context = (state.context ?? {}) as { wanted_topics?: string[] };
+    const wanted = new Set(context.wanted_topics ?? ["always", "layout"]);
+    const relevant = (id: string) =>
+      (candidateTopics.get(id) ?? []).some((t) => wanted.has(t));
+    const remaining = ((state.remaining_cards ?? []) as Array<{ id: string }>).map((c) => c.id);
+    const answers: Record<string, JevAnswer> = {};
+    const composer: Record<string, { type: "choice"; instructions: string; criteria: Record<string, string> }> = {};
+    for (const [name, q] of Object.entries(questions)) {
+      if (q.type === "noul") {
+        const yes =
+          name === RANK_QUESTIONS.contact ? wanted.has("contact") : remaining.some(relevant);
+        answers[name] = { noul: yes ? 1 : 0 };
+      } else if (name === RANK_QUESTIONS.rank) {
+        const options = Object.keys(q.criteria);
+        const hits = options.filter(relevant);
+        const spread = hits.length ? hits : options;
+        const probabilities = Object.fromEntries(
+          options.map((o) => [o, spread.includes(o) ? 1 / spread.length : 0]),
+        );
+        answers[name] = { choice: spread[0], confidence: hits.length ? 0.5 : 0, probabilities };
+      } else composer[name] = q;
+    }
+    if (Object.keys(composer).length) {
+      const out = await evaluate({ state, questions: composer, signal: signal ?? new AbortController().signal });
+      Object.assign(answers, out.answers);
+    }
+    return { answers, inputTokens: 0 };
   };
 }
 
@@ -161,50 +226,194 @@ export function createMockEvaluator(): Evaluate {
   };
 }
 
-/** Below this confidence a `use:` selection is treated as omit. Tune on real traffic. */
-export const SELECT_CONFIDENCE_FLOOR = 0.4;
+/** Question names the ranking adds to the select request. */
+export const RANK_QUESTIONS = {
+  rank: "rank",
+  anyFit: "any_fit",
+  more: "more",
+  contact: "contact",
+} as const;
 
 /**
- * Site policy on top of any evaluator, applied to the batch select phase only
- * (the request that carries the `root` question):
- * - Drop low-confidence selections.
- * - Always include the hero and links.
- * - A section is included exactly when at least one of its cards is included.
+ * Ranking knobs, tuned on a 15-prompt replay against jev-1.14.0 (2026-10-14).
+ * - Round 1: `any_fit` at or below CONTINUE_FLOOR means nothing fits, and the
+ *   page takes no ranked card.
+ * - Later rounds: `more` at or below MORE_FLOOR stops the ranking. It is
+ *   higher because `more` sat between 0.5 and 0.6 on padding (an extra tool
+ *   on a government-work page, a third round of essays for a nonprofit).
+ * - Each round takes its top card, then the next cards in probability order
+ *   while their running total is under ROUND_MASS and each has at least ROUND_MIN.
+ */
+export const CONTINUE_FLOOR = 0.5;
+export const MORE_FLOOR = 0.6;
+export const MAX_RANK_ROUNDS = 4;
+export const ROUND_MASS = 0.7;
+export const ROUND_MIN = 0.1;
+/** Content-card cap, so cards plus page, hero, links, and six sections stay under MAX_ELEMENTS. */
+export const MAX_RANKED_CARDS = 14;
+
+/**
+ * Cards decided by an absolute yes/no instead of the ranking. Contact is
+ * wanted or not regardless of what else is on the page, and as a ranking
+ * option it rarely wins a round.
+ */
+const ABSOLUTE_CARDS: Record<string, { question: keyof typeof RANK_QUESTIONS; instructions: string }> = {
+  contact_cta: {
+    question: "contact",
+    instructions:
+      "Would the visitor in `user_request` likely want a way to contact Kevin, for example to hire him, work with him, book him, or interview him?",
+  },
+};
+
+/** What each ranking question asks. Exported so the replay harness can try alternatives. */
+export const RANK_INSTRUCTIONS = {
+  rank: "Which one card in `remaining_cards` best gives the visitor what `user_request` asks for? `context.visitor` says who they are. Cards in `already_chosen` are already on the page.",
+  anyFit: "Does at least one card in `remaining_cards` give the visitor something `user_request` asks for?",
+  more: "Is there a card in `remaining_cards` of the same kind the visitor asked for in `user_request` (for example another essay when they asked for essays, another tool when they asked for tools), or a different thing they explicitly asked for? Extras that are merely about Kevin do not count.",
+};
+
+const YES_NO_CARDS = {
+  true: "Yes: at least one remaining card is content the visitor asked for or would clearly want.",
+  false: "No: the remaining cards do not address the request.",
+};
+
+/** The cards one round takes from a rank distribution, best first. */
+export function takeFromRound(
+  probabilities: Record<string, number>,
+  mass = ROUND_MASS,
+  min = ROUND_MIN,
+): string[] {
+  const sorted = Object.entries(probabilities).sort((a, b) => b[1] - a[1]);
+  const out: string[] = [];
+  let total = 0;
+  for (const [id, p] of sorted) {
+    if (out.length && (total >= mass || p < min)) break;
+    out.push(id);
+    total += p;
+  }
+  return out;
+}
+
+/**
+ * Select phase, ranked listwise. Instead of one omit-or-use question per card
+ * (each judged alone and kept above a confidence floor), Jev ranks every
+ * content card against the others with one Choice, repeated without
+ * replacement: each round drops the cards already taken and asks again.
+ * Absolute questions stay Nouls: whether any card fits at all (round 1),
+ * whether the visitor wants more (later rounds), and whether to show contact.
+ * Round 1 rides in the same request as the composer's `root` question.
+ */
+async function selectByRanking(
+  ask: Ask,
+  request: Parameters<Evaluate>[0],
+): Promise<Awaited<ReturnType<Evaluate>>> {
+  const { state, questions, signal } = request;
+  const rootIds = new Set(Object.keys(questions.root?.criteria ?? {}));
+  const sections = new Set(sectionOf.values());
+  // One-card select questions are rewritten; anything else goes to Jev as asked.
+  const cardQuestion = new Map<string, string>();
+  const description = new Map<string, string>();
+  const passthrough: Record<string, JevQuestion> = {};
+  for (const [name, q] of Object.entries(questions)) {
+    const keys = Object.keys(q.criteria);
+    const uses = keys.filter((k) => k.startsWith("use:"));
+    if (name.startsWith("select_") && uses.length === 1 && keys.length === 2 && keys.includes("omit")) {
+      const id = uses[0]!.slice(4);
+      cardQuestion.set(id, name);
+      description.set(id, q.criteria[uses[0]!]!);
+    } else passthrough[name] = q;
+  }
+  const isRanked = (id: string) =>
+    !rootIds.has(id) && !ALWAYS_INCLUDED.includes(id) && !sections.has(id) && !(id in ABSOLUTE_CARDS);
+  const cards = [...cardQuestion.keys()].filter(isRanked);
+  const absolute = [...cardQuestion.keys()].filter((id) => id in ABSOLUTE_CARDS);
+  // The capability list repeats every description already in the rank options.
+  const { capabilities: _capabilities, ...base } = state;
+  const asCards = (ids: string[]) => ids.map((id) => ({ id, description: description.get(id)! }));
+
+  const chosen: string[] = [];
+  const confidence = new Map<string, number>();
+  let inputTokens = 0;
+  let first: Record<string, JevAnswer> = {};
+  let absoluteYes = new Set<string>();
+  for (let round = 0; round < MAX_RANK_ROUNDS; round++) {
+    const remaining = cards.filter((id) => !chosen.includes(id));
+    if (round > 0 && (!remaining.length || chosen.length >= MAX_RANKED_CARDS)) break;
+    const continueName = round === 0 ? RANK_QUESTIONS.anyFit : RANK_QUESTIONS.more;
+    const roundQuestions: Record<string, JevQuestion> = round === 0 ? { ...passthrough } : {};
+    if (remaining.length) {
+      roundQuestions[RANK_QUESTIONS.rank] = {
+        type: "choice",
+        instructions: RANK_INSTRUCTIONS.rank,
+        criteria: Object.fromEntries(remaining.map((id) => [id, description.get(id)!])),
+      };
+      roundQuestions[continueName] = {
+        type: "noul",
+        instructions: round === 0 ? RANK_INSTRUCTIONS.anyFit : RANK_INSTRUCTIONS.more,
+        criteria: YES_NO_CARDS,
+      };
+    }
+    if (round === 0)
+      for (const id of absolute) {
+        const { question, instructions } = ABSOLUTE_CARDS[id]!;
+        roundQuestions[RANK_QUESTIONS[question]] = { type: "noul", instructions };
+      }
+    const res = await ask({
+      state: { ...base, already_chosen: asCards(chosen), remaining_cards: asCards(remaining) },
+      questions: roundQuestions,
+      signal,
+    });
+    inputTokens += res.inputTokens;
+    if (round === 0) {
+      first = res.answers;
+      absoluteYes = new Set(
+        absolute.filter(
+          (id) => (res.answers[RANK_QUESTIONS[ABSOLUTE_CARDS[id]!.question]]?.noul ?? 0) > CONTINUE_FLOOR,
+        ),
+      );
+    }
+    if (!remaining.length) break;
+    const go = (res.answers[continueName]?.noul ?? 0) > (round === 0 ? CONTINUE_FLOOR : MORE_FLOOR);
+    if (!go) break;
+    const rank = res.answers[RANK_QUESTIONS.rank];
+    const probabilities =
+      rank?.probabilities ?? (rank?.choice ? { [rank.choice]: rank.confidence ?? 1 } : {});
+    for (const id of takeFromRound(probabilities)) {
+      if (!remaining.includes(id) || chosen.length >= MAX_RANKED_CARDS) continue;
+      chosen.push(id);
+      confidence.set(id, probabilities[id] ?? 0);
+    }
+  }
+  // Ranked cards already passed `any_fit` in round 1; an absolute card follows only its own yes/no.
+  const on = new Set<string>([...ALWAYS_INCLUDED, ...chosen, ...absoluteYes]);
+  for (const [card, section] of sectionOf) if (on.has(card)) on.add(section);
+
+  const answers: Awaited<ReturnType<Evaluate>>["answers"] = {};
+  for (const name of Object.keys(passthrough))
+    answers[name] = { choice: first[name]?.choice ?? "", confidence: first[name]?.confidence };
+  for (const [id, name] of cardQuestion)
+    answers[name] = on.has(id)
+      ? { choice: `use:${id}`, confidence: confidence.get(id) ?? 1 }
+      : { choice: "omit", confidence: 1 };
+  return { answers, usage: { inputTokens } };
+}
+
+/**
+ * Site policy on top of any Jev transport:
+ * - Select phase (the request that carries `root`): cards are ranked
+ *   listwise by `selectByRanking`; the hero and links are always included;
+ *   a section is included exactly when at least one of its cards is.
+ * - Layout phase: the hero is first and the links last.
  * Jev is told these rules in words too, but code owns the invariant.
  */
-export function withSitePolicy(evaluate: Evaluate): Evaluate {
+export function withSitePolicy(ask: Ask): Evaluate {
+  const evaluate = toEvaluate(ask);
   return async (request) => {
+    if ("root" in request.questions) return selectByRanking(ask, request);
     const result = await evaluate(request);
     if (Object.keys(request.questions).some((q) => q.startsWith("order_")))
       return { ...result, answers: pinReadingOrder(request, result.answers) };
-    if (!("root" in request.questions)) return result;
-    const { questions } = request;
-    const answers = { ...result.answers };
-    const questionFor = (id: string) =>
-      Object.keys(questions).find((q) => Object.hasOwn(questions[q]!.criteria, `use:${id}`));
-    const isSelected = (id: string) => {
-      const q = questionFor(id);
-      return q !== undefined && answers[q]!.choice === `use:${id}`;
-    };
-    const set = (id: string, on: boolean) => {
-      const q = questionFor(id);
-      if (q) answers[q] = { choice: on ? `use:${id}` : "omit", confidence: 1 };
-    };
-    for (const [name, answer] of Object.entries(answers)) {
-      if (name === "root" || !answer.choice.startsWith("use:")) continue;
-      const id = answer.choice.slice(4);
-      if (
-        !ALWAYS_INCLUDED.includes(id) &&
-        answer.confidence !== undefined &&
-        answer.confidence < SELECT_CONFIDENCE_FLOOR
-      )
-        answers[name] = { choice: "omit", confidence: answer.confidence };
-    }
-    for (const id of ALWAYS_INCLUDED) set(id, true);
-    const needed = new Set<string>();
-    for (const [card, section] of sectionOf) if (isSelected(card)) needed.add(section);
-    for (const section of new Set(sectionOf.values())) set(section, needed.has(section));
-    return { ...result, answers };
+    return result;
   };
 }
 
@@ -257,8 +466,8 @@ export function createBackend(env: Env): Backend | null {
   // typesafe/jev bills through AI Gateway credits, which this account does not
   // carry (verified 2026-09-19), and a failed binding call costs a round trip.
   let path: "workers-ai" | "typesafe" = client ? "typesafe" : "workers-ai";
-  const workersAi = hasAi ? withSitePolicy(createWorkersAiEvaluator(env)) : null;
-  const typeSafe = client ? withSitePolicy(createTypeSafeEvaluator(client)) : null;
+  const workersAi = hasAi ? withSitePolicy(createWorkersAiAsk(env)) : null;
+  const typeSafe = client ? withSitePolicy(createTypeSafeAsk(client)) : null;
 
   return {
     name: () => path,
