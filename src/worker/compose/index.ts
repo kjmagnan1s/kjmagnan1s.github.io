@@ -8,12 +8,16 @@ export { composePage, MAX_ELEMENTS, type ComposeEvent } from "./compose";
 export { buildCandidates, type Candidate } from "./candidates";
 export { catalog } from "./catalog";
 export {
+  createMockAsk,
   createMockEvaluator,
+  createTypeSafeAsk,
   createTypeSafeEvaluator,
+  createWorkersAiAsk,
   createWorkersAiEvaluator,
   pinReadingOrder,
-  SELECT_CONFIDENCE_FLOOR,
+  takeFromRound,
   withSitePolicy,
+  type Ask,
   type Evaluate,
 } from "./evaluator";
 export {
