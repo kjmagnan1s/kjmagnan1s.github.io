@@ -218,6 +218,7 @@ npm run build:shell                  # vite build -> assets/genui/{genui.js,genu
 python3 scripts/generate_sitemap.py
 bundle exec jekyll build
 python3 scripts/generate_markdown.py # pandoc -> _site/index.md, needs pandoc installed
+python3 scripts/generate_library_feeds.py # _site/library/{llms.txt,feed.xml}, fails if a card lacks data-added
 ```
 
 `npm run build:site` runs these in that order, and the order matters: Jekyll

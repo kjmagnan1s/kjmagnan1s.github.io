@@ -9,6 +9,7 @@ Usage policy lives in [robots.txt](https://kevinjmagnan.com/robots.txt). Search 
 - [Home](https://kevinjmagnan.com/): Who Kevin is, a demo that builds a page for each visitor, a free kit, featured builds, and videos. A Markdown copy is at [/index.md](https://kevinjmagnan.com/index.md), or request `/` with `Accept: text/markdown`.
 - [Resume](https://kevinjmagnan.com/resume): Full work history, education, certifications, and skills.
 - [Writing](https://kevinjmagnan.com/blog/): Every post, newest first. Writing on AI, public safety, and data.
+- [Website resource library](https://kevinjmagnan.com/library/): Hand-picked tools for building websites with AI, grouped by category. Plain-text list at [/library/llms.txt](https://kevinjmagnan.com/library/llms.txt), new additions at [/library/feed.xml](https://kevinjmagnan.com/library/feed.xml).
 - [Media kit](https://kevinjmagnan.com/media-kit/): Audience, reach, and partnership details for @vibewithkevin.
 
 ## Structured data
