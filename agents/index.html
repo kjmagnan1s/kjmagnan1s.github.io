@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 Side Businesses an AI Agent Can Run for You · Kevin Magnan</title>
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#071a31">
+<meta name="description" content="Five side businesses a browser AI agent can do the clicking for, with the real numbers from Chris Koerner's six-week test and a copy-paste prompt for each.">
+<meta property="og:title" content="5 side businesses an AI agent can run for you">
+<meta property="og:description" content="Five side businesses a browser AI agent can do the clicking for, with the real numbers from Chris Koerner's six-week test and a copy-paste prompt for each.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://kevinjmagnan.com/agents/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2340; --navy-deep: #071a31; --paper: #f3e6d3; --paper-dim: #cdbfae;
+    --orange: #e0662a; --rust: #a8431a; --ink: #0a1628; --ink-dim: #3b4a5e;
+    --font-heading: "Fraunces", Georgia, serif; --font-body: "Source Serif 4", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 19px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  ::selection { background: var(--orange); color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+  .band { position: relative; isolation: isolate; }
+  .band::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--grain); }
+  .band-navy { background: var(--navy-deep); color: var(--paper); }
+  .band-navy::before { opacity: .22; mix-blend-mode: overlay; }
+  .band-paper::before { opacity: .16; mix-blend-mode: multiply; }
+
+  .head { max-width: 1120px; margin: 0 auto; padding: 28px clamp(16px, 5vw, 64px) clamp(56px, 8vw, 104px); }
+  .home { display: inline-block; font-family: var(--font-heading); font-weight: 600; font-size: 1.05rem; text-decoration: none; color: var(--paper); margin-bottom: clamp(32px, 6vw, 72px); }
+  .home span { color: var(--orange); margin-right: .35em; }
+  .home:hover { color: var(--orange); }
+  .kicker { font-family: var(--font-heading); font-style: italic; color: var(--orange); font-size: 1.1rem; }
+  h1 { margin-top: 12px; max-width: 16ch; font-family: var(--font-heading); font-weight: 700; font-size: clamp(2.6rem, 1.4rem + 4.4vw, 5rem); line-height: .98; letter-spacing: -.035em; text-wrap: balance; }
+  h1 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .sub { margin-top: 24px; max-width: 52ch; font-size: 1.15rem; color: var(--paper-dim); }
+  .sub a { color: var(--paper); text-underline-offset: 3px; }
+  .sub a:hover { color: var(--orange); }
+  .byline { margin-top: 18px; font-size: .98rem; color: var(--paper-dim); }
+
+  main .col { max-width: 720px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 32px) clamp(64px, 8vw, 112px); }
+  main h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.7rem); line-height: 1.08; letter-spacing: -.025em; margin: 1.9em 0 .6em; padding-top: .9em; border-top: 2px solid var(--ink); }
+  main h2:first-child { margin-top: 0; }
+  main h3 { font-family: var(--font-heading); font-weight: 600; font-size: 1.4rem; letter-spacing: -.01em; margin: 1.6em 0 .4em; }
+  main p, main ul, main ol, main pre { margin-top: 1em; }
+  main p, main li { color: #22303f; }
+  main ul, main ol { padding-left: 1.3em; }
+  main li { margin-top: .45em; }
+  main li::marker { color: var(--rust); }
+  main a { color: var(--rust); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  main a:hover { color: var(--ink); }
+  main strong { color: var(--ink); }
+  main code { font: .84em var(--mono); background: rgba(10,22,40,.08); padding: .12em .38em; border-radius: 4px; overflow-wrap: anywhere; }
+  main pre { position: relative; isolation: isolate; background: var(--navy-deep); color: #e8dccb; border-radius: 6px; padding: 24px 26px; overflow-x: auto; font-size: .95rem; line-height: 1.6; }
+  main pre code { background: none; padding: 0; color: inherit; font-size: .88em; white-space: pre; overflow-wrap: normal; }
+  main pre.wrap code { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+  .copy-block { position: relative; margin-top: 1.2em; }
+  .copy-block pre { margin-top: 0; padding-top: 56px; }
+  .copy-label { position: absolute; top: 20px; left: 26px; z-index: 1; font: 600 .72rem/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--orange); }
+  .copy { position: absolute; top: 8px; right: 8px; z-index: 1; font: 600 .78rem/1 var(--font-body); padding: 12px 16px; border-radius: 999px; border: 1px solid rgba(243,230,211,.35); background: rgba(243,230,211,.08); color: var(--paper); cursor: pointer; }
+  .copy:hover { background: var(--orange); border-color: var(--orange); color: var(--ink); }
+  .hint { font-size: .95rem; color: var(--ink-dim) !important; }
+
+  /* Added for this guide: same tokens as /switch/ */
+  .take { margin-top: 0; padding: 22px 24px; border-left: 3px solid var(--orange); background: rgba(255,255,255,.4); border-radius: 0 6px 6px 0; }
+  .take p { margin-top: 0; font-family: var(--font-heading); font-size: 1.3rem; line-height: 1.35; color: var(--ink); }
+  .take span { display: block; margin-top: 10px; font-size: .92rem; color: var(--ink-dim); }
+  .toc { list-style: none; padding-left: 0 !important; counter-reset: toc; }
+  .toc li { counter-increment: toc; }
+  .toc li::before { content: counter(toc) "."; display: inline-block; width: 1.6em; font-family: var(--font-heading); font-weight: 700; color: var(--rust); }
+  .what { font-size: 1.12rem; }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 1.2em; }
+  .facts div { padding: 18px 20px; border-radius: 6px; font-size: .95rem; line-height: 1.5; }
+  .facts div:first-child { background: rgba(255,255,255,.4); border: 1px solid rgba(10,22,40,.25); color: var(--ink-dim); }
+  .facts div:last-child { background: var(--navy-deep); color: var(--paper-dim); }
+  .facts b { display: block; font: 600 .72rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; }
+  .facts div:first-child b { color: var(--rust); }
+  .facts div:last-child b { color: var(--orange); }
+  .facts div:last-child strong { color: var(--paper); }
+  .warn { margin-top: 1.2em; padding: 16px 20px; border: 1px solid rgba(168,67,26,.35); background: rgba(224,102,42,.08); border-radius: 6px; font-size: .98rem; color: var(--ink); }
+  .warn b { display: block; font: 600 .78rem/1.4 var(--mono); letter-spacing: .02em; color: var(--rust); margin-bottom: 4px; }
+  .sources { margin-top: 2.4em; padding-top: 1.2em; border-top: 1px solid rgba(10,22,40,.2); font-size: .95rem; }
+  .sources h3 { margin-top: 0; font-size: 1.1rem; }
+  .sources p { color: var(--ink-dim); }
+
+  .cta { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 64px); }
+  .cta h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.2rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .cta h2 em { font-style: italic; font-weight: 400; color: var(--orange); }
+  .cta p { margin-top: 16px; max-width: 52ch; color: var(--paper-dim); }
+  .cta-links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 14px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; }
+  .btn-orange { background: var(--orange); color: var(--ink); }
+  .btn-ghost { color: var(--paper); border: 1px solid rgba(243,230,211,.4); }
+  .btn:hover { filter: brightness(1.08); }
+
+  /* Signup: same markup and behavior as the homepage #free form */
+  .join { max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) clamp(16px, 5vw, 64px); }
+  .join h2 { font-family: var(--font-heading); font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.2vw, 3.2rem); line-height: 1.02; letter-spacing: -.03em; max-width: 18ch; }
+  .join h2 em { font-style: italic; font-weight: 400; color: var(--rust); }
+  .join .lede { margin-top: 16px; max-width: 56ch; color: var(--ink-dim); }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .signup { margin-top: 28px; display: flex; gap: 8px; max-width: 480px; }
+  .signup input { flex: 1; min-width: 0; padding: 14px 18px; border-radius: 999px; border: 1px solid rgba(10,22,40,.35); background: rgba(255,255,255,.5); color: var(--ink); font: 1rem var(--font-body); }
+  .signup input::placeholder { color: var(--ink-dim); }
+  .btn-ink { background: var(--ink); color: var(--paper); border: 0; font: 600 1rem/1 var(--font-body); cursor: pointer; white-space: nowrap; }
+  .signup-status { margin-top: 12px; min-height: 1.4em; font-weight: 600; color: var(--ink); }
+  .signup-status.err { color: var(--rust); }
+  .signup.sent { display: none; }
+  .signup-note { margin-top: 12px; font-size: .9rem; color: var(--ink-dim); }
+
+  @media (max-width: 760px) {
+    body { font-size: 18px; }
+    main pre { padding-left: 18px; padding-right: 18px; }
+    .copy-label { left: 18px; }
+  }
+  @media (max-width: 560px) {
+    .facts { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .signup { flex-direction: column; }
+    .signup .btn-ink { padding: 14px 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<header class="band band-navy"><div class="head">
+  <a class="home" href="/"><span>&larr;</span>Kevin Magnan</a>
+  <p class="kicker">Free guide · from @vibewithkevin</p>
+  <h1>5 side businesses an AI agent can <em>run for you</em></h1>
+  <p class="sub">These ideas come from Chris Koerner's video <a href="https://www.youtube.com/watch?v=JhyVSrQPVSg" target="_blank" rel="noopener">"I Let AI Make and Save Me Money for 6 Weeks"</a> on The Koerner Office podcast, posted October 21, 2026. The numbers below are his. The prompts are mine, written fresh for this page. They are not Chris's own doc.</p>
+  <p class="byline">By Kevin Magnan · @vibewithkevin</p>
+</div></header>
+
+<main class="band band-paper"><div class="col">
+
+<div class="take">
+  <p>"Agents do the clicking and the work now. You just need to find the underserved business angle like Chris did."</p>
+  <span>Kevin</span>
+</div>
+
+<p>Each prompt below is written for an AI agent that can use a web browser: it opens sites, clicks, and fills in forms for you. Fill in the <code>[BRACKETS]</code>, paste it in, and the agent keeps a spreadsheet and reports back to you.</p>
+
+<ol class="toc">
+  <li><a href="#quotes">The quote agent for big home projects</a></li>
+  <li><a href="#garage">The garage machine</a></li>
+  <li><a href="#dropship">Dropshipping in messy niches</a></li>
+  <li><a href="#outreach">The outreach machine for AI setup clients</a></li>
+  <li><a href="#website">The $11 website</a></li>
+</ol>
+
+<!-- 1 -->
+<h2 id="quotes">1. The quote agent for big home projects</h2>
+<p class="what">You collect a stack of real price quotes for a big project, so the homeowner doesn't have to chase contractors for weeks.</p>
+<div class="facts">
+  <div><b>Who pays you</b>Homeowners planning a roof, a kitchen, a pool, or any big job. Pool consultants charge 3 to 6% of the job for this work.</div>
+  <div><b>Chris's number</b>He wanted 10 quotes on a pool. The old way took 2 weeks, 4 companies, and got zero quotes. The agent got <strong>8 quotes in 24 hours</strong>, from <strong>$120,000 to $240,000</strong> for the same pool.</div>
+</div>
+<div class="copy-block"><span class="copy-label">Paste into your browser agent</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>I need ballpark price quotes for a [PROJECT, e.g. new roof, kitchen remodel, pool] in [CITY OR AREA]. Use the web browser to do this for me, step by step.
+
+The project: [SPECS: size, materials, must-haves]. I've attached [PLANS, SURVEY, AND/OR PHOTOS].
+
+1. Search Google and Google Maps for every [TYPE OF COMPANY, e.g. roofing contractor] that serves [CITY OR AREA]. Find at least [NUMBER, e.g. 20].
+2. Make a spreadsheet called "[PROJECT] quotes" with these columns: Company, Website, Phone, Email, How I contacted them, Date contacted, Replied (yes/no), Quote amount, Follow-up sent, Notes.
+3. For each company, fill out the contact form on its website. If there is no form, email them instead. Use this message:
+   "Hi, I'm [YOUR NAME]. I'm planning a [PROJECT] in [CITY]. Here are the specs: [SPECS]. I've attached a photo of the space. I just want a ballpark, I won't hold you to it. You can reach me at [EMAIL] or [PHONE]."
+   Attach [PHOTO] wherever the form or email allows it.
+4. Log every company in the spreadsheet as you go, including any you could not reach and why.
+5. Do not agree to anything, book anything, pay anything, or share any personal details beyond what is in the message.
+6. Check [EMAIL INBOX] for replies and add each quote amount to the spreadsheet.
+7. After [3 DAYS], send one short follow-up to every company that has not replied: "Hi, just following up on my ballpark request for a [PROJECT] in [CITY]. Any rough number helps." Mark it in the Follow-up sent column.
+8. Report back to me: how many companies you contacted, how many replied, the lowest, highest, and middle quote, and anything that looked strange.</code></pre></div>
+<p class="hint">To turn this into a business, run it for clients. Swap in their project and their contact details, and charge a flat fee or a small percent of the job.</p>
+
+<!-- 2 -->
+<h2 id="garage">2. The garage machine</h2>
+<p class="what">You take photos of someone's unwanted stuff, and the agent lists it, answers buyers, haggles, and books pickups on Facebook Marketplace.</p>
+<div class="facts">
+  <div><b>Who pays you</b>People with a full garage and no time to sell it. Consignment shops charge 30 to 50% to do this. You become the consignment shop with no shop.</div>
+  <div><b>Chris's rule</b>Every day an item gets <strong>3 inquiries or less</strong>, the agent drops the price <strong>10%</strong>. On the buy side, he had an agent find spray foam contractors within 30 miles. First quote back: <strong>$1,200</strong>, against <strong>$12,000</strong> the old way.</div>
+</div>
+<div class="copy-block"><span class="copy-label">Paste into your browser agent</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>I want to sell the items in the attached photos on Facebook Marketplace. I'm logged in to Facebook in this browser. Do this step by step.
+
+1. For each photo, figure out what the item is, the brand if you can tell, and its condition.
+2. Search Facebook Marketplace and eBay sold listings for the same or similar items near [CITY]. Set a starting price that should sell within about a week. Never go below my floor price: [FLOOR PRICE, or "50% of the starting price"].
+3. Make a spreadsheet called "Garage sale" with these columns: Item, Photo, Starting price, Floor price, Current price, Date listed, Listing link, Inquiries today, Status, Buyer, Pickup time, Sold price.
+4. List each item on Marketplace with a clear title, an honest description, the right category, and the price. Pickup location: [GENERAL AREA, e.g. a neighborhood or cross streets].
+5. Answer buyer messages using only what you can see in the photos and my notes: [NOTES, e.g. "the dresser has a scratch on the left side"]. If you don't know an answer, ask me before you reply.
+6. Negotiate politely. Accept any offer at or above the current price. Counter offers below it, and never accept less than the floor price.
+7. Do not share my address until a buyer confirms a day, a time, and a price. Then send them [PICKUP ADDRESS]. Offer pickup times only from: [MY PICKUP WINDOWS].
+8. Payment is [CASH, or a payment app you name] at pickup only. Do not accept checks, shipping requests, overpayments, or requests for verification codes.
+9. At the end of each day, update the spreadsheet. If an item got 3 inquiries or less that day, drop its price 10%, but not below the floor.
+10. Report back to me each evening: what sold, for how much, what pickups are booked, and any messages you need me to answer.</code></pre></div>
+<p class="hint">Flip it around for the buy side: ask the agent to find [SERVICE] contractors within 30 miles on Marketplace, request quotes, and book the visits on your calendar.</p>
+
+<!-- 3 -->
+<h2 id="dropship">3. Dropshipping in messy niches</h2>
+<p class="what">You sell products that are hard to shop for online. The agent finds the cheapest supplier, and you list the item on a clean site for more.</p>
+<div class="facts">
+  <div><b>Who pays you</b>Shoppers in niches like fruit trees, kayaks, paddle boards, and live chicks. There's no Amazon-style catalog, and prices are all over the place. You list 30 to 60% above your cost.</div>
+  <div><b>Chris's number</b>A tree the agent bought for <strong>$34</strong> sold for about <strong>$60 to $70</strong>. When an order comes in, the agent buys from the supplier and ships it to the buyer's address.</div>
+</div>
+<div class="copy-block"><span class="copy-label">Paste into your browser agent</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>I want to sell [NICHE, e.g. fruit trees] online without holding inventory. Use the web browser to do this step by step. Do not buy anything during the research steps.
+
+Research
+1. Find at least [NUMBER, e.g. 15] suppliers that sell [NICHE] and ship to customers in [COUNTRY OR REGION].
+2. For the [NUMBER, e.g. 10] most popular products in this niche, find every supplier's price, shipping cost, delivery time, and return policy.
+3. Make a spreadsheet called "[NICHE] products" with these columns: Product, Supplier, Supplier link, Supplier price, Shipping cost, Total cost, Delivery time, Return policy, Lowest price I found elsewhere, My price, Notes.
+4. Set My price at 30 to 60% above Total cost, and check that it is still fair next to the lowest price you found elsewhere.
+5. Report back to me with the top 10 products ranked by profit per sale, and flag any supplier that looks unreliable.
+
+Orders (only after I approve the product list and the store is live on [STORE PLATFORM, e.g. Shopify])
+6. When a new order comes in at [WHERE ORDERS SHOW UP, e.g. my Shopify admin], place the same order with the supplier from the spreadsheet. Use the buyer's name and shipping address. Pay with [PAYMENT METHOD]. Stop and ask me if the supplier price is higher than the spreadsheet, the item is out of stock, or the order is over [DOLLAR LIMIT].
+7. Add each order to a second tab called "Orders" with: Date, Buyer, Product, What they paid, What I paid, Supplier order number, Tracking number.
+8. Send the tracking number to the buyer when you have it.
+9. Report back to me each day with new orders, profit, and anything that needs me.</code></pre></div>
+<div class="warn"><b>Before you list anything</b>Check each supplier yourself and read their return policy. When something arrives broken, the buyer will come to you, not the supplier.</div>
+
+<!-- 4 -->
+<h2 id="outreach">4. The outreach machine for AI setup clients</h2>
+<p class="what">You find local businesses that are losing customers to missed calls and slow booking, then show them a fix before you ask for anything.</p>
+<div class="facts">
+  <div><b>Who pays you</b>Local businesses that pay you to set up an AI receptionist, a missed-call text-back, and a booking page.</div>
+  <div><b>Chris's filter</b>One niche, one city. Keep businesses with <strong>4+ stars</strong>, <strong>50+ reviews</strong>, no booking link, and an owner who never replies to reviews. Then call after hours to see if it goes to voicemail.</div>
+</div>
+<p>After the list comes the pitch: a scored one-page audit, a 3 to 7 minute Loom video walking through it, then a working demo. Free Loom covers videos up to 5 minutes, so keep it under that if you're on the free plan.</p>
+<div class="copy-block"><span class="copy-label">Paste into your browser agent</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>Help me find local businesses that need help answering calls and booking customers. The niche is [NICHE, e.g. pet groomers] in [CITY]. Use the web browser to do this step by step.
+
+1. Search Google Maps for [NICHE] in [CITY]. Go through every result, not just the first page.
+2. Keep only the businesses that have all four of these:
+   - 4 stars or higher
+   - 50 or more reviews
+   - No online booking link on their Google listing or their website
+   - The owner has not replied to any recent reviews
+3. Make a spreadsheet called "[NICHE] [CITY] leads" with these columns: Business, Owner name (if listed), Phone, Website, Stars, Review count, Booking link (yes/no), Owner replies (yes/no), After-hours call result, Audit score, Notes.
+4. [IF YOUR AGENT CAN MAKE CALLS] After [TIME, e.g. 7 pm] their local time, call each business once and note whether it goes to voicemail. Hang up without leaving a message. If you can't make calls, leave this column for me.
+5. For the top [NUMBER, e.g. 10] businesses, write a one-page audit scored out of 100. Score these: how easy it is to book, what happens to an after-hours call, whether reviews get answered, and how the website works on a phone. For each low score, write one plain sentence on what it costs them, like "callers after 6 pm reach voicemail and may call a competitor."
+6. For each of those businesses, write a short outline I can follow while recording a 3 to 5 minute screen-share video walking through their audit.
+7. For each one, write the demo I will build for them: the greeting their AI receptionist would use, the text message a missed caller would get, and the services and times their booking page would show.
+8. Do not contact any business by email, text, or form. I will do the outreach.
+9. Report back with the spreadsheet link and the top 10 audits, best first.</code></pre></div>
+<div class="warn"><b>One rule</b>Cold calls and texts have rules that differ by state and country. Check yours before you contact anyone.</div>
+
+<!-- 5 -->
+<h2 id="website">5. The $11 website</h2>
+<p class="what">You find a city where people search for a service but few businesses show up, build a simple site that ranks for it, and rent the leads to one local company.</p>
+<div class="facts">
+  <div><b>Who pays you</b>One local business that wants every lead from your site. Chris's example price: $800 a month, raised to $1,200 later. Skip dentists, HVAC, plumbing, roofing, and electrical, because everyone already sells to them. Go wide and go weird.</div>
+  <div><b>Chris's number</b>A tool showed Laredo, Texas needed crane rental. The agent bought the domain for <strong>$11</strong> and built the site. Within a month: <strong>3 leads</strong>, for jobs of about <strong>$3,000, $23,000, and $9,000</strong>.</div>
+</div>
+<p>Chris gave the first leads free to basically the only crane company in Laredo with a web presence. The plan is to make the site exclusive to one business. Run the prompt in two parts. Part A only researches. Part B spends money, so run it only after you've picked a winner.</p>
+<div class="copy-block"><span class="copy-label">Part A · research only</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>Help me find a local service business where people search on Google but few companies show up. Use the web browser to do this step by step. Do not buy anything or sign up for anything that costs money.
+
+1. List [NUMBER, e.g. 30] unusual local services that businesses or homeowners hire. Skip dentists, HVAC, plumbing, roofing, and electrical. Think of things like [AN EXAMPLE OR TWO OF YOUR OWN].
+2. Pick [NUMBER, e.g. 20] cities in [STATE OR REGION] with at least [POPULATION, e.g. 100,000] people.
+3. For each service and city pair, search Google Maps for "[SERVICE] in [CITY]". Count how many real businesses show up, how many have a website, and how many reviews the top three have.
+4. Check whether people search for it, using [GOOGLE TRENDS, GOOGLE KEYWORD PLANNER, OR A TOOL YOU USE]. Note the search numbers or trend you see.
+5. Make a spreadsheet called "Rank and rent research" with these columns: Service, City, Businesses on Maps, Businesses with a website, Top 3 review counts, Search demand, Evidence link, Notes.
+6. Report back with the top 5 pairs that have the most search demand and the weakest competition. For each one, show the evidence: the counts, the links, and the search numbers.</code></pre></div>
+<div class="copy-block"><span class="copy-label">Part B · after you approve one</span><button class="copy" type="button" data-label="Copy prompt">Copy prompt</button><pre class="wrap"><code>I approved [SERVICE] in [CITY]. Build a simple website for it, step by step.
+
+1. Find an available domain name that includes the service and the city, like [SERVICE][CITY].com. Show me 3 options and wait for me to pick one.
+2. Buy the domain I picked at [REGISTRAR, e.g. Cloudflare or Namecheap]. Stop and ask me if it costs more than [DOLLAR LIMIT, e.g. $15].
+3. Build a one-page site on [SITE BUILDER, e.g. Carrd or Google Sites]. Include: a clear headline with the service and city, what the service is, the areas served, a phone number [PHONE NUMBER], and a quote request form that sends to [EMAIL].
+4. Make it easy for Google to understand: put the service and city in the page title, the main heading, and the description. Make sure it loads fast and reads well on a phone.
+5. Set up Google Analytics and Google Search Console for the site, using my Google account [GOOGLE ACCOUNT]. Submit the site to Search Console.
+6. Make a spreadsheet called "[SERVICE] [CITY] leads" with these columns: Date, Name, Phone, Email, Job details, Rough job size, Sent to.
+7. Report back with the site link, what it cost, and anything you need me to finish.</code></pre></div>
+
+<div class="sources">
+  <h3>Before you start</h3>
+  <p>Agent apps change fast. Any browser agent that can click and fill out forms will work with these prompts. Watch what it does the first few times, and keep anything that spends money behind a yes from you.</p>
+  <h3>Source</h3>
+  <ul>
+    <li><a href="https://www.youtube.com/watch?v=JhyVSrQPVSg" target="_blank" rel="noopener">Chris Koerner, "I Let AI Make and Save Me Money for 6 Weeks," The Koerner Office podcast</a></li>
+  </ul>
+  <p>Ideas and numbers: Chris Koerner. Prompts: Kevin Magnan, @vibewithkevin.</p>
+</div>
+
+</div></main>
+
+<section class="band band-paper" aria-labelledby="join-title"><div class="join">
+  <h2 id="join-title">Want the next <em>one?</em></h2>
+  <p class="lede">Join the list and I'll send you my free kit, <em>Don't Start From Zero</em>: the GitHub repos, skills, and plugins I actually use. New guides like this one land in the same inbox.</p>
+  <form class="signup" id="kit-form" novalidate>
+    <label for="kit-email" class="sr">Email address</label>
+    <input id="kit-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+    <input class="hp" name="company" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="btn btn-ink" type="submit">Send me the kit</button>
+  </form>
+  <p class="signup-status" id="kit-status" role="status" aria-live="polite"></p>
+  <p class="signup-note">Unsubscribe anytime.</p>
+</div></section>
+
+<section class="band band-navy"><div class="cta">
+  <h2>Started one of <em>these?</em></h2>
+  <p>Show me. Tag me on TikTok, where I post what I'm building.</p>
+  <div class="cta-links">
+    <a class="btn btn-orange" href="https://www.tiktok.com/@vibewithkevin" target="_blank" rel="noopener">Follow @vibewithkevin</a>
+    <a class="btn btn-ghost" href="/kit/">Read the free kit</a>
+    <a class="btn btn-ghost" href="/">Back to kevinjmagnan.com</a>
+  </div>
+</div></section>
+
+<script>
+  // Copy button on the prompt. Falls back to selecting the text if the clipboard API is blocked.
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    var label = btn.getAttribute("data-label") || "Copy";
+    btn.addEventListener("click", function () {
+      var code = btn.parentNode.querySelector("pre code");
+      var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = label; }, 1800); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(code);
+        var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+        s.removeAllRanges();
+        if (ok) done(); else btn.textContent = "Select and copy";
+      };
+      if (navigator.clipboard) navigator.clipboard.writeText(code.innerText).then(done, fallback); else fallback();
+    });
+  });
+</script>
+<script>
+(() => {
+  const form = document.getElementById("kit-form");
+  const status = document.getElementById("kit-status");
+  if (!form) return;
+  const say = (msg, err) => { status.textContent = msg; status.classList.toggle("err", !!err); };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("That email doesn't look right. Check it and try again.", true); form.email.focus(); return; }
+    const btn = form.querySelector("button");
+    btn.disabled = true; say("Sending...");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, company: form.company.value }),
+      });
+      if (res.ok) { form.classList.add("sent"); say("You're in. Check your inbox for the kit."); return; }
+      say(res.status === 400 ? "That email doesn't look right. Check it and try again." : "Something went wrong on my end. Try again in a minute.", true);
+    } catch { say("Something went wrong on my end. Try again in a minute.", true); }
+    btn.disabled = false;
+  });
+})();
+</script>
+</body>
+</html>
