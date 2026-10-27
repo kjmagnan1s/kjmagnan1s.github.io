@@ -1,0 +1,84 @@
+---
+layout: default
+title: Book time
+permalink: /book/
+description: "Book a call with Kevin Magnan: a 30-minute problem call, a 60-minute build session, or a 15-minute intro for speaking, workshops, and podcasts."
+# Cal.com username. Empty means the buttons email Kevin instead of opening
+# the scheduler. Set it once the account exists, for example "kevinmagnan".
+cal_handle: ""
+# One card per Cal.com event type. `slug` must match the event's URL slug.
+# `price` is shown when set ("$150") and hidden when empty.
+events:
+  - slug: 30min
+    name: 30 minutes, one problem
+    when: 30 minutes · video
+    price: ""
+    blurb: "A call for people building with AI. Bring one thing: a skill that won't load, or a project you can't scope. We fix it on the call, or you leave with the plan."
+    button: Book 30 minutes
+  - slug: 60min
+    name: 60 minutes, build it with me
+    when: 60 minutes · screen share
+    price: ""
+    blurb: "Your project, screen shared. We build it together in Claude Code or whatever you use, and you keep everything we make."
+    button: Book 60 minutes
+  - slug: intro
+    name: Speaking, workshops, podcasts
+    when: 15 minutes · video
+    price: ""
+    blurb: "A short call about your event, show, or class: what the room needs and whether I'm the right fit."
+    button: Book 15 minutes
+---
+<style>
+  .book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .book-card { background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 26px 24px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .book-card h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; line-height: 1.1; letter-spacing: -.02em; }
+  .book-card .when { font-family: var(--font-heading); font-style: italic; color: var(--rust); }
+  .book-card p { line-height: 1.55; color: var(--ink-dim); }
+  .book-card .price { font-weight: 600; color: var(--ink); }
+  .book-btn { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; background: var(--orange); color: var(--ink); text-decoration: none; border: 0; font: inherit; font-weight: 600; cursor: pointer; }
+  .book-btn:hover { background: #e8793f; }
+  .book-note { margin-top: 36px; max-width: 64ch; line-height: 1.6; color: var(--ink-dim); }
+  .book-note a { color: var(--rust); }
+</style>
+
+<header class="band band-navy">
+  {% include site-nav.html %}
+  <div class="wrap wrap-top">
+    <p class="eyebrow">Book time</p>
+    <h1 class="display">Get me on <em>a call.</em></h1>
+    <p class="lede">Three ways to work with me live. Pick the one that fits and bring the thing you're working on.</p>
+  </div>
+</header>
+
+<main class="band band-paper">
+  <div class="wrap">
+    <div class="book-grid">
+      {%- for e in page.events %}
+      <section class="book-card" aria-labelledby="book-{{ e.slug }}">
+        <h2 id="book-{{ e.slug }}">{{ e.name }}</h2>
+        <span class="when">{{ e.when }}</span>
+        <p>{{ e.blurb }}</p>
+        {%- if e.price != "" %}<span class="price">{{ e.price }}</span>{%- endif %}
+        {%- if page.cal_handle != "" %}
+        <button class="book-btn" type="button" data-cal-link="{{ page.cal_handle }}/{{ e.slug }}" data-cal-config='{"layout":"month_view"}'>{{ e.button }}</button>
+        {%- else %}
+        <a class="book-btn" href="mailto:kevinjmagnan@gmail.com?subject={{ e.name | uri_escape }}">{{ e.button }}</a>
+        {%- endif %}
+      </section>
+      {%- endfor %}
+    </div>
+    <p class="book-note">Here for a brand deal? <a href="/media-kit/">The media kit has the numbers.</a> Want this built for your business instead of learning it? <a href="https://aippliedlabs.com/">That's AIpplied Labs, my company.</a></p>
+  </div>
+</main>
+
+<div class="band band-navy">
+  {% include site-footer.html %}
+</div>
+
+{%- if page.cal_handle != "" %}
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", { origin: "https://app.cal.com" });
+  Cal("ui", { styles: { branding: { brandColor: "#e0662a" } }, hideEventTypeDetails: false, layout: "month_view" });
+</script>
+{%- endif %}
