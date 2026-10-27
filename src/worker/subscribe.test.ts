@@ -72,6 +72,31 @@ describe("handleSubscribe", () => {
     });
   });
 
+  it("records a leave-behind page slug as the campaign", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response("{}", { status: 201 }));
+    vi.stubGlobal("fetch", fetchMock);
+    const res = await handleSubscribe(post({ email: "a@b.co", source: "agents" }), env());
+    expect(res.status).toBe(200);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
+      utm_medium: "leave-behind",
+      utm_campaign: "agents",
+    });
+  });
+
+  it("drops a source that is not a plain slug and keeps the kit campaign", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response("{}", { status: 201 }));
+    vi.stubGlobal("fetch", fetchMock);
+    const res = await handleSubscribe(
+      post({ email: "a@b.co", source: "<script>alert(1)</script>" }),
+      env()
+    );
+    expect(res.status).toBe(200);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toMatchObject({
+      utm_medium: "website",
+      utm_campaign: "dont-start-from-zero",
+    });
+  });
+
   it("rejects a cross-site origin without calling Beehiiv", async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);

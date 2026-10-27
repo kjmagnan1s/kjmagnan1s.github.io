@@ -28,7 +28,7 @@ export async function handleSubscribe(request: Request, env: Env): Promise<Respo
   });
   if (!success) return json({ ok: false, error: "rate_limited" }, 429);
 
-  let data: { email?: unknown; company?: unknown };
+  let data: { email?: unknown; company?: unknown; source?: unknown };
   try {
     data = await request.json();
   } catch {
@@ -43,6 +43,12 @@ export async function handleSubscribe(request: Request, env: Env): Promise<Respo
   if (!EMAIL_RE.test(email) || email.length > 254) {
     return json({ ok: false, error: "invalid_email" }, 400);
   }
+  // Optional page slug from the leave-behind pop-up (assets/js/leave-behind.js),
+  // so Beehiiv records which page brought the signup. Anything that isn't a
+  // plain slug is dropped, never echoed.
+  const rawSource = typeof data.source === "string" ? data.source : "";
+  const source = /^[a-z0-9][a-z0-9/-]{0,39}$/.test(rawSource) ? rawSource : "";
+
   if (!env.BEEHIIV_API_KEY || !env.BEEHIIV_PUBLICATION_ID) {
     return json({ ok: false, error: "not_configured" }, 503);
   }
@@ -60,8 +66,8 @@ export async function handleSubscribe(request: Request, env: Env): Promise<Respo
         reactivate_existing: true,
         send_welcome_email: true,
         utm_source: "kevinjmagnan.com",
-        utm_medium: "website",
-        utm_campaign: "dont-start-from-zero",
+        utm_medium: source ? "leave-behind" : "website",
+        utm_campaign: source || "dont-start-from-zero",
         referring_site: "kevinjmagnan.com",
       }),
     }
