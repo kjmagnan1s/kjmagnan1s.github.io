@@ -4,9 +4,9 @@ import { getCorsHeaders } from "./chat";
 /**
  * POST /api/subscribe
  *
- * Adds an email to the kevinjmagnan.com list in Plunk (its own Plunk project,
- * separate from Naperthrill). New contacts get one welcome email with the
- * free kit; people already on the list get nothing new. The Plunk key lives
+ * Adds a new email to the kevinjmagnan.com list in Plunk (its own Plunk
+ * project, separate from Naperthrill) and sends it one welcome email with the
+ * free kit. Addresses already in the project are never changed. The Plunk key lives
  * in the PLUNK_SECRET_KEY secret and never reaches the page.
  *
  * Moved from Beehiiv on 2026-10-27: Beehiiv's free plan has no send API, and
@@ -70,6 +70,19 @@ export async function handleSubscribe(request: Request, env: Env): Promise<Respo
     authorization: `Bearer ${env.PLUNK_SECRET_KEY}`,
     "content-type": "application/json",
   };
+
+  // Existing contacts are left exactly as they are, in any state. Re-submitting
+  // an address must never re-subscribe someone who opted out, or overwrite when
+  // and where they first signed up. The response is the same either way, so
+  // the form doesn't reveal who is on the list. Someone who unsubscribed and
+  // wants back in uses the resubscribe link in Plunk's footer.
+  const found = await fetch(`${PLUNK}/contacts?search=${encodeURIComponent(email)}&limit=25`, { headers });
+  if (!found.ok) {
+    console.error("plunk contact lookup failed", found.status, await found.text());
+    return json({ ok: false, error: "upstream" }, 502);
+  }
+  const existing = ((await found.json()) as { data?: { email?: string }[] }).data ?? [];
+  if (existing.some((c) => (c.email ?? "").toLowerCase() === email)) return json({ ok: true });
 
   const res = await fetch(`${PLUNK}/contacts`, {
     method: "POST",
