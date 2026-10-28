@@ -65,7 +65,7 @@ describe("handleSubscribe", () => {
     vi.stubGlobal("fetch", fetchMock);
     const res = await handleSubscribe(post({ email: "  Kevin@Example.COM " }), env());
     expect(res.status).toBe(200);
-    expect(fetchMock.mock.calls[0][0]).toBe("https://next-api.useplunk.com/contacts?search=kevin%40example.com&limit=25");
+    expect(fetchMock.mock.calls[0][0]).toBe("https://next-api.useplunk.com/contacts?search=kevin%40example.com&limit=100");
     const [url, init] = fetchMock.mock.calls[1];
     expect(url).toBe("https://next-api.useplunk.com/contacts");
     expect(init.headers.authorization).toBe("Bearer sk_test");
@@ -106,6 +106,27 @@ describe("handleSubscribe", () => {
     vi.stubGlobal("fetch", fetchMock);
     await handleSubscribe(post({ email: "a@b.co" }), env());
     expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it("finds the exact address on a later page of substring matches", async () => {
+    const page = (emails: string[], more: boolean, cursor: string | null) =>
+      new Response(JSON.stringify({ data: emails.map((email) => ({ email })), hasMore: more, cursor }), { status: 200 });
+    const fetchMock = vi.fn().mockResolvedValueOnce(page(["aa@b.co"], true, "c2")).mockResolvedValueOnce(page(["a@b.co"], false, null));
+    vi.stubGlobal("fetch", fetchMock);
+    const res = await handleSubscribe(post({ email: "a@b.co" }), env());
+    expect(res.status).toBe(200);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[1][0]).toContain("cursor=c2");
+  });
+
+  it("fails closed when the matches run past the page cap", async () => {
+    const more = () => new Response(JSON.stringify({ data: [{ email: "aa@b.co" }], hasMore: true, cursor: "next" }), { status: 200 });
+    const fetchMock = vi.fn().mockImplementation(async () => more());
+    vi.stubGlobal("fetch", fetchMock);
+    const res = await handleSubscribe(post({ email: "a@b.co" }), env());
+    expect(res.status).toBe(200);
+    expect(fetchMock).toHaveBeenCalledTimes(5);
+    expect(fetchMock.mock.calls.every(([u]) => String(u).includes("search="))).toBe(true);
   });
 
   it("still reports success when only the welcome email fails", async () => {

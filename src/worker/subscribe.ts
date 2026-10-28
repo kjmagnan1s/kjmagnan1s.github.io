@@ -30,6 +30,28 @@ function json(body: unknown, status = 200): Response {
   });
 }
 
+const MAX_LOOKUP_PAGES = 5;
+
+/** "present" if the exact address exists in any state, "absent" if every
+ * matching page was read and it isn't there, "unknown" if the matches ran past
+ * the page cap, "error" if Plunk failed. */
+async function findContact(email: string, headers: Record<string, string>): Promise<"present" | "absent" | "unknown" | "error"> {
+  let cursor = "";
+  for (let page = 0; page < MAX_LOOKUP_PAGES; page++) {
+    const url = `${PLUNK}/contacts?search=${encodeURIComponent(email)}&limit=100${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`;
+    const res = await fetch(url, { headers });
+    if (!res.ok) {
+      console.error("plunk contact lookup failed", res.status, await res.text());
+      return "error";
+    }
+    const body = (await res.json()) as { data?: { email?: string }[]; hasMore?: boolean; cursor?: string | null };
+    if ((body.data ?? []).some((c) => (c.email ?? "").toLowerCase() === email)) return "present";
+    if (!body.hasMore || !body.cursor) return "absent";
+    cursor = body.cursor;
+  }
+  return "unknown";
+}
+
 export async function handleSubscribe(request: Request, env: Env): Promise<Response> {
   if (request.method !== "POST") return json({ ok: false, error: "method" }, 405);
   if (!getCorsHeaders(request.headers.get("Origin"), request.url)) {
@@ -76,13 +98,12 @@ export async function handleSubscribe(request: Request, env: Env): Promise<Respo
   // and where they first signed up. The response is the same either way, so
   // the form doesn't reveal who is on the list. Someone who unsubscribed and
   // wants back in uses the resubscribe link in Plunk's footer.
-  const found = await fetch(`${PLUNK}/contacts?search=${encodeURIComponent(email)}&limit=25`, { headers });
-  if (!found.ok) {
-    console.error("plunk contact lookup failed", found.status, await found.text());
-    return json({ ok: false, error: "upstream" }, 502);
-  }
-  const existing = ((await found.json()) as { data?: { email?: string }[] }).data ?? [];
-  if (existing.some((c) => (c.email ?? "").toLowerCase() === email)) return json({ ok: true });
+  // Plunk's search is a substring match, so page through every hit looking
+  // for the exact address. If the lookup can't finish (an error, or more
+  // pages than we're willing to read), fail closed: report ok, change nothing.
+  const lookup = await findContact(email, headers);
+  if (lookup === "error") return json({ ok: false, error: "upstream" }, 502);
+  if (lookup !== "absent") return json({ ok: true });
 
   const res = await fetch(`${PLUNK}/contacts`, {
     method: "POST",
