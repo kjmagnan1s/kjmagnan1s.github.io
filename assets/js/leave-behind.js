@@ -3,7 +3,7 @@
    1. Puts the AIpplied Labs cross-link strip first in <body> (same copy as
       _includes/cross-strip.html, for pages that don't use the Jekyll layout).
    2. Shows a one-time email pop-up after 35% scroll or 20 seconds. It posts to
-      /api/subscribe with the page slug as `source`, so Beehiiv records which
+      /api/subscribe with the page slug as `source`, so Plunk records which
       page brought the signup. Skipped for anyone who already subscribed here
       (localStorage kjm_sub) or closed it in the last 30 days (kjm_popup_seen). */
 (function () {

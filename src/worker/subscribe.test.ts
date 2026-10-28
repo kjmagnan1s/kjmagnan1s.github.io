@@ -158,6 +158,12 @@ describe("handleSubscribe", () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
+  it("accepts a same-origin request", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValueOnce(none()).mockResolvedValueOnce(contactRes(true)).mockResolvedValueOnce(new Response("{}")));
+    const res = await handleSubscribe(post({ email: "a@b.co" }, undefined, { Origin: "https://kevinjmagnan.com" }), env());
+    expect(res.status).toBe(200);
+  });
+
   it("returns 429 when the caller's IP is over the limit", async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);
@@ -167,6 +173,7 @@ describe("handleSubscribe", () => {
       env({ SUBSCRIBE_LIMITER } as Partial<Env>)
     );
     expect(res.status).toBe(429);
+    expect(SUBSCRIBE_LIMITER.limit).toHaveBeenCalledWith({ key: "203.0.113.7" });
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
