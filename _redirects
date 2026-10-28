@@ -16,3 +16,6 @@
 /play                        /#try    301
 /contact/                    /#about  301
 /contact                     /#about  301
+
+# Merged 2026-10-27: the two-part podcast analysis is one post now.
+/2020/10/16/2020-10-16-ymh-analysis-p2  /2020/10/11/2020-10-11-ymh-analysis-p1#part-2  301
