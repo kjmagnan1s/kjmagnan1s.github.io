@@ -247,7 +247,7 @@
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email, company: form.company.value }),
       });
-      if (res.ok) { form.classList.add("sent"); say("You're in. Check your inbox for the kit."); return; }
+      if (res.ok) { form.classList.add("sent"); say("You're in. Check your inbox for the kit."); try { localStorage.setItem("kjm_sub", "1"); } catch {} return; }
       say(res.status === 400 ? "That email doesn't look right. Check it and try again." : "Something went wrong on my end. Try again in a minute.", true);
     } catch { say("Something went wrong on my end. Try again in a minute.", true); }
     btn.disabled = false;

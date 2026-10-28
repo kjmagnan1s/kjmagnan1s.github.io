@@ -68,6 +68,9 @@ def collect_urls() -> List[dict]:
 
     posts_dir = ROOT / "_posts"
     for post_path in sorted(posts_dir.glob("*.md")):
+        # Unpublished posts (published: false) are not built, so they stay out of the sitemap.
+        if "\npublished: false" in post_path.read_text(errors="ignore").split("\n---", 1)[0]:
+            continue
         date_value = parse_frontmatter_date(post_path)
         if date_value is None:
             # fall back to the filename prefix

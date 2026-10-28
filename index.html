@@ -550,6 +550,7 @@ layout: null
 </script>
 </head>
 <body>
+{% include cross-strip.html %}
 
 <section class="hero" aria-label="Introduction">
   <div class="hero-media" aria-hidden="true">
@@ -569,7 +570,7 @@ layout: null
     <p class="hero-tagline reveal" style="--i:3">I teach tech-ish people to build with AI, using the same tools that run my own work every day.</p>
     <div class="hero-actions reveal" style="--i:4">
       <a class="btn btn-primary" href="#free">Get the free kit</a>
-      <a class="btn btn-ghost" href="https://aippliedlabs.com/">Work with me</a>
+      <a class="btn btn-ghost" href="/book/">Work with me</a>
       <a class="btn btn-ghost" href="#try">Try the demo<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
@@ -706,7 +707,7 @@ layout: null
         <p class="about-mission">AI turned that data work into building anything I can picture: apps, automations, and every tool on this page. I describe exactly what I want and push until it works. Today that skill is enough to start a business, launch an app, or make the odd project only you would think of.</p>
         <p>Now I want to help a lot more people get there: on stage, on podcasts, and in classes. If you're planning an event, a show, or a course like that, let's talk.</p>
         <div class="open"><span>Speaking</span><span>Podcasts</span><span>Workshops</span><span>Collaborations</span></div>
-        <div class="hero-actions"><a class="btn btn-ink" href="mailto:kevinjmagnan@gmail.com">Get in touch</a><a class="btn btn-ink-ghost" href="/resume">Resume</a></div>
+        <div class="hero-actions"><a class="btn btn-ink" href="/book/">Book a call</a><a class="btn btn-ink-ghost" href="/resume">Resume</a></div>
       </div>
     </div>
   </div>
@@ -854,7 +855,7 @@ layout: null
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ email, company: form.company.value }),
       });
-      if (res.ok) { form.classList.add("sent"); say("You're in. Check your inbox for the kit."); return; }
+      if (res.ok) { form.classList.add("sent"); say("You're in. Check your inbox for the kit."); try { localStorage.setItem("kjm_sub", "1"); } catch {} return; }
       say(res.status === 400 ? "That email doesn't look right. Check it and try again." : "Something went wrong on my end. Try again in a minute.", true);
     } catch { say("Something went wrong on my end. Try again in a minute.", true); }
     btn.disabled = false;

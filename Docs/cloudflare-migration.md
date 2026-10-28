@@ -17,7 +17,7 @@ request
   +-- /api/chat      -> src/worker/chat.ts      (Claude, same-origin only, rate limited)
   +-- /api/compose   -> src/worker/compose/     (Workers AI, typesafe/jev)
   +-- /api/play      -> src/worker/play/        (home page playground, typesafe/jev, rate limited)
-  +-- /api/subscribe -> src/worker/subscribe.ts (Beehiiv kit signup, same-origin only, rate limited)
+  +-- /api/subscribe -> src/worker/subscribe.ts (Plunk kit signup, same-origin only, rate limited)
   +-- /api/health    -> { "ok": true }
   |
   +-- everything else -> env.ASSETS.fetch(request) -> _site
@@ -59,11 +59,11 @@ it in.
 ```sh
 wrangler secret put ANTHROPIC_API_KEY
 wrangler secret put TYPESAFE_API_KEY   # /api/play, and the compose agent if it needs it
-wrangler secret put BEEHIIV_API_KEY    # /api/subscribe
+wrangler secret put PLUNK_SECRET_KEY   # /api/subscribe
 ```
 
-The Beehiiv publication ID is not a secret. It is the `BEEHIIV_PUBLICATION_ID`
-var in `wrangler.jsonc`. Until both are set, `/api/subscribe` returns 503 with
+The Plunk sender address is not a secret. It is the `PLUNK_FROM` var in
+`wrangler.jsonc`. Until both are set, `/api/subscribe` returns 503 with
 `{"ok":false,"error":"not_configured"}`.
 
 Secrets are per-Worker and per-environment. They are not in the repo and not in
