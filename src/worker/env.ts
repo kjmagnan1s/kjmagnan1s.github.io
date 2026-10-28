@@ -20,8 +20,10 @@ export interface Env {
   ANTHROPIC_API_KEY: string;
   TYPESAFE_API_KEY?: string;
 
-  // Beehiiv signup for the free kit. The publication ID is a plain var in
-  // wrangler.jsonc; the API key is a secret.
-  BEEHIIV_PUBLICATION_ID?: string;
-  BEEHIIV_API_KEY?: string;
+  // Plunk list for the free kit, the pop-up, and new-page emails. The sender
+  // fields are plain vars in wrangler.jsonc; the API key is a secret.
+  PLUNK_SECRET_KEY?: string;
+  PLUNK_FROM?: string;
+  PLUNK_FROM_NAME?: string;
+  PLUNK_REPLY_TO?: string;
 }

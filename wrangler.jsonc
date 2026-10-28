@@ -23,10 +23,13 @@
     "run_worker_first": ["/", "/api/*", "/c/*"]
   },
 
-  // Beehiiv "Website list" publication for the kit signup. Not a secret.
-  // BEEHIIV_API_KEY is set with `wrangler secret put`.
+  // Plunk project "kevinjmagnan.com" for the kit, the pop-up, and new-page
+  // emails (moved from Beehiiv 2026-10-27). PLUNK_FROM must be on a domain
+  // verified in that project. PLUNK_SECRET_KEY is set with `wrangler secret put`.
   "vars": {
-    "BEEHIIV_PUBLICATION_ID": "pub_209b2043-0276-4a7e-aa74-1163c7b88ec7"
+    "PLUNK_FROM": "kevin@kevinjmagnan.com",
+    "PLUNK_FROM_NAME": "Kevin Magnan",
+    "PLUNK_REPLY_TO": "kevinjmagnan@gmail.com"
   },
 
   // Workers AI. The compose agent runs typesafe/jev through this.
