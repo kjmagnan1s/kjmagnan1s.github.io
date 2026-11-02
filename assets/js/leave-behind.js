@@ -35,7 +35,7 @@
     var strip = document.createElement("a");
     strip.className = "xstrip";
     strip.href = "https://aippliedlabs.com/";
-    strip.innerHTML = "Want this built for your business? <b>That's AIpplied Labs, my company.</b>";
+    strip.innerHTML = "Want to work with me on your business? <b>That's my consulting company, AIpplied Labs.</b>";
     document.body.insertBefore(strip, document.body.firstChild);
   }
 
