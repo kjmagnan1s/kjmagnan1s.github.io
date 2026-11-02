@@ -14,7 +14,7 @@
 
   var css = document.createElement("style");
   css.textContent =
-    '.xline-bottom{margin:0;padding:28px clamp(16px,5vw,64px) 36px;text-align:center;font-family:"Source Serif 4",Georgia,serif;font-size:1rem;line-height:1.5}.xline-bottom a{color:#e0662a;font-weight:600}' +
+    '.xline-bottom{margin:0;padding:28px clamp(16px,5vw,64px) 36px;text-align:center;font-family:"Source Serif 4",Georgia,serif;font-size:1rem;line-height:1.5}.xline-bottom a{color:var(--rust,#e0662a);font-weight:600}' +
     '.kjm-pop{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(7,26,49,.72)}.kjm-pop.open{display:flex}' +
     '.kjm-card{position:relative;width:min(440px,100%);background:#f3e6d3;color:#0a1628;border-radius:12px;padding:28px 28px 22px;box-shadow:0 24px 60px rgba(0,0,0,.4);font-family:"Source Serif 4",Georgia,serif}' +
     '.kjm-card .kjm-eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:#a8431a;margin:0 0 10px}' +
