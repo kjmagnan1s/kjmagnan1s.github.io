@@ -3,6 +3,7 @@ Footer for every page. Same links as the header, because on phones the header
 shows only "Work with me" and this is the full menu.
 {%- endcomment -%}
 <footer class="site-foot">
+  {% include cross-strip.html %}
   <span>© {{ 'now' | date: "%Y" }} Kevin Magnan</span>
   <nav class="foot-links" aria-label="Footer">
     {%- for item in site.data.nav %}
