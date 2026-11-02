@@ -2,7 +2,7 @@
 layout: default
 title: Book time
 permalink: /book/
-description: "Book a call with Kevin Magnan: a 30-minute problem call, a 60-minute build session, or a 15-minute intro for speaking, workshops, and podcasts."
+description: "Book a 30-minute call with Kevin Magnan. Bring one AI problem and leave with it fixed or with a plan."
 # Cal.com username. Empty means the buttons email Kevin instead of opening
 # the scheduler. This field holds the Cal.com username.
 cal_handle: "kevin-magnan"
@@ -15,21 +15,9 @@ events:
     price: "$297"
     blurb: "A call for people building with AI. Bring one thing: a skill that won't load, or a project you can't scope. We fix it on the call, or you leave with the plan."
     button: Book 30 minutes
-  - slug: 60min
-    name: 60 minutes, build it with me
-    when: 60 minutes · screen share
-    price: ""
-    blurb: "Your project, screen shared. We build it together in Claude Code or whatever you use, and you keep everything we make."
-    button: Book 60 minutes
-  - slug: intro
-    name: Speaking, workshops, podcasts
-    when: 15 minutes · video
-    price: ""
-    blurb: "A short call about your event, show, or class: what the room needs and whether I'm the right fit."
-    button: Book 15 minutes
 ---
 <style>
-  .book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .book-grid { display: grid; grid-template-columns: minmax(0, 460px); gap: 20px; }
   .book-card { background: #fff; border: 2px solid var(--ink); border-radius: 14px; padding: 26px 24px 24px; display: flex; flex-direction: column; gap: 12px; }
   .book-card h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; line-height: 1.1; letter-spacing: -.02em; }
   .book-card .when { font-family: var(--font-heading); font-style: italic; color: var(--rust); }
@@ -46,7 +34,7 @@ events:
   <div class="wrap wrap-top">
     <p class="eyebrow">Book time</p>
     <h1 class="display">Get me on <em>a call.</em></h1>
-    <p class="lede">Three ways to work with me live. Pick the one that fits and bring the thing you're working on.</p>
+    <p class="lede">Thirty minutes on one problem. Bring the thing you're stuck on.</p>
   </div>
 </header>
 
