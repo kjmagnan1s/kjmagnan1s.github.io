@@ -1,7 +1,7 @@
 [build]
   functions = "netlify/functions"
   publish = "_site"
-  command = "bundle install && bundle exec jekyll build && cd netlify/functions && npm install"
+  command = "bundle install && bundle exec jekyll build && mkdir -p _site/.well-known/agent-skills/about-kevin && cp .well-known/agent-skills/about-kevin/SKILL.md _site/.well-known/agent-skills/about-kevin/SKILL.md && cd netlify/functions && npm install"
 
 [functions]
   node_bundler = "esbuild"

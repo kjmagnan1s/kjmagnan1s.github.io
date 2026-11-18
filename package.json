@@ -4,7 +4,7 @@
   "description": "Personal website on a Cloudflare Worker with static assets",
   "type": "module",
   "scripts": {
-    "build:site": "npm run build:shell && python3 scripts/generate_sitemap.py && bundle exec jekyll build && python3 scripts/generate_markdown.py && python3 scripts/generate_library_feeds.py",
+    "build:site": "npm run build:shell && python3 scripts/generate_sitemap.py && bundle exec jekyll build && python3 scripts/generate_markdown.py && python3 scripts/generate_library_feeds.py && mkdir -p _site/.well-known/agent-skills/about-kevin && cp .well-known/agent-skills/about-kevin/SKILL.md _site/.well-known/agent-skills/about-kevin/SKILL.md",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "typecheck": "tsc -p tsconfig.worker.json --noEmit",

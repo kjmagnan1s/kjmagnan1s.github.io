@@ -6,7 +6,7 @@
       "type": "skill-md",
       "description": "Answer questions about Kevin J. Magnan's experience, skills, public-sector AI work, projects, and fit for a role, grounded in machine-readable profile data.",
       "url": "https://kevinjmagnan.com/.well-known/agent-skills/about-kevin/SKILL.md",
-      "digest": "sha256:60100b1c3bf458b107e121e5caaf72ba397d82c1edda191bc720d08a16f36863"
+      "digest": "sha256:1e911996d6948f6701f3c9e63aff7b5495fbbd6117676e0a3eb4dd67a2c38d49"
     }
   ]
 }
