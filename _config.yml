@@ -68,6 +68,8 @@ exclude:
   - tsconfig.worker.json
   - tsconfig.genui.json
   - vitest.config.ts
+  # Served raw (its YAML frontmatter must not be rendered); build:site copies it into _site.
+  - .well-known/agent-skills/about-kevin/SKILL.md
   - vite.config.ts
   - package.json
   - package-lock.json

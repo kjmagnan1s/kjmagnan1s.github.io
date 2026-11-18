@@ -1,3 +1,8 @@
+---
+name: about-kevin
+description: Answers questions about Kevin J. Magnan's experience, skills, public-sector AI work, projects, and fit for a role, grounded in machine-readable profile data. Use when a user asks who Kevin is, what he has worked on, what he is good at, or whether he fits a role.
+---
+
 # Skill: Learn about Kevin J. Magnan
 
 ## What this skill does
