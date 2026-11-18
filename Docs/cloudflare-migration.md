@@ -219,6 +219,7 @@ python3 scripts/generate_sitemap.py
 bundle exec jekyll build
 python3 scripts/generate_markdown.py # pandoc -> _site/index.md, needs pandoc installed
 python3 scripts/generate_library_feeds.py # _site/library/{llms.txt,feed.xml}, fails if a card lacks data-added
+cp .well-known/agent-skills/about-kevin/SKILL.md _site/.well-known/agent-skills/about-kevin/ # served raw; Jekyll excludes it
 ```
 
 `npm run build:site` runs these in that order, and the order matters: Jekyll
